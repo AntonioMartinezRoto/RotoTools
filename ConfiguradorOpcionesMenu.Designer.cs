@@ -44,9 +44,9 @@
             lbl_ConfigOpciones.BackColor = Color.Transparent;
             lbl_ConfigOpciones.Location = new Point(89, 80);
             lbl_ConfigOpciones.Name = "lbl_ConfigOpciones";
-            lbl_ConfigOpciones.Size = new Size(117, 15);
+            lbl_ConfigOpciones.Size = new Size(170, 15);
             lbl_ConfigOpciones.TabIndex = 5;
-            lbl_ConfigOpciones.Text = "Configurar Opciones";
+            lbl_ConfigOpciones.Text = "Configurar y guardar Opciones";
             // 
             // btn_ConfigOpciones
             // 
@@ -109,6 +109,7 @@
             Controls.Add(statusStrip1);
             Controls.Add(lbl_ConfigOpciones);
             Controls.Add(btn_ConfigOpciones);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;

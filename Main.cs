@@ -41,6 +41,17 @@ namespace RotoTools
             ActualizadorMenu actualizadorMenuForm = new ActualizadorMenu();
             actualizadorMenuForm.ShowDialog();
         }
+        private void btn_Conector_Click(object sender, EventArgs e)
+        {
+            ConectorHerrajeMenu conectorHerrajeMenuForm = new ConectorHerrajeMenu();
+            conectorHerrajeMenuForm.ShowDialog();
+        }
+
+        private void btn_Export_Click(object sender, EventArgs e)
+        {
+            ExportacionMenu exportacionMenuForm = new ExportacionMenu();
+            exportacionMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -57,10 +68,6 @@ namespace RotoTools
         #endregion
 
 
-        private void btn_Conector_Click(object sender, EventArgs e)
-        {
-            ConectorHerrajeMenu conectorHerrajeMenuForm = new ConectorHerrajeMenu();
-            conectorHerrajeMenuForm.ShowDialog();
-        }
+
     }
 }

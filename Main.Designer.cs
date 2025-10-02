@@ -122,6 +122,7 @@
             btn_Export.Size = new Size(40, 40);
             btn_Export.TabIndex = 6;
             btn_Export.UseVisualStyleBackColor = true;
+            btn_Export.Click += btn_Export_Click;
             // 
             // lbl_Export
             // 

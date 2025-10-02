@@ -4101,6 +4101,10 @@ namespace RotoTools
 
             foreach (Set set in setCF1HActivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 List<Option> optionList =
                 [
                     new Option("HardwareSupplier", xmlOrigen.Supplier),
@@ -4133,6 +4137,11 @@ namespace RotoTools
 
             foreach (Set set in setCV1HActivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
+
                 List<Option> optionList =
                 [
                     new Option("HardwareSupplier", xmlOrigen.Supplier),
@@ -4166,6 +4175,11 @@ namespace RotoTools
 
             foreach (Set set in setCF2HActivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
+
                 List<Option> optionList =
                 [
                     new Option("HardwareSupplier", xmlOrigen.Supplier),
@@ -4198,6 +4212,10 @@ namespace RotoTools
 
             foreach (Set set in setCV2HActivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 List<Option> optionList =
                 [
                     new Option("HardwareSupplier", xmlOrigen.Supplier),
@@ -4230,6 +4248,10 @@ namespace RotoTools
 
             foreach (Set set in setCF2HPasivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
 
                 if (set.Opening != null)
                 {
@@ -4272,6 +4294,10 @@ namespace RotoTools
 
             foreach (Set set in setCF2HPasivaBalconeraPracticableAperturaExterior)
             {
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
 
                 if (set.Opening != null)
                 {
@@ -5964,7 +5990,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF1HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6009,7 +6038,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6055,7 +6087,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HPasivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6239,7 +6274,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF1HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6284,7 +6322,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6330,7 +6371,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HPasivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6515,7 +6559,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF1HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6560,7 +6607,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HActivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -6606,7 +6656,10 @@ namespace RotoTools
 
             foreach (Set set in setsCF2HPasivaPuertaSecundariaPracticableAperturaExterior)
             {
-
+                if (chk_ConfigAE.Checked)
+                {
+                    set.Code = GetEquivalenciaAI(set.Code);
+                }
                 if (set.Opening != null)
                 {
                     set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
@@ -9681,16 +9734,23 @@ namespace RotoTools
         }
 
         #endregion
-
         #endregion
 
+        private string GetEquivalenciaAI(string setCode)
+        {
+            // Quitamos "AE " de la cadena de búsqueda
+            string codeAI = setCode.Replace("AE ", "");
+            Set setEquivalente = xmlOrigen.SetList.Where(s => s.Code == codeAI).FirstOrDefault();
+            if(setEquivalente != null)
+            {
+                return setEquivalente.Code;
+            }
+            else
+            {
+                return setCode;
+            }
+
+        }
         #endregion
-
-
-
-
-
-
-
     }
 }

@@ -42,6 +42,7 @@
             btn_GeneraConector = new Button();
             label4 = new Label();
             btn_CombinarConectores = new Button();
+            chk_ConfigAE = new CheckBox();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -173,6 +174,17 @@
             btn_CombinarConectores.UseVisualStyleBackColor = true;
             btn_CombinarConectores.Click += btn_CombinarConectores_Click;
             // 
+            // chk_ConfigAE
+            // 
+            chk_ConfigAE.AutoSize = true;
+            chk_ConfigAE.BackColor = Color.Transparent;
+            chk_ConfigAE.Location = new Point(264, 180);
+            chk_ConfigAE.Name = "chk_ConfigAE";
+            chk_ConfigAE.Size = new Size(177, 19);
+            chk_ConfigAE.TabIndex = 24;
+            chk_ConfigAE.Text = "Balconeras AE con Sets de AI";
+            chk_ConfigAE.UseVisualStyleBackColor = false;
+            // 
             // ConectorHerrajeMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -180,6 +192,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(683, 379);
+            Controls.Add(chk_ConfigAE);
             Controls.Add(label4);
             Controls.Add(btn_CombinarConectores);
             Controls.Add(label3);
@@ -220,5 +233,6 @@
         private Button btn_GeneraConector;
         private Label label4;
         private Button btn_CombinarConectores;
+        private CheckBox chk_ConfigAE;
     }
 }

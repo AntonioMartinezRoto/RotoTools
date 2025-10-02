@@ -7,6 +7,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images\roto_icon.ico</ApplicationIcon>
+	<PublishSingleFile>true</PublishSingleFile>
+	<SelfContained>true</SelfContained>
+	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	<PublishTrimmed>false</PublishTrimmed>
+    <FileVersion>1.5</FileVersion>
+    <AssemblyVersion>1.5</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -218,6 +218,7 @@
             btn_OcultaOpciones.Text = "OcultaOpciones";
             btn_OcultaOpciones.TextAlign = ContentAlignment.MiddleRight;
             btn_OcultaOpciones.UseVisualStyleBackColor = false;
+            btn_OcultaOpciones.Click += btn_OcultaOpciones_Click;
             // 
             // ActualizadorMenu
             // 

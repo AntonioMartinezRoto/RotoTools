@@ -5,7 +5,7 @@ namespace RotoTools
     public partial class ActualizadorMenu : Form
     {
         #region Private Properties
-        
+
         private List<Proveedor> proveedoresList = new List<Proveedor>();
         private List<GrupoPresupuestado> gruposPresupuestadoList = new List<GrupoPresupuestado>();
         private List<GrupoProduccion> gruposProduccionList = new List<GrupoProduccion>();
@@ -109,6 +109,10 @@ namespace RotoTools
                     MessageBox.Show($"Se ejecutaron {totalEjecutados} script(s).");
                 }
             }
+        }
+        private void btn_OcultaOpciones_Click(object sender, EventArgs e)
+        {
+            AgregarValorOcultoOpcionesRoto();
         }
 
         #endregion
@@ -223,6 +227,77 @@ namespace RotoTools
                     }
                 }
             }
+        }
+        private void AgregarValorOcultoOpcionesRoto()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                using (var cmd = new SqlCommand("SELECT Nombre, DataVerId FROM Opciones WHERE left(Nombre,3) = N'RO_'", conn))
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            InsertContenidoOpcionOculto(reader["Nombre"].ToString(), reader.GetGuid(1).ToString());
+                        }
+                    }
+                    MessageBox.Show("Valor Oculto añadido correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error insertando valor oculto a las opciones: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void InsertContenidoOpcionOculto(string? optionName, string dataVerId)
+        {
+            if (!ExistContenidoOpcionOculto(optionName, dataVerId))
+            {
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                using (var cmd = new SqlCommand("INSERT INTO ContenidoOpciones ([Opcion], [Orden], [Valor], [Texto], [Flags]) " +
+                    "                           VALUES (@nombre, @orden, @valor, @texto, @flags)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", optionName);
+                    cmd.Parameters.AddWithValue("@orden", GetLastContenidoOpcionOrden(optionName, dataVerId));
+                    cmd.Parameters.AddWithValue("@valor", "Oculto");
+                    cmd.Parameters.AddWithValue("@texto", "");
+                    cmd.Parameters.AddWithValue("@flags", 3);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            
+        }
+        private int GetLastContenidoOpcionOrden(string? optionName, string dataVerId)
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT MAX(Orden) FROM ContenidoOpciones WHERE Opcion = N'" + optionName + "' AND DataVerId = N'" + dataVerId + "'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return reader.GetInt16(0) + 1;
+            }
+            return 1;
+        }
+        private bool ExistContenidoOpcionOculto(string? optionName, string dataVerId)
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Valor FROM ContenidoOpciones WHERE Opcion = N'" +  optionName +"' AND DataVerId = N'" + dataVerId + "' AND Valor= N'Oculto'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {                
+                return true;
+            }
+            return false;
         }
 
         #endregion

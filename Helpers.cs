@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using RotoEntities;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace RotoTools
 {
@@ -55,9 +56,9 @@ namespace RotoTools
                 return null;
             }
         }
-        public static bool IsVersionPrefSuiteCompatible(string connectionString)
+        public static bool IsVersionPrefSuiteCompatible()
         {
-            using SqlConnection conexion = new SqlConnection(connectionString);
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
             conexion.Open();
 
             using SqlCommand cmd = new SqlCommand("SELECT Top 1 Version FROM PrefDBManagerHistory ORDER BY ExecutionDate desc", conexion);
@@ -203,6 +204,34 @@ namespace RotoTools
                 {
                     return cmd.ExecuteNonQuery();
                 }
+            }
+        }
+        public static int TryParseInt(string value)
+        {
+            return int.TryParse(value, out int result) ? result : 0;
+        }
+        public static double TryParseDouble(string value)
+        {
+            return double.TryParse(value, out double result) ? result : 0;
+        }
+        public static bool TryParseBool(string value)
+        {
+            return bool.TryParse(value, out bool result) ? result : false;
+        }
+        public static T DeserializarXML<T>(string xml)
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            using var reader = new StringReader(xml);
+            return (T)serializer.Deserialize(reader);
+        }
+
+        public static string SerializarXml<T>(T objeto)
+        {
+            using (var stringWriter = new System.IO.StringWriter())
+            {
+                var serializer = new XmlSerializer(typeof(T));
+                serializer.Serialize(stringWriter, objeto);
+                return stringWriter.ToString();
             }
         }
         #endregion

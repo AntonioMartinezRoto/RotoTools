@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace RotoConectorHerraje
+namespace RotoEntities
 {
     public class ConnectorNode
     {

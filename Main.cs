@@ -49,16 +49,6 @@ namespace RotoTools
         {
             ConnectionString = Helpers.GetConnectionString();
             InitializeInfoConnection();
-            if (Helpers.IsVersionPrefSuiteCompatible(ConnectionString))
-            {
-                //EnableButtons(true);
-                //LoadItemsConectorHerraje();
-            }
-            else
-            {
-                //EnableButtons(false);
-                //ShowVersionNoCompatible();
-            }
         }
         private void InitializeInfoConnection()
         {
@@ -67,5 +57,10 @@ namespace RotoTools
         #endregion
 
 
+        private void btn_Conector_Click(object sender, EventArgs e)
+        {
+            ConectorHerrajeMenu conectorHerrajeMenuForm = new ConectorHerrajeMenu();
+            conectorHerrajeMenuForm.ShowDialog();
+        }
     }
 }

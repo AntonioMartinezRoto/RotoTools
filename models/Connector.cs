@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace RotoConectorHerraje
+namespace RotoEntities
 {
     [XmlRoot("Connector")]
     public class Connector

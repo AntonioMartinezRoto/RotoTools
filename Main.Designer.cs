@@ -142,6 +142,7 @@
             btn_Conector.Size = new Size(40, 40);
             btn_Conector.TabIndex = 8;
             btn_Conector.UseVisualStyleBackColor = true;
+            btn_Conector.Click += btn_Conector_Click;
             // 
             // lbl_Conector
             // 

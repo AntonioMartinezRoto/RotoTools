@@ -59,9 +59,9 @@
             lbl_Colour.BackColor = Color.Transparent;
             lbl_Colour.Location = new Point(38, 80);
             lbl_Colour.Name = "lbl_Colour";
-            lbl_Colour.Size = new Size(34, 15);
+            lbl_Colour.Size = new Size(36, 15);
             lbl_Colour.TabIndex = 1;
-            lbl_Colour.Text = "Perfil";
+            lbl_Colour.Text = "Color";
             // 
             // lbl_System
             // 
@@ -160,7 +160,7 @@
             progress_Export.Size = new Size(490, 22);
             progress_Export.TabIndex = 13;
             // 
-            // WinPerfilExportForm
+            // ExportacionWinPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -181,7 +181,7 @@
             Controls.Add(lbl_Profile);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "WinPerfilExportForm";
+            Name = "ExportacionWinPerfil";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Exportación a WinPerfil";
             Load += WinPerfilExportForm_Load;

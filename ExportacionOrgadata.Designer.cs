@@ -151,9 +151,9 @@
             lbl_Colour.Enabled = false;
             lbl_Colour.Location = new Point(40, 85);
             lbl_Colour.Name = "lbl_Colour";
-            lbl_Colour.Size = new Size(34, 15);
+            lbl_Colour.Size = new Size(36, 15);
             lbl_Colour.TabIndex = 16;
-            lbl_Colour.Text = "Perfil";
+            lbl_Colour.Text = "Color";
             // 
             // lbl_Profile
             // 
@@ -166,7 +166,7 @@
             lbl_Profile.TabIndex = 15;
             lbl_Profile.Text = "Perfil";
             // 
-            // OrgadataExportForm
+            // ExportacionOrgadata
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -188,7 +188,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "OrgadataExportForm";
+            Name = "ExportacionOrgadata";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Exportación a Orgadata";
             Load += OrgadataExportForm_Load;

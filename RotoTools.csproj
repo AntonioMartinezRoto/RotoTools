@@ -16,10 +16,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="images\roto_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="images\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
     <PackageReference Include="NPOI" Version="2.7.5" />
   </ItemGroup>

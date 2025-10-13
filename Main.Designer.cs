@@ -40,6 +40,8 @@
             lbl_Export = new Label();
             btn_Conector = new Button();
             lbl_Conector = new Label();
+            lbl_ControlCambios = new Label();
+            btn_ControlCambios = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -117,7 +119,7 @@
             // btn_Export
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
-            btn_Export.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Export.BackgroundImageLayout = ImageLayout.Center;
             btn_Export.Location = new Point(318, 86);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
@@ -138,7 +140,7 @@
             // btn_Conector
             // 
             btn_Conector.BackgroundImage = (Image)resources.GetObject("btn_Conector.BackgroundImage");
-            btn_Conector.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Conector.BackgroundImageLayout = ImageLayout.Center;
             btn_Conector.Location = new Point(318, 144);
             btn_Conector.Name = "btn_Conector";
             btn_Conector.Size = new Size(47, 40);
@@ -156,6 +158,27 @@
             lbl_Conector.TabIndex = 9;
             lbl_Conector.Text = "Conector de herraje";
             // 
+            // lbl_ControlCambios
+            // 
+            lbl_ControlCambios.AutoSize = true;
+            lbl_ControlCambios.BackColor = Color.Transparent;
+            lbl_ControlCambios.Location = new Point(111, 222);
+            lbl_ControlCambios.Name = "lbl_ControlCambios";
+            lbl_ControlCambios.Size = new Size(111, 15);
+            lbl_ControlCambios.TabIndex = 11;
+            lbl_ControlCambios.Text = "Control de cambios";
+            // 
+            // btn_ControlCambios
+            // 
+            btn_ControlCambios.BackgroundImage = (Image)resources.GetObject("btn_ControlCambios.BackgroundImage");
+            btn_ControlCambios.BackgroundImageLayout = ImageLayout.Center;
+            btn_ControlCambios.Location = new Point(59, 208);
+            btn_ControlCambios.Name = "btn_ControlCambios";
+            btn_ControlCambios.Size = new Size(47, 40);
+            btn_ControlCambios.TabIndex = 10;
+            btn_ControlCambios.UseVisualStyleBackColor = true;
+            btn_ControlCambios.Click += btn_ControlCambios_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -163,6 +186,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 309);
+            Controls.Add(lbl_ControlCambios);
+            Controls.Add(btn_ControlCambios);
             Controls.Add(lbl_Conector);
             Controls.Add(btn_Conector);
             Controls.Add(lbl_Export);
@@ -199,5 +224,7 @@
         private Label lbl_Export;
         private Button btn_Conector;
         private Label lbl_Conector;
+        private Label lbl_ControlCambios;
+        private Button btn_ControlCambios;
     }
 }

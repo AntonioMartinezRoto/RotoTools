@@ -16,10 +16,12 @@ namespace RotoEntities
         public string Script { get; set; }
         public List<Option> OptionConectorList { get; set; }
         public List<Option> OpeningFlagConectorList { get; set; }
+        public bool IsTitle { get; set; }
 
         public Set(string script)
         {
             Script = script;
+            IsTitle = true;
         }
         public Set()
         {

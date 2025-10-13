@@ -221,7 +221,7 @@ namespace RotoTools
 
             foreach (Set set in setsWorkingList)
             {
-                if (set.OpeningFlagConectorList == null) continue;
+                if (!set.IsTitle && set.OpeningFlagConectorList == null) continue;
 
                 XmlElement nodeElement = doc.CreateElement("Node");
 

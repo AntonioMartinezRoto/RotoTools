@@ -73,7 +73,7 @@
             cmb_IdPresupuestado.FormattingEnabled = true;
             cmb_IdPresupuestado.Location = new Point(133, 28);
             cmb_IdPresupuestado.Name = "cmb_IdPresupuestado";
-            cmb_IdPresupuestado.Size = new Size(156, 23);
+            cmb_IdPresupuestado.Size = new Size(214, 23);
             cmb_IdPresupuestado.TabIndex = 1;
             cmb_IdPresupuestado.SelectedIndexChanged += cmb_IdPresupuestado_SelectedIndexChanged;
             // 
@@ -97,14 +97,14 @@
             groupBox1.Controls.Add(cmb_IdPresupuestado);
             groupBox1.Location = new Point(32, 37);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(432, 108);
+            groupBox1.Size = new Size(466, 108);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Grupos";
             // 
             // txt_Presupuestado
             // 
-            txt_Presupuestado.Location = new Point(310, 28);
+            txt_Presupuestado.Location = new Point(365, 28);
             txt_Presupuestado.Name = "txt_Presupuestado";
             txt_Presupuestado.ReadOnly = true;
             txt_Presupuestado.Size = new Size(67, 23);
@@ -112,7 +112,7 @@
             // 
             // txt_Produccion
             // 
-            txt_Produccion.Location = new Point(310, 63);
+            txt_Produccion.Location = new Point(365, 63);
             txt_Produccion.Name = "txt_Produccion";
             txt_Produccion.ReadOnly = true;
             txt_Produccion.Size = new Size(67, 23);
@@ -133,7 +133,7 @@
             cmb_IdProduccion.FormattingEnabled = true;
             cmb_IdProduccion.Location = new Point(133, 63);
             cmb_IdProduccion.Name = "cmb_IdProduccion";
-            cmb_IdProduccion.Size = new Size(156, 23);
+            cmb_IdProduccion.Size = new Size(214, 23);
             cmb_IdProduccion.TabIndex = 3;
             cmb_IdProduccion.SelectedIndexChanged += cmb_IdProduccion_SelectedIndexChanged;
             // 
@@ -145,14 +145,14 @@
             groupBox2.Controls.Add(cmb_Proveedor);
             groupBox2.Location = new Point(32, 166);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(432, 73);
+            groupBox2.Size = new Size(466, 73);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Proveedor";
             // 
             // txt_Proveedor
             // 
-            txt_Proveedor.Location = new Point(310, 26);
+            txt_Proveedor.Location = new Point(365, 26);
             txt_Proveedor.Name = "txt_Proveedor";
             txt_Proveedor.ReadOnly = true;
             txt_Proveedor.Size = new Size(67, 23);
@@ -173,7 +173,7 @@
             cmb_Proveedor.FormattingEnabled = true;
             cmb_Proveedor.Location = new Point(133, 26);
             cmb_Proveedor.Name = "cmb_Proveedor";
-            cmb_Proveedor.Size = new Size(156, 23);
+            cmb_Proveedor.Size = new Size(214, 23);
             cmb_Proveedor.TabIndex = 5;
             cmb_Proveedor.SelectedIndexChanged += cmb_Proveedor_SelectedIndexChanged;
             // 
@@ -182,7 +182,7 @@
             btn_EjecutarScripts.BackColor = Color.White;
             btn_EjecutarScripts.Image = (Image)resources.GetObject("btn_EjecutarScripts.Image");
             btn_EjecutarScripts.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_EjecutarScripts.Location = new Point(330, 268);
+            btn_EjecutarScripts.Location = new Point(364, 268);
             btn_EjecutarScripts.Name = "btn_EjecutarScripts";
             btn_EjecutarScripts.Size = new Size(134, 40);
             btn_EjecutarScripts.TabIndex = 5;
@@ -196,7 +196,7 @@
             btn_EjecutarCarpeta.BackColor = Color.White;
             btn_EjecutarCarpeta.Image = (Image)resources.GetObject("btn_EjecutarCarpeta.Image");
             btn_EjecutarCarpeta.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_EjecutarCarpeta.Location = new Point(180, 268);
+            btn_EjecutarCarpeta.Location = new Point(199, 268);
             btn_EjecutarCarpeta.Name = "btn_EjecutarCarpeta";
             btn_EjecutarCarpeta.Padding = new Padding(5, 0, 8, 0);
             btn_EjecutarCarpeta.Size = new Size(134, 40);

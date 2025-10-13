@@ -58,6 +58,14 @@ namespace RotoTools
                 orgadataExportForm.ShowDialog();
             }
         }
+        private void btn_ExportOpera_Click(object sender, EventArgs e)
+        {
+            if (xmlLoadedFile)
+            {
+                ExportacionOpera operaForm = new ExportacionOpera(xmlFile);
+                operaForm.ShowDialog();
+            }
+        }
 
         #endregion
 
@@ -104,9 +112,11 @@ namespace RotoTools
         {
             btn_ExportWinPerfil.Enabled = enable;
             btn_ExportOrgadata.Enabled = enable;
+            btn_ExportOpera.Enabled = enable;
         }
 
         #endregion
+
 
     }
 }

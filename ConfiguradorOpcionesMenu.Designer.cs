@@ -42,9 +42,9 @@
             // 
             lbl_ConfigOpciones.AutoSize = true;
             lbl_ConfigOpciones.BackColor = Color.Transparent;
-            lbl_ConfigOpciones.Location = new Point(89, 80);
+            lbl_ConfigOpciones.Location = new Point(109, 106);
             lbl_ConfigOpciones.Name = "lbl_ConfigOpciones";
-            lbl_ConfigOpciones.Size = new Size(170, 15);
+            lbl_ConfigOpciones.Size = new Size(212, 20);
             lbl_ConfigOpciones.TabIndex = 5;
             lbl_ConfigOpciones.Text = "Configurar y guardar Opciones";
             // 
@@ -52,9 +52,10 @@
             // 
             btn_ConfigOpciones.BackgroundImage = (Image)resources.GetObject("btn_ConfigOpciones.BackgroundImage");
             btn_ConfigOpciones.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ConfigOpciones.Location = new Point(43, 67);
+            btn_ConfigOpciones.Location = new Point(49, 89);
+            btn_ConfigOpciones.Margin = new Padding(3, 4, 3, 4);
             btn_ConfigOpciones.Name = "btn_ConfigOpciones";
-            btn_ConfigOpciones.Size = new Size(40, 40);
+            btn_ConfigOpciones.Size = new Size(54, 54);
             btn_ConfigOpciones.TabIndex = 4;
             btn_ConfigOpciones.UseVisualStyleBackColor = true;
             btn_ConfigOpciones.Click += btn_ConfigOpciones_Click;
@@ -62,10 +63,12 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 234);
+            statusStrip1.Location = new Point(0, 315);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(510, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(583, 26);
             statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 6;
             statusStrip1.Text = "statusStrip1";
@@ -73,16 +76,16 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(151, 20);
             lbl_Conexion.Text = "toolStripStatusLabel1";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(89, 138);
+            label2.Location = new Point(109, 184);
             label2.Name = "label2";
-            label2.Size = new Size(133, 15);
+            label2.Size = new Size(166, 20);
             label2.TabIndex = 10;
             label2.Text = "Restaurar configuración";
             // 
@@ -90,20 +93,21 @@
             // 
             btn_Restore.BackgroundImage = (Image)resources.GetObject("btn_Restore.BackgroundImage");
             btn_Restore.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Restore.Location = new Point(43, 125);
+            btn_Restore.Location = new Point(49, 167);
+            btn_Restore.Margin = new Padding(3, 4, 3, 4);
             btn_Restore.Name = "btn_Restore";
-            btn_Restore.Size = new Size(40, 40);
+            btn_Restore.Size = new Size(54, 54);
             btn_Restore.TabIndex = 9;
             btn_Restore.UseVisualStyleBackColor = true;
             btn_Restore.Click += btn_Restore_Click;
             // 
             // ConfiguradorOpcionesMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(510, 256);
+            ClientSize = new Size(583, 341);
             Controls.Add(label2);
             Controls.Add(btn_Restore);
             Controls.Add(statusStrip1);
@@ -112,6 +116,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "ConfiguradorOpcionesMenu";
             StartPosition = FormStartPosition.CenterScreen;

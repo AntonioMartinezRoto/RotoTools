@@ -46,6 +46,7 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
             statusStrip1.Location = new Point(0, 287);
             statusStrip1.Name = "statusStrip1";
@@ -66,7 +67,7 @@
             btn_Refresh.BackgroundImageLayout = ImageLayout.Stretch;
             btn_Refresh.Location = new Point(12, 12);
             btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(32, 29);
+            btn_Refresh.Size = new Size(32, 28);
             btn_Refresh.TabIndex = 1;
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
@@ -75,9 +76,9 @@
             // 
             btn_ConfigOpciones.BackgroundImage = (Image)resources.GetObject("btn_ConfigOpciones.BackgroundImage");
             btn_ConfigOpciones.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ConfigOpciones.Location = new Point(54, 89);
+            btn_ConfigOpciones.Location = new Point(59, 86);
             btn_ConfigOpciones.Name = "btn_ConfigOpciones";
-            btn_ConfigOpciones.Size = new Size(40, 40);
+            btn_ConfigOpciones.Size = new Size(47, 40);
             btn_ConfigOpciones.TabIndex = 2;
             btn_ConfigOpciones.UseVisualStyleBackColor = true;
             btn_ConfigOpciones.Click += btn_ConfigOpciones_Click;
@@ -86,7 +87,7 @@
             // 
             lbl_ConfigOpciones.AutoSize = true;
             lbl_ConfigOpciones.BackColor = Color.Transparent;
-            lbl_ConfigOpciones.Location = new Point(100, 102);
+            lbl_ConfigOpciones.Location = new Point(111, 98);
             lbl_ConfigOpciones.Name = "lbl_ConfigOpciones";
             lbl_ConfigOpciones.Size = new Size(145, 15);
             lbl_ConfigOpciones.TabIndex = 3;
@@ -96,9 +97,9 @@
             // 
             btn_Actualizador.BackgroundImage = (Image)resources.GetObject("btn_Actualizador.BackgroundImage");
             btn_Actualizador.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Actualizador.Location = new Point(54, 148);
+            btn_Actualizador.Location = new Point(59, 144);
             btn_Actualizador.Name = "btn_Actualizador";
-            btn_Actualizador.Size = new Size(40, 40);
+            btn_Actualizador.Size = new Size(47, 40);
             btn_Actualizador.TabIndex = 4;
             btn_Actualizador.UseVisualStyleBackColor = true;
             btn_Actualizador.Click += btn_Actualizador_Click;
@@ -107,7 +108,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Location = new Point(100, 161);
+            label1.Location = new Point(111, 158);
             label1.Name = "label1";
             label1.Size = new Size(78, 15);
             label1.TabIndex = 5;
@@ -117,9 +118,9 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Export.Location = new Point(313, 89);
+            btn_Export.Location = new Point(318, 86);
             btn_Export.Name = "btn_Export";
-            btn_Export.Size = new Size(40, 40);
+            btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
             btn_Export.UseVisualStyleBackColor = true;
             btn_Export.Click += btn_Export_Click;
@@ -128,7 +129,7 @@
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(359, 102);
+            lbl_Export.Location = new Point(370, 98);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
@@ -138,9 +139,9 @@
             // 
             btn_Conector.BackgroundImage = (Image)resources.GetObject("btn_Conector.BackgroundImage");
             btn_Conector.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Conector.Location = new Point(313, 148);
+            btn_Conector.Location = new Point(318, 144);
             btn_Conector.Name = "btn_Conector";
-            btn_Conector.Size = new Size(40, 40);
+            btn_Conector.Size = new Size(47, 40);
             btn_Conector.TabIndex = 8;
             btn_Conector.UseVisualStyleBackColor = true;
             btn_Conector.Click += btn_Conector_Click;
@@ -149,11 +150,11 @@
             // 
             lbl_Conector.AutoSize = true;
             lbl_Conector.BackColor = Color.Transparent;
-            lbl_Conector.Location = new Point(359, 161);
+            lbl_Conector.Location = new Point(370, 157);
             lbl_Conector.Name = "lbl_Conector";
-            lbl_Conector.Size = new Size(195, 15);
+            lbl_Conector.Size = new Size(111, 15);
             lbl_Conector.TabIndex = 9;
-            lbl_Conector.Text = "Herramientas del Conector Herrajes";
+            lbl_Conector.Text = "Conector de herraje";
             // 
             // Main
             // 

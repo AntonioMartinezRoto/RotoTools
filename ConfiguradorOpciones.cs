@@ -148,7 +148,7 @@ namespace RotoTools
                 using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
                 conexion.Open();
 
-                using SqlCommand cmd = new SqlCommand(@"SELECT VALOR, TEXTO, FLAGS, ORDEN, INVALID FROM CONTENIDOOPCIONES WHERE OPCION = '" + opcion.Name + "'", conexion);
+                using SqlCommand cmd = new SqlCommand(@"SELECT VALOR, TEXTO, FLAGS, ORDEN, INVALID FROM CONTENIDOOPCIONES WHERE OPCION = '" + opcion.Name + "' ORDER BY ORDEN", conexion);
                 using SqlDataReader reader = cmd.ExecuteReader();
 
                 List<ContenidoOpcion> contenidoOpcionList = new List<ContenidoOpcion>();
@@ -167,7 +167,7 @@ namespace RotoTools
             datagrid_ContenidoOpciones.AutoGenerateColumns = false;
             datagrid_ContenidoOpciones.RowHeadersVisible = false;
             // Ajustar la altura de filas (menos espacio vertical)
-            datagrid_ContenidoOpciones.RowTemplate.Height = 20; // puedes probar con 18, 20, 22...
+            datagrid_ContenidoOpciones.RowTemplate.Height = 25;
 
             var colValor = new DataGridViewTextBoxColumn
             {

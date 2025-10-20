@@ -49,48 +49,19 @@ namespace RotoTools
         }
         private void btn_SaveConfig_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            try
             {
-                saveFileDialog.Filter = "Archivo XML (*.xml)|*.xml";
-                saveFileDialog.Title = "Guardar archivo XML";
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                string configPath = SaveOpcionesConfig();
+                if (!String.IsNullOrEmpty(configPath))
                 {
-                    // Ruta donde guardar el archivo (misma carpeta del .exe)
-                    string ruta = saveFileDialog.FileName;
-
-                    // Crear el documento XML
-                    var doc = new XDocument(
-                        new XElement("Opciones",
-                            from opcion in opcionesList
-                            select new XElement("Opcion",
-                                new XAttribute("nombre", opcion.Name),
-                                new XAttribute("nivel1", opcion.Nivel1 ?? ""),
-                                new XAttribute("nivel2", opcion.Nivel2 ?? ""),
-                                new XAttribute("nivel3", opcion.Nivel3 ?? ""),
-                                new XAttribute("nivel4", opcion.Nivel4 ?? ""),
-                                new XAttribute("nivel5", opcion.Nivel5 ?? ""),
-                                new XAttribute("flags", opcion.Flags),
-                                from contenido in opcion.ContenidoOpcionesList
-                                select new XElement("ContenidoOpcion",
-                                    new XAttribute("valor", contenido.Valor),
-                                    new XAttribute("texto", contenido.Texto),
-                                    new XAttribute("flags", Helpers.CalcularFlags(contenido)),
-                                    new XAttribute("orden", contenido.Orden),
-                                    new XAttribute("id", contenido.Id),
-                                    new XAttribute("invalid", contenido.Invalid)
-                                )
-                            )
-                        )
-                    );
-
-                    // Guardar con formato indentado
-                    doc.Save(ruta);
-
-                    MessageBox.Show($"Configuración guardada");
+                    Helpers.RestoreOpcionesDesdeXml(configPath);
+                    MessageBox.Show("Configuración guardada", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error guardando archivo de configuración: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -148,14 +119,14 @@ namespace RotoTools
                 using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
                 conexion.Open();
 
-                using SqlCommand cmd = new SqlCommand(@"SELECT VALOR, TEXTO, FLAGS, ORDEN, INVALID FROM CONTENIDOOPCIONES WHERE OPCION = '" + opcion.Name + "' ORDER BY ORDEN", conexion);
+                using SqlCommand cmd = new SqlCommand(@"SELECT VALOR, TEXTO, FLAGS, ORDEN, INVALID, DESAUTO FROM CONTENIDOOPCIONES WHERE OPCION = '" + opcion.Name + "' ORDER BY ORDEN", conexion);
                 using SqlDataReader reader = cmd.ExecuteReader();
 
                 List<ContenidoOpcion> contenidoOpcionList = new List<ContenidoOpcion>();
                 while (reader.Read())
                 {
                     ContenidoOpcion contenidoOpcion = new ContenidoOpcion(opcion.Name, reader[0].ToString().Trim(), reader[1].ToString().Trim(), 
-                                                                            reader[2].ToString().Trim(), reader[3].ToString().Trim(), reader[4].ToString().Trim());
+                                                                            reader[2].ToString().Trim(), reader[3].ToString().Trim(), reader[4].ToString().Trim(), reader[5].ToString().Trim());
                     contenidoOpcionList.Add(contenidoOpcion);
                 }
 
@@ -207,6 +178,62 @@ namespace RotoTools
 
             datagrid_ContenidoOpciones.AllowUserToAddRows = false;
             datagrid_ContenidoOpciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+        private string SaveOpcionesConfig()
+        {
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Archivo XML (*.xml)|*.xml";
+                    saveFileDialog.Title = "Guardar archivo XML";
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Ruta donde guardar el archivo (misma carpeta del .exe)
+                        string ruta = saveFileDialog.FileName;
+
+                        // Crear el documento XML
+                        var doc = new XDocument(
+                            new XElement("Opciones",
+                                from opcion in opcionesList
+                                select new XElement("Opcion",
+                                    new XAttribute("nombre", opcion.Name),
+                                    new XAttribute("nivel1", opcion.Nivel1 ?? ""),
+                                    new XAttribute("nivel2", opcion.Nivel2 ?? ""),
+                                    new XAttribute("nivel3", opcion.Nivel3 ?? ""),
+                                    new XAttribute("nivel4", opcion.Nivel4 ?? ""),
+                                    new XAttribute("nivel5", opcion.Nivel5 ?? ""),
+                                    new XAttribute("flags", opcion.Flags),
+                                    from contenido in opcion.ContenidoOpcionesList
+                                    select new XElement("ContenidoOpcion",
+                                        new XAttribute("valor", contenido.Valor),
+                                        new XAttribute("texto", contenido.Texto),
+                                        new XAttribute("flags", Helpers.CalcularFlags(contenido)),
+                                        new XAttribute("orden", contenido.Orden),
+                                        new XAttribute("id", contenido.Id),
+                                        new XAttribute("invalid", contenido.Invalid),
+                                        new XAttribute("desauto", contenido.DesAuto)
+                                    )
+                                )
+                            )
+                        );
+
+                        // Guardar con formato indentado
+                        doc.Save(ruta);
+                        return ruta;
+                    }
+                    else
+                    {
+                        return String.Empty;
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"Error guardando archivo de configuración: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return String.Empty;
+            }
+
         }
 
         #endregion

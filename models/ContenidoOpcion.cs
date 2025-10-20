@@ -12,14 +12,16 @@ namespace RotoEntities
         public int Orden { get; set; }
         public int Id { get; set; }
         public int Invalid{ get; set; }
+        public string DesAuto { get; set; }
 
-        public ContenidoOpcion(string optionName, string valor, string texto, string flags, string orden, string invalid)
+        public ContenidoOpcion(string optionName, string valor, string texto, string flags, string orden, string invalid, string desAuto)
         {
             Opcion = optionName;
             Valor = valor;
             Texto = texto;
             Orden = Convert.ToInt32(orden);
             Invalid = Convert.ToInt32(invalid);
+            DesAuto = desAuto;
 
             if (String.IsNullOrEmpty(flags))
             {

@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using RotoEntities;
 using System.Text;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace RotoTools
@@ -86,7 +87,7 @@ namespace RotoTools
         {
             var lista = new List<ContenidoOpcion>();
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("SELECT Valor, Texto, Flags, Orden, Invalid FROM ContenidoOpciones WHERE Opcion=@nombre", conn))
+            using (var cmd = new SqlCommand("SELECT Valor, Texto, Flags, Orden, Invalid, DesAuto FROM ContenidoOpciones WHERE Opcion=@nombre", conn))
             {
                 cmd.Parameters.AddWithValue("@nombre", opcionName);
                 conn.Open();
@@ -100,7 +101,8 @@ namespace RotoTools
                             Texto = rdr[1].ToString(),
                             Flags = String.IsNullOrEmpty(rdr[2].ToString()) ? 0 : rdr.GetInt32(2),
                             Orden = rdr.GetInt16(3),
-                            Invalid = rdr.GetInt16(4)
+                            Invalid = rdr.GetInt16(4),
+                            DesAuto = rdr[5].ToString()
                         });
                     }
                 }
@@ -110,7 +112,7 @@ namespace RotoTools
         public static void InsertContenidoOpcion(string opcionName, ContenidoOpcion cont)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("INSERT INTO ContenidoOpciones (Opcion, Valor, Texto, Flags, Orden, Invalid) VALUES (@nombre, @valor, @texto, @flags, @orden, @invalid)", conn))
+            using (var cmd = new SqlCommand("INSERT INTO ContenidoOpciones (Opcion, Valor, Texto, Flags, Orden, DesAuto, Invalid) VALUES (@nombre, @valor, @texto, @flags, @orden, @desauto, @invalid)", conn))
             {
                 cmd.Parameters.AddWithValue("@nombre", opcionName);
                 cmd.Parameters.AddWithValue("@valor", cont.Valor);
@@ -118,6 +120,7 @@ namespace RotoTools
                 cmd.Parameters.AddWithValue("@flags", cont.Flags);
                 cmd.Parameters.AddWithValue("@orden", cont.Orden);
                 cmd.Parameters.AddWithValue("@invalid", cont.Invalid);
+                cmd.Parameters.AddWithValue("@desauto", cont.DesAuto);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -125,7 +128,7 @@ namespace RotoTools
         public static void UpdateContenidoOpcion(string opcionName, ContenidoOpcion cont)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("UPDATE ContenidoOpciones SET Texto=@texto, Flags=@flags, Orden=@orden, Invalid=@invalid WHERE Opcion=@nombre AND Valor=@valor", conn))
+            using (var cmd = new SqlCommand("UPDATE ContenidoOpciones SET Texto=@texto, Flags=@flags, Orden=@orden, Invalid=@invalid, DesAuto=@desauto WHERE Opcion=@nombre AND Valor=@valor", conn))
             {
                 cmd.Parameters.AddWithValue("@nombre", opcionName);
                 cmd.Parameters.AddWithValue("@valor", cont.Valor);
@@ -133,6 +136,7 @@ namespace RotoTools
                 cmd.Parameters.AddWithValue("@flags", cont.Flags);
                 cmd.Parameters.AddWithValue("@orden", cont.Orden);
                 cmd.Parameters.AddWithValue("@invalid", cont.Invalid);
+                cmd.Parameters.AddWithValue("@desauto", cont.DesAuto);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -193,6 +197,77 @@ namespace RotoTools
                         cmd.ExecuteNonQuery();
                     }
                 }
+            }
+        }
+        public static void RestoreOpcionesDesdeXml(string rutaXml)
+        {
+            try
+            {
+                if (!System.IO.File.Exists(rutaXml))
+                {
+                    MessageBox.Show("Fichero de configuración no encontrado.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                XDocument doc = XDocument.Load(rutaXml);
+
+                var opcionesXml = doc.Descendants("Opcion")
+                    .Select(opElem => new Opcion
+                    {
+                        Name = (string)opElem.Attribute("nombre"),
+                        Nivel1 = (string)opElem.Attribute("nivel1"),
+                        Nivel2 = (string)opElem.Attribute("nivel2"),
+                        Nivel3 = (string)opElem.Attribute("nivel3"),
+                        Nivel4 = (string)opElem.Attribute("nivel4"),
+                        Nivel5 = (string)opElem.Attribute("nivel5"),
+                        Flags = (int?)opElem.Attribute("flags") ?? 0,
+                        ContenidoOpcionesList = opElem.Elements("ContenidoOpcion")
+                            .Select(c => new ContenidoOpcion
+                            {
+                                Valor = (string)c.Attribute("valor"),
+                                Texto = (string)c.Attribute("texto"),
+                                Flags = (int?)c.Attribute("flags") ?? 0,
+                                Orden = (int?)c.Attribute("orden") ?? 0,
+                                Invalid = (int?)c.Attribute("invalid") ?? 0,
+                                DesAuto = (string)c.Attribute("desauto")
+                            }).ToList()
+                    }).ToList();
+
+                foreach (var opcionXml in opcionesXml)
+                {
+                    var contenidosDb = Helpers.GetContenidoOpciones(opcionXml.Name);
+
+                    // ¿Falta alguno del XML en BD?
+                    bool faltaAlguno = opcionXml.ContenidoOpcionesList
+                        .Any(cXml => !contenidosDb.Any(cDb => cDb.Valor.ToUpper().Trim() == cXml.Valor.ToUpper().Trim()));
+
+                    if (faltaAlguno || contenidosDb.Count != opcionXml.ContenidoOpcionesList.Count)
+                    {
+                        // 1) Copia exacta del XML
+                        Helpers.DeleteAllContenidoOpciones(opcionXml.Name);
+
+                        foreach (var contXml in opcionXml.ContenidoOpcionesList.OrderBy(co => co.Orden))
+                        {
+                            Helpers.InsertContenidoOpcion(opcionXml.Name, contXml);
+                        }
+                    }
+                    else
+                    {
+                        // 2) Todos están → solo actualizamos Texto y Flags
+                        foreach (var contXml in opcionXml.ContenidoOpcionesList)
+                        {
+                            var contDb = contenidosDb.First(c => c.Valor.ToUpper().Trim() == contXml.Valor.ToUpper().Trim());
+
+                            if (contDb.Texto.ToUpper().Trim() != contXml.Texto.ToUpper().Trim() || contDb.Flags != contXml.Flags)
+                            {
+                                Helpers.UpdateContenidoOpcion(opcionXml.Name, contXml);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error restaurando la configuración: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static int EjecutarNonQuery(string sql)

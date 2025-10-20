@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using RotoEntities;
 
 namespace RotoTools
 {
@@ -48,14 +49,26 @@ namespace RotoTools
         {
             try
             {
-                EjecutarScripts();
-                MessageBox.Show("Scripts ejecutados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ResultQuerys resultQuerys = EjecutarScripts();
+
+                string mensaje = "Scripts ejecutados correctamente." + Environment.NewLine + Environment.NewLine +
+                                 resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() +  " registros actualizados (Grupos presupuestado, producción y proveedor): " + Environment.NewLine + Environment.NewLine +
+                                 resultQuerys.ResultQueryUpdateNivel1MaterialesBaseYOpciones.ToString() + " registros actualizados (Nivel 1 Materiales Base y Opciones): " + Environment.NewLine + Environment.NewLine +
+                                 resultQuerys.ResultQueryUpdatePropFicticios.ToString() + " registros actualizados (Materiales Base ficticios): " + Environment.NewLine + Environment.NewLine +
+                                 resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " registros actualizados (Descripciones Materiales Base): " + Environment.NewLine;
+
+                MessageBox.Show(mensaje,
+                                "Ejecución completada",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ejecutando los scripts:" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error ejecutando los scripts: " + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
-
         }
         private void cmb_Proveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -123,19 +136,23 @@ namespace RotoTools
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
-        private void EjecutarScripts()
+        private ResultQuerys EjecutarScripts()
         {
             //Actualizar grupos de Presupuestado y Produccion y Proveedor Nivel1 = ROTO NX
-            Helpers.UpdateGruposYProveedor(txt_Presupuestado.Text, txt_Produccion.Text, txt_Proveedor.Text);
+            int rowsAfected = Helpers.UpdateGruposYProveedor(txt_Presupuestado.Text, txt_Produccion.Text, txt_Proveedor.Text);
 
             //Actualizar Nivel1 Opciones y MaterialesBase de ROTO NX a ROTO
-            Helpers.EjecutarNonQuery(queryUpdateNivel1OpcionesMaterialesBase);
+            int rowsAfected2 = Helpers.EjecutarNonQuery(queryUpdateNivel1OpcionesMaterialesBase);
 
             //Actualizar propiedades MaterialesBase ficticios
-            Helpers.UpdateMaterialesBaseFicticiosPropiedades(materialesFicticios);
+            int rowsAfected3 = Helpers.UpdateMaterialesBaseFicticiosPropiedades(materialesFicticios);
 
             //Actualizar descripciones MaterialesBase desde los fittings
-            Helpers.EjecutarNonQuery(queryUpdateDescripciones);
+            int rowsAfected4 = Helpers.EjecutarNonQuery(queryUpdateDescripciones);
+            
+            ResultQuerys resultQuerys = new ResultQuerys(rowsAfected, rowsAfected2, rowsAfected3, rowsAfected4);
+            return resultQuerys;
+
         }
         private void CargarProveedores()
         {

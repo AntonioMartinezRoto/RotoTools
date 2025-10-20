@@ -162,7 +162,7 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-        public static void UpdateGruposYProveedor(string IdGrupoPresupuestado, string IdGrupoProduccion, string IdProveedor)
+        public static int UpdateGruposYProveedor(string IdGrupoPresupuestado, string IdGrupoProduccion, string IdProveedor)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand("UPDATE MaterialesBase SET IdGrupoPresupuestado=@grupopresupuestado, IdGrupoProduccion=@grupoproduccion, CodigoProveedor=@codigoproveedor WHERE Nivel1='ROTO NX'", conn))
@@ -171,11 +171,12 @@ namespace RotoTools
                 cmd.Parameters.AddWithValue("@grupoproduccion", IdGrupoProduccion);
                 cmd.Parameters.AddWithValue("@codigoproveedor", IdProveedor);
                 conn.Open();
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
         }
-        public static void UpdateMaterialesBaseFicticiosPropiedades(string[] articulos)
+        public static int UpdateMaterialesBaseFicticiosPropiedades(string[] articulos)
         {
+            int rowsAfected = 0;
             using (var conn = new SqlConnection(GetConnectionString()))
             {
                 conn.Open();
@@ -194,10 +195,11 @@ namespace RotoTools
                     using (var cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@articulo", articulo);
-                        cmd.ExecuteNonQuery();
+                        rowsAfected += cmd.ExecuteNonQuery();
                     }
                 }
             }
+            return rowsAfected;
         }
         public static void RestoreOpcionesDesdeXml(string rutaXml)
         {

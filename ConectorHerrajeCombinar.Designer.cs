@@ -52,48 +52,47 @@
             // 
             chk_Predefinido.AutoSize = true;
             chk_Predefinido.BackColor = Color.Transparent;
-            chk_Predefinido.Location = new Point(382, 65);
+            chk_Predefinido.Location = new Point(437, 87);
+            chk_Predefinido.Margin = new Padding(3, 4, 3, 4);
             chk_Predefinido.Name = "chk_Predefinido";
-            chk_Predefinido.Size = new Size(155, 19);
+            chk_Predefinido.Size = new Size(192, 24);
             chk_Predefinido.TabIndex = 21;
             chk_Predefinido.Text = "Poner como predefinido";
             chk_Predefinido.UseVisualStyleBackColor = false;
             // 
             // txt_ConectorName
             // 
-            txt_ConectorName.Location = new Point(187, 63);
+            txt_ConectorName.Location = new Point(214, 84);
+            txt_ConectorName.Margin = new Padding(3, 4, 3, 4);
             txt_ConectorName.Name = "txt_ConectorName";
-            txt_ConectorName.Size = new Size(174, 23);
+            txt_ConectorName.Size = new Size(198, 27);
             txt_ConectorName.TabIndex = 20;
             // 
             // lbl_NombreConector
             // 
             lbl_NombreConector.AutoSize = true;
             lbl_NombreConector.BackColor = Color.Transparent;
-            lbl_NombreConector.Location = new Point(70, 66);
+            lbl_NombreConector.Location = new Point(80, 88);
             lbl_NombreConector.Name = "lbl_NombreConector";
-            lbl_NombreConector.Size = new Size(103, 15);
+            lbl_NombreConector.Size = new Size(128, 20);
             lbl_NombreConector.TabIndex = 19;
             lbl_NombreConector.Text = "Nombre Conector";
             // 
             // listBox_AllConectores
             // 
             listBox_AllConectores.FormattingEnabled = true;
-            listBox_AllConectores.ItemHeight = 15;
-            listBox_AllConectores.Location = new Point(79, 148);
-            listBox_AllConectores.Margin = new Padding(3, 2, 3, 2);
+            listBox_AllConectores.Location = new Point(90, 197);
             listBox_AllConectores.Name = "listBox_AllConectores";
-            listBox_AllConectores.Size = new Size(186, 124);
+            listBox_AllConectores.Size = new Size(212, 164);
             listBox_AllConectores.Sorted = true;
             listBox_AllConectores.TabIndex = 22;
             // 
             // btn_Add
             // 
             btn_Add.BackColor = Color.White;
-            btn_Add.Location = new Point(271, 148);
-            btn_Add.Margin = new Padding(3, 2, 3, 2);
+            btn_Add.Location = new Point(310, 197);
             btn_Add.Name = "btn_Add";
-            btn_Add.Size = new Size(35, 20);
+            btn_Add.Size = new Size(40, 27);
             btn_Add.TabIndex = 23;
             btn_Add.Text = ">";
             btn_Add.UseVisualStyleBackColor = false;
@@ -102,10 +101,9 @@
             // btn_Add_All
             // 
             btn_Add_All.BackColor = Color.White;
-            btn_Add_All.Location = new Point(271, 173);
-            btn_Add_All.Margin = new Padding(3, 2, 3, 2);
+            btn_Add_All.Location = new Point(310, 231);
             btn_Add_All.Name = "btn_Add_All";
-            btn_Add_All.Size = new Size(35, 23);
+            btn_Add_All.Size = new Size(40, 31);
             btn_Add_All.TabIndex = 24;
             btn_Add_All.Text = ">>";
             btn_Add_All.UseVisualStyleBackColor = false;
@@ -114,10 +112,9 @@
             // btn_DeleteAll
             // 
             btn_DeleteAll.BackColor = Color.White;
-            btn_DeleteAll.Location = new Point(271, 246);
-            btn_DeleteAll.Margin = new Padding(3, 2, 3, 2);
+            btn_DeleteAll.Location = new Point(310, 328);
             btn_DeleteAll.Name = "btn_DeleteAll";
-            btn_DeleteAll.Size = new Size(35, 23);
+            btn_DeleteAll.Size = new Size(40, 31);
             btn_DeleteAll.TabIndex = 26;
             btn_DeleteAll.Text = "<<";
             btn_DeleteAll.UseVisualStyleBackColor = false;
@@ -126,10 +123,9 @@
             // btn_Delete
             // 
             btn_Delete.BackColor = Color.White;
-            btn_Delete.Location = new Point(271, 221);
-            btn_Delete.Margin = new Padding(3, 2, 3, 2);
+            btn_Delete.Location = new Point(310, 295);
             btn_Delete.Name = "btn_Delete";
-            btn_Delete.Size = new Size(35, 20);
+            btn_Delete.Size = new Size(40, 27);
             btn_Delete.TabIndex = 25;
             btn_Delete.Text = "<";
             btn_Delete.UseVisualStyleBackColor = false;
@@ -138,20 +134,17 @@
             // listBox_Combinar
             // 
             listBox_Combinar.FormattingEnabled = true;
-            listBox_Combinar.ItemHeight = 15;
-            listBox_Combinar.Location = new Point(312, 148);
-            listBox_Combinar.Margin = new Padding(3, 2, 3, 2);
+            listBox_Combinar.Location = new Point(357, 197);
             listBox_Combinar.Name = "listBox_Combinar";
-            listBox_Combinar.Size = new Size(186, 124);
+            listBox_Combinar.Size = new Size(212, 164);
             listBox_Combinar.TabIndex = 27;
             // 
             // btn_up
             // 
             btn_up.BackColor = Color.White;
-            btn_up.Location = new Point(504, 148);
-            btn_up.Margin = new Padding(3, 2, 3, 2);
+            btn_up.Location = new Point(576, 197);
             btn_up.Name = "btn_up";
-            btn_up.Size = new Size(35, 20);
+            btn_up.Size = new Size(40, 27);
             btn_up.TabIndex = 29;
             btn_up.Text = "^";
             btn_up.UseVisualStyleBackColor = false;
@@ -160,10 +153,9 @@
             // btn_down
             // 
             btn_down.BackColor = Color.White;
-            btn_down.Location = new Point(504, 176);
-            btn_down.Margin = new Padding(3, 2, 3, 2);
+            btn_down.Location = new Point(576, 235);
             btn_down.Name = "btn_down";
-            btn_down.Size = new Size(35, 20);
+            btn_down.Size = new Size(40, 27);
             btn_down.TabIndex = 30;
             btn_down.Text = "v";
             btn_down.UseVisualStyleBackColor = false;
@@ -174,10 +166,9 @@
             bnt_Guardar.BackColor = Color.White;
             bnt_Guardar.Image = (Image)resources.GetObject("bnt_Guardar.Image");
             bnt_Guardar.ImageAlign = ContentAlignment.MiddleLeft;
-            bnt_Guardar.Location = new Point(450, 313);
-            bnt_Guardar.Margin = new Padding(3, 2, 3, 2);
+            bnt_Guardar.Location = new Point(514, 417);
             bnt_Guardar.Name = "bnt_Guardar";
-            bnt_Guardar.Size = new Size(87, 40);
+            bnt_Guardar.Size = new Size(99, 53);
             bnt_Guardar.TabIndex = 35;
             bnt_Guardar.Text = "Guardar";
             bnt_Guardar.TextAlign = ContentAlignment.MiddleRight;
@@ -187,10 +178,12 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 370);
+            statusStrip1.Location = new Point(0, 497);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(694, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(793, 26);
             statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 36;
             statusStrip1.Text = "statusStrip1";
@@ -198,16 +191,16 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(151, 20);
             lbl_Conexion.Text = "toolStripStatusLabel1";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Location = new Point(79, 127);
+            label1.Location = new Point(90, 169);
             label1.Name = "label1";
-            label1.Size = new Size(170, 15);
+            label1.Size = new Size(216, 20);
             label1.TabIndex = 37;
             label1.Text = "Conectores en la base de datos";
             // 
@@ -215,18 +208,19 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(312, 127);
+            label2.Location = new Point(357, 169);
             label2.Name = "label2";
-            label2.Size = new Size(130, 15);
+            label2.Size = new Size(162, 20);
             label2.TabIndex = 38;
             label2.Text = "Conectores a combinar";
             // 
-            // CombinarConectores
+            // ConectorHerrajeCombinar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(694, 392);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(793, 523);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(statusStrip1);
@@ -244,9 +238,8 @@
             Controls.Add(lbl_NombreConector);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            Name = "CombinarConectores";
+            Name = "ConectorHerrajeCombinar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Combinar Conectores";
             Load += CombinarConectores_Load;

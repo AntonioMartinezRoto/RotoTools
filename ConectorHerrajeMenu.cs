@@ -80,8 +80,11 @@ namespace RotoTools
         }
         private void btn_SetsNoUtilizados_Click(object sender, EventArgs e)
         {
-            ConectorHerrajeRevisionSets conectorHerrajeRevisionSetsForm = new ConectorHerrajeRevisionSets(xmlOrigen, connectorHerraje);
-            conectorHerrajeRevisionSetsForm.ShowDialog();
+            if (xmlCargado && conectorCargado)
+            {
+                ConectorHerrajeRevisionSets conectorHerrajeRevisionSetsForm = new ConectorHerrajeRevisionSets(xmlOrigen, connectorHerraje);
+                conectorHerrajeRevisionSetsForm.ShowDialog();
+            }
         }
         #endregion
 

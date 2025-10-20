@@ -1898,6 +1898,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -1974,6 +1978,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -2053,6 +2061,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2127,6 +2139,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2199,6 +2215,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -2281,6 +2301,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -2548,6 +2572,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2616,6 +2644,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -2687,6 +2719,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2757,6 +2793,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2826,6 +2866,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -2893,6 +2937,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -3100,6 +3148,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -3176,6 +3228,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -3255,6 +3311,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -3329,6 +3389,10 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
                 }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                }
                 else
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
@@ -3401,6 +3465,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {
@@ -3483,6 +3551,10 @@ namespace RotoTools
                 if (set.Code.Contains("8"))
                 {
                     set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                }
+                else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
+                {
+                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
                 }
                 else
                 {

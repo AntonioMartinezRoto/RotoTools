@@ -108,9 +108,9 @@
             // 
             cmb_Conectores.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Conectores.FormattingEnabled = true;
-            cmb_Conectores.Location = new Point(261, 119);
+            cmb_Conectores.Location = new Point(264, 122);
             cmb_Conectores.Name = "cmb_Conectores";
-            cmb_Conectores.Size = new Size(156, 23);
+            cmb_Conectores.Size = new Size(177, 23);
             cmb_Conectores.TabIndex = 8;
             cmb_Conectores.SelectedValueChanged += cmb_Conectores_SelectedValueChanged;
             // 

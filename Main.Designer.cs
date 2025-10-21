@@ -120,22 +120,24 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(318, 86);
+            btn_Export.Location = new Point(59, 206);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
             btn_Export.UseVisualStyleBackColor = true;
+            btn_Export.Visible = false;
             btn_Export.Click += btn_Export_Click;
             // 
             // lbl_Export
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(370, 98);
+            lbl_Export.Location = new Point(111, 218);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
             lbl_Export.Text = "Exportar datos";
+            lbl_Export.Visible = false;
             // 
             // btn_Conector
             // 
@@ -162,7 +164,7 @@
             // 
             lbl_ControlCambios.AutoSize = true;
             lbl_ControlCambios.BackColor = Color.Transparent;
-            lbl_ControlCambios.Location = new Point(111, 222);
+            lbl_ControlCambios.Location = new Point(370, 100);
             lbl_ControlCambios.Name = "lbl_ControlCambios";
             lbl_ControlCambios.Size = new Size(111, 15);
             lbl_ControlCambios.TabIndex = 11;
@@ -172,7 +174,7 @@
             // 
             btn_ControlCambios.BackgroundImage = (Image)resources.GetObject("btn_ControlCambios.BackgroundImage");
             btn_ControlCambios.BackgroundImageLayout = ImageLayout.Center;
-            btn_ControlCambios.Location = new Point(59, 208);
+            btn_ControlCambios.Location = new Point(318, 86);
             btn_ControlCambios.Name = "btn_ControlCambios";
             btn_ControlCambios.Size = new Size(47, 40);
             btn_ControlCambios.TabIndex = 10;

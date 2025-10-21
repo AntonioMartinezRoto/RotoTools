@@ -49,6 +49,8 @@ namespace RotoTools
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+                EnableControls(false);
                 ResultQuerys resultQuerys = EjecutarScripts();
 
                 string mensaje = "Scripts ejecutados correctamente." + Environment.NewLine + Environment.NewLine +
@@ -61,6 +63,7 @@ namespace RotoTools
                                 "Ejecución completada",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
+                EnableControls(true);
             }
             catch (Exception ex)
             {
@@ -68,6 +71,11 @@ namespace RotoTools
                                 "Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                EnableControls(true);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
             }
         }
         private void cmb_Proveedor_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,35 +101,56 @@ namespace RotoTools
         }
         private void btn_EjecutarCarpeta_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            try
             {
-                dialog.Description = "Selecciona la carpeta con los scripts SQL";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                using (FolderBrowserDialog dialog = new FolderBrowserDialog())
                 {
-                    string carpeta = dialog.SelectedPath;
-                    string[] ficheros = Directory.GetFiles(carpeta, "*.sql");
-
-                    if (ficheros.Length == 0)
+                    dialog.Description = "Selecciona la carpeta con los scripts SQL";
+                    if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("No se encontraron scripts .sql en la carpeta seleccionada.");
-                        return;
-                    }
+                        string carpeta = dialog.SelectedPath;
+                        string[] ficheros = Directory.GetFiles(carpeta, "*.sql");
 
-                    int totalEjecutados = 0;
-                    foreach (string fichero in ficheros)
-                    {
-                        string script = File.ReadAllText(fichero);
-
-                        if (!string.IsNullOrWhiteSpace(script))
+                        if (ficheros.Length == 0)
                         {
-                            int filas = Helpers.EjecutarNonQuery(script);
-                            totalEjecutados++;
+                            MessageBox.Show("No se encontraron scripts .sql en la carpeta seleccionada.");
+                            return;
                         }
-                    }
 
-                    MessageBox.Show($"Se ejecutaron {totalEjecutados} script(s).");
+                        Cursor.Current = Cursors.WaitCursor;
+                        EnableControls(false);
+
+                        int totalEjecutados = 0;
+                        int rowsAfected = 0;
+                        string message = "";
+
+                        foreach (string fichero in ficheros)
+                        {
+                            string script = File.ReadAllText(fichero);
+
+                            if (!string.IsNullOrWhiteSpace(script))
+                            {
+                                rowsAfected += Helpers.EjecutarNonQuery(script);
+                                totalEjecutados++;
+                                message += rowsAfected.ToString() + " registros afectados para el script " + fichero + Environment.NewLine + Environment.NewLine;
+                            }
+                        }
+                        MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EnableControls(true);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error ejecutando scripts(s): " + Environment.NewLine + Environment.NewLine +
+                                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                EnableControls(true);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+
         }
         private void btn_OcultaOpciones_Click(object sender, EventArgs e)
         {
@@ -131,7 +160,15 @@ namespace RotoTools
         #endregion
 
         #region Private methods
-
+        private void EnableControls(bool enable)
+        {
+            btn_EjecutarCarpeta.Enabled = enable;
+            btn_EjecutarScripts.Enabled = enable;
+            btn_OcultaOpciones.Enabled = enable;
+            cmb_IdPresupuestado.Enabled = enable;
+            cmb_IdProduccion.Enabled = enable;
+            cmb_Proveedor.Enabled = enable;
+        }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();

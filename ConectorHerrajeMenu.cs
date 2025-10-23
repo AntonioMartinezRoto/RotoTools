@@ -212,6 +212,10 @@ namespace RotoTools
                     {
                         xmlString = result.ToString();
                     }
+                    else
+                    {
+                        MessageBox.Show("El conector seleccionado no contiene información en la base de datos", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
 
                 if (!string.IsNullOrWhiteSpace(xmlString))
@@ -222,7 +226,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el conector: " + ex.Message);
+                MessageBox.Show("Error al cargar el conector: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

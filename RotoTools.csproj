@@ -17,6 +17,45 @@
 
   <ItemGroup>
     <None Remove="images\logo.png" />
+    <None Remove="Resources\Escandallos\RO_BOMBILLOS.json" />
+    <None Remove="Resources\Escandallos\RO_CONFIGURACION_CLIENTE.json" />
+    <None Remove="Resources\Escandallos\RO_CONSTRUCTIVO_HOJA.json" />
+    <None Remove="Resources\Escandallos\RO_COR_MANILLA.json" />
+    <None Remove="Resources\Escandallos\RO_C_B.OSCILO NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_B.OSCILOBATIENTE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_B.PRACT NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_B.PRACTICABLE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_CORREDERA ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_CORREDERA PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_ELEVADORA ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_ELEVADORA PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_OSCILOPARALELA ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_OSCILOPARALELA PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_P.CALLE NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_PLEGABLE ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_PLEGABLE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_PUERTA CALLE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_TIPOLOGIAS.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.ABATIB NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.ABATIBLE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.OSCILO NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.OSCILOBATIENTE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.PRACT NX ALU.json" />
+    <None Remove="Resources\Escandallos\RO_C_V.PRACTICABLE PVC.json" />
+    <None Remove="Resources\Escandallos\RO_Gestion Herraje.json" />
+    <None Remove="Resources\Escandallos\RO_Gestion Hojas.json" />
+    <None Remove="Resources\Escandallos\RO_Gestion Marcos.json" />
+    <None Remove="Resources\Escandallos\RO_Herr. Balc. Oscilo.json" />
+    <None Remove="Resources\Escandallos\RO_Herr. Balc. Pract.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Abatible.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Corredera.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Elevadora.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Oscilobatiente.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Paralela.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Plegable.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Practicable.json" />
+    <None Remove="Resources\Escandallos\RO_Herraje Puerta.json" />
+    <None Remove="Resources\Escandallos\RO_MANILLAS.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +64,45 @@
 
   <ItemGroup>
     <EmbeddedResource Include="images\logo.png" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_BOMBILLOS.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_CONFIGURACION_CLIENTE.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_CONSTRUCTIVO_HOJA.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_COR_MANILLA.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_B.OSCILO NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_B.OSCILOBATIENTE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_B.PRACT NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_B.PRACTICABLE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_CORREDERA ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_CORREDERA PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_ELEVADORA ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_ELEVADORA PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_OSCILOPARALELA ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_OSCILOPARALELA PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_P.CALLE NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_PLEGABLE ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_PLEGABLE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_PUERTA CALLE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_TIPOLOGIAS.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.ABATIB NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.ABATIBLE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.OSCILO NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.OSCILOBATIENTE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.PRACT NX ALU.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_C_V.PRACTICABLE PVC.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Gestion Herraje.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Gestion Hojas.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Gestion Marcos.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herr. Balc. Oscilo.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herr. Balc. Pract.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Abatible.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Corredera.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Elevadora.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Oscilobatiente.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Paralela.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Plegable.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Practicable.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Puerta.json" />
+    <EmbeddedResource Include="Resources\Escandallos\RO_MANILLAS.json" />
   </ItemGroup>
 
   <ItemGroup>

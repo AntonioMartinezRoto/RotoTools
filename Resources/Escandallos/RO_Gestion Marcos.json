@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Gestion Marcos",
+  "Type": 0,
+  "Descripcion": "Gestion del herraje - vinculo comun marcos",
+  "Nivel1": "ROTO",
+  "Nivel2": "COMUN",
+  "Nivel3": null,
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "%% Este escandallo esta pensado para que el proveedor de herraje pueda generar materiales y mensajes \r\n\r\n%%MENSAJE(\"Si esta leyendo este mensaje debe contatar con ROTO\");",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 3
+}

@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Herraje Oscilobatiente",
+  "Type": 0,
+  "Descripcion": "Establece opciones por defecto en oscilobatiente",
+  "Nivel1": "ROTO",
+  "Nivel2": "CONSTRUCTIVO",
+  "Nivel3": "PERSONALIZACION",
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "\r\n% Determinar OPCIONES POR DEFECTO en CLIENTE\r\n\r\n% Ventanas %\r\n%SI[OPCION(\"Puerta\",\"No\")]ENTONCES\r\n%    SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_Si\")=0]ENTONCES  \r\n%        SI[OPCION(\"Practicable\",\"Izquierda\") O OPCION(\"Practicable\",\"Derecha\")]ENTONCES\r\n       \r\n            %------------------------------------\r\n            SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n            \r\n                % Cota Variable %\r\n                ESTABLECEOPCION(\"CotaVariable\",\"No\");\r\n                \r\n                % Aguja %\r\n                ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n            \r\n                % Manilla % \r\n                ESTABLECEOPCION(\"RO_MANILLA VENTANA\",\"Rotoline\");\r\n\r\n                \r\n                SI [OPCION(\"RO_NX_TIPO HERRAJE\",\"Normal\")] ENTONCES\r\n                    % Embellecedores %\r\n                    ESTABLECEOPCION(\"RO_NX_EMBELLECEDORES\",\"Por Piezas\");\r\n                    % Soporte compás %\r\n                    ESTABLECEOPCION(\"RO_NX_SOPORTE COMPAS P\",\"6/130\");\r\n                FINSI                \r\n                % Seguridad %\r\n                ESTABLECEOPCION(\"RO_NX_HERRAJE SEGURIDAD\",\"STD\");\r\n\r\n                % 2H activa %\r\n                SI [OPCION(\"Activa\",\"Sí\")] ENTONCES\r\n                    SI[OPCION(\"Asociada\",\"Practicable\")] ENTONCES\r\n                        SI[OPCION(\"RO_NX_HERR. HOJA PASIVA\",\"Cremona\")=0] ENTONCES\r\n                            ESTABLECEOPCION(\"RO_NX_HERR. HOJA PASIVA\",\"Cremona\");\r\n                        FINSI\r\n                    FINSI\r\n                FINSI\r\n\r\n            FINSI\r\n            %------------------------------------\r\n            \r\n            % Símbolos\r\n            SI [OPCION(\"RO_MANILLA VENTANA\",\"Rotoline\") O \r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotoline secustik\") O \r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing\") O \r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing secustik\") O\r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba\")O\r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba secustik\") O\r\n                OPCION(\"RO_MANILLA VENTANA\",\"Maneta Kommerling\")] ENTONCES               \r\n                    ESTABLECEOPCION(\"HANDLE\",\"Maneta Practicable\");\r\n            FINSI\r\n            SI [OPCION(\"RO_MANILLA VENTANA\",\"Rotoline llave\") O \r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing llave\") O \r\n                OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba llave\")] ENTONCES               \r\n                    ESTABLECEOPCION(\"HANDLE\",\"Maneta LLave\");\r\n            FINSI\r\n            SI [OPCION(\"RO_MANILLA VENTANA\",\"Manilla ventana Ninguna\")] ENTONCES\r\n                ESTABLECEOPCION(\"HANDLE\",\"Nada\"); \r\n            FINSI\r\n\r\n%        FINSI\r\n%    FINSI\r\n%FINSI",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 6
+}

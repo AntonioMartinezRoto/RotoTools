@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Herraje Paralela",
+  "Type": 0,
+  "Descripcion": "Establece opciones por defecto en osciloparalelas",
+  "Nivel1": "ROTO",
+  "Nivel2": "CONSTRUCTIVO",
+  "Nivel3": "PERSONALIZACION",
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "% Determinar OPCIONES POR DEFECTO en CLIENTE\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX\")]ENTONCES\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % Aguja %\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_No\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n        FINSI\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_Si\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag30\");\r\n        FINSI\r\n        % Tipo %\r\n        ESTABLECEOPCION(\"RO_ALV_TIPO\",\"PS AirCom-160\");\r\n    FINSI\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n    \r\n    FINSI\r\nFINSI\r\n\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX PAX\")]ENTONCES\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % Aguja %\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_No\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n        FINSI\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_Si\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag30\");\r\n        FINSI\r\n        % Tipo %\r\n        ESTABLECEOPCION(\"RO_ALV_TIPO\",\"PS AirCom-160\");\r\n    FINSI\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n    \r\n    FINSI\r\nFINSI\r\n\r\n\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX PAX\")]ENTONCES\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % Aguja %\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_No\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n        FINSI\r\n        SI[OPCION(\"RO_NX_EASY MIX\",\"Easy Mix_Si\")] ENTONCES\r\n            ESTABLECEOPCION(\"RO_AGUJA\",\"Ag30\");\r\n        FINSI\r\n        % Tipo %\r\n        ESTABLECEOPCION(\"RO_ALV_TIPO\",\"PS AirCom-160\");\r\n    FINSI\r\n    \r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n    \r\n    FINSI\r\nFINSI\r\n\r\n\r\n%------------------------------------\r\n\r\n% Símbolos\r\nSI [OPCION(\"RO_ALV_CREMONA\",\"Cremona simple\")] ENTONCES\r\n    ESTABLECEOPCION(\"HANDLE\",\"Maneta Grande\");\r\nFINSI\r\nSI [OPCION(\"RO_ALV_CREMONA\",\"Cremona con bombillo\") Y OPCION(\"RO_BOMBILLO\",\"b_sin bombillo\")=0] ENTONCES\r\n    ESTABLECEOPCION(\"HANDLE\",\"Maneta Grande Cerradura\");\r\nFINSI\r\n\r\n\r\n        % Configuraciones por peso?",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 6
+}

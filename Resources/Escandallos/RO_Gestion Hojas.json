@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Gestion Hojas",
+  "Type": 0,
+  "Descripcion": "Gestion del herraje - vinculo comun hojas",
+  "Nivel1": "ROTO",
+  "Nivel2": "COMUN",
+  "Nivel3": null,
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "%% Escandallo comun hojas para generar manillas / bombillos\r\n\r\nSI [OPCION(\"Activa\",\"Sí\")] ENTONCES\r\n\r\n    ESCANDALLO(\"RO_MANILLAS\",\"\");    \r\n    ESCANDALLO(\"RO_COR_MANILLAS\",\"\");\r\n    ESCANDALLO(\"RO_BOMBILLOS\",\"\");\r\n\r\nFINSI",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 3
+}

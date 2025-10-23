@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Herraje Abatible",
+  "Type": 0,
+  "Descripcion": "Escandallo que establece opciones por defecto en abatibles",
+  "Nivel1": "ROTO",
+  "Nivel2": "CONSTRUCTIVO",
+  "Nivel3": "PERSONALIZACION",
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "%------------------------------------\r\n\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX\")]ENTONCES\r\n\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % PERFIL %\r\n        ESTABLECEOPCION(\"RO_1PERFIL\",\"Cortizo\");\r\n    \r\n        % Cota Variable %\r\n        ESTABLECEOPCION(\"CotaVariable\",\"Sí\");\r\n        \r\n        % Aguja %\r\n        ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n    \r\n        % Manilla % \r\n        ESTABLECEOPCION(\"RO_MANILLA VENTANA\",\"Rotoline\");\r\n    FINSI\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n\r\n    FINSI\r\n\r\nFINSI\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX\")]ENTONCES\r\n\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % PERFIL %\r\n        ESTABLECEOPCION(\"RO_1PERFIL\",\"Cortizo\");\r\n    \r\n        % Cota Variable %\r\n        ESTABLECEOPCION(\"CotaVariable\",\"Sí\");\r\n        \r\n        % Aguja %\r\n        ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n    \r\n        % Manilla % \r\n        ESTABLECEOPCION(\"RO_MANILLA VENTANA\",\"Rotoline\");\r\n    \r\n    FINSI\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n    \r\n    FINSI\r\n\r\nFINSI\r\n\r\nSI[OPCION(\"HardwareSupplier\",\"ROTO NX PAX\")]ENTONCES\r\n\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")]ENTONCES\r\n        % PERFIL %\r\n        ESTABLECEOPCION(\"RO_1PERFIL\",\"Cortizo\");\r\n    \r\n        % Cota Variable %\r\n        ESTABLECEOPCION(\"CotaVariable\",\"Sí\");\r\n        \r\n        % Aguja %\r\n        ESTABLECEOPCION(\"RO_AGUJA\",\"Ag15\");\r\n    \r\n        % Manilla % \r\n        ESTABLECEOPCION(\"RO_MANILLA VENTANA\",\"Rotoline\");\r\n    \r\n    FINSI\r\n    SI[OPCION(\"01 Configuracion Estandar\",\"Si\")=0]ENTONCES\r\n\r\n    FINSI\r\n\r\nFINSI\r\n\r\n%------------------------------------\r\n\r\n% Símbolos\r\nSI [OPCION(\"RO_MANILLA VENTANA\",\"Rotoline\") O \r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotoline secustik\") O \r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing\") O \r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing secustik\") O\r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba\")O\r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba secustik\") O\r\n    OPCION(\"RO_MANILLA VENTANA\",\"Maneta Kommerling\")] ENTONCES               \r\n        ESTABLECEOPCION(\"HANDLE\",\"Maneta Practicable\");\r\nFINSI\r\nSI [OPCION(\"RO_MANILLA VENTANA\",\"Rotoline llave\") O \r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotoswing llave\") O \r\n    OPCION(\"RO_MANILLA VENTANA\",\"Rotosamba llave\")] ENTONCES               \r\n        ESTABLECEOPCION(\"HANDLE\",\"Maneta LLave\");\r\nFINSI\r\nSI [OPCION(\"RO_MANILLA VENTANA\",\"Manilla ventana Ninguna\")] ENTONCES\r\n    ESTABLECEOPCION(\"HANDLE\",\"Nada\"); \r\nFINSI",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 6
+}

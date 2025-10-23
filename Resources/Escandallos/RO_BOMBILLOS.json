@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_BOMBILLOS",
+  "Type": 0,
+  "Descripcion": "Bombillos Roto",
+  "Nivel1": "ROTO",
+  "Nivel2": "COMUN",
+  "Nivel3": null,
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "% Este escandallo puede ser llamado desde un escandallo común de HOJA presente en todos los modelos. \r\n% El valor Nulo, es para opciones con Oculta activo. Poner el texto adecuado a cada bd. \r\n% La referencia puede variar según sistema. Preguntar!! \r\n\r\n    SI [OPCION(\"RO_BOMBILLO\",\"b_sin bombillo\")=0 Y OPCION(\"RO_BOMBILLO\",\"Oculto\")=0] ENTONCES \r\n        MENSAJE(\"Seleccionado bombín Roto\"); \r\n        PIEZA(\"RO_349607\",[1]); \r\n    FINSI",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 5
+}

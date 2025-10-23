@@ -26,5 +26,15 @@ namespace RotoTools
             Aluminio = 2,
             PAX = 3
         }
+        public enum enumRotoTipoEscandallo
+        {
+            Desconocido = 0,
+            PVC = 1,
+            Aluminio = 2,
+            GestionGeneral = 3,
+            GestionManillas = 4,
+            GestionBombillos = 5,
+            PersonalizacionClientes = 6
+        }
     }
 }

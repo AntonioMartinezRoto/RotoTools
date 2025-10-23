@@ -1,5 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
+using System.Reflection;
+using System.Text.Json;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
@@ -54,7 +57,7 @@ namespace RotoTools
                 ResultQuerys resultQuerys = EjecutarScripts();
 
                 string mensaje = "Scripts ejecutados correctamente." + Environment.NewLine + Environment.NewLine +
-                                 resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() +  " registros actualizados (Grupos presupuestado, producción y proveedor): " + Environment.NewLine + Environment.NewLine +
+                                 resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() + " registros actualizados (Grupos presupuestado, producción y proveedor): " + Environment.NewLine + Environment.NewLine +
                                  resultQuerys.ResultQueryUpdateNivel1MaterialesBaseYOpciones.ToString() + " registros actualizados (Nivel 1 Materiales Base y Opciones): " + Environment.NewLine + Environment.NewLine +
                                  resultQuerys.ResultQueryUpdatePropFicticios.ToString() + " registros actualizados (Materiales Base ficticios): " + Environment.NewLine + Environment.NewLine +
                                  resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " registros actualizados (Descripciones Materiales Base): " + Environment.NewLine;
@@ -156,7 +159,98 @@ namespace RotoTools
         {
             AgregarValorOcultoOpcionesRoto();
         }
+        private void btn_ExportarEscandallos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+                {
+                    dialog.Description = "Selecciona la carpeta donde guardar los escandallos";
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string carpeta = dialog.SelectedPath;
 
+
+                        Cursor.Current = Cursors.WaitCursor;
+                        EnableControls(false);
+
+                        List<Escandallo> escandallos = new List<Escandallo>();
+
+                        using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                        {
+                            conn.Open();
+                            string query = @"SELECT * FROM Escandallos WHERE CODIGO LIKE 'RO\_%' ESCAPE '\'";
+                            using (var cmd = new SqlCommand(query, conn))
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var escandallo = new Escandallo
+                                    {
+                                        Codigo = reader["Codigo"].ToString().Trim(),
+                                        Type = Convert.ToInt16(reader["Type"]),
+                                        Descripcion = reader["Descripcion"] as string,
+                                        Nivel1 = reader["Nivel1"] as string,
+                                        Nivel2 = reader["Nivel2"] as string,
+                                        Nivel3 = reader["Nivel3"] as string,
+                                        Nivel4 = reader["Nivel4"] as string,
+                                        Nivel5 = reader["Nivel5"] as string,
+                                        Variables = reader["Variables"] as string,
+                                        Programa = reader["Programa"] as string,
+                                        Texto = reader["Texto"] as string,
+                                        Familia = reader["Familia"] as string,
+                                        XMLTable = reader["XMLTable"] as string,
+                                        ProductionType = reader.GetGuid(reader.GetOrdinal("ProductionType")),
+                                        PrefShopStatus = Convert.ToInt16(reader["PrefShopStatus"])
+                                    };
+
+                                    Helpers.InicializarEscandalloRotoTipo(escandallo);
+
+                                    escandallos.Add(escandallo);
+                                }
+                            }
+                        }
+
+                        var options = new JsonSerializerOptions
+                        {
+                            WriteIndented = true,
+                            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                        };
+
+                        foreach (var escandallo in escandallos)
+                        {
+                            string fileName = $"{escandallo.Codigo.Trim()}.json";
+                            string path = Path.Combine(carpeta, fileName);
+                            File.WriteAllText(path, JsonSerializer.Serialize(escandallo, options));
+                        }
+
+                        MessageBox.Show($"Exportados {escandallos.Count} escandallos a: " + Environment.NewLine + carpeta, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        EnableControls(true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error guardando los escandallos: " + Environment.NewLine + Environment.NewLine +
+                                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                EnableControls(true);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+        private void btn_InstalarEscandallos_Click(object sender, EventArgs e)
+        {
+            ActualizadorInstalarEscandallos actualizadorInstalarEscandallosForm = new ActualizadorInstalarEscandallos();
+            actualizadorInstalarEscandallosForm.ShowDialog();
+        }
+        private void btn_ShowScripts_Click(object sender, EventArgs e)
+        {
+            ActualizadorEscandallos actualizadorEscandallosForm = new ActualizadorEscandallos();
+            actualizadorEscandallosForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -165,6 +259,8 @@ namespace RotoTools
             btn_EjecutarCarpeta.Enabled = enable;
             btn_EjecutarScripts.Enabled = enable;
             btn_OcultaOpciones.Enabled = enable;
+            btn_InstalarEscandallos.Enabled = enable;
+            btn_ExportarEscandallos.Enabled = enable;
             cmb_IdPresupuestado.Enabled = enable;
             cmb_IdProduccion.Enabled = enable;
             cmb_Proveedor.Enabled = enable;
@@ -186,7 +282,7 @@ namespace RotoTools
 
             //Actualizar descripciones MaterialesBase desde los fittings
             int rowsAfected4 = Helpers.EjecutarNonQuery(queryUpdateDescripciones);
-            
+
             ResultQuerys resultQuerys = new ResultQuerys(rowsAfected, rowsAfected2, rowsAfected3, rowsAfected4);
             return resultQuerys;
 
@@ -323,7 +419,7 @@ namespace RotoTools
                     cmd.ExecuteNonQuery();
                 }
             }
-            
+
         }
         private int GetLastContenidoOpcionOrden(string? optionName, string dataVerId)
         {
@@ -344,18 +440,18 @@ namespace RotoTools
             using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
             conexion.Open();
 
-            using SqlCommand cmd = new SqlCommand("SELECT Valor FROM ContenidoOpciones WHERE Opcion = N'" +  optionName +"' AND DataVerId = N'" + dataVerId + "' AND Valor= N'Oculto'", conexion);
+            using SqlCommand cmd = new SqlCommand("SELECT Valor FROM ContenidoOpciones WHERE Opcion = N'" + optionName + "' AND DataVerId = N'" + dataVerId + "' AND Valor= N'Oculto'", conexion);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
-            {                
+            {
                 return true;
             }
             return false;
         }
 
-        #endregion
 
+        #endregion
     }
 
     public class Proveedor

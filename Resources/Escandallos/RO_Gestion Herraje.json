@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_Gestion Herraje",
+  "Type": 0,
+  "Descripcion": "Gestión del herraje - vínculo constructivo hojas",
+  "Nivel1": "ROTO",
+  "Nivel2": "CONSTRUCTIVO",
+  "Nivel3": "PERSONALIZACION",
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "\r\n%% Llamada al escandallo tipologias que se encarga de mostrar solamente las opciones necesarias en cada tipologia de modelo\r\nESCANDALLO(\"RO_C_TIPOLOGIAS\",\"\");\r\n\r\n%% Llamada al escandallo que se encarga de establecer las opciones por defecto que va a usar el cliente\r\nESCANDALLO(\"RO_CONFIGURACION_CLIENTE\",\"\");",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 3
+}

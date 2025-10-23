@@ -1,9 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using RotoEntities;
+using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
@@ -271,6 +274,73 @@ namespace RotoTools
             {
                 MessageBox.Show("Error restaurando la configuración: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public static List<Escandallo> CargarEscandallosEmbebidos(List<enumRotoTipoEscandallo> tiposSeleccionados)
+        {
+            List<Escandallo> escandallosList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Escandallos."; // Ajusta según tu namespace
+
+            var escandallosEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in escandallosEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var escandallo = JsonSerializer.Deserialize<Escandallo>(json);
+                if (escandallo != null)
+                {
+                    // Asegura que tiene su tipo asignado (por si no lo trae en el JSON)
+                    InicializarEscandalloRotoTipo(escandallo);
+
+                    // Filtra según los checks seleccionados
+                    if (tiposSeleccionados.Contains(escandallo.RotoTipo))
+                        escandallosList.Add(escandallo);
+
+                }
+            }
+
+            return escandallosList;
+        }
+        public static void InicializarEscandalloRotoTipo(Escandallo escandallo)
+        {
+            string codigo = escandallo.Codigo?.ToUpper() ?? "";
+
+            if (codigo.Contains("PVC"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.PVC;
+            else if (codigo.Contains("ALU"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.Aluminio;
+            else if (codigo.Contains("MANILLAS") || codigo.Contains("MANILLA"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionManillas;
+            else if (codigo.Contains("BOMBILLOS"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionBombillos;
+            else if (codigo.StartsWith("RO_HERRAJE", StringComparison.OrdinalIgnoreCase) || codigo.StartsWith("RO_Herr.", StringComparison.OrdinalIgnoreCase))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.PersonalizacionClientes;
+            else
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionGeneral;
+        }
+        public static bool ExisteEscandalloEnBD(string escandalloCodigo)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Escandallos WHERE Codigo = '" + escandalloCodigo + "'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
         }
         public static int EjecutarNonQuery(string sql)
         {

@@ -1,0 +1,22 @@
+{
+  "DataVerId": "00000000-0000-0000-0000-000000000000",
+  "RowId": "00000000-0000-0000-0000-000000000000",
+  "LCRowId": "00000000-0000-0000-0000-000000000000",
+  "Codigo": "RO_CONSTRUCTIVO_HOJA",
+  "Type": 0,
+  "Descripcion": "Escandallo herraje constructivo hoja",
+  "Nivel1": "ROTO",
+  "Nivel2": "CONSTRUCTIVO",
+  "Nivel3": null,
+  "Nivel4": null,
+  "Nivel5": null,
+  "Variables": null,
+  "Programa": "\r\nESCANDALLO(\"RO_Gestion Herraje\",\"\");",
+  "Image": null,
+  "Texto": null,
+  "Familia": null,
+  "XMLTable": null,
+  "ProductionType": "00000000-0000-0000-0000-000000000000",
+  "PrefShopStatus": 0,
+  "RotoTipo": 3
+}

@@ -69,10 +69,6 @@ namespace RotoTools
                 generaConectorForm.ShowDialog();
             }
         }
-        private void cmb_Conectores_SelectedValueChanged(object sender, EventArgs e)
-        {
-            CargarConectorDesdeBaseDeDatos(cmb_Conectores.Text.TrimEnd());
-        }
         private void btn_CombinarConectores_Click(object sender, EventArgs e)
         {
             ConectorHerrajeCombinar conectorHerrajeCombinarForm = new ConectorHerrajeCombinar();
@@ -80,9 +76,9 @@ namespace RotoTools
         }
         private void btn_SetsNoUtilizados_Click(object sender, EventArgs e)
         {
-            if (xmlCargado && conectorCargado)
+            if (xmlCargado)
             {
-                ConectorHerrajeRevisionSets conectorHerrajeRevisionSetsForm = new ConectorHerrajeRevisionSets(xmlOrigen, connectorHerraje);
+                ConectorHerrajeRevisionSets conectorHerrajeRevisionSetsForm = new ConectorHerrajeRevisionSets(xmlOrigen);
                 conectorHerrajeRevisionSetsForm.ShowDialog();
             }
         }
@@ -96,7 +92,6 @@ namespace RotoTools
             if (Helpers.IsVersionPrefSuiteCompatible())
             {
                 EnableButtons(true);
-                LoadItemsConectorHerraje();
             }
             else
             {
@@ -113,7 +108,6 @@ namespace RotoTools
         {
             btn_LoadXml.Enabled = enable;
             btn_SetsNoUtilizados.Enabled = enable;
-            cmb_Conectores.Enabled = enable;
             btn_GeneraConector.Enabled = enable;
             btn_CombinarConectores.Enabled = enable;
         }
@@ -121,21 +115,6 @@ namespace RotoTools
         {
             statusStrip1.BackColor = Color.IndianRed;
             lbl_Conexion.Text += "   BASE DE DATOS NO COMPATIBLE (v2020 requerida)";
-        }
-        private void LoadItemsConectorHerraje()
-        {
-            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand("SELECT Codigo, XML FROM ConectorHerrajes", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            cmb_Conectores.Items.Clear();
-
-            while (reader.Read())
-            {
-                cmb_Conectores.Items.Add(reader[0].ToString());
-            }
         }
         private XmlData LoadXml(string xmlPath)
         {
@@ -193,38 +172,7 @@ namespace RotoTools
             }
             return setList;
         }
-        private void CargarConectorDesdeBaseDeDatos(string conectorName)
-        {
-            try
-            {
-                string xmlString = null;
-
-                using (var conexion = new SqlConnection(Helpers.GetConnectionString()))
-                {
-                    conexion.Open();
-
-                    var query = "SELECT XML FROM ConectorHerrajes WHERE Codigo = @codigo"; // Reemplaza 'Id' y agrega parámetro si necesitas.
-                    using var cmd = new SqlCommand(query, conexion);
-                    cmd.Parameters.AddWithValue("@codigo", conectorName); // Ajusta según tu clave primaria o criterio
-
-                    var result = cmd.ExecuteScalar();
-                    if (result != DBNull.Value && result != null)
-                    {
-                        xmlString = result.ToString();
-                    }
-                }
-
-                if (!string.IsNullOrWhiteSpace(xmlString))
-                {
-                    connectorHerraje = Helpers.DeserializarXML<Connector>(xmlString);
-                    conectorCargado = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar el conector: " + ex.Message);
-            }
-        }
+        
 
         #endregion
 

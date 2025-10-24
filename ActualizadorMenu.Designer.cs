@@ -73,11 +73,11 @@
             // cmb_IdPresupuestado
             // 
             cmb_IdPresupuestado.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_IdPresupuestado.Font = new Font("Calibri", 8.25F);
+            cmb_IdPresupuestado.Font = new Font("Calibri", 9F);
             cmb_IdPresupuestado.FormattingEnabled = true;
-            cmb_IdPresupuestado.Location = new Point(167, 28);
+            cmb_IdPresupuestado.Location = new Point(139, 28);
             cmb_IdPresupuestado.Name = "cmb_IdPresupuestado";
-            cmb_IdPresupuestado.Size = new Size(174, 21);
+            cmb_IdPresupuestado.Size = new Size(202, 22);
             cmb_IdPresupuestado.TabIndex = 1;
             cmb_IdPresupuestado.SelectedIndexChanged += cmb_IdPresupuestado_SelectedIndexChanged;
             // 
@@ -108,20 +108,20 @@
             // 
             // txt_Presupuestado
             // 
-            txt_Presupuestado.Font = new Font("Calibri", 8.25F);
+            txt_Presupuestado.Font = new Font("Calibri", 9F);
             txt_Presupuestado.Location = new Point(359, 28);
             txt_Presupuestado.Name = "txt_Presupuestado";
             txt_Presupuestado.ReadOnly = true;
-            txt_Presupuestado.Size = new Size(46, 21);
+            txt_Presupuestado.Size = new Size(46, 22);
             txt_Presupuestado.TabIndex = 9;
             // 
             // txt_Produccion
             // 
-            txt_Produccion.Font = new Font("Calibri", 8.25F);
+            txt_Produccion.Font = new Font("Calibri", 9F);
             txt_Produccion.Location = new Point(359, 63);
             txt_Produccion.Name = "txt_Produccion";
             txt_Produccion.ReadOnly = true;
-            txt_Produccion.Size = new Size(46, 21);
+            txt_Produccion.Size = new Size(46, 22);
             txt_Produccion.TabIndex = 8;
             // 
             // lbl_IdProduccion
@@ -136,11 +136,11 @@
             // cmb_IdProduccion
             // 
             cmb_IdProduccion.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_IdProduccion.Font = new Font("Calibri", 8.25F);
+            cmb_IdProduccion.Font = new Font("Calibri", 9F);
             cmb_IdProduccion.FormattingEnabled = true;
-            cmb_IdProduccion.Location = new Point(167, 63);
+            cmb_IdProduccion.Location = new Point(139, 63);
             cmb_IdProduccion.Name = "cmb_IdProduccion";
-            cmb_IdProduccion.Size = new Size(174, 21);
+            cmb_IdProduccion.Size = new Size(202, 22);
             cmb_IdProduccion.TabIndex = 3;
             cmb_IdProduccion.SelectedIndexChanged += cmb_IdProduccion_SelectedIndexChanged;
             // 
@@ -159,17 +159,17 @@
             // 
             // txt_Proveedor
             // 
-            txt_Proveedor.Font = new Font("Calibri", 8.25F);
-            txt_Proveedor.Location = new Point(363, 28);
+            txt_Proveedor.Font = new Font("Calibri", 9F);
+            txt_Proveedor.Location = new Point(359, 28);
             txt_Proveedor.Name = "txt_Proveedor";
             txt_Proveedor.ReadOnly = true;
-            txt_Proveedor.Size = new Size(46, 21);
+            txt_Proveedor.Size = new Size(46, 22);
             txt_Proveedor.TabIndex = 7;
             // 
             // lbl_Proveedor
             // 
             lbl_Proveedor.AutoSize = true;
-            lbl_Proveedor.Location = new Point(83, 29);
+            lbl_Proveedor.Location = new Point(62, 28);
             lbl_Proveedor.Name = "lbl_Proveedor";
             lbl_Proveedor.Size = new Size(51, 15);
             lbl_Proveedor.TabIndex = 6;
@@ -178,11 +178,11 @@
             // cmb_Proveedor
             // 
             cmb_Proveedor.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_Proveedor.Font = new Font("Calibri", 8.25F);
+            cmb_Proveedor.Font = new Font("Calibri", 9F);
             cmb_Proveedor.FormattingEnabled = true;
-            cmb_Proveedor.Location = new Point(171, 28);
+            cmb_Proveedor.Location = new Point(139, 28);
             cmb_Proveedor.Name = "cmb_Proveedor";
-            cmb_Proveedor.Size = new Size(174, 21);
+            cmb_Proveedor.Size = new Size(202, 22);
             cmb_Proveedor.TabIndex = 5;
             cmb_Proveedor.SelectedIndexChanged += cmb_Proveedor_SelectedIndexChanged;
             // 

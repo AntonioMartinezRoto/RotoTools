@@ -34,8 +34,6 @@
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
             btn_Actualizar = new Button();
-            label1 = new Label();
-            cmb_Conectores = new ComboBox();
             btn_SetsNoUtilizados = new Button();
             label2 = new Label();
             label3 = new Label();
@@ -71,7 +69,7 @@
             // 
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 357);
+            statusStrip1.Location = new Point(0, 285);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(683, 22);
             statusStrip1.SizingGrip = false;
@@ -88,37 +86,19 @@
             // 
             btn_Actualizar.BackgroundImage = (Image)resources.GetObject("btn_Actualizar.BackgroundImage");
             btn_Actualizar.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Actualizar.Location = new Point(50, 109);
+            btn_Actualizar.Location = new Point(12, 12);
             btn_Actualizar.Name = "btn_Actualizar";
-            btn_Actualizar.Size = new Size(40, 40);
+            btn_Actualizar.Size = new Size(29, 31);
             btn_Actualizar.TabIndex = 6;
             btn_Actualizar.UseVisualStyleBackColor = true;
+            btn_Actualizar.Visible = false;
             btn_Actualizar.Click += btn_Actualizar_Click;
-            // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(96, 122);
-            label1.Name = "label1";
-            label1.Size = new Size(124, 16);
-            label1.TabIndex = 7;
-            label1.Text = "Seleccionar Conector";
-            // 
-            // cmb_Conectores
-            // 
-            cmb_Conectores.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_Conectores.FormattingEnabled = true;
-            cmb_Conectores.Location = new Point(264, 122);
-            cmb_Conectores.Name = "cmb_Conectores";
-            cmb_Conectores.Size = new Size(177, 23);
-            cmb_Conectores.TabIndex = 8;
-            cmb_Conectores.SelectedValueChanged += cmb_Conectores_SelectedValueChanged;
             // 
             // btn_SetsNoUtilizados
             // 
             btn_SetsNoUtilizados.BackgroundImage = (Image)resources.GetObject("btn_SetsNoUtilizados.BackgroundImage");
             btn_SetsNoUtilizados.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_SetsNoUtilizados.Location = new Point(50, 286);
+            btn_SetsNoUtilizados.Location = new Point(50, 225);
             btn_SetsNoUtilizados.Name = "btn_SetsNoUtilizados";
             btn_SetsNoUtilizados.Size = new Size(40, 40);
             btn_SetsNoUtilizados.TabIndex = 9;
@@ -128,7 +108,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(96, 299);
+            label2.Location = new Point(96, 238);
             label2.Name = "label2";
             label2.Size = new Size(124, 16);
             label2.TabIndex = 10;
@@ -137,7 +117,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Location = new Point(96, 181);
+            label3.Location = new Point(96, 120);
             label3.Name = "label3";
             label3.Size = new Size(166, 17);
             label3.TabIndex = 12;
@@ -147,7 +127,7 @@
             // 
             btn_GeneraConector.BackgroundImage = (Image)resources.GetObject("btn_GeneraConector.BackgroundImage");
             btn_GeneraConector.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_GeneraConector.Location = new Point(50, 168);
+            btn_GeneraConector.Location = new Point(50, 107);
             btn_GeneraConector.Name = "btn_GeneraConector";
             btn_GeneraConector.Size = new Size(40, 40);
             btn_GeneraConector.TabIndex = 11;
@@ -157,7 +137,7 @@
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Location = new Point(96, 239);
+            label4.Location = new Point(96, 178);
             label4.Name = "label4";
             label4.Size = new Size(189, 15);
             label4.TabIndex = 14;
@@ -167,7 +147,7 @@
             // 
             btn_CombinarConectores.BackgroundImage = (Image)resources.GetObject("btn_CombinarConectores.BackgroundImage");
             btn_CombinarConectores.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_CombinarConectores.Location = new Point(50, 226);
+            btn_CombinarConectores.Location = new Point(50, 165);
             btn_CombinarConectores.Name = "btn_CombinarConectores";
             btn_CombinarConectores.Size = new Size(40, 40);
             btn_CombinarConectores.TabIndex = 13;
@@ -178,7 +158,7 @@
             // 
             chk_ConfigAE.AutoSize = true;
             chk_ConfigAE.BackColor = Color.Transparent;
-            chk_ConfigAE.Location = new Point(264, 180);
+            chk_ConfigAE.Location = new Point(264, 119);
             chk_ConfigAE.Name = "chk_ConfigAE";
             chk_ConfigAE.Size = new Size(177, 19);
             chk_ConfigAE.TabIndex = 24;
@@ -191,7 +171,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(683, 379);
+            ClientSize = new Size(683, 307);
             Controls.Add(chk_ConfigAE);
             Controls.Add(label4);
             Controls.Add(btn_CombinarConectores);
@@ -199,8 +179,6 @@
             Controls.Add(btn_GeneraConector);
             Controls.Add(label2);
             Controls.Add(btn_SetsNoUtilizados);
-            Controls.Add(cmb_Conectores);
-            Controls.Add(label1);
             Controls.Add(btn_Actualizar);
             Controls.Add(statusStrip1);
             Controls.Add(lbl_Xml);
@@ -225,8 +203,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
         private Button btn_Actualizar;
-        private Label label1;
-        private ComboBox cmb_Conectores;
         private Button btn_SetsNoUtilizados;
         private Label label2;
         private Label label3;

@@ -41,14 +41,22 @@
             lbl_TotalSetsNoIncluidosConector = new Label();
             list_SetsNoUsadosEnConector = new ListView();
             tab_LineasNoXml = new TabPage();
+            btn_EliminarLineasConector = new Button();
             btn_ExportExcelCodigos = new Button();
             txt_FiltroCodigoNoXml = new TextBox();
             lbl_TotalCodigosNoXml = new Label();
             list_CodigosNoXml = new ListView();
+            cmb_HardwareSupplier = new ComboBox();
+            label1 = new Label();
+            cmb_Conectores = new ComboBox();
+            label2 = new Label();
+            statusStrip1 = new StatusStrip();
+            lbl_Conexion = new ToolStripStatusLabel();
             tabControl1.SuspendLayout();
             tab_Incluidos.SuspendLayout();
             tab_NoIncluidos.SuspendLayout();
             tab_LineasNoXml.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -56,7 +64,7 @@
             tabControl1.Controls.Add(tab_Incluidos);
             tabControl1.Controls.Add(tab_NoIncluidos);
             tabControl1.Controls.Add(tab_LineasNoXml);
-            tabControl1.Location = new Point(12, 12);
+            tabControl1.Location = new Point(37, 55);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(558, 389);
@@ -174,6 +182,7 @@
             // 
             // tab_LineasNoXml
             // 
+            tab_LineasNoXml.Controls.Add(btn_EliminarLineasConector);
             tab_LineasNoXml.Controls.Add(btn_ExportExcelCodigos);
             tab_LineasNoXml.Controls.Add(txt_FiltroCodigoNoXml);
             tab_LineasNoXml.Controls.Add(lbl_TotalCodigosNoXml);
@@ -185,6 +194,19 @@
             tab_LineasNoXml.TabIndex = 2;
             tab_LineasNoXml.Text = "Códigos que no están en XML";
             tab_LineasNoXml.UseVisualStyleBackColor = true;
+            // 
+            // btn_EliminarLineasConector
+            // 
+            btn_EliminarLineasConector.BackColor = Color.Transparent;
+            btn_EliminarLineasConector.BackgroundImage = (Image)resources.GetObject("btn_EliminarLineasConector.BackgroundImage");
+            btn_EliminarLineasConector.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_EliminarLineasConector.Location = new Point(480, 7);
+            btn_EliminarLineasConector.Margin = new Padding(3, 2, 3, 2);
+            btn_EliminarLineasConector.Name = "btn_EliminarLineasConector";
+            btn_EliminarLineasConector.Size = new Size(28, 23);
+            btn_EliminarLineasConector.TabIndex = 27;
+            btn_EliminarLineasConector.UseVisualStyleBackColor = false;
+            btn_EliminarLineasConector.Click += btn_EliminarLineasConector_Click;
             // 
             // btn_ExportExcelCodigos
             // 
@@ -201,10 +223,10 @@
             // 
             // txt_FiltroCodigoNoXml
             // 
-            txt_FiltroCodigoNoXml.Location = new Point(324, 7);
+            txt_FiltroCodigoNoXml.Location = new Point(448, 8);
             txt_FiltroCodigoNoXml.Margin = new Padding(3, 2, 3, 2);
             txt_FiltroCodigoNoXml.Name = "txt_FiltroCodigoNoXml";
-            txt_FiltroCodigoNoXml.Size = new Size(181, 23);
+            txt_FiltroCodigoNoXml.Size = new Size(23, 23);
             txt_FiltroCodigoNoXml.TabIndex = 6;
             txt_FiltroCodigoNoXml.Visible = false;
             txt_FiltroCodigoNoXml.TextChanged += txt_FiltroCodigoNoXml_TextChanged;
@@ -228,13 +250,73 @@
             list_CodigosNoXml.UseCompatibleStateImageBehavior = false;
             list_CodigosNoXml.MouseDoubleClick += list_CodigosNoXml_MouseDoubleClick;
             // 
+            // cmb_HardwareSupplier
+            // 
+            cmb_HardwareSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_HardwareSupplier.FormattingEnabled = true;
+            cmb_HardwareSupplier.Location = new Point(430, 19);
+            cmb_HardwareSupplier.Name = "cmb_HardwareSupplier";
+            cmb_HardwareSupplier.Size = new Size(165, 23);
+            cmb_HardwareSupplier.TabIndex = 10;
+            cmb_HardwareSupplier.SelectedValueChanged += cmb_HardwareSupplier_SelectedValueChanged;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Transparent;
+            label1.Location = new Point(318, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(106, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Hardware Supplier";
+            // 
+            // cmb_Conectores
+            // 
+            cmb_Conectores.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_Conectores.FormattingEnabled = true;
+            cmb_Conectores.Location = new Point(99, 19);
+            cmb_Conectores.Name = "cmb_Conectores";
+            cmb_Conectores.Size = new Size(175, 23);
+            cmb_Conectores.TabIndex = 12;
+            cmb_Conectores.SelectedValueChanged += cmb_Conectores_SelectedValueChanged;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(37, 22);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 20);
+            label2.TabIndex = 11;
+            label2.Text = "Conector";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
+            statusStrip1.Location = new Point(0, 449);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(784, 22);
+            statusStrip1.SizingGrip = false;
+            statusStrip1.TabIndex = 13;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // lbl_Conexion
+            // 
+            lbl_Conexion.Name = "lbl_Conexion";
+            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Text = "toolStripStatusLabel1";
+            // 
             // ConectorHerrajeRevisionSets
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(784, 411);
+            ClientSize = new Size(784, 471);
+            Controls.Add(statusStrip1);
+            Controls.Add(cmb_Conectores);
+            Controls.Add(label2);
+            Controls.Add(cmb_HardwareSupplier);
+            Controls.Add(label1);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -251,7 +333,10 @@
             tab_NoIncluidos.PerformLayout();
             tab_LineasNoXml.ResumeLayout(false);
             tab_LineasNoXml.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -271,5 +356,12 @@
         private Button btn_ExportExcelIncluidos;
         private Button btn_ExportExcelNoIncluidos;
         private Button btn_ExportExcelCodigos;
+        private Button btn_EliminarLineasConector;
+        private ComboBox cmb_HardwareSupplier;
+        private Label label1;
+        private ComboBox cmb_Conectores;
+        private Label label2;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel lbl_Conexion;
     }
 }

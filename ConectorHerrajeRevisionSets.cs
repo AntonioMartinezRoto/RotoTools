@@ -1,7 +1,10 @@
-﻿using NPOI.SS.UserModel;
+﻿using Microsoft.Data.SqlClient;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using RotoEntities;
 using System.Data;
+using System.Xml;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
@@ -10,7 +13,7 @@ namespace RotoTools
         #region Private properties
 
         private XmlData xmlData = new XmlData();
-        private Connector connector = new Connector();
+        private Connector connectorHerraje = new();
         private List<string> codesInConector = new List<string>();
 
         private List<Set> setsIncluidosList = new List<Set>();
@@ -23,34 +26,26 @@ namespace RotoTools
         {
             InitializeComponent();
         }
+        public ConectorHerrajeRevisionSets(XmlData xmlData)
+        {
+            InitializeComponent();
+            this.xmlData = xmlData;
+        }
         public ConectorHerrajeRevisionSets(XmlData xmlData, Connector connectorHerraje)
         {
             InitializeComponent();
             this.xmlData = xmlData;
-            this.connector = connectorHerraje;
+            this.connectorHerraje = connectorHerraje;
         }
         #endregion
 
         #region Events
         private void ConectorHerrajeRevisionSets_Load(object sender, EventArgs e)
         {
-            // Obtener los códigos Fitting_Code del XML:
-            var fittingCodesFromConector = connector.Nodes
-                .Where(n => !string.IsNullOrWhiteSpace(n.FittingCode))
-                .Select(n => n.FittingCode)
-                .Distinct()
-                .ToList();
-
-            var fittingCodesFromConectorNulos = connector.Nodes
-                .Where(n => string.IsNullOrWhiteSpace(n.FittingCode))
-                .Select(n => n.Script)
-                .Distinct()
-                .ToList();
-            codesInConector.Clear();
-            codesInConector = fittingCodesFromConector;
-
-            //CargarSetCodesNoUsados();
-            CargarSetsEnListViews(xmlData.SetList, fittingCodesFromConector);
+            InitializeInfoConnection();
+            LoadItemsConectorHerraje();
+            LoadItemsHardwareSupplier();
+            FormatGrids();
         }
         private void list_SetsNoUsadosEnConector_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -238,15 +233,99 @@ namespace RotoTools
                 }
             }
         }
+        private void btn_EliminarLineasConector_Click(object sender, EventArgs e)
+        {
+            if (connectorHerraje == null)
+            {
+                MessageBox.Show("No hay ningún conector cargado.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (list_CodigosNoXml.Items.Count == 0)
+            {
+                MessageBox.Show("No hay líneas no usadas para eliminar.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                "Se eliminarán las líneas del conector que no están en el XML.\n¿Deseas continuar?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                // Eliminar los nodos del objeto en memoria
+                int antes = connectorHerraje.Nodes.Count;
+
+                connectorHerraje.Nodes = connectorHerraje.Nodes
+                    .Where(n => !codigosNoIncluidosEnXml.Contains(n.FittingCode, StringComparer.OrdinalIgnoreCase))
+                    .ToList();
+
+                int eliminados = antes - connectorHerraje.Nodes.Count;
+
+                // Serializar el objeto actualizado
+                string xmlActualizado = Helpers.SerializarXml(connectorHerraje);
+
+                // Guardar en base de datos
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = @"UPDATE ConectorHerrajes SET XML = @Xml Where Codigo = @Codigo;";
+
+                    using (var cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Xml", xmlActualizado);
+                        cmd.Parameters.AddWithValue("@Codigo", connectorHerraje.ConnectorCode);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show(
+                    $"Eliminadas {eliminados} líneas no usadas.\nConector actualizado correctamente.",
+                    "Operación completada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                // Actualizar la vista
+                FillData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error eliminando las líneas no usadas:\n\n" + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+        private void cmb_Conectores_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LoadConectorDataFromDB(cmb_Conectores.Text.TrimEnd());
+
+            if (connectorHerraje != null)
+                FillData();
+        }
+        private void cmb_HardwareSupplier_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FillData();
+        }
         #endregion
 
         #region Private methods
-        private void CargarSetsEnListViews(List<Set> sets, List<string> fittingCodesFromConector)
+        private void InitializeInfoConnection()
         {
-            list_SetsUsadosEnConectorH.Items.Clear();
-            list_SetsNoUsadosEnConector.Items.Clear();
-            list_CodigosNoXml.Items.Clear();
-
+            statusStrip1.BackColor = Color.Transparent;
+            lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
+        }
+        private void FormatGrids()
+        {
             list_SetsUsadosEnConectorH.View = View.Details;
             list_SetsUsadosEnConectorH.Columns.Add("Id");
             list_SetsUsadosEnConectorH.Columns.Add("Set");
@@ -261,6 +340,12 @@ namespace RotoTools
             list_SetsUsadosEnConectorH.FullRowSelect = true;
 
             list_SetsNoUsadosEnConector.FullRowSelect = true;
+        }
+        private void CargarSetsEnListViews(List<Set> sets, List<string> fittingCodesFromConector)
+        {
+            list_SetsUsadosEnConectorH.Items.Clear();
+            list_SetsNoUsadosEnConector.Items.Clear();
+            list_CodigosNoXml.Items.Clear();
 
             int totalNoIncluidas = 0;
             int totalIncluidas = 0;
@@ -402,6 +487,122 @@ namespace RotoTools
             hoja.SetColumnWidth(col++, 10 * 256);   // Id
             hoja.SetColumnWidth(col++, 60 * 256);  // Codigo
         }
+        private void LoadItemsHardwareSupplier()
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Valor FROM ContenidoOpciones WHERE Opcion = 'HardwareSupplier' ORDER BY Orden", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            cmb_HardwareSupplier.Items.Clear();
+
+            cmb_HardwareSupplier.Items.Add("");
+
+            while (reader.Read())
+            {
+                cmb_HardwareSupplier.Items.Add(reader[0].ToString());
+            }
+        }
+        private void LoadItemsConectorHerraje()
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Codigo, XML FROM ConectorHerrajes", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            cmb_Conectores.Items.Clear();
+
+            while (reader.Read())
+            {
+                cmb_Conectores.Items.Add(reader[0].ToString());
+            }
+        }
+        private void LoadConectorDataFromDB(string conectorName)
+        {
+            try
+            {
+                string xmlString = null;
+
+                using (var conexion = new SqlConnection(Helpers.GetConnectionString()))
+                {
+                    conexion.Open();
+
+                    var query = "SELECT XML FROM ConectorHerrajes WHERE Codigo = @codigo"; // Reemplaza 'Id' y agrega parámetro si necesitas.
+                    using var cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@codigo", conectorName); // Ajusta según tu clave primaria o criterio
+
+                    var result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        xmlString = result.ToString();
+                    }
+                    else
+                    {
+                        connectorHerraje = null;
+                        MessageBox.Show("El conector seleccionado no contiene información en la base de datos", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(xmlString))
+                {
+                    connectorHerraje = Helpers.DeserializarXML<Connector>(xmlString);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el conector: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void FillData()
+        {
+            if (connectorHerraje?.Nodes == null || !connectorHerraje.Nodes.Any())
+                return;
+
+            // Valor seleccionado en el combo (puede ser vacío o nulo si no se filtra)
+            string selectedSupplier = cmb_HardwareSupplier.SelectedItem?.ToString()?.Trim();
+            bool aplicarFiltroProveedor = !string.IsNullOrEmpty(selectedSupplier);
+
+            // Filtramos los nodos según si tienen FittingCode válido y cumplen el filtro
+            var fittingCodesFromConector = connectorHerraje.Nodes
+                .Where(n => !string.IsNullOrWhiteSpace(n.FittingCode))
+                .Where(n =>
+                {
+                    if (!aplicarFiltroProveedor)
+                        return true; // sin filtro
+
+                    // Buscar si este nodo tiene la opción HardwareSupplier con el valor del combo
+                    var options = n.IncludedOptions?.Options?.OptionList;
+                    if (options == null)
+                        return false;
+
+                    return options.Any(o =>
+                        o.Name.Equals("HardwareSupplier", StringComparison.OrdinalIgnoreCase) &&
+                        o.Value.Equals(selectedSupplier, StringComparison.OrdinalIgnoreCase));
+                })
+                .Select(n => n.FittingCode)
+                .Distinct()
+                .ToList();
+
+
+            //// Obtener los códigos Fitting_Code del XML:
+            //var fittingCodesFromConector = connectorHerraje.Nodes
+            //    .Where(n => !string.IsNullOrWhiteSpace(n.FittingCode))
+            //    .Select(n => n.FittingCode)
+            //    .Distinct()
+            //    .ToList();
+
+            codesInConector.Clear();
+            codesInConector = fittingCodesFromConector;
+
+            CargarSetsEnListViews(xmlData.SetList, fittingCodesFromConector);
+        }
+        
         #endregion
+
+
+
+
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
-using System.Reflection;
 using System.Text.Json;
-using static RotoTools.Enums;
 
 namespace RotoTools
 {
@@ -251,6 +249,29 @@ namespace RotoTools
             ActualizadorEscandallos actualizadorEscandallosForm = new ActualizadorEscandallos();
             actualizadorEscandallosForm.ShowDialog();
         }
+        private void btn_AddProveedor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ExisteProveedorRotoEnBD())
+                {
+                    if (MessageBox.Show("Ya existe un proveedor de Roto. ¿Desea agregar igualmente el proveedor Roto Frank SA?",
+                                        "Proveedor existente",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question) != DialogResult.Yes)
+                        return;
+                }
+
+                AgregarProveedorRotoFrankSA();
+                MessageBox.Show("Proveedor Roto Frank SA agregado correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarProveedores();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error insertando el proveedor Roto Frank SA" +Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         #region Private methods
@@ -268,6 +289,26 @@ namespace RotoTools
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
+        }
+        private bool ExisteProveedorRotoEnBD()
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Proveedores WHERE Nombre LIKE '%ROTO%" + "'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        private void AgregarProveedorRotoFrankSA()
+        {
+            string insertProveedorRoto = @"INSERT INTO Proveedores (CodigoProveedor, Nombre) VALUES ((SELECT MAX(CodigoProveedor) + 1 From Proveedores), 'Roto Frank SA')";
+            Helpers.EjecutarNonQuery(insertProveedorRoto);
         }
         private ResultQuerys EjecutarScripts()
         {
@@ -289,6 +330,7 @@ namespace RotoTools
         }
         private void CargarProveedores()
         {
+            proveedoresList.Clear();
             using (var conn = new SqlConnection(Helpers.GetConnectionString()))
             using (var cmd = new SqlCommand("SELECT CodigoProveedor, Nombre FROM Proveedores ORDER BY Nombre", conn))
             {
@@ -305,7 +347,7 @@ namespace RotoTools
                     }
                 }
             }
-
+            cmb_Proveedor.DataSource = null;
             cmb_Proveedor.DataSource = proveedoresList;
             cmb_Proveedor.DisplayMember = "Nombre";
             cmb_Proveedor.ValueMember = "CodigoProveedor";
@@ -452,6 +494,8 @@ namespace RotoTools
 
 
         #endregion
+
+
     }
 
     public class Proveedor

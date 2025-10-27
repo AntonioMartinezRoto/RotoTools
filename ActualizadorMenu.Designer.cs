@@ -48,6 +48,7 @@
             btn_ExportarEscandallos = new Button();
             btn_InstalarEscandallos = new Button();
             btn_ShowScripts = new Button();
+            btn_AddProveedor = new Button();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -75,7 +76,7 @@
             cmb_IdPresupuestado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_IdPresupuestado.Font = new Font("Calibri", 9F);
             cmb_IdPresupuestado.FormattingEnabled = true;
-            cmb_IdPresupuestado.Location = new Point(139, 28);
+            cmb_IdPresupuestado.Location = new Point(123, 33);
             cmb_IdPresupuestado.Name = "cmb_IdPresupuestado";
             cmb_IdPresupuestado.Size = new Size(202, 22);
             cmb_IdPresupuestado.TabIndex = 1;
@@ -84,7 +85,7 @@
             // lbl_IdPresupuestado
             // 
             lbl_IdPresupuestado.AutoSize = true;
-            lbl_IdPresupuestado.Location = new Point(28, 31);
+            lbl_IdPresupuestado.Location = new Point(12, 36);
             lbl_IdPresupuestado.Name = "lbl_IdPresupuestado";
             lbl_IdPresupuestado.Size = new Size(85, 15);
             lbl_IdPresupuestado.TabIndex = 2;
@@ -109,25 +110,25 @@
             // txt_Presupuestado
             // 
             txt_Presupuestado.Font = new Font("Calibri", 9F);
-            txt_Presupuestado.Location = new Point(359, 28);
+            txt_Presupuestado.Location = new Point(343, 33);
             txt_Presupuestado.Name = "txt_Presupuestado";
             txt_Presupuestado.ReadOnly = true;
-            txt_Presupuestado.Size = new Size(46, 22);
+            txt_Presupuestado.Size = new Size(36, 22);
             txt_Presupuestado.TabIndex = 9;
             // 
             // txt_Produccion
             // 
             txt_Produccion.Font = new Font("Calibri", 9F);
-            txt_Produccion.Location = new Point(359, 63);
+            txt_Produccion.Location = new Point(343, 68);
             txt_Produccion.Name = "txt_Produccion";
             txt_Produccion.ReadOnly = true;
-            txt_Produccion.Size = new Size(46, 22);
+            txt_Produccion.Size = new Size(36, 22);
             txt_Produccion.TabIndex = 8;
             // 
             // lbl_IdProduccion
             // 
             lbl_IdProduccion.AutoSize = true;
-            lbl_IdProduccion.Location = new Point(45, 66);
+            lbl_IdProduccion.Location = new Point(29, 71);
             lbl_IdProduccion.Name = "lbl_IdProduccion";
             lbl_IdProduccion.Size = new Size(68, 15);
             lbl_IdProduccion.TabIndex = 4;
@@ -138,7 +139,7 @@
             cmb_IdProduccion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_IdProduccion.Font = new Font("Calibri", 9F);
             cmb_IdProduccion.FormattingEnabled = true;
-            cmb_IdProduccion.Location = new Point(139, 63);
+            cmb_IdProduccion.Location = new Point(123, 68);
             cmb_IdProduccion.Name = "cmb_IdProduccion";
             cmb_IdProduccion.Size = new Size(202, 22);
             cmb_IdProduccion.TabIndex = 3;
@@ -147,6 +148,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(btn_AddProveedor);
             groupBox2.Controls.Add(txt_Proveedor);
             groupBox2.Controls.Add(lbl_Proveedor);
             groupBox2.Controls.Add(cmb_Proveedor);
@@ -160,16 +162,16 @@
             // txt_Proveedor
             // 
             txt_Proveedor.Font = new Font("Calibri", 9F);
-            txt_Proveedor.Location = new Point(359, 28);
+            txt_Proveedor.Location = new Point(343, 28);
             txt_Proveedor.Name = "txt_Proveedor";
             txt_Proveedor.ReadOnly = true;
-            txt_Proveedor.Size = new Size(46, 22);
+            txt_Proveedor.Size = new Size(36, 22);
             txt_Proveedor.TabIndex = 7;
             // 
             // lbl_Proveedor
             // 
             lbl_Proveedor.AutoSize = true;
-            lbl_Proveedor.Location = new Point(62, 28);
+            lbl_Proveedor.Location = new Point(46, 28);
             lbl_Proveedor.Name = "lbl_Proveedor";
             lbl_Proveedor.Size = new Size(51, 15);
             lbl_Proveedor.TabIndex = 6;
@@ -180,7 +182,7 @@
             cmb_Proveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Proveedor.Font = new Font("Calibri", 9F);
             cmb_Proveedor.FormattingEnabled = true;
-            cmb_Proveedor.Location = new Point(139, 28);
+            cmb_Proveedor.Location = new Point(123, 28);
             cmb_Proveedor.Name = "cmb_Proveedor";
             cmb_Proveedor.Size = new Size(202, 22);
             cmb_Proveedor.TabIndex = 5;
@@ -276,6 +278,17 @@
             btn_ShowScripts.UseVisualStyleBackColor = false;
             btn_ShowScripts.Click += btn_ShowScripts_Click;
             // 
+            // btn_AddProveedor
+            // 
+            btn_AddProveedor.BackgroundImage = (Image)resources.GetObject("btn_AddProveedor.BackgroundImage");
+            btn_AddProveedor.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_AddProveedor.Location = new Point(385, 28);
+            btn_AddProveedor.Name = "btn_AddProveedor";
+            btn_AddProveedor.Size = new Size(25, 22);
+            btn_AddProveedor.TabIndex = 8;
+            btn_AddProveedor.UseVisualStyleBackColor = true;
+            btn_AddProveedor.Click += btn_AddProveedor_Click;
+            // 
             // ActualizadorMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -331,5 +344,6 @@
         private Button btn_ExportarEscandallos;
         private Button btn_InstalarEscandallos;
         private Button btn_ShowScripts;
+        private Button btn_AddProveedor;
     }
 }

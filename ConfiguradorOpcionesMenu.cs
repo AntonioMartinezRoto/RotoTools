@@ -26,14 +26,22 @@ namespace RotoTools
         }
         private void btn_Restore_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML Files (*.xml)|*.xml";
-            openFileDialog.Title = "Selecciona XML configuración";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string rutaXml = openFileDialog.FileName;
-                Helpers.RestoreOpcionesDesdeXml(rutaXml);
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "XML Files (*.xml)|*.xml";
+                openFileDialog.Title = "Selecciona XML configuración";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaXml = openFileDialog.FileName;
+                    Helpers.RestoreOpcionesDesdeXml(rutaXml);
+                    MessageBox.Show("Configuración restaurada correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error restaurando la configuración." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

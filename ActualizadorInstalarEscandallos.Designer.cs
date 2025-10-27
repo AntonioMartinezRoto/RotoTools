@@ -68,9 +68,9 @@
             chk_Alu.BackColor = Color.Transparent;
             chk_Alu.Location = new Point(26, 81);
             chk_Alu.Name = "chk_Alu";
-            chk_Alu.Size = new Size(160, 19);
+            chk_Alu.Size = new Size(149, 19);
             chk_Alu.TabIndex = 11;
-            chk_Alu.Text = "Específicos para aluminio";
+            chk_Alu.Text = "Constructivos aluminio";
             chk_Alu.UseVisualStyleBackColor = false;
             // 
             // chk_PVC
@@ -79,9 +79,9 @@
             chk_PVC.BackColor = Color.Transparent;
             chk_PVC.Location = new Point(26, 56);
             chk_PVC.Name = "chk_PVC";
-            chk_PVC.Size = new Size(135, 19);
+            chk_PVC.Size = new Size(124, 19);
             chk_PVC.TabIndex = 12;
-            chk_PVC.Text = "Específicos para PVC";
+            chk_PVC.Text = "Constructivos PVC";
             chk_PVC.UseVisualStyleBackColor = false;
             // 
             // chk_Manillas

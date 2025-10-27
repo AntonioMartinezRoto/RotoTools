@@ -6,6 +6,10 @@ namespace RotoTools
 {
     public partial class ActualizadorMenu : Form
     {
+        #region Const
+        const string referenciaValorPorDefecto = "RO_260272";
+        #endregion
+
         #region Private Properties
 
         private List<Proveedor> proveedoresList = new List<Proveedor>();
@@ -85,6 +89,10 @@ namespace RotoTools
             {
                 txt_Proveedor.Text = prov.CodigoProveedor;
             }
+            else
+            {
+                txt_Proveedor.Text = "";
+            }
         }
         private void cmb_IdPresupuestado_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -92,12 +100,20 @@ namespace RotoTools
             {
                 txt_Presupuestado.Text = grupoPresupuestado.Id;
             }
+            else
+            {
+                txt_Presupuestado.Text = "";
+            }
         }
         private void cmb_IdProduccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmb_IdProduccion.SelectedItem is GrupoProduccion grupoProduccion)
             {
                 txt_Produccion.Text = grupoProduccion.Id;
+            }
+            else
+            {
+                txt_Produccion.Text = "";
             }
         }
         private void btn_EjecutarCarpeta_Click(object sender, EventArgs e)
@@ -307,8 +323,24 @@ namespace RotoTools
         }
         private void AgregarProveedorRotoFrankSA()
         {
-            string insertProveedorRoto = @"INSERT INTO Proveedores (CodigoProveedor, Nombre) VALUES ((SELECT MAX(CodigoProveedor) + 1 From Proveedores), 'Roto Frank SA')";
+            string insertProveedorRoto = @"INSERT INTO Proveedores (CodigoProveedor, Nombre) VALUES (" + GetNuevoCodigoProveedor() + ", 'Roto Frank SA')";
             Helpers.EjecutarNonQuery(insertProveedorRoto);
+        }
+
+        public int GetNuevoCodigoProveedor()
+        {
+            using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(CodigoProveedor),0) FROM Proveedores", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) + 1;
+
+            }
+            return 1;
         }
         private ResultQuerys EjecutarScripts()
         {
@@ -401,7 +433,7 @@ namespace RotoTools
         private void AsignarValoresPorDefecto()
         {
             using (var conn = new SqlConnection(Helpers.GetConnectionString()))
-            using (var cmd = new SqlCommand("SELECT CodigoProveedor, IdGrupoPresupuestado, IdGrupoProduccion FROM MATERIALESBASE WHERE REFERENCIABASE = 'RO_260272'", conn))
+            using (var cmd = new SqlCommand("SELECT CodigoProveedor, IdGrupoPresupuestado, IdGrupoProduccion FROM MATERIALESBASE WHERE REFERENCIABASE = '" + referenciaValorPorDefecto + "'", conn))
             {
                 conn.Open();
                 using (var reader = cmd.ExecuteReader())
@@ -415,7 +447,6 @@ namespace RotoTools
                         cmb_Proveedor.SelectedValue = codigoProveedor;
                         cmb_IdPresupuestado.SelectedValue = idGrupoPresupuestado;
                         cmb_IdProduccion.SelectedValue = idGrupoProduccion;
-
                     }
                 }
             }

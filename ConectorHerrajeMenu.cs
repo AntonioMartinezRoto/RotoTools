@@ -172,7 +172,7 @@ namespace RotoTools
             }
             return setList;
         }
-        
+
 
         #endregion
 
@@ -9764,7 +9764,7 @@ namespace RotoTools
             // Quitamos "AE " de la cadena de búsqueda
             string codeAI = setCode.Replace("AE ", "");
             Set setEquivalente = xmlOrigen.SetList.Where(s => s.Code == codeAI).FirstOrDefault();
-            if(setEquivalente != null)
+            if (setEquivalente != null)
             {
                 return setEquivalente.Code;
             }
@@ -9775,5 +9775,10 @@ namespace RotoTools
 
         }
         #endregion
+
+        private void lbl_Xml_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

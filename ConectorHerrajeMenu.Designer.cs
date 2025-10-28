@@ -64,6 +64,7 @@
             lbl_Xml.TabIndex = 4;
             lbl_Xml.Text = "Seleccionar XML";
             lbl_Xml.TextAlign = ContentAlignment.MiddleLeft;
+            lbl_Xml.Click += lbl_Xml_Click;
             // 
             // statusStrip1
             // 
@@ -86,9 +87,9 @@
             // 
             btn_Actualizar.BackgroundImage = (Image)resources.GetObject("btn_Actualizar.BackgroundImage");
             btn_Actualizar.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Actualizar.Location = new Point(12, 12);
+            btn_Actualizar.Location = new Point(641, 12);
             btn_Actualizar.Name = "btn_Actualizar";
-            btn_Actualizar.Size = new Size(29, 31);
+            btn_Actualizar.Size = new Size(30, 25);
             btn_Actualizar.TabIndex = 6;
             btn_Actualizar.UseVisualStyleBackColor = true;
             btn_Actualizar.Visible = false;

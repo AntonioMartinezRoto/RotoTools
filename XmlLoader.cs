@@ -329,6 +329,118 @@ namespace RotoTools
                 return null;
             }
         }
+        public string LoadFittingsVersion(XmlDocument doc)
+        {
+            // Navega al nodo Fittings
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
+
+            XmlNode fittingsNode = doc.SelectSingleNode("//hw:Fittings", nsmgr);
+
+            if (fittingsNode != null)
+            {
+                foreach (XmlNode node in fittingsNode.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Comment)
+                    {
+                        string comentario = node.Value?.Trim();
+
+                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("F:"))
+                        {
+                            // Quitar la parte final '#' si está
+                            int fin = comentario.IndexOf('#');
+                            return fin >= 0 ? comentario.Substring(2, fin - 2) : comentario.Substring(2);
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
+        public string LoadOptionsVersion(XmlDocument doc)
+        {
+            // Navega al nodo Fittings
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
+
+            XmlNode optionsNode = doc.SelectSingleNode("//hw:Options", nsmgr);
+
+            if (optionsNode != null)
+            {
+                foreach (XmlNode node in optionsNode.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Comment)
+                    {
+                        string comentario = node.Value?.Trim();
+
+                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("O:"))
+                        {
+                            // Quitar la parte final '#' si está
+                            int fin = comentario.IndexOf('#');
+                            return fin >= 0 ? comentario.Substring(2, fin - 2) : comentario.Substring(2);
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
+        public string LoadColoursVersion(XmlDocument doc)
+        {
+            // Navega al nodo Fittings
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
+
+            XmlNode optionsNode = doc.SelectSingleNode("//hw:ColourMaps", nsmgr);
+
+            if (optionsNode != null)
+            {
+                foreach (XmlNode node in optionsNode.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Comment)
+                    {
+                        string comentario = node.Value?.Trim();
+
+                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("C:"))
+                        {
+                            // Quitar la parte final '#' si está
+                            int fin = comentario.IndexOf('#');
+                            return fin >= 0 ? comentario.Substring(2, fin - 2) : comentario.Substring(2);
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
+        public string LoadFittingGroupVersion(XmlDocument doc)
+        {
+            // Navega al nodo Fittings
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
+
+            XmlNode optionsNode = doc.SelectSingleNode("//hw:ColourMaps", nsmgr);
+
+            if (optionsNode != null)
+            {
+                foreach (XmlNode node in optionsNode.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Comment)
+                    {
+                        string comentario = node.Value?.Trim();
+
+                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("C:"))
+                        {
+                            // Quitar la parte final '#' si está
+                            int fin = comentario.IndexOf('#');
+                            return fin >= 0 ? comentario.Substring(2, fin - 2) : comentario.Substring(2);
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
         public Opening GetSetOpening(XmlNode setNode)
         {
             try

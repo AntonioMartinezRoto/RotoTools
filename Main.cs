@@ -57,6 +57,11 @@ namespace RotoTools
             ControlCambiosMenu controlCambiosMenuForm = new ControlCambiosMenu();
             controlCambiosMenuForm.ShowDialog();
         }
+        private void btn_Traduccion_Click(object sender, EventArgs e)
+        {
+            TraduccionMenu traduccionMenuForm = new TraduccionMenu();
+            traduccionMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -71,6 +76,7 @@ namespace RotoTools
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
+
 
 
 

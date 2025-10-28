@@ -42,6 +42,8 @@
             lbl_Conector = new Label();
             lbl_ControlCambios = new Label();
             btn_ControlCambios = new Button();
+            lbl_Traduccion = new Label();
+            btn_Traduccion = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -120,7 +122,7 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(59, 206);
+            btn_Export.Location = new Point(318, 206);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
@@ -132,7 +134,7 @@
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(111, 218);
+            lbl_Export.Location = new Point(370, 218);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
@@ -181,6 +183,27 @@
             btn_ControlCambios.UseVisualStyleBackColor = true;
             btn_ControlCambios.Click += btn_ControlCambios_Click;
             // 
+            // lbl_Traduccion
+            // 
+            lbl_Traduccion.AutoSize = true;
+            lbl_Traduccion.BackColor = Color.Transparent;
+            lbl_Traduccion.Location = new Point(111, 220);
+            lbl_Traduccion.Name = "lbl_Traduccion";
+            lbl_Traduccion.Size = new Size(65, 15);
+            lbl_Traduccion.TabIndex = 13;
+            lbl_Traduccion.Text = "Traducción";
+            // 
+            // btn_Traduccion
+            // 
+            btn_Traduccion.BackgroundImage = (Image)resources.GetObject("btn_Traduccion.BackgroundImage");
+            btn_Traduccion.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Traduccion.Location = new Point(59, 206);
+            btn_Traduccion.Name = "btn_Traduccion";
+            btn_Traduccion.Size = new Size(47, 40);
+            btn_Traduccion.TabIndex = 12;
+            btn_Traduccion.UseVisualStyleBackColor = true;
+            btn_Traduccion.Click += btn_Traduccion_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -188,6 +211,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 309);
+            Controls.Add(lbl_Traduccion);
+            Controls.Add(btn_Traduccion);
             Controls.Add(lbl_ControlCambios);
             Controls.Add(btn_ControlCambios);
             Controls.Add(lbl_Conector);
@@ -228,5 +253,7 @@
         private Label lbl_Conector;
         private Label lbl_ControlCambios;
         private Button btn_ControlCambios;
+        private Label lbl_Traduccion;
+        private Button btn_Traduccion;
     }
 }

@@ -1,7 +1,13 @@
-﻿using NPOI.SS.UserModel;
+﻿using ClosedXML.Excel;
+using iTextSharp.xmp.impl.xpath;
+using NPOI.SS.Formula.Functions;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using RotoEntities;
+using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
+using Value = RotoEntities.Value;
 
 namespace RotoTools
 {
@@ -66,6 +72,81 @@ namespace RotoTools
                 }
             }
         }
+        private void btn_Traducir_Click(object sender, EventArgs e)
+        {
+            if (!xmlCargado) return;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XLS Files (*.xls)|*.xlsx";
+            openFileDialog.Title = "Selecciona traducción";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                EnableButtons(false);
+
+                TranslateXML(openFileDialog.FileName);
+
+                EnableButtons(true);
+                Cursor.Current = Cursors.Default;
+            }            
+        }
+
+        private void TranslateXML(string translationFileName)
+        {
+            try
+            {
+                Traducciones translations = Helpers.CargarTraducciones(translationFileName);
+
+                XDocument doc = XDocument.Load(lbl_Xml.Text);
+                XNamespace hw = "http://www.preference.com/XMLSchemas/2006/Hardware";
+
+                foreach (var fg in doc.Descendants(hw + "FittingGroup"))
+                {
+                    var attr = fg.Attribute("class");
+                    if (attr != null && translations.FittingGroups.TryGetValue(attr.Value.Trim(), out string nuevo))
+                        attr.Value = nuevo;
+                }
+
+                foreach (var f in doc.Descendants(hw + "Fitting"))
+                {
+                    var refAttr = f.Attribute("ref")?.Value.Trim();
+                    var descAttr = f.Attribute("Description");
+
+                    if (refAttr != null && descAttr != null &&
+                        translations.Fittings.TryGetValue(refAttr, out string nuevaDesc))
+                    {
+                        descAttr.Value = nuevaDesc;
+                    }
+                }
+
+                foreach (var c in doc.Descendants(hw + "Colour"))
+                {
+                    var attr = c.Attribute("name");
+                    if (attr != null && translations.Colours.TryGetValue(attr.Value.Trim(), out string nuevo))
+                        attr.Value = nuevo;
+                }
+
+                AplicarTraduccionesOptions(doc, translations, hw);
+
+                //Guardar el XML traducido
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Archivo XML (*.xml)|*.xml";
+                saveFileDialog.Title = "Save as";
+                saveFileDialog.FileName = "Roto.xml";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    doc.Save(saveFileDialog.FileName);
+                    MessageBox.Show("Archivo traducido correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error traduciendo el archivo." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
         #endregion
 
         #region Private methods
@@ -114,26 +195,25 @@ namespace RotoTools
                 return null;
             }
         }
-
         private void GenerateTemplate(string excelPath)
         {
             #region Sheets definitions
-            
+
             XSSFWorkbook workbook = new XSSFWorkbook();
             ISheet hojaFittings = workbook.CreateSheet("Fittings v" + xmlOrigen.FittingsVersion);
             ISheet hojaOptions = workbook.CreateSheet("Options v" + xmlOrigen.OptionsVersion);
             ISheet hojaColours = workbook.CreateSheet("Colours v" + xmlOrigen.ColoursVersion);
-            ISheet hojaFittingGroups = workbook.CreateSheet("FittingGroups v" +xmlOrigen.FittingGroupVersion);
+            ISheet hojaFittingGroups = workbook.CreateSheet("FittingGroups v" + xmlOrigen.FittingGroupVersion);
 
             #endregion
 
             #region Headers
-            
+
             CreateHeaderFittings(hojaFittings);
             CreateHeaderOptions(hojaOptions);
             CreateHeaderColours(hojaColours);
             CreateHeaderFittingGroups(hojaFittingGroups);
-            
+
             #endregion
 
             #region Fittings
@@ -158,7 +238,7 @@ namespace RotoTools
             {
                 IRow filaOption = hojaOptions.CreateRow(filaActualOptions++);
                 int colOptions = 0;
-                FillOptionsSheet(colOptions, option, option.Name, filaOption);
+                FillOptionsSheet(colOptions, option, "", filaOption);
 
                 foreach (Value optionValue in option.ValuesList)
                 {
@@ -209,7 +289,6 @@ namespace RotoTools
                 workbook.Write(fs);
             }
         }
-
         private void CreateHeaderFittings(ISheet hoja)
         {
             // Crear encabezados en la primera fila
@@ -307,13 +386,54 @@ namespace RotoTools
 
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Color
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Traducción
+        }        
+        private void AplicarTraduccionesOptions(XDocument doc, Traducciones traducciones, XNamespace hw)
+        {
+            // Buscar TODAS las opciones, sin importar dónde estén
+            var allOptions = doc.Descendants(hw + "Option");
+
+            foreach (var opt in allOptions)
+            {
+                string name = opt.Attribute("Name")?.Value?.Trim();
+                string value = opt.Attribute("Value")?.Value?.Trim();
+
+                // Si tiene un valor (formato <Option Name="..." Value="..."/>)
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+                {
+                    if (traducciones.OptionValues.TryGetValue((name, value), out string traduccion))
+                    {
+                        opt.SetAttributeValue("Value", traduccion);
+                    }
+                    // Traducir el nombre de la opción si existe traducción
+                    if (traducciones.OptionNames.TryGetValue(name, out string traduccionName))
+                    {
+                        opt.SetAttributeValue("Name", traduccionName);
+                    }
+                }
+                // Si no tiene Value y hay nodos <hw:Value> hijos
+                else
+                {
+                    foreach (var val in opt.Elements(hw + "Value"))
+                    {
+                        string valText = val.Attribute("Value")?.Value?.Trim();
+                        if (traducciones.OptionValues.TryGetValue((name, valText), out string traduccion))
+                        {
+                            val.SetAttributeValue("Value", traduccion);
+                        }
+                    }
+
+                    // Traducir el nombre de la opción si existe traducción
+                    if (traducciones.OptionNames.TryGetValue(name, out string traduccionName))
+                    {
+                        opt.SetAttributeValue("Name", traduccionName);
+                    }
+                }
+            }
         }
-        #endregion
-
-
-
-
-
 
     }
+    #endregion
+
+
 }
+

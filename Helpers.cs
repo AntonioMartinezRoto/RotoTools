@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ClosedXML.Excel;
+using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using RotoEntities;
 using System.Reflection;
@@ -341,6 +342,65 @@ namespace RotoTools
 
             }
             return false;
+        }
+        public static Traducciones CargarTraducciones(string excelPath)
+        {
+            var traducciones = new Traducciones();
+
+            using (var wb = new XLWorkbook(excelPath))
+            {
+                foreach (var ws in wb.Worksheets)
+                {
+                    string nombreHoja = ws.Name.Trim().ToLower();
+
+                    if (nombreHoja.StartsWith("fittings"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string refId = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+                            if (!string.IsNullOrEmpty(refId) && !string.IsNullOrEmpty(trad))
+                                traducciones.Fittings[refId] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("fittinggroups"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.FittingGroups[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("colours"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.Colours[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("options"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string name = row.Cell(1).GetString().Trim();
+                            string value = row.Cell(2).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+
+                            if (!string.IsNullOrEmpty(name) && string.IsNullOrEmpty(value))
+                                traducciones.OptionNames[name] = trad;
+                            else if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+                                traducciones.OptionValues[(name, value)] = trad;
+                        }
+                    }
+                }
+            }
+
+            return traducciones;
         }
         public static int EjecutarNonQuery(string sql)
         {

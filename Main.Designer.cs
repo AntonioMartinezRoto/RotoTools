@@ -35,7 +35,7 @@
             btn_ConfigOpciones = new Button();
             lbl_ConfigOpciones = new Label();
             btn_Actualizador = new Button();
-            label1 = new Label();
+            lbl_Actualizacion = new Label();
             btn_Export = new Button();
             lbl_Export = new Label();
             btn_Conector = new Button();
@@ -44,6 +44,7 @@
             btn_ControlCambios = new Button();
             lbl_Traduccion = new Label();
             btn_Traduccion = new Button();
+            btn_Config = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,9 +70,9 @@
             // 
             btn_Refresh.BackgroundImage = (Image)resources.GetObject("btn_Refresh.BackgroundImage");
             btn_Refresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Refresh.Location = new Point(12, 12);
+            btn_Refresh.Location = new Point(50, 11);
             btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(32, 28);
+            btn_Refresh.Size = new Size(32, 32);
             btn_Refresh.TabIndex = 1;
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
@@ -108,15 +109,15 @@
             btn_Actualizador.UseVisualStyleBackColor = true;
             btn_Actualizador.Click += btn_Actualizador_Click;
             // 
-            // label1
+            // lbl_Actualizacion
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(111, 158);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Actualización";
+            lbl_Actualizacion.AutoSize = true;
+            lbl_Actualizacion.BackColor = Color.Transparent;
+            lbl_Actualizacion.Location = new Point(111, 158);
+            lbl_Actualizacion.Name = "lbl_Actualizacion";
+            lbl_Actualizacion.Size = new Size(78, 15);
+            lbl_Actualizacion.TabIndex = 5;
+            lbl_Actualizacion.Text = "Actualización";
             // 
             // btn_Export
             // 
@@ -204,6 +205,20 @@
             btn_Traduccion.UseVisualStyleBackColor = true;
             btn_Traduccion.Click += btn_Traduccion_Click;
             // 
+            // btn_Config
+            // 
+            btn_Config.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_Config.BackColor = Color.Transparent;
+            btn_Config.BackgroundImage = (Image)resources.GetObject("btn_Config.BackgroundImage");
+            btn_Config.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Config.Location = new Point(12, 11);
+            btn_Config.Margin = new Padding(3, 2, 3, 2);
+            btn_Config.Name = "btn_Config";
+            btn_Config.Size = new Size(32, 32);
+            btn_Config.TabIndex = 14;
+            btn_Config.UseVisualStyleBackColor = false;
+            btn_Config.Click += btn_Config_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -211,6 +226,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 309);
+            Controls.Add(btn_Config);
             Controls.Add(lbl_Traduccion);
             Controls.Add(btn_Traduccion);
             Controls.Add(lbl_ControlCambios);
@@ -219,7 +235,7 @@
             Controls.Add(btn_Conector);
             Controls.Add(lbl_Export);
             Controls.Add(btn_Export);
-            Controls.Add(label1);
+            Controls.Add(lbl_Actualizacion);
             Controls.Add(btn_Actualizador);
             Controls.Add(lbl_ConfigOpciones);
             Controls.Add(btn_ConfigOpciones);
@@ -246,7 +262,7 @@
         private Button btn_ConfigOpciones;
         private Label lbl_ConfigOpciones;
         private Button btn_Actualizador;
-        private Label label1;
+        private Label lbl_Actualizacion;
         private Button btn_Export;
         private Label lbl_Export;
         private Button btn_Conector;
@@ -255,5 +271,6 @@
         private Button btn_ControlCambios;
         private Label lbl_Traduccion;
         private Button btn_Traduccion;
+        private Button btn_Config;
     }
 }

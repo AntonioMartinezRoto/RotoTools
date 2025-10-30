@@ -25,6 +25,7 @@ namespace RotoTools
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = $"RotoTools v{version.Major}.{version.Minor}";
+            CargarTextos();
             CargarDatos();
         }
         private void btn_Refresh_Click(object sender, EventArgs e)
@@ -62,6 +63,12 @@ namespace RotoTools
             TraduccionMenu traduccionMenuForm = new TraduccionMenu();
             traduccionMenuForm.ShowDialog();
         }
+        private void btn_Config_Click(object sender, EventArgs e)
+        {
+            OptionsMenu optionsMenuForm = new OptionsMenu();
+            optionsMenuForm.ShowDialog();
+            CargarTextos();
+        }
         #endregion
 
         #region Private methods
@@ -71,11 +78,22 @@ namespace RotoTools
             ConnectionString = Helpers.GetConnectionString();
             InitializeInfoConnection();
         }
+        private void CargarTextos()
+        {
+            lbl_Conector.Text = LocalizationManager.GetString("L_ConectorHerraje");
+            lbl_ConfigOpciones.Text = LocalizationManager.GetString("L_ConfiguradorOpciones");
+            lbl_Export.Text = LocalizationManager.GetString("L_ExportarDatos");
+            lbl_ControlCambios.Text = LocalizationManager.GetString("L_ControlCambios");
+            lbl_Actualizacion.Text = LocalizationManager.GetString("L_Actualizador");
+            lbl_Traduccion.Text = LocalizationManager.GetString("L_Traduccion");
+            this.Text = LocalizationManager.GetString("L_Menu");
+        }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
+
 
 
 

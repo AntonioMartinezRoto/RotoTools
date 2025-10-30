@@ -18,6 +18,7 @@ namespace RotoTools
         private void ConfiguradorOpciones_Load(object sender, EventArgs e)
         {
             InitializeInfoConnection();
+            CargarTextos();
         }
         private void btn_ConfigOpciones_Click(object sender, EventArgs e)
         {
@@ -51,7 +52,13 @@ namespace RotoTools
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
-        }        
+        }
+        private void CargarTextos()
+        {
+            lbl_ConfigOpciones.Text = LocalizationManager.GetString("L_ConfigurarGuardarOpciones");
+            this.Text = LocalizationManager.GetString("L_MenuConfigurarOpciones");
+            lbl_RestoreOptions.Text = LocalizationManager.GetString("L_RestaurarOpciones");
+        }
 
         #endregion
 

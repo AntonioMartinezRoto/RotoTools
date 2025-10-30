@@ -124,11 +124,29 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error guardando archivo de configuración..
+        /// </summary>
+        internal static string L_ErrorGuardarConfiguracion {
+            get {
+                return ResourceManager.GetString("L_ErrorGuardarConfiguracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Exportar datos.
         /// </summary>
         internal static string L_ExportarDatos {
             get {
                 return ResourceManager.GetString("L_ExportarDatos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guardado correctamente.
+        /// </summary>
+        internal static string L_GuardadoCorrectamente {
+            get {
+                return ResourceManager.GetString("L_GuardadoCorrectamente", resourceCulture);
             }
         }
         

@@ -174,4 +174,10 @@
   <data name="L_OcultaArbol" xml:space="preserve">
     <value>Hide in tree</value>
   </data>
+  <data name="L_GuardadoCorrectamente" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="L_ErrorGuardarConfiguracion" xml:space="preserve">
+    <value>Error saving configuration file.</value>
+  </data>
 </root>

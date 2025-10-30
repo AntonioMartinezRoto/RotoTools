@@ -56,12 +56,12 @@ namespace RotoTools
                 if (!String.IsNullOrEmpty(configPath))
                 {
                     Helpers.RestoreOpcionesDesdeXml(configPath);
-                    MessageBox.Show("Configuración guardada", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_GuardadoCorrectamente"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error guardando archivo de configuración: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalizationManager.GetString("L_ErrorGuardarConfiguracion") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

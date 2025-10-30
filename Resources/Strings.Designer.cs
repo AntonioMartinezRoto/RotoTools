@@ -70,6 +70,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¿Quieres aplicar una traducción?.
+        /// </summary>
+        internal static string L_AplicarPlantillaTraduccion {
+            get {
+                return ResourceManager.GetString("L_AplicarPlantillaTraduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Buscar.
         /// </summary>
         internal static string L_Buscar {

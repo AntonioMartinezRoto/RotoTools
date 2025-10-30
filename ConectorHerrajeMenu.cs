@@ -1,10 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.Data.SqlClient;
 using RotoEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +65,36 @@ namespace RotoTools
         {
             if (xmlCargado)
             {
+                if (!LocalizationManager.CurrentCulture.Equals(new CultureInfo("es")))
+                {
+                    if (MessageBox.Show(LocalizationManager.GetString("L_AplicarPlantillaTraduccion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "XLS Files (*.xls)|*.xlsx";
+
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            EnableButtons(false);
+
+                            TranslateManager.AplicarTraduccion = true;
+                            TranslateManager.TraduccionesActuales = Helpers.CargarTraducciones(openFileDialog.FileName);
+
+                            EnableButtons(true);
+                            Cursor.Current = Cursors.Default;                            
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        TranslateManager.AplicarTraduccion = false;
+                    }
+                }
+
+
                 List<Set> setsConector = GetSetsToConnector();
                 ConectorHerrajeGenerador generaConectorForm = new ConectorHerrajeGenerador(xmlOrigen, setsConector, xmlOrigen.Supplier);
 
@@ -101,7 +133,7 @@ namespace RotoTools
         }
         private void InitializeInfoConnection()
         {
-            statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.BackColor = System.Drawing.Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         private void EnableButtons(bool enable)
@@ -113,7 +145,7 @@ namespace RotoTools
         }
         private void ShowVersionNoCompatible()
         {
-            statusStrip1.BackColor = Color.IndianRed;
+            statusStrip1.BackColor = System.Drawing.Color.IndianRed;
             lbl_Conexion.Text += "   BASE DE DATOS NO COMPATIBLE (v2020 requerida)";
         }
         private XmlData LoadXml(string xmlPath)
@@ -1684,7 +1716,6 @@ namespace RotoTools
             List<Set> setCF1HVentanaOscilobatiente = xmlOrigen.SetList.OrderBy(x => x.Code).Where(s => (s.Code.ToUpper().StartsWith("(1V)1H") || s.Code.ToUpper().StartsWith("(1V)1H")) &&
                                                                                     s.Code.ToUpper().Contains("OSCILOBATIENTE") &&
                                                                                     !s.Code.ToUpper().Contains("BALC")).ToList();
-
             foreach (Set set in setCF1HVentanaOscilobatiente)
             {
                 List<Option> optionList =
@@ -1693,7 +1724,7 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
                     set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
                     set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
                 ];

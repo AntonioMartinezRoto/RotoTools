@@ -180,4 +180,7 @@
   <data name="L_ErrorGuardarConfiguracion" xml:space="preserve">
     <value>Error saving configuration file.</value>
   </data>
+  <data name="L_AplicarPlantillaTraduccion" xml:space="preserve">
+    <value>Do you want to apply a translation?</value>
+  </data>
 </root>

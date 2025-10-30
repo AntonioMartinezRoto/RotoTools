@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using RotoEntities;
 using System.Reflection;
-using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -402,6 +401,7 @@ namespace RotoTools
 
             return traducciones;
         }
+
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -431,7 +431,6 @@ namespace RotoTools
             using var reader = new StringReader(xml);
             return (T)serializer.Deserialize(reader);
         }
-
         public static string SerializarXml<T>(T objeto)
         {
             using (var stringWriter = new System.IO.StringWriter())
@@ -462,5 +461,20 @@ namespace RotoTools
         }
 
         #endregion
+    }
+    public static class OpcionHelper
+    {
+        public static Option Crear(string name, string value)
+        {
+            // Si no hay traducción activa, devolver tal cual
+            if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
+                return new Option(name, value);
+
+            // Traducir nombre y valor si existen en el diccionario
+            string nombreTraducido = TranslateManager.TraduccionesActuales.TraducirOptionName(name);
+            string valorTraducido = TranslateManager.TraduccionesActuales.TraducirOptionValue(name, value);
+
+            return new Option("RO_" + nombreTraducido, valorTraducido);
+        }
     }
 }

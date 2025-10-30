@@ -1725,8 +1725,8 @@ namespace RotoTools
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
                     OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -1754,9 +1754,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -1785,9 +1785,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -1815,9 +1815,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -1859,7 +1859,7 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 //set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Asociada
                 if (set.Code.ToUpper().Contains("-2P"))
@@ -1875,29 +1875,29 @@ namespace RotoTools
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -1905,17 +1905,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -1951,34 +1951,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -1986,18 +1986,18 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -2033,20 +2033,20 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
@@ -2056,10 +2056,10 @@ namespace RotoTools
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -2067,17 +2067,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -2111,20 +2111,20 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
@@ -2134,10 +2134,10 @@ namespace RotoTools
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -2145,17 +2145,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -2188,61 +2188,61 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -2274,61 +2274,61 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -2352,23 +2352,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
                 if (set.Opening != null)
@@ -2394,23 +2394,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
                 if (set.Opening != null)
@@ -2437,23 +2437,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
 
@@ -2480,23 +2480,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
                 if (set.Opening != null)
                 {
@@ -2533,7 +2533,7 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 //set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Asociada
                 if (set.Code.ToUpper().Contains("-2P"))
@@ -2549,42 +2549,42 @@ namespace RotoTools
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -2617,47 +2617,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -2691,47 +2691,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -2765,47 +2765,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -2838,47 +2838,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
                     }
                     else if (set.Code.ToUpper().Contains("PASADOR Y CLIP"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
             }
 
@@ -2910,47 +2910,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
                     }
                     else if (set.Code.ToUpper().Contains("PASADOR Y CLIP"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
             }
 
@@ -2974,9 +2974,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD")
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3004,9 +3004,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD")
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3035,9 +3035,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD")
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3065,9 +3065,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_No"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"),
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD")
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3109,7 +3109,7 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 //set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Asociada
                 if (set.Code.ToUpper().Contains("-2P"))
@@ -3125,29 +3125,29 @@ namespace RotoTools
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3155,17 +3155,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3201,34 +3201,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3236,18 +3236,18 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3283,20 +3283,20 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
@@ -3306,10 +3306,10 @@ namespace RotoTools
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3317,17 +3317,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3361,20 +3361,20 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
@@ -3384,10 +3384,10 @@ namespace RotoTools
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3395,17 +3395,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3438,61 +3438,61 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3524,61 +3524,61 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_No"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No"));
 
                 //Aguja
                 if (set.Code.Contains("8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
                 else if (set.Code.ToUpper().Contains("NUDO FRANCES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag6"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag15"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag15"));
                 }
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3607,9 +3607,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3638,9 +3638,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3672,9 +3672,9 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3705,9 +3705,9 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -3749,21 +3749,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3771,17 +3771,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3817,21 +3817,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3839,17 +3839,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3888,21 +3888,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3910,17 +3910,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -3958,21 +3958,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -3980,17 +3980,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -4025,47 +4025,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -4097,47 +4097,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -4166,8 +4166,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -4203,8 +4203,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -4241,8 +4241,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -4277,8 +4277,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -4317,8 +4317,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
 
                 //Seguridad
@@ -4326,11 +4326,11 @@ namespace RotoTools
                 {
                     if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
 
@@ -4363,8 +4363,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
 
                 //Seguridad
@@ -4372,11 +4372,11 @@ namespace RotoTools
                 {
                     if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
 
@@ -4403,23 +4403,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
 
@@ -4447,23 +4447,23 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
                 if (set.Opening != null)
@@ -4493,23 +4493,23 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
                 if (set.Opening != null)
@@ -4538,23 +4538,23 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera")
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
                 }
 
                 if (set.Opening != null)
@@ -4592,34 +4592,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -4655,34 +4655,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -4719,34 +4719,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -4781,34 +4781,34 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     setCopySTDCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
 
                     setsResult.Add(setCopySTDCremona);
 
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
             }
 
@@ -4840,38 +4840,38 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
                     }
                     else if (set.Code.ToUpper().Contains("PASADOR Y CLIP"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("BISAGRAS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_Cremona con Bisagras"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_Cremona con Bisagras"));
                 }
 
             }
@@ -4898,38 +4898,38 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Cremona"));
                     }
                     else if (set.Code.ToUpper().Contains("PASADOR Y CLIP"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
                 }
                 else if (set.Code.ToUpper().Contains("RC1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_RC1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC1"));
                 }
                 else if (set.Code.ToUpper().Contains("BISAGRAS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NT_AL_SEGURIDAD", "AL_Cremona con Bisagras"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_Cremona con Bisagras"));
                 }
             }
 
@@ -4954,8 +4954,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -4986,8 +4986,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5019,8 +5019,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5051,8 +5051,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5087,8 +5087,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
             }
 
             return setCF2HPasivaBalconeraPracticableAperturaExterior;
@@ -5114,8 +5114,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
             }
 
@@ -5140,9 +5140,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5171,9 +5171,9 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5205,9 +5205,9 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5238,9 +5238,9 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
-                    set.Code.Contains("RC2") ? new Option("RO_NX_HERRAJE SEGURIDAD", "RC2") : new Option("RO_NX_HERRAJE SEGURIDAD", "STD"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
+                    set.Code.Contains("RC2") ? OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2") : OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5282,21 +5282,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -5304,17 +5304,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5350,21 +5350,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -5372,17 +5372,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5421,21 +5421,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -5443,17 +5443,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5491,21 +5491,21 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
                     setCopySTDPerimetralPlus = new Set(set);
                     setCopySTDCremona = new Set(set);
                     setCopySTDCremonaPlus = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopySTDPerimetralPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
-                    setCopySTDCremona.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
-                    setCopySTDCremonaPlus.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopySTDPerimetralPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    setCopySTDCremona.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
+                    setCopySTDCremonaPlus.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
 
                     setsResult.Add(setCopySTDPerimetralPlus);
                     setsResult.Add(setCopySTDCremona);
@@ -5513,17 +5513,17 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
                     setCopyRC2 = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
-                    setCopyRC2.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
+                    setCopyRC2.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
 
                     setsResult.Add(setCopyRC2);
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5558,47 +5558,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5630,47 +5630,47 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("STD"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "STD"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "STD"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERRAJE SEGURIDAD", "RC2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERRAJE SEGURIDAD", "RC2"));
 
                     if (set.Code.ToUpper().Contains("PERIMETRAL") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("PERIMETRAL") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Perimetral"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Perimetral"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("2SC"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Click y Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Click y Pasador"));
                 }
             }
 
@@ -5695,8 +5695,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5727,8 +5727,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Ninguna"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5760,8 +5760,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "No"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5792,8 +5792,8 @@ namespace RotoTools
                     new Option("Puerta", "No"),
                     new Option("CotaVariable", "Sí"),
                     new Option("Asociada", "Practicable"),
-                    new Option("RO_NX_EASY MIX", "Easy Mix_Si"),
-                    new Option("RO_SEC_TIPO BALCONERA", "Balconera"),
+                    OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"),
+                    OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"),
                 ];
 
                 set.OptionConectorList = optionList;
@@ -5828,8 +5828,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
 
                 //Seguridad
@@ -5837,11 +5837,11 @@ namespace RotoTools
                 {
                     if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
 
@@ -5870,8 +5870,8 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "Sí"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
-                set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Balconera"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Balconera"));
 
 
                 //Seguridad
@@ -5879,11 +5879,11 @@ namespace RotoTools
                 {
                     if (set.Code.ToUpper().Contains("CREMONA") && set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona PLUS"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona PLUS"));
                     }
                     else if (set.Code.ToUpper().Contains("CREMONA") && !set.Code.ToUpper().Contains("PLUS"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_NX_HERR. HOJA PASIVA", "Cremona"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("NX_HERR. HOJA PASIVA", "Cremona"));
                     }
                 }
 
@@ -5920,22 +5920,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -5964,22 +5964,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -6013,16 +6013,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6058,22 +6058,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6106,22 +6106,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6160,16 +6160,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6204,22 +6204,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -6248,22 +6248,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -6297,16 +6297,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6342,22 +6342,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6390,22 +6390,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6444,16 +6444,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6489,22 +6489,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -6533,22 +6533,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
             }
 
@@ -6582,16 +6582,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6627,22 +6627,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Ninguna"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6675,22 +6675,22 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "Sí"));
                 set.OptionConectorList.Add(new Option("Asociada", "Practicable"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
                 set.OptionConectorList.Add(new Option("CotaVariable", "No"));
 
 
                 //Seguridad
                 if (set.Code.ToUpper().Contains("H600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
                 }
                 else if (set.Code.ToUpper().Contains("C600"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
                 }
                 else if (set.Code.ToUpper().Contains("EM NX"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
                 }
 
             }
@@ -6729,16 +6729,16 @@ namespace RotoTools
                 set.OptionConectorList.Add(new Option("Activa", "No"));
                 set.OptionConectorList.Add(new Option("AsociadaCotaVariable", "No"));
                 set.OptionConectorList.Add(new Option("Puerta", "No"));
-                set.OptionConectorList.Add(new Option("RO_NX_EASY MIX", "Easy Mix_Si"));
+                set.OptionConectorList.Add(OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si"));
 
                 if (set.Code.ToUpper().Contains("NX"))
                 {
                     setCopyPueSecunBombillo = new Set(set);
                     setCopyPueSecunCremona = new Set(set);
 
-                    set.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
-                    setCopyPueSecunBombillo.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
-                    setCopyPueSecunCremona.OptionConectorList.Add(new Option("RO_SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Manilla"));
+                    setCopyPueSecunBombillo.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Acc. Bombillo"));
+                    setCopyPueSecunCremona.OptionConectorList.Add(OpcionHelper.Crear("SEC_TIPO BALCONERA", "Puerta Secundaria Cremona"));
 
                     setsResult.Add(setCopyPueSecunBombillo);
                     setsResult.Add(setCopyPueSecunCremona);
@@ -6782,69 +6782,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -6877,7 +6877,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -6909,76 +6909,76 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
 
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -7009,7 +7009,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
             return setsCV2HActivaPuerta;
@@ -7040,27 +7040,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -7090,7 +7090,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7122,69 +7122,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -7216,7 +7216,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7248,75 +7248,75 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -7347,7 +7347,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7382,27 +7382,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -7434,7 +7434,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
 
             }
@@ -7471,69 +7471,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -7566,7 +7566,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7598,76 +7598,76 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
 
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -7698,7 +7698,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
             return setsCV2HActivaPuerta;
@@ -7729,27 +7729,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -7779,7 +7779,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7811,69 +7811,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -7905,7 +7905,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -7937,75 +7937,75 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -8036,7 +8036,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -8071,27 +8071,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -8123,7 +8123,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
 
             }
@@ -8160,69 +8160,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -8255,7 +8255,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -8287,76 +8287,76 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
 
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -8387,7 +8387,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
             return setsCV2HActivaPuerta;
@@ -8418,27 +8418,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -8468,7 +8468,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -8500,69 +8500,69 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
             }
@@ -8594,7 +8594,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -8626,75 +8626,75 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("BULONES"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Bulones"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Bulones"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "A700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PLETINA", "P16"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Komfort"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
                     }
                     else
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                     }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "E700"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
                     if (set.Code.ToUpper().Contains("PG"))
                     {
-                        set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
                 }
             }
@@ -8725,7 +8725,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("1PUNTO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
             }
 
@@ -8760,27 +8760,27 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADERO", "Clasico"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Pasador"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("TANDEO"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Tandeo"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Eneo A"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "Combinada"));
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_PASIVA", "Cremona (2CC)"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
             }
 
@@ -8812,7 +8812,7 @@ namespace RotoTools
                 //CERRADURAS
                 if (set.Code.ToUpper().Contains("COMUN"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PU_CERRADURA PUERTA", "1 punto"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "1 punto"));
                 }
 
             }
@@ -8849,7 +8849,7 @@ namespace RotoTools
                 else if (set.Opening?.Active != null && set.Opening?.Active == "false")
                 {
                     set.OptionConectorList.Add(new Option("Activa", "No"));
-                    set.OptionConectorList.Add(new Option("RO_AGUJA", "Ag8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
             }
 
@@ -8893,7 +8893,7 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("300/400"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ELV_TIPO", "Estandar 300/400"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ELV_TIPO", "Estandar 300/400"));
                 }
             }
 
@@ -8925,39 +8925,39 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("PLG 1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "1"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "2"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 3"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "3"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "3"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 4"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "4"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "4"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 5"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "5"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "5"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 6"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "6"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 7"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "7"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "7"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "8"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 9"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "9"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "9"));
                 }
             }
 
@@ -8984,39 +8984,39 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("PLG 1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "1"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "2"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 3"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "3"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "3"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 4"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "4"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "4"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 5"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "5"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "5"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 6"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "6"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 7"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "7"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "7"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "8"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 9"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "9"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "9"));
                 }
             }
 
@@ -9046,39 +9046,39 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("PLG 1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "1"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "2"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 3"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "3"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "3"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 4"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "4"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "4"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 5"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "5"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "5"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 6"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "6"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 7"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "7"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "7"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "8"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 9"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "9"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "9"));
                 }
             }
 
@@ -9105,39 +9105,39 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("PLG 1"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "1"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "1"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 2"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "2"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "2"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 3"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "3"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "3"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 4"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "4"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "4"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 5"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "5"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "5"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 6"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "6"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "6"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 7"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "7"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "7"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 8"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "8"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "8"));
                 }
                 else if (set.Code.ToUpper().Contains("PLG 9"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_PLG_HOJAS PLEGABLE", "9"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PLG_HOJAS PLEGABLE", "9"));
                 }
             }
 
@@ -9165,7 +9165,7 @@ namespace RotoTools
                 [
                     new Option("HardwareSupplier", xmlOrigen.Supplier),
                     new Option("Activa", "Sí"),
-                    set.Code.Contains("8") ? new Option("RO_AGUJA", "Ag8") : new Option("RO_AGUJA", "Ag15")
+                    set.Code.Contains("8") ? OpcionHelper.Crear("AGUJA", "Ag8") : OpcionHelper.Crear("AGUJA", "Ag15")
                 ];
 
                 set.OptionConectorList = optionList;
@@ -9173,12 +9173,12 @@ namespace RotoTools
                 if (set.Code.ToUpper().Contains("BC"))
                 {
                     // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
-                    set.OptionConectorList.Add(new Option("RO_OPCION_ABATIBLE", "BC"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "BC"));
                 }
                 else if (set.Code.ToUpper().Contains("FC"))
                 {
                     // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
-                    set.OptionConectorList.Add(new Option("RO_OPCION_ABATIBLE", "FC"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "FC"));
                 }
             }
 
@@ -9209,18 +9209,18 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Ninguna"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
             }
 
@@ -9246,27 +9246,27 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Oscilobatiente"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
             }
 
@@ -9298,21 +9298,21 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
 
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
             }
 
@@ -9340,18 +9340,18 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Ninguna"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
             }
 
@@ -9377,27 +9377,27 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Oscilobatiente"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
             }
 
@@ -9429,21 +9429,21 @@ namespace RotoTools
 
                 if (set.Code.ToUpper().Contains("100 KS") || set.Code.ToUpper().Contains("100KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-100"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-100"));
                 }
                 else if (set.Code.ToUpper().Contains("160 KS") || set.Code.ToUpper().Contains("160KS"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "KS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "KS-160"));
                 }
 
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
             }
 
@@ -9475,30 +9475,30 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Ninguna"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
             }
 
@@ -9524,39 +9524,39 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Oscilobatiente"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
             }
 
@@ -9588,32 +9588,32 @@ namespace RotoTools
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
             }
 
@@ -9642,30 +9642,30 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Ninguna"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
             }
 
@@ -9691,39 +9691,39 @@ namespace RotoTools
                     new Option("Activa", "Sí"),
                     new Option("AsociadaOpuesta", "Oscilobatiente"),
                     new Option("CotaVariable", "Sí"),
-                    set.Code.ToUpper().Contains("EM") ? new Option("RO_NX_EASY MIX", "Easy Mix_Si") : new Option("RO_NX_EASY MIX", "Easy Mix_No")
+                    set.Code.ToUpper().Contains("EM") ? OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_Si") : OpcionHelper.Crear("NX_EASY MIX", "Easy Mix_No")
                 ];
 
                 set.OptionConectorList = optionList;
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
             }
 
@@ -9755,32 +9755,32 @@ namespace RotoTools
 
                 if ((set.Code.ToUpper().Contains("160 PS") || set.Code.ToUpper().Contains("160PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-160"));
                 }
                 else if ((set.Code.ToUpper().Contains("200 PS") || set.Code.ToUpper().Contains("200PS")) && !set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-160"));
                 }
                 else if (set.Code.ToUpper().Contains("200") && set.Code.ToUpper().Contains("AIRCOM"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS AirCom-200"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS AirCom-200"));
                 }
                 else if (set.Code.ToUpper().Contains("160") && set.Code.ToUpper().Contains("AIR"))
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_TIPO", "PS Air-160"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_TIPO", "PS Air-160"));
                 }
 
                 if (set.Opening?.Right != null && set.Opening?.Right == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Izquierda"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Izquierda"));
                 }
                 else if (set.Opening?.Left != null && set.Opening?.Left == "true")
                 {
-                    set.OptionConectorList.Add(new Option("RO_ALV_ESQ.C", "Esq. C Derecha"));
+                    set.OptionConectorList.Add(OpcionHelper.Crear("ALV_ESQ.C", "Esq. C Derecha"));
                 }
             }
 

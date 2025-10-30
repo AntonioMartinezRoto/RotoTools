@@ -70,6 +70,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Buscar.
+        /// </summary>
+        internal static string L_Buscar {
+            get {
+                return ResourceManager.GetString("L_Buscar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Conector de herraje.
         /// </summary>
         internal static string L_ConectorHerraje {
@@ -93,6 +102,15 @@ namespace RotoTools.Resources {
         internal static string L_ConfigurarGuardarOpciones {
             get {
                 return ResourceManager.GetString("L_ConfigurarGuardarOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configurar opciones.
+        /// </summary>
+        internal static string L_ConfigurarOpciones {
+            get {
+                return ResourceManager.GetString("L_ConfigurarOpciones", resourceCulture);
             }
         }
         
@@ -142,6 +160,24 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Oculta en árbol.
+        /// </summary>
+        internal static string L_OcultaArbol {
+            get {
+                return ResourceManager.GetString("L_OcultaArbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ocultar en lista.
+        /// </summary>
+        internal static string L_OcultaList {
+            get {
+                return ResourceManager.GetString("L_OcultaList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Opciones.
         /// </summary>
         internal static string L_Opciones {
@@ -169,11 +205,29 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Texto.
+        /// </summary>
+        internal static string L_Texto {
+            get {
+                return ResourceManager.GetString("L_Texto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Traducción.
         /// </summary>
         internal static string L_Traduccion {
             get {
                 return ResourceManager.GetString("L_Traduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Valor.
+        /// </summary>
+        internal static string L_Valor {
+            get {
+                return ResourceManager.GetString("L_Valor", resourceCulture);
             }
         }
     }

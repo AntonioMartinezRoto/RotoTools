@@ -156,4 +156,22 @@
   <data name="L_RestaurarOpciones" xml:space="preserve">
     <value>Restore options</value>
   </data>
+  <data name="L_Buscar" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="L_ConfigurarOpciones" xml:space="preserve">
+    <value>Configure options</value>
+  </data>
+  <data name="L_Valor" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="L_Texto" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="L_OcultaList" xml:space="preserve">
+    <value>Hide in list</value>
+  </data>
+  <data name="L_OcultaArbol" xml:space="preserve">
+    <value>Hide in tree</value>
+  </data>
 </root>

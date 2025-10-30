@@ -1,9 +1,11 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using Microsoft.Win32;
 using RotoEntities;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using static RotoTools.Enums;
@@ -401,7 +403,6 @@ namespace RotoTools
 
             return traducciones;
         }
-
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -475,6 +476,71 @@ namespace RotoTools
             string valorTraducido = TranslateManager.TraduccionesActuales.TraducirOptionValue(name, value);
 
             return new Option("RO_" + nombreTraducido, valorTraducido);
+        }
+    }
+    public static class EscandalloHelper
+    {
+        public static void AplicarTraduccion(Escandallo escandallo)
+        {
+            if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
+                return;
+
+            var trad = TranslateManager.TraduccionesActuales;
+
+            // Si hay JSONs embebidos (Variables o Programa) con opciones dentro, traducirlos también
+            if (!string.IsNullOrEmpty(escandallo.Programa))
+            {
+                escandallo.Programa = TraducirOpcionesDentroJson(escandallo.Programa, trad);
+            }
+        }
+        private static string TraducirOpcionesDentroJson(string programa, Traducciones trad)
+        {
+            if (string.IsNullOrWhiteSpace(programa))
+                return programa;
+
+            try
+            {
+                // Traducimos directamente como script o texto
+                return TraducirTextoPrograma(programa, trad);
+               
+            }
+            catch (JsonException)
+            {
+                // Si por algún motivo no se puede parsear, devolvemos el texto sin modificar
+                return programa;
+            }
+        }
+        private static string TraducirTextoPrograma(string programa, Traducciones trad)
+        {
+            if (string.IsNullOrWhiteSpace(programa))
+                return programa;
+
+            // Detecta expresiones del tipo: OPCION("Nombre", "Valor")
+            var regex = new Regex(@"OPCION\(\""(?<nombre>[^\""]+)\"",\""(?<valor>[^\""]+)\""\)", RegexOptions.Compiled);
+
+            return regex.Replace(programa, match =>
+            {
+                string nombreOriginal = match.Groups["nombre"].Value;
+                string valorOriginal = match.Groups["valor"].Value;
+
+                //Eliminar prefijo "RO_" para buscar traducción
+                string nombreSinPrefijo = nombreOriginal.StartsWith("RO_", StringComparison.OrdinalIgnoreCase)
+                    ? nombreOriginal.Substring(3)
+                    : nombreOriginal;
+
+                //Traducir nombre y valor
+                string nombreTrad = trad.TraducirOptionName(nombreSinPrefijo);
+                string valorTrad = trad.TraducirOptionValue(nombreSinPrefijo, valorOriginal);
+
+                //Restaurar el prefijo "RO_" si estaba originalmente
+                if (nombreOriginal.StartsWith("RO_", StringComparison.OrdinalIgnoreCase) &&
+                    !nombreTrad.StartsWith("RO_", StringComparison.OrdinalIgnoreCase))
+                {
+                    nombreTrad = "RO_" + nombreTrad;
+                }
+
+                return $"OPCION(\"{nombreTrad}\",\"{valorTrad}\")";
+            });
         }
     }
 }

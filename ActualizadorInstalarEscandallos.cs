@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,34 @@ namespace RotoTools
         {
             try
             {
+                TranslateManager.AplicarTraduccion = false;
+
+                if (!LocalizationManager.CurrentCulture.Equals(new CultureInfo("es")))
+                {
+                    if (MessageBox.Show(LocalizationManager.GetString("L_AplicarPlantillaTraduccion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "XLS Files (*.xls)|*.xlsx";
+
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            EnableControls(false);
+
+                            TranslateManager.AplicarTraduccion = true;
+                            TranslateManager.TraduccionesActuales = Helpers.CargarTraducciones(openFileDialog.FileName);
+
+                            EnableControls(true);
+                            Cursor.Current = Cursors.Default;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+
+
                 Cursor = Cursors.WaitCursor;
                 EnableControls(false);
                 string messageEscandallos = "Escandallos instalados: " + Environment.NewLine + Environment.NewLine;
@@ -46,6 +75,8 @@ namespace RotoTools
                     // Insertar los del proyecto
                     foreach (var escandallo in escandallosList)
                     {
+                        EscandalloHelper.AplicarTraduccion(escandallo);
+
                         string queryInstall = "";
                         if (Helpers.ExisteEscandalloEnBD(escandallo.Codigo))
                         {

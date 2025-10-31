@@ -49,7 +49,7 @@ namespace RotoTools
             CargarGruposPresupuestado();
             CargarGruposProduccion();
             AsignarValoresPorDefecto();
-            CargarTextos();
+            //CargarTextos();
         }
         private void btn_EjecutarScripts_Click(object sender, EventArgs e)
         {

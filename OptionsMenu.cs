@@ -19,7 +19,7 @@ namespace RotoTools
 
         private void OptionsMenu_Load(object sender, EventArgs e)
         {
-            CargarTextos();
+            //CargarTextos();
             var idiomas = new List<LanguageItem>
                 {
                     new LanguageItem { Text = "Español", Value = "es" },
@@ -49,6 +49,7 @@ namespace RotoTools
 
                 Close();
             }
+            TranslateManager.PermitirTraduccionesEnConectorEscandallos = chk_PermitirTraduccion.Checked;
         }
         private void CargarTextos()
         {

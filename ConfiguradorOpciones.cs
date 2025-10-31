@@ -18,7 +18,7 @@ namespace RotoTools
         private void ConfiguradorOpciones_Load(object sender, EventArgs e)
         {
             InitializeInfoConnection();
-            CargarTextos();
+            //CargarTextos();
             FillOpcionesList();
             FillContenidoOpciones();
             ConfigurarDataGridView();

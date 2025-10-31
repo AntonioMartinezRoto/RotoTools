@@ -25,7 +25,7 @@ namespace RotoTools
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = $"RotoTools v{version.Major}.{version.Minor}";
-            CargarTextos();
+            //CargarTextos();
             CargarDatos();
         }
         private void btn_Refresh_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace RotoTools
         {
             OptionsMenu optionsMenuForm = new OptionsMenu();
             optionsMenuForm.ShowDialog();
-            CargarTextos();
+            //CargarTextos();
         }
         #endregion
 

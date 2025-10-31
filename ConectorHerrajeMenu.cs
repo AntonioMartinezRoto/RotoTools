@@ -65,7 +65,7 @@ namespace RotoTools
         {
             if (xmlCargado)
             {
-                if (!LocalizationManager.CurrentCulture.Equals(new CultureInfo("es")))
+                if (TranslateManager.PermitirTraduccionesEnConectorEscandallos)
                 {
                     if (MessageBox.Show(LocalizationManager.GetString("L_AplicarPlantillaTraduccion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {

@@ -189,4 +189,37 @@
   <data name="L_ErrorRestaurandoConfiguracion" xml:space="preserve">
     <value>Error restaurando archivo de configuración(IT)</value>
   </data>
+  <data name="L_EjecutarSQL" xml:space="preserve">
+    <value>Ejecutar Scripts(IT)</value>
+  </data>
+  <data name="L_EjecutarCarpeta" xml:space="preserve">
+    <value>Elegir Scripts(IT)</value>
+  </data>
+  <data name="L_InstalarEscandallos" xml:space="preserve">
+    <value>Instalar Escandallos(IT)</value>
+  </data>
+  <data name="L_VerEscandallos" xml:space="preserve">
+    <value>Ver Escandallos(IT)</value>
+  </data>
+  <data name="L_ExportarEscandallos" xml:space="preserve">
+    <value>Exportar Escandallos(IT)</value>
+  </data>
+  <data name="L_OcultaOpciones" xml:space="preserve">
+    <value>OcultaOpciones(IT)</value>
+  </data>
+  <data name="L_Grupos" xml:space="preserve">
+    <value>Grupos(IT)</value>
+  </data>
+  <data name="L_Proveedor" xml:space="preserve">
+    <value>Proveedor(IT)</value>
+  </data>
+  <data name="L_Presupuestado" xml:space="preserve">
+    <value>Presupuestado(IT)</value>
+  </data>
+  <data name="L_Produccion" xml:space="preserve">
+    <value>Producción(IT)</value>
+  </data>
+  <data name="L_Nombre" xml:space="preserve">
+    <value>Nombre(IT)</value>
+  </data>
 </root>

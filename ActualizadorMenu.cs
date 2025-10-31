@@ -49,6 +49,7 @@ namespace RotoTools
             CargarGruposPresupuestado();
             CargarGruposProduccion();
             AsignarValoresPorDefecto();
+            CargarTextos();
         }
         private void btn_EjecutarScripts_Click(object sender, EventArgs e)
         {
@@ -326,7 +327,6 @@ namespace RotoTools
             string insertProveedorRoto = @"INSERT INTO Proveedores (CodigoProveedor, Nombre) VALUES (" + GetNuevoCodigoProveedor() + ", 'Roto Frank SA')";
             Helpers.EjecutarNonQuery(insertProveedorRoto);
         }
-
         public int GetNuevoCodigoProveedor()
         {
             using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
@@ -522,7 +522,21 @@ namespace RotoTools
             }
             return false;
         }
-
+        private void CargarTextos()
+        {
+            btn_EjecutarScripts.Text = LocalizationManager.GetString("L_EjecutarSQL");
+            btn_EjecutarCarpeta.Text = LocalizationManager.GetString("L_EjecutarCarpeta");
+            btn_InstalarEscandallos.Text = LocalizationManager.GetString("L_InstalarEscandallos");
+            btn_ShowScripts.Text = LocalizationManager.GetString("L_VerEscandallos");
+            btn_ExportarEscandallos.Text = LocalizationManager.GetString("L_ExportarEscandallos");
+            btn_OcultaOpciones.Text = LocalizationManager.GetString("L_OcultaOpciones");
+            groupBox_Grupos.Text = LocalizationManager.GetString("L_Grupos");
+            groupBox_Proveedor.Text = LocalizationManager.GetString("L_Proveedor");
+            lbl_IdPresupuestado.Text = LocalizationManager.GetString("L_Presupuestado");
+            lbl_IdProduccion.Text = LocalizationManager.GetString("L_Produccion");
+            lbl_Proveedor.Text = LocalizationManager.GetString("L_Nombre");
+            this.Text = LocalizationManager.GetString("L_Actualizador");
+        }
 
         #endregion
 

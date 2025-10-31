@@ -189,4 +189,37 @@
   <data name="L_ErrorRestaurandoConfiguracion" xml:space="preserve">
     <value>Error restoring configuration file.</value>
   </data>
+  <data name="L_EjecutarSQL" xml:space="preserve">
+    <value>Execute SQL</value>
+  </data>
+  <data name="L_EjecutarCarpeta" xml:space="preserve">
+    <value>Select SQL</value>
+  </data>
+  <data name="L_InstalarEscandallos" xml:space="preserve">
+    <value>Install Scripts</value>
+  </data>
+  <data name="L_VerEscandallos" xml:space="preserve">
+    <value>View Scripts</value>
+  </data>
+  <data name="L_ExportarEscandallos" xml:space="preserve">
+    <value>Export Scripts</value>
+  </data>
+  <data name="L_OcultaOpciones" xml:space="preserve">
+    <value>HideOptions</value>
+  </data>
+  <data name="L_Grupos" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="L_Proveedor" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="L_Presupuestado" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="L_Produccion" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="L_Nombre" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

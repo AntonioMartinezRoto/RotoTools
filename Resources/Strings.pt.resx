@@ -178,9 +178,15 @@
     <value>Guardado correctamente(PT)</value>
   </data>
   <data name="L_ErrorGuardarConfiguracion" xml:space="preserve">
-    <value>guardando archivo de configuración(PT)</value>
+    <value>Error guardando archivo de configuración(PT)</value>
   </data>
   <data name="L_AplicarPlantillaTraduccion" xml:space="preserve">
     <value>¿Quieres aplicar una traducción?(PT)</value>
+  </data>
+  <data name="L_ConfiguracionRestaurada" xml:space="preserve">
+    <value>Configuración restaurada correctamente.(PT)</value>
+  </data>
+  <data name="L_ErrorRestaurandoConfiguracion" xml:space="preserve">
+    <value>Error restaurando archivo de configuración(PT)</value>
   </data>
 </root>

@@ -183,4 +183,10 @@
   <data name="L_AplicarPlantillaTraduccion" xml:space="preserve">
     <value>¿Quieres aplicar una traducción?(DE)</value>
   </data>
+  <data name="L_ConfiguracionRestaurada" xml:space="preserve">
+    <value>Configuración restaurada correctamente.(DE)</value>
+  </data>
+  <data name="L_ErrorRestaurandoConfiguracion" xml:space="preserve">
+    <value>Error restaurando archivo de configuración.(DE)</value>
+  </data>
 </root>

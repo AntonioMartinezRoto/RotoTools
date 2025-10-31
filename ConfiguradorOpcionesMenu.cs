@@ -31,18 +31,17 @@ namespace RotoTools
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "XML Files (*.xml)|*.xml";
-                openFileDialog.Title = "Selecciona XML configuración";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string rutaXml = openFileDialog.FileName;
                     Helpers.RestoreOpcionesDesdeXml(rutaXml);
-                    MessageBox.Show("Configuración restaurada correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_ConfiguracionRestaurada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error restaurando la configuración." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalizationManager.GetString("L_ErrorRestaurandoConfiguracion") + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

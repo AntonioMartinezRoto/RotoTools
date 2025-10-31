@@ -97,6 +97,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Configuración restaurada correctamente..
+        /// </summary>
+        internal static string L_ConfiguracionRestaurada {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionRestaurada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configurador de opciones.
         /// </summary>
         internal static string L_ConfiguradorOpciones {
@@ -138,6 +147,15 @@ namespace RotoTools.Resources {
         internal static string L_ErrorGuardarConfiguracion {
             get {
                 return ResourceManager.GetString("L_ErrorGuardarConfiguracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error restaurando archivo de configuración..
+        /// </summary>
+        internal static string L_ErrorRestaurandoConfiguracion {
+            get {
+                return ResourceManager.GetString("L_ErrorRestaurandoConfiguracion", resourceCulture);
             }
         }
         

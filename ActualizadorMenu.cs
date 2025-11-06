@@ -20,7 +20,7 @@ namespace RotoTools
 
         #region Private Const
 
-        private const string queryUpdateNivel1OpcionesMaterialesBase = "UPDATE MaterialesBase SET Nivel1='ROTO' WHERE Nivel1 = 'ROTO NX'; UPDATE Opciones SET Nivel1 = 'ROTO' WHERE Nivel1 = 'ROTO NX';";
+        private const string queryUpdateNivel1OpcionesMaterialesBase = "UPDATE MaterialesBase SET Nivel1='ROTO' WHERE Nivel1 = 'ROTO NX' OR Nivel1 = 'ROTO NX ALU' OR Nivel1 = 'ROTO NX PAX'; UPDATE Opciones SET Nivel1 = 'ROTO' WHERE Nivel1 = 'ROTO NX' OR Nivel1 = 'ROTO NX ALU' OR Nivel1 = 'ROTO NX PAX' ;";
         private const string queryUpdateDescripciones = @"
                             UPDATE MB
                             SET MB.DESCRIPCION = F.DESCRIPTION

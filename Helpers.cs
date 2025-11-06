@@ -170,7 +170,7 @@ namespace RotoTools
         public static int UpdateGruposYProveedor(string IdGrupoPresupuestado, string IdGrupoProduccion, string IdProveedor)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("UPDATE MaterialesBase SET IdGrupoPresupuestado=@grupopresupuestado, IdGrupoProduccion=@grupoproduccion, CodigoProveedor=@codigoproveedor WHERE Nivel1='ROTO NX'", conn))
+            using (var cmd = new SqlCommand("UPDATE MaterialesBase SET IdGrupoPresupuestado=@grupopresupuestado, IdGrupoProduccion=@grupoproduccion, CodigoProveedor=@codigoproveedor WHERE Nivel1 = 'ROTO NX' OR Nivel1 = 'ROTO NX ALU' OR Nivel1 = 'ROTO NX PAX'", conn))
             {
                 cmd.Parameters.AddWithValue("@grupopresupuestado", IdGrupoPresupuestado);
                 cmd.Parameters.AddWithValue("@grupoproduccion", IdGrupoProduccion);

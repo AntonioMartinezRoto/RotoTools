@@ -86,6 +86,16 @@ namespace RotoTools
             if (!c.OcultaEnLista && c.OcultaEnArbol) return 2;
             return 0;
         }
+        public static void InsertOpcion(string opcionName)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"INSERT INTO Opciones(Nombre, Nivel1, GenerateVariable, Flags) VALUES(@nombre, 'ROTO', 0, 0)", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", opcionName);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         public static List<ContenidoOpcion> GetContenidoOpciones(string opcionName)
         {
             var lista = new List<ContenidoOpcion>();
@@ -342,6 +352,64 @@ namespace RotoTools
             }
             return false;
         }
+        public static void InstalarOpcionConfiguraciónStandard()
+        {
+            if (!ExisteOpcionConfiguracionStandardEnBD())
+            {
+                CrearOpcionConfiguracionStandard();
+                CrearContenidoOpcionesConfiguracionStandard();
+            }
+        }
+        public static bool ExisteOpcionConfiguracionStandardEnBD()
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Opciones WHERE Nombre = '01 Configuracion Estandar'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static void CrearContenidoOpcionesConfiguracionStandard()
+        {
+            try
+            {
+                List<string> contenidoOpcionesConfiguracionStandard =
+                [
+                    "Si",
+                    "No"
+                ];
+                int orden = 0;
+                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
+                {
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("01 Configuracion Estandar", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
+                    InsertContenidoOpcion("01 Configuracion Estandar", contenidoOpcion);
+                    orden++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creando contenido de la opción Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+        public static void CrearOpcionConfiguracionStandard()
+        {
+            try
+            {
+                InsertOpcion("01 Configuracion Estandar");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creando opción de Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -371,7 +439,6 @@ namespace RotoTools
             using var reader = new StringReader(xml);
             return (T)serializer.Deserialize(reader);
         }
-
         public static string SerializarXml<T>(T objeto)
         {
             using (var stringWriter = new System.IO.StringWriter())

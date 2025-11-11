@@ -493,7 +493,6 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-
         public static void DeletePrefOpenOperationsPlaca(int configuracionEliminar, string supplierCode)
         {
             string operationXCondition = "";
@@ -514,7 +513,6 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-
         public static void DeletePrefOpenOptions(string optionName, string supplierCode)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
@@ -537,6 +535,18 @@ namespace RotoTools
                 }
             }
         }
+        public static int EjecutarScalarCount(string sql)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
         public static int TryParseInt(string value)
         {
             return int.TryParse(value, out int result) ? result : 0;

@@ -47,6 +47,9 @@ namespace RotoTools
 
             Cursor = Cursors.Default;
             MessageBox.Show("Instalación realizada correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            progress_Export.Value = 0;
+            progress_Export.Visible = false;
         }
         private void cmb_HardwareSupplier_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -297,13 +300,21 @@ namespace RotoTools
         {
             try
             {
+                
                 string queryOperationsPlaca = $"SELECT [Name], [GeneratorReference], [X], [Side], [Id], [Location], [ReferencePoint] FROM [Open].Operations WHERE Name LIKE '%Placa_%' AND Name NOT LIKE '%_17_Placa_%' AND SupplierCode = '{cmb_HardwareSupplier.Text.Trim()}' ORDER BY Name, GeneratorReference";
+                string queryOperationsPlacaCount = $"SELECT COUNT(*) FROM [Open].Operations WHERE Name LIKE '%Placa_%' AND Name NOT LIKE '%_17_Placa_%' AND SupplierCode = '{cmb_HardwareSupplier.Text.Trim()}'";
                 string supplierCode = cmb_HardwareSupplier.Text.Trim();
                 using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
                 conexion.Open();
 
                 using SqlCommand cmd = new SqlCommand(queryOperationsPlaca, conexion);
                 using SqlDataReader reader = cmd.ExecuteReader();
+
+                progress_Export.Visible = true;
+                int totalFilas = Helpers.EjecutarScalarCount(queryOperationsPlacaCount);
+                progress_Export.Value = 0;
+                progress_Export.Maximum = totalFilas > 0 ? totalFilas : 1; // Evitar división por cero
+
 
                 while (reader.Read())
                 {
@@ -359,6 +370,10 @@ namespace RotoTools
                     //Agregar el resto de OperationsOptions que tenga la original
                     InsertOperationsOptions(operationId, operationFksId, supplierCode);
 
+                    // Actualizar progreso
+                    progress_Export.Value++;
+                    progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
+
                 }
             }
             catch (Exception ex)
@@ -388,20 +403,41 @@ namespace RotoTools
         {
             try
             {
+                progress_Export.Visible = true;
+                int totalFilas = 5;
+                progress_Export.Value = 0;
+                progress_Export.Maximum = totalFilas;
+
                 //Borrar registros de PrefOpen.OperationsOptions
                 Helpers.DeletePrefOpenOperationsOptions("MANILLA_FKS", cmb_HardwareSupplier.Text);
+
+                progress_Export.Value++;
+                progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
 
                 //Borrar registros de PrefOpen.Operations
                 Helpers.DeletePrefOpenOperationsPlaca(configuracionEliminar, cmb_HardwareSupplier.Text);
 
+                progress_Export.Value++;
+                progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
+
+
                 //Borrar registros de PrefOpen.Options
                 Helpers.DeletePrefOpenOptions("MANILLA_FKS", cmb_HardwareSupplier.Text);
+
+                progress_Export.Value++;
+                progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
 
                 //Borrar ContenidoOpciones 
                 Helpers.DeleteAllContenidoOpciones("RO_MANILLA_FKS");
 
+                progress_Export.Value++;
+                progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
+
                 //Borrar Opción
                 Helpers.DeleteOpcion("RO_MANILLA_FKS");
+
+                progress_Export.Value++;
+                progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
             }
             catch(Exception ex)
             {

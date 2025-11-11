@@ -38,6 +38,7 @@
             rb_Normalizada = new RadioButton();
             cmb_HardwareSupplier = new ComboBox();
             label1 = new Label();
+            progress_Export = new ProgressBar();
             statusStrip1.SuspendLayout();
             groupBoxFKS.SuspendLayout();
             SuspendLayout();
@@ -65,6 +66,7 @@
             btn_SaveFKS.Location = new Point(316, 214);
             btn_SaveFKS.Margin = new Padding(9, 3, 3, 3);
             btn_SaveFKS.Name = "btn_SaveFKS";
+            btn_SaveFKS.Padding = new Padding(2, 0, 0, 0);
             btn_SaveFKS.Size = new Size(87, 41);
             btn_SaveFKS.TabIndex = 2;
             btn_SaveFKS.Text = "Guardar";
@@ -137,6 +139,15 @@
             label1.TabIndex = 11;
             label1.Text = "Hardware Supplier";
             // 
+            // progress_Export
+            // 
+            progress_Export.Location = new Point(47, 224);
+            progress_Export.Margin = new Padding(3, 2, 3, 2);
+            progress_Export.Name = "progress_Export";
+            progress_Export.Size = new Size(257, 22);
+            progress_Export.TabIndex = 14;
+            progress_Export.Visible = false;
+            // 
             // ManillasFKSMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -144,6 +155,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(519, 291);
+            Controls.Add(progress_Export);
             Controls.Add(cmb_HardwareSupplier);
             Controls.Add(label1);
             Controls.Add(groupBoxFKS);
@@ -176,5 +188,6 @@
         private RadioButton rb_NormalizadaYFks;
         private ComboBox cmb_HardwareSupplier;
         private Label label1;
+        private ProgressBar progress_Export;
     }
 }

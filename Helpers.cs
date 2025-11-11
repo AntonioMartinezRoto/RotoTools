@@ -96,6 +96,28 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
+        public static void DeleteOpcion(string optionName)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE Opciones WHERE Nombre=@nombre", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", optionName);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void InsertPrefOpenOption(string supplierCode, string optionName, string optionValue)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"INSERT INTO [Open].Options (SupplierCode, [Option], [Value]) VALUES(@suppliercode, @optionname, @optionvalue)", conn))
+            {
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                cmd.Parameters.AddWithValue("@optionname", optionName);
+                cmd.Parameters.AddWithValue("@optionvalue", optionValue);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         public static List<ContenidoOpcion> GetContenidoOpciones(string opcionName)
         {
             var lista = new List<ContenidoOpcion>();
@@ -354,18 +376,33 @@ namespace RotoTools
         }
         public static void InstalarOpcionConfiguraciónStandard()
         {
-            if (!ExisteOpcionConfiguracionStandardEnBD())
+            if (!ExisteOpcionEnBD("01 Configuracion Estandar"))
             {
                 CrearOpcionConfiguracionStandard();
                 CrearContenidoOpcionesConfiguracionStandard();
             }
         }
-        public static bool ExisteOpcionConfiguracionStandardEnBD()
+        public static bool ExisteOpcionEnBD(string optionName)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
             conexion.Open();
 
-            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Opciones WHERE Nombre = '01 Configuracion Estandar'", conexion);
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM Opciones WHERE Nombre = '{optionName}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static bool ExistePrefOpenOpcionEnBD(string supplierCode, string optionName, string optionValue)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].Options WHERE SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -408,6 +445,85 @@ namespace RotoTools
             catch (Exception ex)
             {
                 MessageBox.Show("Error creando opción de Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT Id FROM [Open].Operations WHERE Name = @name AND GeneratorReference = @generatorreference AND X = @operationX AND Id NOT IN (SELECT OperationId FROM [Open].OperationsOptions)", conn))
+            {
+                cmd.Parameters.AddWithValue("@name", operationName);
+                cmd.Parameters.AddWithValue("@generatorreference", generatorReference);
+                cmd.Parameters.AddWithValue("@operationX", operationX);
+
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
+        public static bool OpcionAsociadaAOperacionPrefOpen(string operationId, string optionName, string optionValue, string supplierCode)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].OperationsOptions WHERE OperationId = '{operationId}' AND SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static void DeletePrefOpenOperationsOptions(string optionName, string supplierCode)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].OperationsOptions WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", optionName);
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void DeletePrefOpenOperationsPlaca(int configuracionEliminar, string supplierCode)
+        {
+            string operationXCondition = "";
+            switch (configuracionEliminar)
+            {
+                case (int)enumConfiguracionManillasFKS.Normalizada:
+                    operationXCondition = "(X = 'HP+70' OR X = 'HP-130')";
+                    break;
+                case (int)enumConfiguracionManillasFKS.SoloFks:
+                    operationXCondition = "(X = 'HP+78' OR X = 'HP-138')";
+                    break;
+            }
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].Operations WHERE SupplierCode=@suppliercode AND Name LIKE '%Placa_%' AND Name NOT LIKE '%_17_Placa_%' AND " + operationXCondition, conn))
+            {
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void DeletePrefOpenOptions(string optionName, string supplierCode)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].Options WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", optionName);
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
         public static int EjecutarNonQuery(string sql)

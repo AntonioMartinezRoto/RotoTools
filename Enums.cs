@@ -36,5 +36,11 @@ namespace RotoTools
             GestionBombillos = 5,
             PersonalizacionClientes = 6
         }
+        public enum enumConfiguracionManillasFKS
+        {
+            Normalizada = 1,
+            SoloFks = 2,
+            NormalizadaYFks = 3
+        }
     }
 }

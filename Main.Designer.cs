@@ -42,6 +42,8 @@
             lbl_Conector = new Label();
             lbl_ControlCambios = new Label();
             btn_ControlCambios = new Button();
+            label2 = new Label();
+            btn_ManillasFKS = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -120,7 +122,7 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(59, 206);
+            btn_Export.Location = new Point(318, 208);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
@@ -132,7 +134,7 @@
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(111, 218);
+            lbl_Export.Location = new Point(370, 220);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
@@ -181,6 +183,27 @@
             btn_ControlCambios.UseVisualStyleBackColor = true;
             btn_ControlCambios.Click += btn_ControlCambios_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(111, 220);
+            label2.Name = "label2";
+            label2.Size = new Size(152, 15);
+            label2.TabIndex = 13;
+            label2.Text = "Configuración Manillas FKS";
+            // 
+            // btn_ManillasFKS
+            // 
+            btn_ManillasFKS.BackgroundImage = (Image)resources.GetObject("btn_ManillasFKS.BackgroundImage");
+            btn_ManillasFKS.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_ManillasFKS.Location = new Point(59, 208);
+            btn_ManillasFKS.Name = "btn_ManillasFKS";
+            btn_ManillasFKS.Size = new Size(47, 40);
+            btn_ManillasFKS.TabIndex = 12;
+            btn_ManillasFKS.UseVisualStyleBackColor = true;
+            btn_ManillasFKS.Click += btn_ManillasFKS_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -188,6 +211,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 309);
+            Controls.Add(label2);
+            Controls.Add(btn_ManillasFKS);
             Controls.Add(lbl_ControlCambios);
             Controls.Add(btn_ControlCambios);
             Controls.Add(lbl_Conector);
@@ -228,5 +253,7 @@
         private Label lbl_Conector;
         private Label lbl_ControlCambios;
         private Button btn_ControlCambios;
+        private Label label2;
+        private Button btn_ManillasFKS;
     }
 }

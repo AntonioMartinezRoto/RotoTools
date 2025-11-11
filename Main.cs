@@ -57,6 +57,11 @@ namespace RotoTools
             ControlCambiosMenu controlCambiosMenuForm = new ControlCambiosMenu();
             controlCambiosMenuForm.ShowDialog();
         }
+        private void btn_ManillasFKS_Click(object sender, EventArgs e)
+        {
+            ManillasFKSMenu manillasFKSMenuForm = new ManillasFKSMenu();
+            manillasFKSMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -71,6 +76,7 @@ namespace RotoTools
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
+
 
 
 

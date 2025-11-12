@@ -269,8 +269,8 @@ namespace RotoTools
                     //Creación de los valores de ContenidoOpcion de PrefWise
                     List<string> contenidoOpcionesConfiguracionStandard =
                        [
-                           "No",
-                           "Si"
+                           "No_FKS",
+                           "Si_FKS"
                        ];
                     int orden = 0;
                     foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
@@ -282,13 +282,13 @@ namespace RotoTools
                 }
 
                 //Creación de la opción para uso con PrefOpen
-                if (!Helpers.ExistePrefOpenOpcionEnBD(cmb_HardwareSupplier.Text, "MANILLA_FKS", "No"))
+                if (!Helpers.ExistePrefOpenOpcionEnBD(cmb_HardwareSupplier.Text, "MANILLA_FKS", "No_FKS"))
                 {
-                    Helpers.InsertPrefOpenOption(cmb_HardwareSupplier.Text, "MANILLA_FKS", "No");
+                    Helpers.InsertPrefOpenOption(cmb_HardwareSupplier.Text, "MANILLA_FKS", "No_FKS");
                 }
-                if (!Helpers.ExistePrefOpenOpcionEnBD(cmb_HardwareSupplier.Text, "MANILLA_FKS", "Si"))
+                if (!Helpers.ExistePrefOpenOpcionEnBD(cmb_HardwareSupplier.Text, "MANILLA_FKS", "Si_FKS"))
                 {
-                    Helpers.InsertPrefOpenOption(cmb_HardwareSupplier.Text, "MANILLA_FKS", "Si");
+                    Helpers.InsertPrefOpenOption(cmb_HardwareSupplier.Text, "MANILLA_FKS", "Si_FKS");
                 }
             }
             catch (Exception ex)
@@ -327,27 +327,27 @@ namespace RotoTools
                     string operationReferencePoint = reader[6].ToString().Trim();
 
                     string operationXNew = "";
-                    string optionManillaFksValue = "No";
+                    string optionManillaFksValue = "No_FKS";
 
                     if (operationX == "HP+70")
                     {
                         operationXNew = "HP+78";
-                        optionManillaFksValue = "No";
+                        optionManillaFksValue = "No_FKS";
                     }
                     else if (operationX == "HP+78")
                     {
                         operationXNew = "HP+70";
-                        optionManillaFksValue = "Si";
+                        optionManillaFksValue = "Si_FKS";
                     }
                     else if (operationX == "HP-130")
                     {
                         operationXNew = "HP-138";
-                        optionManillaFksValue = "No";
+                        optionManillaFksValue = "No_FKS";
                     }
                     else if (operationX == "HP-138")
                     {
                         operationXNew = "HP-130";
-                        optionManillaFksValue = "Si";
+                        optionManillaFksValue = "Si_FKS";
                     }
 
                     //Agregar OperationsOptions para que las operaciones normalizadas solo se ejecuten con la opcion MANILLA_FKS = No
@@ -363,7 +363,7 @@ namespace RotoTools
 
                     //Agregar OperationsOptions para que las operaciones FKS solo se ejecuten con la opcion RO_MANILLA_FKS = Si
                     //Si tenía la configuración FKS Solo activa y está activando ambas, se agrega No al valor de MANILLA_FKS
-                    string valueOptionManillaFks = optionManillaFksValue == "Si" ? "No" : "Si";
+                    string valueOptionManillaFks = optionManillaFksValue == "Si_FKS" ? "No_FKS" : "Si_FKS";
                     string insertOperationsOptionsFKSQuery = $"INSERT INTO [Open].OperationsOptions (OperationId, [Option], SupplierCode, Value) VALUES ('{operationFksId}', 'MANILLA_FKS', '{supplierCode}', '{valueOptionManillaFks}')";
                     Helpers.EjecutarNonQuery(insertOperationsOptionsFKSQuery);
 

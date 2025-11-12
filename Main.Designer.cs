@@ -192,6 +192,7 @@
             label2.Size = new Size(152, 15);
             label2.TabIndex = 13;
             label2.Text = "Configuración Manillas FKS";
+            label2.Visible = false;
             // 
             // btn_ManillasFKS
             // 
@@ -202,6 +203,7 @@
             btn_ManillasFKS.Size = new Size(47, 40);
             btn_ManillasFKS.TabIndex = 12;
             btn_ManillasFKS.UseVisualStyleBackColor = true;
+            btn_ManillasFKS.Visible = false;
             btn_ManillasFKS.Click += btn_ManillasFKS_Click;
             // 
             // Main

@@ -2347,7 +2347,7 @@
   <data name="btn_Traduccion.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWZSURBVGhDtZlH
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWZSURBVGhDtZlH
         qCVFGIWfggkVxZzDGBdGBNGVOMxKzHEQF+pCBBF1xhwwJxBRQczOGMDACDqOAREVxbBQFMxiFvOoo6KI
         +XzXPo+/61VX9Xu3PfBxu6urq8+trvor9ESjrcTd4kfxz0B8L24RG4surSteER+LWST01RbiJ5F78BB8
         LbYUqTYV7wnn21f01j3CNz4t7hyIF4TLvUtEbS6i4S/FgYI33ku/CRseWq8Kyv5QLE9Co5eEDUf+ENxz
@@ -2570,7 +2570,7 @@
   <data name="btn_ManillasFKS.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC8AAAAyCAYAAADMb4LpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAABRVJREFUaEPtmWdLJVkQhvcfyYBZzDnniIKYEwrmnMWccxYU06iYUcSEfhD9IoqK
+        vAAADrwBlbxySQAABRVJREFUaEPtmWdLJVkQhvcfyYBZzDnniIKYEwrmnMWccxYU06iYUcSEfhD9IoqK
         KIoZQUERcVDHWt6ir7jMjnun1x7vZbfg0DdU63PqvFV9Tt0/SIntvwd/fX1Nh4eHdHZ2xq9vb2/p7u6O
         7u/v6fHxUfCS3kTB19bWkqOjI/n6+pKfnx8FBwdTSEgIRURE0MzMjOAlvYmCLy8vJysrK56Avb09OTg4
         kK2tLTk5OdH4+LjgJb2Jgq+srCRzc3OKi4uj/f19ysrK4vfu7u40PT0teElvouBramrI1NSUCgsLaW5u

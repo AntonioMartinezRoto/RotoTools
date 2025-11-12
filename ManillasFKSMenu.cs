@@ -90,12 +90,12 @@ namespace RotoTools
                     if (operationX == "HP+70" || operationX == "HP-130")
                     {
                         operationXIsFks = false;
-                        HasOptionFksNo = Helpers.OpcionAsociadaAOperacionPrefOpen(operationId, "MANILLA_FKS", "No", cmb_HardwareSupplier.Text.Trim());
+                        HasOptionFksNo = Helpers.OpcionAsociadaAOperacionPrefOpen(operationId, "MANILLA_FKS", "No_FKS", cmb_HardwareSupplier.Text.Trim());
                     }
                     else if (operationX == "HP+78" || operationX == "HP-138")
                     {
                         operationXIsFks = true;
-                        HasOptionFksSi = Helpers.OpcionAsociadaAOperacionPrefOpen(operationId, "MANILLA_FKS", "Si", cmb_HardwareSupplier.Text.Trim());
+                        HasOptionFksSi = Helpers.OpcionAsociadaAOperacionPrefOpen(operationId, "MANILLA_FKS", "Si_FKS", cmb_HardwareSupplier.Text.Trim());
                     }
                 }
 

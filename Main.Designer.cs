@@ -55,7 +55,7 @@
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 287);
+            statusStrip1.Location = new Point(0, 336);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(696, 22);
             statusStrip1.SizingGrip = false;
@@ -125,24 +125,22 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(318, 206);
+            btn_Export.Location = new Point(59, 269);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
             btn_Export.UseVisualStyleBackColor = true;
-            btn_Export.Visible = false;
             btn_Export.Click += btn_Export_Click;
             // 
             // lbl_Export
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(370, 218);
+            lbl_Export.Location = new Point(111, 281);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
             lbl_Export.Text = "Exportar datos";
-            lbl_Export.Visible = false;
             // 
             // btn_Conector
             // 
@@ -190,7 +188,7 @@
             // 
             lbl_Traduccion.AutoSize = true;
             lbl_Traduccion.BackColor = Color.Transparent;
-            lbl_Traduccion.Location = new Point(111, 220);
+            lbl_Traduccion.Location = new Point(371, 220);
             lbl_Traduccion.Name = "lbl_Traduccion";
             lbl_Traduccion.Size = new Size(65, 15);
             lbl_Traduccion.TabIndex = 13;
@@ -200,7 +198,7 @@
             // 
             btn_Traduccion.BackgroundImage = (Image)resources.GetObject("btn_Traduccion.BackgroundImage");
             btn_Traduccion.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Traduccion.Location = new Point(59, 206);
+            btn_Traduccion.Location = new Point(318, 207);
             btn_Traduccion.Name = "btn_Traduccion";
             btn_Traduccion.Size = new Size(47, 40);
             btn_Traduccion.TabIndex = 12;
@@ -225,23 +223,21 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(111, 220);
+            label2.Location = new Point(112, 220);
             label2.Name = "label2";
             label2.Size = new Size(152, 15);
             label2.TabIndex = 13;
             label2.Text = "Configuración Manillas FKS";
-            label2.Visible = false;
             // 
             // btn_ManillasFKS
             // 
             btn_ManillasFKS.BackgroundImage = (Image)resources.GetObject("btn_ManillasFKS.BackgroundImage");
             btn_ManillasFKS.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ManillasFKS.Location = new Point(59, 208);
+            btn_ManillasFKS.Location = new Point(59, 207);
             btn_ManillasFKS.Name = "btn_ManillasFKS";
             btn_ManillasFKS.Size = new Size(47, 40);
             btn_ManillasFKS.TabIndex = 12;
             btn_ManillasFKS.UseVisualStyleBackColor = true;
-            btn_ManillasFKS.Visible = false;
             btn_ManillasFKS.Click += btn_ManillasFKS_Click;
             // 
             // Main
@@ -250,7 +246,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(696, 309);
+            ClientSize = new Size(696, 358);
             Controls.Add(label2);
             Controls.Add(btn_ManillasFKS);
             Controls.Add(btn_Config);

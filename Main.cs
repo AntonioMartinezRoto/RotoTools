@@ -69,6 +69,11 @@ namespace RotoTools
             optionsMenuForm.ShowDialog();
             //CargarTextos();
         }
+        private void btn_ManillasFKS_Click(object sender, EventArgs e)
+        {
+            ManillasFKSMenu manillasFKSMenuForm = new ManillasFKSMenu();
+            manillasFKSMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods

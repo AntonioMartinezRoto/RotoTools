@@ -45,6 +45,8 @@
             lbl_Traduccion = new Label();
             btn_Traduccion = new Button();
             btn_Config = new Button();
+            label2 = new Label();
+            btn_ManillasFKS = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -219,6 +221,29 @@
             btn_Config.UseVisualStyleBackColor = false;
             btn_Config.Click += btn_Config_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Location = new Point(111, 220);
+            label2.Name = "label2";
+            label2.Size = new Size(152, 15);
+            label2.TabIndex = 13;
+            label2.Text = "Configuración Manillas FKS";
+            label2.Visible = false;
+            // 
+            // btn_ManillasFKS
+            // 
+            btn_ManillasFKS.BackgroundImage = (Image)resources.GetObject("btn_ManillasFKS.BackgroundImage");
+            btn_ManillasFKS.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_ManillasFKS.Location = new Point(59, 208);
+            btn_ManillasFKS.Name = "btn_ManillasFKS";
+            btn_ManillasFKS.Size = new Size(47, 40);
+            btn_ManillasFKS.TabIndex = 12;
+            btn_ManillasFKS.UseVisualStyleBackColor = true;
+            btn_ManillasFKS.Visible = false;
+            btn_ManillasFKS.Click += btn_ManillasFKS_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -226,6 +251,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 309);
+            Controls.Add(label2);
+            Controls.Add(btn_ManillasFKS);
             Controls.Add(btn_Config);
             Controls.Add(lbl_Traduccion);
             Controls.Add(btn_Traduccion);
@@ -269,6 +296,8 @@
         private Label lbl_Conector;
         private Label lbl_ControlCambios;
         private Button btn_ControlCambios;
+        private Label label2;
+        private Button btn_ManillasFKS;
         private Label lbl_Traduccion;
         private Button btn_Traduccion;
         private Button btn_Config;

@@ -1,8 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -138,8 +135,7 @@ namespace RotoTools
             chk_Manillas.Enabled = enable;
             chk_Bombillos.Enabled = enable;
             chk_Customizations.Enabled = enable;
-        }
-        
+        }        
         private void SetToolTips()
         {
             List<enumRotoTipoEscandallo> tiposSeleccionados = new();
@@ -168,6 +164,7 @@ namespace RotoTools
 
             return string.Join("\n", nombres);
         }
+
         #endregion
 
         #region Events
@@ -186,6 +183,7 @@ namespace RotoTools
                     if (chk_Bombillos.Checked) tiposSeleccionados.Add(enumRotoTipoEscandallo.GestionBombillos);
                     if (chk_Customizations.Checked) tiposSeleccionados.Add(enumRotoTipoEscandallo.PersonalizacionClientes);
 
+                    Helpers.InstalarOpcionConfiguraciónStandard();
                     InstallEscandallos(tiposSeleccionados);
                 }
                 else
@@ -194,6 +192,7 @@ namespace RotoTools
                 }
             }
         }
+
         private void ActualizadorInstalarEscandallos_Load(object sender, EventArgs e)
         {
             SetToolTips();

@@ -48,6 +48,7 @@ namespace RotoTools
 
             if (MessageBox.Show("Al instalar se perderán los datos actuales de los escandallos seleccionados. ¿Desea continuar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Helpers.InstalarOpcionConfiguraciónStandard();
                 InstallEscandallos();
             }
             else

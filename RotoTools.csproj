@@ -11,8 +11,8 @@
 	<SelfContained>true</SelfContained>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<PublishTrimmed>false</PublishTrimmed>
-    <FileVersion>3.7</FileVersion>
-    <AssemblyVersion>3.7</AssemblyVersion>
+    <FileVersion>4.0</FileVersion>
+    <AssemblyVersion>4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

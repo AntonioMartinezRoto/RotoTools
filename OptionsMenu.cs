@@ -19,7 +19,7 @@ namespace RotoTools
 
         private void OptionsMenu_Load(object sender, EventArgs e)
         {
-            //CargarTextos();
+            CargarTextos();
             var idiomas = new List<LanguageItem>
                 {
                     new LanguageItem { Text = "Español", Value = "es" },
@@ -55,6 +55,7 @@ namespace RotoTools
         {
             lbl_Idioma.Text = LocalizationManager.GetString("L_SeleccionarIdioma");
             this.Text = LocalizationManager.GetString("L_Opciones");
+            chk_PermitirTraduccion.Text = LocalizationManager.GetString("L_PermitirTraduccion");
             btn_SaveOptions.Text = LocalizationManager.GetString("L_Guardar");
         }
     }

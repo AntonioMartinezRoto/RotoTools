@@ -127,7 +127,7 @@
     <value>Options configuration</value>
   </data>
   <data name="L_ControlCambios" xml:space="preserve">
-    <value>Change control</value>
+    <value>Changes control</value>
   </data>
   <data name="L_ExportarDatos" xml:space="preserve">
     <value>Export data</value>
@@ -221,5 +221,86 @@
   </data>
   <data name="L_Nombre" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="L_ConfManillasFKS" xml:space="preserve">
+    <value>FKS handles configuration</value>
+  </data>
+  <data name="L_PermitirTraduccion" xml:space="preserve">
+    <value>Allow translations in Scripts and Hardware Connector</value>
+  </data>
+  <data name="L_NoScriptsSql" xml:space="preserve">
+    <value>No .sql scripts were found in the selected folder</value>
+  </data>
+  <data name="L_ScriptsEjecutados" xml:space="preserve">
+    <value>Scripts executed successfully.</value>
+  </data>
+  <data name="L_RegistrosActualizados" xml:space="preserve">
+    <value>updated records</value>
+  </data>
+  <data name="L_DescripcionesMB" xml:space="preserve">
+    <value>Base Material descriptions</value>
+  </data>
+  <data name="L_MBFicticios" xml:space="preserve">
+    <value>Ficticios Base Materials</value>
+  </data>
+  <data name="L_Level1MBOpciones" xml:space="preserve">
+    <value>Level 1 Base Materials and Options</value>
+  </data>
+  <data name="L_GroupsSupplier" xml:space="preserve">
+    <value>Groups and supplier</value>
+  </data>
+  <data name="L_RegistrosActualizadosScript" xml:space="preserve">
+    <value>updated records for the script</value>
+  </data>
+  <data name="L_Escandallos" xml:space="preserve">
+    <value>Scripts</value>
+  </data>
+  <data name="L_ExisteProveedor" xml:space="preserve">
+    <value>A Roto supplier already exists. Do you still want to add the supplier Roto Frank SA?</value>
+  </data>
+  <data name="L_ProveedorAgregado" xml:space="preserve">
+    <value>Supplier Roto Frank SA added successfully.</value>
+  </data>
+  <data name="L_OcultoAgregado" xml:space="preserve">
+    <value>Hidden value added successfully.</value>
+  </data>
+  <data name="L_SeleccionarTodosGrupos" xml:space="preserve">
+    <value>Select all groups</value>
+  </data>
+  <data name="L_GestionGeneral" xml:space="preserve">
+    <value>General management</value>
+  </data>
+  <data name="L_ConstructivosPVC" xml:space="preserve">
+    <value>PVC constructives</value>
+  </data>
+  <data name="L_ConstructivosALU" xml:space="preserve">
+    <value>ALU constructives</value>
+  </data>
+  <data name="L_GestionManillas" xml:space="preserve">
+    <value>Handles management</value>
+  </data>
+  <data name="L_GestionBombillos" xml:space="preserve">
+    <value>Gestión Bombillos(EN)</value>
+  </data>
+  <data name="L_PersonalizacionClientes" xml:space="preserve">
+    <value>Customers customization</value>
+  </data>
+  <data name="L_InstalacionIndividualizada" xml:space="preserve">
+    <value>Individualized installation</value>
+  </data>
+  <data name="L_SeleccionarEscandallos" xml:space="preserve">
+    <value>Select manually the scripts</value>
+  </data>
+  <data name="L_Instalar" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="L_SeleccionarTodos" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="L_ConfirmarInstalar" xml:space="preserve">
+    <value>Installing will erase the current data of the selected scripts. Do you want to continue?</value>
+  </data>
+  <data name="L_EscandallosInstalados" xml:space="preserve">
+    <value>Installed scripts</value>
   </data>
 </root>

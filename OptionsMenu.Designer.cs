@@ -34,7 +34,9 @@
             lbl_Idioma = new Label();
             chk_PermitirTraduccion = new CheckBox();
             groupBox_Opciones = new GroupBox();
+            groupBox_Idioma = new GroupBox();
             groupBox_Opciones.SuspendLayout();
+            groupBox_Idioma.SuspendLayout();
             SuspendLayout();
             // 
             // btn_SaveOptions
@@ -55,21 +57,19 @@
             // 
             cmb_Idioma.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Idioma.FormattingEnabled = true;
-            cmb_Idioma.Location = new Point(213, 29);
+            cmb_Idioma.Location = new Point(169, 16);
             cmb_Idioma.Name = "cmb_Idioma";
-            cmb_Idioma.Size = new Size(175, 23);
+            cmb_Idioma.Size = new Size(191, 23);
             cmb_Idioma.TabIndex = 14;
-            cmb_Idioma.Visible = false;
             // 
             // lbl_Idioma
             // 
             lbl_Idioma.BackColor = Color.Transparent;
-            lbl_Idioma.Location = new Point(58, 32);
+            lbl_Idioma.Location = new Point(15, 19);
             lbl_Idioma.Name = "lbl_Idioma";
-            lbl_Idioma.Size = new Size(132, 20);
+            lbl_Idioma.Size = new Size(148, 20);
             lbl_Idioma.TabIndex = 13;
             lbl_Idioma.Text = "Seleccionar idioma";
-            lbl_Idioma.Visible = false;
             // 
             // chk_PermitirTraduccion
             // 
@@ -86,11 +86,22 @@
             // 
             groupBox_Opciones.BackColor = Color.Transparent;
             groupBox_Opciones.Controls.Add(chk_PermitirTraduccion);
-            groupBox_Opciones.Location = new Point(36, 84);
+            groupBox_Opciones.Location = new Point(36, 95);
             groupBox_Opciones.Name = "groupBox_Opciones";
             groupBox_Opciones.Size = new Size(384, 72);
             groupBox_Opciones.TabIndex = 25;
             groupBox_Opciones.TabStop = false;
+            // 
+            // groupBox_Idioma
+            // 
+            groupBox_Idioma.BackColor = Color.Transparent;
+            groupBox_Idioma.Controls.Add(lbl_Idioma);
+            groupBox_Idioma.Controls.Add(cmb_Idioma);
+            groupBox_Idioma.Location = new Point(36, 38);
+            groupBox_Idioma.Name = "groupBox_Idioma";
+            groupBox_Idioma.Size = new Size(384, 51);
+            groupBox_Idioma.TabIndex = 26;
+            groupBox_Idioma.TabStop = false;
             // 
             // OptionsMenu
             // 
@@ -99,9 +110,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(534, 270);
+            Controls.Add(groupBox_Idioma);
             Controls.Add(groupBox_Opciones);
-            Controls.Add(cmb_Idioma);
-            Controls.Add(lbl_Idioma);
             Controls.Add(btn_SaveOptions);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -112,6 +122,7 @@
             Load += OptionsMenu_Load;
             groupBox_Opciones.ResumeLayout(false);
             groupBox_Opciones.PerformLayout();
+            groupBox_Idioma.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -122,5 +133,6 @@
         private Label lbl_Idioma;
         private CheckBox chk_PermitirTraduccion;
         private GroupBox groupBox_Opciones;
+        private GroupBox groupBox_Idioma;
     }
 }

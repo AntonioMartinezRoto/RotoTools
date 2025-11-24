@@ -7,7 +7,6 @@ namespace RotoTools
     {
         #region Properties
 
-        private string ConnectionString { get; set; }
 
         #endregion
 
@@ -25,7 +24,7 @@ namespace RotoTools
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = $"RotoTools v{version.Major}.{version.Minor}";
-            //CargarTextos();
+            CargarTextos();
             CargarDatos();
         }
         private void btn_Refresh_Click(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace RotoTools
         {
             OptionsMenu optionsMenuForm = new OptionsMenu();
             optionsMenuForm.ShowDialog();
-            //CargarTextos();
+            CargarTextos();
         }
         private void btn_ManillasFKS_Click(object sender, EventArgs e)
         {
@@ -80,7 +79,6 @@ namespace RotoTools
 
         private void CargarDatos()
         {
-            ConnectionString = Helpers.GetConnectionString();
             InitializeInfoConnection();
         }
         private void CargarTextos()
@@ -91,6 +89,7 @@ namespace RotoTools
             lbl_ControlCambios.Text = LocalizationManager.GetString("L_ControlCambios");
             lbl_Actualizacion.Text = LocalizationManager.GetString("L_Actualizador");
             lbl_Traduccion.Text = LocalizationManager.GetString("L_Traduccion");
+            lbl_ConfigFKS.Text = LocalizationManager.GetString("L_ConfManillasFKS");
             this.Text = LocalizationManager.GetString("L_Menu");
         }
         private void InitializeInfoConnection()
@@ -98,11 +97,5 @@ namespace RotoTools
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
-
-
-
-
-
-
     }
 }

@@ -45,7 +45,7 @@
             lbl_Traduccion = new Label();
             btn_Traduccion = new Button();
             btn_Config = new Button();
-            label2 = new Label();
+            lbl_ConfigFKS = new Label();
             btn_ManillasFKS = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -219,15 +219,15 @@
             btn_Config.UseVisualStyleBackColor = false;
             btn_Config.Click += btn_Config_Click;
             // 
-            // label2
+            // lbl_ConfigFKS
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Location = new Point(112, 220);
-            label2.Name = "label2";
-            label2.Size = new Size(152, 15);
-            label2.TabIndex = 13;
-            label2.Text = "Configuración Manillas FKS";
+            lbl_ConfigFKS.AutoSize = true;
+            lbl_ConfigFKS.BackColor = Color.Transparent;
+            lbl_ConfigFKS.Location = new Point(112, 220);
+            lbl_ConfigFKS.Name = "lbl_ConfigFKS";
+            lbl_ConfigFKS.Size = new Size(152, 15);
+            lbl_ConfigFKS.TabIndex = 13;
+            lbl_ConfigFKS.Text = "Configuración Manillas FKS";
             // 
             // btn_ManillasFKS
             // 
@@ -247,7 +247,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 358);
-            Controls.Add(label2);
+            Controls.Add(lbl_ConfigFKS);
             Controls.Add(btn_ManillasFKS);
             Controls.Add(btn_Config);
             Controls.Add(lbl_Traduccion);
@@ -292,7 +292,7 @@
         private Label lbl_Conector;
         private Label lbl_ControlCambios;
         private Button btn_ControlCambios;
-        private Label label2;
+        private Label lbl_ConfigFKS;
         private Button btn_ManillasFKS;
         private Label lbl_Traduccion;
         private Button btn_Traduccion;

@@ -49,7 +49,7 @@ namespace RotoTools
             CargarGruposPresupuestado();
             CargarGruposProduccion();
             AsignarValoresPorDefecto();
-            //CargarTextos();
+            CargarTextos();
         }
         private void btn_EjecutarScripts_Click(object sender, EventArgs e)
         {
@@ -59,22 +59,22 @@ namespace RotoTools
                 EnableControls(false);
                 ResultQuerys resultQuerys = EjecutarScripts();
 
-                string mensaje = "Scripts ejecutados correctamente." + Environment.NewLine + Environment.NewLine +
-                                 resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() + " registros actualizados (Grupos presupuestado, producción y proveedor): " + Environment.NewLine + Environment.NewLine +
-                                 resultQuerys.ResultQueryUpdateNivel1MaterialesBaseYOpciones.ToString() + " registros actualizados (Nivel 1 Materiales Base y Opciones): " + Environment.NewLine + Environment.NewLine +
-                                 resultQuerys.ResultQueryUpdatePropFicticios.ToString() + " registros actualizados (Materiales Base ficticios): " + Environment.NewLine + Environment.NewLine +
-                                 resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " registros actualizados (Descripciones Materiales Base): " + Environment.NewLine;
+                string mensaje = LocalizationManager.GetString("L_ScriptsEjecutados") + Environment.NewLine + Environment.NewLine +
+                                 LocalizationManager.GetString("L_GroupsSupplier") + ": " + resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
+                                 LocalizationManager.GetString("L_Level1MBOpciones") + ": " + resultQuerys.ResultQueryUpdateNivel1MaterialesBaseYOpciones.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
+                                 LocalizationManager.GetString("L_MBFicticios") + ": " + resultQuerys.ResultQueryUpdatePropFicticios.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
+                                 LocalizationManager.GetString("L_DescripcionesMB") + ": " + resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine;
 
                 MessageBox.Show(mensaje,
-                                "Ejecución completada",
+                                "",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
                 EnableControls(true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ejecutando los scripts: " + ex.Message,
-                                "Error",
+                MessageBox.Show("Error (1): " + ex.Message,
+                                "",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 EnableControls(true);
@@ -123,7 +123,6 @@ namespace RotoTools
             {
                 using (FolderBrowserDialog dialog = new FolderBrowserDialog())
                 {
-                    dialog.Description = "Selecciona la carpeta con los scripts SQL";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         string carpeta = dialog.SelectedPath;
@@ -131,7 +130,7 @@ namespace RotoTools
 
                         if (ficheros.Length == 0)
                         {
-                            MessageBox.Show("No se encontraron scripts .sql en la carpeta seleccionada.");
+                            MessageBox.Show(LocalizationManager.GetString("L_NoScriptsSql"));
                             return;
                         }
 
@@ -150,7 +149,7 @@ namespace RotoTools
                             {
                                 rowsAfected += Helpers.EjecutarNonQuery(script);
                                 totalEjecutados++;
-                                message += rowsAfected.ToString() + " registros afectados para el script " + fichero + Environment.NewLine + Environment.NewLine;
+                                message += rowsAfected.ToString() + LocalizationManager.GetString("L_RegistrosActualizadosScript") + " " + fichero + Environment.NewLine + Environment.NewLine;
                             }
                         }
                         MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -160,7 +159,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error ejecutando scripts(s): " + Environment.NewLine + Environment.NewLine +
+                MessageBox.Show($"Error (2): " + Environment.NewLine + Environment.NewLine +
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EnableControls(true);
             }
@@ -180,7 +179,6 @@ namespace RotoTools
             {
                 using (FolderBrowserDialog dialog = new FolderBrowserDialog())
                 {
-                    dialog.Description = "Selecciona la carpeta donde guardar los escandallos";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         string carpeta = dialog.SelectedPath;
@@ -239,7 +237,7 @@ namespace RotoTools
                             File.WriteAllText(path, JsonSerializer.Serialize(escandallo, options));
                         }
 
-                        MessageBox.Show($"Exportados {escandallos.Count} escandallos a: " + Environment.NewLine + carpeta, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(escandallos.Count.ToString() + " " + LocalizationManager.GetString("Base L_Escandallos") + ": " + Environment.NewLine + carpeta, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         EnableControls(true);
                     }
@@ -247,7 +245,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error guardando los escandallos: " + Environment.NewLine + Environment.NewLine +
+                MessageBox.Show($"Error(3)" + Environment.NewLine + Environment.NewLine +
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EnableControls(true);
             }
@@ -272,21 +270,21 @@ namespace RotoTools
             {
                 if (ExisteProveedorRotoEnBD())
                 {
-                    if (MessageBox.Show("Ya existe un proveedor de Roto. ¿Desea agregar igualmente el proveedor Roto Frank SA?",
-                                        "Proveedor existente",
+                    if (MessageBox.Show(LocalizationManager.GetString("L_ExisteProveedor"),
+                                        "",
                                         MessageBoxButtons.YesNo,
                                         MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
                 }
 
                 AgregarProveedorRotoFrankSA();
-                MessageBox.Show("Proveedor Roto Frank SA agregado correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(LocalizationManager.GetString("L_ProveedorAgregado"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CargarProveedores();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error insertando el proveedor Roto Frank SA" +Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (4)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -466,12 +464,12 @@ namespace RotoTools
                             InsertContenidoOpcionOculto(reader["Nombre"].ToString(), reader.GetGuid(1).ToString());
                         }
                     }
-                    MessageBox.Show("Valor Oculto añadido correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_OcultoAgregado"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error insertando valor oculto a las opciones: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (5): " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

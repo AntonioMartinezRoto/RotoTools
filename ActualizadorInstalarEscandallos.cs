@@ -164,7 +164,20 @@ namespace RotoTools
 
             return string.Join("\n", nombres);
         }
-
+        private void CargarTextos()
+        {
+            chk_SelectAll.Text = LocalizationManager.GetString("L_SeleccionarTodosGrupos");
+            chk_PVC.Text = LocalizationManager.GetString("L_ConstructivosPVC");
+            chk_GestionGeneral.Text = LocalizationManager.GetString("L_GestionGeneral");
+            chk_Alu.Text = LocalizationManager.GetString("L_ConstructivosALU");
+            chk_Manillas.Text = LocalizationManager.GetString("L_GestionManillas");
+            chk_Bombillos.Text = LocalizationManager.GetString("L_GestionBombillos");
+            chk_Customizations.Text = LocalizationManager.GetString("L_PersonalizacionClientes");
+            groupBoxManual.Text = LocalizationManager.GetString("L_InstalacionIndividualizada");
+            lbl_SelectScripts.Text = LocalizationManager.GetString("L_SeleccionarEscandallos");
+            btn_InstalarEscandallos.Text = LocalizationManager.GetString("L_Instalar");
+            this.Text = LocalizationManager.GetString("L_InstalarEscandallos");
+        }
         #endregion
 
         #region Events
@@ -192,10 +205,10 @@ namespace RotoTools
                 }
             }
         }
-
         private void ActualizadorInstalarEscandallos_Load(object sender, EventArgs e)
         {
             SetToolTips();
+            CargarTextos();
         }
         private void chk_SelectAll_CheckedChanged(object sender, EventArgs e)
         {

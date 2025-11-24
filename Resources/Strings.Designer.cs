@@ -133,11 +133,56 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Al instalar se perderán los datos actuales de los escandallos seleccionados. ¿Desea continuar?.
+        /// </summary>
+        internal static string L_ConfirmarInstalar {
+            get {
+                return ResourceManager.GetString("L_ConfirmarInstalar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuración Manillas FKS.
+        /// </summary>
+        internal static string L_ConfManillasFKS {
+            get {
+                return ResourceManager.GetString("L_ConfManillasFKS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Constructivos aluminio.
+        /// </summary>
+        internal static string L_ConstructivosALU {
+            get {
+                return ResourceManager.GetString("L_ConstructivosALU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Constructivos PVC.
+        /// </summary>
+        internal static string L_ConstructivosPVC {
+            get {
+                return ResourceManager.GetString("L_ConstructivosPVC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Control de cambios.
         /// </summary>
         internal static string L_ControlCambios {
             get {
                 return ResourceManager.GetString("L_ControlCambios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Descripciones Materiales Base.
+        /// </summary>
+        internal static string L_DescripcionesMB {
+            get {
+                return ResourceManager.GetString("L_DescripcionesMB", resourceCulture);
             }
         }
         
@@ -178,6 +223,33 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Escandallos.
+        /// </summary>
+        internal static string L_Escandallos {
+            get {
+                return ResourceManager.GetString("L_Escandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Escandallos instalados.
+        /// </summary>
+        internal static string L_EscandallosInstalados {
+            get {
+                return ResourceManager.GetString("L_EscandallosInstalados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe un proveedor de Roto. ¿Desea agregar igualmente el proveedor Roto Frank SA?.
+        /// </summary>
+        internal static string L_ExisteProveedor {
+            get {
+                return ResourceManager.GetString("L_ExisteProveedor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Exportar datos.
         /// </summary>
         internal static string L_ExportarDatos {
@@ -192,6 +264,42 @@ namespace RotoTools.Resources {
         internal static string L_ExportarEscandallos {
             get {
                 return ResourceManager.GetString("L_ExportarEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestión bombillos.
+        /// </summary>
+        internal static string L_GestionBombillos {
+            get {
+                return ResourceManager.GetString("L_GestionBombillos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestión general.
+        /// </summary>
+        internal static string L_GestionGeneral {
+            get {
+                return ResourceManager.GetString("L_GestionGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gestión manillas.
+        /// </summary>
+        internal static string L_GestionManillas {
+            get {
+                return ResourceManager.GetString("L_GestionManillas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Grupos presupuestado, producción y proveedor.
+        /// </summary>
+        internal static string L_GroupsSupplier {
+            get {
+                return ResourceManager.GetString("L_GroupsSupplier", resourceCulture);
             }
         }
         
@@ -223,11 +331,47 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Instalación individualizada.
+        /// </summary>
+        internal static string L_InstalacionIndividualizada {
+            get {
+                return ResourceManager.GetString("L_InstalacionIndividualizada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Instalar.
+        /// </summary>
+        internal static string L_Instalar {
+            get {
+                return ResourceManager.GetString("L_Instalar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Instalar Escandallos.
         /// </summary>
         internal static string L_InstalarEscandallos {
             get {
                 return ResourceManager.GetString("L_InstalarEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nivel 1 Materiales Base y Opciones.
+        /// </summary>
+        internal static string L_Level1MBOpciones {
+            get {
+                return ResourceManager.GetString("L_Level1MBOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Materiales Base ficticios.
+        /// </summary>
+        internal static string L_MBFicticios {
+            get {
+                return ResourceManager.GetString("L_MBFicticios", resourceCulture);
             }
         }
         
@@ -259,6 +403,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se encontraron scripts .sql en la carpeta seleccionada..
+        /// </summary>
+        internal static string L_NoScriptsSql {
+            get {
+                return ResourceManager.GetString("L_NoScriptsSql", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Oculta en árbol.
         /// </summary>
         internal static string L_OcultaArbol {
@@ -286,11 +439,38 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Valor Oculto añadido correctamente..
+        /// </summary>
+        internal static string L_OcultoAgregado {
+            get {
+                return ResourceManager.GetString("L_OcultoAgregado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Opciones.
         /// </summary>
         internal static string L_Opciones {
             get {
                 return ResourceManager.GetString("L_Opciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Permitir traducciones en Escandallos y Conector de Herraje.
+        /// </summary>
+        internal static string L_PermitirTraduccion {
+            get {
+                return ResourceManager.GetString("L_PermitirTraduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Personalización clientes.
+        /// </summary>
+        internal static string L_PersonalizacionClientes {
+            get {
+                return ResourceManager.GetString("L_PersonalizacionClientes", resourceCulture);
             }
         }
         
@@ -322,6 +502,33 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Proveedor Roto Frank SA agregado correctamente..
+        /// </summary>
+        internal static string L_ProveedorAgregado {
+            get {
+                return ResourceManager.GetString("L_ProveedorAgregado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a registros actualizados.
+        /// </summary>
+        internal static string L_RegistrosActualizados {
+            get {
+                return ResourceManager.GetString("L_RegistrosActualizados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a registros afectados para el script.
+        /// </summary>
+        internal static string L_RegistrosActualizadosScript {
+            get {
+                return ResourceManager.GetString("L_RegistrosActualizadosScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Restaurar opciones.
         /// </summary>
         internal static string L_RestaurarOpciones {
@@ -331,11 +538,47 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Scripts ejecutados correctamente..
+        /// </summary>
+        internal static string L_ScriptsEjecutados {
+            get {
+                return ResourceManager.GetString("L_ScriptsEjecutados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar manualmente los escandallos.
+        /// </summary>
+        internal static string L_SeleccionarEscandallos {
+            get {
+                return ResourceManager.GetString("L_SeleccionarEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Seleccionar idioma.
         /// </summary>
         internal static string L_SeleccionarIdioma {
             get {
                 return ResourceManager.GetString("L_SeleccionarIdioma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar todos.
+        /// </summary>
+        internal static string L_SeleccionarTodos {
+            get {
+                return ResourceManager.GetString("L_SeleccionarTodos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar todos los grupos.
+        /// </summary>
+        internal static string L_SeleccionarTodosGrupos {
+            get {
+                return ResourceManager.GetString("L_SeleccionarTodosGrupos", resourceCulture);
             }
         }
         

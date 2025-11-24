@@ -222,4 +222,85 @@
   <data name="L_Nombre" xml:space="preserve">
     <value>Nombre(DE)</value>
   </data>
+  <data name="L_ConfManillasFKS" xml:space="preserve">
+    <value>Configuración Manillas FKS(DE)</value>
+  </data>
+  <data name="L_PermitirTraduccion" xml:space="preserve">
+    <value>Permitir traducciones en Escandallos y Conector de Herraje(DE)</value>
+  </data>
+  <data name="L_NoScriptsSql" xml:space="preserve">
+    <value>No se encontraron scripts .sql en la carpeta seleccionada.(DE)</value>
+  </data>
+  <data name="L_ScriptsEjecutados" xml:space="preserve">
+    <value>Scripts ejecutados correctamente.(DE)</value>
+  </data>
+  <data name="L_RegistrosActualizados" xml:space="preserve">
+    <value>registros actualizados(DE)</value>
+  </data>
+  <data name="L_DescripcionesMB" xml:space="preserve">
+    <value>Descripciones Materiales Base(DE)</value>
+  </data>
+  <data name="L_MBFicticios" xml:space="preserve">
+    <value>Materiales Base ficticios(DE)</value>
+  </data>
+  <data name="L_Level1MBOpciones" xml:space="preserve">
+    <value>Nivel 1 Materiales Base y Opciones(DE)</value>
+  </data>
+  <data name="L_GroupsSupplier" xml:space="preserve">
+    <value>Grupos presupuestado, producción y proveedor(DE)</value>
+  </data>
+  <data name="L_RegistrosActualizadosScript" xml:space="preserve">
+    <value>registros afectados para el script(DE)</value>
+  </data>
+  <data name="L_Escandallos" xml:space="preserve">
+    <value>Escandallos(DE)</value>
+  </data>
+  <data name="L_ExisteProveedor" xml:space="preserve">
+    <value>Ya existe un proveedor de Roto. ¿Desea agregar igualmente el proveedor Roto Frank SA?(DE)</value>
+  </data>
+  <data name="L_ProveedorAgregado" xml:space="preserve">
+    <value>Proveedor Roto Frank SA agregado correctamente.(DE)</value>
+  </data>
+  <data name="L_OcultoAgregado" xml:space="preserve">
+    <value>Valor Oculto añadido correctamente.(DE)</value>
+  </data>
+  <data name="L_SeleccionarTodosGrupos" xml:space="preserve">
+    <value>Seleccionar todos los grupos(DE)</value>
+  </data>
+  <data name="L_GestionGeneral" xml:space="preserve">
+    <value>Gestión general(DE)</value>
+  </data>
+  <data name="L_ConstructivosPVC" xml:space="preserve">
+    <value>Constructivos PVC(DE)</value>
+  </data>
+  <data name="L_ConstructivosALU" xml:space="preserve">
+    <value>Constructivos aluminio(DE)</value>
+  </data>
+  <data name="L_GestionManillas" xml:space="preserve">
+    <value>Gestión manillas(DE)</value>
+  </data>
+  <data name="L_GestionBombillos" xml:space="preserve">
+    <value>Gestión Bombillos(DE)</value>
+  </data>
+  <data name="L_PersonalizacionClientes" xml:space="preserve">
+    <value>Personalización clientes(DE)</value>
+  </data>
+  <data name="L_InstalacionIndividualizada" xml:space="preserve">
+    <value>Instalación individualizada(DE)</value>
+  </data>
+  <data name="L_SeleccionarEscandallos" xml:space="preserve">
+    <value>Seleccionar manualmente los escandallos(DE)</value>
+  </data>
+  <data name="L_Instalar" xml:space="preserve">
+    <value>Instalar(DE)</value>
+  </data>
+  <data name="L_SeleccionarTodos" xml:space="preserve">
+    <value>Seleccionar todos(DE)</value>
+  </data>
+  <data name="L_ConfirmarInstalar" xml:space="preserve">
+    <value>Al instalar se perderán los datos actuales de los escandallos seleccionados. ¿Desea continuar?(DE)</value>
+  </data>
+  <data name="L_EscandallosInstalados" xml:space="preserve">
+    <value>Escandallos instalados(DE)</value>
+  </data>
 </root>

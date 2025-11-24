@@ -41,7 +41,7 @@
             groupBoxEscandallos = new GroupBox();
             chk_SelectAll = new CheckBox();
             groupBoxManual = new GroupBox();
-            label1 = new Label();
+            lbl_SelectScripts = new Label();
             btn_FiltrarEscandallos = new Button();
             groupBoxEscandallos.SuspendLayout();
             groupBoxManual.SuspendLayout();
@@ -159,7 +159,7 @@
             // groupBoxManual
             // 
             groupBoxManual.BackColor = Color.Transparent;
-            groupBoxManual.Controls.Add(label1);
+            groupBoxManual.Controls.Add(lbl_SelectScripts);
             groupBoxManual.Controls.Add(btn_FiltrarEscandallos);
             groupBoxManual.Location = new Point(23, 175);
             groupBoxManual.Name = "groupBoxManual";
@@ -168,14 +168,14 @@
             groupBoxManual.TabStop = false;
             groupBoxManual.Text = "Instalación individualizada";
             // 
-            // label1
+            // lbl_SelectScripts
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(52, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(226, 15);
-            label1.TabIndex = 15;
-            label1.Text = "Seleccionar manualmente los escandallos";
+            lbl_SelectScripts.AutoSize = true;
+            lbl_SelectScripts.Location = new Point(52, 27);
+            lbl_SelectScripts.Name = "lbl_SelectScripts";
+            lbl_SelectScripts.Size = new Size(226, 15);
+            lbl_SelectScripts.TabIndex = 15;
+            lbl_SelectScripts.Text = "Seleccionar manualmente los escandallos";
             // 
             // btn_FiltrarEscandallos
             // 
@@ -231,6 +231,6 @@
         private CheckBox chk_SelectAll;
         private GroupBox groupBoxManual;
         private Button btn_FiltrarEscandallos;
-        private Label label1;
+        private Label lbl_SelectScripts;
     }
 }

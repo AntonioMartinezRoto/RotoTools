@@ -41,6 +41,7 @@ namespace RotoTools
         private void ConectorHerrajeMenu_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            CargarTextos();
         }
         private void btn_LoadXml_Click(object sender, EventArgs e)
         {
@@ -117,7 +118,17 @@ namespace RotoTools
         #endregion
 
         #region Private Methods
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_ConectorHerraje");
+            lbl_Xml.Text = LocalizationManager.GetString("L_SeleccionarXML");
 
+            lbl_GenerarConector.Text = LocalizationManager.GetString("L_GenerarConector");
+            chk_ConfigAE.Text = LocalizationManager.GetString("L_BalconerasAEconAI");
+            lbl_Combinar.Text = LocalizationManager.GetString("L_CombinarConectores");
+            lbl_Revision.Text = LocalizationManager.GetString("L_RevisionSets");
+
+        }
         private void CargarDatos()
         {
             InitializeInfoConnection();

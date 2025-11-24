@@ -366,4 +366,19 @@
   <data name="L_Filtro" xml:space="preserve">
     <value>Filter</value>
   </data>
+  <data name="L_SeleccionarXML" xml:space="preserve">
+    <value>Select XML</value>
+  </data>
+  <data name="L_GenerarConector" xml:space="preserve">
+    <value>Generate Hardware Connector</value>
+  </data>
+  <data name="L_BalconerasAEconAI" xml:space="preserve">
+    <value>Easy Mix outer opening with inner opening Sets</value>
+  </data>
+  <data name="L_CombinarConectores" xml:space="preserve">
+    <value>Combine Hardware Connectors</value>
+  </data>
+  <data name="L_RevisionSets" xml:space="preserve">
+    <value>Sets review</value>
+  </data>
 </root>

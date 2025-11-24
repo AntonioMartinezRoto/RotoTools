@@ -366,4 +366,19 @@
   <data name="L_Filtro" xml:space="preserve">
     <value>Filtrar(IT)</value>
   </data>
+  <data name="L_SeleccionarXML" xml:space="preserve">
+    <value>Seleccionar XML(IT)</value>
+  </data>
+  <data name="L_GenerarConector" xml:space="preserve">
+    <value>Generar Conector de Herraje(IT)</value>
+  </data>
+  <data name="L_BalconerasAEconAI" xml:space="preserve">
+    <value>Balconeras AE con Sets de AI(IT)</value>
+  </data>
+  <data name="L_CombinarConectores" xml:space="preserve">
+    <value>Combinar Conectores de Herraje(IT)</value>
+  </data>
+  <data name="L_RevisionSets" xml:space="preserve">
+    <value>Revisión de Sets(IT)</value>
+  </data>
 </root>

@@ -79,11 +79,29 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Balconeras AE con Sets de AI.
+        /// </summary>
+        internal static string L_BalconerasAEconAI {
+            get {
+                return ResourceManager.GetString("L_BalconerasAEconAI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Buscar.
         /// </summary>
         internal static string L_Buscar {
             get {
                 return ResourceManager.GetString("L_Buscar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Combinar Conectores de Herraje.
+        /// </summary>
+        internal static string L_CombinarConectores {
+            get {
+                return ResourceManager.GetString("L_CombinarConectores", resourceCulture);
             }
         }
         
@@ -412,6 +430,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar Conector de Herraje.
+        /// </summary>
+        internal static string L_GenerarConector {
+            get {
+                return ResourceManager.GetString("L_GenerarConector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Generar informe de control de cambios.
         /// </summary>
         internal static string L_GenerarInforme {
@@ -691,6 +718,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Revisión de Sets.
+        /// </summary>
+        internal static string L_RevisionSets {
+            get {
+                return ResourceManager.GetString("L_RevisionSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Scripts ejecutados correctamente..
         /// </summary>
         internal static string L_ScriptsEjecutados {
@@ -732,6 +768,15 @@ namespace RotoTools.Resources {
         internal static string L_SeleccionarTodosGrupos {
             get {
                 return ResourceManager.GetString("L_SeleccionarTodosGrupos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar XML.
+        /// </summary>
+        internal static string L_SeleccionarXML {
+            get {
+                return ResourceManager.GetString("L_SeleccionarXML", resourceCulture);
             }
         }
         

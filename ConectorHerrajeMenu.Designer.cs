@@ -35,10 +35,10 @@
             lbl_Conexion = new ToolStripStatusLabel();
             btn_Actualizar = new Button();
             btn_SetsNoUtilizados = new Button();
-            label2 = new Label();
-            label3 = new Label();
+            lbl_Revision = new Label();
+            lbl_GenerarConector = new Label();
             btn_GeneraConector = new Button();
-            label4 = new Label();
+            lbl_Combinar = new Label();
             btn_CombinarConectores = new Button();
             chk_ConfigAE = new CheckBox();
             statusStrip1.SuspendLayout();
@@ -106,23 +106,23 @@
             btn_SetsNoUtilizados.UseVisualStyleBackColor = true;
             btn_SetsNoUtilizados.Click += btn_SetsNoUtilizados_Click;
             // 
-            // label2
+            // lbl_Revision
             // 
-            label2.BackColor = Color.Transparent;
-            label2.Location = new Point(96, 238);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 16);
-            label2.TabIndex = 10;
-            label2.Text = "Revisión de Sets";
+            lbl_Revision.BackColor = Color.Transparent;
+            lbl_Revision.Location = new Point(96, 238);
+            lbl_Revision.Name = "lbl_Revision";
+            lbl_Revision.Size = new Size(124, 16);
+            lbl_Revision.TabIndex = 10;
+            lbl_Revision.Text = "Revisión de Sets";
             // 
-            // label3
+            // lbl_GenerarConector
             // 
-            label3.BackColor = Color.Transparent;
-            label3.Location = new Point(96, 120);
-            label3.Name = "label3";
-            label3.Size = new Size(166, 17);
-            label3.TabIndex = 12;
-            label3.Text = "Generar Conector de Herraje";
+            lbl_GenerarConector.BackColor = Color.Transparent;
+            lbl_GenerarConector.Location = new Point(96, 120);
+            lbl_GenerarConector.Name = "lbl_GenerarConector";
+            lbl_GenerarConector.Size = new Size(166, 17);
+            lbl_GenerarConector.TabIndex = 12;
+            lbl_GenerarConector.Text = "Generar Conector de Herraje";
             // 
             // btn_GeneraConector
             // 
@@ -135,14 +135,14 @@
             btn_GeneraConector.UseVisualStyleBackColor = true;
             btn_GeneraConector.Click += btn_GeneraConector_Click;
             // 
-            // label4
+            // lbl_Combinar
             // 
-            label4.BackColor = Color.Transparent;
-            label4.Location = new Point(96, 178);
-            label4.Name = "label4";
-            label4.Size = new Size(189, 15);
-            label4.TabIndex = 14;
-            label4.Text = "Combinar Conectores de Herraje";
+            lbl_Combinar.BackColor = Color.Transparent;
+            lbl_Combinar.Location = new Point(96, 178);
+            lbl_Combinar.Name = "lbl_Combinar";
+            lbl_Combinar.Size = new Size(189, 15);
+            lbl_Combinar.TabIndex = 14;
+            lbl_Combinar.Text = "Combinar Conectores de Herraje";
             // 
             // btn_CombinarConectores
             // 
@@ -174,11 +174,11 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(683, 307);
             Controls.Add(chk_ConfigAE);
-            Controls.Add(label4);
+            Controls.Add(lbl_Combinar);
             Controls.Add(btn_CombinarConectores);
-            Controls.Add(label3);
+            Controls.Add(lbl_GenerarConector);
             Controls.Add(btn_GeneraConector);
-            Controls.Add(label2);
+            Controls.Add(lbl_Revision);
             Controls.Add(btn_SetsNoUtilizados);
             Controls.Add(btn_Actualizar);
             Controls.Add(statusStrip1);
@@ -205,10 +205,10 @@
         private ToolStripStatusLabel lbl_Conexion;
         private Button btn_Actualizar;
         private Button btn_SetsNoUtilizados;
-        private Label label2;
-        private Label label3;
+        private Label lbl_Revision;
+        private Label lbl_GenerarConector;
         private Button btn_GeneraConector;
-        private Label label4;
+        private Label lbl_Combinar;
         private Button btn_CombinarConectores;
         private CheckBox chk_ConfigAE;
     }

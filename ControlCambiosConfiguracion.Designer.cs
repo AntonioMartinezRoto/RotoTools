@@ -344,6 +344,7 @@
             Name = "ControlCambiosConfiguracion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configuración";
+            Load += ControlCambiosConfiguracion_Load;
             pnl_Sets.ResumeLayout(false);
             pnl_Sets.PerformLayout();
             pnl_Fittings.ResumeLayout(false);

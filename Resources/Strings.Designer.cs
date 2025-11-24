@@ -88,11 +88,119 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Comparar articulos-opciones.
+        /// </summary>
+        internal static string L_CompararArticulosOpciones {
+            get {
+                return ResourceManager.GetString("L_CompararArticulosOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar colores.
+        /// </summary>
+        internal static string L_CompararColores {
+            get {
+                return ResourceManager.GetString("L_CompararColores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar descripciones.
+        /// </summary>
+        internal static string L_CompararDescripciones {
+            get {
+                return ResourceManager.GetString("L_CompararDescripciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar fitting groups.
+        /// </summary>
+        internal static string L_CompararFittingGroups {
+            get {
+                return ResourceManager.GetString("L_CompararFittingGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar fittings.
+        /// </summary>
+        internal static string L_CompararFittings {
+            get {
+                return ResourceManager.GetString("L_CompararFittings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar length.
+        /// </summary>
+        internal static string L_CompararLength {
+            get {
+                return ResourceManager.GetString("L_CompararLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar location.
+        /// </summary>
+        internal static string L_CompararLocation {
+            get {
+                return ResourceManager.GetString("L_CompararLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar manufacturer.
+        /// </summary>
+        internal static string L_CompararManufacturer {
+            get {
+                return ResourceManager.GetString("L_CompararManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar nº de setdescriptions.
+        /// </summary>
+        internal static string L_CompararNumeroSets {
+            get {
+                return ResourceManager.GetString("L_CompararNumeroSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar opciones.
+        /// </summary>
+        internal static string L_CompararOpciones {
+            get {
+                return ResourceManager.GetString("L_CompararOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparar sets.
+        /// </summary>
+        internal static string L_CompararSets {
+            get {
+                return ResourceManager.GetString("L_CompararSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Conector de herraje.
         /// </summary>
         internal static string L_ConectorHerraje {
             get {
                 return ResourceManager.GetString("L_ConectorHerraje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuración del informe.
+        /// </summary>
+        internal static string L_ConfiguracionInforme {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionInforme", resourceCulture);
             }
         }
         
@@ -264,6 +372,51 @@ namespace RotoTools.Resources {
         internal static string L_ExportarEscandallos {
             get {
                 return ResourceManager.GetString("L_ExportarEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Filtrar fittings.
+        /// </summary>
+        internal static string L_FiltrarFittings {
+            get {
+                return ResourceManager.GetString("L_FiltrarFittings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Filtrar sets.
+        /// </summary>
+        internal static string L_FiltrarSets {
+            get {
+                return ResourceManager.GetString("L_FiltrarSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Filtrar.
+        /// </summary>
+        internal static string L_Filtro {
+            get {
+                return ResourceManager.GetString("L_Filtro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fittings comunes.
+        /// </summary>
+        internal static string L_FittingsComunes {
+            get {
+                return ResourceManager.GetString("L_FittingsComunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generar informe de control de cambios.
+        /// </summary>
+        internal static string L_GenerarInforme {
+            get {
+                return ResourceManager.GetString("L_GenerarInforme", resourceCulture);
             }
         }
         
@@ -579,6 +732,42 @@ namespace RotoTools.Resources {
         internal static string L_SeleccionarTodosGrupos {
             get {
                 return ResourceManager.GetString("L_SeleccionarTodosGrupos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccione XML anterior.
+        /// </summary>
+        internal static string L_SeleccionarXMLAnterior {
+            get {
+                return ResourceManager.GetString("L_SeleccionarXMLAnterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccione XML nuevo.
+        /// </summary>
+        internal static string L_SeleccionarXMLNuevo {
+            get {
+                return ResourceManager.GetString("L_SeleccionarXMLNuevo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sets comunes.
+        /// </summary>
+        internal static string L_SetsComunes {
+            get {
+                return ResourceManager.GetString("L_SetsComunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Solo seleccionados.
+        /// </summary>
+        internal static string L_SoloSeleccionados {
+            get {
+                return ResourceManager.GetString("L_SoloSeleccionados", resourceCulture);
             }
         }
         

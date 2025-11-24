@@ -303,4 +303,67 @@
   <data name="L_EscandallosInstalados" xml:space="preserve">
     <value>Escandallos instalados(PT)</value>
   </data>
+  <data name="L_SeleccionarXMLAnterior" xml:space="preserve">
+    <value>Seleccione XML anterior(PT)</value>
+  </data>
+  <data name="L_SeleccionarXMLNuevo" xml:space="preserve">
+    <value>Seleccione XML nuevo(PT)</value>
+  </data>
+  <data name="L_ConfiguracionInforme" xml:space="preserve">
+    <value>Configuración del informe(PT)</value>
+  </data>
+  <data name="L_GenerarInforme" xml:space="preserve">
+    <value>Generar informe de control de cambios(PT)</value>
+  </data>
+  <data name="L_CompararFittingGroups" xml:space="preserve">
+    <value>Comparar fitting groups(PT)</value>
+  </data>
+  <data name="L_CompararColores" xml:space="preserve">
+    <value>Comparar colores(PT)</value>
+  </data>
+  <data name="L_CompararOpciones" xml:space="preserve">
+    <value>Comparar opciones(PT)</value>
+  </data>
+  <data name="L_CompararSets" xml:space="preserve">
+    <value>Comparar sets(PT)</value>
+  </data>
+  <data name="L_CompararNumeroSets" xml:space="preserve">
+    <value>Comparar nº de setdescriptions(PT)</value>
+  </data>
+  <data name="L_FiltrarSets" xml:space="preserve">
+    <value>Filtrar sets(PT)</value>
+  </data>
+  <data name="L_CompararFittings" xml:space="preserve">
+    <value>Comparar fittings(PT)</value>
+  </data>
+  <data name="L_FiltrarFittings" xml:space="preserve">
+    <value>Filtrar fittings(PT)</value>
+  </data>
+  <data name="L_CompararDescripciones" xml:space="preserve">
+    <value>Comparar descripciones(PT)</value>
+  </data>
+  <data name="L_CompararManufacturer" xml:space="preserve">
+    <value>Comparar manufacturer(PT)</value>
+  </data>
+  <data name="L_CompararLength" xml:space="preserve">
+    <value>Comparar length(PT)</value>
+  </data>
+  <data name="L_CompararLocation" xml:space="preserve">
+    <value>Comparar location(PT)</value>
+  </data>
+  <data name="L_CompararArticulosOpciones" xml:space="preserve">
+    <value>Comparar articulos-opciones(PT)</value>
+  </data>
+  <data name="L_SoloSeleccionados" xml:space="preserve">
+    <value>Solo seleccionados(PT)</value>
+  </data>
+  <data name="L_SetsComunes" xml:space="preserve">
+    <value>Sets comunes(PT)</value>
+  </data>
+  <data name="L_FittingsComunes" xml:space="preserve">
+    <value>Fittings comunes(PT)</value>
+  </data>
+  <data name="L_Filtro" xml:space="preserve">
+    <value>Filtrar(PT)</value>
+  </data>
 </root>

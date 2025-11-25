@@ -124,6 +124,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Color.
+        /// </summary>
+        internal static string L_Color {
+            get {
+                return ResourceManager.GetString("L_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Combinar Conectores de Herraje.
         /// </summary>
         internal static string L_CombinarConectores {
@@ -466,6 +475,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Exportación completada..
+        /// </summary>
+        internal static string L_ExportacionCompletada {
+            get {
+                return ResourceManager.GetString("L_ExportacionCompletada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Exportar datos.
         /// </summary>
         internal static string L_ExportarDatos {
@@ -480,6 +498,33 @@ namespace RotoTools.Resources {
         internal static string L_ExportarEscandallos {
             get {
                 return ResourceManager.GetString("L_ExportarEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exportar a Opera.
+        /// </summary>
+        internal static string L_ExportarOpera {
+            get {
+                return ResourceManager.GetString("L_ExportarOpera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exportar a Orgadata.
+        /// </summary>
+        internal static string L_ExportarOrgadata {
+            get {
+                return ResourceManager.GetString("L_ExportarOrgadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exportar a WinPerfil.
+        /// </summary>
+        internal static string L_ExportarWinPerfil {
+            get {
+                return ResourceManager.GetString("L_ExportarWinPerfil", resourceCulture);
             }
         }
         
@@ -772,6 +817,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Perfil.
+        /// </summary>
+        internal static string L_Perfil {
+            get {
+                return ResourceManager.GetString("L_Perfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Permitir traducciones en Escandallos y Conector de Herraje.
         /// </summary>
         internal static string L_PermitirTraduccion {
@@ -966,6 +1020,15 @@ namespace RotoTools.Resources {
         internal static string L_SetsComunes {
             get {
                 return ResourceManager.GetString("L_SetsComunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sistema.
+        /// </summary>
+        internal static string L_Sistema {
+            get {
+                return ResourceManager.GetString("L_Sistema", resourceCulture);
             }
         }
         

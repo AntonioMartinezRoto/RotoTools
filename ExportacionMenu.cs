@@ -24,7 +24,10 @@ namespace RotoTools
         #endregion
 
         #region EVENTS
-
+        private void ExportacionMenu_Load(object sender, EventArgs e)
+        {
+            CargarTextos();
+        }
         private void btn_Xml_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -41,7 +44,6 @@ namespace RotoTools
                 xmlLoadedFile = true;
             }
         }
-
         private void btn_ExportWinPerfil_Click(object sender, EventArgs e)
         {
             if (xmlLoadedFile)
@@ -86,7 +88,7 @@ namespace RotoTools
                 loader.OnLoadingInfo += (type, value) =>
                 {
                     lbl_info.Visible = true;
-                    lbl_info.Text = $"Cargando... {type} {value.TrimEnd()}";
+                    lbl_info.Text = LocalizationManager.GetString("L_Cargando") + $"... {type} {value.TrimEnd()}";
                     Application.DoEvents(); // refresca la UI
                 };
 
@@ -107,7 +109,14 @@ namespace RotoTools
             }
 
         }
-
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_ExportarDatos");
+            lbl_info.Text = LocalizationManager.GetString("L_SeleccionarXML");
+            lbl_ExportWinPerfil.Text = LocalizationManager.GetString("L_ExportarWinPerfil");
+            lbl_ExportOrgadata.Text = LocalizationManager.GetString("L_ExportarOrgadata");
+            lbl_ExportOpera.Text = LocalizationManager.GetString("L_ExportarOpera");
+        }
         private void EnableButtons(bool enable)
         {
             btn_ExportWinPerfil.Enabled = enable;
@@ -116,6 +125,7 @@ namespace RotoTools
         }
 
         #endregion
+
 
 
     }

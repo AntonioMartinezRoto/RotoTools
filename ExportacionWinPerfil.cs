@@ -48,6 +48,7 @@ namespace RotoTools
             LoadProfiles();
             LoadSistemas();
             LoadSets("");
+            CargarTextos();
         }
         private void btn_ExportSets_Click(object sender, EventArgs e)
         {
@@ -65,11 +66,11 @@ namespace RotoTools
                 bool resultadoExportacion = GenerarExportacion(excelPath);
                 if (resultadoExportacion)
                 {
-                    MessageBox.Show("Exportación a WinPerfil completada.");
+                    MessageBox.Show(LocalizationManager.GetString("L_ExportacionCompletada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Ha habido algún problema con la exportación.");
+                    MessageBox.Show("Error (15)", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -88,6 +89,15 @@ namespace RotoTools
         #endregion
 
         #region PRIVATE METHODS
+        private void CargarTextos()
+        {
+            this.Text= LocalizationManager.GetString("L_ExportarWinPerfil");
+            lbl_Profile.Text = LocalizationManager.GetString("L_Perfil");
+            lbl_System.Text = LocalizationManager.GetString("L_Sistema");
+            lbl_Colour.Text = LocalizationManager.GetString("L_Color");
+            chk_All.Text = LocalizationManager.GetString("L_SeleccionarTodos");
+            lbl_Busqueda.Text = LocalizationManager.GetString("L_Buscar");
+        }
         private void LoadSistemas()
         {
             if (ExportDataXml.OptionList != null)
@@ -270,7 +280,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al procesar el XML: " + ex.Message);
+                MessageBox.Show("Error (16)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EnableControls(true);
                 return false;
             }

@@ -441,4 +441,25 @@
   <data name="L_Cargando" xml:space="preserve">
     <value>Cargando</value>
   </data>
+  <data name="L_ExportarWinPerfil" xml:space="preserve">
+    <value>Exportar a WinPerfil</value>
+  </data>
+  <data name="L_ExportarOrgadata" xml:space="preserve">
+    <value>Exportar a Orgadata</value>
+  </data>
+  <data name="L_ExportarOpera" xml:space="preserve">
+    <value>Exportar a Opera</value>
+  </data>
+  <data name="L_Perfil" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="L_Sistema" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="L_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="L_ExportacionCompletada" xml:space="preserve">
+    <value>Exportación completada.</value>
+  </data>
 </root>

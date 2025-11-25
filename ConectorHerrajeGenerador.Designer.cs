@@ -33,9 +33,9 @@
             txt_Filtro = new TextBox();
             chk_Predefinido = new CheckBox();
             txt_ConectorName = new TextBox();
-            label4 = new Label();
+            lbl_SaveBD = new Label();
             btn_InsertConector = new Button();
-            label3 = new Label();
+            lbl_SaveXML = new Label();
             btn_GenerarConector = new Button();
             dataGridView1 = new DataGridView();
             statusStrip1 = new StatusStrip();
@@ -80,15 +80,15 @@
             txt_ConectorName.Size = new Size(174, 23);
             txt_ConectorName.TabIndex = 22;
             // 
-            // label4
+            // lbl_SaveBD
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Location = new Point(400, 34);
-            label4.Name = "label4";
-            label4.Size = new Size(98, 15);
-            label4.TabIndex = 29;
-            label4.Text = "Guardar en BBDD";
+            lbl_SaveBD.AutoSize = true;
+            lbl_SaveBD.BackColor = Color.Transparent;
+            lbl_SaveBD.Location = new Point(400, 34);
+            lbl_SaveBD.Name = "lbl_SaveBD";
+            lbl_SaveBD.Size = new Size(98, 15);
+            lbl_SaveBD.TabIndex = 29;
+            lbl_SaveBD.Text = "Guardar en BBDD";
             // 
             // btn_InsertConector
             // 
@@ -102,15 +102,15 @@
             btn_InsertConector.UseVisualStyleBackColor = true;
             btn_InsertConector.Click += btn_InsertConector_Click;
             // 
-            // label3
+            // lbl_SaveXML
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Location = new Point(121, 32);
-            label3.Name = "label3";
-            label3.Size = new Size(92, 15);
-            label3.TabIndex = 27;
-            label3.Text = "Guardar en XML";
+            lbl_SaveXML.AutoSize = true;
+            lbl_SaveXML.BackColor = Color.Transparent;
+            lbl_SaveXML.Location = new Point(121, 32);
+            lbl_SaveXML.Name = "lbl_SaveXML";
+            lbl_SaveXML.Size = new Size(92, 15);
+            lbl_SaveXML.TabIndex = 27;
+            lbl_SaveXML.Text = "Guardar en XML";
             // 
             // btn_GenerarConector
             // 
@@ -160,9 +160,9 @@
             ClientSize = new Size(1434, 776);
             Controls.Add(statusStrip1);
             Controls.Add(dataGridView1);
-            Controls.Add(label4);
+            Controls.Add(lbl_SaveBD);
             Controls.Add(btn_InsertConector);
-            Controls.Add(label3);
+            Controls.Add(lbl_SaveXML);
             Controls.Add(btn_GenerarConector);
             Controls.Add(lbl_Filtro);
             Controls.Add(txt_Filtro);
@@ -188,9 +188,9 @@
         private TextBox txt_Filtro;
         private CheckBox chk_Predefinido;
         private TextBox txt_ConectorName;
-        private Label label4;
+        private Label lbl_SaveBD;
         private Button btn_InsertConector;
-        private Label label3;
+        private Label lbl_SaveXML;
         private Button btn_GenerarConector;
         private DataGridView dataGridView1;
         private StatusStrip statusStrip1;

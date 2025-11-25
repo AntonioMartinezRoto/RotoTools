@@ -70,6 +70,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Apertura.
+        /// </summary>
+        internal static string L_Apertura {
+            get {
+                return ResourceManager.GetString("L_Apertura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Quieres aplicar una traducción?.
         /// </summary>
         internal static string L_AplicarPlantillaTraduccion {
@@ -93,6 +102,15 @@ namespace RotoTools.Resources {
         internal static string L_Buscar {
             get {
                 return ResourceManager.GetString("L_Buscar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código.
+        /// </summary>
+        internal static string L_Codigo {
+            get {
+                return ResourceManager.GetString("L_Codigo", resourceCulture);
             }
         }
         
@@ -205,11 +223,29 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Conector generado correctamente..
+        /// </summary>
+        internal static string L_ConectorGenerado {
+            get {
+                return ResourceManager.GetString("L_ConectorGenerado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Conector de herraje.
         /// </summary>
         internal static string L_ConectorHerraje {
             get {
                 return ResourceManager.GetString("L_ConectorHerraje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Conector insertado correctamente..
+        /// </summary>
+        internal static string L_ConectorInsertado {
+            get {
+                return ResourceManager.GetString("L_ConectorInsertado", resourceCulture);
             }
         }
         
@@ -349,6 +385,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Escandallo.
+        /// </summary>
+        internal static string L_Escandallo {
+            get {
+                return ResourceManager.GetString("L_Escandallo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Escandallos.
         /// </summary>
         internal static string L_Escandallos {
@@ -363,6 +408,15 @@ namespace RotoTools.Resources {
         internal static string L_EscandallosInstalados {
             get {
                 return ResourceManager.GetString("L_EscandallosInstalados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existe un conector con el nombre seleccionado ¿Quieres sobreescribirlo?.
+        /// </summary>
+        internal static string L_ExisteConector {
+            get {
+                return ResourceManager.GetString("L_ExisteConector", resourceCulture);
             }
         }
         
@@ -511,6 +565,24 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Guardar en BBDD.
+        /// </summary>
+        internal static string L_GuardarEnBD {
+            get {
+                return ResourceManager.GetString("L_GuardarEnBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guardar en XML.
+        /// </summary>
+        internal static string L_GuardarEnXML {
+            get {
+                return ResourceManager.GetString("L_GuardarEnXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Instalación individualizada.
         /// </summary>
         internal static string L_InstalacionIndividualizada {
@@ -651,6 +723,15 @@ namespace RotoTools.Resources {
         internal static string L_PersonalizacionClientes {
             get {
                 return ResourceManager.GetString("L_PersonalizacionClientes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Poner como predefinido.
+        /// </summary>
+        internal static string L_PonerPredefinido {
+            get {
+                return ResourceManager.GetString("L_PonerPredefinido", resourceCulture);
             }
         }
         

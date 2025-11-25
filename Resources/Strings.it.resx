@@ -381,4 +381,31 @@
   <data name="L_RevisionSets" xml:space="preserve">
     <value>Revisión de Sets(IT)</value>
   </data>
+  <data name="L_GuardarEnXML" xml:space="preserve">
+    <value>Guardar en XML(IT)</value>
+  </data>
+  <data name="L_GuardarEnBD" xml:space="preserve">
+    <value>Guardar en BBDD(IT)</value>
+  </data>
+  <data name="L_PonerPredefinido" xml:space="preserve">
+    <value>Poner como predefinido(IT)</value>
+  </data>
+  <data name="L_Escandallo" xml:space="preserve">
+    <value>Escandallo(IT)</value>
+  </data>
+  <data name="L_Apertura" xml:space="preserve">
+    <value>Apertura(IT)</value>
+  </data>
+  <data name="L_Codigo" xml:space="preserve">
+    <value>Código(IT)</value>
+  </data>
+  <data name="L_ConectorGenerado" xml:space="preserve">
+    <value>Conector generado correctamente.(IT)</value>
+  </data>
+  <data name="L_ExisteConector" xml:space="preserve">
+    <value>Existe un conector con el nombre seleccionado ¿Quieres sobreescribirlo?(IT)</value>
+  </data>
+  <data name="L_ConectorInsertado" xml:space="preserve">
+    <value>Conector insertado correctamente.(IT)</value>
+  </data>
 </root>

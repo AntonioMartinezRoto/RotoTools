@@ -120,7 +120,7 @@
             lbl_GenerarConector.BackColor = Color.Transparent;
             lbl_GenerarConector.Location = new Point(96, 120);
             lbl_GenerarConector.Name = "lbl_GenerarConector";
-            lbl_GenerarConector.Size = new Size(166, 17);
+            lbl_GenerarConector.Size = new Size(216, 18);
             lbl_GenerarConector.TabIndex = 12;
             lbl_GenerarConector.Text = "Generar Conector de Herraje";
             // 
@@ -159,7 +159,7 @@
             // 
             chk_ConfigAE.AutoSize = true;
             chk_ConfigAE.BackColor = Color.Transparent;
-            chk_ConfigAE.Location = new Point(264, 119);
+            chk_ConfigAE.Location = new Point(318, 119);
             chk_ConfigAE.Name = "chk_ConfigAE";
             chk_ConfigAE.Size = new Size(177, 19);
             chk_ConfigAE.TabIndex = 24;

@@ -889,7 +889,7 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Proveedor(.
+        ///   Busca una cadena traducida similar a Proveedor.
         /// </summary>
         internal static string L_Proveedor {
             get {

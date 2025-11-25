@@ -35,6 +35,8 @@
             chk_PermitirTraduccion = new CheckBox();
             groupBox_Opciones = new GroupBox();
             groupBox_Idioma = new GroupBox();
+            btn_ExportarResources = new Button();
+            btn_ImportarResources = new Button();
             groupBox_Opciones.SuspendLayout();
             groupBox_Idioma.SuspendLayout();
             SuspendLayout();
@@ -103,6 +105,34 @@
             groupBox_Idioma.TabIndex = 26;
             groupBox_Idioma.TabStop = false;
             // 
+            // btn_ExportarResources
+            // 
+            btn_ExportarResources.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_ExportarResources.BackColor = Color.Transparent;
+            btn_ExportarResources.BackgroundImage = (Image)resources.GetObject("btn_ExportarResources.BackgroundImage");
+            btn_ExportarResources.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_ExportarResources.Location = new Point(437, 48);
+            btn_ExportarResources.Margin = new Padding(3, 2, 3, 2);
+            btn_ExportarResources.Name = "btn_ExportarResources";
+            btn_ExportarResources.Size = new Size(32, 32);
+            btn_ExportarResources.TabIndex = 27;
+            btn_ExportarResources.UseVisualStyleBackColor = false;
+            btn_ExportarResources.Click += btn_ExportarResources_Click;
+            // 
+            // btn_ImportarResources
+            // 
+            btn_ImportarResources.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_ImportarResources.BackColor = Color.Transparent;
+            btn_ImportarResources.BackgroundImage = (Image)resources.GetObject("btn_ImportarResources.BackgroundImage");
+            btn_ImportarResources.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_ImportarResources.Location = new Point(475, 48);
+            btn_ImportarResources.Margin = new Padding(3, 2, 3, 2);
+            btn_ImportarResources.Name = "btn_ImportarResources";
+            btn_ImportarResources.Size = new Size(32, 32);
+            btn_ImportarResources.TabIndex = 28;
+            btn_ImportarResources.UseVisualStyleBackColor = false;
+            btn_ImportarResources.Click += btn_ImportarResources_Click;
+            // 
             // OptionsMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -110,6 +140,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(534, 270);
+            Controls.Add(btn_ImportarResources);
+            Controls.Add(btn_ExportarResources);
             Controls.Add(groupBox_Idioma);
             Controls.Add(groupBox_Opciones);
             Controls.Add(btn_SaveOptions);
@@ -134,5 +166,7 @@
         private CheckBox chk_PermitirTraduccion;
         private GroupBox groupBox_Opciones;
         private GroupBox groupBox_Idioma;
+        private Button btn_ExportarResources;
+        private Button btn_ImportarResources;
     }
 }

@@ -3,16 +3,20 @@ using NPOI.XSSF.UserModel;
 using System.Collections;
 using System.ComponentModel.Design;
 using System.Resources;
+using System.Xml.Linq;
 
 namespace RotoTools
 {
     public partial class OptionsMenu : Form
     {
+        #region Constructor
         public OptionsMenu()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region Events
         private void OptionsMenu_Load(object sender, EventArgs e)
         {
             CargarTextos();
@@ -31,7 +35,6 @@ namespace RotoTools
             // Selecciona el idioma actual
             cmb_Idioma.SelectedValue = LocalizationManager.CurrentCulture.TwoLetterISOLanguageName;
         }
-
         private void btn_SaveOptions_Click(object sender, EventArgs e)
         {
             if (cmb_Idioma.SelectedValue != null)
@@ -47,14 +50,6 @@ namespace RotoTools
             }
             TranslateManager.PermitirTraduccionesEnConectorEscandallos = chk_PermitirTraduccion.Checked;
         }
-        private void CargarTextos()
-        {
-            lbl_Idioma.Text = LocalizationManager.GetString("L_SeleccionarIdioma");
-            this.Text = LocalizationManager.GetString("L_Opciones");
-            chk_PermitirTraduccion.Text = LocalizationManager.GetString("L_PermitirTraduccion");
-            btn_SaveOptions.Text = LocalizationManager.GetString("L_Guardar");
-        }
-
         private void btn_ExportarResources_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -67,7 +62,30 @@ namespace RotoTools
                 GenerarExportacionRecursos(saveFileDialog.FileName);
             }
         }
+        private void btn_ImportarResources_Click(object sender, EventArgs e)
+        {
+            string resourcesFolder = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Resources");
+            resourcesFolder = Path.GetFullPath(resourcesFolder);
 
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ImportarRecursos(openFileDialog.FileName, resourcesFolder, "Strings");
+            }            
+        }
+
+        #endregion
+
+        #region Private Methods
+        private void CargarTextos()
+        {
+            lbl_Idioma.Text = LocalizationManager.GetString("L_SeleccionarIdioma");
+            this.Text = LocalizationManager.GetString("L_Opciones");
+            chk_PermitirTraduccion.Text = LocalizationManager.GetString("L_PermitirTraduccion");
+            btn_SaveOptions.Text = LocalizationManager.GetString("L_Guardar");
+        }
         private void GenerarExportacionRecursos(string fileName)
         {
             string folder = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Resources");
@@ -112,7 +130,6 @@ namespace RotoTools
                 workbook.Write(fs);
             }
         }
-
         public static List<ResourceEntry> LoadAllResourceValues(string resourcesFolderPath, string baseFileName)
         {
             // Ejemplo baseFileName = "Strings"
@@ -162,11 +179,97 @@ namespace RotoTools
             var parts = fileName.Split('.');
             return parts.Length > 1 ? parts[1] : "unknown";
         }
-
-        private void btn_ImportarResources_Click(object sender, EventArgs e)
+        private void ImportarRecursos(string fileName, string resourcesFolder, string baseName)
         {
+            // Abrir Excel
+            XSSFWorkbook wb;
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                wb = new XSSFWorkbook(fs);
+            }
 
+            var sheet = wb.GetSheetAt(0);
+
+            // Diccionario: idioma → diccionario de pares clave/valor
+            Dictionary<string, Dictionary<string, string>> langs =
+                new Dictionary<string, Dictionary<string, string>>
+                {
+                    { "es", new Dictionary<string,string>() },
+                    { "en", new Dictionary<string,string>() },
+                    { "de", new Dictionary<string,string>() },
+                    { "it", new Dictionary<string,string>() },
+                    { "pt", new Dictionary<string,string>() }
+                };
+
+            // Procesar filas del Excel
+            for (int i = 1; i <= sheet.LastRowNum; i++)
+            {
+                var row = sheet.GetRow(i);
+                if (row == null) continue;
+
+                string key = row.GetCell(0)?.ToString()?.Trim();
+                if (string.IsNullOrEmpty(key)) continue;
+
+                langs["es"][key] = row.GetCell(1)?.ToString() ?? "";
+                langs["en"][key] = row.GetCell(2)?.ToString() ?? "";
+                langs["de"][key] = row.GetCell(3)?.ToString() ?? "";
+                langs["it"][key] = row.GetCell(4)?.ToString() ?? "";
+                langs["pt"][key] = row.GetCell(5)?.ToString() ?? "";
+            }
+
+            // Guardar cada idioma en su .resx
+            SaveResx(Path.Combine(resourcesFolder, $"{baseName}.resx"), langs["es"]);
+            SaveResx(Path.Combine(resourcesFolder, $"{baseName}.en.resx"), langs["en"]);
+            SaveResx(Path.Combine(resourcesFolder, $"{baseName}.de.resx"), langs["de"]);
+            SaveResx(Path.Combine(resourcesFolder, $"{baseName}.it.resx"), langs["it"]);
+            SaveResx(Path.Combine(resourcesFolder, $"{baseName}.pt.resx"), langs["pt"]);
         }
+        private void SaveResx(string resxPath, Dictionary<string, string> values)
+        {
+            // Crear XML base
+            XElement root = new XElement("root",
+                new XElement("resheader",
+                    new XAttribute("name", "resmimetype"),
+                    new XElement("value", "text/microsoft-resx")
+                ),
+                new XElement("resheader",
+                    new XAttribute("name", "version"),
+                    new XElement("value", "2.0")
+                ),
+                new XElement("resheader",
+                    new XAttribute("name", "reader"),
+                    new XElement("value", "System.Resources.ResXResourceReader, System.Windows.Forms")
+                ),
+                new XElement("resheader",
+                    new XAttribute("name", "writer"),
+                    new XElement("value", "System.Resources.ResXResourceWriter, System.Windows.Forms")
+                )
+            );
+
+            // Añadir cada clave del idioma
+            foreach (var kv in values)
+            {
+                root.Add(
+                    new XElement("data",
+                        new XAttribute("name", kv.Key),
+                        new XAttribute(XNamespace.Xml + "space", "preserve"),
+                        new XElement("value", kv.Value ?? "")
+                    )
+                );
+            }
+
+            // Guardar fichero
+            root.Save(resxPath);
+        }
+
+        #endregion
+
+
+
+
+
+
+
     }
     public class LanguageItem
     {

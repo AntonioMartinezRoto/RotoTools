@@ -62,12 +62,12 @@ namespace RotoTools
                 {
                     EnableButtons(false);
                     GenerateTemplate(excelPath);
-                    MessageBox.Show("Plantilla generada correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_PlantillaGenerada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     EnableButtons(true);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ha ocurrido un problema y no se ha podido generar la plantilla." + Environment.NewLine +
+                    MessageBox.Show("Error (14)" + Environment.NewLine +
                         ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -89,9 +89,23 @@ namespace RotoTools
 
                 EnableButtons(true);
                 Cursor.Current = Cursors.Default;
-            }            
+            }
+        }
+        private void TraduccionMenu_Load(object sender, EventArgs e)
+        {
+            CargarTextos();
         }
 
+        #endregion
+
+        #region Private methods
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_Traduccion");
+            lbl_Xml.Text = LocalizationManager.GetString("L_SeleccionarXML");
+            lbl_TraducirXML.Text = LocalizationManager.GetString("L_TraducirXML");
+            lbl_GenerarPlantilla.Text = LocalizationManager.GetString("L_GenerarPlantilla");
+        }
         private void TranslateXML(string translationFileName)
         {
             try
@@ -138,18 +152,15 @@ namespace RotoTools
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     doc.Save(saveFileDialog.FileName);
-                    MessageBox.Show("Archivo traducido correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_XMLTraducidoCorrectamente"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error traduciendo el archivo." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (13)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-        }
-        #endregion
 
-        #region Private methods
+        }
         private void EnableButtons(bool enable)
         {
             btn_LoadXml.Enabled = enable;
@@ -170,7 +181,7 @@ namespace RotoTools
                 loader.OnLoadingInfo += (type, value) =>
                 {
                     lbl_Xml.Visible = true;
-                    lbl_Xml.Text = $"Cargando... {type} {value.TrimEnd()}";
+                    lbl_Xml.Text = LocalizationManager.GetString("L_Cargando") + $"... {type} {value.TrimEnd()}";
                     Application.DoEvents();
                 };
 
@@ -386,7 +397,7 @@ namespace RotoTools
 
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Color
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Traducción
-        }        
+        }
         private void AplicarTraduccionesOptions(XDocument doc, Traducciones traducciones, XNamespace hw)
         {
             // Buscar TODAS las opciones, sin importar dónde estén
@@ -430,6 +441,7 @@ namespace RotoTools
                 }
             }
         }
+
 
     }
     #endregion

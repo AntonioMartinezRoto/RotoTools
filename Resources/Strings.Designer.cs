@@ -106,6 +106,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cargando.
+        /// </summary>
+        internal static string L_Cargando {
+            get {
+                return ResourceManager.GetString("L_Cargando", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código.
         /// </summary>
         internal static string L_Codigo {
@@ -529,6 +538,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar plantilla de traducción.
+        /// </summary>
+        internal static string L_GenerarPlantilla {
+            get {
+                return ResourceManager.GetString("L_GenerarPlantilla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestión bombillos.
         /// </summary>
         internal static string L_GestionBombillos {
@@ -772,6 +790,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Plantilla generada correctamente..
+        /// </summary>
+        internal static string L_PlantillaGenerada {
+            get {
+                return ResourceManager.GetString("L_PlantillaGenerada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Poner como predefinido.
         /// </summary>
         internal static string L_PonerPredefinido {
@@ -970,6 +997,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Traducir XML.
+        /// </summary>
+        internal static string L_TraducirXML {
+            get {
+                return ResourceManager.GetString("L_TraducirXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Valor.
         /// </summary>
         internal static string L_Valor {
@@ -984,6 +1020,15 @@ namespace RotoTools.Resources {
         internal static string L_VerEscandallos {
             get {
                 return ResourceManager.GetString("L_VerEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Archivo traducido correctamente..
+        /// </summary>
+        internal static string L_XMLTraducidoCorrectamente {
+            get {
+                return ResourceManager.GetString("L_XMLTraducidoCorrectamente", resourceCulture);
             }
         }
     }

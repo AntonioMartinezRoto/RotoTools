@@ -174,7 +174,7 @@ namespace RotoTools
                 loader.OnLoadingInfo += (type, value) =>
                 {
                     lbl_Xml.Visible = true;
-                    lbl_Xml.Text = $"Cargando... {type} {value.TrimEnd()}";
+                    lbl_Xml.Text = LocalizationManager.GetString("L_Cargando") + $"... {type} {value.TrimEnd()}";
                     Application.DoEvents(); // refresca la UI
                 };
 

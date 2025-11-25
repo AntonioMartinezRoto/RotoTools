@@ -538,7 +538,7 @@ namespace RotoTools
 
         private void ShowLoadingInfo(string type, string value, int tipoXml)
         {
-            string texto = "Cargando... " + type + " " + value.TrimEnd();
+            string texto = LocalizationManager.GetString("L_Cargando") + "... " + type + " " + value.TrimEnd();
 
             switch (tipoXml)
             {

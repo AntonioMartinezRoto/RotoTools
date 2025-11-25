@@ -426,4 +426,19 @@
   <data name="L_InstalacionCompletada" xml:space="preserve">
     <value>Installation completed successfully</value>
   </data>
+  <data name="L_TraducirXML" xml:space="preserve">
+    <value>Translate XML</value>
+  </data>
+  <data name="L_GenerarPlantilla" xml:space="preserve">
+    <value>Generate translation template</value>
+  </data>
+  <data name="L_XMLTraducidoCorrectamente" xml:space="preserve">
+    <value>File translated successfully.</value>
+  </data>
+  <data name="L_PlantillaGenerada" xml:space="preserve">
+    <value>Template generated successfully.</value>
+  </data>
+  <data name="L_Cargando" xml:space="preserve">
+    <value>Loading</value>
+  </data>
 </root>

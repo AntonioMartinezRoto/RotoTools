@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TraduccionMenu));
             lbl_Xml = new Label();
             btn_LoadXml = new Button();
-            label4 = new Label();
+            lbl_GenerarPlantilla = new Label();
             btn_GenerarPlantillaExcel = new Button();
-            label1 = new Label();
+            lbl_TraducirXML = new Label();
             btn_Traducir = new Button();
             SuspendLayout();
             // 
@@ -58,14 +58,14 @@
             btn_LoadXml.UseVisualStyleBackColor = true;
             btn_LoadXml.Click += btn_LoadXml_Click;
             // 
-            // label4
+            // lbl_GenerarPlantilla
             // 
-            label4.BackColor = Color.Transparent;
-            label4.Location = new Point(89, 176);
-            label4.Name = "label4";
-            label4.Size = new Size(189, 15);
-            label4.TabIndex = 16;
-            label4.Text = "Generar plantilla de traducción";
+            lbl_GenerarPlantilla.BackColor = Color.Transparent;
+            lbl_GenerarPlantilla.Location = new Point(89, 176);
+            lbl_GenerarPlantilla.Name = "lbl_GenerarPlantilla";
+            lbl_GenerarPlantilla.Size = new Size(278, 16);
+            lbl_GenerarPlantilla.TabIndex = 16;
+            lbl_GenerarPlantilla.Text = "Generar plantilla de traducción";
             // 
             // btn_GenerarPlantillaExcel
             // 
@@ -78,14 +78,14 @@
             btn_GenerarPlantillaExcel.UseVisualStyleBackColor = true;
             btn_GenerarPlantillaExcel.Click += btn_GenerarPlantillaExcel_Click;
             // 
-            // label1
+            // lbl_TraducirXML
             // 
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(89, 118);
-            label1.Name = "label1";
-            label1.Size = new Size(189, 15);
-            label1.TabIndex = 18;
-            label1.Text = "Traducir XML";
+            lbl_TraducirXML.BackColor = Color.Transparent;
+            lbl_TraducirXML.Location = new Point(89, 118);
+            lbl_TraducirXML.Name = "lbl_TraducirXML";
+            lbl_TraducirXML.Size = new Size(240, 12);
+            lbl_TraducirXML.TabIndex = 18;
+            lbl_TraducirXML.Text = "Traducir XML";
             // 
             // btn_Traducir
             // 
@@ -105,9 +105,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(624, 265);
-            Controls.Add(label1);
+            Controls.Add(lbl_TraducirXML);
             Controls.Add(btn_Traducir);
-            Controls.Add(label4);
+            Controls.Add(lbl_GenerarPlantilla);
             Controls.Add(btn_GenerarPlantillaExcel);
             Controls.Add(lbl_Xml);
             Controls.Add(btn_LoadXml);
@@ -117,6 +117,7 @@
             Name = "TraduccionMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Traducción";
+            Load += TraduccionMenu_Load;
             ResumeLayout(false);
         }
 
@@ -124,9 +125,9 @@
 
         private Label lbl_Xml;
         private Button btn_LoadXml;
-        private Label label4;
+        private Label lbl_GenerarPlantilla;
         private Button btn_GenerarPlantillaExcel;
-        private Label label1;
+        private Label lbl_TraducirXML;
         private Button btn_Traducir;
     }
 }

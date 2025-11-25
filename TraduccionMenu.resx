@@ -384,7 +384,7 @@
   <data name="btn_GenerarPlantillaExcel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIxSURBVGhD7Zk9
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIxSURBVGhD7Zk9
         SxxRGIUXRRCVqCA2KUVJawIWfkD+iBItlPwBS8vY2NjHKqU/wcbGf+AXaiwsVLQwhRpCQD3PMHfA5Z2d
         13V17yx74CnunXOWw+ydOzNMpVXUJybE1wigB31qalGciceIoM+SMLUgrFAs0O+Z+AsuhWWOBfr1ikxf
         hGWMDXpmmhKWKTamRaZJYZlig5ObqV36DWmd0ndiy8mOIPNfbKdzReDDT4685bG4Fbml95ORTx8FmRvR
@@ -400,7 +400,7 @@
   <data name="btn_Traducir.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWZSURBVGhDtZlH
+        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWZSURBVGhDtZlH
         qCVFGIWfggkVxZzDGBdGBNGVOMxKzHEQF+pCBBF1xhwwJxBRQczOGMDACDqOAREVxbBQFMxiFvOoo6KI
         +XzXPo+/61VX9Xu3PfBxu6urq8+trvor9ESjrcTd4kfxz0B8L24RG4surSteER+LWST01RbiJ5F78BB8
         LbYUqTYV7wnn21f01j3CNz4t7hyIF4TLvUtEbS6i4S/FgYI33ku/CRseWq8Kyv5QLE9Co5eEDUf+ENxz

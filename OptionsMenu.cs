@@ -23,9 +23,9 @@ namespace RotoTools
             var idiomas = new List<LanguageItem>
                 {
                     new LanguageItem { Text = "Español", Value = "es" },
-                    new LanguageItem { Text = "Português", Value = "pt" },
                     new LanguageItem { Text = "English", Value = "en" },
-                    new LanguageItem { Text = "Italiano", Value = "it" }
+                    //new LanguageItem { Text = "Português", Value = "pt" },
+                    //new LanguageItem { Text = "Italiano", Value = "it" }
                 };
 
             cmb_Idioma.DataSource = idiomas;

@@ -529,6 +529,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fichero de configuración no encontrado..
+        /// </summary>
+        internal static string L_FicheroConfigNoEncontrado {
+            get {
+                return ResourceManager.GetString("L_FicheroConfigNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Filtrar fittings.
         /// </summary>
         internal static string L_FiltrarFittings {

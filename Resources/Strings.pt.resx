@@ -462,4 +462,7 @@
   <data name="L_ExportacionCompletada" xml:space="preserve">
     <value>Exportación completada.(PT)</value>
   </data>
+  <data name="L_FicheroConfigNoEncontrado" xml:space="preserve">
+    <value>Fichero de configuración no encontrado.(PT)</value>
+  </data>
 </root>

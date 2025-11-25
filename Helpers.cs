@@ -244,7 +244,7 @@ namespace RotoTools
             {
                 if (!System.IO.File.Exists(rutaXml))
                 {
-                    MessageBox.Show("Fichero de configuración no encontrado.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(LocalizationManager.GetString("L_FicheroConfigNoEncontrado"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 XDocument doc = XDocument.Load(rutaXml);
@@ -306,7 +306,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error restaurando la configuración: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (19)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static List<Escandallo> CargarEscandallosEmbebidos(List<enumRotoTipoEscandallo> tiposSeleccionados)
@@ -433,7 +433,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando contenido de la opción Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (20)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -446,7 +446,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando opción de Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (21)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)

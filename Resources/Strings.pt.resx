@@ -408,4 +408,22 @@
   <data name="L_ConectorInsertado" xml:space="preserve">
     <value>Conector insertado correctamente.(PT)</value>
   </data>
+  <data name="L_SeleccionarConfiguracion" xml:space="preserve">
+    <value>Seleccionar configuración(PT)</value>
+  </data>
+  <data name="L_ConfiguracionNormalizada" xml:space="preserve">
+    <value>Configuración normalizada(PT)</value>
+  </data>
+  <data name="L_ConfiguracionFKS" xml:space="preserve">
+    <value>Solo manillas FKS(PT)</value>
+  </data>
+  <data name="L_ConfiguracionNormalizadaFKS" xml:space="preserve">
+    <value>Configuración normalizada + manillas FKS(PT)</value>
+  </data>
+  <data name="L_HardwareSupplierObligatorio" xml:space="preserve">
+    <value>HardwareSupplier obligatorio.(PT)</value>
+  </data>
+  <data name="L_InstalacionCompletada" xml:space="preserve">
+    <value>Instalación realizada correctamente(PT)</value>
+  </data>
 </root>

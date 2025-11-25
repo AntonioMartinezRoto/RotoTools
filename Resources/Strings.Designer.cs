@@ -250,11 +250,38 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Solo manillas FKS.
+        /// </summary>
+        internal static string L_ConfiguracionFKS {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionFKS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configuración del informe.
         /// </summary>
         internal static string L_ConfiguracionInforme {
             get {
                 return ResourceManager.GetString("L_ConfiguracionInforme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuración normalizada.
+        /// </summary>
+        internal static string L_ConfiguracionNormalizada {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionNormalizada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuración normalizada + manillas FKS.
+        /// </summary>
+        internal static string L_ConfiguracionNormalizadaFKS {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionNormalizadaFKS", resourceCulture);
             }
         }
         
@@ -583,6 +610,24 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a HardwareSupplier obligatorio..
+        /// </summary>
+        internal static string L_HardwareSupplierObligatorio {
+            get {
+                return ResourceManager.GetString("L_HardwareSupplierObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Instalación realizada correctamente.
+        /// </summary>
+        internal static string L_InstalacionCompletada {
+            get {
+                return ResourceManager.GetString("L_InstalacionCompletada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Instalación individualizada.
         /// </summary>
         internal static string L_InstalacionIndividualizada {
@@ -813,6 +858,15 @@ namespace RotoTools.Resources {
         internal static string L_ScriptsEjecutados {
             get {
                 return ResourceManager.GetString("L_ScriptsEjecutados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar configuración.
+        /// </summary>
+        internal static string L_SeleccionarConfiguracion {
+            get {
+                return ResourceManager.GetString("L_SeleccionarConfiguracion", resourceCulture);
             }
         }
         

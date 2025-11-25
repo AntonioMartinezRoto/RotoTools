@@ -408,4 +408,22 @@
   <data name="L_ConectorInsertado" xml:space="preserve">
     <value>Hardware connector inserted successfully.</value>
   </data>
+  <data name="L_SeleccionarConfiguracion" xml:space="preserve">
+    <value>Select configuration</value>
+  </data>
+  <data name="L_ConfiguracionNormalizada" xml:space="preserve">
+    <value>Standardized configuration</value>
+  </data>
+  <data name="L_ConfiguracionFKS" xml:space="preserve">
+    <value>Only FKS handles</value>
+  </data>
+  <data name="L_ConfiguracionNormalizadaFKS" xml:space="preserve">
+    <value>Standardized configuration + FKS handles</value>
+  </data>
+  <data name="L_HardwareSupplierObligatorio" xml:space="preserve">
+    <value>HardwareSupplier required.</value>
+  </data>
+  <data name="L_InstalacionCompletada" xml:space="preserve">
+    <value>Installation completed successfully</value>
+  </data>
 </root>

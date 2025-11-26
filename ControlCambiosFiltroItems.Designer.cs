@@ -82,10 +82,10 @@
             // 
             btn_GuardarFiltro.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_GuardarFiltro.Image = (Image)resources.GetObject("btn_GuardarFiltro.Image");
-            btn_GuardarFiltro.Location = new Point(554, 302);
+            btn_GuardarFiltro.Location = new Point(426, 307);
             btn_GuardarFiltro.Margin = new Padding(3, 2, 3, 2);
             btn_GuardarFiltro.Name = "btn_GuardarFiltro";
-            btn_GuardarFiltro.Size = new Size(98, 30);
+            btn_GuardarFiltro.Size = new Size(87, 41);
             btn_GuardarFiltro.TabIndex = 6;
             btn_GuardarFiltro.Text = "Guardar";
             btn_GuardarFiltro.TextAlign = ContentAlignment.MiddleRight;
@@ -122,7 +122,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(664, 343);
+            ClientSize = new Size(664, 359);
             Controls.Add(chk_SoloFiltrados);
             Controls.Add(lbl_NumeroComunes);
             Controls.Add(btn_GuardarFiltro);

@@ -65,8 +65,8 @@
             btn_SaveConfig.Location = new Point(628, 413);
             btn_SaveConfig.Margin = new Padding(9, 3, 3, 3);
             btn_SaveConfig.Name = "btn_SaveConfig";
-            btn_SaveConfig.Padding = new Padding(5, 0, 5, 0);
-            btn_SaveConfig.Size = new Size(105, 41);
+            btn_SaveConfig.Padding = new Padding(2, 0, 0, 0);
+            btn_SaveConfig.Size = new Size(87, 41);
             btn_SaveConfig.TabIndex = 1;
             btn_SaveConfig.Text = "Guardar";
             btn_SaveConfig.TextAlign = ContentAlignment.MiddleRight;

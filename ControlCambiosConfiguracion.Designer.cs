@@ -124,10 +124,11 @@
             btn_Guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_Guardar.BackColor = Color.White;
             btn_Guardar.Image = (Image)resources.GetObject("btn_Guardar.Image");
-            btn_Guardar.Location = new Point(547, 285);
+            btn_Guardar.Location = new Point(426, 290);
             btn_Guardar.Margin = new Padding(3, 2, 3, 2);
             btn_Guardar.Name = "btn_Guardar";
-            btn_Guardar.Size = new Size(91, 30);
+            btn_Guardar.Padding = new Padding(2, 0, 0, 0);
+            btn_Guardar.Size = new Size(87, 41);
             btn_Guardar.TabIndex = 5;
             btn_Guardar.Text = "Guardar";
             btn_Guardar.TextAlign = ContentAlignment.MiddleRight;
@@ -328,7 +329,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(650, 326);
+            ClientSize = new Size(650, 342);
             Controls.Add(panel1);
             Controls.Add(pnl_Colores);
             Controls.Add(pnl_Opciones);

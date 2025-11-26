@@ -90,7 +90,6 @@ namespace RotoTools
             lbl_Actualizacion.Text = LocalizationManager.GetString("L_Actualizador");
             lbl_Traduccion.Text = LocalizationManager.GetString("L_Traduccion");
             lbl_ConfigFKS.Text = LocalizationManager.GetString("L_ConfManillasFKS");
-            this.Text = LocalizationManager.GetString("L_Menu");
         }
         private void InitializeInfoConnection()
         {

@@ -117,6 +117,7 @@
             btn_ExportarResources.Size = new Size(32, 32);
             btn_ExportarResources.TabIndex = 27;
             btn_ExportarResources.UseVisualStyleBackColor = false;
+            btn_ExportarResources.Visible = false;
             btn_ExportarResources.Click += btn_ExportarResources_Click;
             // 
             // btn_ImportarResources
@@ -131,6 +132,7 @@
             btn_ImportarResources.Size = new Size(32, 32);
             btn_ImportarResources.TabIndex = 28;
             btn_ImportarResources.UseVisualStyleBackColor = false;
+            btn_ImportarResources.Visible = false;
             btn_ImportarResources.Click += btn_ImportarResources_Click;
             // 
             // OptionsMenu

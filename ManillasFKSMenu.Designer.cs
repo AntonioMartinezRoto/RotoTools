@@ -71,6 +71,7 @@
             btn_SaveFKS.TabIndex = 2;
             btn_SaveFKS.Text = "Guardar";
             btn_SaveFKS.TextAlign = ContentAlignment.MiddleRight;
+            btn_SaveFKS.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_SaveFKS.UseVisualStyleBackColor = true;
             btn_SaveFKS.Click += btn_SaveFKS_Click;
             // 

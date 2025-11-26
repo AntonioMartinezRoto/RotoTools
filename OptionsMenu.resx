@@ -121,7 +121,7 @@
   <data name="btn_SaveOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAudJREFUSEulVUtLskEUNmhREElt3LnQom3/QGifQmouolYFWdoFk9oJkdBFuxdR
+        wAAADsABataJCQAAAudJREFUSEulVUtLskEUNmhREElt3LnQom3/QGifQmouolYFWdoFk9oJkdBFuxdR
         RAht6h/UQqVf0L6buIoyisrUtM7X83yM9Obb7fseeHjnzJzzzMw7M+cYnp+fZWxsTOrq6qS6ulrq6+vF
         YDD8iDU1NeX2zs6OAI+Pj3J/fy8PDw9iGBoa4uDo6Kg4HA62JyYmZGZmRsLhsIZTU1MSiUQkGo3K5OQk
         xdva2qSrq4txKysr5QkoXlVVJZgA2NraotPNzQ1tPdze3koul2O7sbFRgsEg293d3RUTvNkGmZ6eZsfC
@@ -150,7 +150,7 @@
   <data name="btn_ImportarResources.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        cwAAAHMBY8FD/gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACnSURBVDhP3ZFB
+        cgAAAHIBsYahGgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACnSURBVDhP3ZFB
         DgFBFET7FGJh5QhWIq7BtZxFbKyJ1cTKysKGOAevTM/Xvu40lip56fp/umommYB2cPuQJUg92MNaQ+5i
         CRUofIhzA/bQawrz1prSsE7NxYITaP+4FM+3sFQquID2A8iFV5FqwQhyb7acGaeu4BzPl89GljPj1BWI
         K4xhCH2QLGfGKS3wzBL/NE4L0J/wHGEC1YKa/rHgV8LWLb4gbO7c5Y3R2+I+IQAAAABJRU5ErkJggg==

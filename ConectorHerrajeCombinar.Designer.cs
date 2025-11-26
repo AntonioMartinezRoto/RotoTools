@@ -182,6 +182,7 @@
             bnt_Guardar.TabIndex = 35;
             bnt_Guardar.Text = "Guardar";
             bnt_Guardar.TextAlign = ContentAlignment.MiddleRight;
+            bnt_Guardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             bnt_Guardar.UseVisualStyleBackColor = false;
             bnt_Guardar.Click += bnt_Guardar_Click;
             // 

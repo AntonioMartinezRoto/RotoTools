@@ -63,13 +63,14 @@
             btn_SaveConfig.Image = (Image)resources.GetObject("btn_SaveConfig.Image");
             btn_SaveConfig.ImageAlign = ContentAlignment.MiddleLeft;
             btn_SaveConfig.Location = new Point(628, 413);
-            btn_SaveConfig.Margin = new Padding(9, 3, 3, 3);
+            btn_SaveConfig.Margin = new Padding(0);
             btn_SaveConfig.Name = "btn_SaveConfig";
             btn_SaveConfig.Padding = new Padding(2, 0, 0, 0);
             btn_SaveConfig.Size = new Size(87, 41);
             btn_SaveConfig.TabIndex = 1;
             btn_SaveConfig.Text = "Guardar";
             btn_SaveConfig.TextAlign = ContentAlignment.MiddleRight;
+            btn_SaveConfig.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_SaveConfig.UseVisualStyleBackColor = true;
             btn_SaveConfig.Click += btn_SaveConfig_Click;
             // 

@@ -163,5 +163,31 @@ namespace RotoTools
                 compararFittings.compararFittingsFiltradosList = filtroSetsForm.itemsComunesFiltradosList;
             }
         }
+
+        private void ControlCambiosConfiguracion_Load(object sender, EventArgs e)
+        {
+            CargarTextos();
+        }
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_ConfiguracionInforme");
+            btn_Guardar.Text = LocalizationManager.GetString("L_Guardar");
+
+            chk_CompararFittingGroups.Text = LocalizationManager.GetString("L_CompararFittingGroups");
+            chk_CompararColores.Text = LocalizationManager.GetString("L_CompararColores");
+            chk_ComparaOpciones.Text = LocalizationManager.GetString("L_CompararOpciones");
+
+            chk_CompararSets.Text = LocalizationManager.GetString("L_CompararSets");
+            chk_SetsNumero.Text = LocalizationManager.GetString("L_CompararNumeroSets");
+            chk_SetsFiltrados.Text = LocalizationManager.GetString("L_FiltrarSets");
+
+            chk_CompararFittings.Text = LocalizationManager.GetString("L_CompararFittings");
+            chk_FittingsFiltrados.Text = LocalizationManager.GetString("L_FiltrarFittings");
+            chk_FittingsDescripcion.Text = LocalizationManager.GetString("L_CompararDescripciones");
+            chk_FittingsManufacturer.Text = LocalizationManager.GetString("L_CompararManufacturer");
+            chk_FittingsLength.Text = LocalizationManager.GetString("L_CompararLength");
+            chk_FittingsLocation.Text = LocalizationManager.GetString("L_CompararLocation");
+            chk_FittingsArticles.Text = LocalizationManager.GetString("L_CompararArticulosOpciones");
+        }
     }
 }

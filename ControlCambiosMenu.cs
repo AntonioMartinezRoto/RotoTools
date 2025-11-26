@@ -538,7 +538,7 @@ namespace RotoTools
 
         private void ShowLoadingInfo(string type, string value, int tipoXml)
         {
-            string texto = "Cargando... " + type + " " + value.TrimEnd();
+            string texto = LocalizationManager.GetString("L_Cargando") + "... " + type + " " + value.TrimEnd();
 
             switch (tipoXml)
             {
@@ -1487,9 +1487,9 @@ namespace RotoTools
                 var subTitleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
                 var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
 
-                InsertLogo(doc);                
+                InsertLogo(doc);
 
-                InsertHeader(doc, titleFont, normalFont);               
+                InsertHeader(doc, titleFont, normalFont);
 
                 //Escribir cambios en colores
                 WriteInPdf("Cambios en colores", (int)enumTipoDiferencia.colorDiferente, doc, subTitleFont, normalFont, diferenciasList);
@@ -1525,7 +1525,7 @@ namespace RotoTools
                 WriteInPdf("Diferencias en los SetsDescriptions", (int)enumTipoDiferencia.setDescriptionDiferente, doc, subTitleFont, normalFont, diferenciasList);
 
                 //Escribir el resto de diferencias no encapsuladas
-                WriteRestoCambiosInPdf(doc, subTitleFont, normalFont, diferenciasList);                
+                WriteRestoCambiosInPdf(doc, subTitleFont, normalFont, diferenciasList);
 
             }
             catch (Exception ex)
@@ -1551,7 +1551,7 @@ namespace RotoTools
                                                                             d.Tipo != (int)enumTipoDiferencia.atributosSetDiferente &&
                                                                             d.Tipo != (int)enumTipoDiferencia.openingSetDiferente &&
                                                                             d.Tipo != (int)enumTipoDiferencia.setDescriptionDiferente));
-                                                                            //&& d.Tipo != (int)enumTipoDiferencia.setDescriptionDiferente));
+            //&& d.Tipo != (int)enumTipoDiferencia.setDescriptionDiferente));
             if (restoCambiosList.Count() > 0)
             {
                 doc.Add(new Paragraph("Resto de cambios", titleFont));
@@ -1656,7 +1656,7 @@ namespace RotoTools
                         severidad: (int)enumSeveridadDiferencia.warning,
                         visible: true,
                         titulo: "Fittings no existentes"
-                        ));                                 
+                        ));
                 }
                 else if (f2 == null)
                 {
@@ -1687,7 +1687,7 @@ namespace RotoTools
                         diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.descripcionFitting,
                         descripcion: $"Ha cambiado la descripción del fitting {id}: '{f1.Description}' vs '{f2.Description}'",
-                        detalleDiferenciaArticulo: id.ToString() ,
+                        detalleDiferenciaArticulo: id.ToString(),
                         detalleDiferenciaAtributos: $"{f1.Description}@{f2.Description}",
                         origenDiferencia: (int)enumOrigenXMLDiferencia.ambos,
                         severidad: (int)enumSeveridadDiferencia.warning,
@@ -2138,7 +2138,7 @@ namespace RotoTools
                     {
                         OrigenDiferencia = (int)enumOrigenXMLDiferencia.ambos,
                         DetalleDiferenciaDescription = $"{val1}@{val2}",
-                        DetalleDiferenciaArticulo = $"({ s1.Id }){ s1.Code }",
+                        DetalleDiferenciaArticulo = $"({s1.Id}){s1.Code}",
                         DetalleDiferenciaAtributos = prop.Name
                     });
                 }
@@ -2235,7 +2235,7 @@ namespace RotoTools
                 severidad: (int)enumSeveridadDiferencia.warning,
                 visible: true));
             }
-            
+
 
             return diferenciasSD;
         }
@@ -2260,7 +2260,7 @@ namespace RotoTools
 
                 compareSets.compararSetsComunesList = setsXml1.Intersect(setsXml2).ToList();
                 compareSets.compararSetsSoloXml1List = setsXml1.Except(setsXml2).ToList();
-                compareSets.compararSetsSoloXml2List = setsXml2.Except(setsXml1).ToList();  
+                compareSets.compararSetsSoloXml2List = setsXml2.Except(setsXml1).ToList();
             }
         }
         private void SetListasFittingsComparaFittings()
@@ -2279,6 +2279,18 @@ namespace RotoTools
             SetListasFittingsComparaFittings();
         }
 
+        private void ControlCambiosMenu_Load(object sender, EventArgs e)
+        {
+            CargarTextos();
+        }
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_ControlCambios");
+            lbl_Xml1.Text = LocalizationManager.GetString("L_SeleccionarXMLAnterior");
+            lbl_Xml2.Text = LocalizationManager.GetString("L_SeleccionarXMLNuevo");
+            lbl_Configuracion.Text = LocalizationManager.GetString("L_ConfiguracionInforme");
+            lbl_ControlCambios.Text = LocalizationManager.GetString("L_GenerarInforme");
+        }
     }
     public class DiferenciaSetDescription
     {

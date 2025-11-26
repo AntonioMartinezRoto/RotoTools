@@ -33,12 +33,13 @@
             lbl_Conexion = new ToolStripStatusLabel();
             cmb_IdPresupuestado = new ComboBox();
             lbl_IdPresupuestado = new Label();
-            groupBox1 = new GroupBox();
+            groupBox_Grupos = new GroupBox();
             txt_Presupuestado = new TextBox();
             txt_Produccion = new TextBox();
             lbl_IdProduccion = new Label();
             cmb_IdProduccion = new ComboBox();
-            groupBox2 = new GroupBox();
+            groupBox_Proveedor = new GroupBox();
+            btn_AddProveedor = new Button();
             txt_Proveedor = new TextBox();
             lbl_Proveedor = new Label();
             cmb_Proveedor = new ComboBox();
@@ -48,10 +49,9 @@
             btn_ExportarEscandallos = new Button();
             btn_InstalarEscandallos = new Button();
             btn_ShowScripts = new Button();
-            btn_AddProveedor = new Button();
             statusStrip1.SuspendLayout();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            groupBox_Grupos.SuspendLayout();
+            groupBox_Proveedor.SuspendLayout();
             SuspendLayout();
             // 
             // statusStrip1
@@ -91,21 +91,21 @@
             lbl_IdPresupuestado.TabIndex = 2;
             lbl_IdPresupuestado.Text = "Presupuestado";
             // 
-            // groupBox1
+            // groupBox_Grupos
             // 
-            groupBox1.BackColor = Color.Transparent;
-            groupBox1.Controls.Add(txt_Presupuestado);
-            groupBox1.Controls.Add(txt_Produccion);
-            groupBox1.Controls.Add(lbl_IdProduccion);
-            groupBox1.Controls.Add(cmb_IdProduccion);
-            groupBox1.Controls.Add(lbl_IdPresupuestado);
-            groupBox1.Controls.Add(cmb_IdPresupuestado);
-            groupBox1.Location = new Point(194, 70);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(425, 108);
-            groupBox1.TabIndex = 3;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Grupos";
+            groupBox_Grupos.BackColor = Color.Transparent;
+            groupBox_Grupos.Controls.Add(txt_Presupuestado);
+            groupBox_Grupos.Controls.Add(txt_Produccion);
+            groupBox_Grupos.Controls.Add(lbl_IdProduccion);
+            groupBox_Grupos.Controls.Add(cmb_IdProduccion);
+            groupBox_Grupos.Controls.Add(lbl_IdPresupuestado);
+            groupBox_Grupos.Controls.Add(cmb_IdPresupuestado);
+            groupBox_Grupos.Location = new Point(194, 70);
+            groupBox_Grupos.Name = "groupBox_Grupos";
+            groupBox_Grupos.Size = new Size(425, 108);
+            groupBox_Grupos.TabIndex = 3;
+            groupBox_Grupos.TabStop = false;
+            groupBox_Grupos.Text = "Grupos";
             // 
             // txt_Presupuestado
             // 
@@ -145,19 +145,30 @@
             cmb_IdProduccion.TabIndex = 3;
             cmb_IdProduccion.SelectedIndexChanged += cmb_IdProduccion_SelectedIndexChanged;
             // 
-            // groupBox2
+            // groupBox_Proveedor
             // 
-            groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(btn_AddProveedor);
-            groupBox2.Controls.Add(txt_Proveedor);
-            groupBox2.Controls.Add(lbl_Proveedor);
-            groupBox2.Controls.Add(cmb_Proveedor);
-            groupBox2.Location = new Point(194, 202);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(426, 73);
-            groupBox2.TabIndex = 4;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Proveedor";
+            groupBox_Proveedor.BackColor = Color.Transparent;
+            groupBox_Proveedor.Controls.Add(btn_AddProveedor);
+            groupBox_Proveedor.Controls.Add(txt_Proveedor);
+            groupBox_Proveedor.Controls.Add(lbl_Proveedor);
+            groupBox_Proveedor.Controls.Add(cmb_Proveedor);
+            groupBox_Proveedor.Location = new Point(194, 202);
+            groupBox_Proveedor.Name = "groupBox_Proveedor";
+            groupBox_Proveedor.Size = new Size(426, 73);
+            groupBox_Proveedor.TabIndex = 4;
+            groupBox_Proveedor.TabStop = false;
+            groupBox_Proveedor.Text = "Proveedor";
+            // 
+            // btn_AddProveedor
+            // 
+            btn_AddProveedor.BackgroundImage = (Image)resources.GetObject("btn_AddProveedor.BackgroundImage");
+            btn_AddProveedor.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_AddProveedor.Location = new Point(385, 28);
+            btn_AddProveedor.Name = "btn_AddProveedor";
+            btn_AddProveedor.Size = new Size(25, 22);
+            btn_AddProveedor.TabIndex = 8;
+            btn_AddProveedor.UseVisualStyleBackColor = true;
+            btn_AddProveedor.Click += btn_AddProveedor_Click;
             // 
             // txt_Proveedor
             // 
@@ -278,17 +289,6 @@
             btn_ShowScripts.UseVisualStyleBackColor = false;
             btn_ShowScripts.Click += btn_ShowScripts_Click;
             // 
-            // btn_AddProveedor
-            // 
-            btn_AddProveedor.BackgroundImage = (Image)resources.GetObject("btn_AddProveedor.BackgroundImage");
-            btn_AddProveedor.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_AddProveedor.Location = new Point(385, 28);
-            btn_AddProveedor.Name = "btn_AddProveedor";
-            btn_AddProveedor.Size = new Size(25, 22);
-            btn_AddProveedor.TabIndex = 8;
-            btn_AddProveedor.UseVisualStyleBackColor = true;
-            btn_AddProveedor.Click += btn_AddProveedor_Click;
-            // 
             // ActualizadorMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -302,8 +302,8 @@
             Controls.Add(btn_OcultaOpciones);
             Controls.Add(btn_EjecutarCarpeta);
             Controls.Add(btn_EjecutarScripts);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(groupBox_Proveedor);
+            Controls.Add(groupBox_Grupos);
             Controls.Add(statusStrip1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -315,10 +315,10 @@
             Load += ActualizadorMenu_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            groupBox_Grupos.ResumeLayout(false);
+            groupBox_Grupos.PerformLayout();
+            groupBox_Proveedor.ResumeLayout(false);
+            groupBox_Proveedor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -329,10 +329,10 @@
         private ToolStripStatusLabel lbl_Conexion;
         private ComboBox cmb_IdPresupuestado;
         private Label lbl_IdPresupuestado;
-        private GroupBox groupBox1;
+        private GroupBox groupBox_Grupos;
         private Label lbl_IdProduccion;
         private ComboBox cmb_IdProduccion;
-        private GroupBox groupBox2;
+        private GroupBox groupBox_Proveedor;
         private TextBox txt_Proveedor;
         private Label lbl_Proveedor;
         private ComboBox cmb_Proveedor;

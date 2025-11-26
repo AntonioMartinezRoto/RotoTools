@@ -33,9 +33,9 @@
             lbl_info = new Label();
             btn_ExportWinPerfil = new Button();
             btn_ExportOrgadata = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            lbl_ExportWinPerfil = new Label();
+            lbl_ExportOrgadata = new Label();
+            lbl_ExportOpera = new Label();
             btn_ExportOpera = new Button();
             SuspendLayout();
             // 
@@ -88,36 +88,36 @@
             btn_ExportOrgadata.UseVisualStyleBackColor = false;
             btn_ExportOrgadata.Click += btn_ExportOrgadata_Click;
             // 
-            // label1
+            // lbl_ExportWinPerfil
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(95, 145);
-            label1.Name = "label1";
-            label1.Size = new Size(111, 15);
-            label1.TabIndex = 4;
-            label1.Text = "Exportar a WinPerfil";
+            lbl_ExportWinPerfil.AutoSize = true;
+            lbl_ExportWinPerfil.BackColor = Color.Transparent;
+            lbl_ExportWinPerfil.Location = new Point(95, 145);
+            lbl_ExportWinPerfil.Name = "lbl_ExportWinPerfil";
+            lbl_ExportWinPerfil.Size = new Size(111, 15);
+            lbl_ExportWinPerfil.TabIndex = 4;
+            lbl_ExportWinPerfil.Text = "Exportar a WinPerfil";
             // 
-            // label2
+            // lbl_ExportOrgadata
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Location = new Point(95, 220);
-            label2.Name = "label2";
-            label2.Size = new Size(112, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Exportar a Orgadata";
+            lbl_ExportOrgadata.AutoSize = true;
+            lbl_ExportOrgadata.BackColor = Color.Transparent;
+            lbl_ExportOrgadata.Location = new Point(95, 220);
+            lbl_ExportOrgadata.Name = "lbl_ExportOrgadata";
+            lbl_ExportOrgadata.Size = new Size(112, 15);
+            lbl_ExportOrgadata.TabIndex = 5;
+            lbl_ExportOrgadata.Text = "Exportar a Orgadata";
             // 
-            // label3
+            // lbl_ExportOpera
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Location = new Point(355, 145);
-            label3.Name = "label3";
-            label3.Size = new Size(95, 15);
-            label3.TabIndex = 7;
-            label3.Text = "Exportar a Opera";
-            label3.Visible = false;
+            lbl_ExportOpera.AutoSize = true;
+            lbl_ExportOpera.BackColor = Color.Transparent;
+            lbl_ExportOpera.Location = new Point(355, 145);
+            lbl_ExportOpera.Name = "lbl_ExportOpera";
+            lbl_ExportOpera.Size = new Size(95, 15);
+            lbl_ExportOpera.TabIndex = 7;
+            lbl_ExportOpera.Text = "Exportar a Opera";
+            lbl_ExportOpera.Visible = false;
             // 
             // btn_ExportOpera
             // 
@@ -140,10 +140,10 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(612, 291);
-            Controls.Add(label3);
+            Controls.Add(lbl_ExportOpera);
             Controls.Add(btn_ExportOpera);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lbl_ExportOrgadata);
+            Controls.Add(lbl_ExportWinPerfil);
             Controls.Add(btn_ExportOrgadata);
             Controls.Add(btn_ExportWinPerfil);
             Controls.Add(lbl_info);
@@ -154,6 +154,7 @@
             Name = "ExportacionMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menú exportar";
+            Load += ExportacionMenu_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,9 +165,9 @@
         private Label lbl_info;
         private Button btn_ExportWinPerfil;
         private Button btn_ExportOrgadata;
-        private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label lbl_ExportWinPerfil;
+        private Label lbl_ExportOrgadata;
+        private Label lbl_ExportOpera;
         private Button btn_ExportOpera;
     }
 }

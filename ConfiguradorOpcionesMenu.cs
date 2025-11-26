@@ -18,6 +18,7 @@ namespace RotoTools
         private void ConfiguradorOpciones_Load(object sender, EventArgs e)
         {
             InitializeInfoConnection();
+            CargarTextos();
         }
         private void btn_ConfigOpciones_Click(object sender, EventArgs e)
         {
@@ -30,18 +31,17 @@ namespace RotoTools
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "XML Files (*.xml)|*.xml";
-                openFileDialog.Title = "Selecciona XML configuración";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string rutaXml = openFileDialog.FileName;
                     Helpers.RestoreOpcionesDesdeXml(rutaXml);
-                    MessageBox.Show("Configuración restaurada correctamente.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_ConfiguracionRestaurada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error restaurando la configuración." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalizationManager.GetString("L_ErrorRestaurandoConfiguracion") + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -51,7 +51,13 @@ namespace RotoTools
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
-        }        
+        }
+        private void CargarTextos()
+        {
+            lbl_ConfigOpciones.Text = LocalizationManager.GetString("L_ConfigurarGuardarOpciones");
+            this.Text = LocalizationManager.GetString("L_MenuConfigurarOpciones");
+            lbl_RestoreOptions.Text = LocalizationManager.GetString("L_RestaurarOpciones");
+        }
 
         #endregion
 

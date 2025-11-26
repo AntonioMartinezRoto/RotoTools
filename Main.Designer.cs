@@ -35,14 +35,17 @@
             btn_ConfigOpciones = new Button();
             lbl_ConfigOpciones = new Label();
             btn_Actualizador = new Button();
-            label1 = new Label();
+            lbl_Actualizacion = new Label();
             btn_Export = new Button();
             lbl_Export = new Label();
             btn_Conector = new Button();
             lbl_Conector = new Label();
             lbl_ControlCambios = new Label();
             btn_ControlCambios = new Button();
-            label2 = new Label();
+            lbl_Traduccion = new Label();
+            btn_Traduccion = new Button();
+            btn_Config = new Button();
+            lbl_ConfigFKS = new Label();
             btn_ManillasFKS = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -52,7 +55,7 @@
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 287);
+            statusStrip1.Location = new Point(0, 336);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(696, 22);
             statusStrip1.SizingGrip = false;
@@ -69,9 +72,9 @@
             // 
             btn_Refresh.BackgroundImage = (Image)resources.GetObject("btn_Refresh.BackgroundImage");
             btn_Refresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Refresh.Location = new Point(12, 12);
+            btn_Refresh.Location = new Point(50, 11);
             btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(32, 28);
+            btn_Refresh.Size = new Size(32, 32);
             btn_Refresh.TabIndex = 1;
             btn_Refresh.UseVisualStyleBackColor = true;
             btn_Refresh.Click += btn_Refresh_Click;
@@ -108,38 +111,36 @@
             btn_Actualizador.UseVisualStyleBackColor = true;
             btn_Actualizador.Click += btn_Actualizador_Click;
             // 
-            // label1
+            // lbl_Actualizacion
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(111, 158);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Actualización";
+            lbl_Actualizacion.AutoSize = true;
+            lbl_Actualizacion.BackColor = Color.Transparent;
+            lbl_Actualizacion.Location = new Point(111, 158);
+            lbl_Actualizacion.Name = "lbl_Actualizacion";
+            lbl_Actualizacion.Size = new Size(78, 15);
+            lbl_Actualizacion.TabIndex = 5;
+            lbl_Actualizacion.Text = "Actualización";
             // 
             // btn_Export
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(318, 208);
+            btn_Export.Location = new Point(59, 269);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
             btn_Export.UseVisualStyleBackColor = true;
-            btn_Export.Visible = false;
             btn_Export.Click += btn_Export_Click;
             // 
             // lbl_Export
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(370, 220);
+            lbl_Export.Location = new Point(111, 281);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
             lbl_Export.Text = "Exportar datos";
-            lbl_Export.Visible = false;
             // 
             // btn_Conector
             // 
@@ -183,27 +184,60 @@
             btn_ControlCambios.UseVisualStyleBackColor = true;
             btn_ControlCambios.Click += btn_ControlCambios_Click;
             // 
-            // label2
+            // lbl_Traduccion
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Location = new Point(111, 220);
-            label2.Name = "label2";
-            label2.Size = new Size(152, 15);
-            label2.TabIndex = 13;
-            label2.Text = "Configuración Manillas FKS";
-            label2.Visible = false;
+            lbl_Traduccion.AutoSize = true;
+            lbl_Traduccion.BackColor = Color.Transparent;
+            lbl_Traduccion.Location = new Point(371, 220);
+            lbl_Traduccion.Name = "lbl_Traduccion";
+            lbl_Traduccion.Size = new Size(65, 15);
+            lbl_Traduccion.TabIndex = 13;
+            lbl_Traduccion.Text = "Traducción";
+            // 
+            // btn_Traduccion
+            // 
+            btn_Traduccion.BackgroundImage = (Image)resources.GetObject("btn_Traduccion.BackgroundImage");
+            btn_Traduccion.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Traduccion.Location = new Point(318, 207);
+            btn_Traduccion.Name = "btn_Traduccion";
+            btn_Traduccion.Size = new Size(47, 40);
+            btn_Traduccion.TabIndex = 12;
+            btn_Traduccion.UseVisualStyleBackColor = true;
+            btn_Traduccion.Click += btn_Traduccion_Click;
+            // 
+            // btn_Config
+            // 
+            btn_Config.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_Config.BackColor = Color.Transparent;
+            btn_Config.BackgroundImage = (Image)resources.GetObject("btn_Config.BackgroundImage");
+            btn_Config.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Config.Location = new Point(12, 11);
+            btn_Config.Margin = new Padding(3, 2, 3, 2);
+            btn_Config.Name = "btn_Config";
+            btn_Config.Size = new Size(32, 32);
+            btn_Config.TabIndex = 14;
+            btn_Config.UseVisualStyleBackColor = false;
+            btn_Config.Click += btn_Config_Click;
+            // 
+            // lbl_ConfigFKS
+            // 
+            lbl_ConfigFKS.AutoSize = true;
+            lbl_ConfigFKS.BackColor = Color.Transparent;
+            lbl_ConfigFKS.Location = new Point(112, 220);
+            lbl_ConfigFKS.Name = "lbl_ConfigFKS";
+            lbl_ConfigFKS.Size = new Size(152, 15);
+            lbl_ConfigFKS.TabIndex = 13;
+            lbl_ConfigFKS.Text = "Configuración Manillas FKS";
             // 
             // btn_ManillasFKS
             // 
             btn_ManillasFKS.BackgroundImage = (Image)resources.GetObject("btn_ManillasFKS.BackgroundImage");
             btn_ManillasFKS.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ManillasFKS.Location = new Point(59, 208);
+            btn_ManillasFKS.Location = new Point(59, 207);
             btn_ManillasFKS.Name = "btn_ManillasFKS";
             btn_ManillasFKS.Size = new Size(47, 40);
             btn_ManillasFKS.TabIndex = 12;
             btn_ManillasFKS.UseVisualStyleBackColor = true;
-            btn_ManillasFKS.Visible = false;
             btn_ManillasFKS.Click += btn_ManillasFKS_Click;
             // 
             // Main
@@ -212,16 +246,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(696, 309);
-            Controls.Add(label2);
+            ClientSize = new Size(696, 358);
+            Controls.Add(lbl_ConfigFKS);
             Controls.Add(btn_ManillasFKS);
+            Controls.Add(btn_Config);
+            Controls.Add(lbl_Traduccion);
+            Controls.Add(btn_Traduccion);
             Controls.Add(lbl_ControlCambios);
             Controls.Add(btn_ControlCambios);
             Controls.Add(lbl_Conector);
             Controls.Add(btn_Conector);
             Controls.Add(lbl_Export);
             Controls.Add(btn_Export);
-            Controls.Add(label1);
+            Controls.Add(lbl_Actualizacion);
             Controls.Add(btn_Actualizador);
             Controls.Add(lbl_ConfigOpciones);
             Controls.Add(btn_ConfigOpciones);
@@ -248,14 +285,17 @@
         private Button btn_ConfigOpciones;
         private Label lbl_ConfigOpciones;
         private Button btn_Actualizador;
-        private Label label1;
+        private Label lbl_Actualizacion;
         private Button btn_Export;
         private Label lbl_Export;
         private Button btn_Conector;
         private Label lbl_Conector;
         private Label lbl_ControlCambios;
         private Button btn_ControlCambios;
-        private Label label2;
+        private Label lbl_ConfigFKS;
         private Button btn_ManillasFKS;
+        private Label lbl_Traduccion;
+        private Button btn_Traduccion;
+        private Button btn_Config;
     }
 }

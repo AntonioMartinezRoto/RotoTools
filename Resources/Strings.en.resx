@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="L_Actualizador" xml:space="preserve">
+    <value>Installation</value>
+  </data>
+  <data name="L_ConectorHerraje" xml:space="preserve">
+    <value>Hardware connector</value>
+  </data>
+  <data name="L_ConfiguradorOpciones" xml:space="preserve">
+    <value>Options configuration</value>
+  </data>
+  <data name="L_ControlCambios" xml:space="preserve">
+    <value>Changes control</value>
+  </data>
+  <data name="L_ExportarDatos" xml:space="preserve">
+    <value>Export data</value>
+  </data>
+  <data name="L_SeleccionarIdioma" xml:space="preserve">
+    <value>Select language</value>
+  </data>
+  <data name="L_Menu" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="L_Traduccion" xml:space="preserve">
+    <value>Translate</value>
+  </data>
+  <data name="L_Opciones" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="L_Guardar" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="L_MenuConfigurarOpciones" xml:space="preserve">
+    <value>Options menu</value>
+  </data>
+  <data name="L_ConfigurarGuardarOpciones" xml:space="preserve">
+    <value>Configure and save options</value>
+  </data>
+  <data name="L_RestaurarOpciones" xml:space="preserve">
+    <value>Restore options</value>
+  </data>
+  <data name="L_Buscar" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="L_ConfigurarOpciones" xml:space="preserve">
+    <value>Configure options</value>
+  </data>
+  <data name="L_Valor" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="L_Texto" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="L_OcultaList" xml:space="preserve">
+    <value>Hide in list</value>
+  </data>
+  <data name="L_OcultaArbol" xml:space="preserve">
+    <value>Hide in tree</value>
+  </data>
+  <data name="L_GuardadoCorrectamente" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="L_ErrorGuardarConfiguracion" xml:space="preserve">
+    <value>Error saving configuration file.</value>
+  </data>
+  <data name="L_AplicarPlantillaTraduccion" xml:space="preserve">
+    <value>Do you want to apply a translation?</value>
+  </data>
+  <data name="L_ConfiguracionRestaurada" xml:space="preserve">
+    <value>Configuration restored successfully</value>
+  </data>
+  <data name="L_ErrorRestaurandoConfiguracion" xml:space="preserve">
+    <value>Error restoring configuration file.</value>
+  </data>
+  <data name="L_EjecutarSQL" xml:space="preserve">
+    <value>Execute SQL</value>
+  </data>
+  <data name="L_EjecutarCarpeta" xml:space="preserve">
+    <value>Select SQL</value>
+  </data>
+  <data name="L_InstalarEscandallos" xml:space="preserve">
+    <value>Install Scripts</value>
+  </data>
+  <data name="L_VerEscandallos" xml:space="preserve">
+    <value>View Scripts</value>
+  </data>
+  <data name="L_ExportarEscandallos" xml:space="preserve">
+    <value>Export Scripts</value>
+  </data>
+  <data name="L_OcultaOpciones" xml:space="preserve">
+    <value>HideOptions</value>
+  </data>
+  <data name="L_Grupos" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="L_Proveedor" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="L_Presupuestado" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="L_Produccion" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="L_Nombre" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="L_ConfManillasFKS" xml:space="preserve">
+    <value>FKS handles configuration</value>
+  </data>
+  <data name="L_PermitirTraduccion" xml:space="preserve">
+    <value>Allow translations in Scripts and Hardware Connector</value>
+  </data>
+  <data name="L_NoScriptsSql" xml:space="preserve">
+    <value>No .sql scripts were found in the selected folder</value>
+  </data>
+  <data name="L_ScriptsEjecutados" xml:space="preserve">
+    <value>Scripts executed successfully.</value>
+  </data>
+  <data name="L_RegistrosActualizados" xml:space="preserve">
+    <value>updated records</value>
+  </data>
+  <data name="L_DescripcionesMB" xml:space="preserve">
+    <value>Base Material descriptions</value>
+  </data>
+  <data name="L_MBFicticios" xml:space="preserve">
+    <value>Ficticios Base Materials</value>
+  </data>
+  <data name="L_Level1MBOpciones" xml:space="preserve">
+    <value>Level 1 Base Materials and Options</value>
+  </data>
+  <data name="L_GroupsSupplier" xml:space="preserve">
+    <value>Groups and supplier</value>
+  </data>
+  <data name="L_RegistrosActualizadosScript" xml:space="preserve">
+    <value>updated records for the script</value>
+  </data>
+  <data name="L_Escandallos" xml:space="preserve">
+    <value>Scripts</value>
+  </data>
+  <data name="L_ExisteProveedor" xml:space="preserve">
+    <value>A Roto supplier already exists. Do you still want to add the supplier Roto Frank SA?</value>
+  </data>
+  <data name="L_ProveedorAgregado" xml:space="preserve">
+    <value>Supplier Roto Frank SA added successfully.</value>
+  </data>
+  <data name="L_OcultoAgregado" xml:space="preserve">
+    <value>Hidden value added successfully.</value>
+  </data>
+  <data name="L_SeleccionarTodosGrupos" xml:space="preserve">
+    <value>Select all groups</value>
+  </data>
+  <data name="L_GestionGeneral" xml:space="preserve">
+    <value>General management</value>
+  </data>
+  <data name="L_ConstructivosPVC" xml:space="preserve">
+    <value>PVC constructives</value>
+  </data>
+  <data name="L_ConstructivosALU" xml:space="preserve">
+    <value>ALU constructives</value>
+  </data>
+  <data name="L_GestionManillas" xml:space="preserve">
+    <value>Handles management</value>
+  </data>
+  <data name="L_GestionBombillos" xml:space="preserve">
+    <value>Gestión Bombillos(EN)</value>
+  </data>
+  <data name="L_PersonalizacionClientes" xml:space="preserve">
+    <value>Customers customization</value>
+  </data>
+  <data name="L_InstalacionIndividualizada" xml:space="preserve">
+    <value>Individualized installation</value>
+  </data>
+  <data name="L_SeleccionarEscandallos" xml:space="preserve">
+    <value>Select manually the scripts</value>
+  </data>
+  <data name="L_Instalar" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="L_SeleccionarTodos" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="L_ConfirmarInstalar" xml:space="preserve">
+    <value>Installing will erase the current data of the selected scripts. Do you want to continue?</value>
+  </data>
+  <data name="L_EscandallosInstalados" xml:space="preserve">
+    <value>Installed scripts</value>
+  </data>
+  <data name="L_SeleccionarXMLAnterior" xml:space="preserve">
+    <value>Select previous XML</value>
+  </data>
+  <data name="L_SeleccionarXMLNuevo" xml:space="preserve">
+    <value>Select new XML</value>
+  </data>
+  <data name="L_ConfiguracionInforme" xml:space="preserve">
+    <value>Report settings</value>
+  </data>
+  <data name="L_GenerarInforme" xml:space="preserve">
+    <value>Generate changes control report</value>
+  </data>
+  <data name="L_CompararFittingGroups" xml:space="preserve">
+    <value>Compare fitting groups</value>
+  </data>
+  <data name="L_CompararColores" xml:space="preserve">
+    <value>Compare colours</value>
+  </data>
+  <data name="L_CompararOpciones" xml:space="preserve">
+    <value>Compare options</value>
+  </data>
+  <data name="L_CompararSets" xml:space="preserve">
+    <value>Compare sets</value>
+  </data>
+  <data name="L_CompararNumeroSets" xml:space="preserve">
+    <value>Compare # setdescriptions</value>
+  </data>
+  <data name="L_FiltrarSets" xml:space="preserve">
+    <value>Filter sets</value>
+  </data>
+  <data name="L_CompararFittings" xml:space="preserve">
+    <value>Compare fittings</value>
+  </data>
+  <data name="L_FiltrarFittings" xml:space="preserve">
+    <value>Filter fittings</value>
+  </data>
+  <data name="L_CompararDescripciones" xml:space="preserve">
+    <value>Compare descriptions</value>
+  </data>
+  <data name="L_CompararManufacturer" xml:space="preserve">
+    <value>Compare manufacturer</value>
+  </data>
+  <data name="L_CompararLength" xml:space="preserve">
+    <value>Compare length</value>
+  </data>
+  <data name="L_CompararLocation" xml:space="preserve">
+    <value>Compare location</value>
+  </data>
+  <data name="L_CompararArticulosOpciones" xml:space="preserve">
+    <value>Comparte article-options</value>
+  </data>
+  <data name="L_SoloSeleccionados" xml:space="preserve">
+    <value>Only selected</value>
+  </data>
+  <data name="L_SetsComunes" xml:space="preserve">
+    <value>Common sets</value>
+  </data>
+  <data name="L_FittingsComunes" xml:space="preserve">
+    <value>Common fittings</value>
+  </data>
+  <data name="L_Filtro" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="L_SeleccionarXML" xml:space="preserve">
+    <value>Select XML</value>
+  </data>
+  <data name="L_GenerarConector" xml:space="preserve">
+    <value>Generate Hardware Connector</value>
+  </data>
+  <data name="L_BalconerasAEconAI" xml:space="preserve">
+    <value>Easy Mix outer opening with inner opening Sets</value>
+  </data>
+  <data name="L_CombinarConectores" xml:space="preserve">
+    <value>Combine Hardware Connectors</value>
+  </data>
+  <data name="L_RevisionSets" xml:space="preserve">
+    <value>Sets review</value>
+  </data>
+  <data name="L_GuardarEnXML" xml:space="preserve">
+    <value>Save in XML</value>
+  </data>
+  <data name="L_GuardarEnBD" xml:space="preserve">
+    <value>Save in DB</value>
+  </data>
+  <data name="L_PonerPredefinido" xml:space="preserve">
+    <value>Set as default</value>
+  </data>
+  <data name="L_Escandallo" xml:space="preserve">
+    <value>Script</value>
+  </data>
+  <data name="L_Apertura" xml:space="preserve">
+    <value>Opening</value>
+  </data>
+  <data name="L_Codigo" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="L_ConectorGenerado" xml:space="preserve">
+    <value>Hardware connector generated successfully.</value>
+  </data>
+  <data name="L_ExisteConector" xml:space="preserve">
+    <value>There is a connector with the selected name. Do you want to overwrite it?</value>
+  </data>
+  <data name="L_ConectorInsertado" xml:space="preserve">
+    <value>Hardware connector inserted successfully.</value>
+  </data>
+  <data name="L_SeleccionarConfiguracion" xml:space="preserve">
+    <value>Select configuration</value>
+  </data>
+  <data name="L_ConfiguracionNormalizada" xml:space="preserve">
+    <value>Standardized configuration</value>
+  </data>
+  <data name="L_ConfiguracionFKS" xml:space="preserve">
+    <value>Only FKS handles</value>
+  </data>
+  <data name="L_ConfiguracionNormalizadaFKS" xml:space="preserve">
+    <value>Standardized configuration + FKS handles</value>
+  </data>
+  <data name="L_HardwareSupplierObligatorio" xml:space="preserve">
+    <value>HardwareSupplier required.</value>
+  </data>
+  <data name="L_InstalacionCompletada" xml:space="preserve">
+    <value>Installation completed successfully</value>
+  </data>
+  <data name="L_TraducirXML" xml:space="preserve">
+    <value>Translate XML</value>
+  </data>
+  <data name="L_GenerarPlantilla" xml:space="preserve">
+    <value>Generate translation template</value>
+  </data>
+  <data name="L_XMLTraducidoCorrectamente" xml:space="preserve">
+    <value>File translated successfully.</value>
+  </data>
+  <data name="L_PlantillaGenerada" xml:space="preserve">
+    <value>Template generated successfully.</value>
+  </data>
+  <data name="L_Cargando" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="L_ExportarWinPerfil" xml:space="preserve">
+    <value>Export to WinPerfil</value>
+  </data>
+  <data name="L_ExportarOrgadata" xml:space="preserve">
+    <value>Export to Orgadata</value>
+  </data>
+  <data name="L_ExportarOpera" xml:space="preserve">
+    <value>Export to Opera</value>
+  </data>
+  <data name="L_Perfil" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="L_Sistema" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="L_Color" xml:space="preserve">
+    <value>Colour</value>
+  </data>
+  <data name="L_ExportacionCompletada" xml:space="preserve">
+    <value>Export completed.</value>
+  </data>
+  <data name="L_FicheroConfigNoEncontrado" xml:space="preserve">
+    <value>Configuration file not found.</value>
+  </data>
+</root>

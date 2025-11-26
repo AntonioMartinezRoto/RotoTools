@@ -51,6 +51,18 @@ namespace RotoTools
             chkList_Sets.Items.Clear();
             LoadItems("");
             InitializeCounters();
+            CargarTextos();
+        }
+
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_Filtro");
+            btn_GuardarFiltro.Text = LocalizationManager.GetString("L_Guardar");
+
+            chk_SelectAll.Text = LocalizationManager.GetString("L_SeleccionarTodos");
+            chk_SoloFiltrados.Text = LocalizationManager.GetString("L_SoloSeleccionados");
+            lbl_Buscar.Text = LocalizationManager.GetString("L_Buscar");
+
         }
 
         private void LoadItems(String filter, bool soloSeleccionadosChecked = false)
@@ -100,16 +112,13 @@ namespace RotoTools
             switch (itemTypeLoaded)
             {
                 case (int)enumTipoItem.set:
-                    lbl_NumeroComunes.Text = "Sets comunes: " + itemComunesCount.ToString();
+                    lbl_NumeroComunes.Text = LocalizationManager.GetString("L_SetsComunes")  + ": " + itemComunesCount.ToString();
                     break;
                 case (int)enumTipoItem.fittingGroup:
-                    lbl_NumeroComunes.Text = "Fittings comunes: " + itemComunesCount.ToString();
+                    lbl_NumeroComunes.Text = LocalizationManager.GetString("L_FittingsComunes")  + ": " + itemComunesCount.ToString();
                     break;
 
             }
-
-            //lbl_NumeroXml1.Text = "Sets solo en XML 1: " + itemSoloEnXml1Count.ToString();
-            //lbl_NumeroXml2.Text = "Sets solo en XML 2: " + itemSoloEnXml2Count.ToString();
         }
 
         private void btn_GuardarFiltro_Click(object sender, EventArgs e)
@@ -129,7 +138,6 @@ namespace RotoTools
         }
         private void chk_SoloFiltrados_CheckedChanged(object sender, EventArgs e)
         {
-            //FillFiltradosList();
             chkList_Sets.Items.Clear();
             if (chk_SoloFiltrados.Checked)
             {

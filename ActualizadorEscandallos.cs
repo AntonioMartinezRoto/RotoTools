@@ -29,6 +29,7 @@ namespace RotoTools
         private void ActualizadorEscandallos_Load(object sender, EventArgs e)
         {
             FillEscandallosList(EscandallosList);
+            CargarTextos();
         }
         private void txt_Filter_TextChanged(object sender, EventArgs e)
         {
@@ -82,6 +83,11 @@ namespace RotoTools
 
             this.EscandallosList = Helpers.CargarEscandallosEmbebidos(tiposSeleccionados);
 
+        }
+        private void CargarTextos()
+        {
+            lbl_Filtrar.Text = LocalizationManager.GetString("L_Buscar");
+            this.Text = LocalizationManager.GetString("L_Escandallos");
         }
 
         #endregion

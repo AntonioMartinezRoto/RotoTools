@@ -62,10 +62,11 @@
             // 
             btn_SaveConfig.Image = (Image)resources.GetObject("btn_SaveConfig.Image");
             btn_SaveConfig.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_SaveConfig.Location = new Point(646, 413);
+            btn_SaveConfig.Location = new Point(628, 413);
             btn_SaveConfig.Margin = new Padding(9, 3, 3, 3);
             btn_SaveConfig.Name = "btn_SaveConfig";
-            btn_SaveConfig.Size = new Size(87, 41);
+            btn_SaveConfig.Padding = new Padding(5, 0, 5, 0);
+            btn_SaveConfig.Size = new Size(105, 41);
             btn_SaveConfig.TabIndex = 1;
             btn_SaveConfig.Text = "Guardar";
             btn_SaveConfig.TextAlign = ContentAlignment.MiddleRight;
@@ -84,9 +85,9 @@
             // 
             // txt_Filter
             // 
-            txt_Filter.Location = new Point(77, 52);
+            txt_Filter.Location = new Point(121, 52);
             txt_Filter.Name = "txt_Filter";
-            txt_Filter.Size = new Size(150, 23);
+            txt_Filter.Size = new Size(106, 23);
             txt_Filter.TabIndex = 3;
             txt_Filter.TextChanged += txt_Filter_TextChanged;
             // 

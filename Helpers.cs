@@ -1,9 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ClosedXML.Excel;
+using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using Microsoft.Win32;
 using RotoEntities;
 using System.Reflection;
-using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using static RotoTools.Enums;
@@ -242,7 +244,7 @@ namespace RotoTools
             {
                 if (!System.IO.File.Exists(rutaXml))
                 {
-                    MessageBox.Show("Fichero de configuración no encontrado.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(LocalizationManager.GetString("L_FicheroConfigNoEncontrado"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 XDocument doc = XDocument.Load(rutaXml);
@@ -304,7 +306,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error restaurando la configuración: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (19)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static List<Escandallo> CargarEscandallosEmbebidos(List<enumRotoTipoEscandallo> tiposSeleccionados)
@@ -431,7 +433,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando contenido de la opción Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (20)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -444,7 +446,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando opción de Configuración Standar: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (21)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)
@@ -524,6 +526,65 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
+        public static Traducciones CargarTraducciones(string excelPath)
+        {
+            var traducciones = new Traducciones();
+
+            using (var wb = new XLWorkbook(excelPath))
+            {
+                foreach (var ws in wb.Worksheets)
+                {
+                    string nombreHoja = ws.Name.Trim().ToLower();
+
+                    if (nombreHoja.StartsWith("fittings"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string refId = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+                            if (!string.IsNullOrEmpty(refId) && !string.IsNullOrEmpty(trad))
+                                traducciones.Fittings[refId] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("fittinggroups"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.FittingGroups[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("colours"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.Colours[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("options"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string name = row.Cell(1).GetString().Trim();
+                            string value = row.Cell(2).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+
+                            if (!string.IsNullOrEmpty(name) && string.IsNullOrEmpty(value))
+                                traducciones.OptionNames[name] = trad;
+                            else if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+                                traducciones.OptionValues[(name, value)] = trad;
+                        }
+                    }
+                }
+            }
+
+            return traducciones;
+        }
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -595,5 +656,85 @@ namespace RotoTools
         }
 
         #endregion
+    }
+    public static class OpcionHelper
+    {
+        public static Option Crear(string name, string value)
+        {
+            // Si no hay traducción activa, devolver tal cual
+            if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
+                return new Option(name, value);
+
+            // Traducir nombre y valor si existen en el diccionario
+            string nombreTraducido = TranslateManager.TraduccionesActuales.TraducirOptionName(name);
+            string valorTraducido = TranslateManager.TraduccionesActuales.TraducirOptionValue(name, value);
+
+            return new Option("RO_" + nombreTraducido, valorTraducido);
+        }
+    }
+    public static class EscandalloHelper
+    {
+        public static void AplicarTraduccion(Escandallo escandallo)
+        {
+            if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
+                return;
+
+            var trad = TranslateManager.TraduccionesActuales;
+
+            // Si hay JSONs embebidos (Variables o Programa) con opciones dentro, traducirlos también
+            if (!string.IsNullOrEmpty(escandallo.Programa))
+            {
+                escandallo.Programa = TraducirOpcionesDentroJson(escandallo.Programa, trad);
+            }
+        }
+        private static string TraducirOpcionesDentroJson(string programa, Traducciones trad)
+        {
+            if (string.IsNullOrWhiteSpace(programa))
+                return programa;
+
+            try
+            {
+                // Traducimos directamente como script o texto
+                return TraducirTextoPrograma(programa, trad);
+               
+            }
+            catch (JsonException)
+            {
+                // Si por algún motivo no se puede parsear, devolvemos el texto sin modificar
+                return programa;
+            }
+        }
+        private static string TraducirTextoPrograma(string programa, Traducciones trad)
+        {
+            if (string.IsNullOrWhiteSpace(programa))
+                return programa;
+
+            // Detecta expresiones del tipo: OPCION("Nombre", "Valor")
+            var regex = new Regex(@"OPCION\(\""(?<nombre>[^\""]+)\"",\""(?<valor>[^\""]+)\""\)", RegexOptions.Compiled);
+
+            return regex.Replace(programa, match =>
+            {
+                string nombreOriginal = match.Groups["nombre"].Value;
+                string valorOriginal = match.Groups["valor"].Value;
+
+                //Eliminar prefijo "RO_" para buscar traducción
+                string nombreSinPrefijo = nombreOriginal.StartsWith("RO_", StringComparison.OrdinalIgnoreCase)
+                    ? nombreOriginal.Substring(3)
+                    : nombreOriginal;
+
+                //Traducir nombre y valor
+                string nombreTrad = trad.TraducirOptionName(nombreSinPrefijo);
+                string valorTrad = trad.TraducirOptionValue(nombreSinPrefijo, valorOriginal);
+
+                //Restaurar el prefijo "RO_" si estaba originalmente
+                if (nombreOriginal.StartsWith("RO_", StringComparison.OrdinalIgnoreCase) &&
+                    !nombreTrad.StartsWith("RO_", StringComparison.OrdinalIgnoreCase))
+                {
+                    nombreTrad = "RO_" + nombreTrad;
+                }
+
+                return $"OPCION(\"{nombreTrad}\",\"{valorTrad}\")";
+            });
+        }
     }
 }

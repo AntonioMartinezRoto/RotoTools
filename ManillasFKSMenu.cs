@@ -25,6 +25,7 @@ namespace RotoTools
             InitializeInfoConnection();
             InitializeValueConfig();
             LoadItemsHardwareSupplier();
+            CargarTextos();
         }
         private void btn_SaveFKS_Click(object sender, EventArgs e)
         {
@@ -37,7 +38,7 @@ namespace RotoTools
 
             if (cmb_HardwareSupplier.Text == "")
             {
-                MessageBox.Show("HardwareSupplier obligatorio.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(LocalizationManager.GetString("L_HardwareSupplierObligatorio"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -46,7 +47,7 @@ namespace RotoTools
             InstalarConfiguracion(configuracionSeleccionada);
 
             Cursor = Cursors.Default;
-            MessageBox.Show("Instalación realizada correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(LocalizationManager.GetString("L_InstalacionCompletada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             progress_Export.Value = 0;
             progress_Export.Visible = false;
@@ -58,6 +59,17 @@ namespace RotoTools
         #endregion
 
         #region Private Methods
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_ConfManillasFKS");
+
+            groupBoxFKS.Text = LocalizationManager.GetString("L_SeleccionarConfiguracion");
+            rb_Normalizada.Text = LocalizationManager.GetString("L_ConfiguracionNormalizada");
+            rb_SoloFks.Text = LocalizationManager.GetString("L_ConfiguracionFKS");
+            rb_NormalizadaYFks.Text = LocalizationManager.GetString("L_ConfiguracionNormalizadaFKS");
+
+            btn_SaveFKS.Text = LocalizationManager.GetString("L_Guardar");
+        }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
@@ -123,7 +135,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error inicializando valor inicial de configuración." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (8)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void LoadItemsHardwareSupplier()
@@ -218,7 +230,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error actualizando distancia de las operaciones." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (9)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -254,7 +266,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error actualizando distancia de las operaciones." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (10)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void CrearFKSOptions()
@@ -293,7 +305,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando opciones para FKS." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (11)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void CrearFKSOperations()
@@ -378,7 +390,7 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error creando operaciones para FKS." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (12)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void InsertOperationsOptions(string operationIdOrigen, string operationIdNew, string supplierCode)
@@ -441,7 +453,7 @@ namespace RotoTools
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error restaurando configuración." + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (12)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

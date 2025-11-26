@@ -2,6 +2,7 @@
 
 using Microsoft.Data.SqlClient;
 using RotoEntities;
+using System.Globalization;
 using static RotoTools.Enums;
 
 namespace RotoTools
@@ -27,6 +28,7 @@ namespace RotoTools
         {
             LoadAllEscandallos();
             LoadEscandallosInList("");
+            CargarTextos();
         }
         private void txt_filter_TextChanged(object sender, EventArgs e)
         {
@@ -45,7 +47,7 @@ namespace RotoTools
         {
             if (chkList_Escandallos.CheckedItems.Count == 0) return;
 
-            if (MessageBox.Show("Al instalar se perderán los datos actuales de los escandallos seleccionados. ¿Desea continuar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(LocalizationManager.GetString("L_ConfirmarInstalar"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Helpers.InstalarOpcionConfiguraciónStandard();
                 InstallEscandallos();
@@ -103,9 +105,36 @@ namespace RotoTools
         {
             try
             {
+                TranslateManager.AplicarTraduccion = false;
+
+                if (TranslateManager.PermitirTraduccionesEnConectorEscandallos)
+                {
+                    if (MessageBox.Show(LocalizationManager.GetString("L_AplicarPlantillaTraduccion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "XLS Files (*.xls)|*.xlsx";
+
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            EnableControls(false);
+
+                            TranslateManager.AplicarTraduccion = true;
+                            TranslateManager.TraduccionesActuales = Helpers.CargarTraducciones(openFileDialog.FileName);
+
+                            EnableControls(true);
+                            Cursor.Current = Cursors.Default;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+
                 Cursor = Cursors.WaitCursor;
                 EnableControls(false);
-                string messageEscandallos = "Escandallos instalados: " + Environment.NewLine + Environment.NewLine;
+                string messageEscandallos = LocalizationManager.GetString("L_EscandallosInstalados") + Environment.NewLine + Environment.NewLine;
                 using (var conn = new SqlConnection(Helpers.GetConnectionString()))
                 {
                     conn.Open();
@@ -115,6 +144,8 @@ namespace RotoTools
                         Escandallo escandallo = itemListChecked as Escandallo;
                         if (escandallo != null)
                         {
+                            EscandalloHelper.AplicarTraduccion(escandallo);
+
                             string queryInstall = "";
                             if (Helpers.ExisteEscandalloEnBD(escandallo.Codigo))
                             {
@@ -158,16 +189,23 @@ namespace RotoTools
                 }
 
                 EnableControls(true);
-                MessageBox.Show(messageEscandallos, "Instalación completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(messageEscandallos, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error instalando escandallos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error (6): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Cursor = Cursors.Default;
             }
+        }
+        private void CargarTextos()
+        {
+            chk_SelectAll.Text = LocalizationManager.GetString("L_SeleccionarTodos");
+            lbl_Buscar.Text = LocalizationManager.GetString("L_Buscar");
+            btn_InstalarEscandallos.Text = LocalizationManager.GetString("L_Instalar");
+            this.Text = LocalizationManager.GetString("L_InstalacionIndividualizada");
         }
         #endregion
 

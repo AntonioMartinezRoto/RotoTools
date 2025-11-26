@@ -18,6 +18,7 @@ namespace RotoTools
         private void ConfiguradorOpciones_Load(object sender, EventArgs e)
         {
             InitializeInfoConnection();
+            CargarTextos();
             FillOpcionesList();
             FillContenidoOpciones();
             ConfigurarDataGridView();
@@ -55,12 +56,12 @@ namespace RotoTools
                 if (!String.IsNullOrEmpty(configPath))
                 {
                     Helpers.RestoreOpcionesDesdeXml(configPath);
-                    MessageBox.Show("Configuración guardada", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(LocalizationManager.GetString("L_GuardadoCorrectamente"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error guardando archivo de configuración: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalizationManager.GetString("L_ErrorGuardarConfiguracion") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -75,6 +76,12 @@ namespace RotoTools
         #endregion
 
         #region Private methods
+        private void CargarTextos()
+        {
+            lbl_Filtrar.Text = LocalizationManager.GetString("L_Buscar");
+            this.Text = LocalizationManager.GetString("L_ConfigurarOpciones");
+            btn_SaveConfig.Text = LocalizationManager.GetString("L_Guardar");
+        }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
@@ -142,7 +149,7 @@ namespace RotoTools
 
             var colValor = new DataGridViewTextBoxColumn
             {
-                HeaderText = "Valor",
+                HeaderText = LocalizationManager.GetString("L_Valor"),
                 DataPropertyName = "Valor",
                 ReadOnly = true,
                 Width = 144
@@ -150,7 +157,7 @@ namespace RotoTools
 
             var colTexto = new DataGridViewTextBoxColumn
             {
-                HeaderText = "Texto",
+                HeaderText = LocalizationManager.GetString("L_Texto"),
                 DataPropertyName = "Texto",
                 ReadOnly = true,
                 Width = 144
@@ -159,14 +166,14 @@ namespace RotoTools
 
             var colOcultaEnLista = new DataGridViewCheckBoxColumn
             {
-                HeaderText = "Oculta en lista",
+                HeaderText = LocalizationManager.GetString("L_OcultaList"),
                 DataPropertyName = "OcultaEnLista",
                 Width = 90
             };
 
             var colOcultaEnArbol = new DataGridViewCheckBoxColumn
             {
-                HeaderText = "Oculta en árbol",
+                HeaderText = LocalizationManager.GetString("L_OcultaArbol"),
                 DataPropertyName = "OcultaEnArbol",
                 Width = 95
             };

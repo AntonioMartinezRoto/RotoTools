@@ -154,6 +154,7 @@
             Name = "ControlCambiosMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menú de control de cambios";
+            Load += ControlCambiosMenu_Load;
             ResumeLayout(false);
             PerformLayout();
         }

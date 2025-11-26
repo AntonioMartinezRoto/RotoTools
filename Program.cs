@@ -10,6 +10,10 @@ namespace RotoTools
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            string savedLang = Properties.Settings.Default.Language;
+            LocalizationManager.SetLanguage(savedLang);
+            
             ApplicationConfiguration.Initialize();
             Application.Run(new Main());
         }

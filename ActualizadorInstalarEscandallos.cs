@@ -1,6 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
 using System.Data;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using static RotoTools.Enums;
 
 namespace RotoTools
@@ -23,6 +29,34 @@ namespace RotoTools
         {
             try
             {
+                TranslateManager.AplicarTraduccion = false;
+
+                if (TranslateManager.PermitirTraduccionesEnConectorEscandallos)
+                {
+                    if (MessageBox.Show(LocalizationManager.GetString("L_AplicarPlantillaTraduccion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "XLS Files (*.xls)|*.xlsx";
+
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            EnableControls(false);
+
+                            TranslateManager.AplicarTraduccion = true;
+                            TranslateManager.TraduccionesActuales = Helpers.CargarTraducciones(openFileDialog.FileName);
+
+                            EnableControls(true);
+                            Cursor.Current = Cursors.Default;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+
+
                 Cursor = Cursors.WaitCursor;
                 EnableControls(false);
                 string messageEscandallos = "Escandallos instalados: " + Environment.NewLine + Environment.NewLine;
@@ -38,6 +72,8 @@ namespace RotoTools
                     // Insertar los del proyecto
                     foreach (var escandallo in escandallosList)
                     {
+                        EscandalloHelper.AplicarTraduccion(escandallo);
+
                         string queryInstall = "";
                         if (Helpers.ExisteEscandalloEnBD(escandallo.Codigo))
                         {
@@ -128,7 +164,20 @@ namespace RotoTools
 
             return string.Join("\n", nombres);
         }
-
+        private void CargarTextos()
+        {
+            chk_SelectAll.Text = LocalizationManager.GetString("L_SeleccionarTodosGrupos");
+            chk_PVC.Text = LocalizationManager.GetString("L_ConstructivosPVC");
+            chk_GestionGeneral.Text = LocalizationManager.GetString("L_GestionGeneral");
+            chk_Alu.Text = LocalizationManager.GetString("L_ConstructivosALU");
+            chk_Manillas.Text = LocalizationManager.GetString("L_GestionManillas");
+            chk_Bombillos.Text = LocalizationManager.GetString("L_GestionBombillos");
+            chk_Customizations.Text = LocalizationManager.GetString("L_PersonalizacionClientes");
+            groupBoxManual.Text = LocalizationManager.GetString("L_InstalacionIndividualizada");
+            lbl_SelectScripts.Text = LocalizationManager.GetString("L_SeleccionarEscandallos");
+            btn_InstalarEscandallos.Text = LocalizationManager.GetString("L_Instalar");
+            this.Text = LocalizationManager.GetString("L_InstalarEscandallos");
+        }
         #endregion
 
         #region Events
@@ -156,10 +205,10 @@ namespace RotoTools
                 }
             }
         }
-
         private void ActualizadorInstalarEscandallos_Load(object sender, EventArgs e)
         {
             SetToolTips();
+            CargarTextos();
         }
         private void chk_SelectAll_CheckedChanged(object sender, EventArgs e)
         {

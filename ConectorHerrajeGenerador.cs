@@ -52,6 +52,7 @@ namespace RotoTools
 
             _allData = ConvertSetsToGrid(listaSets);
             CargarDatos(_allData);
+            CargarTextos();
 
             statusStrip1.BackColor = Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
@@ -65,7 +66,7 @@ namespace RotoTools
             }
             else
             {
-                _bindingSource.Filter = $"Codigo LIKE '%{filtro}%'";
+                _bindingSource.Filter = LocalizationManager.GetString("L_Codigo") + $" LIKE '%{filtro}%'";
             }
         }
         private void btn_GenerarConector_Click(object sender, EventArgs e)
@@ -79,7 +80,7 @@ namespace RotoTools
                     XmlDocument conectorHerrajeGenerado = GenerateConnectorXml(xmlOrigen.Supplier);
 
                     conectorHerrajeGenerado.Save(saveFileDialog.FileName);
-                    MessageBox.Show("Conector generadado correctamente.");
+                    MessageBox.Show(LocalizationManager.GetString("L_ConectorGenerado"));
                 }
             }
         }
@@ -91,7 +92,7 @@ namespace RotoTools
                 //EnableButtons(false);
                 if (ExisteConectorEnBD(txt_ConectorName.Text))
                 {
-                    if (MessageBox.Show("Existe un conector con el nombre seleccionado ¿Quieres sobreescribirlo?", "Conector existente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show(LocalizationManager.GetString("L_ExisteConector"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         sql = @"UPDATE ConectorHerrajes SET XML = @Xml Where Codigo = @Codigo;";
                     }
@@ -115,13 +116,13 @@ namespace RotoTools
                     command.Parameters.AddWithValue("@Xml", xmlConector.OuterXml);
                     command.ExecuteNonQuery();
                 }
-                MessageBox.Show("Conector insertado correctamente.");
+                MessageBox.Show(LocalizationManager.GetString("L_ConectorInsertado"));
 
                 //EnableButtons(true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error insertando conector: " + ex.Message);
+                MessageBox.Show("Error (7): " + ex.Message);
                 //EnableButtons(true);
             }
         }
@@ -284,7 +285,6 @@ namespace RotoTools
             }
             return false;
         }
-
         private void CrearGrid()
         {
             dataGridView1.AutoGenerateColumns = false;
@@ -293,10 +293,10 @@ namespace RotoTools
 
             // Definir DataTable con columnas
             _dataTable = new DataTable();
-            _dataTable.Columns.Add("Escandallo", typeof(string));
-            _dataTable.Columns.Add("Apertura", typeof(Image));
-            _dataTable.Columns.Add("Opciones", typeof(string));
-            _dataTable.Columns.Add("Codigo", typeof(string));
+            _dataTable.Columns.Add(LocalizationManager.GetString("L_Escandallo"), typeof(string));
+            _dataTable.Columns.Add(LocalizationManager.GetString("L_Apertura"), typeof(Image));
+            _dataTable.Columns.Add(LocalizationManager.GetString("L_Opciones"), typeof(string));
+            _dataTable.Columns.Add(LocalizationManager.GetString("L_Codigo"), typeof(string));
 
             // Crear BindingSource y asignarle la tabla
             _bindingSource = new BindingSource();
@@ -308,8 +308,8 @@ namespace RotoTools
             // Configuración de columnas (como ya lo tenías)
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Escandallo",
-                DataPropertyName = "Escandallo",
+                HeaderText = LocalizationManager.GetString("L_Escandallo"),
+                DataPropertyName = LocalizationManager.GetString("L_Escandallo"),
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
@@ -317,8 +317,8 @@ namespace RotoTools
 
             dataGridView1.Columns.Add(new DataGridViewImageColumn
             {
-                HeaderText = "Apertura",
-                DataPropertyName = "Apertura",
+                HeaderText = LocalizationManager.GetString("L_Apertura"),
+                DataPropertyName = LocalizationManager.GetString("L_Apertura"),
                 ReadOnly = true,
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
@@ -326,8 +326,8 @@ namespace RotoTools
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Opciones",
-                DataPropertyName = "Opciones",
+                HeaderText = LocalizationManager.GetString("L_Opciones"),
+                DataPropertyName = LocalizationManager.GetString("L_Opciones"),
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
@@ -335,8 +335,8 @@ namespace RotoTools
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Codigo",
-                DataPropertyName = "Codigo",
+                HeaderText = LocalizationManager.GetString("L_Codigo"),
+                DataPropertyName = LocalizationManager.GetString("L_Codigo"),
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
@@ -364,6 +364,14 @@ namespace RotoTools
             dataGridView1.GridColor = Color.LightGray;
         }
 
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_GenerarConector");
+            lbl_SaveXML.Text = LocalizationManager.GetString("L_GuardarEnXML");
+            lbl_SaveBD.Text = LocalizationManager.GetString("L_GuardarEnBD");
+            chk_Predefinido.Text = LocalizationManager.GetString("L_PonerPredefinido");
+            lbl_Filtro.Text = LocalizationManager.GetString("L_Buscar");
+        }
         #endregion
 
     }

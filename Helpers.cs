@@ -702,7 +702,7 @@ namespace RotoTools
         {
             // Si no hay traducción activa, devolver tal cual
             if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
-                return new Option(name, value);
+                return new Option("RO_" + name, value);
 
             // Traducir nombre y valor si existen en el diccionario
             string nombreTraducido = TranslateManager.TraduccionesActuales.TraducirOptionName(name);

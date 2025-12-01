@@ -427,6 +427,14 @@ namespace RotoTools
                 setList.AddRange(setsCorrederaCotaFija);
             }
 
+            List<Set> setsInowaCotaFija = GetSetsCFInowa();
+
+            if (setsCorrederaCotaFija.Any())
+            {
+                setList.Add(new Set("CF INOWA"));
+                setList.AddRange(setsInowaCotaFija);
+            }
+
             #endregion
 
             #region PATIO LIFT
@@ -893,6 +901,14 @@ namespace RotoTools
             {
                 setList.Add(new Set("CF CORREDERA"));
                 setList.AddRange(setsCorrederaCotaFija);
+            }
+
+            List<Set> setsInowaCotaFija = GetSetsCFInowa();
+
+            if (setsCorrederaCotaFija.Any())
+            {
+                setList.Add(new Set("CF INOWA"));
+                setList.AddRange(setsInowaCotaFija);
             }
 
             #endregion
@@ -1362,6 +1378,13 @@ namespace RotoTools
                 setList.AddRange(setsCorrederaCotaFija);
             }
 
+            List<Set> setsInowaCotaFija = GetSetsCFInowa();
+
+            if (setsCorrederaCotaFija.Any())
+            {
+                setList.Add(new Set("CF INOWA"));
+                setList.AddRange(setsInowaCotaFija);
+            }
             #endregion
 
             #region PATIO LIFT
@@ -8842,6 +8865,9 @@ namespace RotoTools
         {
             List<Set> setCFCorredera = xmlOrigen.SetList.OrderBy(x => x.Code)
                                                         .Where(s => s.Code.ToUpper().Contains("CORREDERA")).ToList();
+            
+            bool haySetsInowa = xmlOrigen.SetList.Any(s => s.Code.ToUpper().Contains("INOWA"));
+
             foreach (Set set in setCFCorredera)
             {
                 if (set.Opening != null)
@@ -8862,11 +8888,51 @@ namespace RotoTools
                     set.OptionConectorList.Add(new Option("Activa", "No"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("AGUJA", "Ag8"));
                 }
+
+                if (haySetsInowa)
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("TIPO_CORREDERA", "ISlide"));
+                }
             }
 
             return setCFCorredera;
         }
+        private List<Set> GetSetsCFInowa()
+        {
+            List<Set> setCFInowa = xmlOrigen.SetList.OrderBy(x => x.Code)
+                                                        .Where(s => s.Code.ToUpper().Contains("INOWA")).ToList();
 
+            bool haySetsCorredera = xmlOrigen.SetList.Any(s => s.Code.ToUpper().Contains("CORREDERA"));
+
+            foreach (Set set in setCFInowa)
+            {
+                if (set.Opening != null)
+                {
+                    set.OpeningFlagConectorList = GetOpeningOptions(set.Opening);
+
+                }
+                set.OptionConectorList = new List<Option>();
+                set.OptionConectorList.Add(new Option("HardwareSupplier", xmlOrigen.Supplier));
+
+
+                if (set.Opening?.Active != null && set.Opening?.Active == "true")
+                {
+                    set.OptionConectorList.Add(new Option("Activa", "Sí"));
+                }
+                else if (set.Opening?.Active != null && set.Opening?.Active == "false")
+                {
+                    set.OptionConectorList.Add(new Option("Activa", "No"));
+                }
+
+                if (haySetsCorredera)
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("TIPO_CORREDERA", "Inowa"));
+                }
+            }
+
+            return setCFInowa;
+        }
+        
         #endregion
 
         #region PATIO LIFT

@@ -384,6 +384,14 @@ namespace RotoTools
                 CrearContenidoOpcionesConfiguracionStandard();
             }
         }
+        public static void InstalarOpcionTipoCorredera()
+        {
+            if (!ExisteOpcionEnBD("RO_TIPO_CORREDERA"))
+            {
+                CrearOpcionTipoCorredera();
+                CrearContenidoOpcionesTipoCorredera();
+            }
+        }
         public static bool ExisteOpcionEnBD(string optionName)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
@@ -435,8 +443,28 @@ namespace RotoTools
             {
                 MessageBox.Show("Error (20)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
+        }
+        public static void CrearContenidoOpcionesTipoCorredera()
+        {
+            try
+            {
+                List<string> contenidoOpcionesConfiguracionStandard =
+                [
+                    "ISlide",
+                    "Inowa"
+                ];
+                int orden = 0;
+                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
+                {
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
+                    InsertContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcion);
+                    orden++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (22)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public static void CrearOpcionConfiguracionStandard()
         {
@@ -447,6 +475,17 @@ namespace RotoTools
             catch (Exception ex)
             {
                 MessageBox.Show("Error (21)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CrearOpcionTipoCorredera()
+        {
+            try
+            {
+                InsertOpcion("RO_TIPO_CORREDERA");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (23)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)

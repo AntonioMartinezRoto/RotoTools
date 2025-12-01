@@ -24,6 +24,7 @@ namespace RotoTools
         private DataTable _dataTable;
         private BindingSource _bindingSource;
         XmlData xmlOrigen = new XmlData();
+        private bool necesarioInsertarOpcionTipoCorredera = false;
 
         #endregion
 
@@ -54,9 +55,12 @@ namespace RotoTools
             CargarDatos(_allData);
             CargarTextos();
 
+            CheckOpcionTipoCorredera();
+
             statusStrip1.BackColor = Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
+
         private void txt_Filtro_TextChanged(object sender, EventArgs e)
         {
             string filtro = txt_Filtro.Text.Trim().Replace("'", "''"); // evitar errores por comillas
@@ -116,6 +120,13 @@ namespace RotoTools
                     command.Parameters.AddWithValue("@Xml", xmlConector.OuterXml);
                     command.ExecuteNonQuery();
                 }
+
+                //Si están los sets de corredera e Inowa deben distinguirse con la opción RO_TIPO_CORREDERA y hay que instalarla
+                if (necesarioInsertarOpcionTipoCorredera)
+                {
+                    Helpers.InstalarOpcionTipoCorredera();
+                }
+
                 MessageBox.Show(LocalizationManager.GetString("L_ConectorInsertado"));
 
                 //EnableButtons(true);
@@ -363,7 +374,6 @@ namespace RotoTools
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.GridColor = Color.LightGray;
         }
-
         private void CargarTextos()
         {
             this.Text = LocalizationManager.GetString("L_GenerarConector");
@@ -371,6 +381,17 @@ namespace RotoTools
             lbl_SaveBD.Text = LocalizationManager.GetString("L_GuardarEnBD");
             chk_Predefinido.Text = LocalizationManager.GetString("L_PonerPredefinido");
             lbl_Filtro.Text = LocalizationManager.GetString("L_Buscar");
+        }
+
+        private void CheckOpcionTipoCorredera()
+        {
+            bool existenSetsCorredera = this.setsWorkingList.Where(x => !String.IsNullOrEmpty(x.Code)).Any(s => s.Code.ToUpper().Contains("CORREDERA"));
+            bool existenSetsInowa = this.setsWorkingList.Where(x => !String.IsNullOrEmpty(x.Code)).Any(s => s.Code.ToUpper().Contains("INOWA"));
+
+            if (existenSetsCorredera && existenSetsInowa)
+            {
+                necesarioInsertarOpcionTipoCorredera = true;
+            }
         }
         #endregion
 

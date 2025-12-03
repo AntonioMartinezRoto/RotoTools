@@ -47,6 +47,8 @@
             btn_Config = new Button();
             lbl_ConfigFKS = new Label();
             btn_ManillasFKS = new Button();
+            lbl_CAM = new Label();
+            btn_CAM = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -240,6 +242,27 @@
             btn_ManillasFKS.UseVisualStyleBackColor = true;
             btn_ManillasFKS.Click += btn_ManillasFKS_Click;
             // 
+            // lbl_CAM
+            // 
+            lbl_CAM.AutoSize = true;
+            lbl_CAM.BackColor = Color.Transparent;
+            lbl_CAM.Location = new Point(371, 281);
+            lbl_CAM.Name = "lbl_CAM";
+            lbl_CAM.Size = new Size(34, 15);
+            lbl_CAM.TabIndex = 16;
+            lbl_CAM.Text = "CAM";
+            // 
+            // btn_CAM
+            // 
+            btn_CAM.BackgroundImage = (Image)resources.GetObject("btn_CAM.BackgroundImage");
+            btn_CAM.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_CAM.Location = new Point(318, 268);
+            btn_CAM.Name = "btn_CAM";
+            btn_CAM.Size = new Size(47, 40);
+            btn_CAM.TabIndex = 15;
+            btn_CAM.UseVisualStyleBackColor = true;
+            btn_CAM.Click += btn_CAM_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -247,6 +270,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 358);
+            Controls.Add(lbl_CAM);
+            Controls.Add(btn_CAM);
             Controls.Add(lbl_ConfigFKS);
             Controls.Add(btn_ManillasFKS);
             Controls.Add(btn_Config);
@@ -297,5 +322,7 @@
         private Label lbl_Traduccion;
         private Button btn_Traduccion;
         private Button btn_Config;
+        private Label lbl_CAM;
+        private Button btn_CAM;
     }
 }

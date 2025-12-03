@@ -1,0 +1,13 @@
+{
+  "OperationName": "RO_M009_40_T12",
+  "Description": "Taladro manilla Ag > 15 al interior                                                                                                                   ",
+  "External": 0,
+  "IsPrimitive": 1,
+  "Level1": "ROTO",
+  "Level2": "MACROS",
+  "Level3": null,
+  "Level4": null,
+  "Level5": null,
+  "RGB": 255,
+  "Disable": false
+}

@@ -237,7 +237,7 @@ namespace RotoTools
                             File.WriteAllText(path, JsonSerializer.Serialize(escandallo, options));
                         }
 
-                        MessageBox.Show(escandallos.Count.ToString() + " " + LocalizationManager.GetString("Base L_Escandallos") + ": " + Environment.NewLine + carpeta, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(escandallos.Count.ToString() + " " + LocalizationManager.GetString("L_Escandallos") + ": " + Environment.NewLine + carpeta, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         EnableControls(true);
                     }

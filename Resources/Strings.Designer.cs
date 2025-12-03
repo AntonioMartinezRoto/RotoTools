@@ -61,7 +61,7 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Actualizador.
+        ///   Busca una cadena traducida similar a Instalación.
         /// </summary>
         internal static string L_Actualizador {
             get {
@@ -84,6 +84,15 @@ namespace RotoTools.Resources {
         internal static string L_AplicarPlantillaTraduccion {
             get {
                 return ResourceManager.GetString("L_AplicarPlantillaTraduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Artículo.
+        /// </summary>
+        internal static string L_Articulo {
+            get {
+                return ResourceManager.GetString("L_Articulo", resourceCulture);
             }
         }
         
@@ -385,6 +394,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Descripción.
+        /// </summary>
+        internal static string L_Descripcion {
+            get {
+                return ResourceManager.GetString("L_Descripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Descripciones Materiales Base.
         /// </summary>
         internal static string L_DescripcionesMB {
@@ -565,6 +583,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FittingId.
+        /// </summary>
+        internal static string L_FittingId {
+            get {
+                return ResourceManager.GetString("L_FittingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fittings comunes.
         /// </summary>
         internal static string L_FittingsComunes {
@@ -736,6 +763,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Location.
+        /// </summary>
+        internal static string L_Location {
+            get {
+                return ResourceManager.GetString("L_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Materiales Base ficticios.
         /// </summary>
         internal static string L_MBFicticios {
@@ -826,6 +862,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Operación.
+        /// </summary>
+        internal static string L_Operacion {
+            get {
+                return ResourceManager.GetString("L_Operacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Perfil.
         /// </summary>
         internal static string L_Perfil {
@@ -867,6 +912,15 @@ namespace RotoTools.Resources {
         internal static string L_PonerPredefinido {
             get {
                 return ResourceManager.GetString("L_PonerPredefinido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Posición.
+        /// </summary>
+        internal static string L_Posicion {
+            get {
+                return ResourceManager.GetString("L_Posicion", resourceCulture);
             }
         }
         

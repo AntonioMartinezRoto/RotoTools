@@ -73,6 +73,11 @@ namespace RotoTools
             ManillasFKSMenu manillasFKSMenuForm = new ManillasFKSMenu();
             manillasFKSMenuForm.ShowDialog();
         }
+        private void btn_CAM_Click(object sender, EventArgs e)
+        {
+            CamMenu camMenuForm = new CamMenu();
+            camMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -96,5 +101,6 @@ namespace RotoTools
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
+
     }
 }

@@ -92,7 +92,7 @@ namespace RotoTools
             {
                 chkList_Escandallos.Items.Add(escandallo);
             }
-            chkList_Escandallos.DisplayMember = "Codigo"; // Muestra el código del Set
+            chkList_Escandallos.DisplayMember = "Codigo"; // Muestra el código del Escandallo
         }
         private void EnableControls(bool enabled)
         {

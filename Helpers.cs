@@ -3,7 +3,9 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Microsoft.Win32;
 using RotoEntities;
+using System.Data;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -344,6 +346,65 @@ namespace RotoTools
 
             return escandallosList;
         }
+
+        public static List<MechanizedOperation> CargarMacrosMechanizedOperationsEmbebidos()
+        {
+            List<MechanizedOperation> macrosMechanizedOperationsList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Operaciones.Macros.MechanizedOperations.";
+
+            var macrosMechanizedOperationsEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in macrosMechanizedOperationsEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var mechanizedOperation = JsonSerializer.Deserialize<MechanizedOperation>(json);
+                if (mechanizedOperation != null)
+                {
+                    macrosMechanizedOperationsList.Add(mechanizedOperation);
+                }
+            }
+
+            return macrosMechanizedOperationsList;
+        }
+        public static List<OperationsShapes> CargarMacrosOperationsShapesEmbebidos()
+        {
+            List<OperationsShapes> macrosOperationsShapesList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Operaciones.Macros.OperationsShapes.";
+
+            var macrosOperationsShapesEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in macrosOperationsShapesEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var operationsShapes = JsonSerializer.Deserialize<OperationsShapes>(json);
+                if (operationsShapes != null)
+                {
+                    macrosOperationsShapesList.Add(operationsShapes);
+                }
+            }
+
+            return macrosOperationsShapesList;
+        }
         public static void InicializarEscandalloRotoTipo(Escandallo escandallo)
         {
             string codigo = escandallo.Codigo?.ToUpper() ?? "";
@@ -398,6 +459,36 @@ namespace RotoTools
             conexion.Open();
 
             using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM Opciones WHERE Nombre = '{optionName}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static bool ExisteOperacionEnBD(string operationName)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM MechanizedOperations WHERE OperationName = '{operationName}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static bool ExisteOperationShapeEnBD(string operationName)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM OperationsShapes WHERE OperationName = '{operationName}'", conexion);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -624,6 +715,117 @@ namespace RotoTools
 
             return traducciones;
         }
+        public static void InstallMacrosMechanizedOperations()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(GetConnectionString()))
+                {
+                    conn.Open();
+
+                    //Cargar la lista de escandallos seleccionados
+                    List<MechanizedOperation> macrosMechanizedOperationsList = new List<MechanizedOperation>();
+                    macrosMechanizedOperationsList = CargarMacrosMechanizedOperationsEmbebidos();
+
+
+                    // Insertar los del proyecto
+                    foreach (var macroMechanizedOperation in macrosMechanizedOperationsList)
+                    {
+                        if (!ExisteOperacionEnBD(macroMechanizedOperation.OperationName))
+                        {
+                            InstallMechanizedOperation(macroMechanizedOperation);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error(34)" + Environment.NewLine + Environment.NewLine +
+                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void InstallMacrosOperationsShapes()
+        {
+            try
+            {
+                List<MechanizedOperation> macrosMechanizedOperationsList = new List<MechanizedOperation>();
+                List<OperationsShapes> macrosOperationsShapesList = new List<OperationsShapes>();
+                macrosMechanizedOperationsList = CargarMacrosMechanizedOperationsEmbebidos();
+                macrosOperationsShapesList = CargarMacrosOperationsShapesEmbebidos();
+
+
+                // Insertar los del proyecto
+                foreach (var macroMechanizedOperation in macrosMechanizedOperationsList)
+                {
+                    foreach (OperationsShapes operationShapes in macrosOperationsShapesList.Where(os => os.OperationName == macroMechanizedOperation.OperationName))
+                    {
+                        InstallOperationShape(operationShapes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error(35)" + Environment.NewLine + Environment.NewLine +
+                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void InstallMechanizedOperation(MechanizedOperation mechanizedOperation)
+        {
+
+            string insert = @"INSERT INTO MechanizedOperations 
+                                        (OperationName, [Description], [External], RGB, Level1, Level2, Level3, Level4, Level5, IsPrimitive, Disable)
+                                        VALUES (@OperationName, @Description, @External, @Rgb, @Level1, @Level2, @Level3, @Level4, @Level5, @IsPrimitive, @Disable)";
+
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(insert, conn))
+                {
+                    cmd.Parameters.AddWithValue("@OperationName", mechanizedOperation.OperationName.Trim());
+                    cmd.Parameters.AddWithValue("@Description", (object?)mechanizedOperation.Description ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@External", (object)mechanizedOperation.External);
+                    cmd.Parameters.AddWithValue("@Rgb", (object)mechanizedOperation.RGB ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Level1", (object)mechanizedOperation.Level1 ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Level2", (object)mechanizedOperation.Level2 ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Level3", (object)mechanizedOperation.Level3 ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Level4", (object)mechanizedOperation.Level4 ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Level5", (object)mechanizedOperation.Level5 ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@IsPrimitive", (object)mechanizedOperation.IsPrimitive ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Disable", (object)mechanizedOperation.Disable ?? DBNull.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void InstallOperationShape(OperationsShapes operationShape)
+        {
+            string insert = @"INSERT INTO OperationsShapes 
+                                    (OperationName, BasicShape, [External], XDistance, YDistance, ZDistance, Mill, Depth, XMLParameters, Dimension, Rotation, Conditions, [Order])
+                                    VALUES (@OperationName, @BasicShape, @External, @XDistance, @YDistance, @ZDistance, @Mill, @Depth, @XMLParameters, @Dimension, @Rotation, @Conditions, @Order)";
+
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(insert, conn))
+                {
+                    cmd.Parameters.AddWithValue("@OperationName", operationShape.OperationName.Trim());
+                    cmd.Parameters.AddWithValue("@BasicShape", (object?)operationShape.BasicShape ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@External", (object)operationShape.External);
+                    cmd.Parameters.AddWithValue("@XDistance", (object)operationShape.XDistance ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@YDistance", (object)operationShape.YDistance ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ZDistance", (object)operationShape.ZDistance ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Mill", (object)operationShape.Mill ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Depth", (object)operationShape.Depth ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@XMLParameters", (object)operationShape.XmlParameters ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Dimension", (object)operationShape.Dimension ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Rotation", (object)operationShape.Rotation ?? DBNull.Value);
+                    cmd.Parameters.Add("@Conditions", SqlDbType.UniqueIdentifier).Value = string.IsNullOrWhiteSpace(operationShape.Conditions) ? (object)DBNull.Value : Guid.Parse(operationShape.Conditions);
+                    cmd.Parameters.AddWithValue("@Order", (object)operationShape.Order ?? DBNull.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -646,7 +848,6 @@ namespace RotoTools
                 }
             }
         }
-
         public static int TryParseInt(string value)
         {
             return int.TryParse(value, out int result) ? result : 0;

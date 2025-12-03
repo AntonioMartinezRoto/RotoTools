@@ -59,7 +59,7 @@ namespace RotoTools
 
                 Cursor = Cursors.WaitCursor;
                 EnableControls(false);
-                string messageEscandallos = "Escandallos instalados: " + Environment.NewLine + Environment.NewLine;
+                string messageEscandallos = LocalizationManager.GetString("L_EscandallosInstalados") + Environment.NewLine + Environment.NewLine;
                 using (var conn = new SqlConnection(Helpers.GetConnectionString()))
                 {
                     conn.Open();
@@ -115,11 +115,11 @@ namespace RotoTools
                 }
 
                 EnableControls(true);
-                MessageBox.Show(messageEscandallos, "Instalación completada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(messageEscandallos, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error instalando escandallos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error(36): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -185,7 +185,7 @@ namespace RotoTools
         {
             if (chk_Alu.Checked || chk_PVC.Checked || chk_GestionGeneral.Checked || chk_Manillas.Checked || chk_Bombillos.Checked || chk_Customizations.Checked)
             {
-                if (MessageBox.Show("Al instalar se perderán los datos actuales de los escandallos seleccionados. ¿Desea continuar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(LocalizationManager.GetString("L_ConfirmarInstalar"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     List<enumRotoTipoEscandallo> tiposSeleccionados = new();
 

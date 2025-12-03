@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_M009",
+  "BasicShape": "Circle",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "-21.5",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"Diameter\" Value=\"10\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

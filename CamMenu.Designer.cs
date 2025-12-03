@@ -42,7 +42,7 @@
             chk_All = new CheckBox();
             chk_AllOperations = new CheckBox();
             txt_FilterOperations = new TextBox();
-            label1 = new Label();
+            lbl_BusquedaOp = new Label();
             group_Sets = new GroupBox();
             group_Operaciones = new GroupBox();
             rb_NoExists = new RadioButton();
@@ -176,7 +176,7 @@
             chk_AllOperations.AutoSize = true;
             chk_AllOperations.BackColor = Color.Transparent;
             chk_AllOperations.Font = new Font("Segoe UI", 9F);
-            chk_AllOperations.Location = new Point(10, 21);
+            chk_AllOperations.Location = new Point(10, 19);
             chk_AllOperations.Margin = new Padding(3, 2, 3, 2);
             chk_AllOperations.Name = "chk_AllOperations";
             chk_AllOperations.Size = new Size(119, 19);
@@ -194,15 +194,15 @@
             txt_FilterOperations.TabIndex = 24;
             txt_FilterOperations.TextChanged += txt_FilterOperations_TextChanged;
             // 
-            // label1
+            // lbl_BusquedaOp
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(389, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(42, 15);
-            label1.TabIndex = 23;
-            label1.Text = "Buscar";
+            lbl_BusquedaOp.AutoSize = true;
+            lbl_BusquedaOp.BackColor = Color.Transparent;
+            lbl_BusquedaOp.Location = new Point(389, 20);
+            lbl_BusquedaOp.Name = "lbl_BusquedaOp";
+            lbl_BusquedaOp.Size = new Size(42, 15);
+            lbl_BusquedaOp.TabIndex = 23;
+            lbl_BusquedaOp.Text = "Buscar";
             // 
             // group_Sets
             // 
@@ -225,7 +225,7 @@
             group_Operaciones.Controls.Add(rb_All);
             group_Operaciones.Controls.Add(chk_AllOperations);
             group_Operaciones.Controls.Add(txt_FilterOperations);
-            group_Operaciones.Controls.Add(label1);
+            group_Operaciones.Controls.Add(lbl_BusquedaOp);
             group_Operaciones.Controls.Add(chkList_Operaciones);
             group_Operaciones.Location = new Point(447, 127);
             group_Operaciones.Name = "group_Operaciones";
@@ -349,7 +349,7 @@
         private CheckBox chk_All;
         private CheckBox chk_AllOperations;
         private TextBox txt_FilterOperations;
-        private Label label1;
+        private Label lbl_BusquedaOp;
         private GroupBox group_Sets;
         private GroupBox group_Operaciones;
         private RadioButton rb_NoExists;

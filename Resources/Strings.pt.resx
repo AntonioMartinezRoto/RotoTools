@@ -483,4 +483,19 @@
   <data name="L_Posicion" xml:space="preserve">
     <value>Posición(PT)</value>
   </data>
+  <data name="L_Operaciones" xml:space="preserve">
+    <value>Operaciones(PT)</value>
+  </data>
+  <data name="L_Todas" xml:space="preserve">
+    <value>Todas(PT)</value>
+  </data>
+  <data name="L_NoExiste" xml:space="preserve">
+    <value>No existe(PT)</value>
+  </data>
+  <data name="L_MacrosInstaladas" xml:space="preserve">
+    <value>Macros instaladas correctamente(PT)</value>
+  </data>
+  <data name="L_OperacionesInstaladas" xml:space="preserve">
+    <value>Operaciones instaladas correctamente(PT)</value>
+  </data>
 </root>

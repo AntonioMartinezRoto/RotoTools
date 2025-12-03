@@ -772,6 +772,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Macros instaladas correctamente.
+        /// </summary>
+        internal static string L_MacrosInstaladas {
+            get {
+                return ResourceManager.GetString("L_MacrosInstaladas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Materiales Base ficticios.
         /// </summary>
         internal static string L_MBFicticios {
@@ -795,6 +804,15 @@ namespace RotoTools.Resources {
         internal static string L_MenuConfigurarOpciones {
             get {
                 return ResourceManager.GetString("L_MenuConfigurarOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No existe.
+        /// </summary>
+        internal static string L_NoExiste {
+            get {
+                return ResourceManager.GetString("L_NoExiste", resourceCulture);
             }
         }
         
@@ -867,6 +885,24 @@ namespace RotoTools.Resources {
         internal static string L_Operacion {
             get {
                 return ResourceManager.GetString("L_Operacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Operaciones.
+        /// </summary>
+        internal static string L_Operaciones {
+            get {
+                return ResourceManager.GetString("L_Operaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Operaciones instaladas correctamente.
+        /// </summary>
+        internal static string L_OperacionesInstaladas {
+            get {
+                return ResourceManager.GetString("L_OperacionesInstaladas", resourceCulture);
             }
         }
         
@@ -1110,6 +1146,15 @@ namespace RotoTools.Resources {
         internal static string L_Texto {
             get {
                 return ResourceManager.GetString("L_Texto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Todas.
+        /// </summary>
+        internal static string L_Todas {
+            get {
+                return ResourceManager.GetString("L_Todas", resourceCulture);
             }
         }
         

@@ -53,7 +53,6 @@ namespace RotoTools
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML Files (*.xml)|*.xml";
-            openFileDialog.Title = "Selecciona XML";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -75,7 +74,7 @@ namespace RotoTools
                 Cursor = Cursors.Default;
                 EnableControls(true);
 
-                MessageBox.Show("Macros Instaladas", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(LocalizationManager.GetString("L_MacrosInstaladas"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -106,7 +105,7 @@ namespace RotoTools
 
                         int exportedMacrosCount = ExportMacrosMechanizedOperations(Path.Combine(savePath, "MechanizedOperations"));
                         ExportMacrosOperationsShapes(Path.Combine(savePath, "OperationsShapes"));
-                        MessageBox.Show(exportedMacrosCount.ToString() + " " + LocalizationManager.GetString("L_Escandallos") + ": " + Environment.NewLine + savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(exportedMacrosCount.ToString() + " " + LocalizationManager.GetString("L_Operaciones") + ": " + Environment.NewLine + savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         EnableControls(true);
                         Cursor.Current = Cursors.Default;
@@ -182,18 +181,23 @@ namespace RotoTools
                 }
             }
 
-            MessageBox.Show("Operaciones instaladas", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(LocalizationManager.GetString("L_OperacionesInstaladas"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
 
         #region Private methods
         private void CargarTextos()
         {
-            //this.Text = LocalizationManager.GetString("L_GenerarConector");
-            //lbl_SaveXML.Text = LocalizationManager.GetString("L_GuardarEnXML");
-            //lbl_SaveBD.Text = LocalizationManager.GetString("L_GuardarEnBD");
-            //chk_Predefinido.Text = LocalizationManager.GetString("L_PonerPredefinido");
-            //lbl_Filtro.Text = LocalizationManager.GetString("L_Buscar");
+            lbl_Xml.Text = LocalizationManager.GetString("L_SeleccionarXML");
+
+            chk_All.Text = LocalizationManager.GetString("L_SeleccionarTodos");
+            chk_AllOperations.Text = LocalizationManager.GetString("L_SeleccionarTodos");
+            lbl_Busqueda.Text = LocalizationManager.GetString("L_Buscar");
+            lbl_BusquedaOp.Text = LocalizationManager.GetString("L_Buscar");
+            group_Operaciones.Text = LocalizationManager.GetString("L_Operaciones");
+
+            rb_All.Text = LocalizationManager.GetString("L_Todas");
+            rb_NoExists.Text = LocalizationManager.GetString("L_NoExiste");
         }
         private void CargarListaOperacionesFromXml()
         {
@@ -207,7 +211,7 @@ namespace RotoTools
                 {
                     foreach (Operation operation in setDescription.Fitting?.OperationList)
                     {
-                        if (!operationList.Any(o => o.Name == operation.Name) && operation.Name != "SCREW_NO_KP" && operation.Name != "SCREW_KP")
+                        if (!operationList.Any(o => o.Name == operation.Name) && !operation.Name.ToUpper().Contains("SCREW"))
                         {
                             operationList.Add(operation);
                             OperationGridRow operationGridRow = new OperationGridRow(operation.Name,
@@ -307,25 +311,17 @@ namespace RotoTools
                     {
                         while (reader.Read())
                         {
-
-                            //var mechanizedOperation = new MechanizedOperation
-                            //{
-                            //    OperationName = reader["OperationName"].ToString().Trim(),
-                            //    External = Convert.ToInt16(reader["External"]),
-                            //    Description = reader["Description"] as string,
-                            //    Level1 = reader["Level1"] as string,
-                            //    Level2 = reader["Level2"] as string,
-                            //    Level3 = reader["Level3"] as string,
-                            //    Level4 = reader["Level4"] as string,
-                            //    Level5 = reader["Level5"] as string,
-                            //    RGB = Convert.ToInt32(reader["RGB"]),
-                            //    IsPrimitive = Convert.ToInt16(reader["IsPrimitive"]),
-                            //    Disable = Convert.ToBoolean(reader["Disable"])
-                            //};
                             MechanizedOperation mechanizedOperation = new MechanizedOperation(reader["OperationName"].ToString().Trim(), 
-                                reader["Description"].ToString(), Convert.ToInt16(reader["External"]), Convert.ToInt16(reader["IsPrimitive"]), 
-                                reader["Level1"].ToString(), reader["Level2"].ToString(), reader["Level3"].ToString(), reader["Level4"].ToString(), 
-                                reader["Level5"].ToString(), Convert.ToInt32(reader["RGB"]), Convert.ToBoolean(reader["Disable"])); 
+                                reader["Description"].ToString(),
+                                Convert.ToInt16(reader["External"]), 
+                                Convert.ToInt16(reader["IsPrimitive"]), 
+                                reader["Level1"].ToString(), 
+                                reader["Level2"].ToString(), 
+                                reader["Level3"].ToString(), 
+                                reader["Level4"].ToString(), 
+                                reader["Level5"].ToString(), 
+                                Convert.ToInt32(reader["RGB"]), 
+                                Convert.ToBoolean(reader["Disable"])); 
 
                             mechanizedOperationsList.Add(mechanizedOperation);
                         }
@@ -358,8 +354,6 @@ namespace RotoTools
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
-
-
         }
         private void ExportMacrosOperationsShapes(string savePath)
         {
@@ -577,6 +571,9 @@ namespace RotoTools
         }
         private void CleanInfo()
         {
+            txt_filter.Text = "";
+            txt_FilterOperations.Text = "";
+            rb_All.Checked = true;
             chkList_Operaciones.Items.Clear();
             chkList_Sets.Items.Clear();
             if (_dataTable != null)
@@ -586,8 +583,6 @@ namespace RotoTools
         }
 
         #endregion
-
-
     }
     public class OperationGridRow
     {

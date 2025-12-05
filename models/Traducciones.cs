@@ -16,7 +16,14 @@ namespace RotoEntities
         {
             if (OptionNames.TryGetValue(optionName, out string traduccionName))
             {
-                return traduccionName;
+                if (String.IsNullOrEmpty(traduccionName))
+                {
+                    return optionName;
+                }
+                else
+                {
+                    return traduccionName;
+                }
             }
             return optionName;
         }
@@ -24,6 +31,14 @@ namespace RotoEntities
         {
             if (OptionValues.TryGetValue((optionName, optionValue), out string traduccionValue))
             {
+                if (String.IsNullOrEmpty(traduccionValue))
+                {
+                    return optionValue;
+                }
+                else
+                {
+                    return traduccionValue;
+                }
                 return traduccionValue;
             }
             return optionValue;

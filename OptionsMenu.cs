@@ -34,6 +34,7 @@ namespace RotoTools
 
             // Selecciona el idioma actual
             cmb_Idioma.SelectedValue = LocalizationManager.CurrentCulture.TwoLetterISOLanguageName;
+            chk_PermitirTraduccion.Checked = TranslateManager.PermitirTraduccionesEnConectorEscandallos;
         }
         private void btn_SaveOptions_Click(object sender, EventArgs e)
         {

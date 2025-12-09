@@ -405,6 +405,24 @@ namespace RotoTools
 
             return macrosOperationsShapesList;
         }
+        public static List<string> LoadPrimitivesBD()
+        {
+            var list = new List<string>();
+            string sqlQueryPrimitivas = "SELECT OperationName FROM MechanizedOperations WHERE IsPrimitive = 1 ORDER BY OperationName";
+            using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+            {
+                conn.Open();
+                var cmd = new SqlCommand(sqlQueryPrimitivas, conn);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                        list.Add(dr.GetString(0));
+                }
+            }
+
+            return list;
+        }
         public static void InicializarEscandalloRotoTipo(Escandallo escandallo)
         {
             string codigo = escandallo.Codigo?.ToUpper() ?? "";
@@ -908,6 +926,7 @@ namespace RotoTools
             // Traducir nombre y valor si existen en el diccionario
             string nombreTraducido = TranslateManager.TraduccionesActuales.TraducirOptionName(name);
             string valorTraducido = TranslateManager.TraduccionesActuales.TraducirOptionValue(name, value);
+
 
             return new Option("RO_" + nombreTraducido, valorTraducido);
         }

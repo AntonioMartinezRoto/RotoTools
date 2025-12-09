@@ -51,10 +51,12 @@
             dataGridView1 = new DataGridView();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
+            dataGridView2 = new DataGridView();
             group_Sets.SuspendLayout();
             group_Operaciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // lbl_Xml
@@ -277,7 +279,7 @@
             dataGridView1.Location = new Point(37, 391);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(954, 209);
+            dataGridView1.Size = new Size(954, 231);
             dataGridView1.TabIndex = 28;
             // 
             // statusStrip1
@@ -297,6 +299,18 @@
             lbl_Conexion.Size = new Size(118, 17);
             lbl_Conexion.Text = "toolStripStatusLabel1";
             // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(996, 142);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
+            dataGridView2.Size = new Size(205, 213);
+            dataGridView2.TabIndex = 30;
+            dataGridView2.Visible = false;
+            // 
             // CamMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -304,6 +318,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1238, 666);
+            Controls.Add(dataGridView2);
             Controls.Add(statusStrip1);
             Controls.Add(dataGridView1);
             Controls.Add(btn_InstallOperation);
@@ -330,6 +345,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -358,5 +374,6 @@
         private DataGridView dataGridView1;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
+        private DataGridView dataGridView2;
     }
 }

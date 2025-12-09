@@ -44,7 +44,7 @@ namespace RotoTools
             CargarTextos();
             rb_All.Checked = true;
             CrearGridDetalleOperaciones();
-            EstiloCabeceras();
+            DarEstiloCabecerasDetalleOperaciones();
 
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
 
@@ -548,7 +548,66 @@ namespace RotoTools
                 //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
         }
-        private void EstiloCabeceras()
+        private void CrearGridInstalarOperaciones(List<string> primitiveList, List<string> operations)
+        {
+            dataGridView2.Columns.Clear();
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.AllowUserToAddRows = false;
+
+            // 1. Checkbox
+            var colCheck = new DataGridViewCheckBoxColumn()
+            {
+                Name = "Selected",
+                HeaderText = "",
+                Width = 40,
+            };
+            dataGridView2.Columns.Add(colCheck);
+
+            // 2. Nombre de la operación
+            var colName = new DataGridViewTextBoxColumn()
+            {
+                Name = "OperationName",
+                HeaderText = "Operación",
+                ReadOnly = true,
+                DataPropertyName = "OperationName",
+                Width = 180
+            };
+            dataGridView2.Columns.Add(colName);
+
+            // 3. ComboBox con primitives
+            var colCombo = new DataGridViewComboBoxColumn()
+            {
+                Name = "PrimitiveSelected",
+                HeaderText = "Primitiva",
+                DataSource = primitiveList,
+                DataPropertyName = "PrimitiveSelected",
+                Width = 160,
+                DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton
+            };
+            dataGridView2.Columns.Add(colCombo);
+
+            // 4. Distancia
+            var colDistance = new DataGridViewTextBoxColumn()
+            {
+                Name = "Distance",
+                HeaderText = "Distancia",
+                DataPropertyName = "Distance",
+                Width = 100
+            };
+            dataGridView2.Columns.Add(colDistance);
+
+            // Cargar datos iniciales (sin primitiva asignada)
+            var rows = operations.Select(op => new OperationSelection
+            {
+                Selected = false,
+                OperationName = op,
+                OperationShape = null,
+                Distance = null,
+            }).ToList();
+
+            dataGridView2.DataSource = rows;
+        }
+        private void DarEstiloCabecerasDetalleOperaciones()
         {
             dataGridView1.EnableHeadersVisualStyles = false; // muy importante, evita que Windows sobrescriba el estilo
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
@@ -603,5 +662,13 @@ namespace RotoTools
             X = x;
             Location = location;
         }
+    }
+
+    public class OperationSelection
+    {
+        public bool Selected { get; set; }
+        public string OperationName { get; set; }
+        public string? OperationShape { get; set; }
+        public double? Distance { get; set; }
     }
 }

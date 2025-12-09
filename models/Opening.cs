@@ -3,6 +3,7 @@ namespace RotoEntities
 {
     public class Opening
     {
+        public int Id { get; set; }   // PK obligatoria
         public string Active { get; set; }
         public string Turn { get; set; }
         public string Right { get; set; }

@@ -1,3 +1,4 @@
+using MathNet.Numerics;
 using NPOI.SS.Formula.Functions;
 using RotoEntities;
 using System.Xml;
@@ -68,6 +69,21 @@ namespace RotoTools
                 operaForm.ShowDialog();
             }
         }
+        private void btn_Sql_Click(object sender, EventArgs e)
+        {
+            string connectionString = @"Server=RFSPNB13\SQLEXPRESS;Database=RotoBD;Integrated Security=True;MultipleActiveResultSets = True;Encrypt=False;TrustServerCertificate=True;";
+
+            using (var db = new MyDbContext(connectionString))
+            {
+                db.Database.EnsureCreated(); // CREA la BD y las tablas si no existen
+            }
+
+            MessageBox.Show("Base de datos creada correctamente");
+
+            //InsertDataInDB();
+
+            //MessageBox.Show("Datos insertados correctamente");
+        }
 
         #endregion
 
@@ -122,6 +138,22 @@ namespace RotoTools
             btn_ExportWinPerfil.Enabled = enable;
             btn_ExportOrgadata.Enabled = enable;
             btn_ExportOpera.Enabled = enable;
+            btn_Sql.Enabled = enable;
+        }
+        private void InsertDataInDB()
+        {
+                
+                //db.Sets.AddRange(xmlFile.SetList);
+                //db.Colours.AddRange(xmlFile.ColourList);
+                //db.Options.AddRange(xmlFile.OptionList);
+            string connectionString = @"Server=RFSPNB13\SQLEXPRESS;Database=RotoBD;Integrated Security=True;MultipleActiveResultSets = True;Encrypt=False;TrustServerCertificate=True;";
+
+            using (var db = new MyDbContext(connectionString))
+            {
+                db.FittingGroups.AddRange(xmlFile.FittingGroupList);
+                db.Fittings.AddRange(xmlFile.FittingList);
+                db.SaveChanges();
+            }
         }
 
         #endregion

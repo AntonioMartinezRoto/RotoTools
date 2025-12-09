@@ -3,6 +3,7 @@ namespace RotoEntities
 {
     public class SetDescription
     {
+        public int SetDescriptionId { get; set; }   // PK obligatoria
         public int Id { get; set; }
         public int FittingId { get; set; }
         public double MinWidth { get; set; }

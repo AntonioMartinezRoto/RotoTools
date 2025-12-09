@@ -37,6 +37,8 @@
             lbl_ExportOrgadata = new Label();
             lbl_ExportOpera = new Label();
             btn_ExportOpera = new Button();
+            lbl_ExportSQL = new Label();
+            btn_Sql = new Button();
             SuspendLayout();
             // 
             // btn_Xml
@@ -112,7 +114,7 @@
             // 
             lbl_ExportOpera.AutoSize = true;
             lbl_ExportOpera.BackColor = Color.Transparent;
-            lbl_ExportOpera.Location = new Point(355, 145);
+            lbl_ExportOpera.Location = new Point(325, 220);
             lbl_ExportOpera.Name = "lbl_ExportOpera";
             lbl_ExportOpera.Size = new Size(95, 15);
             lbl_ExportOpera.TabIndex = 7;
@@ -125,13 +127,35 @@
             btn_ExportOpera.BackgroundImage = (Image)resources.GetObject("btn_ExportOpera.BackgroundImage");
             btn_ExportOpera.BackgroundImageLayout = ImageLayout.Zoom;
             btn_ExportOpera.Enabled = false;
-            btn_ExportOpera.Location = new Point(302, 129);
+            btn_ExportOpera.Location = new Point(272, 204);
             btn_ExportOpera.Name = "btn_ExportOpera";
             btn_ExportOpera.Size = new Size(47, 40);
             btn_ExportOpera.TabIndex = 6;
             btn_ExportOpera.UseVisualStyleBackColor = false;
             btn_ExportOpera.Visible = false;
             btn_ExportOpera.Click += btn_ExportOpera_Click;
+            // 
+            // lbl_ExportSQL
+            // 
+            lbl_ExportSQL.AutoSize = true;
+            lbl_ExportSQL.BackColor = Color.Transparent;
+            lbl_ExportSQL.Location = new Point(325, 145);
+            lbl_ExportSQL.Name = "lbl_ExportSQL";
+            lbl_ExportSQL.Size = new Size(84, 15);
+            lbl_ExportSQL.TabIndex = 9;
+            lbl_ExportSQL.Text = "Exportar a SQL";
+            // 
+            // btn_Sql
+            // 
+            btn_Sql.BackColor = SystemColors.Control;
+            btn_Sql.BackgroundImage = (Image)resources.GetObject("btn_Sql.BackgroundImage");
+            btn_Sql.BackgroundImageLayout = ImageLayout.Center;
+            btn_Sql.Location = new Point(272, 129);
+            btn_Sql.Name = "btn_Sql";
+            btn_Sql.Size = new Size(47, 40);
+            btn_Sql.TabIndex = 8;
+            btn_Sql.UseVisualStyleBackColor = false;
+            btn_Sql.Click += btn_Sql_Click;
             // 
             // ExportacionMenu
             // 
@@ -140,6 +164,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(612, 291);
+            Controls.Add(lbl_ExportSQL);
+            Controls.Add(btn_Sql);
             Controls.Add(lbl_ExportOpera);
             Controls.Add(btn_ExportOpera);
             Controls.Add(lbl_ExportOrgadata);
@@ -169,5 +195,7 @@
         private Label lbl_ExportOrgadata;
         private Label lbl_ExportOpera;
         private Button btn_ExportOpera;
+        private Label lbl_ExportSQL;
+        private Button btn_Sql;
     }
 }

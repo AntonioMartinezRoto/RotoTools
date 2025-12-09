@@ -3,6 +3,7 @@ namespace RotoEntities
 {
     public class Opcion
     {
+        public int Id { get; set; }   // PK obligatoria
         public string Name { get; set; }
         public string Descripcion { get; set; }
         public string Nivel1 { get; set; }

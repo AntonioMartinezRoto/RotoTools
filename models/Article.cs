@@ -3,6 +3,7 @@ namespace RotoEntities
 {
     public class Article
     {
+        public int Id { get; set; }   // PK obligatoria
         public string Ref { get; set; }
         public string Final { get; set; }
         public double XPosition { get; set; }

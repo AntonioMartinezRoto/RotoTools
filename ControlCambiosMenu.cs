@@ -316,7 +316,7 @@ namespace RotoTools
                     case (int)enumTipoDiferencia.grupoOpciones:
                         WriteInPdfOpcionesEliminadas(doc, (int)enumTipoDiferencia.opcionGlobal, diferenciasList);
                         WriteInPdfOpcionesNuevas(doc, (int)enumTipoDiferencia.opcionGlobalNueva, diferenciasList);
-                        WriteInPdfOpcionesModificadas(doc, (int)enumTipoDiferencia.opcionGlobal, diferenciasList);
+                        WriteInPdfOpcionesModificadas(doc, (int)enumTipoDiferencia.valorOpcionGlobalModificada, diferenciasList);
                         break;
                     default:
                         break;
@@ -886,8 +886,8 @@ namespace RotoTools
             var headerBackground = new BaseColor(230, 230, 230);
 
             var diffs = diferenciasList
-                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
-                .OrderBy(d => d.DetalleDiferenciaArticulo);
+                .Where(d => d.Tipo == diferenceType)
+                .OrderBy(d => d.OrigenDiferencia);
 
             if (!diffs.Any())
                 return;
@@ -898,7 +898,7 @@ namespace RotoTools
             table.SpacingAfter = 6f;
             table.SetWidths(new float[] { 100f });
 
-            PdfPCell fittingCell = new PdfPCell(new Phrase("Valores de opciones modificadas: " + diffs.FirstOrDefault().DetalleDiferenciaDescription, subtituloFont))
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Opciones modificadas: " + diffs.FirstOrDefault().DetalleDiferenciaDescription, subtituloFont))
             {
                 Colspan = 1,
                 BackgroundColor = headerBackground,
@@ -907,11 +907,11 @@ namespace RotoTools
             table.AddCell(fittingCell);
 
             // Encabezados
-            table.AddCell(new PdfPCell(new Phrase("Valores", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Descripción", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
 
             foreach (var dif in diffs)
             {
-                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaAtributos, textFont)) { Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase(dif.Descripcion, textFont)) { Padding = 5f });
 
             }
 
@@ -2543,7 +2543,7 @@ namespace RotoTools
                 {
                     diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.valorOpcionGlobalModificada,
-                        descripcion: $"Opción '{optionName}': el valor '{valor}' solo existe en XML actual",
+                        descripcion: $"Opción '{optionName}': Se ha añadido el valor '{valor}'",
                         severidad: (int)enumSeveridadDiferencia.warning,
                         visible: true
                     )
@@ -2557,7 +2557,7 @@ namespace RotoTools
                 {
                     diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.valorOpcionGlobalModificada,
-                        descripcion: $"Opción '{optionName}': el valor '{valor}' solo existe en XML anterior",
+                        descripcion: $"Opción '{optionName}': Se ha eliminado el valor '{valor}'",
                         severidad: (int)enumSeveridadDiferencia.warning,
                         visible: true
                     )
@@ -2565,20 +2565,6 @@ namespace RotoTools
                         OrigenDiferencia = (int)enumOrigenXMLDiferencia.anterior,
                         DetalleDiferenciaDescription = optionName,
                         DetalleDiferenciaAtributos = valor
-                    });
-                }
-                else if (!string.Equals(o1.Valor, o2.Valor, StringComparison.OrdinalIgnoreCase))
-                {
-                    diferenciasList.Add(new DiferenciaXml(
-                        tipo: (int)enumTipoDiferencia.valorOpcionGlobalModificada,
-                        descripcion: $"Opción '{optionName}' con valores distintos",
-                        severidad: (int)enumSeveridadDiferencia.warning,
-                        visible: true
-                    )
-                    {
-                        OrigenDiferencia = (int)enumOrigenXMLDiferencia.ambos,
-                        DetalleDiferenciaDescription = optionName,
-                        DetalleDiferenciaAtributos = $"{o1.Valor} vs {o2.Valor}"
                     });
                 }
             }

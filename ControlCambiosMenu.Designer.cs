@@ -37,6 +37,8 @@
             lbl_ControlCambios = new Label();
             btn_Config = new Button();
             lbl_Configuracion = new Label();
+            lbl_ControlCambiosSimple = new Label();
+            btn_GenerarInformeSimple = new Button();
             SuspendLayout();
             // 
             // btn_SelectXml1
@@ -90,7 +92,7 @@
             btn_Compare.BackColor = Color.Transparent;
             btn_Compare.BackgroundImage = (Image)resources.GetObject("btn_Compare.BackgroundImage");
             btn_Compare.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Compare.Location = new Point(39, 218);
+            btn_Compare.Location = new Point(38, 186);
             btn_Compare.Margin = new Padding(3, 2, 3, 2);
             btn_Compare.Name = "btn_Compare";
             btn_Compare.Size = new Size(47, 40);
@@ -102,11 +104,11 @@
             // 
             lbl_ControlCambios.AutoSize = true;
             lbl_ControlCambios.BackColor = Color.Transparent;
-            lbl_ControlCambios.Location = new Point(92, 231);
+            lbl_ControlCambios.Location = new Point(91, 199);
             lbl_ControlCambios.Name = "lbl_ControlCambios";
-            lbl_ControlCambios.Size = new Size(214, 15);
+            lbl_ControlCambios.Size = new Size(146, 15);
             lbl_ControlCambios.TabIndex = 5;
-            lbl_ControlCambios.Text = "Generar informe de control de cambios";
+            lbl_ControlCambios.Text = "Generar informe avanzado";
             // 
             // btn_Config
             // 
@@ -114,7 +116,7 @@
             btn_Config.BackColor = Color.Transparent;
             btn_Config.BackgroundImage = (Image)resources.GetObject("btn_Config.BackgroundImage");
             btn_Config.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Config.Location = new Point(39, 168);
+            btn_Config.Location = new Point(38, 142);
             btn_Config.Margin = new Padding(3, 2, 3, 2);
             btn_Config.Name = "btn_Config";
             btn_Config.Size = new Size(47, 40);
@@ -126,11 +128,34 @@
             // 
             lbl_Configuracion.AutoSize = true;
             lbl_Configuracion.BackColor = Color.Transparent;
-            lbl_Configuracion.Location = new Point(93, 181);
+            lbl_Configuracion.Location = new Point(92, 155);
             lbl_Configuracion.Name = "lbl_Configuracion";
-            lbl_Configuracion.Size = new Size(147, 15);
+            lbl_Configuracion.Size = new Size(200, 15);
             lbl_Configuracion.TabIndex = 9;
-            lbl_Configuracion.Text = "Configuración del informe";
+            lbl_Configuracion.Text = "Configuración del informe avanzado";
+            // 
+            // lbl_ControlCambiosSimple
+            // 
+            lbl_ControlCambiosSimple.AutoSize = true;
+            lbl_ControlCambiosSimple.BackColor = Color.Transparent;
+            lbl_ControlCambiosSimple.Location = new Point(91, 168);
+            lbl_ControlCambiosSimple.Name = "lbl_ControlCambiosSimple";
+            lbl_ControlCambiosSimple.Size = new Size(93, 15);
+            lbl_ControlCambiosSimple.TabIndex = 11;
+            lbl_ControlCambiosSimple.Text = "Generar informe";
+            // 
+            // btn_GenerarInformeSimple
+            // 
+            btn_GenerarInformeSimple.BackColor = Color.Transparent;
+            btn_GenerarInformeSimple.BackgroundImage = (Image)resources.GetObject("btn_GenerarInformeSimple.BackgroundImage");
+            btn_GenerarInformeSimple.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_GenerarInformeSimple.Location = new Point(38, 155);
+            btn_GenerarInformeSimple.Margin = new Padding(3, 2, 3, 2);
+            btn_GenerarInformeSimple.Name = "btn_GenerarInformeSimple";
+            btn_GenerarInformeSimple.Size = new Size(47, 40);
+            btn_GenerarInformeSimple.TabIndex = 10;
+            btn_GenerarInformeSimple.UseVisualStyleBackColor = false;
+            btn_GenerarInformeSimple.Click += btn_GenerarInformeSimple_Click;
             // 
             // ControlCambiosMenu
             // 
@@ -138,7 +163,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(649, 292);
+            ClientSize = new Size(633, 253);
+            Controls.Add(lbl_ControlCambiosSimple);
+            Controls.Add(btn_GenerarInformeSimple);
             Controls.Add(lbl_Configuracion);
             Controls.Add(btn_Config);
             Controls.Add(lbl_ControlCambios);
@@ -169,5 +196,7 @@
         private Label lbl_ControlCambios;
         private Button btn_Config;
         private Label lbl_Configuracion;
+        private Label lbl_ControlCambiosSimple;
+        private Button btn_GenerarInformeSimple;
     }
 }

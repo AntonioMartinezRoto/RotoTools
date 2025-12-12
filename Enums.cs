@@ -42,5 +42,48 @@ namespace RotoTools
             SoloFks = 2,
             NormalizadaYFks = 3
         }
+        public enum enumTipoXml
+        {
+            origen = 0,
+            nuevo = 1
+        }
+        public enum enumTipoDiferencia
+        {
+            opcionGlobal = 1,
+            descripcionFitting = 2,
+            cambioReferenciaOpcion = 3,
+            fittingNoExistente = 4,
+            manufacturerDistinto = 5,
+            opcionFittingNoGenerada = 6,
+            referenciaNoGeneradaFitting = 7,
+            setsDiferentes = 8,
+            atributosSetDiferente = 9,
+            openingSetDiferente = 10,
+            setDescriptionDiferente = 11,
+            colorDiferente = 12,
+            fittingGroupDiferente = 13,
+            locationFittingDistinto = 14,
+            lengthFittingDistinto = 15,
+            supplierDistinto = 16,
+            grupoFittings = 17,
+            grupoSets = 18,
+            grupoColourMaps = 19,
+            colourNoExistente = 20,
+            articuloNoExistenteEnColor = 21,
+            grupoOpciones = 22,
+            opcionGlobalNueva = 23,
+            valorOpcionGlobalModificada = 24
+        }
+        public enum enumSeveridadDiferencia
+        {
+            warning = 1,
+            error = 2
+        }
+        public enum enumOrigenXMLDiferencia
+        {
+            anterior = 1,
+            actual = 2,
+            ambos = 3
+        }
     }
 }

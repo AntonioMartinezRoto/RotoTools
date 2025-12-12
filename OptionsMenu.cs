@@ -35,6 +35,7 @@ namespace RotoTools
             // Selecciona el idioma actual
             cmb_Idioma.SelectedValue = LocalizationManager.CurrentCulture.TwoLetterISOLanguageName;
             chk_PermitirTraduccion.Checked = TranslateManager.PermitirTraduccionesEnConectorEscandallos;
+            chk_ControlCambiosAvanzado.Checked = (bool)Properties.Settings.Default["ControlCambiosAvanzado"];
         }
         private void btn_SaveOptions_Click(object sender, EventArgs e)
         {
@@ -50,6 +51,7 @@ namespace RotoTools
                 Close();
             }
             TranslateManager.PermitirTraduccionesEnConectorEscandallos = chk_PermitirTraduccion.Checked;
+            Properties.Settings.Default["ControlCambiosAvanzado"] = chk_ControlCambiosAvanzado.Checked;
         }
         private void btn_ExportarResources_Click(object sender, EventArgs e)
         {
@@ -264,13 +266,6 @@ namespace RotoTools
         }
 
         #endregion
-
-
-
-
-
-
-
     }
     public class LanguageItem
     {

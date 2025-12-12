@@ -37,14 +37,17 @@
             groupBox_Idioma = new GroupBox();
             btn_ExportarResources = new Button();
             btn_ImportarResources = new Button();
+            groupBox_ControlCambios = new GroupBox();
+            chk_ControlCambiosAvanzado = new CheckBox();
             groupBox_Opciones.SuspendLayout();
             groupBox_Idioma.SuspendLayout();
+            groupBox_ControlCambios.SuspendLayout();
             SuspendLayout();
             // 
             // btn_SaveOptions
             // 
             btn_SaveOptions.Image = (Image)resources.GetObject("btn_SaveOptions.Image");
-            btn_SaveOptions.Location = new Point(333, 195);
+            btn_SaveOptions.Location = new Point(333, 205);
             btn_SaveOptions.Margin = new Padding(0);
             btn_SaveOptions.Name = "btn_SaveOptions";
             btn_SaveOptions.Size = new Size(87, 41);
@@ -77,7 +80,7 @@
             // 
             chk_PermitirTraduccion.AutoSize = true;
             chk_PermitirTraduccion.BackColor = Color.Transparent;
-            chk_PermitirTraduccion.Location = new Point(15, 32);
+            chk_PermitirTraduccion.Location = new Point(15, 22);
             chk_PermitirTraduccion.Name = "chk_PermitirTraduccion";
             chk_PermitirTraduccion.Size = new Size(337, 19);
             chk_PermitirTraduccion.TabIndex = 24;
@@ -88,9 +91,9 @@
             // 
             groupBox_Opciones.BackColor = Color.Transparent;
             groupBox_Opciones.Controls.Add(chk_PermitirTraduccion);
-            groupBox_Opciones.Location = new Point(36, 95);
+            groupBox_Opciones.Location = new Point(36, 84);
             groupBox_Opciones.Name = "groupBox_Opciones";
-            groupBox_Opciones.Size = new Size(384, 72);
+            groupBox_Opciones.Size = new Size(384, 51);
             groupBox_Opciones.TabIndex = 25;
             groupBox_Opciones.TabStop = false;
             // 
@@ -99,7 +102,7 @@
             groupBox_Idioma.BackColor = Color.Transparent;
             groupBox_Idioma.Controls.Add(lbl_Idioma);
             groupBox_Idioma.Controls.Add(cmb_Idioma);
-            groupBox_Idioma.Location = new Point(36, 38);
+            groupBox_Idioma.Location = new Point(36, 27);
             groupBox_Idioma.Name = "groupBox_Idioma";
             groupBox_Idioma.Size = new Size(384, 51);
             groupBox_Idioma.TabIndex = 26;
@@ -111,7 +114,7 @@
             btn_ExportarResources.BackColor = Color.Transparent;
             btn_ExportarResources.BackgroundImage = (Image)resources.GetObject("btn_ExportarResources.BackgroundImage");
             btn_ExportarResources.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ExportarResources.Location = new Point(437, 48);
+            btn_ExportarResources.Location = new Point(427, 37);
             btn_ExportarResources.Margin = new Padding(3, 2, 3, 2);
             btn_ExportarResources.Name = "btn_ExportarResources";
             btn_ExportarResources.Size = new Size(32, 32);
@@ -126,7 +129,7 @@
             btn_ImportarResources.BackColor = Color.Transparent;
             btn_ImportarResources.BackgroundImage = (Image)resources.GetObject("btn_ImportarResources.BackgroundImage");
             btn_ImportarResources.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ImportarResources.Location = new Point(475, 48);
+            btn_ImportarResources.Location = new Point(465, 37);
             btn_ImportarResources.Margin = new Padding(3, 2, 3, 2);
             btn_ImportarResources.Name = "btn_ImportarResources";
             btn_ImportarResources.Size = new Size(32, 32);
@@ -135,18 +138,41 @@
             btn_ImportarResources.Visible = false;
             btn_ImportarResources.Click += btn_ImportarResources_Click;
             // 
+            // groupBox_ControlCambios
+            // 
+            groupBox_ControlCambios.BackColor = Color.Transparent;
+            groupBox_ControlCambios.Controls.Add(chk_ControlCambiosAvanzado);
+            groupBox_ControlCambios.Location = new Point(36, 141);
+            groupBox_ControlCambios.Name = "groupBox_ControlCambios";
+            groupBox_ControlCambios.Size = new Size(384, 51);
+            groupBox_ControlCambios.TabIndex = 26;
+            groupBox_ControlCambios.TabStop = false;
+            // 
+            // chk_ControlCambiosAvanzado
+            // 
+            chk_ControlCambiosAvanzado.AutoSize = true;
+            chk_ControlCambiosAvanzado.BackColor = Color.Transparent;
+            chk_ControlCambiosAvanzado.Location = new Point(15, 22);
+            chk_ControlCambiosAvanzado.Name = "chk_ControlCambiosAvanzado";
+            chk_ControlCambiosAvanzado.Size = new Size(287, 19);
+            chk_ControlCambiosAvanzado.TabIndex = 24;
+            chk_ControlCambiosAvanzado.Text = "Modo avanzado herramienta Control de Cambios";
+            chk_ControlCambiosAvanzado.UseVisualStyleBackColor = false;
+            // 
             // OptionsMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(534, 270);
+            ClientSize = new Size(528, 265);
+            Controls.Add(groupBox_ControlCambios);
             Controls.Add(btn_ImportarResources);
             Controls.Add(btn_ExportarResources);
             Controls.Add(groupBox_Idioma);
             Controls.Add(groupBox_Opciones);
             Controls.Add(btn_SaveOptions);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -157,6 +183,8 @@
             groupBox_Opciones.ResumeLayout(false);
             groupBox_Opciones.PerformLayout();
             groupBox_Idioma.ResumeLayout(false);
+            groupBox_ControlCambios.ResumeLayout(false);
+            groupBox_ControlCambios.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -170,5 +198,7 @@
         private GroupBox groupBox_Idioma;
         private Button btn_ExportarResources;
         private Button btn_ImportarResources;
+        private GroupBox groupBox_ControlCambios;
+        private CheckBox chk_ControlCambiosAvanzado;
     }
 }

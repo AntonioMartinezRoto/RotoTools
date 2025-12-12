@@ -3,6 +3,7 @@ namespace RotoEntities
 {
     public class Set
     {
+        public string Version { get; set; }
         public string Id { get; set; }
         public string Code { get; set; }
         public string Movement { get; set; }

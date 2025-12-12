@@ -1,13 +1,20 @@
-﻿using iTextSharp.text;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using RotoEntities;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Xml;
+using System.Xml.Serialization;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
     public partial class ControlCambiosMenu : Form
     {
+        #region Private Properties
+
         XmlData xmlOrigen = new();
         XmlData xmlNuevo = new();
         bool xmlOrigenCargado = false;
@@ -19,498 +26,18 @@ namespace RotoTools
         public bool compareOptions { get; set; } = true;
         public bool compareFittingGroups { get; set; } = true;
 
-        private enum enumTipoXml
-        {
-            origen = 0,
-            nuevo = 1
-        }
-        public enum enumTipoDiferencia
-        {
-            opcionGlobal = 1,
-            descripcionFitting = 2,
-            cambioReferenciaOpcion = 3,
-            fittingNoExistente = 4,
-            manufacturerDistinto = 5,
-            opcionFittingNoGenerada = 6,
-            referenciaNoGeneradaFitting = 7,
-            setsDiferentes = 8,
-            atributosSetDiferente = 9,
-            openingSetDiferente = 10,
-            setDescriptionDiferente = 11,
-            colorDiferente = 12,
-            fittingGroupDiferente = 13,
-            locationFittingDistinto = 14,
-            lengthFittingDistinto = 15
-        }
-        public enum enumSeveridadDiferencia
-        {
-            warning = 1,
-            error = 2
-        }
-        public enum enumOrigenXMLDiferencia
-        {
-            anterior = 1,
-            actual = 2,
-            ambos = 3
-        }
+        #endregion
+
+        #region Constructor
         public ControlCambiosMenu()
         {
             InitializeComponent();
             InitializeCompareFittings();
             InitializeCompareSets();
         }
+        #endregion
 
-        private void InitializeCompareFittings()
-        {
-            compareFittings.compararFittings = true;
-            compareFittings.compararFittingsManufacturer = true;
-            compareFittings.compararFittingsLength = true;
-            compareFittings.compararFittingsLocation = true;
-            compareFittings.compararFittingsDescription = true;
-            compareFittings.compararFittingsArticles = true;
-        }
-        private void InitializeCompareSets()
-        {
-            compareSets.compararSets = true;
-            compareSets.compararCantidadSetDescriptions = true;
-        }
-
-        private XmlData LoadXml(string xmlPath, int tipoXml)
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(xmlPath);
-
-                nsmgr = new XmlNamespaceManager(doc.NameTable);
-                nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
-
-                XmlData xmlData = new XmlData();
-
-                xmlData.FittingGroupList = LoadFittingGroups(doc, tipoXml);
-                xmlData.ColourList = LoadColourMaps(doc, tipoXml);
-                xmlData.OptionList = LoadDocOptions(doc, tipoXml);
-                xmlData.FittingList = LoadFittings(doc, xmlData.FittingGroupList, tipoXml);
-                xmlData.SetList = LoadSets(doc, xmlData.FittingList, tipoXml);
-                xmlData.FittingsVersion = LoadFittingsVersion(doc);
-
-                return xmlData;
-            }
-            catch
-            {
-                return null;
-            }
-
-        }
-        private string LoadFittingsVersion(XmlDocument doc)
-        {
-            // Navega al nodo Fittings
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
-            nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
-
-            XmlNode fittingsNode = doc.SelectSingleNode("//hw:Fittings", nsmgr);
-
-            if (fittingsNode != null)
-            {
-                foreach (XmlNode node in fittingsNode.ChildNodes)
-                {
-                    if (node.NodeType == XmlNodeType.Comment)
-                    {
-                        string comentario = node.Value?.Trim();
-
-                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("F:"))
-                        {
-                            // Quitar la parte final '#' si está
-                            int fin = comentario.IndexOf('#');
-                            return fin >= 0 ? comentario.Substring(2, fin - 2) : comentario.Substring(2);
-                        }
-                    }
-                }
-            }
-
-            return "";
-        }
-
-        private List<FittingGroup> LoadFittingGroups(XmlDocument doc, int tipoXml)
-        {
-            try
-            {
-                List<FittingGroup> fittingGroupsList = new List<FittingGroup>();
-                XmlNodeList nodosFittingGroupList = doc.SelectNodes("//hw:FittingGroups/hw:FittingGroup", nsmgr);
-
-                foreach (XmlNode fittingGroupNode in nodosFittingGroupList)
-                {
-                    FittingGroup fittingGroup = new FittingGroup();
-                    fittingGroup.Id = TryParseInt(fittingGroupNode.Attributes["id"]?.Value);
-                    fittingGroup.Class = fittingGroupNode.Attributes["class"]?.Value;
-
-                    ShowLoadingInfo("FittingGroup", fittingGroup.Class, tipoXml);
-
-                    fittingGroupsList.Add(fittingGroup);
-                }
-
-                return fittingGroupsList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<Colour> LoadColourMaps(XmlDocument doc, int tipoXml)
-        {
-            try
-            {
-                List<Colour> colourList = new List<Colour>();
-                XmlNodeList nodosColourList = doc.SelectNodes("//hw:ColourMaps/hw:Colour", nsmgr);
-
-                foreach (XmlNode colourNode in nodosColourList)
-                {
-                    Colour colour = new Colour();
-                    colour.Name = colourNode.Attributes["name"]?.Value;
-
-                    ShowLoadingInfo("Colour", colour.Name, tipoXml);
-
-                    colour.ArticleList = GetArticles(colourNode);
-                    colourList.Add(colour);
-                }
-
-                return colourList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<Article> GetArticles(XmlNode parentNode)
-        {
-            try
-            {
-                List<Article> articlesList = new List<Article>();
-                foreach (XmlNode articleNode in parentNode.ChildNodes)
-                {
-                    if (articleNode.Attributes == null)
-                    {
-                        continue;
-                    }
-                    if (articleNode.Name == "hw:Generation" && articleNode.ChildNodes.Count > 0)
-                    {
-                        foreach (XmlNode childNodeFitting in articleNode.ChildNodes)
-                        {
-                            if (childNodeFitting.Name == "hw:Articles")
-                            {
-                                foreach (XmlNode generationArticleNode in childNodeFitting.ChildNodes)
-                                {
-                                    if (generationArticleNode.Attributes == null)
-                                    {
-                                        continue;
-                                    }
-                                    Article articleGeneration = new Article();
-                                    articleGeneration.Ref = generationArticleNode?.Attributes["ref"]?.Value;
-                                    articleGeneration.Final = generationArticleNode?.Attributes["final"]?.Value;
-                                    articleGeneration.Side = generationArticleNode?.Attributes["side"]?.Value;
-                                    articleGeneration.Location = generationArticleNode?.Attributes["location"]?.Value;
-                                    articleGeneration.XPosition = TryParseDouble(generationArticleNode?.Attributes["x"]?.Value);
-                                    articleGeneration.ReferencePoint = generationArticleNode?.Attributes["referencePoint"]?.Value;
-                                    articleGeneration.OptionList = LoadArticleOptions(generationArticleNode);
-                                    articlesList.Add(articleGeneration);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Article article = new Article();
-                        article.Ref = articleNode?.Attributes["ref"]?.Value;
-                        article.Final = articleNode?.Attributes["final"]?.Value;
-                        articlesList.Add(article);
-                    }
-                }
-
-                return articlesList;
-            }
-            catch
-            {
-                return new List<Article>();
-            }
-        }
-
-        private List<Operation> GetOperations(XmlNode parentNode)
-        {
-            try
-            {
-                List<Operation> operationsList = new List<Operation>();
-                foreach (XmlNode articleNode in parentNode.ChildNodes)
-                {
-                    if (articleNode.Attributes == null || articleNode.ChildNodes.Count == 0)
-                    {
-                        continue;
-                    }
-                    if (articleNode.Name == "hw:Generation")
-                    {
-                        foreach (XmlNode childNodeFitting in articleNode.ChildNodes)
-                        {
-                            if (childNodeFitting.Name == "hw:Operations")
-                            {
-                                foreach (XmlNode generationOperationNode in childNodeFitting.ChildNodes)
-                                {
-                                    if (generationOperationNode.Attributes == null)
-                                    {
-                                        continue;
-                                    }
-
-                                    Operation operation = new Operation();
-                                    operation.Name = generationOperationNode?.Attributes["name"]?.Value;
-                                    operation.XPosition = generationOperationNode?.Attributes["x"]?.Value;
-                                    operation.ReferencePoint = generationOperationNode?.Attributes["referencePoint"]?.Value;
-                                    operation.Location = generationOperationNode?.Attributes["location"]?.Value;
-                                    operationsList.Add(operation);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                return operationsList;
-            }
-            catch
-            {
-                return new List<Operation>();
-            }
-        }
-
-        private List<Option> LoadArticleOptions(XmlNode generationArticleNode)
-        {
-            List<Option> optionList = new List<Option>();
-            try
-            {
-                foreach (XmlNode optionNode in generationArticleNode.ChildNodes)
-                {
-                    if (optionNode.Attributes == null)
-                    {
-                        continue;
-                    }
-
-                    Option option = new Option();
-                    option.Name = optionNode.Attributes["Name"]?.Value;
-                    option.Value = optionNode.Attributes["Value"]?.Value;
-
-                    optionList.Add(option);
-                }
-
-                return optionList;
-            }
-            catch
-            {
-                return new List<Option>();
-            }
-        }
-
-        private List<Option> LoadDocOptions(XmlDocument doc, int tipoXml)
-        {
-            try
-            {
-                List<Option> optionList = new List<Option>();
-                XmlNodeList nodosOptionsList = doc.SelectNodes("//hw:Options/hw:Option", nsmgr);
-                if (nodosOptionsList != null)
-                {
-                    foreach (XmlNode optionNode in nodosOptionsList)
-                    {
-                        Option option = new Option();
-                        option.Name = optionNode.Attributes["Name"]?.Value;
-
-                        ShowLoadingInfo("Option", option.Name, tipoXml);
-                        option.ValuesList = GetOptionValues(optionNode);
-                        optionList.Add(option);
-                    }
-                }
-
-                return optionList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<Fitting> LoadFittings(XmlDocument doc, List<FittingGroup> fittingGroupList, int tipoXml)
-        {
-            try
-            {
-                List<Fitting> fittingList = new List<Fitting>();
-                XmlNodeList nodosFittingList = doc.SelectNodes("//hw:Fittings/hw:Fitting", nsmgr);
-                int i = 0;
-                foreach (XmlNode fittingNode in nodosFittingList)
-                {
-                    i++;
-                    Fitting fitting = new Fitting();
-                    fitting.Id = TryParseInt(fittingNode.Attributes["id"]?.Value);
-                    fitting.Ref = fittingNode.Attributes["ref"]?.Value;
-                    fitting.Description = fittingNode.Attributes["Description"]?.Value;
-                    fitting.Manufacturer = fittingNode.Attributes["manufacturer"]?.Value;
-                    fitting.FittingGroupId = int.Parse(fittingNode.Attributes["fittingGroupId"]?.Value);
-                    fitting.Location = fittingNode.Attributes["location"]?.Value;
-                    fitting.FittingType = fittingNode.Attributes["fittingType"]?.Value;
-                    fitting.System = fittingNode.Attributes["system"]?.Value;
-                    fitting.HandUseable = fittingNode.Attributes["handUseable"]?.Value;
-                    fitting.Lenght = TryParseDouble(fittingNode.Attributes["length"]?.Value);
-                    fitting.StartCuttable = TryParseBool(fittingNode.Attributes["StartCuttable"]?.Value);
-                    fitting.EndCuttable = TryParseBool(fittingNode.Attributes["EndCuttable"]?.Value);
-                    fitting.FittingGroup = fittingGroupList.FirstOrDefault(g => g.Id == fitting.FittingGroupId);
-                    ShowLoadingInfo("Fitting", fitting.Description, tipoXml);
-                    fitting.ArticleList = GetArticles(fittingNode);
-                    fitting.OperationList = GetOperations(fittingNode);
-                    fittingList.Add(fitting);
-                }
-
-                return fittingList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<Set> LoadSets(XmlDocument doc, List<Fitting> fittingList, int tipoXml)
-        {
-            try
-            {
-                List<Set> setList = new List<Set>();
-                XmlNodeList nodosSetList = doc.SelectNodes("//hw:Sets/hw:Set", nsmgr);
-
-                foreach (XmlNode setNode in nodosSetList)
-                {
-                    Set set = new Set();
-                    set.Id = setNode.Attributes["id"]?.Value;
-                    set.Code = setNode.Attributes["code"]?.Value;
-                    set.Movement = setNode.Attributes["movement"]?.Value;
-                    set.Associated = setNode.Attributes["associated"]?.Value;
-                    set.MinWidth = setNode.Attributes["minWidth"]?.Value;
-                    set.MaxWidth = setNode.Attributes["maxWidth"]?.Value;
-                    set.MinHeight = setNode.Attributes["minHeight"]?.Value;
-                    set.MaxHeight = setNode.Attributes["maxHeight"]?.Value;
-                    set.Opening = GetSetOpening(setNode);
-                    set.SetDescriptionList = GetSetDescripcionList(setNode, fittingList);
-                    ShowLoadingInfo("Set", set.Code, tipoXml);
-
-                    setList.Add(set);
-                }
-
-                return setList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private Opening GetSetOpening(XmlNode setNode)
-        {
-            try
-            {
-                XmlNode openingNode = setNode.SelectSingleNode("hw:Opening", nsmgr);
-                if (openingNode != null)
-                {
-                    Opening opening = new Opening();
-                    opening.Active = openingNode.Attributes["active"]?.Value;
-                    opening.Turn = openingNode.Attributes["turn"]?.Value;
-                    opening.Right = openingNode.Attributes["right"]?.Value;
-                    opening.Left = openingNode.Attributes["left"]?.Value;
-                    return opening;
-                }
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<SetDescription> GetSetDescripcionList(XmlNode setNode, List<Fitting> fittingList)
-        {
-            List<SetDescription> setDescriptionsList = new List<SetDescription>();
-            try
-            {
-                XmlNodeList setDescriptions = setNode.SelectNodes("hw:SetDescription", nsmgr);
-                foreach (XmlNode descNode in setDescriptions)
-                {
-                    var attrs = descNode.Attributes;
-                    var setDescription = new SetDescription
-                    {
-                        Id = TryParseInt(attrs["id"]?.Value),
-                        FittingId = TryParseInt(attrs["fittingId"]?.Value),
-                        MinHeight = TryParseDouble(attrs["minHeight"]?.Value),
-                        MaxHeight = TryParseDouble(attrs["maxHeight"]?.Value),
-                        MinWidth = TryParseDouble(attrs["minWidth"]?.Value),
-                        MaxWidth = TryParseDouble(attrs["maxWidth"]?.Value),
-                        Horizontal = TryParseBool(attrs["horizontal"]?.Value),
-                        Position = TryParseInt(attrs["position"]?.Value),
-                        ReferencePoint = attrs["referencePoint"]?.Value,
-                        ChainPosition = TryParseInt(attrs["chainPosition"]?.Value),
-                        Movement = attrs["movement"]?.Value,
-                        Inverted = TryParseBool(attrs["inverted"]?.Value),
-                        XPosition = TryParseDouble(attrs["x"]?.Value),
-                        Alternative = TryParseInt(attrs["alternative"]?.Value),
-                        OptionList = LoadSetDescriptionOptions(descNode)
-                    };
-
-                    setDescription.Fitting = fittingList.FirstOrDefault(f => f.Id == setDescription.FittingId);
-                    setDescriptionsList.Add(setDescription);
-                }
-
-                return setDescriptionsList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private List<Option> LoadSetDescriptionOptions(XmlNode setDescriptionNode)
-        {
-            List<Option> optionList = new List<Option>();
-            try
-            {
-                foreach (XmlNode optionNode in setDescriptionNode.ChildNodes)
-                {
-                    if (optionNode.Attributes == null)
-                    {
-                        continue;
-                    }
-
-                    Option option = new Option();
-                    option.Name = optionNode.Attributes["Name"]?.Value;
-                    option.Value = optionNode.Attributes["Value"]?.Value;
-
-                    optionList.Add(option);
-                }
-
-                return optionList;
-            }
-            catch
-            {
-                return new List<Option>();
-            }
-        }
-
-        private List<Value> GetOptionValues(XmlNode optionNode)
-        {
-            List<Value> valueList = new List<Value>();
-            foreach (XmlNode valueNode in optionNode.ChildNodes)
-            {
-                if (valueNode.Attributes == null)
-                {
-                    continue;
-                }
-                Value value = new Value();
-                value.Valor = valueNode?.Attributes["Value"]?.Value;
-                valueList.Add(value);
-            }
-
-            return valueList;
-        }
-
+        #region Events
         private void btn_SelectXml1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -527,48 +54,6 @@ namespace RotoTools
                 xmlOrigenCargado = true;
                 FillListasConfiguracion();
             }
-        }
-
-        private void EnableButtons(bool enable)
-        {
-            btn_SelectXml1.Enabled = enable;
-            btn_SelectXml2.Enabled = enable;
-            btn_Compare.Enabled = enable;
-        }
-
-        private void ShowLoadingInfo(string type, string value, int tipoXml)
-        {
-            string texto = LocalizationManager.GetString("L_Cargando") + "... " + type + " " + value.TrimEnd();
-
-            switch (tipoXml)
-            {
-                case (int)enumTipoXml.origen:
-                    lbl_Xml1.Visible = true;
-                    lbl_Xml1.Text = texto;
-                    //lbl_Xml1.AutoSize = true;
-                    Application.DoEvents();
-                    break;
-                case (int)enumTipoXml.nuevo:
-                    lbl_Xml2.Visible = true;
-                    lbl_Xml2.Text = texto;
-                    //lbl_Xml2.AutoSize = true;
-                    Application.DoEvents();
-                    break;
-            }
-        }
-
-        // Métodos auxiliares seguros
-        private int TryParseInt(string value)
-        {
-            return int.TryParse(value, out int result) ? result : 0;
-        }
-        private double TryParseDouble(string value)
-        {
-            return double.TryParse(value, out double result) ? result : 0;
-        }
-        private bool TryParseBool(string value)
-        {
-            return bool.TryParse(value, out bool result) ? result : false;
         }
         private void btn_SelectXml2_Click(object sender, EventArgs e)
         {
@@ -598,8 +83,7 @@ namespace RotoTools
                     using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                     {
                         saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                        saveFileDialog.Title = "Guardar informe de diferencias";
-                        saveFileDialog.FileName = "InformeDiferencias.pdf";
+                        saveFileDialog.FileName = "Roto.pdf";
 
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
@@ -615,6 +99,135 @@ namespace RotoTools
                 }
             }
         }
+        private void btn_Config_Click(object sender, EventArgs e)
+        {
+            ControlCambiosConfiguracion controlCambiosConfiguracion = new ControlCambiosConfiguracion(compareOptions, compareFittingGroups, compareFittings, compareSets, compareColours);
+            if (controlCambiosConfiguracion.ShowDialog() == DialogResult.OK)
+            {
+                compareColours = controlCambiosConfiguracion.compararColores;
+                compareFittingGroups = controlCambiosConfiguracion.compararFittingGroups;
+                compareFittings = controlCambiosConfiguracion.compararFittings;
+                compareOptions = controlCambiosConfiguracion.compararOpciones;
+                compareSets = controlCambiosConfiguracion.compararSets;
+            }
+        }
+        private void btn_GenerarInformeSimple_Click(object sender, EventArgs e)
+        {
+            if (xmlOrigenCargado && xmlNuevoCargado)
+            {
+                List<DiferenciaXml> diferenciaslist = CompareXmlDataSimple();
+
+                if (diferenciaslist.Count > 0)
+                {
+                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                        saveFileDialog.FileName = "Roto.pdf";
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            string outputPath = saveFileDialog.FileName;
+                            GeneratePdfSimple(outputPath, diferenciaslist);
+                            MessageBox.Show("Comparación finalizada. Se generó el PDF.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron diferencias.");
+                }
+            }
+        }
+        private void ControlCambiosMenu_Load(object sender, EventArgs e)
+        {
+            CargarTextos();
+            SetMode();
+        }
+        #endregion
+
+        #region Private Methods
+        private void SetMode()
+        {
+            lbl_ControlCambios.Visible = (bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+            btn_Compare.Visible = (bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+
+            lbl_Configuracion.Visible = (bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+            btn_Config.Visible = (bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+
+            lbl_ControlCambiosSimple.Visible = !(bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+            btn_GenerarInformeSimple.Visible = !(bool)Properties.Settings.Default["ControlCambiosAvanzado"];
+        }
+        private void InitializeCompareFittings()
+        {
+            compareFittings.compararFittings = true;
+            compareFittings.compararFittingsManufacturer = true;
+            compareFittings.compararFittingsLength = true;
+            compareFittings.compararFittingsLocation = true;
+            compareFittings.compararFittingsDescription = true;
+            compareFittings.compararFittingsArticles = true;
+        }
+        private void InitializeCompareSets()
+        {
+            compareSets.compararSets = true;
+            compareSets.compararCantidadSetDescriptions = true;
+        }
+        private XmlData LoadXml(string xmlPath, int tipoXml)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(xmlPath);
+
+                nsmgr = new XmlNamespaceManager(doc.NameTable);
+                nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
+
+                XmlLoader loader = new XmlLoader(nsmgr);
+                // Vinculamos el evento para actualizar la Label del formulario
+                loader.OnLoadingInfo += (type, value) =>
+                {
+                    string texto = LocalizationManager.GetString("L_Cargando") + "... " + type + " " + value.TrimEnd();
+
+                    switch (tipoXml)
+                    {
+                        case (int)enumTipoXml.origen:
+                            lbl_Xml1.Visible = true;
+                            lbl_Xml1.Text = texto;
+                            Application.DoEvents();
+                            break;
+                        case (int)enumTipoXml.nuevo:
+                            lbl_Xml2.Visible = true;
+                            lbl_Xml2.Text = texto;
+                            Application.DoEvents();
+                            break;
+                    }
+                };
+
+                XmlData xmlData = new XmlData();
+                xmlData.Supplier = loader.LoadSupplier(doc);
+                xmlData.HardwareType = loader.LoadHardwareType(xmlData.Supplier);
+                xmlData.FittingGroupList = loader.LoadFittingGroups(doc);
+                xmlData.ColourList = loader.LoadColourMaps(doc);
+                xmlData.OptionList = loader.LoadDocOptions(doc);
+                xmlData.FittingList = loader.LoadFittings(doc);
+                xmlData.SetList = loader.LoadSets(doc, xmlData.FittingList);
+                xmlData.FittingsVersion = loader.LoadFittingsVersion(doc);
+                xmlData.OptionsVersion = loader.LoadOptionsVersion(doc);
+                xmlData.ColoursVersion = loader.LoadColoursVersion(doc);
+                xmlData.FittingGroupVersion = loader.LoadFittingGroupVersion(doc);
+
+                return xmlData;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        private void EnableButtons(bool enable)
+        {
+            btn_SelectXml1.Enabled = enable;
+            btn_SelectXml2.Enabled = enable;
+            btn_Compare.Enabled = enable;
+        }
         private void WriteInPdf(string titulo, int diferenceType, iTextSharp.text.Document doc, iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont, List<DiferenciaXml> diferenciasList)
         {
             List<DiferenciaXml> diferencias = new List<DiferenciaXml>();
@@ -622,6 +235,7 @@ namespace RotoTools
             if (diferencias.Count() > 0)
             {
                 doc.Add(new Paragraph(titulo, titleFont));
+
                 switch (diferenceType)
                 {
                     case (int)enumTipoDiferencia.colorDiferente:
@@ -660,6 +274,51 @@ namespace RotoTools
                             doc.Add(new Paragraph(diferencia.Descripcion, textFont));
                         }
                         doc.Add(Chunk.NEWLINE);
+                        break;
+                }
+            }
+        }
+        private void WriteInPdfSimple(string titulo, int diferenceType, iTextSharp.text.Document doc, iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont, List<DiferenciaXml> diferenciasList)
+        {
+            List<DiferenciaXml> diferenciasTipoList = new List<DiferenciaXml>();
+            diferenciasTipoList.AddRange(diferenciasList.Where(op => op.Tipo == diferenceType));
+
+            if (diferenciasTipoList.Any() || 
+                diferenceType == (int)enumTipoDiferencia.grupoFittings || 
+                diferenceType == (int)enumTipoDiferencia.grupoSets ||
+                diferenceType == (int)enumTipoDiferencia.grupoColourMaps ||
+                diferenceType == (int)enumTipoDiferencia.grupoOpciones)
+            {
+                doc.Add(new Paragraph(titulo, titleFont));
+
+                switch (diferenceType)
+                {
+                    case (int)enumTipoDiferencia.supplierDistinto:
+                        WriteInPdfHardwareSupplier(diferenceType, doc, diferenciasList);
+                        break;
+                    case (int)enumTipoDiferencia.grupoFittings:
+                        WriteInPdfVersionFittings(doc, diferenciasList);
+                        WriteInPdfFittingsEliminados(doc, (int)enumTipoDiferencia.fittingNoExistente, diferenciasList);
+                        WriteInPdfFittingsNuevos(doc, (int)enumTipoDiferencia.fittingNoExistente, diferenciasList);
+                        WriteInPdfFittingsCambioDescripcion(doc, (int)enumTipoDiferencia.descripcionFitting, diferenciasList);
+                        break;
+                    case (int)enumTipoDiferencia.grupoSets:
+                        WriteInPdfSetsEliminados(doc, (int)enumTipoDiferencia.setsDiferentes, diferenciasList);
+                        WriteInPdfSetsNuevos(doc, (int)enumTipoDiferencia.setsDiferentes, diferenciasList);
+                        WriteInPdfSetsModificados(doc, (int)enumTipoDiferencia.setsDiferentes, diferenciasList);
+                        break;
+                    case (int)enumTipoDiferencia.grupoColourMaps:
+                        if(this.xmlOrigen.ColoursVersion != this.xmlNuevo.ColoursVersion) WriteInPdfVersionColourMaps(doc, diferenciasList);
+                        WriteInPdfColoresNuevos(doc, (int)enumTipoDiferencia.colourNoExistente, diferenciasList);
+                        WriteInPdfReferenciasEliminadasEnColores(doc, (int)enumTipoDiferencia.articuloNoExistenteEnColor, diferenciasList);
+                        WriteInPdfReferenciasNuevasEnColores(doc, (int)enumTipoDiferencia.articuloNoExistenteEnColor, diferenciasList);
+                        break;
+                    case (int)enumTipoDiferencia.grupoOpciones:
+                        WriteInPdfOpcionesEliminadas(doc, (int)enumTipoDiferencia.opcionGlobal, diferenciasList);
+                        WriteInPdfOpcionesNuevas(doc, (int)enumTipoDiferencia.opcionGlobalNueva, diferenciasList);
+                        WriteInPdfOpcionesModificadas(doc, (int)enumTipoDiferencia.valorOpcionGlobalModificada, diferenciasList);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -979,9 +638,37 @@ namespace RotoTools
                 }
             }
         }
+        private void WriteInPdfHardwareSupplier(int diferenceType, iTextSharp.text.Document doc, List<DiferenciaXml> diferenciasList)
+        {
+            // Fuentes y colores
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            // Tabla versión fittings
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 5f;
+            table.SpacingAfter = 8f;
+            table.SetWidths(new float[] { 49f, 49f });
+
+            table.AddCell(new PdfPCell(new Phrase("Supplier anterior", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Supplier actual", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            DiferenciaXml diferencia = diferenciasList.FirstOrDefault(op => op.Tipo == diferenceType);
+            
+            var partes = diferencia.Descripcion?.Split(new[] { "@" }, StringSplitOptions.None);
+            if (partes != null && partes.Length == 2)
+            {
+                table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+            }
+
+            doc.Add(table);
+        }
         private void WriteInPdfFittingDescriptions(string titulo, int diferenceType, iTextSharp.text.Document doc,
-                                           iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont2,
-                                           List<DiferenciaXml> diferenciasList)
+                                   iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont2,
+                                   List<DiferenciaXml> diferenciasList)
         {
             var diferencias = diferenciasList.Where(op => op.Tipo == diferenceType).ToList();
 
@@ -1027,6 +714,583 @@ namespace RotoTools
                 // Agregar tabla completa al PDF
                 doc.Add(table);
             }
+        }
+        private void WriteInPdfVersionFittings(iTextSharp.text.Document doc, List<DiferenciaXml> diferenciasList)
+        {
+            // Fuentes y colores
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            // Tabla versión fittings
+            PdfPTable tableFittingVersion = new PdfPTable(2);
+            tableFittingVersion.WidthPercentage = 92;
+            tableFittingVersion.SpacingBefore = 5f;
+            tableFittingVersion.SpacingAfter = 8f;
+            tableFittingVersion.SetWidths(new float[] { 49f, 49f });
+
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase("Versión anterior", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase("Versión actual", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase(this.xmlOrigen.FittingsVersion, textFont)) { Padding = 5f });
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase(this.xmlNuevo.FittingsVersion, textFont)) { Padding = 5f });
+
+            doc.Add(tableFittingVersion);            
+        }
+        private void WriteInPdfVersionColourMaps(iTextSharp.text.Document doc, List<DiferenciaXml> diferenciasList)
+        {
+            // Fuentes y colores
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            // Tabla versión fittings
+            PdfPTable tableFittingVersion = new PdfPTable(2);
+            tableFittingVersion.WidthPercentage = 92;
+            tableFittingVersion.SpacingBefore = 5f;
+            tableFittingVersion.SpacingAfter = 8f;
+            tableFittingVersion.SetWidths(new float[] { 49f, 49f });
+
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase("Versión anterior", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase("Versión actual", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase(this.xmlOrigen.ColoursVersion, textFont)) { Padding = 5f });
+            tableFittingVersion.AddCell(new PdfPCell(new Phrase(this.xmlNuevo.ColoursVersion, textFont)) { Padding = 5f });
+
+            doc.Add(tableFittingVersion);
+        }
+        private void WriteInPdfFittingsEliminados(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.anterior)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 30f, 70f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Fittings eliminados: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 2,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Referencia", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Descripción", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaArticulo, textFont)) { Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaAtributos, textFont)) { Padding = 5f });
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfOpcionesEliminadas(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.anterior)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(1);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 100f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Opciones eliminadas: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 1,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Nombre", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaDescription, textFont)) { Padding = 5f });
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfOpcionesNuevas(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(1);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 100f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Opción nueva: " + diffs.FirstOrDefault().DetalleDiferenciaDescription, subtituloFont))
+            {
+                Colspan = 1,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Valores", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaAtributos, textFont)) { Padding = 5f });
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfOpcionesModificadas(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType)
+                .OrderBy(d => d.OrigenDiferencia);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(1);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 100f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Opciones modificadas: " + diffs.FirstOrDefault().DetalleDiferenciaDescription, subtituloFont))
+            {
+                Colspan = 1,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Descripción", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                table.AddCell(new PdfPCell(new Phrase(dif.Descripcion, textFont)) { Padding = 5f });
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfReferenciasEliminadasEnColores(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.anterior)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(4);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 20f, 20f, 40f, 20f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Referencias de color eliminadas: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 4,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Color", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Referencia Base", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Artículo", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Referencia Color", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaArticulo?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 4)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[2], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[3], textFont)) { Padding = 5f });
+                }
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfReferenciasNuevasEnColores(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(4);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 20f, 20f, 40f, 20f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Referencias de color nuevas: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 4,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Color", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Referencia Base", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Artículo", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Referencia Color", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaArticulo?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 4)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[2], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[3], textFont)) { Padding = 5f });
+                }
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfColoresNuevos(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(3);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 20f, 60f, 20f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Color nuevo: " + diffs.FirstOrDefault().DetalleDiferenciaAtributos, subtituloFont))
+            {
+                Colspan = 3,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Referencia Base", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Artículo", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Referencia Color", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaArticulo?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 3)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[2], textFont)) { Padding = 5f });
+                }
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfSetsEliminados(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.anterior)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 30f, 70f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Sets eliminados: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 2,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Id", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Code", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaDescription?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 2)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                }
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfFittingsNuevos(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 30f, 70f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Fittings nuevos: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 2,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Referencia", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Descripción", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaArticulo, textFont)) { Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaAtributos, textFont)) { Padding = 5f });
+
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfSetsNuevos(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.actual)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 30f, 70f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Sets nuevos: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 2,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Id", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Code", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaDescription?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 2)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                }
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfFittingsCambioDescripcion(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.ambos)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(3);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 13f, 43f, 43f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Descripciones modificadas: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 3,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Referencia", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Anterior", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Nueva", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaAtributos?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 2)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(dif.DetalleDiferenciaArticulo, textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                }
+            }
+
+            doc.Add(table);
+        }
+        private void WriteInPdfSetsModificados(Document doc, int diferenceType, List<DiferenciaXml> diferenciasList)
+        {
+            // Estilos
+            var subtituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.DARK_GRAY);
+            var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+            var headerBackground = new BaseColor(230, 230, 230);
+
+            var diffs = diferenciasList
+                .Where(d => d.Tipo == diferenceType && d.OrigenDiferencia == (int)enumOrigenXMLDiferencia.ambos)
+                .OrderBy(d => d.DetalleDiferenciaArticulo);
+
+            if (!diffs.Any())
+                return;
+
+            PdfPTable table = new PdfPTable(4);
+            table.WidthPercentage = 92;
+            table.SpacingBefore = 3f;
+            table.SpacingAfter = 6f;
+            table.SetWidths(new float[] { 10f, 60f, 15f, 15f });
+
+            PdfPCell fittingCell = new PdfPCell(new Phrase("Sets modificados: " + diffs.Count().ToString(), subtituloFont))
+            {
+                Colspan = 4,
+                BackgroundColor = headerBackground,
+                Padding = 6f
+            };
+            table.AddCell(fittingCell);
+
+            // Encabezados
+            table.AddCell(new PdfPCell(new Phrase("Id", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("Code", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("V. Anterior", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+            table.AddCell(new PdfPCell(new Phrase("V. Nuevo", subtituloFont)) { BackgroundColor = headerBackground, Padding = 5f });
+
+            foreach (var dif in diffs)
+            {
+                // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                var partes = dif.DetalleDiferenciaDescription?.Split(new[] { "@" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 4)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(partes[0], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[1], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[2], textFont)) { Padding = 5f });
+                    table.AddCell(new PdfPCell(new Phrase(partes[3], textFont)) { Padding = 5f });
+                }
+            }
+
+            doc.Add(table);
         }
         private void WriteInPdfFittingNoExistente(string titulo, int diferenceType, iTextSharp.text.Document doc, iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont2, List<DiferenciaXml> diferenciasList)
         {
@@ -1475,6 +1739,15 @@ namespace RotoTools
             doc.Add(new Paragraph($"Fittings Version XML actual: " + xmlNuevo.FittingsVersion, normalFont));
             doc.Add(Chunk.NEWLINE);
         }
+        private void InsertHeaderSimple(iTextSharp.text.Document doc, iTextSharp.text.Font titleFont, iTextSharp.text.Font normalFont)
+        {
+            doc.Add(new Paragraph("Informe de control de cambios", titleFont));
+            doc.Add(new Paragraph($"Fecha: {DateTime.Now}", normalFont));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Paragraph($"XML anterior: " + lbl_Xml1.Text, normalFont));
+            doc.Add(new Paragraph($"XML nuevo: " + lbl_Xml2.Text, normalFont));
+            doc.Add(Chunk.NEWLINE);
+        }
         private void GeneratePdf(string filePath, List<DiferenciaXml> diferenciasList)
         {
             iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4);
@@ -1537,6 +1810,37 @@ namespace RotoTools
                 doc.Close();
             }
         }
+        private void GeneratePdfSimple(string filePath, List<DiferenciaXml> diferenciasList)
+        {
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4);
+            try
+            {
+                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+                doc.Open();
+
+                var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+                var subTitleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+                var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+
+                InsertLogo(doc);
+
+                InsertHeaderSimple(doc, titleFont, normalFont);
+
+                WriteInPdfSimple("HardwareSupplier", (int)enumTipoDiferencia.supplierDistinto, doc, subTitleFont, normalFont, diferenciasList);
+                WriteInPdfSimple("Fittings", (int)enumTipoDiferencia.grupoFittings, doc, subTitleFont, normalFont, diferenciasList);
+                WriteInPdfSimple("Sets", (int)enumTipoDiferencia.grupoSets, doc, subTitleFont, normalFont, diferenciasList);
+                WriteInPdfSimple("ColourMaps", (int)enumTipoDiferencia.grupoColourMaps, doc, subTitleFont, normalFont, diferenciasList);
+                WriteInPdfSimple("Options", (int)enumTipoDiferencia.grupoOpciones, doc, subTitleFont, normalFont, diferenciasList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message);
+            }
+            finally
+            {
+                doc.Close();
+            }
+        }
         private void WriteRestoCambiosInPdf(iTextSharp.text.Document doc, iTextSharp.text.Font titleFont, iTextSharp.text.Font textFont, List<DiferenciaXml> diferenciasList)
         {
             List<DiferenciaXml> restoCambiosList = new List<DiferenciaXml>();
@@ -1574,6 +1878,37 @@ namespace RotoTools
             if (compareSets.compararSets) diferenciasList.AddRange(CompareSets(xml1.SetList, xml2.SetList));
 
             return diferenciasList;
+        }
+        public List<DiferenciaXml> CompareXmlDataSimple()
+        {
+            var diferencias = new List<string>();
+            var diferenciasList = new List<DiferenciaXml>();
+
+            diferenciasList.AddRange(CompararPrefHardware());
+            diferenciasList.AddRange(CompareFittings(this.xmlOrigen.FittingList, this.xmlNuevo.FittingList));
+            diferenciasList.AddRange(CompareSets(this.xmlOrigen.SetList, this.xmlNuevo.SetList));
+            diferenciasList.AddRange(CompararColourMaps(this.xmlOrigen.ColourList, this.xmlNuevo.ColourList));
+            diferenciasList.AddRange(CompareDocOptionsSimple(this.xmlOrigen.OptionList, this.xmlNuevo.OptionList));
+
+            return diferenciasList;
+        }
+        private IEnumerable<DiferenciaXml> CompararPrefHardware()
+        {
+            var diferencias = new List<DiferenciaXml>();
+
+            if (this.xmlOrigen.Supplier.ToUpper().Trim() != this.xmlNuevo.Supplier.ToUpper().Trim())
+            {
+                diferencias.Add(new DiferenciaXml
+                    (
+                        tipo: (int)enumTipoDiferencia.supplierDistinto,
+                        descripcion: $"{this.xmlOrigen.Supplier.Trim()}@{this.xmlNuevo.Supplier.Trim()}",
+                        origenDiferencia: (int)enumOrigenXMLDiferencia.ambos,
+                        severidad: (int)enumSeveridadDiferencia.warning,
+                        visible: true
+                    ));
+            }
+
+            return diferencias;
         }
         public List<DiferenciaXml> CompararFittingGroups(List<FittingGroup> gruposList1, List<FittingGroup> gruposList2)
         {
@@ -1631,15 +1966,15 @@ namespace RotoTools
         {
             var diferenciasList = new List<DiferenciaXml>();
 
-            var dic1 = fittingListXml1.ToDictionary(f => f.Id);
-            var dic2 = fittingListXml2.ToDictionary(f => f.Id);
+            var dic1 = fittingListXml1.ToDictionary(f => f.Ref);
+            var dic2 = fittingListXml2.ToDictionary(f => f.Ref);
 
             var todosIds = dic1.Keys.Union(dic2.Keys);
 
-            foreach (var id in todosIds)
+            foreach (var reference in todosIds)
             {
-                dic1.TryGetValue(id, out var f1);
-                dic2.TryGetValue(id, out var f2);
+                dic1.TryGetValue(reference, out var f1);
+                dic2.TryGetValue(reference, out var f2);
 
                 if (f1 == null)
                 {
@@ -1649,9 +1984,9 @@ namespace RotoTools
                     }
                     diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.fittingNoExistente,
-                        descripcion: $"Fitting ID {id} - {fittingListXml2.Where(f => f.Id == id).FirstOrDefault()?.Description} solo existe en XML actual",
-                        detalleDiferenciaArticulo: id.ToString(),
-                        detalleDiferenciaAtributos: $"{fittingListXml2.Where(f => f.Id == id).FirstOrDefault()?.Description}",
+                        descripcion: $"Artículo {reference} - {fittingListXml2.Where(f => f.Ref == reference).FirstOrDefault()?.Description} solo existe en XML actual",
+                        detalleDiferenciaArticulo: reference,
+                        detalleDiferenciaAtributos: $"{fittingListXml2.Where(f => f.Ref == reference).FirstOrDefault()?.Description}",
                         origenDiferencia: (int)enumOrigenXMLDiferencia.actual,
                         severidad: (int)enumSeveridadDiferencia.warning,
                         visible: true,
@@ -1666,9 +2001,9 @@ namespace RotoTools
                     }
                     diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.fittingNoExistente,
-                        descripcion: $"Fitting ID {id} - {fittingListXml1.Where(f => f.Id == id).FirstOrDefault()?.Description} solo existe en XML actual",
-                        detalleDiferenciaArticulo: id.ToString(),
-                        detalleDiferenciaAtributos: $"{fittingListXml1.Where(f => f.Id == id).FirstOrDefault()?.Description}",
+                        descripcion: $"Artículo {reference} - {fittingListXml1.Where(f => f.Ref == reference).FirstOrDefault()?.Description} solo existe en XML actual",
+                        detalleDiferenciaArticulo: reference,
+                        detalleDiferenciaAtributos: $"{fittingListXml1.Where(f => f.Ref == reference).FirstOrDefault()?.Description}",
                         origenDiferencia: (int)enumOrigenXMLDiferencia.anterior,
                         severidad: (int)enumSeveridadDiferencia.warning,
                         visible: true,
@@ -1686,8 +2021,8 @@ namespace RotoTools
                     {
                         diferenciasList.Add(new DiferenciaXml(
                         tipo: (int)enumTipoDiferencia.descripcionFitting,
-                        descripcion: $"Ha cambiado la descripción del fitting {id}: '{f1.Description}' vs '{f2.Description}'",
-                        detalleDiferenciaArticulo: id.ToString(),
+                        descripcion: $"Ha cambiado la descripción del artículo {reference}: '{f1.Description}' vs '{f2.Description}'",
+                        detalleDiferenciaArticulo: reference,
                         detalleDiferenciaAtributos: $"{f1.Description}@{f2.Description}",
                         origenDiferencia: (int)enumOrigenXMLDiferencia.ambos,
                         severidad: (int)enumSeveridadDiferencia.warning,
@@ -1697,19 +2032,19 @@ namespace RotoTools
                     }
 
                     if (f1.Manufacturer != f2.Manufacturer && compareFittings.compararFittingsManufacturer)
-                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.manufacturerDistinto, $"Fitting ID {id}: Manufacturer distinto: '{f1.Manufacturer}' vs '{f2.Manufacturer}'", (int)enumSeveridadDiferencia.warning, false));
+                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.manufacturerDistinto, $"Artículo {reference}: Manufacturer distinto: '{f1.Manufacturer}' vs '{f2.Manufacturer}'", (int)enumSeveridadDiferencia.warning, false));
 
                     if (f1.Location != f2.Location && compareFittings.compararFittingsLocation)
-                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.locationFittingDistinto, $"Fitting ID {id}: Location distinto: '{f1.Location}' vs '{f2.Location}'", (int)enumSeveridadDiferencia.warning, false));
+                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.locationFittingDistinto, $"Artículo {reference}: Location distinto: '{f1.Location}' vs '{f2.Location}'", (int)enumSeveridadDiferencia.warning, false));
 
                     if (f1.Lenght != f2.Lenght && compareFittings.compararFittingsLength)
-                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.lengthFittingDistinto, $"Fitting ID {id}: Length distinto: '{f1.Lenght}' vs '{f2.Lenght}'", (int)enumSeveridadDiferencia.warning, false));
+                        diferenciasList.Add(new DiferenciaXml((int)enumTipoDiferencia.lengthFittingDistinto, $"Artículo {reference}: Length distinto: '{f1.Lenght}' vs '{f2.Lenght}'", (int)enumSeveridadDiferencia.warning, false));
 
 
                     // Comparar Articles del Fitting
                     if (compareFittings.compararFittingsArticles)
                     {
-                        var articlesDiff = CompareArticles(f1.ArticleList, f2.ArticleList, id.ToString());
+                        var articlesDiff = CompareArticles(f1.ArticleList, f2.ArticleList, reference);
                         diferenciasList.AddRange(articlesDiff);
                     }
                 }
@@ -1717,15 +2052,15 @@ namespace RotoTools
 
             return diferenciasList;
         }
-        private List<DiferenciaXml> CompareArticles(List<Article> articleList1, List<Article> articleList2, string fittingId)
+        private List<DiferenciaXml> CompareArticles(List<Article> articleList1, List<Article> articleList2, string fittingRef)
         {
             var diferenciasList = new List<DiferenciaXml>();
 
             // Verifica si hay opciones en alguno de los artículos
             bool hayOpciones = articleList1.Concat(articleList2).Any(a => a.OptionList != null && a.OptionList.Any());
 
-            var fittingOrigen = xmlOrigen.FittingList.FirstOrDefault(f => f.Id == TryParseInt(fittingId));
-            var fittingNuevo = xmlNuevo.FittingList.FirstOrDefault(f => f.Id == TryParseInt(fittingId));
+            var fittingOrigen = xmlOrigen.FittingList.FirstOrDefault(f => f.Ref == fittingRef);
+            var fittingNuevo = xmlNuevo.FittingList.FirstOrDefault(f => f.Ref == fittingRef);
             var descripcion = fittingNuevo?.Description ?? fittingOrigen?.Description ?? "(sin descripción)";
 
             if (hayOpciones)
@@ -1756,7 +2091,7 @@ namespace RotoTools
                         {
                             OrigenDiferencia = (int)enumOrigenXMLDiferencia.actual,
                             DetalleDiferenciaDescription = optKey,
-                            DetalleDiferenciaArticulo = "(" + fittingId + ") " + descripcion,
+                            DetalleDiferenciaArticulo = "(" + fittingRef + ") " + descripcion,
                             DetalleDiferenciaAtributos = $"—@{refs2Text}"
                         });
                     }
@@ -1770,7 +2105,7 @@ namespace RotoTools
                         {
                             OrigenDiferencia = (int)enumOrigenXMLDiferencia.anterior,
                             DetalleDiferenciaDescription = optKey,
-                            DetalleDiferenciaArticulo = "(" + fittingId + ") " + descripcion,
+                            DetalleDiferenciaArticulo = "(" + fittingRef + ") " + descripcion,
                             DetalleDiferenciaAtributos = $"{refs1Text}@—"
                         });
                     }
@@ -1784,7 +2119,7 @@ namespace RotoTools
                         {
                             OrigenDiferencia = (int)enumOrigenXMLDiferencia.ambos,
                             DetalleDiferenciaDescription = optKey,
-                            DetalleDiferenciaArticulo = "(" + fittingId + ") " + descripcion,
+                            DetalleDiferenciaArticulo = "(" + fittingRef + ") " + descripcion,
                             DetalleDiferenciaAtributos = $"{refs1Text}@{refs2Text}"
                         });
                     }
@@ -1803,13 +2138,13 @@ namespace RotoTools
 
                     diferenciasList.Add(new DiferenciaXml(
                             (int)enumTipoDiferencia.referenciaNoGeneradaFitting,
-                            $"Fitting {fittingId} - {descripcion}: Han cambiado las referencias: XML anterior -> {refs1Text}, XML actual -> {refs2Text}",
+                            $"Artículo {fittingRef} - {descripcion}: Han cambiado las referencias: XML anterior -> {refs1Text}, XML actual -> {refs2Text}",
                             (int)enumSeveridadDiferencia.warning,
                             true)
                     {
                         OrigenDiferencia = (int)enumOrigenXMLDiferencia.ambos,
                         DetalleDiferenciaDescription = $"XML anterior -> {refs1Text}, XML actual -> {refs2Text}",
-                        DetalleDiferenciaArticulo = "(" + fittingId + ") " + descripcion,
+                        DetalleDiferenciaArticulo = "(" + fittingRef + ") " + descripcion,
                         DetalleDiferenciaAtributos = $"{refs1Text}@{refs2Text}"
                     });
                 }
@@ -1820,6 +2155,85 @@ namespace RotoTools
         private string GetOptionKey(Article article)
         {
             return string.Join("|", article.OptionList.Select(o => $"{o.Name}={o.Value}"));
+        }
+        public List<DiferenciaXml> CompararColourMaps(List<Colour> colorList1, List<Colour> colorList2)
+        {
+            var diferenciasList = new List<DiferenciaXml>();
+
+            var dic1 = colorList1.ToDictionary(f => f.Name);
+            var dic2 = colorList2.ToDictionary(f => f.Name);
+
+            var todosIds = dic1.Keys.Union(dic2.Keys);
+
+            foreach (var color in todosIds)
+            {
+                dic1.TryGetValue(color, out var f1);
+                dic2.TryGetValue(color, out var f2);
+
+                if (f1 == null)
+                {
+                    foreach (Article article in f2.ArticleList)
+                    {
+                        diferenciasList.Add(new DiferenciaXml(
+                            tipo: (int)enumTipoDiferencia.colourNoExistente,
+                            descripcion: $"Color {color} solo existe en XML nuevo",
+                            detalleDiferenciaArticulo: $"{article.Ref}@{this.xmlNuevo.FittingList.FirstOrDefault(f => f.Ref == article.Ref).Description}@{article.Final}",
+                            detalleDiferenciaAtributos: $"{color}",
+                            origenDiferencia: (int)enumOrigenXMLDiferencia.actual,
+                            severidad: (int)enumSeveridadDiferencia.warning,
+                            visible: true,
+                            titulo: "Color creado"
+                            ));
+                    }
+                }
+                else if (f2 == null)
+                {
+                    //No es necesario registrarlo por el momento
+                }
+                else
+                {
+                    // ============================================================
+                    //   COMPARACIÓN DE ARTÍCULOS DENTRO DEL MISMO COLOR
+                    // ============================================================
+
+                    var art1 = f1.ArticleList?.Select(a => a.Ref).ToHashSet() ?? new HashSet<string>();
+                    var art2 = f2.ArticleList?.Select(a => a.Ref).ToHashSet() ?? new HashSet<string>();
+
+                    // Artículos que están en anterior (XML1) y no en nuevo (XML2)
+                    var soloEnXML1 = art1.Except(art2);
+                    foreach (var refArticulo in soloEnXML1)
+                    {
+                        diferenciasList.Add(new DiferenciaXml(
+                            tipo: (int)enumTipoDiferencia.articuloNoExistenteEnColor,
+                            descripcion: $"Artículo {refArticulo} existe en color '{color}' en XML anterior pero no en XML nuevo",
+                            detalleDiferenciaArticulo: $"{color}@{refArticulo}@{this.xmlOrigen.FittingList.FirstOrDefault(f => f.Ref == refArticulo).Description}@{this.xmlOrigen.ColourList.FirstOrDefault(c => c.Name == color).ArticleList.FirstOrDefault(a => a.Ref == refArticulo).Final}",
+                            detalleDiferenciaAtributos: $"Color: {color}",
+                            origenDiferencia: (int)enumOrigenXMLDiferencia.anterior,
+                            severidad: (int)enumSeveridadDiferencia.warning,
+                            visible: true,
+                            titulo: "Artículo falta en XML nuevo"
+                        ));
+                    }
+
+                    // Artículos que están en nuevo (XML2) y no en anterior (XML1)
+                    var soloEnXML2 = art2.Except(art1);
+                    foreach (var refArticulo in soloEnXML2)
+                    {
+                        diferenciasList.Add(new DiferenciaXml(
+                            tipo: (int)enumTipoDiferencia.articuloNoExistenteEnColor,
+                            descripcion: $"Artículo {refArticulo} existe en color '{color}' en XML nuevo pero no en XML anterior",
+                            detalleDiferenciaArticulo: $"{color}@{refArticulo}@{this.xmlNuevo.FittingList.FirstOrDefault(f => f.Ref == refArticulo).Description}@{this.xmlNuevo.ColourList.FirstOrDefault(c => c.Name == color).ArticleList.FirstOrDefault(a => a.Ref == refArticulo).Final}",
+                            detalleDiferenciaAtributos: $"Color: {color}",
+                            origenDiferencia: (int)enumOrigenXMLDiferencia.actual,
+                            severidad: (int)enumSeveridadDiferencia.warning,
+                            visible: true,
+                            titulo: "Artículo falta en XML anterior"
+                        ));
+                    }
+                }
+            }
+
+            return diferenciasList;
         }
         public List<DiferenciaXml> CompararArticlesYColours(List<Colour> colorList1, List<Colour> colorList2)
         {
@@ -1997,6 +2411,60 @@ namespace RotoTools
 
             return diferenciasList;
         }
+        private List<DiferenciaXml> CompareDocOptionsSimple(List<Option> list1, List<Option> list2)
+        {
+            var diferenciasList = new List<DiferenciaXml>();
+
+            var dic1 = list1.ToDictionary(f => f.Name);
+            var dic2 = list2.ToDictionary(f => f.Name);
+
+            var todosIds = dic1.Keys.Union(dic2.Keys);
+
+            foreach (var id in todosIds)
+            {
+                dic1.TryGetValue(id, out var f1);
+                dic2.TryGetValue(id, out var f2);
+
+                if (f1 == null)
+                {
+                    foreach (Value value in f2.ValuesList)
+                    {
+                        diferenciasList.Add(new DiferenciaXml(
+                        tipo: (int)enumTipoDiferencia.opcionGlobalNueva,
+                        descripcion: $"La opción '{id}' solo existe en XML actual",
+                        severidad: (int)enumSeveridadDiferencia.warning,
+                        visible: true
+)
+                        {
+                            OrigenDiferencia = (int)enumOrigenXMLDiferencia.actual,
+                            DetalleDiferenciaDescription = id,
+                            DetalleDiferenciaAtributos=value.Valor
+                        });
+                    }
+                }
+                else if (f2 == null)
+                {
+                    diferenciasList.Add(new DiferenciaXml(
+                        tipo: (int)enumTipoDiferencia.opcionGlobal,
+                        descripcion: $"La opción '{id}' solo existe en XML anterior",
+                        severidad: (int)enumSeveridadDiferencia.warning,
+                        visible: true
+                    )
+                    {
+                        OrigenDiferencia = (int)enumOrigenXMLDiferencia.anterior,
+                        DetalleDiferenciaDescription = id
+                    });
+                }
+                else
+                {
+                    // Comparar valores de esa opción
+                    var valuesDiff = CompareValueOptionsSimple(f1.ValuesList, f2.ValuesList, id);
+                    diferenciasList.AddRange(valuesDiff);
+                }
+            }
+
+            return diferenciasList;
+        }
         private List<DiferenciaXml> CompareValueOptions(List<Value> options1, List<Value> options2, string optionName)
         {
             var diferenciasList = new List<DiferenciaXml>();
@@ -2057,6 +2525,52 @@ namespace RotoTools
 
             return diferenciasList;
         }
+        private List<DiferenciaXml> CompareValueOptionsSimple(List<Value> options1, List<Value> options2, string optionName)
+        {
+            var diferenciasList = new List<DiferenciaXml>();
+
+            var dic1 = options1.ToDictionary(o => o.Valor);
+            var dic2 = options2.ToDictionary(o => o.Valor);
+
+            var allValues = dic1.Keys.Union(dic2.Keys);
+
+            foreach (var valor in allValues)
+            {
+                dic1.TryGetValue(valor, out var o1);
+                dic2.TryGetValue(valor, out var o2);
+
+                if (o1 == null)
+                {
+                    diferenciasList.Add(new DiferenciaXml(
+                        tipo: (int)enumTipoDiferencia.valorOpcionGlobalModificada,
+                        descripcion: $"Opción '{optionName}': Se ha añadido el valor '{valor}'",
+                        severidad: (int)enumSeveridadDiferencia.warning,
+                        visible: true
+                    )
+                    {
+                        OrigenDiferencia = (int)enumOrigenXMLDiferencia.actual,
+                        DetalleDiferenciaDescription = optionName,
+                        DetalleDiferenciaAtributos = valor
+                    });
+                }
+                else if (o2 == null)
+                {
+                    diferenciasList.Add(new DiferenciaXml(
+                        tipo: (int)enumTipoDiferencia.valorOpcionGlobalModificada,
+                        descripcion: $"Opción '{optionName}': Se ha eliminado el valor '{valor}'",
+                        severidad: (int)enumSeveridadDiferencia.warning,
+                        visible: true
+                    )
+                    {
+                        OrigenDiferencia = (int)enumOrigenXMLDiferencia.anterior,
+                        DetalleDiferenciaDescription = optionName,
+                        DetalleDiferenciaAtributos = valor
+                    });
+                }
+            }
+
+            return diferenciasList;
+        }
         private List<DiferenciaXml> CompareSets(List<Set> sets1, List<Set> sets2)
         {
             var diferencias = new List<DiferenciaXml>();
@@ -2080,7 +2594,7 @@ namespace RotoTools
                         true)
                     {
                         OrigenDiferencia = (int)enumOrigenXMLDiferencia.actual,
-                        DetalleDiferenciaDescription = $"El set {id} - {sets2.Where(s => s.Id == id).FirstOrDefault()?.Code} solo existe en XML actual",
+                        DetalleDiferenciaDescription = $"{id}@{sets2.Where(s => s.Id == id).FirstOrDefault()?.Code}",
                         DetalleDiferenciaArticulo = $"({id}){sets2.Where(s => s.Id == id).FirstOrDefault()?.Code}",
                         DetalleDiferenciaAtributos = "Set"
                     });
@@ -2096,11 +2610,30 @@ namespace RotoTools
                         true)
                     {
                         OrigenDiferencia = (int)enumOrigenXMLDiferencia.anterior,
-                        DetalleDiferenciaDescription = $"El set {id} - {sets1.Where(s => s.Id == id).FirstOrDefault()?.Code} solo existe en XML anterior",
+                        DetalleDiferenciaDescription = $"{id}@{sets1.Where(s => s.Id == id).FirstOrDefault()?.Code}",
                         DetalleDiferenciaArticulo = $"({id}){sets1.Where(s => s.Id == id).FirstOrDefault()?.Code}",
                         DetalleDiferenciaAtributos = "Set"
                     });
                     continue;
+                }
+                if (s1 != null && s2 != null)
+                {
+                    if (sets1.Where(s => s.Id == id).FirstOrDefault()?.Version != sets2.Where(s => s.Id == id).FirstOrDefault()?.Version)
+                    {
+                        diferencias.Add(new DiferenciaXml(
+                        (int)enumTipoDiferencia.setsDiferentes,
+                        $"Set {id} - {sets2.Where(s => s.Id == id).FirstOrDefault()?.Code} contiene diferencias",
+                        (int)enumSeveridadDiferencia.warning,
+                        true)
+                        {
+                            OrigenDiferencia = (int)enumOrigenXMLDiferencia.ambos,
+                            DetalleDiferenciaDescription = $"{id}@{sets1.Where(s => s.Id == id).FirstOrDefault()?.Code}@{sets1.Where(s => s.Id == id).FirstOrDefault()?.Version}@{sets2.Where(s => s.Id == id).FirstOrDefault()?.Version}",
+                            DetalleDiferenciaArticulo = $"({id}){sets1.Where(s => s.Id == id).FirstOrDefault()?.Code}",
+                            DetalleDiferenciaAtributos = "Set"
+                        });
+                        continue;
+                    }
+                    
                 }
 
                 if (compareSets.compararSetsFiltrados && !compareSets.compararSetsFiltradosList.Contains(s1.Code))
@@ -2239,18 +2772,6 @@ namespace RotoTools
 
             return diferenciasSD;
         }
-        private void btn_Config_Click(object sender, EventArgs e)
-        {
-            ControlCambiosConfiguracion controlCambiosConfiguracion = new ControlCambiosConfiguracion(compareOptions, compareFittingGroups, compareFittings, compareSets, compareColours);
-            if (controlCambiosConfiguracion.ShowDialog() == DialogResult.OK)
-            {
-                compareColours = controlCambiosConfiguracion.compararColores;
-                compareFittingGroups = controlCambiosConfiguracion.compararFittingGroups;
-                compareFittings = controlCambiosConfiguracion.compararFittings;
-                compareOptions = controlCambiosConfiguracion.compararOpciones;
-                compareSets = controlCambiosConfiguracion.compararSets;
-            }
-        }
         private void SetListasSetsComparaSets()
         {
             if (xmlOrigenCargado && xmlNuevoCargado)
@@ -2278,11 +2799,6 @@ namespace RotoTools
             SetListasSetsComparaSets();
             SetListasFittingsComparaFittings();
         }
-
-        private void ControlCambiosMenu_Load(object sender, EventArgs e)
-        {
-            CargarTextos();
-        }
         private void CargarTextos()
         {
             this.Text = LocalizationManager.GetString("L_ControlCambios");
@@ -2290,7 +2806,9 @@ namespace RotoTools
             lbl_Xml2.Text = LocalizationManager.GetString("L_SeleccionarXMLNuevo");
             lbl_Configuracion.Text = LocalizationManager.GetString("L_ConfiguracionInforme");
             lbl_ControlCambios.Text = LocalizationManager.GetString("L_GenerarInforme");
+            lbl_ControlCambiosSimple.Text = LocalizationManager.GetString("L_GenerarInforme");
         }
+        #endregion
     }
     public class DiferenciaSetDescription
     {

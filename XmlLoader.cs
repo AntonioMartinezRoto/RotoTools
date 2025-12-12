@@ -1,4 +1,7 @@
-﻿using RotoEntities;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using RotoEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +108,7 @@ namespace RotoTools
                 List<Article> articlesList = new List<Article>();
                 foreach (XmlNode articleNode in parentNode.ChildNodes)
                 {
-                    if (articleNode.Attributes == null || articleNode.ChildNodes.Count == 0)
+                    if (articleNode.Attributes == null)
                     {
                         continue;
                     }
@@ -315,6 +318,7 @@ namespace RotoTools
                     set.MaxWidth = setNode.Attributes["maxWidth"]?.Value;
                     set.MinHeight = setNode.Attributes["minHeight"]?.Value;
                     set.MaxHeight = setNode.Attributes["maxHeight"]?.Value;
+                    set.Version = LoadSetVersion(setNode);
                     set.Opening = GetSetOpening(setNode);
                     set.SetDescriptionList = GetSetDescripcionList(setNode, fittingList);
                     ShowLoadingInfo("Set", set.Code);
@@ -327,6 +331,35 @@ namespace RotoTools
             catch
             {
                 return null;
+            }
+        }
+        public string LoadSetVersion(XmlNode setNode)
+        {
+            try
+            {
+                foreach (XmlNode node in setNode.ChildNodes)
+                {
+                    if (node.NodeType == XmlNodeType.Comment)
+                    {
+                        string comentario = node.Value?.Trim();
+
+                        if (!string.IsNullOrEmpty(comentario) && comentario.StartsWith("VER:"))
+                        {
+                            // Parsear DetalleDiferenciaAtributos -> "valor1@valor2"
+                            var partes = comentario?.Split(new[] { ":" }, StringSplitOptions.None);
+                            if (partes != null && partes.Length == 2)
+                            {
+                                return partes[1];
+                            }
+                        }
+                    }
+                    return "";
+                }
+                return "";
+            }
+            catch
+            {
+                return "";
             }
         }
         public string LoadFittingsVersion(XmlDocument doc)

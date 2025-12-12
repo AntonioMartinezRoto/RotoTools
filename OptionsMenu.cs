@@ -88,6 +88,7 @@ namespace RotoTools
             this.Text = LocalizationManager.GetString("L_Opciones");
             chk_PermitirTraduccion.Text = LocalizationManager.GetString("L_PermitirTraduccion");
             btn_SaveOptions.Text = LocalizationManager.GetString("L_Guardar");
+            chk_ControlCambiosAvanzado.Text = LocalizationManager.GetString("L_ControlCambiosAvanzado");
         }
         private void GenerarExportacionRecursos(string fileName)
         {

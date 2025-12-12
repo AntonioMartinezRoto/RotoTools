@@ -394,6 +394,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Modo avanzado herramienta Control de Cambios.
+        /// </summary>
+        internal static string L_ControlCambiosAvanzado {
+            get {
+                return ResourceManager.GetString("L_ControlCambiosAvanzado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Descripción.
         /// </summary>
         internal static string L_Descripcion {

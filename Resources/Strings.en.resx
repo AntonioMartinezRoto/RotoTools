@@ -498,4 +498,7 @@
   <data name="L_OperacionesInstaladas" xml:space="preserve">
     <value>Operations instaled successfully</value>
   </data>
+  <data name="L_ControlCambiosAvanzado" xml:space="preserve">
+    <value>Advanced mode Changes Control tool</value>
+  </data>
 </root>

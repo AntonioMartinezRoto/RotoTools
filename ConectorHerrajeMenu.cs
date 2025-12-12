@@ -6846,7 +6846,15 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
+
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -6985,7 +6993,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -7089,7 +7104,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
@@ -7186,7 +7208,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -7323,7 +7352,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -7431,7 +7467,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
@@ -7535,7 +7578,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -7674,7 +7724,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -7778,7 +7835,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
@@ -7875,7 +7939,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -8012,7 +8083,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -8120,7 +8198,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
@@ -8224,7 +8309,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -8363,7 +8455,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -8467,7 +8566,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))
@@ -8564,7 +8670,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
                     if (set.Code.ToUpper().Contains("KF"))
                     {
@@ -8701,7 +8814,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     if (set.Code.ToUpper().Contains("PG"))
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
@@ -8809,7 +8929,14 @@ namespace RotoTools
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
-                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    if (set.Code.ToUpper().Contains("5P"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada 5P"));
+                    }
+                    else
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
+                    }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                 }
                 else if (set.Code.ToUpper().Contains("PG"))

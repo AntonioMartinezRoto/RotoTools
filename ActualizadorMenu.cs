@@ -147,9 +147,9 @@ namespace RotoTools
 
                             if (!string.IsNullOrWhiteSpace(script))
                             {
-                                rowsAfected += Helpers.EjecutarNonQuery(script);
+                                rowsAfected = Helpers.EjecutarNonQuery(script);
                                 totalEjecutados++;
-                                message += rowsAfected.ToString() + LocalizationManager.GetString("L_RegistrosActualizadosScript") + " " + fichero + Environment.NewLine + Environment.NewLine;
+                                message += rowsAfected.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizadosScript") + " " + fichero + Environment.NewLine + Environment.NewLine;
                             }
                         }
                         MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);

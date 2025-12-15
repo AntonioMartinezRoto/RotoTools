@@ -167,13 +167,13 @@ namespace RotoTools
         public static void UpdateContenidoOpcion(string opcionName, ContenidoOpcion cont)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("UPDATE ContenidoOpciones SET Texto=@texto, Flags=@flags, Orden=@orden, Invalid=@invalid, DesAuto=@desauto WHERE Opcion=@nombre AND Valor=@valor", conn))
+            using (var cmd = new SqlCommand("UPDATE ContenidoOpciones SET Texto=@texto, Flags=@flags, Invalid=@invalid, DesAuto=@desauto WHERE Opcion=@nombre AND Valor=@valor", conn))
             {
                 cmd.Parameters.AddWithValue("@nombre", opcionName);
                 cmd.Parameters.AddWithValue("@valor", cont.Valor);
                 cmd.Parameters.AddWithValue("@texto", cont.Texto);
                 cmd.Parameters.AddWithValue("@flags", cont.Flags);
-                cmd.Parameters.AddWithValue("@orden", cont.Orden);
+                //cmd.Parameters.AddWithValue("@orden", cont.Orden);
                 cmd.Parameters.AddWithValue("@invalid", cont.Invalid);
                 cmd.Parameters.AddWithValue("@desauto", cont.DesAuto);
                 conn.Open();
@@ -275,36 +275,49 @@ namespace RotoTools
 
                 foreach (var opcionXml in opcionesXml)
                 {
-                    var contenidosDb = Helpers.GetContenidoOpciones(opcionXml.Name);
+                    List<ContenidoOpcion> contenidoOpcionDbList = Helpers.GetContenidoOpciones(opcionXml.Name);
 
-                    // ¿Falta alguno del XML en BD?
-                    bool faltaAlguno = opcionXml.ContenidoOpcionesList
-                        .Any(cXml => !contenidosDb.Any(cDb => cDb.Valor.ToUpper().Trim() == cXml.Valor.ToUpper().Trim()));
+                    // Normalizamos comparaciones
+                    Func<string, string> norm = v => v?.Trim().ToUpper();
 
-                    if (faltaAlguno || contenidosDb.Count != opcionXml.ContenidoOpcionesList.Count)
+                    // 1) Detectar los que faltan en BD
+                    var contenidosFaltantes = opcionXml.ContenidoOpcionesList
+                        .Where(cXml => !contenidoOpcionDbList
+                            .Any(cDb => norm(cDb.Valor) == norm(cXml.Valor)))
+                        .ToList();
+
+                    // 2) Actualizar los existentes (Texto / Flags)
+                    foreach (var contXml in opcionXml.ContenidoOpcionesList)
                     {
-                        // 1) Copia exacta del XML
-                        Helpers.DeleteAllContenidoOpciones(opcionXml.Name);
+                        var contDb = contenidoOpcionDbList.FirstOrDefault(cDb => norm(cDb.Valor) == norm(contXml.Valor));
 
-                        foreach (var contXml in opcionXml.ContenidoOpcionesList.OrderBy(co => co.Orden))
+                        if (contDb != null)
                         {
-                            Helpers.InsertContenidoOpcion(opcionXml.Name, contXml);
-                        }
-                    }
-                    else
-                    {
-                        // 2) Todos están → solo actualizamos Texto y Flags
-                        foreach (var contXml in opcionXml.ContenidoOpcionesList)
-                        {
-                            var contDb = contenidosDb.First(c => c.Valor.ToUpper().Trim() == contXml.Valor.ToUpper().Trim());
-
-                            if (contDb.Texto.ToUpper().Trim() != contXml.Texto.ToUpper().Trim() || contDb.Flags != contXml.Flags)
+                            if (norm(contDb.Texto.Trim()) != norm(contXml.Texto) ||
+                                contDb.Flags != contXml.Flags)
                             {
                                 Helpers.UpdateContenidoOpcion(opcionXml.Name, contXml);
                             }
                         }
                     }
+
+                    // 3) Insertar solo los que faltan
+                    if (contenidosFaltantes.Any())
+                    {
+                        int maxOrdenActual = contenidoOpcionDbList.Any()
+                            ? contenidoOpcionDbList.Max(c => c.Orden)
+                            : 0;
+
+                        int orden = maxOrdenActual + 1;
+
+                        foreach (var contXml in contenidosFaltantes)
+                        {
+                            contXml.Orden = orden++;
+                            Helpers.InsertContenidoOpcion(opcionXml.Name, contXml);
+                        }
+                    }
                 }
+
             }
             catch (Exception ex)
             {

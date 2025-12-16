@@ -501,4 +501,7 @@
   <data name="L_ControlCambiosAvanzado" xml:space="preserve">
     <value>Modo avanzado herramienta Control de Cambios(PT)</value>
   </data>
+  <data name="L_Geometria" xml:space="preserve">
+    <value>Geometría(PT)</value>
+  </data>
 </root>

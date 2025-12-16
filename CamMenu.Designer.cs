@@ -45,18 +45,18 @@
             lbl_BusquedaOp = new Label();
             group_Sets = new GroupBox();
             group_Operaciones = new GroupBox();
+            dataGridView2 = new DataGridView();
             rb_NoExists = new RadioButton();
             rb_All = new RadioButton();
             btn_InstallOperation = new Button();
             dataGridView1 = new DataGridView();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
-            dataGridView2 = new DataGridView();
             group_Sets.SuspendLayout();
             group_Operaciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // lbl_Xml
@@ -105,10 +105,11 @@
             // chkList_Operaciones
             // 
             chkList_Operaciones.FormattingEnabled = true;
-            chkList_Operaciones.Location = new Point(7, 43);
+            chkList_Operaciones.Location = new Point(996, 142);
             chkList_Operaciones.Name = "chkList_Operaciones";
-            chkList_Operaciones.Size = new Size(530, 202);
+            chkList_Operaciones.Size = new Size(203, 166);
             chkList_Operaciones.TabIndex = 14;
+            chkList_Operaciones.Visible = false;
             // 
             // btn_InstalarMacros
             // 
@@ -192,7 +193,7 @@
             txt_FilterOperations.Location = new Point(437, 17);
             txt_FilterOperations.Margin = new Padding(3, 2, 3, 2);
             txt_FilterOperations.Name = "txt_FilterOperations";
-            txt_FilterOperations.Size = new Size(100, 23);
+            txt_FilterOperations.Size = new Size(99, 23);
             txt_FilterOperations.TabIndex = 24;
             txt_FilterOperations.TextChanged += txt_FilterOperations_TextChanged;
             // 
@@ -223,18 +224,34 @@
             // group_Operaciones
             // 
             group_Operaciones.BackColor = Color.Transparent;
+            group_Operaciones.Controls.Add(dataGridView2);
             group_Operaciones.Controls.Add(rb_NoExists);
             group_Operaciones.Controls.Add(rb_All);
             group_Operaciones.Controls.Add(chk_AllOperations);
             group_Operaciones.Controls.Add(txt_FilterOperations);
             group_Operaciones.Controls.Add(lbl_BusquedaOp);
-            group_Operaciones.Controls.Add(chkList_Operaciones);
             group_Operaciones.Location = new Point(447, 127);
             group_Operaciones.Name = "group_Operaciones";
             group_Operaciones.Size = new Size(543, 254);
             group_Operaciones.TabIndex = 26;
             group_Operaciones.TabStop = false;
             group_Operaciones.Text = "Operaciones";
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.EditMode = DataGridViewEditMode.EditOnEnter;
+            dataGridView2.Location = new Point(6, 45);
+            dataGridView2.MultiSelect = false;
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.Size = new Size(530, 200);
+            dataGridView2.TabIndex = 30;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellMouseUp += dataGridView2_CellMouseUp;
             // 
             // rb_NoExists
             // 
@@ -299,18 +316,6 @@
             lbl_Conexion.Size = new Size(118, 17);
             lbl_Conexion.Text = "toolStripStatusLabel1";
             // 
-            // dataGridView2
-            // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(996, 142);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.Size = new Size(205, 213);
-            dataGridView2.TabIndex = 30;
-            dataGridView2.Visible = false;
-            // 
             // CamMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -318,13 +323,13 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1238, 666);
-            Controls.Add(dataGridView2);
             Controls.Add(statusStrip1);
             Controls.Add(dataGridView1);
             Controls.Add(btn_InstallOperation);
             Controls.Add(group_Operaciones);
             Controls.Add(group_Sets);
             Controls.Add(btn_ExportMacros);
+            Controls.Add(chkList_Operaciones);
             Controls.Add(btn_InstalarMacros);
             Controls.Add(btn_ClearOperations);
             Controls.Add(btn_CargarOperations);
@@ -342,10 +347,10 @@
             group_Sets.PerformLayout();
             group_Operaciones.ResumeLayout(false);
             group_Operaciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

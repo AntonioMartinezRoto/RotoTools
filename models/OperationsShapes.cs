@@ -16,5 +16,25 @@ namespace RotoEntities
         public double Rotation { get; set; }
         public string Conditions { get; set; }
         public int Order { get; set; }
+
+        public OperationsShapes()
+        {
+
+        }
+        public OperationsShapes(string operationName, string basicShape)
+        {
+            OperationName = operationName;
+            BasicShape = basicShape;
+            External = 0;
+        }
+        public OperationsShapes(string operationName, string basicShape, string x, string y, string z)
+        {
+            OperationName = operationName;
+            BasicShape = basicShape;
+            XDistance = x;
+            YDistance = y;
+            ZDistance = z;
+            External = 0;
+        }
     }
 }

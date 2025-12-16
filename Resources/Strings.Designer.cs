@@ -637,6 +637,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Geometría.
+        /// </summary>
+        internal static string L_Geometria {
+            get {
+                return ResourceManager.GetString("L_Geometria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestión bombillos.
         /// </summary>
         internal static string L_GestionBombillos {

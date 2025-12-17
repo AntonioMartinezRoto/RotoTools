@@ -1159,6 +1159,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Sustituir por en MaterialesBase.
+        /// </summary>
+        internal static string L_SustituirPor {
+            get {
+                return ResourceManager.GetString("L_SustituirPor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Texto.
         /// </summary>
         internal static string L_Texto {

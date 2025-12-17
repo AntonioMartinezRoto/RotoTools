@@ -29,6 +29,7 @@ namespace RotoTools
                                 ON SUBSTRING(MB.ReferenciaBase, 4, LEN(MB.ReferenciaBase) - 3) = F.Reference
                             WHERE MB.ReferenciaBase LIKE 'RO\_%' ESCAPE '\'";
         private string[] materialesFicticios = { "RO_PROGRAM%", "RO_MEC%" };
+        private const string queryUpdateSustituirPor = "UPDATE MATERIALESBASE SET SustituirPor = LEFT(ReferenciaBase, CHARINDEX('-', [ReferenciaBase]) - 1) WHERE ReferenciaBase LIKE 'RO_%-%'";
 
         #endregion
 
@@ -63,7 +64,8 @@ namespace RotoTools
                                  LocalizationManager.GetString("L_GroupsSupplier") + ": " + resultQuerys.ResultQueryUpdateGruposYProveedor.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
                                  LocalizationManager.GetString("L_Level1MBOpciones") + ": " + resultQuerys.ResultQueryUpdateNivel1MaterialesBaseYOpciones.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
                                  LocalizationManager.GetString("L_MBFicticios") + ": " + resultQuerys.ResultQueryUpdatePropFicticios.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
-                                 LocalizationManager.GetString("L_DescripcionesMB") + ": " + resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine;
+                                 LocalizationManager.GetString("L_DescripcionesMB") + ": " + resultQuerys.ResultQueryUpdateDescripcionesMateriales.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine + Environment.NewLine +
+                                 LocalizationManager.GetString("L_SustituirPor") + ": " + resultQuerys.ResultQuerySustituirPor.ToString() + " " + LocalizationManager.GetString("L_RegistrosActualizados") + Environment.NewLine;
 
                 MessageBox.Show(mensaje,
                                 "",
@@ -354,7 +356,10 @@ namespace RotoTools
             //Actualizar descripciones MaterialesBase desde los fittings
             int rowsAfected4 = Helpers.EjecutarNonQuery(queryUpdateDescripciones);
 
-            ResultQuerys resultQuerys = new ResultQuerys(rowsAfected, rowsAfected2, rowsAfected3, rowsAfected4);
+            //Actualizar Sustituir por referencias ficticias
+            int rowsAfected5 = Helpers.EjecutarNonQuery(queryUpdateSustituirPor);
+
+            ResultQuerys resultQuerys = new ResultQuerys(rowsAfected, rowsAfected2, rowsAfected3, rowsAfected4, rowsAfected5);
             return resultQuerys;
 
         }

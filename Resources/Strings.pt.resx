@@ -504,4 +504,7 @@
   <data name="L_Geometria" xml:space="preserve">
     <value>Geometría(PT)</value>
   </data>
+  <data name="L_SustituirPor" xml:space="preserve">
+    <value>Sustituir por en MaterialesBase(PT)</value>
+  </data>
 </root>

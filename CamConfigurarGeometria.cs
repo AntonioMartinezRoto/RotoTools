@@ -83,7 +83,7 @@ namespace RotoTools
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_Operacion"),
-                DataPropertyName = nameof(OperationsShapes.OperationName),
+                DataPropertyName = nameof(OperationsShapes.BasicShape),
                 ReadOnly = true,
                 Width = 230
             });

@@ -9374,16 +9374,16 @@ namespace RotoTools
 
                 set.OptionConectorList = optionList;
 
-                if (set.Code.ToUpper().Contains("BC"))
-                {
-                    // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
-                    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "BC"));
-                }
-                else if (set.Code.ToUpper().Contains("FC"))
-                {
-                    // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
-                    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "FC"));
-                }
+                //if (set.Code.ToUpper().Contains("BC"))
+                //{
+                //    // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
+                //    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "BC"));
+                //}
+                //else if (set.Code.ToUpper().Contains("FC"))
+                //{
+                //    // TODO: ABATIBLES DIFERENCIA ENTRE BC y FC
+                //    set.OptionConectorList.Add(OpcionHelper.Crear("OPCION_ABATIBLE", "FC"));
+                //}
             }
 
             return setCVAbatibles;

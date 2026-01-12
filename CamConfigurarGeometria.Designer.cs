@@ -104,6 +104,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(btn_Save);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "CamConfigurarGeometria";

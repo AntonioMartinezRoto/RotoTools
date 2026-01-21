@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_PS27_Hoja",
+  "BasicShape": "RO_M048_T5_P42",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "13.5",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

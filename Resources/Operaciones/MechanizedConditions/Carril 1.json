@@ -1,0 +1,6 @@
+{
+  "RowId": "3bffecfb-e776-4878-a2f5-f3912b34b91f",
+  "Name": "Carril 1",
+  "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"Carril_Corredera\" CONDITION=\"=\" VARIABLE2=\"1\" OBJECTID=\"D0A10511-CD96-416C-8977-9F666485C09D\" /></CONDITIONS>",
+  "XmlOptions": ""
+}

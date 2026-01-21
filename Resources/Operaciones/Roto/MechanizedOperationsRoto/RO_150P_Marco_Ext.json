@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_150P_Marco_Ext",
+  "Description": "Taladros bisagra hoja bisagra 150 R",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BISAGRA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Hinge",
+  "XmlParameters": "",
+  "RGB": 15790320,
+  "Disable": false
+}

@@ -20,6 +20,8 @@ namespace RotoTools
         private BindingSource _bindingDetalleOperaciones;
         private List<OperationGridRow> _allData;
         private Dictionary<string, bool> _cacheExisteBD = new();
+        private List<OperationsShapes> _operationsShapesListEmbebidos = new List<OperationsShapes>();
+        private bool _syncingSelection = false;
 
         #endregion
 
@@ -52,11 +54,11 @@ namespace RotoTools
             {
                 CleanInfo();
                 string rutaXml = openFileDialog.FileName;
-                EnableButtons(false);
+                EnableControls(false);
                 xmlOrigen = LoadXml(rutaXml);
                 lbl_Xml.Text = rutaXml;
                 LoadSets("");
-                EnableButtons(true);
+                EnableControls(true);
             }
         }
         private void btn_InstalarMacros_Click(object sender, EventArgs e)
@@ -98,9 +100,10 @@ namespace RotoTools
                         Cursor.Current = Cursors.WaitCursor;
                         EnableControls(false);
 
-                        int exportedMacrosCount = ExportMacrosMechanizedOperations(Path.Combine(savePath, "MechanizedOperations"));
+                        ExportMacrosMechanizedOperations(Path.Combine(savePath, "MechanizedOperations"));
                         ExportMacrosOperationsShapes(Path.Combine(savePath, "OperationsShapes"));
-                        MessageBox.Show(exportedMacrosCount.ToString() + " " + LocalizationManager.GetString("L_Operaciones") + ": " + Environment.NewLine + savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ExportMecanizadosRoto(savePath);
+                        MessageBox.Show(LocalizationManager.GetString("L_Operaciones") + ": " + Environment.NewLine + savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         EnableControls(true);
                         Cursor.Current = Cursors.Default;
@@ -122,9 +125,7 @@ namespace RotoTools
         {
             if (this.xmlCargado)
             {
-                CargarListaOperacionesFromXml();
-                CargarGridInstalarOperaciones();
-                CargarDatosGridDetalle(this._allData);
+                LoadOperations();
             }
         }
         private void txt_filter_TextChanged(object sender, EventArgs e)
@@ -168,23 +169,78 @@ namespace RotoTools
         }
         private void btn_InstallOperation_Click(object sender, EventArgs e)
         {
-            foreach (OperationInstalarGridITem item in this._bindingSource.List)
+            try
             {
-                if (item.Selected && !ExisteEnBD("RO_" + item.OperationName))
+                Cursor = Cursors.WaitCursor;
+                EnableControls(false);
+
+                progress_Install.Visible = true;
+                int totalFilas = this._bindingSource.List.Count;
+                progress_Install.Value = 0;
+                progress_Install.Maximum = totalFilas > 0 ? totalFilas : 1; // Evitar división por cero
+
+                foreach (OperationInstalarGridITem item in this._bindingSource.List)
                 {
-                    MechanizedOperation mechanizedOperation = new MechanizedOperation("RO_" + item.OperationName);
-                    Helpers.InstallMechanizedOperation(mechanizedOperation);
-
-                    foreach (OperationsShapes operationShape in item.OperationShapeList)
+                    if (item.Selected && !Helpers.ExisteOperacionEnBD("RO_" + item.OperationName))
                     {
-                        Helpers.InstallOperationShape(operationShape);
-                    }
-                }
-            }
+                        //Instalar operación si no existe en la base de datos
+                        MechanizedOperation mechanizedOperation = new MechanizedOperation("RO_" + item.OperationName);
+                        Helpers.InstallMechanizedOperation(mechanizedOperation);
 
-            MessageBox.Show(LocalizationManager.GetString("L_OperacionesInstaladas"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            _cacheExisteBD = new();
-            AplicarFiltros();
+                        //Instalar geometrías de la operación
+                        foreach (OperationsShapes operationShape in item.OperationShapeList)
+                        {
+                            //Se comprueba si tiene condiciones para instalarlas y obtener el RowId
+                            if (!String.IsNullOrEmpty(operationShape.Conditions))
+                            {
+                                //Gestión de las condiciones
+                                operationShape.Conditions = InstallConditions(operationShape.Conditions);
+                            }
+
+                            if (!Helpers.ExisteOperacionEnBD(operationShape.BasicShape))
+                            {
+                                List<MechanizedOperation> embeddedOperations = Helpers.CargarMacrosMechanizedOperationsEmbebidos();
+                                MechanizedOperation? embeddedOperation = embeddedOperations
+                                    .FirstOrDefault(op => op.OperationName == operationShape.BasicShape);
+
+                                if (embeddedOperation != null)
+                                {
+                                    Helpers.InstallMechanizedOperation(embeddedOperation!);
+                                }
+
+                                List<OperationsShapes> macroOperationsShapesList = Helpers.CargarMacrosOperationsShapesEmbebidos().Where(o => o.OperationName == operationShape.BasicShape).ToList();
+                                foreach (OperationsShapes operation in macroOperationsShapesList)
+                                {
+                                    Helpers.InstallOperationShape(operation);
+                                }
+
+                            }
+
+                            Helpers.InstallOperationShape(operationShape);
+                        }
+                    }
+                    // Actualizar progreso
+                    progress_Install.Value++;
+                    progress_Install.Refresh(); // Fuerza el repintado si el proceso es muy rápido
+                }
+                Cursor = Cursors.Default;
+                EnableControls(true);
+                MessageBox.Show(LocalizationManager.GetString("L_OperacionesInstaladas"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                progress_Install.Value = 0;
+                progress_Install.Visible = false;
+                _cacheExisteBD = new();
+                LoadOperations();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error(34)" + Environment.NewLine + Environment.NewLine +
+                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                EnableControls(true);
+            }
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -200,6 +256,51 @@ namespace RotoTools
                 {
                     item.OperationShapeList = frm.ResultOperationsShapesList;
                 }
+            }
+        }
+        private void dataGridView2_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 0) return;
+
+            if (dataGridView2.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                dataGridView2.EndEdit();
+
+                var item = (OperationInstalarGridITem)
+                    dataGridView2.Rows[e.RowIndex].DataBoundItem;
+
+                //MessageBox.Show($"Selected = {item.Selected}");
+            }
+        }
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            if (_syncingSelection) return;
+            if (dataGridView2.CurrentRow == null) return;
+
+            string operationName =
+                dataGridView2.CurrentRow.Cells["OperationName"].Value?.ToString();
+
+            if (string.IsNullOrWhiteSpace(operationName))
+                return;
+
+            try
+            {
+                _syncingSelection = true;
+                SeleccionarFilaEnGrid1PorOperacion(operationName);
+            }
+            finally
+            {
+                _syncingSelection = false;
+            }
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Info")
+            {
+
             }
         }
         #endregion
@@ -220,34 +321,43 @@ namespace RotoTools
         }
         private void CargarListaOperacionesFromXml()
         {
-            List<Operation> operationList = new List<Operation>();
-            List<OperationGridRow> operationGridRowList = new List<OperationGridRow>();
+            var operationDict = new Dictionary<string, Operation>();
+            var gridRows = new List<OperationGridRow>();
 
-            foreach (var itemListChecked in chkList_Sets.CheckedItems)
+            foreach (Set set in chkList_Sets.CheckedItems)
             {
-                Set set = itemListChecked as Set;
-                foreach (SetDescription setDescription in set.SetDescriptionList)
+                foreach (var setDescription in set.SetDescriptionList)
                 {
-                    foreach (Operation operation in setDescription.Fitting?.OperationList)
+                    foreach (var operation in ObtenerOperaciones(setDescription))
                     {
-                        if (!operationList.Any(o => o.Name == operation.Name) && !operation.Name.ToUpper().Contains("SCREW"))
-                        {
-                            operationList.Add(operation);
-                            OperationGridRow operationGridRow = new OperationGridRow(operation.Name,
-                                setDescription.Fitting?.Id.ToString(),
-                                setDescription.Fitting?.Ref.ToString(),
-                                setDescription.Fitting?.Description,
-                                operation.XPosition,
-                                operation.Location);
+                        if (operation.Name == null)
+                            continue;
 
-                            operationGridRowList.Add(operationGridRow);
-                        }
+                        if (operation.Name.Contains("SCREW", StringComparison.OrdinalIgnoreCase))
+                            continue;
+
+                        // Evitar duplicados por nombre
+                        if (operationDict.ContainsKey(operation.Name))
+                            continue;
+
+                        operationDict.Add(operation.Name, operation);
+
+                        gridRows.Add(new OperationGridRow(
+                            operation.Name,
+                            setDescription.Fitting?.Id.ToString(),
+                            setDescription.Fitting?.Ref,
+                            setDescription.Fitting?.Description,
+                            operation.XPosition,
+                            operation.Location
+                        ));
                     }
                 }
             }
 
-            this.operationsXmlList = operationList;
-            this._allData = operationGridRowList.OrderBy(o => o.Operation).ToList();
+            this.operationsXmlList = operationDict.Values.ToList();
+            this._allData = gridRows
+                .OrderBy(o => o.Operation)
+                .ToList();
         }
         private void CargarGridInstalarOperaciones()
         {
@@ -255,11 +365,40 @@ namespace RotoTools
             {
                 Selected = false,
                 OperationName = o.Name,
-                OperationShapeList = new List<OperationsShapes>()
+                OperationShapeList = GetGeometriaOperacionList(o.Name)
             }).ToList();
 
             _bindingSource.DataSource = _allOperations;
             dataGridView2.DataSource = _bindingSource;
+        }
+        private IEnumerable<Operation> ObtenerOperaciones(SetDescription setDescription)
+        {
+            // Operaciones directas del fitting
+            if (setDescription.Fitting?.OperationList != null)
+            {
+                foreach (var op in setDescription.Fitting.OperationList)
+                    yield return op;
+            }
+
+            // Operaciones de los artículos del fitting
+            if (setDescription.Fitting?.ArticleList != null)
+            {
+                foreach (var article in setDescription.Fitting.ArticleList)
+                {
+                    if (article.Fitting?.OperationList != null)
+                    {
+                        foreach (var op in article.Fitting.OperationList)
+                            yield return op;
+                    }
+                }
+            }
+        }
+        private List<OperationsShapes> GetGeometriaOperacionList(string operationName)
+        {
+            return _operationsShapesListEmbebidos
+                .Where(os => os.OperationName == "RO_" + operationName)
+                .OrderBy(o => o.BasicShape)
+                .ToList();
         }
         private XmlData LoadXml(string xmlPath)
         {
@@ -302,7 +441,7 @@ namespace RotoTools
         {
             IEnumerable<OperationInstalarGridITem> query = _allOperations;
 
-            // 1️⃣ Filtro por texto
+            // Filtro por texto
             string filtroTexto = txt_FilterOperations.Text.Trim();
 
             if (!string.IsNullOrWhiteSpace(filtroTexto))
@@ -311,15 +450,16 @@ namespace RotoTools
                     o.OperationName.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase));
             }
 
-            // 2️⃣ Filtro por RadioButton
+            // Filtro por RadioButton
             if (rb_NoExists.Checked)
             {
-                query = query.Where(o => !ExisteEnBD("RO_" + o.OperationName));
+                query = query.Where(o => !ExisteOperacionEnBD("RO_" + o.OperationName));
             }
             // rb_Todas.Checked => no se filtra nada
 
-            // 3️⃣ Aplicar resultado
+            // Aplicar resultado
             _bindingSource.DataSource = query.ToList();
+            group_Operaciones.Text = LocalizationManager.GetString("L_Operaciones") + $" ({_bindingSource.Count})";
         }
         private int ExportMacrosMechanizedOperations(string savePath)
         {
@@ -453,17 +593,170 @@ namespace RotoTools
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"Error(36)" + Environment.NewLine + Environment.NewLine +
+                                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ExportMecanizadosRoto(string savePath)
+        {
+            ExportMecanizadosRotoMechanizedOperations(Path.Combine(savePath, "MechanizedOperationsRoto"));
+            ExportMecanizadosRotoOperationsShapes(Path.Combine(savePath, "OperationsShapesRoto"));
+        }
+        private void ExportMecanizadosRotoOperationsShapes(string savePath)
+        {
+            try
+            {
+                List<OperationsShapes> operationsShapesList = new List<OperationsShapes>();
+
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = @"SELECT OperationsShapes.* FROM OperationsShapes
+                                    INNER JOIN MechanizedOperations ON MechanizedOperations.OperationName = OperationsShapes.OperationName
+                                    WHERE OperationsShapes.OperationName like 'RO_%' AND MechanizedOperations.IsPrimitive = 0
+                                    ORDER BY OperationsShapes.OperationName";
+                    using (var cmd = new SqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var operationShape = new OperationsShapes
+                            {
+                                OperationName = reader["OperationName"].ToString().Trim(),
+                                BasicShape = reader["BasicShape"].ToString().Trim(),
+                                External = Convert.ToInt16(reader["External"]),
+                                XDistance = reader["XDistance"].ToString(),
+                                YDistance = reader["YDistance"].ToString(),
+                                ZDistance = reader["ZDistance"].ToString(),
+                                Mill = reader["Mill"].ToString(),
+                                Depth = Convert.ToDouble(reader["Depth"]),
+                                XmlParameters = reader["XmlParameters"].ToString(),
+                                Dimension = Convert.ToDouble(reader["Dimension"]),
+                                Rotation = Convert.ToDouble(reader["Rotation"]),
+                                Conditions = reader["Conditions"].ToString(),
+                                Order = Convert.ToInt32(reader["Order"])
+                            };
+
+                            operationsShapesList.Add(operationShape);
+                        }
+                    }
+                }
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+
+                int numberOperationShape = 1;
+                string operationName = string.Empty;
+                foreach (var operationShape in operationsShapesList.OrderBy(os => os.OperationName))
+                {
+                    if (operationShape.OperationName != operationName)
+                    {
+                        numberOperationShape = 1;
+                    }
+                    else
+                    {
+                        numberOperationShape++;
+                    }
+
+                    string fileName = $"{operationShape.OperationName.Trim()}_{numberOperationShape.ToString()}.json";
+                    string path = Path.Combine(savePath, fileName);
+                    File.WriteAllText(path, JsonSerializer.Serialize(operationShape, options));
+
+                    operationName = operationShape.OperationName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error(36)" + Environment.NewLine + Environment.NewLine +
+                                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ExportMecanizadosRotoMechanizedOperations(string savePath)
+        {
+            try
+            {
+                List<MechanizedOperation> mechanizedOperationsRotoList = new List<MechanizedOperation>();
+
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM MechanizedOperations WHERE OperationName LIKE 'RO_%' AND IsPrimitive = 0 ORDER BY OperationName";
+                    using (var cmd = new SqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            MechanizedOperation mechanizedOperation = new MechanizedOperation(reader["OperationName"].ToString().Trim(),
+                                reader["Description"].ToString().Trim(),
+                                Convert.ToInt16(reader["External"]),
+                                Convert.ToInt16(reader["IsPrimitive"]),
+                                reader["Level1"].ToString().Trim(),
+                                reader["Level2"].ToString().Trim(),
+                                reader["Level3"].ToString().Trim(),
+                                reader["Level4"].ToString().Trim(),
+                                reader["Level5"].ToString().Trim(),
+                                reader["Phase"].ToString().Trim(),
+                                reader["XmlParameters"].ToString().Trim(),
+                                Convert.ToInt32(reader["RGB"]),
+                                Convert.ToBoolean(reader["Disable"]));
+
+                            mechanizedOperationsRotoList.Add(mechanizedOperation);
+                        }
+                    }
+                }
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+
+                foreach (var mechanizedOperation in mechanizedOperationsRotoList)
+                {
+                    string fileName = $"{mechanizedOperation.OperationName.Trim()}.json";
+                    string path = Path.Combine(savePath, fileName);
+                    File.WriteAllText(path, JsonSerializer.Serialize(mechanizedOperation, options));
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show($"Error(32)" + Environment.NewLine + Environment.NewLine +
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void EnableControls(bool enable)
         {
-            chkList_Operaciones.Enabled = enable;
             btn_CargarOperations.Enabled = enable;
             btn_ClearOperations.Enabled = enable;
             btn_ExportMacros.Enabled = enable;
             btn_InstalarMacros.Enabled = enable;
+            btn_LoadXml.Enabled = enable;
+            btn_CargarOperations.Enabled = enable;
+            btn_ClearOperations.Enabled = enable;
+            btn_InstalarMacros.Enabled = enable;
+            btn_ExportMacros.Enabled = enable;
+            btn_InstallOperation.Enabled = enable;
+            txt_filter.Enabled = enable;
+            txt_FilterOperations.Enabled = enable;
+            rb_All.Enabled = enable;
+            rb_NoExists.Enabled = enable;
+            chk_All.Enabled = enable;
+            chk_AllOperations.Enabled = enable;
+            dataGridView1.Enabled = enable;
+            chkList_Sets.Enabled = enable;
         }
         private void LoadSets(string filter)
         {
@@ -517,7 +810,8 @@ namespace RotoTools
                 HeaderText = LocalizationManager.GetString("L_Operacion"),
                 DataPropertyName = LocalizationManager.GetString("L_Operacion"),
                 ReadOnly = true,
-                Width = 240
+                Width = 240,
+                Name = "OperationName"
                 //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
@@ -572,6 +866,18 @@ namespace RotoTools
                 //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
+
+
+            //var colEliminar = new DataGridViewImageColumn
+            //{
+            //    Name = "Info",
+            //    HeaderText = "",
+            //    Image = Properties.Resources.info,
+            //    ImageLayout = DataGridViewImageCellLayout.Zoom,
+            //    Width = 30
+            //};
+
+            //dataGridView1.Columns.Add(colEliminar);
         }
         private void CrearGridInstalarOperaciones()
         {
@@ -590,7 +896,8 @@ namespace RotoTools
                 DataPropertyName = "OperationName",
                 HeaderText = LocalizationManager.GetString("L_Operacion"),
                 ReadOnly = true,
-                Width = 400
+                Width = 400,
+                Name = "OperationName"
             });
 
             var colGeometria = new DataGridViewImageColumn
@@ -641,10 +948,11 @@ namespace RotoTools
             }
             chk_AllOperations.Checked = false;
             txt_FilterOperations.Clear();
+            _cacheExisteBD = new();
 
             _bindingSource.DataSource = new List<OperationInstalarGridITem>();
         }
-        private bool ExisteEnBD(string operationName)
+        private bool ExisteOperacionEnBD(string operationName)
         {
             if (!_cacheExisteBD.TryGetValue(operationName, out bool existe))
             {
@@ -653,41 +961,68 @@ namespace RotoTools
             }
             return existe;
         }
-        private void EnableButtons(bool enable)
+        private string InstallConditions(string conditionId)
         {
-            btn_LoadXml.Enabled = enable;
-            btn_CargarOperations.Enabled = enable;
-            btn_ClearOperations.Enabled = enable;
-            btn_InstalarMacros.Enabled = enable;
-            btn_ExportMacros.Enabled = enable;
-            btn_InstallOperation.Enabled = enable;
-            txt_filter.Enabled = enable;
-            txt_FilterOperations.Enabled = enable;
-            rb_All.Enabled = enable;
-            rb_NoExists.Enabled = enable;
-            chk_All.Enabled = enable;
-            chk_AllOperations.Enabled = enable;
-            dataGridView1.Enabled = enable;
-            //dataGridView2.Enabled = enable;
-            chkList_Sets.Enabled = enable;
-            chkList_Operaciones.Enabled = enable;
-        }
-        #endregion
+            //Obtener todas las condiciones embebidas
+            List<MechanizedConditions> allConditionsList = Helpers.CargarMechanizedConditionsEmbebidos();
 
-        private void dataGridView2_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.ColumnIndex < 0) return;
+            //Buscar la condición por su RowId
+            MechanizedConditions? mechanizedCondition = allConditionsList.FirstOrDefault(c => c.RowId == conditionId);
 
-            if (dataGridView2.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            if (mechanizedCondition != null)
             {
-                dataGridView2.EndEdit();
+                //Comprobar si existe en base de datos una condicion con el mismo contenido en XmlConditions (El RowId puede variar)
+                if (!Helpers.ExisteCondicionEnBD(mechanizedCondition.XmlConditions))
+                {
+                    //Insertar la condición en la base de datos
+                    Helpers.InstallMechanizedCondition(mechanizedCondition);
 
-                var item = (OperationInstalarGridITem)
-                    dataGridView2.Rows[e.RowIndex].DataBoundItem;
-
-                //MessageBox.Show($"Selected = {item.Selected}");
+                    //Obtener el rowId de la nueva condición creada
+                    return Helpers.GetMechanizedConditionRowId(mechanizedCondition.Name);
+                }
+                else
+                {
+                    //Obtener el rowId de la condición existente
+                    return Helpers.GetMechanizedConditionRowIdByXmlConditions(mechanizedCondition.XmlConditions);
+                }
+            }
+            else
+            {
+                return "";
             }
         }
+        private void LoadOperations()
+        {
+            _operationsShapesListEmbebidos = Helpers.CargarOperationsShapesRotoEmbebidos();
+            CargarListaOperacionesFromXml();
+            CargarGridInstalarOperaciones();
+            CargarDatosGridDetalle(this._allData);
+            AplicarFiltros();
+        }
+        private void SeleccionarFilaEnGrid1PorOperacion(string operationName)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                var value = row.Cells["OperationName"].Value?.ToString();
+
+                if (string.Equals(value, operationName, StringComparison.OrdinalIgnoreCase))
+                {
+                    dataGridView1.ClearSelection();
+                    row.Selected = true;
+                    dataGridView1.CurrentCell = row.Cells[0];
+
+                    // Opcional: llevar la fila a la vista
+                    dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                    break;
+                }
+            }
+        }
+
+        #endregion
+
+
     }
     public class OperationGridRow
     {

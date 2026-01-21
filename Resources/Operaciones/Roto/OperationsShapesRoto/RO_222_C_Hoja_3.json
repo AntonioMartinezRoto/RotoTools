@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_222_C_Hoja",
+  "BasicShape": "RO_M148_T5",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "41.5",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_PS23_Hoja_Ext",
+  "Description": "Taladros hoja bisagra PS23 al exterior",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BISAGRA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

@@ -1,0 +1,6 @@
+{
+  "RowId": "9cf5214e-fcb0-4bb3-a3e3-c08da1c3fa2d",
+  "Name": "TRAMO_DR",
+  "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"ANG\" CONDITION=\"=\" VARIABLE2=\"90\" /></CONDITIONS>",
+  "XmlOptions": ""
+}

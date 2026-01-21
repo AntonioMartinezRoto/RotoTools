@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_35_Bocallave_Int_Ext",
+  "BasicShape": "RO_M013",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"30\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

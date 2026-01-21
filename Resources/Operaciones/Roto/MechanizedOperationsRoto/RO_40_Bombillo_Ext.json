@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_40_Bombillo_Ext",
+  "Description": "Mecanizado bombillo Ag30 al exterior",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BOMBILLO",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "<VariablesList><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
+  "RGB": 255,
+  "Disable": false
+}

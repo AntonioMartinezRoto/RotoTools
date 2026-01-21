@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_ALV_Soporte_Confort",
+  "Description": "Marca soporte alversa",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADERO",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

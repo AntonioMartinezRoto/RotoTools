@@ -1,4 +1,5 @@
-﻿using ClosedXML.Excel;
+﻿using Azure;
+using ClosedXML.Excel;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Microsoft.Win32;
@@ -8,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using static RotoTools.Enums;
@@ -359,7 +361,6 @@ namespace RotoTools
 
             return escandallosList;
         }
-
         public static List<MechanizedOperation> CargarMacrosMechanizedOperationsEmbebidos()
         {
             List<MechanizedOperation> macrosMechanizedOperationsList = new();
@@ -417,6 +418,64 @@ namespace RotoTools
             }
 
             return macrosOperationsShapesList;
+        }
+        public static List<MechanizedConditions> CargarMechanizedConditionsEmbebidos()
+        {
+            List<MechanizedConditions> mechanizedConditionsList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Operaciones.MechanizedConditions.";
+
+            var mechanizedConditionsEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in mechanizedConditionsEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var mechanizedConditions = JsonSerializer.Deserialize<MechanizedConditions>(json);
+                if (mechanizedConditions != null)
+                {
+                    mechanizedConditionsList.Add(mechanizedConditions);
+                }
+            }
+
+            return mechanizedConditionsList;
+        }
+        public static List<OperationsShapes> CargarOperationsShapesRotoEmbebidos()
+        {
+            List<OperationsShapes> operationsShapesList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Operaciones.Roto.OperationsShapesRoto.";
+
+            var operationsShapesEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in operationsShapesEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var operationShape = JsonSerializer.Deserialize<OperationsShapes>(json);
+                if (operationShape != null)
+                {
+                    operationsShapesList.Add(operationShape);
+                }
+            }
+
+            return operationsShapesList;
         }
         public static List<string> LoadPrimitivesBD()
         {
@@ -535,6 +594,21 @@ namespace RotoTools
             conexion.Open();
 
             using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].Options WHERE SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static bool ExisteCondicionEnBD(string mechanizedConditionXmlConditions)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM MechanizedConditions WHERE XmlConditions like '{mechanizedConditionXmlConditions}'", conexion);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -754,7 +828,7 @@ namespace RotoTools
                 {
                     conn.Open();
 
-                    //Cargar la lista de escandallos seleccionados
+                    //Cargar la lista de macros embebidas
                     List<MechanizedOperation> macrosMechanizedOperationsList = new List<MechanizedOperation>();
                     macrosMechanizedOperationsList = CargarMacrosMechanizedOperationsEmbebidos();
 
@@ -857,6 +931,54 @@ namespace RotoTools
                 }
             }
         }
+        internal static void InstallMechanizedCondition(MechanizedConditions mechanizedCondition)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"INSERT INTO MechanizedConditions (Name, XmlConditions) VALUES (@conditionName, @xmlConditions)", conn))
+            {
+                cmd.Parameters.AddWithValue("@conditionName", mechanizedCondition.Name);
+                cmd.Parameters.AddWithValue("@xmlConditions", mechanizedCondition.XmlConditions);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static string GetMechanizedConditionRowId(string conditionName)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedConditions WHERE Name = @name", conn))
+            {
+                cmd.Parameters.AddWithValue("@name", conditionName);
+
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
+        public static string GetMechanizedConditionRowIdByXmlConditions(string xmlConditions)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedConditions WHERE XmlConditions like @xmlConditions", conn))
+            {
+                cmd.Parameters.AddWithValue("@xmlConditions", xmlConditions);
+
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+            
+        }
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
@@ -925,7 +1047,6 @@ namespace RotoTools
             return fuente.Substring(start, end - start).Trim();
 
         }
-
         #endregion
     }
     public static class OpcionHelper

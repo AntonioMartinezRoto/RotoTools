@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_45_Manilla_Ext",
+  "Description": "Taladro manilla cerradura al exterior",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADURA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

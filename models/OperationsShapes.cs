@@ -27,7 +27,7 @@ namespace RotoEntities
             BasicShape = basicShape;
             External = 0;
         }
-        public OperationsShapes(string operationName, string basicShape, string x, string y, string z)
+        public OperationsShapes(string operationName, string basicShape, string x, string y, string z, string conditions)
         {
             OperationName = operationName;
             BasicShape = basicShape;
@@ -35,6 +35,7 @@ namespace RotoEntities
             YDistance = y;
             ZDistance = z;
             External = 0;
+            Conditions = conditions;
         }
     }
 }

@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Cerr_Sup_Inf_Combinado",
+  "BasicShape": "RO_M057",
+  "External": 1,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

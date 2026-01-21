@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_30_Manilla_Ext",
+  "BasicShape": "RO_M027_30",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"30\" /><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

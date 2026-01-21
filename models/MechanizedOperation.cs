@@ -12,6 +12,8 @@ namespace RotoEntities
         public string Level3 { get; set; }
         public string Level4 { get; set; }
         public string Level5 { get; set; }
+        public string Phase { get; set; }
+        public string XmlParameters { get; set; }
         public int RGB { get; set; }
         public bool Disable { get; set; } = false;
         public MechanizedOperation()
@@ -30,6 +32,22 @@ namespace RotoEntities
             Level5 = level5;
             RGB = rGB;
             Disable = disable;
+        }
+        public MechanizedOperation(string operationName, string description, short external, short isPrimitive, string level1, string level2, string level3, string level4, string level5, string phase, string xmlParameters, int rGB, bool disable)
+        {
+            OperationName = operationName;
+            Description = description;
+            External = external;
+            IsPrimitive = isPrimitive;
+            Level1 = level1;
+            Level2 = level2;
+            Level3 = level3;
+            Level4 = level4;
+            Level5 = level5;
+            RGB = rGB;
+            Disable = disable;
+            Phase = phase;
+            XmlParameters = xmlParameters;
         }
         public MechanizedOperation(string operationName) 
         {
@@ -51,7 +69,9 @@ namespace RotoEntities
             {
                 Level2 = "BOMBILLOS";
             }
-            else if (op.Contains("PERNIO") || op.Contains("BISAGRA") || op.Contains("PB10") || op.Contains("150R") || op.Contains("SOPORTE_COMPAS"))
+            else if (op.Contains("PERNIO") || op.Contains("BISAGRA") || op.Contains("PB10") || op.Contains("150R") || op.Contains("150P") || 
+                     op.Contains("SOPORTE_COMPAS") || op.Contains("SOPORTE_NX_TORNILLO") || op.Contains("222") || op.Contains("218") || op.Contains("318") || 
+                     op.Contains("322") || op.Contains("PS23") || op.Contains("PS27"))
             {
                 Level2 = "BISAGRAS";
             }

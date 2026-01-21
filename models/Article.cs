@@ -10,5 +10,6 @@ namespace RotoEntities
         public string Side { get; set; }
         public string Location { get; set; }
         public List<Option> OptionList { get; set; }
+        public Fitting Fitting { get; set; }
     }
 }

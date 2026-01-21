@@ -250,6 +250,16 @@ namespace RotoTools
                     fittingList.Add(fitting);
                 }
 
+                foreach (Fitting fitting in fittingList)
+                {
+                    if (!fitting.ArticleList.Any()) continue;
+
+                    foreach (Article article in fitting.ArticleList)
+                    {
+                        article.Fitting = fittingList.FirstOrDefault(f => f.Ref == article.Ref);
+                    }
+                }
+
                 return fittingList;
             }
             catch

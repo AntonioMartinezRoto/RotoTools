@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Pb10_Marco",
+  "Description": "Taladros marco bisagra PB10 al exterior",
+  "External": 1,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BISAGRA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

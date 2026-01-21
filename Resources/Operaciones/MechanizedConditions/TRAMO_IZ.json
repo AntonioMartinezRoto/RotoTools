@@ -1,0 +1,6 @@
+{
+  "RowId": "14234305-ab31-4894-80ce-d1370760fa66",
+  "Name": "TRAMO_IZ",
+  "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"ANG\" CONDITION=\"=\" VARIABLE2=\"270\" /></CONDITIONS>",
+  "XmlOptions": ""
+}

@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_35_Taladro_X3_Ext_ie",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "OPERACIONES IE",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Hinge",
+  "XmlParameters": "",
+  "RGB": 15790320,
+  "Disable": false
+}

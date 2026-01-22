@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Cerr_Tornillo",
+  "Description": "Marca tornillo cerradero cerradura",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADERO",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

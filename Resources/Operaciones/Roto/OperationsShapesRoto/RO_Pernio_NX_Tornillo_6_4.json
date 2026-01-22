@@ -1,7 +1,7 @@
 {
   "OperationName": "RO_Pernio_NX_Tornillo_6",
   "BasicShape": "RO_M007",
-  "External": 1,
+  "External": 0,
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",

@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_30_Taladro_X3_Int_Ext",
-  "BasicShape": "RO_M010",
+  "BasicShape": "RO_M009",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",

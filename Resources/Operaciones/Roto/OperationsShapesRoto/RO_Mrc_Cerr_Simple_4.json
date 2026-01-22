@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Mrc_Cerr_Simple",
-  "BasicShape": "RO_M000",
+  "BasicShape": "RO_M000A_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "0",

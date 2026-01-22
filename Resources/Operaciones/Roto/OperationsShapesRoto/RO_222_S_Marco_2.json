@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_222_S_Marco",
-  "BasicShape": "RO_M150",
+  "BasicShape": "RO_M150_T5",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "15",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

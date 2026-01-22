@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Mrc_Cerr_Corredera",
-  "BasicShape": "RO_M000",
+  "BasicShape": "RO_M000_C1",
   "External": 0,
   "XDistance": "-29",
   "YDistance": "0",

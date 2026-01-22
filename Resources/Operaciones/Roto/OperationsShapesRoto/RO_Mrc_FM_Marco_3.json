@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_Mrc_FM_Marco",
-  "BasicShape": "RO_M000",
+  "BasicShape": "RO_M000D",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "11.5",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

@@ -1,7 +1,7 @@
 {
   "OperationName": "RO_Cerr_Ctrl_IZ",
   "BasicShape": "RO_M036",
-  "External": 0,
+  "External": 1,
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",

@@ -1,7 +1,7 @@
 {
   "OperationName": "RO_PS23_Marco",
   "BasicShape": "RO_M030",
-  "External": 0,
+  "External": 1,
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",

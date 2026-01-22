@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_PS27_Marco",
   "BasicShape": "RO_M049_T5",
-  "External": 0,
+  "External": 1,
   "XDistance": "0",
-  "YDistance": "21",
+  "YDistance": "-9",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

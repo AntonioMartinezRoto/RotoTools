@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Text.Json;
 using System.Xml;
@@ -298,9 +300,15 @@ namespace RotoTools
             if (e.RowIndex < 0)
                 return;
 
+            if (dataGridView1.Columns[e.ColumnIndex].Name != "Info")
+                return;
+
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Info")
             {
+                var item = (OperationGridRow)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
+                using var frm = new CamInfoOperacion(item.Operation, item.OperationsList.OrderBy(o => o.Article).ToList());
+                frm.ShowDialog();
             }
         }
         #endregion
@@ -321,8 +329,7 @@ namespace RotoTools
         }
         private void CargarListaOperacionesFromXml()
         {
-            var operationDict = new Dictionary<string, Operation>();
-            var gridRows = new List<OperationGridRow>();
+            var gridRowDict = new Dictionary<string, OperationGridRow>();
 
             foreach (Set set in chkList_Sets.CheckedItems)
             {
@@ -330,33 +337,58 @@ namespace RotoTools
                 {
                     foreach (var operation in ObtenerOperaciones(setDescription))
                     {
-                        if (operation.Name == null)
+                        if (string.IsNullOrWhiteSpace(operation.Name))
                             continue;
 
                         if (operation.Name.Contains("SCREW", StringComparison.OrdinalIgnoreCase))
                             continue;
 
-                        // Evitar duplicados por nombre
-                        if (operationDict.ContainsKey(operation.Name))
-                            continue;
+                        if (!gridRowDict.TryGetValue(operation.Name, out var mainRow))
+                        {
+                            mainRow = new OperationGridRow(
+                                operation.Name,
+                                setDescription.Fitting?.Id.ToString(),
+                                setDescription.Fitting?.Ref,
+                                setDescription.Fitting?.Description,
+                                operation.XPosition,
+                                operation.Location,
+                                set.Code,
+                                setDescription.XPosition.ToString()
+                            );
 
-                        operationDict.Add(operation.Name, operation);
+                            //
+                            mainRow.OperationsList.Add(mainRow);
 
-                        gridRows.Add(new OperationGridRow(
-                            operation.Name,
-                            setDescription.Fitting?.Id.ToString(),
-                            setDescription.Fitting?.Ref,
-                            setDescription.Fitting?.Description,
-                            operation.XPosition,
-                            operation.Location
-                        ));
+                            gridRowDict.Add(operation.Name, mainRow);
+                        }
+                        else
+                        {
+                            bool exists = mainRow.OperationsList.Any(x => x.FittingID == setDescription.Fitting?.Id.ToString());
+
+                            if (!exists)
+                            {
+                                mainRow.OperationsList.Add(new OperationGridRow(
+                                    operation.Name,
+                                    setDescription.Fitting?.Id.ToString(),
+                                    setDescription.Fitting?.Ref,
+                                    setDescription.Fitting?.Description,
+                                    operation.XPosition,
+                                    operation.Location,
+                                    set.Code,
+                                    setDescription.XPosition.ToString()
+                                ));
+                            }
+                        }
                     }
                 }
             }
 
-            this.operationsXmlList = operationDict.Values.ToList();
-            this._allData = gridRows
+            _allData = gridRowDict.Values
                 .OrderBy(o => o.Operation)
+                .ToList();
+
+            operationsXmlList = _allData
+                .Select(o => new Operation { Name = o.Operation })
                 .ToList();
         }
         private void CargarGridInstalarOperaciones()
@@ -781,103 +813,63 @@ namespace RotoTools
 
                 chkList_Sets.DisplayMember = "Code"; // Muestra el código del Set
             }
-        }
+        }        
         private void CrearGridDetalleOperaciones()
         {
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.RowTemplate.Height = 10;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            // Definir DataTable con columnas
-            _dataTable = new DataTable();
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_Operacion"), typeof(string));
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_FittingId"), typeof(string));
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_Articulo"), typeof(string));
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_Descripcion"), typeof(string));
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_Posicion"), typeof(string));
-            _dataTable.Columns.Add(LocalizationManager.GetString("L_Location"), typeof(string));
-
-            // Crear BindingSource y asignarle la tabla
-            _bindingDetalleOperaciones = new BindingSource();
-            _bindingDetalleOperaciones.DataSource = _dataTable;
-
-            // Conectar la grilla al BindingSource (no directamente al DataTable)
-            dataGridView1.DataSource = _bindingDetalleOperaciones;
-
-            // Configuración de columnas (como ya lo tenías)
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_Operacion"),
-                DataPropertyName = LocalizationManager.GetString("L_Operacion"),
+                DataPropertyName = nameof(OperationGridRow.Operation),
+                Name = "OperationName",
                 ReadOnly = true,
-                Width = 240,
-                Name = "OperationName"
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
+                Width = 240
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_FittingId"),
-                DataPropertyName = LocalizationManager.GetString("L_FittingId"),
+                DataPropertyName = nameof(OperationGridRow.FittingID),
                 ReadOnly = true,
                 Width = 80
-                //ImageLayout = DataGridViewImageCellLayout.Zoom,
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_Articulo"),
-                DataPropertyName = LocalizationManager.GetString("L_Articulo"),
+                DataPropertyName = nameof(OperationGridRow.Article),
                 ReadOnly = true,
                 Width = 80
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_Descripcion"),
-                DataPropertyName = LocalizationManager.GetString("L_Descripcion"),
+                DataPropertyName = nameof(OperationGridRow.Descripcion),
                 ReadOnly = true,
                 Width = 330
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = LocalizationManager.GetString("L_Posicion"),
-                DataPropertyName = LocalizationManager.GetString("L_Posicion"),
+                DataPropertyName = nameof(OperationGridRow.X),
                 ReadOnly = true,
                 Width = 80
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
 
-
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            var colInfo = new DataGridViewImageColumn
             {
-                HeaderText = LocalizationManager.GetString("L_Location"),
-                DataPropertyName = LocalizationManager.GetString("L_Location"),
-                ReadOnly = true,
-                Width = 80
-                //AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                //DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
-            });
-
-
-            //var colEliminar = new DataGridViewImageColumn
-            //{
-            //    Name = "Info",
-            //    HeaderText = "",
-            //    Image = Properties.Resources.info,
-            //    ImageLayout = DataGridViewImageCellLayout.Zoom,
-            //    Width = 30
-            //};
-
-            //dataGridView1.Columns.Add(colEliminar);
+                Name = "Info",
+                HeaderText = "",
+                Image = Properties.Resources.info, // tu icono
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 30
+            };
+            dataGridView1.Columns.Add(colInfo);
         }
         private void CrearGridInstalarOperaciones()
         {
@@ -926,14 +918,33 @@ namespace RotoTools
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.GridColor = Color.LightGray;
         }
-        private void CargarDatosGridDetalle(List<OperationGridRow> operationGridRowList)
+        private void CargarDatosGridDetalle()
         {
-            _dataTable.Rows.Clear();
+            //_dataTable.Rows.Clear();
 
-            foreach (var operationGridRow in operationGridRowList)
-            {
-                _dataTable.Rows.Add(operationGridRow.Operation, operationGridRow.FittingID, operationGridRow.Article, operationGridRow.Descripcion, operationGridRow.X, operationGridRow.Location);
-            }
+            //foreach (var operationGridRow in _allData)
+            //{
+            //    _dataTable.Rows.Add(operationGridRow.Operation, operationGridRow.FittingID, operationGridRow.Article, operationGridRow.Descripcion, operationGridRow.X, operationGridRow.Location, operationGridRow.OperationsList);
+            //}
+
+            // Crear BindingSource y asignarle la tabla
+            _bindingDetalleOperaciones = new BindingSource();
+            _bindingDetalleOperaciones.DataSource = _allData;
+
+            dataGridView1.DataSource = _bindingDetalleOperaciones;
+            // Conectar la grilla al BindingSource (no directamente al DataTable)
+
+
+
+            //this._allOperations = this.operationsXmlList.OrderBy(op => op.Name).Select(o => new OperationInstalarGridITem
+            //{
+            //    Selected = false,
+            //    OperationName = o.Name,
+            //    OperationShapeList = GetGeometriaOperacionList(o.Name)
+            //}).ToList();
+
+            //_bindingSource.DataSource = _allOperations;
+            //dataGridView2.DataSource = _bindingSource;
         }
         private void CleanInfo()
         {
@@ -996,7 +1007,7 @@ namespace RotoTools
             _operationsShapesListEmbebidos = Helpers.CargarOperationsShapesRotoEmbebidos();
             CargarListaOperacionesFromXml();
             CargarGridInstalarOperaciones();
-            CargarDatosGridDetalle(this._allData);
+            CargarDatosGridDetalle();
             AplicarFiltros();
         }
         private void SeleccionarFilaEnGrid1PorOperacion(string operationName)
@@ -1032,9 +1043,13 @@ namespace RotoTools
         public string Descripcion { get; set; }
         public string X { get; set; }
         public string Location { get; set; }
+        public string Set { get; set; }
+        public string SetDescriptionXPosition { get; set; }
+
+        public List<OperationGridRow> OperationsList { get; set; }
 
         public OperationGridRow() { }
-        public OperationGridRow(string operation, string fittingId, string article, string descripcion, string x, string location)
+        public OperationGridRow(string operation, string fittingId, string article, string descripcion, string x, string location, string set, string setDescriptionXPosition)
         {
             Operation = operation;
             FittingID = fittingId;
@@ -1042,6 +1057,9 @@ namespace RotoTools
             Descripcion = descripcion;
             X = x;
             Location = location;
+            OperationsList = new List<OperationGridRow>();
+            Set = set;
+            SetDescriptionXPosition = setDescriptionXPosition;
         }
     }
     public class OperationInstalarGridITem

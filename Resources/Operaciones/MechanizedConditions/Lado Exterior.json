@@ -1,0 +1,6 @@
+{
+  "RowId": "4865fa73-2008-43ec-a3a5-723c42298b4a",
+  "Name": "Lado Exterior",
+  "XmlConditions": "",
+  "XmlOptions": "<OPTIONS><OPTION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" NAME=\"Lado Apertura\"><VALUE LOGIC=\"OR\" NEGATION=\"0\" PARENTHESIS=\"0\" NAME=\"Exterior\" /></OPTION></OPTIONS>"
+}

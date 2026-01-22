@@ -1,0 +1,6 @@
+{
+  "RowId": "35115604-e410-49a7-b245-a012a824c038",
+  "Name": "Lado Interior",
+  "XmlConditions": "",
+  "XmlOptions": "<OPTIONS><OPTION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" NAME=\"Lado Apertura\"><VALUE LOGIC=\"OR\" NEGATION=\"0\" PARENTHESIS=\"0\" NAME=\"Interior\" /></OPTION></OPTIONS>"
+}

@@ -90,6 +90,13 @@ namespace RotoTools
                 ReadOnly = true,
                 Width = 130
             });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = LocalizationManager.GetString("L_Location"),
+                DataPropertyName = nameof(OperationGridRow.Location),
+                ReadOnly = true,
+                Width = 80
+            });
         }
         private void DarEstiloCabecerasDetalleOperaciones()
         {

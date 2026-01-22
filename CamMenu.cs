@@ -941,6 +941,14 @@ namespace RotoTools
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
+                HeaderText = LocalizationManager.GetString("L_Location"),
+                DataPropertyName = nameof(OperationGridRow.Location),
+                ReadOnly = true,
+                Width = 80
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 HeaderText = LocalizationManager.GetString("L_Posicion"),
                 DataPropertyName = nameof(OperationGridRow.X),
                 ReadOnly = true,

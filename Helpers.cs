@@ -477,6 +477,35 @@ namespace RotoTools
 
             return operationsShapesList;
         }
+        public static List<MechanizedOperation> CargarMechanizedOperationsRotoEmbebidos()
+        {
+            List<MechanizedOperation> mechanizedOperationsList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Operaciones.Roto.MechanizedOperationsRoto.";
+
+            var mechanizedOperationsEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in mechanizedOperationsEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var mechanizedOperation = JsonSerializer.Deserialize<MechanizedOperation>(json);
+                if (mechanizedOperation != null)
+                {
+                    mechanizedOperationsList.Add(mechanizedOperation);
+                }
+            }
+
+            return mechanizedOperationsList;
+        }
         public static List<string> LoadPrimitivesBD()
         {
             var list = new List<string>();

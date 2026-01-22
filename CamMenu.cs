@@ -182,13 +182,31 @@ namespace RotoTools
                 progress_Install.Value = 0;
                 progress_Install.Maximum = totalFilas > 0 ? totalFilas : 1; // Evitar división por cero
 
+                List<MechanizedOperation> mechanizedOperationsEmbebdded = Helpers.CargarMechanizedOperationsRotoEmbebidos();
+                List<MechanizedOperation> macrosEmbeddeMechanizeddOperations = Helpers.CargarMacrosMechanizedOperationsEmbebidos();
+                List<OperationsShapes> macroOperationsShapesEmbeddedList = Helpers.CargarMacrosOperationsShapesEmbebidos();
+
                 foreach (OperationInstalarGridITem item in this._bindingSource.List)
                 {
                     if (item.Selected && !Helpers.ExisteOperacionEnBD("RO_" + item.OperationName))
                     {
-                        //Instalar operación si no existe en la base de datos
-                        MechanizedOperation mechanizedOperation = new MechanizedOperation("RO_" + item.OperationName);
-                        Helpers.InstallMechanizedOperation(mechanizedOperation);
+                        List<MechanizedOperation> mechanizedOperationsList = mechanizedOperationsEmbebdded
+                            .Where(op => op.OperationName == "RO_" + item.OperationName)
+                            .ToList();
+
+                        if (mechanizedOperationsList.Any())
+                        {
+                            foreach (MechanizedOperation operation in mechanizedOperationsList)
+                            {
+                                Helpers.InstallMechanizedOperation(operation);
+                            }
+                        }
+                        else
+                        {
+                            //Si no existe en los embebidos, se crea una operación básica
+                            MechanizedOperation mechanizedOperation = new MechanizedOperation("RO_" + item.OperationName);
+                            Helpers.InstallMechanizedOperation(mechanizedOperation);
+                        }
 
                         //Instalar geometrías de la operación
                         foreach (OperationsShapes operationShape in item.OperationShapeList)
@@ -202,8 +220,8 @@ namespace RotoTools
 
                             if (!Helpers.ExisteOperacionEnBD(operationShape.BasicShape))
                             {
-                                List<MechanizedOperation> embeddedOperations = Helpers.CargarMacrosMechanizedOperationsEmbebidos();
-                                MechanizedOperation? embeddedOperation = embeddedOperations
+
+                                MechanizedOperation? embeddedOperation = macrosEmbeddeMechanizeddOperations
                                     .FirstOrDefault(op => op.OperationName == operationShape.BasicShape);
 
                                 if (embeddedOperation != null)
@@ -211,7 +229,7 @@ namespace RotoTools
                                     Helpers.InstallMechanizedOperation(embeddedOperation!);
                                 }
 
-                                List<OperationsShapes> macroOperationsShapesList = Helpers.CargarMacrosOperationsShapesEmbebidos().Where(o => o.OperationName == operationShape.BasicShape).ToList();
+                                List<OperationsShapes> macroOperationsShapesList = macroOperationsShapesEmbeddedList.Where(o => o.OperationName == operationShape.BasicShape).ToList();
                                 foreach (OperationsShapes operation in macroOperationsShapesList)
                                 {
                                     Helpers.InstallOperationShape(operation);
@@ -645,9 +663,10 @@ namespace RotoTools
                 {
                     conn.Open();
                     string query = @"SELECT OperationsShapes.* FROM OperationsShapes
-                                    INNER JOIN MechanizedOperations ON MechanizedOperations.OperationName = OperationsShapes.OperationName
+                                    INNER JOIN MechanizedOperations ON MechanizedOperations.OperationName = OperationsShapes.OperationName 
+                                                AND MechanizedOperations.[External] = OperationsShapes.[External]
                                     WHERE OperationsShapes.OperationName like 'RO_%' AND MechanizedOperations.IsPrimitive = 0
-                                    ORDER BY OperationsShapes.OperationName";
+                                    ORDER BY OperationsShapes.OperationName, OperationsShapes.[External]";
                     using (var cmd = new SqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -686,11 +705,13 @@ namespace RotoTools
                     System.IO.Directory.CreateDirectory(savePath);
                 }
 
-                int numberOperationShape = 1;
-                string operationName = string.Empty;
-                foreach (var operationShape in operationsShapesList.OrderBy(os => os.OperationName))
+                int numberOperationShape = 0;
+                string operationName = null;
+                short? operationExternal = null;
+
+                foreach (var operationShape in operationsShapesList.OrderBy(os => os.OperationName).ThenBy(os => os.External))
                 {
-                    if (operationShape.OperationName != operationName)
+                    if (operationShape.OperationName != operationName || operationShape.External != operationExternal)
                     {
                         numberOperationShape = 1;
                     }
@@ -699,11 +720,13 @@ namespace RotoTools
                         numberOperationShape++;
                     }
 
-                    string fileName = $"{operationShape.OperationName.Trim()}_{numberOperationShape.ToString()}.json";
+                    string fileName = $"{operationShape.OperationName.Trim()}-{operationShape.External}_{numberOperationShape}.json";
+
                     string path = Path.Combine(savePath, fileName);
                     File.WriteAllText(path, JsonSerializer.Serialize(operationShape, options));
 
                     operationName = operationShape.OperationName;
+                    operationExternal = operationShape.External;
                 }
             }
             catch (Exception ex)
@@ -759,7 +782,7 @@ namespace RotoTools
 
                 foreach (var mechanizedOperation in mechanizedOperationsRotoList)
                 {
-                    string fileName = $"{mechanizedOperation.OperationName.Trim()}.json";
+                    string fileName = $"{mechanizedOperation.OperationName.Trim()}-{mechanizedOperation.External.ToString()}.json";
                     string path = Path.Combine(savePath, fileName);
                     File.WriteAllText(path, JsonSerializer.Serialize(mechanizedOperation, options));
                 }

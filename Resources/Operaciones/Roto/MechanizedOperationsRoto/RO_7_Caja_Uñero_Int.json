@@ -1,14 +1,14 @@
 {
-  "OperationName": "RO_35_Taladro_X3_Int",
-  "Description": "Triple taladro manilla Ag35 al interior",
+  "OperationName": "RO_7_Caja_Uñero_Int",
+  "Description": "",
   "External": 0,
   "IsPrimitive": 0,
   "Level1": "ROTO",
-  "Level2": "CREMONA",
+  "Level2": "CREMONAS",
   "Level3": "",
   "Level4": "",
   "Level5": "",
-  "Phase": "Piece",
+  "Phase": "",
   "XmlParameters": "",
   "RGB": 255,
   "Disable": false

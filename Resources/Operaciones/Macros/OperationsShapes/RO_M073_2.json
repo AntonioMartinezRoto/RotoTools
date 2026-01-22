@@ -5,7 +5,7 @@
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",
-  "Mill": "",
+  "Mill": "                         ",
   "Depth": 0,
   "XmlParameters": "<VariablesList><Variable Name=\"Diameter\" Value=\"12\" /></VariablesList>",
   "Dimension": 0,

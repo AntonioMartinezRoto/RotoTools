@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_M200",
+  "BasicShape": "Rectangle",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"Height\" Value=\"164\" /><Variable Name=\"Width\" Value=\"16\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

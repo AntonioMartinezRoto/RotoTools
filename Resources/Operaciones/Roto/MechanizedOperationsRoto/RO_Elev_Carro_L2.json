@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Elev_Carro_L2",
+  "Description": "Cajeado carro elevadora Kömmerling L2",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CARRO",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

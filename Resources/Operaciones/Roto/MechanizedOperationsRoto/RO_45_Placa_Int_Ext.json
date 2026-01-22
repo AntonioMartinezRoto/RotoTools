@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_45_Placa_Int_Ext",
+  "Description": "Taladro placa cerradura ambas caras",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADURA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": true
+}

@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_45_Bombillo_Int_Ext",
+  "Description": "Mecanizado bombillo Ag45 ambas caras",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BOMBILLO",
+  "Level3": "DESHABILITAR",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": true
+}

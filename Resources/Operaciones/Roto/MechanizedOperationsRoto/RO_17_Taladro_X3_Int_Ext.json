@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_17_Taladro_X3_Int_Ext",
+  "Description": "Triple taladro manilla corredera ambas caras",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CREMONA",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "Piece",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

@@ -413,12 +413,26 @@ namespace RotoTools
                 {
                     if (traducciones.OptionValues.TryGetValue((name, value), out string traduccion))
                     {
-                        opt.SetAttributeValue("Value", traduccion);
+                        if (String.IsNullOrEmpty(traduccion))
+                        {
+                            opt.SetAttributeValue("Value", value);
+                        }
+                        else 
+                        {
+                            opt.SetAttributeValue("Value", traduccion);
+                        }
                     }
                     // Traducir el nombre de la opción si existe traducción
                     if (traducciones.OptionNames.TryGetValue(name, out string traduccionName))
                     {
-                        opt.SetAttributeValue("Name", traduccionName);
+                        if (String.IsNullOrEmpty(traduccionName))
+                        {
+                            opt.SetAttributeValue("Name", name);
+                        }
+                        else
+                        {
+                            opt.SetAttributeValue("Name", traduccionName);
+                        }
                     }
                 }
                 // Si no tiene Value y hay nodos <hw:Value> hijos
@@ -429,14 +443,28 @@ namespace RotoTools
                         string valText = val.Attribute("Value")?.Value?.Trim();
                         if (traducciones.OptionValues.TryGetValue((name, valText), out string traduccion))
                         {
-                            val.SetAttributeValue("Value", traduccion);
+                            if (String.IsNullOrEmpty(traduccion))
+                            {
+                                val.SetAttributeValue("Value", valText);
+                            }
+                            else
+                            {
+                                val.SetAttributeValue("Value", traduccion);
+                            }
                         }
                     }
 
                     // Traducir el nombre de la opción si existe traducción
                     if (traducciones.OptionNames.TryGetValue(name, out string traduccionName))
                     {
-                        opt.SetAttributeValue("Name", traduccionName);
+                        if (String.IsNullOrEmpty(traduccionName))
+                        {
+                            opt.SetAttributeValue("Name", name);
+                        }
+                        else
+                        {
+                            opt.SetAttributeValue("Name", traduccionName);
+                        }
                     }
                 }
             }

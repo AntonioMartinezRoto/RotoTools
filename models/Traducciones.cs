@@ -39,7 +39,6 @@ namespace RotoEntities
                 {
                     return traduccionValue;
                 }
-                return traduccionValue;
             }
             return optionValue;
         }

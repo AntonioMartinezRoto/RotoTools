@@ -208,8 +208,13 @@ namespace RotoTools
                             Helpers.InstallMechanizedOperation(mechanizedOperation);
                         }
 
+
+                        List<OperationsShapes> allOperationsShapes = new List<OperationsShapes>();
+                        allOperationsShapes.AddRange(item.OperationShapeList);
+                        allOperationsShapes.AddRange(item.OperationShapeExtList);
+
                         //Instalar geometrías de la operación
-                        foreach (OperationsShapes operationShape in item.OperationShapeList)
+                        foreach (OperationsShapes operationShape in allOperationsShapes)
                         {
                             //Se comprueba si tiene condiciones para instalarlas y obtener el RowId
                             if (!String.IsNullOrEmpty(operationShape.Conditions))
@@ -416,7 +421,8 @@ namespace RotoTools
             {
                 Selected = false,
                 OperationName = o.Name,
-                OperationShapeList = GetGeometriaOperacionList(o.Name)
+                OperationShapeList = GetGeometriaOperacionList(o.Name, 0),
+                OperationShapeExtList = GetGeometriaOperacionList(o.Name, 1)
             }).ToList();
 
             _bindingSource.DataSource = _allOperations;
@@ -444,10 +450,10 @@ namespace RotoTools
                 }
             }
         }
-        private List<OperationsShapes> GetGeometriaOperacionList(string operationName)
+        private List<OperationsShapes> GetGeometriaOperacionList(string operationName, short exterior)
         {
             return _operationsShapesListEmbebidos
-                .Where(os => os.OperationName == "RO_" + operationName)
+                .Where(os => os.OperationName == "RO_" + operationName && os.External == exterior)
                 .OrderBy(o => o.BasicShape)
                 .ToList();
         }
@@ -1000,31 +1006,10 @@ namespace RotoTools
         }
         private void CargarDatosGridDetalle()
         {
-            //_dataTable.Rows.Clear();
-
-            //foreach (var operationGridRow in _allData)
-            //{
-            //    _dataTable.Rows.Add(operationGridRow.Operation, operationGridRow.FittingID, operationGridRow.Article, operationGridRow.Descripcion, operationGridRow.X, operationGridRow.Location, operationGridRow.OperationsList);
-            //}
-
-            // Crear BindingSource y asignarle la tabla
             _bindingDetalleOperaciones = new BindingSource();
             _bindingDetalleOperaciones.DataSource = _allData;
 
             dataGridView1.DataSource = _bindingDetalleOperaciones;
-            // Conectar la grilla al BindingSource (no directamente al DataTable)
-
-
-
-            //this._allOperations = this.operationsXmlList.OrderBy(op => op.Name).Select(o => new OperationInstalarGridITem
-            //{
-            //    Selected = false,
-            //    OperationName = o.Name,
-            //    OperationShapeList = GetGeometriaOperacionList(o.Name)
-            //}).ToList();
-
-            //_bindingSource.DataSource = _allOperations;
-            //dataGridView2.DataSource = _bindingSource;
         }
         private void CleanInfo()
         {
@@ -1147,5 +1132,6 @@ namespace RotoTools
         public bool Selected { get; set; }
         public string OperationName { get; set; }
         public List<OperationsShapes> OperationShapeList { get; set; }
+        public List<OperationsShapes> OperationShapeExtList { get; set; }
     }
 }

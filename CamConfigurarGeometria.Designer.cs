@@ -36,6 +36,8 @@
             btn_AddPrimitiva = new Button();
             listBox_Condiciones = new ListBox();
             btn_ExportConditions = new Button();
+            rb_Exterior = new RadioButton();
+            rb_Interior = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             // 
             cmb_Primitivas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Primitivas.FormattingEnabled = true;
-            cmb_Primitivas.Location = new Point(409, 32);
+            cmb_Primitivas.Location = new Point(409, 403);
             cmb_Primitivas.Margin = new Padding(3, 4, 3, 4);
             cmb_Primitivas.Name = "cmb_Primitivas";
             cmb_Primitivas.Size = new Size(235, 28);
@@ -81,7 +83,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Location = new Point(294, 36);
+            label2.Location = new Point(294, 407);
             label2.Name = "label2";
             label2.Size = new Size(98, 27);
             label2.TabIndex = 32;
@@ -92,7 +94,7 @@
             // 
             btn_AddPrimitiva.BackgroundImage = (Image)resources.GetObject("btn_AddPrimitiva.BackgroundImage");
             btn_AddPrimitiva.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_AddPrimitiva.Location = new Point(651, 33);
+            btn_AddPrimitiva.Location = new Point(651, 404);
             btn_AddPrimitiva.Margin = new Padding(3, 4, 3, 4);
             btn_AddPrimitiva.Name = "btn_AddPrimitiva";
             btn_AddPrimitiva.Size = new Size(29, 29);
@@ -115,7 +117,7 @@
             // 
             btn_ExportConditions.BackgroundImage = (Image)resources.GetObject("btn_ExportConditions.BackgroundImage");
             btn_ExportConditions.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_ExportConditions.Location = new Point(31, 36);
+            btn_ExportConditions.Location = new Point(31, 403);
             btn_ExportConditions.Margin = new Padding(3, 4, 3, 4);
             btn_ExportConditions.Name = "btn_ExportConditions";
             btn_ExportConditions.Size = new Size(29, 29);
@@ -124,6 +126,34 @@
             btn_ExportConditions.Visible = false;
             btn_ExportConditions.Click += btn_ExportConditions_Click;
             // 
+            // rb_Exterior
+            // 
+            rb_Exterior.AutoSize = true;
+            rb_Exterior.BackColor = Color.Transparent;
+            rb_Exterior.Location = new Point(348, 39);
+            rb_Exterior.Margin = new Padding(3, 4, 3, 4);
+            rb_Exterior.Name = "rb_Exterior";
+            rb_Exterior.Size = new Size(81, 24);
+            rb_Exterior.TabIndex = 38;
+            rb_Exterior.TabStop = true;
+            rb_Exterior.Text = "Exterior";
+            rb_Exterior.UseVisualStyleBackColor = false;
+            rb_Exterior.CheckedChanged += rb_Exterior_CheckedChanged;
+            // 
+            // rb_Interior
+            // 
+            rb_Interior.AutoSize = true;
+            rb_Interior.BackColor = Color.Transparent;
+            rb_Interior.Location = new Point(215, 39);
+            rb_Interior.Margin = new Padding(3, 4, 3, 4);
+            rb_Interior.Name = "rb_Interior";
+            rb_Interior.Size = new Size(78, 24);
+            rb_Interior.TabIndex = 37;
+            rb_Interior.TabStop = true;
+            rb_Interior.Text = "Interior";
+            rb_Interior.UseVisualStyleBackColor = false;
+            rb_Interior.CheckedChanged += rb_Interior_CheckedChanged;
+            // 
             // CamConfigurarGeometria
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -131,6 +161,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(845, 513);
+            Controls.Add(rb_Exterior);
+            Controls.Add(rb_Interior);
             Controls.Add(btn_ExportConditions);
             Controls.Add(listBox_Condiciones);
             Controls.Add(btn_AddPrimitiva);
@@ -149,6 +181,7 @@
             Load += CamConfigurarGeometria_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -160,5 +193,7 @@
         private Button btn_AddPrimitiva;
         private ListBox listBox_Condiciones;
         private Button btn_ExportConditions;
+        private RadioButton rb_Exterior;
+        private RadioButton rb_Interior;
     }
 }

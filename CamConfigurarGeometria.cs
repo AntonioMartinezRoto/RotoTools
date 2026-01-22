@@ -20,9 +20,12 @@ namespace RotoTools
         #region Private Properties
         private string OperationName { get; set; }
         private BindingList<OperationsShapes> _bindingList { get; set; }
+        private BindingList<OperationsShapes> _bindingExteriorList { get; set; }
         private List<OperationsShapes> _allShapes { get; set; }
+        private List<OperationsShapes> _allExteriorShapes { get; set; }
         public List<OperationsShapes> ResultOperationsShapesList { get; private set; }
         private List<MechanizedConditions> CondicionesList { get; set; }
+        private List<MechanizedConditions> _allConditionsList { get; set; }
         #endregion
 
         #region Constructors
@@ -30,9 +33,11 @@ namespace RotoTools
         {
             InitializeComponent();
         }
-        public CamConfigurarGeometria(string operationName, List<OperationsShapes> existingShapes)
+        public CamConfigurarGeometria(string operationName, List<OperationsShapes> existingShapes, List<OperationsShapes> existingExteteriorShapes)
         {
             InitializeComponent();
+            this.OperationName = operationName;
+            CrearGridGeometria();
 
             _allShapes = existingShapes != null
                 ? existingShapes
@@ -42,10 +47,19 @@ namespace RotoTools
 
             _bindingList = new BindingList<OperationsShapes>(_allShapes.ToList());
 
-            this.OperationName = operationName;
-            CrearGridGeometria();
+
+            _allExteriorShapes = existingExteteriorShapes != null
+                ? existingExteteriorShapes
+                    .Select(o => o)   // MISMA instancia, distinta colección
+                    .ToList()
+                : new List<OperationsShapes>();
+
+            _bindingExteriorList = new BindingList<OperationsShapes>(_allExteriorShapes.ToList());
+
+            //Inicializo con la lista de OperationsShapes del interior
             dataGridView1.DataSource = _bindingList;
-            CargarCondiciones(existingShapes);
+
+            _allConditionsList = Helpers.CargarMechanizedConditionsEmbebidos();
         }
         #endregion
 
@@ -53,8 +67,9 @@ namespace RotoTools
         private void CamConfigurarGeometria_Load(object sender, EventArgs e)
         {
             this.Text = this.OperationName;
+            rb_Interior.Checked = true;
+
             LoadPrimitivas();
-            FillConditionsList();
             listBox_Condiciones.SelectedIndex = 0;
         }
         private void btn_AddPrimitiva_Click(object sender, EventArgs e)
@@ -152,13 +167,27 @@ namespace RotoTools
             var condicion = listBox_Condiciones.SelectedItem as MechanizedConditions;
             if (condicion == null)
             {
-                FiltrarPorCondicion(String.Empty);
+                FiltrarPorCondicion(String.Empty, rb_Interior.Checked ? true : false);
                 return;
             }
             else
             {
-                FiltrarPorCondicion(condicion.RowId);
+                FiltrarPorCondicion(condicion.RowId, rb_Interior.Checked ? true : false);
             }
+        }
+        private void rb_Interior_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _bindingList;
+            CargarCondiciones(_allShapes);
+            FillConditionsList();
+            listBox_Condiciones.SelectedIndex = 0;
+        }
+        private void rb_Exterior_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _bindingExteriorList;
+            CargarCondiciones(_allExteriorShapes);
+            FillConditionsList();
+            listBox_Condiciones.SelectedIndex = 0;
         }
         #endregion
 
@@ -240,7 +269,7 @@ namespace RotoTools
         private void CargarCondiciones(List<OperationsShapes> existingShapes)
         {
             // 1. Cargar todas las condiciones disponibles
-            var allConditionsList = Helpers.CargarMechanizedConditionsEmbebidos();
+            //var allConditionsList = Helpers.CargarMechanizedConditionsEmbebidos();
 
             // 2. Obtener los RowId usados por los shapes
             var usedConditionIds = existingShapes
@@ -250,35 +279,65 @@ namespace RotoTools
                 .ToHashSet();
 
             // 3. Filtrar solo las condiciones realmente usadas
-            this.CondicionesList = allConditionsList
+            this.CondicionesList = _allConditionsList
                 .Where(c => usedConditionIds.Contains(c.RowId))
                 .OrderBy(c => c.Name)
                 .ToList();
         }
-        private void FiltrarPorCondicion(string conditionId)
+        private void FiltrarPorCondicion(string conditionId, bool interior)
         {
-            _bindingList.RaiseListChangedEvents = false;
-            _bindingList.Clear();
 
-            IEnumerable<OperationsShapes> filtradas;
-
-            if (conditionId == null)
+            if (interior)
             {
-                filtradas = _allShapes;
+                _bindingList.RaiseListChangedEvents = false;
+                _bindingList.Clear();
+
+                IEnumerable<OperationsShapes> filtradas;
+
+                if (conditionId == null)
+                {
+                    filtradas = _allShapes;
+                }
+                else
+                {
+                    filtradas = _allShapes
+                        .Where(o => o.Conditions == conditionId);
+                }
+
+                foreach (var shape in filtradas)
+                {
+                    _bindingList.Add(shape);
+                }
+
+                _bindingList.RaiseListChangedEvents = true;
+                _bindingList.ResetBindings();
             }
             else
             {
-                filtradas = _allShapes
-                    .Where(o => o.Conditions == conditionId);
+                _bindingExteriorList.RaiseListChangedEvents = false;
+                _bindingExteriorList.Clear();
+
+                IEnumerable<OperationsShapes> filtradas;
+
+                if (conditionId == null)
+                {
+                    filtradas = _allExteriorShapes;
+                }
+                else
+                {
+                    filtradas = _allExteriorShapes
+                        .Where(o => o.Conditions == conditionId);
+                }
+
+                foreach (var shape in filtradas)
+                {
+                    _bindingExteriorList.Add(shape);
+                }
+
+                _bindingExteriorList.RaiseListChangedEvents = true;
+                _bindingExteriorList.ResetBindings();
             }
 
-            foreach (var shape in filtradas)
-            {
-                _bindingList.Add(shape);
-            }
-
-            _bindingList.RaiseListChangedEvents = true;
-            _bindingList.ResetBindings();
         }
         #endregion
     }

@@ -277,7 +277,7 @@ namespace RotoTools
             {
                 var item = (OperationInstalarGridITem)dataGridView2.Rows[e.RowIndex].DataBoundItem;
 
-                using var frm = new CamConfigurarGeometria("RO_" + item.OperationName, item.OperationShapeList);
+                using var frm = new CamConfigurarGeometria("RO_" + item.OperationName, item.OperationShapeList, item.OperationShapeExtList);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     item.OperationShapeList = frm.ResultOperationsShapesList;

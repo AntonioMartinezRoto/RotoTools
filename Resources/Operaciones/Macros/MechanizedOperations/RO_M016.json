@@ -5,9 +5,11 @@
   "IsPrimitive": 1,
   "Level1": "ROTO",
   "Level2": "MACROS",
-  "Level3": "BOMBILLO",
+  "Level3": "",
   "Level4": "",
   "Level5": "",
+  "Phase": null,
+  "XmlParameters": null,
   "RGB": 255,
   "Disable": false
 }

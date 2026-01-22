@@ -102,10 +102,11 @@ namespace RotoTools
                         Cursor.Current = Cursors.WaitCursor;
                         EnableControls(false);
 
-                        ExportMacrosMechanizedOperations(Path.Combine(savePath, "MechanizedOperations"));
-                        ExportMacrosOperationsShapes(Path.Combine(savePath, "OperationsShapes"));
+                        ExportMacrosMechanizedOperations(Path.Combine(savePath, @"Macros\MechanizedOperations"));
+                        ExportMacrosOperationsShapes(Path.Combine(savePath, @"Macros\OperationsShapes"));
                         ExportMecanizadosRoto(savePath);
-                        MessageBox.Show(LocalizationManager.GetString("L_Operaciones") + ": " + Environment.NewLine + savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ExportMechanizedConditions(Path.Combine(savePath, "MechanizedConditions"));
+                        MessageBox.Show(savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         EnableControls(true);
                         Cursor.Current = Cursors.Default;
@@ -767,6 +768,62 @@ namespace RotoTools
             {
                 MessageBox.Show($"Error(32)" + Environment.NewLine + Environment.NewLine +
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ExportMechanizedConditions(string savePath)
+        {
+            try
+            {
+                List<MechanizedConditions> mechanizedConditionsList = new List<MechanizedConditions>();
+
+                using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM MechanizedConditions WHERE ROWID IN (SELECT Conditions FROM OperationsShapes WHERE Conditions IS NOT NULL AND OperationName LIKE 'RO\_%' ESCAPE '\')";
+                    using (var cmd = new SqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var mechanizedCondition = new MechanizedConditions
+                            {
+                                RowId = reader["RowId"].ToString().Trim(),
+                                Name = reader["Name"].ToString().Trim(),
+                                XmlConditions = reader["XmlConditions"].ToString().Trim(),
+                                XmlOptions = reader["XmlOptions"].ToString().Trim()
+                            };
+
+                            mechanizedConditionsList.Add(mechanizedCondition);
+                        }
+                    }
+                }
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+
+                foreach (var mechanizedCondition in mechanizedConditionsList)
+                {
+                    string fileName = $"{mechanizedCondition.Name}.json";
+                    string path = Path.Combine(savePath, fileName);
+                    File.WriteAllText(path, JsonSerializer.Serialize(mechanizedCondition, options));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error(3)" + Environment.NewLine + Environment.NewLine +
+                                 ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
             }
         }
         private void EnableControls(bool enable)

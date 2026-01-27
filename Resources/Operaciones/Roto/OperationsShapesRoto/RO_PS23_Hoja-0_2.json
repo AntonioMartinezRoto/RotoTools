@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_PS23_Hoja",
-  "BasicShape": "RO_M031_T5_P30",
+  "BasicShape": "RO_M031",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "11",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

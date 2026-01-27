@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_322_S_Hoja",
-  "BasicShape": "RO_M154",
+  "BasicShape": "RO_M154_T5",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "28",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

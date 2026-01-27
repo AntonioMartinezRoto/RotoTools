@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_ALV_Carro_Largo",
-  "BasicShape": "RO_M067",
+  "BasicShape": "RO_M067_T3",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "156",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

@@ -1,8 +1,8 @@
 {
   "OperationName": "RO_Mrc_Cerr_Corredera",
-  "BasicShape": "RO_M000_C1",
+  "BasicShape": "RO_M000_C2",
   "External": 0,
-  "XDistance": "-29",
+  "XDistance": "29",
   "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "3bffecfb-e776-4878-a2f5-f3912b34b91f",
+  "Conditions": "a412dc57-2d55-4cc8-9481-2c4f95b1e620",
   "Order": 0
 }

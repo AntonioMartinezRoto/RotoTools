@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_Pb10_Marco",
-  "BasicShape": "RO_M053_T4",
+  "BasicShape": "RO_M053",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "15.5",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

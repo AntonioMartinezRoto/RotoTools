@@ -9,7 +9,7 @@
   "Depth": 0,
   "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"37.5\" /></VariablesList>",
   "Dimension": 0,
-  "Rotation": 0,
-  "Conditions": "9cf5214e-fcb0-4bb3-a3e3-c08da1c3fa2d",
+  "Rotation": 180,
+  "Conditions": "e33ab765-f773-4e4e-9cc0-dd7599cd82bc",
   "Order": 0
 }

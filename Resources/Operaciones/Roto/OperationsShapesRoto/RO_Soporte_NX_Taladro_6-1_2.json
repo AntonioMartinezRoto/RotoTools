@@ -3,7 +3,7 @@
   "BasicShape": "RO_M003_T6",
   "External": 1,
   "XDistance": "0",
-  "YDistance": "-40",
+  "YDistance": "40",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

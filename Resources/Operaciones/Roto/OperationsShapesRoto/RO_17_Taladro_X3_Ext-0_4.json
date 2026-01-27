@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_17_Taladro_X3_Ext",
-  "BasicShape": "RO_M073_T12",
+  "BasicShape": "RO_M073_T10",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "-21.5",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

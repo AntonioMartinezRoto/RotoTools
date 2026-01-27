@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_Soporte_NX_Taladro_6",
-  "BasicShape": "RO_M003",
+  "BasicShape": "RO_M003_T6",
   "External": 1,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "-40",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

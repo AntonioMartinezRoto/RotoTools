@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_37.5_Caja_Uñero_Ext",
-  "BasicShape": "RO_M113_T12",
+  "BasicShape": "RO_M119",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "-40",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

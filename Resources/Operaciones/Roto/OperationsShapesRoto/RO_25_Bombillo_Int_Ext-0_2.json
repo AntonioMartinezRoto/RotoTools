@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_25_Bombillo_Int_Ext",
-  "BasicShape": "RO_M016",
+  "BasicShape": "RO_M017",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"25\" /></VariablesList>",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "9cf5214e-fcb0-4bb3-a3e3-c08da1c3fa2d",
+  "Conditions": "cecbe796-86ce-468c-8af5-81680a25a2b1",
   "Order": 0
 }

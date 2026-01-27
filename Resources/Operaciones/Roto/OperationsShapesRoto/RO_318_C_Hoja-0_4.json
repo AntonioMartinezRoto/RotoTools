@@ -1,10 +1,10 @@
 {
   "OperationName": "RO_318_C_Hoja",
-  "BasicShape": "RO_M144",
+  "BasicShape": "RO_M144_T5",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
-  "ZDistance": "0",
+  "ZDistance": "-53",
   "Mill": "",
   "Depth": 0,
   "XmlParameters": "<VariablesList />",

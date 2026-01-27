@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_30_Bombillo_Ext",
-  "BasicShape": "RO_M017_30I",
+  "BasicShape": "RO_M017_30D",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -9,7 +9,7 @@
   "Depth": 0,
   "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"30\" /><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
   "Dimension": 0,
-  "Rotation": 180,
-  "Conditions": "14234305-ab31-4894-80ce-d1370760fa66",
+  "Rotation": 0,
+  "Conditions": "cecbe796-86ce-468c-8af5-81680a25a2b1",
   "Order": 0
 }

@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_ALV_Refuerzo_Carro",
-  "BasicShape": "RO_M069_T3",
+  "BasicShape": "RO_M069",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "12.5",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

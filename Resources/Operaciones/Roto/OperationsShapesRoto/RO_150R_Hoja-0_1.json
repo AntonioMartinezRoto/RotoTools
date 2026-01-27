@@ -1,9 +1,9 @@
 {
   "OperationName": "RO_150R_Hoja",
-  "BasicShape": "RO_M115_T5",
+  "BasicShape": "RO_M115",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "13",
+  "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

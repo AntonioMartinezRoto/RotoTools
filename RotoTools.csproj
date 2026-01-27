@@ -620,12 +620,6 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M119_2.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M119_3.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_1.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_2.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_3.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_4.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_5.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_6.json" />
-    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M133_7.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M134_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M134_2.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M134_3.json" />
@@ -2248,12 +2242,6 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M119_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M119_3.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_2.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_3.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_4.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_5.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_6.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M133_7.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M134_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M134_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M134_3.json" />

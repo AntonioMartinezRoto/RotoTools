@@ -694,7 +694,7 @@ namespace RotoTools
                                 XmlParameters = reader["XmlParameters"].ToString().Trim(),
                                 Dimension = Convert.ToDouble(reader["Dimension"]),
                                 Rotation = Convert.ToDouble(reader["Rotation"]),
-                                Conditions = reader["Conditions"].ToString(.Trim()),
+                                Conditions = reader["Conditions"].ToString().Trim(),
                                 Order = Convert.ToInt32(reader["Order"])
                             };
 
@@ -915,7 +915,7 @@ namespace RotoTools
                 DataPropertyName = nameof(OperationGridRow.Operation),
                 Name = "OperationName",
                 ReadOnly = true,
-                Width = 240
+                Width = 200
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn

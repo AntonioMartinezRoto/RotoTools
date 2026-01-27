@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_50_Taladro_X3_Int",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CREMONAS",
+  "Level3": "Aguja 50",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

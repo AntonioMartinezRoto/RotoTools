@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_55_Caja_Cerradura_Sup",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADURAS",
+  "Level3": "Aguja 55",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

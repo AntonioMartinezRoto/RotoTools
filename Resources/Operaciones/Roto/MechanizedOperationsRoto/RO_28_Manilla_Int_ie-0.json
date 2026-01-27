@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_28_Manilla_Int_ie",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "MANILLAS",
+  "Level3": "Aguja 28",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

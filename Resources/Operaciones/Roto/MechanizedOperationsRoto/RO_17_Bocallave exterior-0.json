@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_17_Bocallave exterior",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BOCALLAVES",
+  "Level3": "Aguja 17",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

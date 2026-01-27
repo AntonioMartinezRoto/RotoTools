@@ -4,12 +4,12 @@
   "External": 0,
   "IsPrimitive": 0,
   "Level1": "ROTO",
-  "Level2": "OPERACIONES IE",
-  "Level3": "",
+  "Level2": "MANILLAS",
+  "Level3": "Aguja 35",
   "Level4": "",
   "Level5": "",
-  "Phase": "Piece",
-  "XmlParameters": "<VariablesList><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
+  "Phase": "",
+  "XmlParameters": "",
   "RGB": 255,
   "Disable": false
 }

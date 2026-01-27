@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Pernio_NX_Taladro_3",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "BISAGRAS",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

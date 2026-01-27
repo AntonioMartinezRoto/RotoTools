@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Cerr_DLO",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADEROS",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

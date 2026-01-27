@@ -4,12 +4,12 @@
   "External": 0,
   "IsPrimitive": 0,
   "Level1": "ROTO",
-  "Level2": "CREMONA",
-  "Level3": "",
+  "Level2": "CREMONAS",
+  "Level3": "Aguja 40",
   "Level4": "",
   "Level5": "",
-  "Phase": "Piece",
-  "XmlParameters": "<VariablesList></VariablesList>",
+  "Phase": "",
+  "XmlParameters": "",
   "RGB": 255,
   "Disable": false
 }

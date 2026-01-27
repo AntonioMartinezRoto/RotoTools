@@ -69,6 +69,8 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000E_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000F.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000F_T.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_C1.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_C2.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M001.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M002.json" />
@@ -145,6 +147,8 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35D.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35I.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_375D.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_375I.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40D.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40I.json" />
@@ -164,6 +168,8 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35D.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35I.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_375D.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_375I.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40D.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40I.json" />
@@ -202,7 +208,9 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M027_45.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M029.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M030.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T5.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T5_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M031.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M031_T5_P17.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M031_T5_P30.json" />
@@ -218,6 +226,7 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M034_T4.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M035.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M036.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M036_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M037.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M038.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M039.json" />
@@ -234,7 +243,9 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M048_T5_P55.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M048_T5_P57.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M049.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T5.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T5_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M050.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M050_T5.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M051.json" />
@@ -246,10 +257,13 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M053.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M053_T4.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M057.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M057_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M058.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M058_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M059.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M060.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M061.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M061_T.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M066.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M066_T4.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M067.json" />
@@ -334,6 +348,7 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M154_T5.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M155.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M155_T5.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M200.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_1.json" />
@@ -341,6 +356,8 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000E_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000F_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000_C1_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000_C2_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M001_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M002_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M002_2.json" />
@@ -416,6 +433,8 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35D_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_375D_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_375I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40D_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40_1.json" />
@@ -435,6 +454,8 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35D_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_375D_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_375I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40D_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40I_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40_1.json" />
@@ -699,8 +720,11 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_6.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_7.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_8.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M200_1.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Carril 1.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
+    <None Remove="Resources\Operaciones\MechanizedConditions\Lado Exterior.json" />
+    <None Remove="Resources\Operaciones\MechanizedConditions\Lado Interior.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\TRAMO_DR.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\TRAMO_IZ.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_150P_Hoja-0.json" />
@@ -1673,6 +1697,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000E_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000F.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000F_T.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_C1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_C2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M001.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M002.json" />
@@ -1749,6 +1775,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_35I.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_375D.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_375I.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M016_40I.json" />
@@ -1768,6 +1796,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_35I.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_375D.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_375I.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M017_40I.json" />
@@ -1806,7 +1836,9 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M027_45.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M029.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M030.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T5.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M030_T5_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M031.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M031_T5_P17.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M031_T5_P30.json" />
@@ -1822,6 +1854,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M034_T4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M035.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M036.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M036_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M037.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M038.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M039.json" />
@@ -1838,7 +1871,9 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M048_T5_P55.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M048_T5_P57.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M049.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T5.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M049_T5_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M050.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M050_T5.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M051.json" />
@@ -1850,10 +1885,13 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053_T4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M057.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M057_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M058.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M058_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M059.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M060.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M061.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M061_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M066.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M066_T4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M067.json" />
@@ -1938,6 +1976,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M154_T5.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M155.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M155_T5.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M200.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_1.json" />
@@ -1945,6 +1984,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000E_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000F_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000_C1_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000_C2_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M001_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M002_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M002_2.json" />
@@ -2020,6 +2061,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35D_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_35_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_375D_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_375I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40D_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M016_40_1.json" />
@@ -2039,6 +2082,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35D_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_35_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_375D_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_375I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40D_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40I_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M017_40_1.json" />
@@ -2303,8 +2348,11 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_6.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_7.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_8.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M200_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Carril 1.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Lado Exterior.json" />
+    <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Lado Interior.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\TRAMO_DR.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\TRAMO_IZ.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_150P_Hoja-0.json" />

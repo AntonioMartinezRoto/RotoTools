@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_M057_T",
-  "Description": "Caja cerradero combinado 100x18 mm                                                                                                                    ",
+  "Description": "Caja cerradero combinado 100x18 mm",
   "External": 0,
   "IsPrimitive": 1,
   "Level1": "ROTO",
@@ -8,6 +8,8 @@
   "Level3": "",
   "Level4": "",
   "Level5": "",
+  "Phase": null,
+  "XmlParameters": null,
   "RGB": 255,
   "Disable": false
 }

@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_M030_T5_T",
-  "Description": "Taladro de 5 marco bisagra PS23                                                                                                                       ",
+  "Description": "Taladro de 5 marco bisagra PS23",
   "External": 0,
   "IsPrimitive": 1,
   "Level1": "ROTO",
@@ -8,6 +8,8 @@
   "Level3": "",
   "Level4": "",
   "Level5": "",
+  "Phase": null,
+  "XmlParameters": null,
   "RGB": 255,
   "Disable": false
 }

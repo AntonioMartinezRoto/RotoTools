@@ -537,14 +537,14 @@ namespace RotoTools
                         while (reader.Read())
                         {
                             MechanizedOperation mechanizedOperation = new MechanizedOperation(reader["OperationName"].ToString().Trim(),
-                                reader["Description"].ToString(),
+                                reader["Description"].ToString().Trim(),
                                 Convert.ToInt16(reader["External"]),
                                 Convert.ToInt16(reader["IsPrimitive"]),
-                                reader["Level1"].ToString(),
-                                reader["Level2"].ToString(),
-                                reader["Level3"].ToString(),
-                                reader["Level4"].ToString(),
-                                reader["Level5"].ToString(),
+                                reader["Level1"].ToString().Trim(),
+                                reader["Level2"].ToString().Trim(),
+                                reader["Level3"].ToString().Trim(),
+                                reader["Level4"].ToString().Trim(),
+                                reader["Level5"].ToString().Trim(),
                                 Convert.ToInt32(reader["RGB"]),
                                 Convert.ToBoolean(reader["Disable"]));
 
@@ -686,15 +686,15 @@ namespace RotoTools
                                 OperationName = reader["OperationName"].ToString().Trim(),
                                 BasicShape = reader["BasicShape"].ToString().Trim(),
                                 External = Convert.ToInt16(reader["External"]),
-                                XDistance = reader["XDistance"].ToString(),
-                                YDistance = reader["YDistance"].ToString(),
-                                ZDistance = reader["ZDistance"].ToString(),
-                                Mill = reader["Mill"].ToString(),
+                                XDistance = reader["XDistance"].ToString().Trim(),
+                                YDistance = reader["YDistance"].ToString().Trim(),
+                                ZDistance = reader["ZDistance"].ToString().Trim(),
+                                Mill = reader["Mill"].ToString().Trim(),
                                 Depth = Convert.ToDouble(reader["Depth"]),
-                                XmlParameters = reader["XmlParameters"].ToString(),
+                                XmlParameters = reader["XmlParameters"].ToString().Trim(),
                                 Dimension = Convert.ToDouble(reader["Dimension"]),
                                 Rotation = Convert.ToDouble(reader["Rotation"]),
-                                Conditions = reader["Conditions"].ToString(),
+                                Conditions = reader["Conditions"].ToString(.Trim()),
                                 Order = Convert.ToInt32(reader["Order"])
                             };
 

@@ -606,12 +606,12 @@ namespace RotoTools
                                 XDistance = reader["XDistance"].ToString(),
                                 YDistance = reader["YDistance"].ToString(),
                                 ZDistance = reader["ZDistance"].ToString(),
-                                Mill = reader["Mill"].ToString(),
+                                Mill = reader["Mill"].ToString().Trim(),
                                 Depth = Convert.ToDouble(reader["Depth"]),
-                                XmlParameters = reader["XmlParameters"].ToString(),
+                                XmlParameters = reader["XmlParameters"].ToString().Trim(),
                                 Dimension = Convert.ToDouble(reader["Dimension"]),
                                 Rotation = Convert.ToDouble(reader["Rotation"]),
-                                Conditions = reader["Conditions"].ToString(),
+                                Conditions = reader["Conditions"].ToString().Trim(),
                                 Order = Convert.ToInt32(reader["Order"])
                             };
 

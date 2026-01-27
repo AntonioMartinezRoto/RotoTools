@@ -59,9 +59,9 @@ namespace RotoEntities
             RGB = 255;
             Disable = false;
             InitializeLevel2(operationName);
+            InitializeLevel3(operationName, Level2);
         }
-
-        private void InitializeLevel2(string operationName)
+        public void InitializeLevel2(string operationName)
         {
             string op = operationName.ToUpper();
 
@@ -69,9 +69,13 @@ namespace RotoEntities
             {
                 Level2 = "BOMBILLOS";
             }
+            else if (op.Contains("ALV_"))
+            {
+                Level2 = "ALVERSA";
+            }
             else if (op.Contains("PERNIO") || op.Contains("BISAGRA") || op.Contains("PB10") || op.Contains("150R") || op.Contains("150P") || 
                      op.Contains("SOPORTE_COMPAS") || op.Contains("SOPORTE_NX_TORNILLO") || op.Contains("222") || op.Contains("218") || op.Contains("318") || 
-                     op.Contains("322") || op.Contains("PS23") || op.Contains("PS27"))
+                     op.Contains("322") || op.Contains("PS23") || op.Contains("PS27") || op.Contains("SOPORTE"))
             {
                 Level2 = "BISAGRAS";
             }
@@ -103,10 +107,6 @@ namespace RotoEntities
             {
                 Level2 = "RUEDAS";
             }
-            else if (op.Contains("ALV_"))
-            {
-                Level2 = "ALVERSA";
-            }
             else if (op.Contains("ELEV_"))
             {
                 Level2 = "PATIO LIFT";
@@ -122,6 +122,113 @@ namespace RotoEntities
             else
             {
                 Level2 = "OTRAS";
+            }
+        }
+        public void InitializeLevel3(string operationName, string level2)
+        {
+            string op = operationName.ToUpper();
+
+            switch (level2)
+            {
+                case "BOMBILLOS":
+                case "CERRADURAS":
+                case "PLACAS":
+                case "MANILLAS":
+                case "CREMONAS":
+                case "BOCALLAVES":
+                    if (op.Contains("15"))
+                    {
+                        Level3 = "Aguja 15";
+                        break;
+                    }
+                    if (op.Contains("17"))
+                    {
+                        Level3 = "Aguja 17";
+                        break;
+                    }
+                    if (op.Contains("25"))
+                    {
+                        Level3 = "Aguja 25";
+                        break;
+                    }
+                    if (op.Contains("28"))
+                    {
+                        Level3 = "Aguja 28";
+                        break;
+                    }
+                    if (op.Contains("30"))
+                    {
+                        Level3 = "Aguja 30";
+                        break;
+                    }
+                    if (op.Contains("35"))
+                    {
+                        Level3 = "Aguja 35";
+                        break;
+                    }
+                    if (op.Contains("37"))
+                    {
+                        Level3 = "Aguja 37";
+                        break;
+                    }
+                    if (op.Contains("40"))
+                    {
+                        Level3 = "Aguja 40";
+                        break;
+                    }
+                    if (op.Contains("45"))
+                    {
+                        Level3 = "Aguja 45";
+                        break;
+                    }
+                    if (op.Contains("50"))
+                    {
+                        Level3 = "Aguja 50";
+                        break;
+                    }
+                    if (op.Contains("55"))
+                    {
+                        Level3 = "Aguja 55";
+                        break;
+                    }
+                    if (op.Contains("7"))
+                    {
+                        Level3 = "Aguja 7";
+                        break;
+                    }
+                    if (op.Contains("8"))
+                    {
+                        Level3 = "Aguja 8"; 
+                        break;
+                    }
+                    break;
+                case "BISAGRAS":
+                    if (op.Contains("150"))
+                    {
+                        Level3 = "150";
+                        break;
+                    }
+                    if (op.Contains("222") || op.Contains("218") || op.Contains("318") || op.Contains("322"))
+                    {
+                        Level3 = "SOLID B";
+                        break;
+                    }
+                    if (op.Contains("PB10"))
+                    {
+                        Level3 = "PB10";
+                        break;
+                    }
+                    if (op.Contains("PS23"))
+                    {
+                        Level3 = "PS23";
+                        break;
+                    }
+                    if (op.Contains("PS27"))
+                    {
+                        Level3 = "PS27";
+                        break;
+                    }
+                    break;
             }
         }
     }

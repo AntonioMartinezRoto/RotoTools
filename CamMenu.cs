@@ -198,6 +198,8 @@ namespace RotoTools
                         {
                             foreach (MechanizedOperation operation in mechanizedOperationsList)
                             {
+                                operation.InitializeLevel2(operation.OperationName);
+                                operation.InitializeLevel3(operation.OperationName, operation.Level2);
                                 Helpers.InstallMechanizedOperation(operation);
                             }
                         }
@@ -255,6 +257,7 @@ namespace RotoTools
                 progress_Install.Value = 0;
                 progress_Install.Visible = false;
                 _cacheExisteBD = new();
+                chk_AllOperations.Checked = false;
                 LoadOperations();
             }
             catch (Exception ex)

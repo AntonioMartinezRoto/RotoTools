@@ -1,15 +1,15 @@
 {
   "OperationName": "RO_25_Bombillo_Int_Ext",
-  "BasicShape": "RO_M016",
+  "BasicShape": "RO_M017_25I",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,
-  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"25\" /></VariablesList>",
+  "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "cecbe796-86ce-468c-8af5-81680a25a2b1",
+  "Conditions": "e33ab765-f773-4e4e-9cc0-dd7599cd82bc",
   "Order": 0
 }

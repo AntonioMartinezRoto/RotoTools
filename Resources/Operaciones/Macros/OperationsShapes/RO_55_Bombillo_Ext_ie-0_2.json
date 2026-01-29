@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_55_Bombillo_Ext_ie",
+  "BasicShape": "RO_M017_55I",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "8",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 180,
+  "Conditions": "e33ab765-f773-4e4e-9cc0-dd7599cd82bc",
+  "Order": 0
+}

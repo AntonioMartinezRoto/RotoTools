@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_M014_17",
+  "Description": "Taladro 10 bocallave al exterior",
+  "External": 0,
+  "IsPrimitive": 1,
+  "Level1": "ROTO",
+  "Level2": "MACROS",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": null,
+  "XmlParameters": null,
+  "RGB": 255,
+  "Disable": false
+}

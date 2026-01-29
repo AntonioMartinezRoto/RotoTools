@@ -102,11 +102,38 @@ namespace RotoTools
                         Cursor.Current = Cursors.WaitCursor;
                         EnableControls(false);
 
+                        progress_Install.Visible = true;
+                        int totalFilas = 5;
+                        progress_Install.Value = 0;
+                        progress_Install.Maximum = totalFilas ;
+
+                        progress_Install.Value++;
+                        progress_Install.Refresh();
+
                         ExportMacrosMechanizedOperations(Path.Combine(savePath, @"Macros\MechanizedOperations"));
+
+                        progress_Install.Value++;
+                        progress_Install.Refresh();
+
                         ExportMacrosOperationsShapes(Path.Combine(savePath, @"Macros\OperationsShapes"));
+
+                        progress_Install.Value++;
+                        progress_Install.Refresh();
+
                         ExportMecanizadosRoto(savePath);
+
+                        progress_Install.Value++;
+                        progress_Install.Refresh();
+
                         ExportMechanizedConditions(Path.Combine(savePath, "MechanizedConditions"));
+
+                        progress_Install.Value++;
+                        progress_Install.Refresh();
+
                         MessageBox.Show(savePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        progress_Install.Value = 0;
+                        progress_Install.Visible = false;
 
                         EnableControls(true);
                         Cursor.Current = Cursors.Default;
@@ -118,6 +145,8 @@ namespace RotoTools
                 MessageBox.Show($"Error(30)" + Environment.NewLine + Environment.NewLine +
                                  ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EnableControls(true);
+                progress_Install.Value = 0;
+                progress_Install.Visible = false;
             }
             finally
             {

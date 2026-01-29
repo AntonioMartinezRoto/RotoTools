@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_30_Bombillo_Int_ie",
+  "BasicShape": "RO_M016_30D",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"30\" /><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "cecbe796-86ce-468c-8af5-81680a25a2b1",
+  "Order": 0
+}

@@ -1,6 +1,6 @@
 {
-  "OperationName": "RO_45_Placa_Ext_ie",
-  "BasicShape": "RO_M024_45",
+  "OperationName": "RO_50_Manilla_Int",
+  "BasicShape": "RO_M026_50",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",

@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_50_Taladro_X3_Int_Ext",
+  "BasicShape": "RO_M009_40",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList><Variable Name=\"ZMa\" Value=\"1\" /></VariablesList>",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

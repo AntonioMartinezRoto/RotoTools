@@ -3003,8 +3003,6 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Bombillo_Int_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Caja_Cremona-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Caja_Uñero_Ext-0_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Caja_Uñero_Ext-0_2.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Caja_Uñero_Ext-0_3.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Taladro_X3_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Taladro_X3_Ext-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_37.5_Taladro_X3_Ext-0_3.json" />

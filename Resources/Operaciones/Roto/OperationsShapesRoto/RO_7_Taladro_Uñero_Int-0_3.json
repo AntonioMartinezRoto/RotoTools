@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_7_Taladro_Uñero_Int",
+  "BasicShape": "RO_M002_T10",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "-21.5",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

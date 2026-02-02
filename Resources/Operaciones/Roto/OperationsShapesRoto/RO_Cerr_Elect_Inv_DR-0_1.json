@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_Cerr_Elect_Inv_DR",
+  "BasicShape": "RO_M039",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

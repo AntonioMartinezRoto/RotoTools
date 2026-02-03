@@ -1739,8 +1739,6 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_Ext-0_4.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_2.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_3.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_4.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Ctrl-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Inf-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Sup-0_1.json" />
@@ -3721,8 +3719,6 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_Ext-0_4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_2.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_3.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Bombillo_Int_ie-0_4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Inf-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_50_Caja_Cerradura_Sup-0_1.json" />

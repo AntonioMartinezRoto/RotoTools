@@ -321,6 +321,7 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M085.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M087.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M091.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M105.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M110.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M111.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M112.json" />
@@ -378,6 +379,8 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M154_T5.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M155.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M155_T5.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M176.json" />
+    <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M177.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M200.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
@@ -659,6 +662,7 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M085_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M087_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M091_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M105_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M110_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M111_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M112_1.json" />
@@ -774,6 +778,8 @@
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_6.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_7.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M155_8.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M176_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M177_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M200_1.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Carril 1.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
@@ -840,6 +846,7 @@
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Bombillo_Int_Ext-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Bombillo_Int_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cerradura1P_Ctrl-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cerradura_Ctrl-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona_Inf-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona_Sup-0.json" />
@@ -857,8 +864,10 @@
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Taladro_X3_Int_Ext-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Taladro_X3_Int_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Ext-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Ext_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int_Ext-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Caja_Cerradura_Ctrl-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Manilla_Ext-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Manilla_Int-0.json" />
@@ -885,6 +894,7 @@
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Ext-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int_Ext-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Ext-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Ext_ie-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Int-0.json" />
@@ -1070,6 +1080,7 @@
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_ALV_Soporte_Confort-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Bisagra_Ang_Taladro_6-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Bisagra_Canal-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Caja_Palanca-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cajeado_Tandem-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Ctrl_DR-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Ctrl_DR-1.json" />
@@ -1097,6 +1108,8 @@
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Tornillo-1.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L1-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L2-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L3-0.json" />
+    <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L4-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_4en1-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_Control-0.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_Motor-0.json" />
@@ -1332,6 +1345,7 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura1P_Ctrl-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura_Ctrl-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona_Inf-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona_Sup-0_1.json" />
@@ -1359,19 +1373,25 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Taladro_X3_Int_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext-0_2.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext_ie-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext_ie-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_3.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_4.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Caja_Cerradura_Ctrl-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_Ext-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Ext-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Ext_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int_Ext-0_2.json" />
@@ -1402,6 +1422,7 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_Ext-0_2.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Ext-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Ext_ie-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Int-0_1.json" />
@@ -1843,6 +1864,7 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_2.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_3.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Caja_Palanca-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cajeado_Tandem-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-1_1.json" />
@@ -1867,6 +1889,8 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Tornillo-1_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L1-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L2-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L3-0_1.json" />
+    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L4-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Control-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Motor-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Transf.-0_1.json" />
@@ -2303,6 +2327,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M085.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M087.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M091.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M105.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M110.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M111.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M112.json" />
@@ -2360,6 +2385,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M154_T5.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M155.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M155_T5.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M176.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M177.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M200.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
@@ -2641,6 +2668,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M085_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M087_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M091_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M105_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M110_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M111_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M112_1.json" />
@@ -2756,6 +2784,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_6.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_7.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M155_8.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M176_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M177_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M200_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Carril 1.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
@@ -2822,6 +2852,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Bombillo_Int_Ext-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Bombillo_Int_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cerradura1P_Ctrl-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cerradura_Ctrl-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona_Inf-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Caja_Cremona_Sup-0.json" />
@@ -2839,8 +2870,10 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Taladro_X3_Int_Ext-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_25_Taladro_X3_Int_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Ext-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Ext_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int_Ext-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Bombillo_Int_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Caja_Cerradura_Ctrl-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Manilla_Ext-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_28_Manilla_Int-0.json" />
@@ -2867,6 +2900,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Ext-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int_Ext-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Manilla_Int_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Ext-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Ext_ie-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_30_Placa_Int-0.json" />
@@ -3052,6 +3086,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_ALV_Soporte_Confort-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Bisagra_Ang_Taladro_6-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Bisagra_Canal-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Caja_Palanca-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cajeado_Tandem-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Ctrl_DR-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Ctrl_DR-1.json" />
@@ -3079,6 +3114,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Cerr_Tornillo-1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L1-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L2-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L3-0.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Elev_Carro_L4-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_4en1-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_Control-0.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_Eneo_Caja_Motor-0.json" />
@@ -3314,6 +3351,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura1P_Ctrl-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona_Inf-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona_Sup-0_1.json" />
@@ -3341,19 +3379,25 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Taladro_X3_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext-0_2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext_ie-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Ext_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_3.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_4.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_Ext-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Ext-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Ext_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Placa_Int_Ext-0_2.json" />
@@ -3384,6 +3428,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_Ext-0_2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Manilla_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Ext_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Placa_Int-0_1.json" />
@@ -3823,6 +3868,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Bisagra_Ang_Taladro_6-0_3.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Caja_Palanca-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cajeado_Tandem-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-1_1.json" />
@@ -3847,6 +3893,8 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Tornillo-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L1-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L2-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L3-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Elev_Carro_L4-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Control-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Motor-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Eneo_Caja_Transf.-0_1.json" />

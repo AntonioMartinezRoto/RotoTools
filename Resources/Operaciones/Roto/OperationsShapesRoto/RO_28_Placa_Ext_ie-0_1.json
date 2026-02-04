@@ -1,6 +1,6 @@
 {
-  "OperationName": "RO_28_Placa_Int_Ext",
-  "BasicShape": "RO_M023_28",
+  "OperationName": "RO_28_Placa_Ext_ie",
+  "BasicShape": "RO_M024_28",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",

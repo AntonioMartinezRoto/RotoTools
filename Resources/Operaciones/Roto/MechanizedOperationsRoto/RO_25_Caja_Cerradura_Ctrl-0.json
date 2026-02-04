@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_25_Caja_Cerradura_Ctrl",
+  "Description": "",
+  "External": 0,
+  "IsPrimitive": 0,
+  "Level1": "ROTO",
+  "Level2": "CERRADURAS",
+  "Level3": "Aguja 25",
+  "Level4": "",
+  "Level5": "",
+  "Phase": "",
+  "XmlParameters": "",
+  "RGB": 255,
+  "Disable": false
+}

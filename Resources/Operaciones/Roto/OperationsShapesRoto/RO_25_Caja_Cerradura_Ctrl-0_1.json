@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_25_Caja_Cerradura_Ctrl",
+  "BasicShape": "RO_M029",
+  "External": 0,
+  "XDistance": "0",
+  "YDistance": "0",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

@@ -1,6 +1,6 @@
 {
-  "OperationName": "RO_28_Bombillo_Ext_ie",
-  "BasicShape": "RO_M017_28D",
+  "OperationName": "RO_28_Manilla_Ext_ie",
+  "BasicShape": "RO_M027_28",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "cecbe796-86ce-468c-8af5-81680a25a2b1",
+  "Conditions": "",
   "Order": 0
 }

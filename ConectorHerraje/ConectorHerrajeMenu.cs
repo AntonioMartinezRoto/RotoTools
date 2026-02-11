@@ -100,12 +100,15 @@ namespace RotoTools
                 ConectorHerrajeGenerador generaConectorForm = new ConectorHerrajeGenerador(xmlOrigen, setsConector, xmlOrigen.Supplier);
 
                 generaConectorForm.ShowDialog();
+                InitializeInfoConnection();
             }
         }
         private void btn_CombinarConectores_Click(object sender, EventArgs e)
         {
             ConectorHerrajeCombinar conectorHerrajeCombinarForm = new ConectorHerrajeCombinar();
             conectorHerrajeCombinarForm.ShowDialog();
+
+            InitializeInfoConnection();
         }
         private void btn_SetsNoUtilizados_Click(object sender, EventArgs e)
         {
@@ -146,6 +149,7 @@ namespace RotoTools
         {
             statusStrip1.BackColor = System.Drawing.Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
+            lbl_ConectorActivo.Text = Helpers.GetConectorActivo();
         }
         private void EnableButtons(bool enable)
         {

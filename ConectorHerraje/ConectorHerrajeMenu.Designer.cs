@@ -33,6 +33,7 @@
             lbl_Xml = new Label();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
+            lbl_ConectorActivo = new ToolStripStatusLabel();
             btn_Actualizar = new Button();
             btn_SetsNoUtilizados = new Button();
             lbl_Revision = new Label();
@@ -69,7 +70,7 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion, lbl_ConectorActivo });
             statusStrip1.Location = new Point(0, 285);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(683, 22);
@@ -80,8 +81,18 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(547, 17);
+            lbl_Conexion.Spring = true;
             lbl_Conexion.Text = "toolStripStatusLabel1";
+            lbl_Conexion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lbl_ConectorActivo
+            // 
+            lbl_ConectorActivo.ForeColor = Color.White;
+            lbl_ConectorActivo.Name = "lbl_ConectorActivo";
+            lbl_ConectorActivo.Size = new Size(90, 17);
+            lbl_ConectorActivo.Text = "ConectorActivo";
+            lbl_ConectorActivo.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btn_Actualizar
             // 
@@ -211,5 +222,6 @@
         private Label lbl_Combinar;
         private Button btn_CombinarConectores;
         private CheckBox chk_ConfigAE;
+        private ToolStripStatusLabel lbl_ConectorActivo;
     }
 }

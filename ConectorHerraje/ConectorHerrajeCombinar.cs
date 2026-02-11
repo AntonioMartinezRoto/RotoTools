@@ -21,6 +21,7 @@ namespace RotoTools
         {
             CargarDatos();
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
+            lbl_ConectorActivo.Text = Helpers.GetConectorActivo();
         }
         private void btn_Add_Click(object sender, EventArgs e)
         {

@@ -52,6 +52,7 @@
             label2 = new Label();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
+            lbl_ConectorActivo = new ToolStripStatusLabel();
             tabControl1.SuspendLayout();
             tab_Incluidos.SuspendLayout();
             tab_NoIncluidos.SuspendLayout();
@@ -291,7 +292,7 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion, lbl_ConectorActivo });
             statusStrip1.Location = new Point(0, 449);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(784, 22);
@@ -302,8 +303,18 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(620, 17);
+            lbl_Conexion.Spring = true;
             lbl_Conexion.Text = "toolStripStatusLabel1";
+            lbl_Conexion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lbl_ConectorActivo
+            // 
+            lbl_ConectorActivo.ForeColor = Color.White;
+            lbl_ConectorActivo.Name = "lbl_ConectorActivo";
+            lbl_ConectorActivo.Size = new Size(118, 17);
+            lbl_ConectorActivo.Text = "toolStripStatusLabel1";
+            lbl_ConectorActivo.TextAlign = ContentAlignment.MiddleRight;
             // 
             // ConectorHerrajeRevisionSets
             // 
@@ -363,5 +374,6 @@
         private Label label2;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
+        private ToolStripStatusLabel lbl_ConectorActivo;
     }
 }

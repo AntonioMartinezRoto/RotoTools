@@ -1150,6 +1150,22 @@ namespace RotoTools
             }
             return rowsAfected;
         }
+        public static string? GetConectorActivo()
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT Valor FROM VariablesGlobales WHERE Nombre = 'Conector Herraje'", conn))
+            {
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
         #endregion
 
         #region Utilidades Generales

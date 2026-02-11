@@ -43,6 +43,7 @@
             bnt_Guardar = new Button();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
+            lbl_ConectorActivo = new ToolStripStatusLabel();
             label1 = new Label();
             label2 = new Label();
             statusStrip1.SuspendLayout();
@@ -62,6 +63,7 @@
             // txt_ConectorName
             // 
             txt_ConectorName.Location = new Point(187, 63);
+            txt_ConectorName.MaxLength = 25;
             txt_ConectorName.Name = "txt_ConectorName";
             txt_ConectorName.Size = new Size(174, 23);
             txt_ConectorName.TabIndex = 20;
@@ -190,7 +192,7 @@
             // 
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion, lbl_ConectorActivo });
             statusStrip1.Location = new Point(0, 370);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(694, 22);
@@ -201,8 +203,18 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(530, 17);
+            lbl_Conexion.Spring = true;
             lbl_Conexion.Text = "toolStripStatusLabel1";
+            lbl_Conexion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lbl_ConectorActivo
+            // 
+            lbl_ConectorActivo.ForeColor = Color.White;
+            lbl_ConectorActivo.Name = "lbl_ConectorActivo";
+            lbl_ConectorActivo.Size = new Size(118, 17);
+            lbl_ConectorActivo.Text = "toolStripStatusLabel1";
+            lbl_ConectorActivo.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -278,5 +290,6 @@
         private ToolStripStatusLabel lbl_Conexion;
         private Label label1;
         private Label label2;
+        private ToolStripStatusLabel lbl_ConectorActivo;
     }
 }

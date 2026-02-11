@@ -323,6 +323,7 @@ namespace RotoTools
         {
             statusStrip1.BackColor = Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
+            lbl_ConectorActivo.Text = Helpers.GetConectorActivo();
         }
         private void FormatGrids()
         {
@@ -600,9 +601,5 @@ namespace RotoTools
         }
         
         #endregion
-
-
-
-
     }
 }

@@ -20,6 +20,7 @@ namespace RotoTools
     {
         #region public methods
 
+        #region Utilidades BBDD
         public static string GetServer()
         {
             string baseKey = @"HKEY_CURRENT_USER\SOFTWARE\Preference\OLEDB";
@@ -66,25 +67,32 @@ namespace RotoTools
                 return null;
             }
         }
-        public static bool IsVersionPrefSuiteCompatible()
+        public static int EjecutarNonQuery(string sql)
         {
-            using SqlConnection conexion = new SqlConnection(GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand("SELECT Top 1 Version FROM PrefDBManagerHistory ORDER BY ExecutionDate desc", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
-                string[] versionChar = reader[0].ToString().Split('.');
-                if (versionChar != null && versionChar.Length > 0)
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    if (Convert.ToInt32(versionChar[0]) >= 20)
-                        return true;
+                    return cmd.ExecuteNonQuery();
                 }
             }
-            return false;
         }
+        public static int EjecutarScalarCount(string sql)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Utilidades Opciones
         public static int CalcularFlags(ContenidoOpcion c)
         {
             if (c.OcultaEnLista && c.OcultaEnArbol) return 3;
@@ -203,45 +211,6 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-        public static int UpdateGruposYProveedor(string IdGrupoPresupuestado, string IdGrupoProduccion, string IdProveedor)
-        {
-            using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("UPDATE MaterialesBase SET IdGrupoPresupuestado=@grupopresupuestado, IdGrupoProduccion=@grupoproduccion, CodigoProveedor=@codigoproveedor WHERE Nivel1 = 'ROTO NX' OR Nivel1 = 'ROTO NX ALU' OR Nivel1 = 'ROTO NX PAX'", conn))
-            {
-                cmd.Parameters.AddWithValue("@grupopresupuestado", IdGrupoPresupuestado);
-                cmd.Parameters.AddWithValue("@grupoproduccion", IdGrupoProduccion);
-                cmd.Parameters.AddWithValue("@codigoproveedor", IdProveedor);
-                conn.Open();
-                return cmd.ExecuteNonQuery();
-            }
-        }
-        public static int UpdateMaterialesBaseFicticiosPropiedades(string[] articulos)
-        {
-            int rowsAfected = 0;
-            using (var conn = new SqlConnection(GetConnectionString()))
-            {
-                conn.Open();
-
-                foreach (var articulo in articulos)
-                {
-                    string sql = @"
-                                UPDATE MaterialesBase 
-                                SET NoIncluirEnHojaDeTrabajo=1,
-                                    NoOptimizar=1,
-                                    NoIncluirEnMaterialNeeds=1,
-                                    DoNotShowInMonitors=1,
-                                    DontIncludeInMaterialReport=1
-                                WHERE ReferenciaBase LIKE @articulo";
-
-                    using (var cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@articulo", articulo);
-                        rowsAfected += cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            return rowsAfected;
-        }
         public static void RestoreOpcionesDesdeXml(string rutaXml)
         {
             try
@@ -326,41 +295,107 @@ namespace RotoTools
                 MessageBox.Show("Error (19)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static List<Escandallo> CargarEscandallosEmbebidos(List<enumRotoTipoEscandallo> tiposSeleccionados)
+        public static void InstalarOpcionConfiguraciónStandard()
         {
-            List<Escandallo> escandallosList = new();
-            var assembly = Assembly.GetExecutingAssembly();
-
-            string resourcePrefix = "RotoTools.Resources.Escandallos."; // Ajusta según tu namespace
-
-            var escandallosEmbebidos = assembly.GetManifestResourceNames()
-                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
-                                              .ToList();
-
-            foreach (string recurso in escandallosEmbebidos)
+            if (!ExisteOpcionEnBD("01 Configuracion Estandar"))
             {
-                using var stream = assembly.GetManifestResourceStream(recurso);
-                if (stream == null)
-                    continue;
+                CrearOpcionConfiguracionStandard();
+                CrearContenidoOpcionesConfiguracionStandard();
+            }
+        }
+        public static void InstalarOpcionTipoCorredera()
+        {
+            if (!ExisteOpcionEnBD("RO_TIPO_CORREDERA"))
+            {
+                CrearOpcionTipoCorredera();
+                CrearContenidoOpcionesTipoCorredera();
+            }
+        }
+        public static bool ExisteOpcionEnBD(string optionName)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
 
-                using var reader = new StreamReader(stream);
-                string json = reader.ReadToEnd();
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM Opciones WHERE Nombre = '{optionName}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
 
-                var escandallo = JsonSerializer.Deserialize<Escandallo>(json);
-                if (escandallo != null)
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }        
+        public static void CrearContenidoOpcionesConfiguracionStandard()
+        {
+            try
+            {
+                List<string> contenidoOpcionesConfiguracionStandard =
+                [
+                    "Si",
+                    "No"
+                ];
+                int orden = 0;
+                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
                 {
-                    // Asegura que tiene su tipo asignado (por si no lo trae en el JSON)
-                    InicializarEscandalloRotoTipo(escandallo);
-
-                    // Filtra según los checks seleccionados
-                    if (tiposSeleccionados.Contains(escandallo.RotoTipo))
-                        escandallosList.Add(escandallo);
-
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("01 Configuracion Estandar", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
+                    InsertContenidoOpcion("01 Configuracion Estandar", contenidoOpcion);
+                    orden++;
                 }
             }
-
-            return escandallosList;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (20)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        public static void CrearContenidoOpcionesTipoCorredera()
+        {
+            try
+            {
+                List<string> contenidoOpcionesConfiguracionStandard =
+                [
+                    "ISlide",
+                    "Inowa"
+                ];
+                int orden = 0;
+                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
+                {
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
+                    InsertContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcion);
+                    orden++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (22)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CrearOpcionConfiguracionStandard()
+        {
+            try
+            {
+                InsertOpcion("01 Configuracion Estandar");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (21)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CrearOpcionTipoCorredera()
+        {
+            try
+            {
+                InsertOpcion("RO_TIPO_CORREDERA");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (23)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Utilidades Operaciones
         public static List<MechanizedOperation> CargarMacrosMechanizedOperationsEmbebidos()
         {
             List<MechanizedOperation> macrosMechanizedOperationsList = new();
@@ -524,69 +559,6 @@ namespace RotoTools
 
             return list;
         }
-        public static void InicializarEscandalloRotoTipo(Escandallo escandallo)
-        {
-            string codigo = escandallo.Codigo?.ToUpper() ?? "";
-
-            if (codigo.Contains("PVC"))
-                escandallo.RotoTipo = enumRotoTipoEscandallo.PVC;
-            else if (codigo.Contains("ALU"))
-                escandallo.RotoTipo = enumRotoTipoEscandallo.Aluminio;
-            else if (codigo.Contains("MANILLAS") || codigo.Contains("MANILLA"))
-                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionManillas;
-            else if (codigo.Contains("BOMBILLOS"))
-                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionBombillos;
-            else if (codigo.StartsWith("RO_HERRAJE", StringComparison.OrdinalIgnoreCase) || codigo.StartsWith("RO_Herr.", StringComparison.OrdinalIgnoreCase))
-                escandallo.RotoTipo = enumRotoTipoEscandallo.PersonalizacionClientes;
-            else
-                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionGeneral;
-        }
-        public static bool ExisteEscandalloEnBD(string escandalloCodigo)
-        {
-            using SqlConnection conexion = new SqlConnection(GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Escandallos WHERE Codigo = '" + escandalloCodigo + "'", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                return Convert.ToInt32(reader[0].ToString()) > 0;
-
-            }
-            return false;
-        }
-        public static void InstalarOpcionConfiguraciónStandard()
-        {
-            if (!ExisteOpcionEnBD("01 Configuracion Estandar"))
-            {
-                CrearOpcionConfiguracionStandard();
-                CrearContenidoOpcionesConfiguracionStandard();
-            }
-        }
-        public static void InstalarOpcionTipoCorredera()
-        {
-            if (!ExisteOpcionEnBD("RO_TIPO_CORREDERA"))
-            {
-                CrearOpcionTipoCorredera();
-                CrearContenidoOpcionesTipoCorredera();
-            }
-        }
-        public static bool ExisteOpcionEnBD(string optionName)
-        {
-            using SqlConnection conexion = new SqlConnection(GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM Opciones WHERE Nombre = '{optionName}'", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                return Convert.ToInt32(reader[0].ToString()) > 0;
-
-            }
-            return false;
-        }
         public static bool ExisteOperacionEnBD(string operationName)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
@@ -617,21 +589,6 @@ namespace RotoTools
             }
             return false;
         }
-        public static bool ExistePrefOpenOpcionEnBD(string supplierCode, string optionName, string optionValue)
-        {
-            using SqlConnection conexion = new SqlConnection(GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].Options WHERE SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                return Convert.ToInt32(reader[0].ToString()) > 0;
-
-            }
-            return false;
-        }
         public static bool ExisteCondicionEnBD(string mechanizedConditionXmlConditions)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
@@ -646,208 +603,6 @@ namespace RotoTools
 
             }
             return false;
-        }
-        public static void CrearContenidoOpcionesConfiguracionStandard()
-        {
-            try
-            {
-                List<string> contenidoOpcionesConfiguracionStandard =
-                [
-                    "Si",
-                    "No"
-                ];
-                int orden = 0;
-                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
-                {
-                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("01 Configuracion Estandar", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
-                    InsertContenidoOpcion("01 Configuracion Estandar", contenidoOpcion);
-                    orden++;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error (20)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        public static void CrearContenidoOpcionesTipoCorredera()
-        {
-            try
-            {
-                List<string> contenidoOpcionesConfiguracionStandard =
-                [
-                    "ISlide",
-                    "Inowa"
-                ];
-                int orden = 0;
-                foreach (string contenidoOpcionValor in contenidoOpcionesConfiguracionStandard)
-                {
-                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
-                    InsertContenidoOpcion("RO_TIPO_CORREDERA", contenidoOpcion);
-                    orden++;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error (22)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        public static void CrearOpcionConfiguracionStandard()
-        {
-            try
-            {
-                InsertOpcion("01 Configuracion Estandar");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error (21)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        public static void CrearOpcionTipoCorredera()
-        {
-            try
-            {
-                InsertOpcion("RO_TIPO_CORREDERA");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error (23)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)
-        {
-            using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand($"SELECT Id FROM [Open].Operations WHERE Name = @name AND GeneratorReference = @generatorreference AND X = @operationX AND Id NOT IN (SELECT OperationId FROM [Open].OperationsOptions)", conn))
-            {
-                cmd.Parameters.AddWithValue("@name", operationName);
-                cmd.Parameters.AddWithValue("@generatorreference", generatorReference);
-                cmd.Parameters.AddWithValue("@operationX", operationX);
-
-                conn.Open();
-                using (var rdr = cmd.ExecuteReader())
-                {
-                    while (rdr.Read())
-                    {
-                        return rdr[0].ToString();
-                    }
-                }
-            }
-            return String.Empty;
-        }
-        public static bool OpcionAsociadaAOperacionPrefOpen(string operationId, string optionName, string optionValue, string supplierCode)
-        {
-            using SqlConnection conexion = new SqlConnection(GetConnectionString());
-            conexion.Open();
-
-            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].OperationsOptions WHERE OperationId = '{operationId}' AND SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                return Convert.ToInt32(reader[0].ToString()) > 0;
-
-            }
-            return false;
-        }
-        public static void DeletePrefOpenOperationsOptions(string optionName, string supplierCode)
-        {
-            using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("DELETE [Open].OperationsOptions WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
-            {
-                cmd.Parameters.AddWithValue("@nombre", optionName);
-                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-        public static void DeletePrefOpenOperationsPlaca(int configuracionEliminar, string supplierCode)
-        {
-            string operationXCondition = "";
-            switch (configuracionEliminar)
-            {
-                case (int)enumConfiguracionManillasFKS.Normalizada:
-                    operationXCondition = "(X = 'HP+70' OR X = 'HP-130')";
-                    break;
-                case (int)enumConfiguracionManillasFKS.SoloFks:
-                    operationXCondition = "(X = 'HP+78' OR X = 'HP-138')";
-                    break;
-            }
-            using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("DELETE [Open].Operations WHERE SupplierCode=@suppliercode AND Name LIKE '%Placa_%' AND Name NOT LIKE '%_17_Placa_%' AND " + operationXCondition, conn))
-            {
-                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-        public static void DeletePrefOpenOptions(string optionName, string supplierCode)
-        {
-            using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("DELETE [Open].Options WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
-            {
-                cmd.Parameters.AddWithValue("@nombre", optionName);
-                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-        public static Traducciones CargarTraducciones(string excelPath)
-        {
-            var traducciones = new Traducciones();
-
-            using (var wb = new XLWorkbook(excelPath))
-            {
-                foreach (var ws in wb.Worksheets)
-                {
-                    string nombreHoja = ws.Name.Trim().ToLower();
-
-                    if (nombreHoja.StartsWith("fittings"))
-                    {
-                        foreach (var row in ws.RowsUsed().Skip(1))
-                        {
-                            string refId = row.Cell(1).GetString().Trim();
-                            string trad = row.Cell(3).GetString().Trim();
-                            if (!string.IsNullOrEmpty(refId) && !string.IsNullOrEmpty(trad))
-                                traducciones.Fittings[refId] = trad;
-                        }
-                    }
-                    else if (nombreHoja.StartsWith("fittinggroups"))
-                    {
-                        foreach (var row in ws.RowsUsed().Skip(1))
-                        {
-                            string desc = row.Cell(1).GetString().Trim();
-                            string trad = row.Cell(2).GetString().Trim();
-                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
-                                traducciones.FittingGroups[desc] = trad;
-                        }
-                    }
-                    else if (nombreHoja.StartsWith("colours"))
-                    {
-                        foreach (var row in ws.RowsUsed().Skip(1))
-                        {
-                            string desc = row.Cell(1).GetString().Trim();
-                            string trad = row.Cell(2).GetString().Trim();
-                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
-                                traducciones.Colours[desc] = trad;
-                        }
-                    }
-                    else if (nombreHoja.StartsWith("options"))
-                    {
-                        foreach (var row in ws.RowsUsed().Skip(1))
-                        {
-                            string name = row.Cell(1).GetString().Trim();
-                            string value = row.Cell(2).GetString().Trim();
-                            string trad = row.Cell(3).GetString().Trim();
-
-                            if (!string.IsNullOrEmpty(name) && string.IsNullOrEmpty(value))
-                                traducciones.OptionNames[name] = trad;
-                            else if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
-                                traducciones.OptionValues[(name, value)] = trad;
-                        }
-                    }
-                }
-            }
-
-            return traducciones;
         }
         public static void InstallMacrosMechanizedOperations()
         {
@@ -1006,12 +761,177 @@ namespace RotoTools
                 }
             }
             return String.Empty;
-            
+
+        }
+        #endregion
+
+        #region Utilidades PrefOpen
+        public static bool ExistePrefOpenOpcionEnBD(string supplierCode, string optionName, string optionValue)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].Options WHERE SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static string GetPrefOpenOperationId(string operationName, string generatorReference, string operationX)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT Id FROM [Open].Operations WHERE Name = @name AND GeneratorReference = @generatorreference AND X = @operationX AND Id NOT IN (SELECT OperationId FROM [Open].OperationsOptions)", conn))
+            {
+                cmd.Parameters.AddWithValue("@name", operationName);
+                cmd.Parameters.AddWithValue("@generatorreference", generatorReference);
+                cmd.Parameters.AddWithValue("@operationX", operationX);
+
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
+        public static bool OpcionAsociadaAOperacionPrefOpen(string operationId, string optionName, string optionValue, string supplierCode)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM [Open].OperationsOptions WHERE OperationId = '{operationId}' AND SupplierCode = '{supplierCode}' AND [Option] = '{optionName}' AND Value = '{optionValue}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static void DeletePrefOpenOperationsOptions(string optionName, string supplierCode)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].OperationsOptions WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", optionName);
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void DeletePrefOpenOperationsPlaca(int configuracionEliminar, string supplierCode)
+        {
+            string operationXCondition = "";
+            switch (configuracionEliminar)
+            {
+                case (int)enumConfiguracionManillasFKS.Normalizada:
+                    operationXCondition = "(X = 'HP+70' OR X = 'HP-130')";
+                    break;
+                case (int)enumConfiguracionManillasFKS.SoloFks:
+                    operationXCondition = "(X = 'HP+78' OR X = 'HP-138')";
+                    break;
+            }
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].Operations WHERE SupplierCode=@suppliercode AND Name LIKE '%Placa_%' AND Name NOT LIKE '%_17_Placa_%' AND " + operationXCondition, conn))
+            {
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void DeletePrefOpenOptions(string optionName, string supplierCode)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("DELETE [Open].Options WHERE [Option]=@nombre AND SupplierCode=@suppliercode", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", optionName);
+                cmd.Parameters.AddWithValue("@suppliercode", supplierCode);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
+        #region Utilidades Escandallos
+        public static List<Escandallo> CargarEscandallosEmbebidos(List<enumRotoTipoEscandallo> tiposSeleccionados)
+        {
+            List<Escandallo> escandallosList = new();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string resourcePrefix = "RotoTools.Resources.Escandallos."; // Ajusta según tu namespace
+
+            var escandallosEmbebidos = assembly.GetManifestResourceNames()
+                                              .Where(r => r.StartsWith(resourcePrefix) && r.EndsWith(".json"))
+                                              .ToList();
+
+            foreach (string recurso in escandallosEmbebidos)
+            {
+                using var stream = assembly.GetManifestResourceStream(recurso);
+                if (stream == null)
+                    continue;
+
+                using var reader = new StreamReader(stream);
+                string json = reader.ReadToEnd();
+
+                var escandallo = JsonSerializer.Deserialize<Escandallo>(json);
+                if (escandallo != null)
+                {
+                    // Asegura que tiene su tipo asignado (por si no lo trae en el JSON)
+                    InicializarEscandalloRotoTipo(escandallo);
+
+                    // Filtra según los checks seleccionados
+                    if (tiposSeleccionados.Contains(escandallo.RotoTipo))
+                        escandallosList.Add(escandallo);
+
+                }
+            }
+
+            return escandallosList;
+        }
+        public static void InicializarEscandalloRotoTipo(Escandallo escandallo)
+        {
+            string codigo = escandallo.Codigo?.ToUpper() ?? "";
+
+            if (codigo.Contains("PVC"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.PVC;
+            else if (codigo.Contains("ALU"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.Aluminio;
+            else if (codigo.Contains("MANILLAS") || codigo.Contains("MANILLA"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionManillas;
+            else if (codigo.Contains("BOMBILLOS"))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionBombillos;
+            else if (codigo.StartsWith("RO_HERRAJE", StringComparison.OrdinalIgnoreCase) || codigo.StartsWith("RO_Herr.", StringComparison.OrdinalIgnoreCase))
+                escandallo.RotoTipo = enumRotoTipoEscandallo.PersonalizacionClientes;
+            else
+                escandallo.RotoTipo = enumRotoTipoEscandallo.GestionGeneral;
+        }
+        public static bool ExisteEscandalloEnBD(string escandalloCodigo)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM Escandallos WHERE Codigo = '" + escandalloCodigo + "'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
         }
         public static string GetContenidoEscandalloRO_C_OCULTAR(List<Option> optionsList)
         {
             string contenidoEscandallo = "";
-            
+
             foreach (Option opcion in optionsList.OrderBy(o => o.Name))
             {
                 contenidoEscandallo += $"ESTABLECEOPCION(\"RO_{opcion.Name}\",\"Oculto\");\r\n";
@@ -1019,6 +939,73 @@ namespace RotoTools
 
             return contenidoEscandallo;
         }
+
+        #endregion
+
+        #region Utilidades Traducción
+        public static Traducciones CargarTraducciones(string excelPath)
+        {
+            var traducciones = new Traducciones();
+
+            using (var wb = new XLWorkbook(excelPath))
+            {
+                foreach (var ws in wb.Worksheets)
+                {
+                    string nombreHoja = ws.Name.Trim().ToLower();
+
+                    if (nombreHoja.StartsWith("fittings"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string refId = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+                            if (!string.IsNullOrEmpty(refId) && !string.IsNullOrEmpty(trad))
+                                traducciones.Fittings[refId] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("fittinggroups"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.FittingGroups[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("colours"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.Colours[desc] = trad;
+                        }
+                    }
+                    else if (nombreHoja.StartsWith("options"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string name = row.Cell(1).GetString().Trim();
+                            string value = row.Cell(2).GetString().Trim();
+                            string trad = row.Cell(3).GetString().Trim();
+
+                            if (!string.IsNullOrEmpty(name) && string.IsNullOrEmpty(value))
+                                traducciones.OptionNames[name] = trad;
+                            else if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+                                traducciones.OptionValues[(name, value)] = trad;
+                        }
+                    }
+                }
+            }
+
+            return traducciones;
+        }
+
+        #endregion
+
+        #region Utilidades Tarifas
         public static void InsertTariff(string tariffName, string divisa)
         {
             string queryInsert = "INSERT INTO Tariff(AliasInEntity,Type,Name,IsCost,TariffOrder,Currency,CustomerCode,CustomerEntityId,CustomerTypeId," +
@@ -1052,7 +1039,7 @@ namespace RotoTools
         public static int UpdateTariffOrder(string tariffName)
         {
             string queryUpdate = "UPDATE Tariff SET TariffOrder=(SELECT ISNULL(MAX(TariffOrder)+1, 1) FROM Tariff) WHERE Type = 0 AND Name=@tariffName";
-            
+
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand(queryUpdate, conn))
             {
@@ -1101,28 +1088,71 @@ namespace RotoTools
             }
             return String.Empty;
         }
-        public static int EjecutarNonQuery(string sql)
+
+        #endregion
+
+        #region  Utilidades Varias
+        public static bool IsVersionPrefSuiteCompatible()
         {
-            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand("SELECT Top 1 Version FROM PrefDBManagerHistory ORDER BY ExecutionDate desc", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                string[] versionChar = reader[0].ToString().Split('.');
+                if (versionChar != null && versionChar.Length > 0)
                 {
-                    return cmd.ExecuteNonQuery();
+                    if (Convert.ToInt32(versionChar[0]) >= 20)
+                        return true;
                 }
             }
-        }
-        public static int EjecutarScalarCount(string sql)
+            return false;
+        }        
+        public static int UpdateGruposYProveedor(string IdGrupoPresupuestado, string IdGrupoProduccion, string IdProveedor)
         {
-            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("UPDATE MaterialesBase SET IdGrupoPresupuestado=@grupopresupuestado, IdGrupoProduccion=@grupoproduccion, CodigoProveedor=@codigoproveedor WHERE Nivel1 = 'ROTO NX' OR Nivel1 = 'ROTO NX ALU' OR Nivel1 = 'ROTO NX PAX'", conn))
             {
+                cmd.Parameters.AddWithValue("@grupopresupuestado", IdGrupoPresupuestado);
+                cmd.Parameters.AddWithValue("@grupoproduccion", IdGrupoProduccion);
+                cmd.Parameters.AddWithValue("@codigoproveedor", IdProveedor);
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    return (int)cmd.ExecuteScalar();
-                }
+                return cmd.ExecuteNonQuery();
             }
         }
+        public static int UpdateMaterialesBaseFicticiosPropiedades(string[] articulos)
+        {
+            int rowsAfected = 0;
+            using (var conn = new SqlConnection(GetConnectionString()))
+            {
+                conn.Open();
+
+                foreach (var articulo in articulos)
+                {
+                    string sql = @"
+                                UPDATE MaterialesBase 
+                                SET NoIncluirEnHojaDeTrabajo=1,
+                                    NoOptimizar=1,
+                                    NoIncluirEnMaterialNeeds=1,
+                                    DoNotShowInMonitors=1,
+                                    DontIncludeInMaterialReport=1
+                                WHERE ReferenciaBase LIKE @articulo";
+
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@articulo", articulo);
+                        rowsAfected += cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            return rowsAfected;
+        }
+        #endregion
+
+        #region Utilidades Generales
         public static int TryParseInt(string value)
         {
             return int.TryParse(value, out int result) ? result : 0;
@@ -1150,6 +1180,9 @@ namespace RotoTools
                 return stringWriter.ToString();
             }
         }
+
+        #endregion
+
         #endregion
 
         #region private methos

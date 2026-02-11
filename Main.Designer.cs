@@ -129,7 +129,7 @@
             // 
             btn_Export.BackgroundImage = (Image)resources.GetObject("btn_Export.BackgroundImage");
             btn_Export.BackgroundImageLayout = ImageLayout.Center;
-            btn_Export.Location = new Point(59, 269);
+            btn_Export.Location = new Point(59, 328);
             btn_Export.Name = "btn_Export";
             btn_Export.Size = new Size(47, 40);
             btn_Export.TabIndex = 6;
@@ -140,7 +140,7 @@
             // 
             lbl_Export.AutoSize = true;
             lbl_Export.BackColor = Color.Transparent;
-            lbl_Export.Location = new Point(111, 281);
+            lbl_Export.Location = new Point(111, 340);
             lbl_Export.Name = "lbl_Export";
             lbl_Export.Size = new Size(83, 15);
             lbl_Export.TabIndex = 7;
@@ -269,7 +269,7 @@
             // 
             lbl_tariff.AutoSize = true;
             lbl_tariff.BackColor = Color.Transparent;
-            lbl_tariff.Location = new Point(112, 346);
+            lbl_tariff.Location = new Point(112, 281);
             lbl_tariff.Name = "lbl_tariff";
             lbl_tariff.Size = new Size(83, 15);
             lbl_tariff.TabIndex = 18;
@@ -279,7 +279,7 @@
             // 
             btn_Tariff.BackgroundImage = (Image)resources.GetObject("btn_Tariff.BackgroundImage");
             btn_Tariff.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Tariff.Location = new Point(59, 333);
+            btn_Tariff.Location = new Point(59, 268);
             btn_Tariff.Name = "btn_Tariff";
             btn_Tariff.Size = new Size(47, 40);
             btn_Tariff.TabIndex = 17;

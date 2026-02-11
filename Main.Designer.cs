@@ -49,6 +49,8 @@
             btn_ManillasFKS = new Button();
             lbl_CAM = new Label();
             btn_CAM = new Button();
+            lbl_tariff = new Label();
+            btn_Tariff = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 336);
+            statusStrip1.Location = new Point(0, 400);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(696, 22);
             statusStrip1.SizingGrip = false;
@@ -263,13 +265,36 @@
             btn_CAM.UseVisualStyleBackColor = true;
             btn_CAM.Click += btn_CAM_Click;
             // 
+            // lbl_tariff
+            // 
+            lbl_tariff.AutoSize = true;
+            lbl_tariff.BackColor = Color.Transparent;
+            lbl_tariff.Location = new Point(112, 346);
+            lbl_tariff.Name = "lbl_tariff";
+            lbl_tariff.Size = new Size(83, 15);
+            lbl_tariff.TabIndex = 18;
+            lbl_tariff.Text = "Cargar precios";
+            // 
+            // btn_Tariff
+            // 
+            btn_Tariff.BackgroundImage = (Image)resources.GetObject("btn_Tariff.BackgroundImage");
+            btn_Tariff.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Tariff.Location = new Point(59, 333);
+            btn_Tariff.Name = "btn_Tariff";
+            btn_Tariff.Size = new Size(47, 40);
+            btn_Tariff.TabIndex = 17;
+            btn_Tariff.UseVisualStyleBackColor = true;
+            btn_Tariff.Click += btn_Tariff_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(696, 358);
+            ClientSize = new Size(696, 422);
+            Controls.Add(lbl_tariff);
+            Controls.Add(btn_Tariff);
             Controls.Add(lbl_CAM);
             Controls.Add(btn_CAM);
             Controls.Add(lbl_ConfigFKS);
@@ -324,5 +349,7 @@
         private Button btn_Config;
         private Label lbl_CAM;
         private Button btn_CAM;
+        private Label lbl_tariff;
+        private Button btn_Tariff;
     }
 }

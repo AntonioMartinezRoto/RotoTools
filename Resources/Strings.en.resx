@@ -507,4 +507,49 @@
   <data name="L_SustituirPor" xml:space="preserve">
     <value>Sustituir por en MaterialesBase(EN)</value>
   </data>
+  <data name="L_TariffImporter" xml:space="preserve">
+    <value>Load tariff</value>
+  </data>
+  <data name="L_SeleccionarArchivo" xml:space="preserve">
+    <value>Select price file</value>
+  </data>
+  <data name="L_Tarifa" xml:space="preserve">
+    <value>Tariff</value>
+  </data>
+  <data name="L_TarifaObligatoria" xml:space="preserve">
+    <value>You must select a tariff.</value>
+  </data>
+  <data name="L_FicheroPreciosObligatorio" xml:space="preserve">
+    <value>You must select a file with prices before importing.</value>
+  </data>
+  <data name="L_ExcelSinTarifa" xml:space="preserve">
+    <value>The file does not contain a sheet called Tarifa</value>
+  </data>
+  <data name="L_TarifaSinDatos" xml:space="preserve">
+    <value>Tariff sheet contains no data</value>
+  </data>
+  <data name="L_PreciosCargados" xml:space="preserve">
+    <value>Tariff loaded successfully.</value>
+  </data>
+  <data name="L_TarifaCreada" xml:space="preserve">
+    <value>Tariff created successfully</value>
+  </data>
+  <data name="L_Archivo" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="L_NombreTarifaObligatorio" xml:space="preserve">
+    <value>Tariff name is required</value>
+  </data>
+  <data name="L_TarifaExistente" xml:space="preserve">
+    <value>Tariff with that name already exists.</value>
+  </data>
+  <data name="L_DivisaObligatoria" xml:space="preserve">
+    <value>You must select a currency</value>
+  </data>
+  <data name="L_CrearTarifa" xml:space="preserve">
+    <value>Create new tariff</value>
+  </data>
+  <data name="L_MonedaAsociada" xml:space="preserve">
+    <value>Associated currency</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ namespace RotoTools.Resources {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -84,6 +84,15 @@ namespace RotoTools.Resources {
         internal static string L_AplicarPlantillaTraduccion {
             get {
                 return ResourceManager.GetString("L_AplicarPlantillaTraduccion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Archivo.
+        /// </summary>
+        internal static string L_Archivo {
+            get {
+                return ResourceManager.GetString("L_Archivo", resourceCulture);
             }
         }
         
@@ -403,6 +412,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Crear tarifa nueva.
+        /// </summary>
+        internal static string L_CrearTarifa {
+            get {
+                return ResourceManager.GetString("L_CrearTarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Descripción.
         /// </summary>
         internal static string L_Descripcion {
@@ -417,6 +435,15 @@ namespace RotoTools.Resources {
         internal static string L_DescripcionesMB {
             get {
                 return ResourceManager.GetString("L_DescripcionesMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debe seleccionar una divisa(DE).
+        /// </summary>
+        internal static string L_DivisaObligatoria {
+            get {
+                return ResourceManager.GetString("L_DivisaObligatoria", resourceCulture);
             }
         }
         
@@ -480,6 +507,15 @@ namespace RotoTools.Resources {
         internal static string L_EscandallosInstalados {
             get {
                 return ResourceManager.GetString("L_EscandallosInstalados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El fichero no contiene una hoja llamada Tarifa.
+        /// </summary>
+        internal static string L_ExcelSinTarifa {
+            get {
+                return ResourceManager.GetString("L_ExcelSinTarifa", resourceCulture);
             }
         }
         
@@ -561,6 +597,15 @@ namespace RotoTools.Resources {
         internal static string L_FicheroConfigNoEncontrado {
             get {
                 return ResourceManager.GetString("L_FicheroConfigNoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debe seleccionar un fichero con precios antes de importar..
+        /// </summary>
+        internal static string L_FicheroPreciosObligatorio {
+            get {
+                return ResourceManager.GetString("L_FicheroPreciosObligatorio", resourceCulture);
             }
         }
         
@@ -826,6 +871,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Moneda asociada.
+        /// </summary>
+        internal static string L_MonedaAsociada {
+            get {
+                return ResourceManager.GetString("L_MonedaAsociada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No existe.
         /// </summary>
         internal static string L_NoExiste {
@@ -840,6 +894,15 @@ namespace RotoTools.Resources {
         internal static string L_Nombre {
             get {
                 return ResourceManager.GetString("L_Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El nombre de la tarifa es obligatorio.
+        /// </summary>
+        internal static string L_NombreTarifaObligatorio {
+            get {
+                return ResourceManager.GetString("L_NombreTarifaObligatorio", resourceCulture);
             }
         }
         
@@ -979,6 +1042,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Precios cargados correctamente..
+        /// </summary>
+        internal static string L_PreciosCargados {
+            get {
+                return ResourceManager.GetString("L_PreciosCargados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Presupuestado.
         /// </summary>
         internal static string L_Presupuestado {
@@ -1056,6 +1128,15 @@ namespace RotoTools.Resources {
         internal static string L_ScriptsEjecutados {
             get {
                 return ResourceManager.GetString("L_ScriptsEjecutados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar fichero de precios.
+        /// </summary>
+        internal static string L_SeleccionarArchivo {
+            get {
+                return ResourceManager.GetString("L_SeleccionarArchivo", resourceCulture);
             }
         }
         
@@ -1164,6 +1245,60 @@ namespace RotoTools.Resources {
         internal static string L_SustituirPor {
             get {
                 return ResourceManager.GetString("L_SustituirPor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarifa.
+        /// </summary>
+        internal static string L_Tarifa {
+            get {
+                return ResourceManager.GetString("L_Tarifa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tarifa creada correctamente..
+        /// </summary>
+        internal static string L_TarifaCreada {
+            get {
+                return ResourceManager.GetString("L_TarifaCreada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ya existe una tarifa con ese nombre..
+        /// </summary>
+        internal static string L_TarifaExistente {
+            get {
+                return ResourceManager.GetString("L_TarifaExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debe seleccionar una tarifa antes de importar..
+        /// </summary>
+        internal static string L_TarifaObligatoria {
+            get {
+                return ResourceManager.GetString("L_TarifaObligatoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La hoja Tarifa no contiene datos..
+        /// </summary>
+        internal static string L_TarifaSinDatos {
+            get {
+                return ResourceManager.GetString("L_TarifaSinDatos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cargar precios.
+        /// </summary>
+        internal static string L_TariffImporter {
+            get {
+                return ResourceManager.GetString("L_TariffImporter", resourceCulture);
             }
         }
         

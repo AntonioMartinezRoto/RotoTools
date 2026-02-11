@@ -62,7 +62,7 @@
             // 
             btn_SaveConfig.Image = (Image)resources.GetObject("btn_SaveConfig.Image");
             btn_SaveConfig.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_SaveConfig.Location = new Point(628, 413);
+            btn_SaveConfig.Location = new Point(645, 414);
             btn_SaveConfig.Margin = new Padding(0);
             btn_SaveConfig.Name = "btn_SaveConfig";
             btn_SaveConfig.Padding = new Padding(2, 0, 0, 0);

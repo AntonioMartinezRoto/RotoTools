@@ -1008,6 +1008,99 @@ namespace RotoTools
             return String.Empty;
             
         }
+        public static string GetContenidoEscandalloRO_C_OCULTAR(List<Option> optionsList)
+        {
+            string contenidoEscandallo = "";
+            
+            foreach (Option opcion in optionsList.OrderBy(o => o.Name))
+            {
+                contenidoEscandallo += $"ESTABLECEOPCION(\"RO_{opcion.Name}\",\"Oculto\");\r\n";
+            }
+
+            return contenidoEscandallo;
+        }
+        public static void InsertTariff(string tariffName, string divisa)
+        {
+            string queryInsert = "INSERT INTO Tariff(AliasInEntity,Type,Name,IsCost,TariffOrder,Currency,CustomerCode,CustomerEntityId,CustomerTypeId," +
+                                                    "ProjectCode,SalesDocumentNumber,SalesDocumentVersion,PaintFactor,TariffPaintUnitsType,TariffAForReseller,TariffBForReseller)" +
+                                "SELECT NULL,0,@tariffName,0,-1,@divisa,0,NULL,0,0,0,0,1.000000,6,NULL,NULL";
+
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(queryInsert, conn))
+            {
+                cmd.Parameters.AddWithValue("@tariffName", tariffName);
+                cmd.Parameters.AddWithValue("@divisa", divisa);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void InsertTariffAlLargo(string tariffName, string divisa)
+        {
+            string queryInsert = "INSERT INTO Tariff(AliasInEntity,Type,Name,IsCost,TariffOrder,Currency,CustomerCode,CustomerEntityId,CustomerTypeId," +
+                                                    "ProjectCode,SalesDocumentNumber,SalesDocumentVersion,PaintFactor,TariffPaintUnitsType,TariffAForReseller,TariffBForReseller)" +
+                                "SELECT NULL,4,@tariffName,0,-1,@divisa,0,NULL,0,0,0,0,1.000000,6,NULL,NULL";
+
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(queryInsert, conn))
+            {
+                cmd.Parameters.AddWithValue("@tariffName", tariffName);
+                cmd.Parameters.AddWithValue("@divisa", divisa);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static int UpdateTariffOrder(string tariffName)
+        {
+            string queryUpdate = "UPDATE Tariff SET TariffOrder=(SELECT ISNULL(MAX(TariffOrder)+1, 1) FROM Tariff) WHERE Type = 0 AND Name=@tariffName";
+            
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(queryUpdate, conn))
+            {
+                cmd.Parameters.AddWithValue("@tariffName", tariffName);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public static int UpdateTariffOrderAlLargo(string tariffName)
+        {
+            string queryUpdate = "UPDATE Tariff SET TariffOrder=(SELECT ISNULL(MAX(TariffOrder)+1, 1) FROM Tariff) WHERE Type = 4 AND Name=@tariffName";
+
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(queryUpdate, conn))
+            {
+                cmd.Parameters.AddWithValue("@tariffName", tariffName);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public static bool ExisteTariffEnBD(string tariffName, int type)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM Tariff WHERE Name = '{tariffName}' AND Type = {type}", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+            }
+            return false;
+        }
+        public static string GetDivisaPorDefecto()
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Empresa=1 AND Nombre=N'DivisaDefecto'", conn))
+            {
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
         public static int EjecutarNonQuery(string sql)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))

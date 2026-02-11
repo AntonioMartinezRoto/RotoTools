@@ -21,27 +21,27 @@ namespace RotoTools
         #region public methods
 
         #region Utilidades BBDD
-        public static string GetServer()
+        public static string? GetServer()
         {
             string baseKey = @"HKEY_CURRENT_USER\SOFTWARE\Preference\OLEDB";
             return Registry.GetValue(baseKey, "Server", null) as string;
         }
-        public static string GetDataBase()
+        public static string? GetDataBase()
         {
             string baseKey = @"HKEY_CURRENT_USER\SOFTWARE\Preference\OLEDB";
             return Registry.GetValue(baseKey, "Database", null) as string;
         }
-        public static string GetConnectionString()
+        public static string? GetConnectionString()
         {
             try
             {
                 string baseKey = @"HKEY_CURRENT_USER\SOFTWARE\Preference\OLEDB";
 
-                string database = Registry.GetValue(baseKey, "Database", null) as string;
-                string server = Registry.GetValue(baseKey, "Server", null) as string;
-                string user = Registry.GetValue(baseKey, "User", null) as string;
-                string mru0 = Registry.GetValue(baseKey, "MRU0", null) as string;
-                object trustedObj = Registry.GetValue(baseKey, "TrustedConnection", null);
+                string? database = Registry.GetValue(baseKey, "Database", null) as string;
+                string? server = Registry.GetValue(baseKey, "Server", null) as string;
+                string? user = Registry.GetValue(baseKey, "User", null) as string;
+                string? mru0 = Registry.GetValue(baseKey, "MRU0", null) as string;
+                object? trustedObj = Registry.GetValue(baseKey, "TrustedConnection", null);
 
                 if (string.IsNullOrEmpty(database) || string.IsNullOrEmpty(server) || string.IsNullOrEmpty(mru0))
                     throw new Exception("Faltan valores en el registro para construir la cadena de conexión.");
@@ -62,7 +62,7 @@ namespace RotoTools
                     return $"Data Source={server};Initial Catalog={database};User ID={user};Password={password};MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True";
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -726,7 +726,7 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-        public static string GetMechanizedConditionRowId(string conditionName)
+        public static string? GetMechanizedConditionRowId(string conditionName)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedConditions WHERE Name = @name", conn))
@@ -744,7 +744,7 @@ namespace RotoTools
             }
             return String.Empty;
         }
-        public static string GetMechanizedConditionRowIdByXmlConditions(string xmlConditions)
+        public static string? GetMechanizedConditionRowIdByXmlConditions(string xmlConditions)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedConditions WHERE XmlConditions like @xmlConditions", conn))
@@ -1072,7 +1072,7 @@ namespace RotoTools
             }
             return false;
         }
-        public static string GetDivisaPorDefecto()
+        public static string? GetDivisaPorDefecto()
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Empresa=1 AND Nombre=N'DivisaDefecto'", conn))
@@ -1187,7 +1187,7 @@ namespace RotoTools
 
         #region private methos
 
-        private static string ExtraerValorRegistro(string fuente, string clave)
+        private static string? ExtraerValorRegistro(string fuente, string clave)
         {
             if (string.IsNullOrEmpty(fuente) || string.IsNullOrEmpty(clave))
                 return null;

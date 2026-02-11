@@ -78,6 +78,11 @@ namespace RotoTools
             CamMenu camMenuForm = new CamMenu();
             camMenuForm.ShowDialog();
         }
+        private void btn_Tariff_Click(object sender, EventArgs e)
+        {
+            TariffsImporterMenu tariffsImporterMenuForm = new TariffsImporterMenu();
+            tariffsImporterMenuForm.ShowDialog();
+        }
         #endregion
 
         #region Private methods
@@ -95,12 +100,14 @@ namespace RotoTools
             lbl_Actualizacion.Text = LocalizationManager.GetString("L_Actualizador");
             lbl_Traduccion.Text = LocalizationManager.GetString("L_Traduccion");
             lbl_ConfigFKS.Text = LocalizationManager.GetString("L_ConfManillasFKS");
+            lbl_tariff.Text = LocalizationManager.GetString("L_TariffImporter");
         }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
         #endregion
+
 
     }
 }

@@ -76,6 +76,7 @@
             // txt_ConectorName
             // 
             txt_ConectorName.Location = new Point(512, 30);
+            txt_ConectorName.MaxLength = 25;
             txt_ConectorName.Name = "txt_ConectorName";
             txt_ConectorName.Size = new Size(174, 23);
             txt_ConectorName.TabIndex = 22;

@@ -507,4 +507,49 @@
   <data name="L_SustituirPor" xml:space="preserve">
     <value>Sustituir por en MaterialesBase</value>
   </data>
+  <data name="L_TariffImporter" xml:space="preserve">
+    <value>Cargar precios</value>
+  </data>
+  <data name="L_SeleccionarArchivo" xml:space="preserve">
+    <value>Seleccionar fichero de precios</value>
+  </data>
+  <data name="L_Tarifa" xml:space="preserve">
+    <value>Tarifa</value>
+  </data>
+  <data name="L_TarifaObligatoria" xml:space="preserve">
+    <value>Debe seleccionar una tarifa antes de importar.</value>
+  </data>
+  <data name="L_FicheroPreciosObligatorio" xml:space="preserve">
+    <value>Debe seleccionar un fichero con precios antes de importar.</value>
+  </data>
+  <data name="L_ExcelSinTarifa" xml:space="preserve">
+    <value>El fichero no contiene una hoja llamada Tarifa</value>
+  </data>
+  <data name="L_TarifaSinDatos" xml:space="preserve">
+    <value>La hoja Tarifa no contiene datos.</value>
+  </data>
+  <data name="L_PreciosCargados" xml:space="preserve">
+    <value>Precios cargados correctamente.</value>
+  </data>
+  <data name="L_TarifaCreada" xml:space="preserve">
+    <value>Tarifa creada correctamente.</value>
+  </data>
+  <data name="L_Archivo" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="L_NombreTarifaObligatorio" xml:space="preserve">
+    <value>El nombre de la tarifa es obligatorio</value>
+  </data>
+  <data name="L_TarifaExistente" xml:space="preserve">
+    <value>Ya existe una tarifa con ese nombre.</value>
+  </data>
+  <data name="L_DivisaObligatoria" xml:space="preserve">
+    <value>Debe seleccionar una divisa(DE)</value>
+  </data>
+  <data name="L_CrearTarifa" xml:space="preserve">
+    <value>Crear tarifa nueva</value>
+  </data>
+  <data name="L_MonedaAsociada" xml:space="preserve">
+    <value>Moneda asociada</value>
+  </data>
 </root>

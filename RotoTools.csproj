@@ -4029,7 +4029,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ExportacionOpera.cs">
+    <Compile Update="Exportador\ExportacionOpera.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

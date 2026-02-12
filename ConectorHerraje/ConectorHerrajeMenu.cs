@@ -22,8 +22,6 @@ namespace RotoTools
         private int HardwareType { get; set; }
         private bool xmlCargado = false;
         private XmlData xmlOrigen = new();
-        private bool conectorCargado = false;
-        private Connector connectorHerraje = new();
         private XmlNamespaceManager nsmgr;
 
         #endregion

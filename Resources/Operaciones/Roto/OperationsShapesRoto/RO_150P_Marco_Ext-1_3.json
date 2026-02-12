@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_150P_Marco_Ext",
+  "BasicShape": "RO_M135_T5",
+  "External": 1,
+  "XDistance": "0",
+  "YDistance": "11",
+  "ZDistance": "0",
+  "Mill": "",
+  "Depth": 0,
+  "XmlParameters": "<VariablesList />",
+  "Dimension": 0,
+  "Rotation": 0,
+  "Conditions": "",
+  "Order": 0
+}

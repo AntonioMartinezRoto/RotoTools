@@ -19,7 +19,7 @@ namespace RotoTools
         private List<OperationInstalarGridITem> _allOperations = new List<OperationInstalarGridITem>();
         private DataTable _dataTable;
         private BindingSource _bindingSource = new BindingSource();
-        private BindingSource _bindingDetalleOperaciones;
+        private BindingSource _bindingDetalleOperaciones = new BindingSource();
         private List<OperationGridRow> _allData;
         private Dictionary<string, bool> _cacheExisteBD = new();
         private List<OperationsShapes> _operationsShapesListEmbebidos = new List<OperationsShapes>();
@@ -1067,6 +1067,7 @@ namespace RotoTools
             _cacheExisteBD = new();
 
             _bindingSource.DataSource = new List<OperationInstalarGridITem>();
+            _bindingDetalleOperaciones.DataSource = new List<OperationGridRow>();
         }
         private bool ExisteOperacionEnBD(string operationName)
         {

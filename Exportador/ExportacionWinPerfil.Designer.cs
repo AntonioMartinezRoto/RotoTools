@@ -185,6 +185,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Exportación a WinPerfil";
             Load += WinPerfilExportForm_Load;
+            KeyDown += ExportacionWinPerfil_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }

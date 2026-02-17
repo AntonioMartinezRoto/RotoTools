@@ -23,6 +23,7 @@ namespace RotoTools
         public bool showFittingId { get; set; }
         public bool showFittingLength { get; set; }
         public bool formatoTabla { get; set; }
+        public bool showSetId { get; set; }
 
         #endregion
 
@@ -86,12 +87,29 @@ namespace RotoTools
                 chkList_Sets.SetItemChecked(i, chk_All.Checked);
             }
         }
+        private void ExportacionWinPerfil_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F11)
+            {
+                ExportacionOpciones exportacionOpcionesForm = new ExportacionOpciones(showSetDescriptionId, showSetDescriptionPosition, showFittingId, showFittingLength, formatoTabla, showSetId);
+                if (exportacionOpcionesForm.ShowDialog() == DialogResult.OK)
+                {
+                    //Actualizar opciones de visualización según lo seleccionado en el formulario de opciones
+                    showSetDescriptionId = exportacionOpcionesForm.ShowSetDescriptionId;
+                    showSetDescriptionPosition = exportacionOpcionesForm.ShowSetDescriptionPosition;
+                    showFittingId = exportacionOpcionesForm.ShowFittingId;
+                    showFittingLength = exportacionOpcionesForm.ShowFittingLength;
+                    formatoTabla = exportacionOpcionesForm.FormatoTabla;
+                    showSetId = exportacionOpcionesForm.ShowSetId;
+                }
+            }
+        }
         #endregion
 
         #region PRIVATE METHODS
         private void CargarTextos()
         {
-            this.Text= LocalizationManager.GetString("L_ExportarWinPerfil");
+            this.Text = LocalizationManager.GetString("L_ExportarWinPerfil");
             lbl_Profile.Text = LocalizationManager.GetString("L_Perfil");
             lbl_System.Text = LocalizationManager.GetString("L_Sistema");
             lbl_Colour.Text = LocalizationManager.GetString("L_Color");
@@ -187,10 +205,16 @@ namespace RotoTools
                                         IRow fila = hoja.CreateRow(filaActual++);
 
                                         int col = 0;
-                                        if (showSetDescriptionId)
-                                            fila.CreateCell(col++).SetCellValue(setDescription.Id);
+
+
+                                        if (showSetId)
+                                            fila.CreateCell(col++).SetCellValue(set.Id);
 
                                         fila.CreateCell(col++).SetCellValue(set.Code);
+
+                                        if (showSetDescriptionId)
+                                            fila.CreateCell(col++).SetCellValue(setDescription.Id);
+                                        
                                         fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
                                         fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
                                         fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
@@ -221,10 +245,15 @@ namespace RotoTools
                                 {
                                     IRow fila = hoja.CreateRow(filaActual++);
                                     int col = 0;
+
+                                    if (showSetId)
+                                        fila.CreateCell(col++).SetCellValue(set.Id);
+
+                                    fila.CreateCell(col++).SetCellValue(set.Code);
+
                                     if (showSetDescriptionId)
                                         fila.CreateCell(col++).SetCellValue(setDescription.Id);
 
-                                    fila.CreateCell(col++).SetCellValue(set.Code);
                                     fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
                                     fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
                                     fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
@@ -260,6 +289,7 @@ namespace RotoTools
                 if (formatoTabla)
                 {
                     int columnasTotales = 10;
+                    if (showSetId) columnasTotales++;                        
                     if (showSetDescriptionId) columnasTotales++;
                     if (showSetDescriptionPosition) columnasTotales++;
                     if (showFittingId) columnasTotales++;
@@ -302,10 +332,14 @@ namespace RotoTools
 
             int col = 0;
 
+            if (showSetId)
+                filaCabecera.CreateCell(col++).SetCellValue("Set Id");
+
+            filaCabecera.CreateCell(col++).SetCellValue("Tabla");
+
             if (showSetDescriptionId)
                 filaCabecera.CreateCell(col++).SetCellValue("SetDescription Id");
 
-            filaCabecera.CreateCell(col++).SetCellValue("Tabla");
             filaCabecera.CreateCell(col++).SetCellValue("Alto desde");
             filaCabecera.CreateCell(col++).SetCellValue("Alto hasta");
             filaCabecera.CreateCell(col++).SetCellValue("Ancho desde");
@@ -511,10 +545,14 @@ namespace RotoTools
             // El valor es en 1/256 de unidad de carácter
             int col = 0;
 
-            if (showSetDescriptionId)
-                hoja.SetColumnWidth(col++, 20 * 256); // Id
+            if (showSetId)
+                hoja.SetColumnWidth(col++, 20 * 256); // Set Id
 
             hoja.SetColumnWidth(col++, 45 * 256); // Código set
+
+            if (showSetDescriptionId)
+                hoja.SetColumnWidth(col++, 20 * 256); // SetDescriptionId
+
             hoja.SetColumnWidth(col++, 15 * 256); // MinHeight
             hoja.SetColumnWidth(col++, 15 * 256); // MaxHeight
             hoja.SetColumnWidth(col++, 15 * 256); // MinWidth
@@ -592,6 +630,5 @@ namespace RotoTools
             };
         }
         #endregion
-
     }
 }

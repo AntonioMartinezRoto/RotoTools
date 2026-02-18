@@ -2908,6 +2908,10 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
+                else if (set.Code.ToUpper().Contains("2SC") && set.Code.ToUpper().Contains("PASADOR Y CLIP"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
@@ -2979,6 +2983,10 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
+                }
+                else if (set.Code.ToUpper().Contains("2SC") && set.Code.ToUpper().Contains("PASADOR Y CLIP"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
@@ -4897,6 +4905,10 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
                 }
+                else if (set.Code.ToUpper().Contains("2SC") && set.Code.ToUpper().Contains("PASADOR Y CLIP"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
+                }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_SEGURIDAD", "AL_RC2"));
@@ -4954,6 +4966,10 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                     }
+                }
+                else if (set.Code.ToUpper().Contains("2SC") && set.Code.ToUpper().Contains("PASADOR Y CLIP"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("NT_AL_HOJA PASIVA", "AL_Clip y Pasador"));
                 }
                 else if (set.Code.ToUpper().Contains("RC2"))
                 {

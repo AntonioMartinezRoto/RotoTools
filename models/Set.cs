@@ -18,7 +18,7 @@ namespace RotoEntities
         public List<Option> OptionConectorList { get; set; }
         public List<Option> OpeningFlagConectorList { get; set; }
         public bool IsTitle { get; set; }
-
+        public int WindowType { get; set; }
         public Set(string script)
         {
             Script = script;

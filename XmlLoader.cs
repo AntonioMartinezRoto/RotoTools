@@ -330,6 +330,10 @@ namespace RotoTools
                     set.MaxHeight = setNode.Attributes["maxHeight"]?.Value;
                     set.Version = LoadSetVersion(setNode);
                     set.Opening = GetSetOpening(setNode);
+                    
+                    if (set.Code != null) 
+                        set.WindowType = SetWindowType(set.Code, set.Opening);
+                    
                     set.SetDescriptionList = GetSetDescripcionList(setNode, fittingList);
                     ShowLoadingInfo("Set", set.Code);
 
@@ -343,6 +347,7 @@ namespace RotoTools
                 return null;
             }
         }
+
         public string LoadSetVersion(XmlNode setNode)
         {
             try
@@ -372,6 +377,102 @@ namespace RotoTools
                 return "";
             }
         }
+        private int SetWindowType(string setCode, Opening opening)
+        {
+            if (opening.Turn != null && opening.Tilt != null && opening.Right != null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn != null && opening.Tilt != null && opening.Left != null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn != null && opening.Tilt == null && opening.Right != null && opening.Outer == null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn != null && opening.Tilt == null && opening.Left != null && opening.Outer == null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn != null && opening.Tilt == null && opening.Right != null && opening.Outer != null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn != null && opening.Tilt == null && opening.Left != null && opening.Outer != null)
+            {
+                return SetWindowTypeFromCode(setCode);
+            }
+            if (opening.Turn == null && opening.Tilt == null && opening.Left != null && opening.Sliding != null && opening.Lift == null)
+            {
+                return (int)enumWindowType.Corredera;
+            }
+            if (opening.Turn == null && opening.Tilt == null && opening.Right != null && opening.Sliding != null && opening.Lift == null)
+            {
+                return (int)enumWindowType.Corredera;
+            }
+            if (opening.Turn == null && opening.Tilt == null && opening.Right == null && opening.Left == null && opening.Sliding != null)
+            {
+                return (int)enumWindowType.Corredera;
+            }
+            if (opening.Turn == null && opening.Tilt == null && opening.Right == null && opening.Left != null && opening.Sliding != null && opening.Lift != null)
+            {
+                return (int)enumWindowType.Elevable;
+            }
+            if (opening.Turn == null && opening.Tilt == null && opening.Right != null && opening.Left == null && opening.Sliding != null && opening.Lift != null)
+            {
+                return (int)enumWindowType.Elevable;
+            }
+            if (opening.Turn == null && opening.Tilt != null && opening.Bottom != null && opening.Sliding == null)
+            {
+                return (int)enumWindowType.Abatible;
+            }
+            if (opening.Turn == null && opening.Tilt != null && opening.Right != null && opening.Left == null && opening.Sliding != null && opening.Bottom != null)
+            {
+                return (int)enumWindowType.Osciloparalela;
+            }
+            if (opening.Turn == null && opening.Tilt != null && opening.Right == null && opening.Left != null && opening.Sliding != null && opening.Bottom != null)
+            {
+                return (int)enumWindowType.Osciloparalela;
+            }
+
+            return (int)enumWindowType.Otro;
+        }
+
+        private int SetWindowTypeFromCode(string setCode)
+        {
+            if (setCode.ToUpper().Contains("BALC"))
+            {
+                return (int)enumWindowType.Balconera;
+            }
+            if (setCode.ToUpper().Contains("SEC"))
+            {
+                return (int)enumWindowType.PuertaSecundaria;
+            }
+            if (setCode.ToUpper().Contains("PUERTA"))
+            {
+                return (int)enumWindowType.Puerta;
+            }
+            if (setCode.ToUpper().Contains("PLG"))
+            {
+                return (int)enumWindowType.Plegable;
+            }
+            if (setCode.ToUpper().Contains("V)2P"))
+            {
+                return (int)enumWindowType.Ventana;
+            }
+            if (setCode.ToUpper().Contains("OSCILOBATIENTE"))
+            {
+                return (int)enumWindowType.Ventana;
+            }
+            if (setCode.ToUpper().Contains("PRACTICABLE"))
+            {
+                return (int)enumWindowType.Ventana;
+            }
+
+            return (int)enumWindowType.Otro;
+        }
+
         public string LoadFittingsVersion(XmlDocument doc)
         {
             // Navega al nodo Fittings

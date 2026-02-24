@@ -41,6 +41,7 @@
             btn_ExportSets = new Button();
             chkList_Sets = new CheckedListBox();
             progress_Export = new ProgressBar();
+            btn_FiltrarPerfil = new Button();
             SuspendLayout();
             // 
             // lbl_Profile
@@ -78,7 +79,7 @@
             cmb_Perfil.FormattingEnabled = true;
             cmb_Perfil.Location = new Point(109, 27);
             cmb_Perfil.Name = "cmb_Perfil";
-            cmb_Perfil.Size = new Size(311, 23);
+            cmb_Perfil.Size = new Size(274, 23);
             cmb_Perfil.TabIndex = 3;
             // 
             // cmb_Sistema
@@ -86,7 +87,7 @@
             cmb_Sistema.FormattingEnabled = true;
             cmb_Sistema.Location = new Point(109, 52);
             cmb_Sistema.Name = "cmb_Sistema";
-            cmb_Sistema.Size = new Size(311, 23);
+            cmb_Sistema.Size = new Size(310, 23);
             cmb_Sistema.TabIndex = 4;
             // 
             // cmb_Color
@@ -160,6 +161,19 @@
             progress_Export.Size = new Size(490, 22);
             progress_Export.TabIndex = 13;
             // 
+            // btn_FiltrarPerfil
+            // 
+            btn_FiltrarPerfil.BackColor = Color.Transparent;
+            btn_FiltrarPerfil.BackgroundImage = (Image)resources.GetObject("btn_FiltrarPerfil.BackgroundImage");
+            btn_FiltrarPerfil.BackgroundImageLayout = ImageLayout.Center;
+            btn_FiltrarPerfil.Location = new Point(389, 26);
+            btn_FiltrarPerfil.Margin = new Padding(3, 2, 3, 2);
+            btn_FiltrarPerfil.Name = "btn_FiltrarPerfil";
+            btn_FiltrarPerfil.Size = new Size(30, 24);
+            btn_FiltrarPerfil.TabIndex = 15;
+            btn_FiltrarPerfil.UseVisualStyleBackColor = false;
+            btn_FiltrarPerfil.Click += btn_FiltrarPerfil_Click;
+            // 
             // ExportacionWinPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -167,6 +181,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(570, 768);
+            Controls.Add(btn_FiltrarPerfil);
             Controls.Add(chkList_Sets);
             Controls.Add(progress_Export);
             Controls.Add(btn_ExportSets);
@@ -204,5 +219,6 @@
         private Button btn_ExportSets;
         private CheckedListBox chkList_Sets;
         private ProgressBar progress_Export;
+        private Button btn_FiltrarPerfil;
     }
 }

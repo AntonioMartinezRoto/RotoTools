@@ -20,6 +20,19 @@ namespace RotoTools
             PracticableIzquierdaExt = 13,
             PracticableDerechaExt = 14,
         }
+        public enum enumWindowType
+        {
+            Ventana = 1,
+            Balconera = 2,
+            PuertaSecundaria = 3,
+            Puerta = 4,
+            Corredera = 5,
+            Elevable = 6,
+            Osciloparalela = 7,
+            Abatible = 8,
+            Plegable = 9,
+            Otro = 10
+        }
         public enum enumHardwareType
         {
             PVC = 1,

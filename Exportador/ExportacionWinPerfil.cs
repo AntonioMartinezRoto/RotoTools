@@ -1,7 +1,9 @@
 ﻿using NPOI.OpenXmlFormats.Spreadsheet;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.Streaming;
 using NPOI.XSSF.UserModel;
 using RotoEntities;
+using RotoTools.Exportador;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +13,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
     public partial class ExportacionWinPerfil : Form
     {
         #region PRIVATE PROPERTIES
+
+        private List<Value> _perfilesListSelected = new List<Value>();
+        private bool _filtroListaPerfilesActivo = false;
+
+        #endregion
+
+        #region Public properties
         public XmlData ExportDataXml { get; set; }
         public bool showSetDescriptionId { get; set; }
         public bool showSetDescriptionPosition { get; set; }
@@ -24,7 +34,6 @@ namespace RotoTools
         public bool showFittingLength { get; set; }
         public bool formatoTabla { get; set; }
         public bool showSetId { get; set; }
-
         #endregion
 
         #region CONSTRUCTORS
@@ -104,6 +113,28 @@ namespace RotoTools
                 }
             }
         }
+        private void btn_FiltrarPerfil_Click(object sender, EventArgs e)
+        {
+            List<Value> profileList = ExportDataXml.OptionList.FirstOrDefault(o => o.Name == "1PERFIL").ValuesList.OrderBy(v => v.Valor).ToList();
+            ExportacionWinPerfilListaPerfiles exportacionWinPerfilListaPerfilesForm = new ExportacionWinPerfilListaPerfiles(profileList, _perfilesListSelected);
+
+            if (exportacionWinPerfilListaPerfilesForm.ShowDialog() == DialogResult.OK)
+            {
+                this._perfilesListSelected = exportacionWinPerfilListaPerfilesForm.PerfilesListSelected;
+            }
+
+            if (this._perfilesListSelected.Any())
+            {
+                cmb_Perfil.SelectedIndex = -1;
+                cmb_Perfil.Enabled = false;
+                _filtroListaPerfilesActivo = true;
+            }
+            else
+            {
+                cmb_Perfil.Enabled = true;
+                _filtroListaPerfilesActivo = false;
+            }
+        }
         #endregion
 
         #region PRIVATE METHODS
@@ -173,21 +204,63 @@ namespace RotoTools
             try
             {
                 EnableControls(false);
-                XSSFWorkbook workbook = new XSSFWorkbook();
-                ISheet hoja = workbook.CreateSheet("Roto");
+                SXSSFWorkbook workbook = new SXSSFWorkbook(500);
 
-                CreateHeader(hoja);
+
+                ISheet hojaTodo = workbook.CreateSheet("Todo");
+                ISheet hojaVentanas = workbook.CreateSheet("Ventanas");
+                ISheet hojaBalconeras = workbook.CreateSheet("Balconeras");
+                ISheet hojaPuertas = workbook.CreateSheet("Puertas");
+                ISheet hojaCorrederas = workbook.CreateSheet("Correderas");
+                ISheet hojaElevables = workbook.CreateSheet("Elevables");
+                ISheet hojaOsciloparalelas = workbook.CreateSheet("Osciloparalelas");
+                ISheet hojaAbatibles = workbook.CreateSheet("Abatibles");
+                ISheet hojaPlegables = workbook.CreateSheet("Plegables");
+
+
+                CreateHeader(hojaTodo);
+                CreateHeader(hojaVentanas);
+                CreateHeader(hojaBalconeras);
+                CreateHeader(hojaPuertas);
+                CreateHeader(hojaCorrederas);
+                CreateHeader(hojaElevables);
+                CreateHeader(hojaOsciloparalelas);
+                CreateHeader(hojaAbatibles);
+                CreateHeader(hojaPlegables);
 
                 int totalFilas = 0;
+                string setsOtros = String.Empty;
                 foreach (Set set in chkList_Sets.CheckedItems.OfType<Set>())
                 {
                     totalFilas += set.SetDescriptionList?.Count ?? 0;
+                    if (set.WindowType == (int)enumWindowType.Otro)
+                    {
+                        setsOtros += set.Code + Environment.NewLine;
+                    }
                 }
 
                 progress_Export.Value = 0;
-                progress_Export.Maximum = totalFilas > 0 ? totalFilas : 1; // Evitar división por cero
+                progress_Export.Maximum = totalFilas > 0 ? totalFilas : 1;
 
-                int filaActual = 1;
+                int filaActualTodo = 1;
+                int filaActualVentanas = 1;
+                int filaActualBalconeras = 1;
+                int filaActualPuertas = 1;
+                int filaActualCorrederas = 1;
+                int filaActualElevables = 1;
+                int filaActualOsciloparalelas = 1;
+                int filaActualAbatibles = 1;
+                int filaActualPlegables = 1;
+
+                if (!String.IsNullOrEmpty(setsOtros))
+                {
+                    MessageBox.Show(setsOtros, "Los siguientes sets están marcados como 'Otro' y se incluirán en la hoja 'Todo'", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                var fittingDict = ExportDataXml.FittingList
+                                    .GroupBy(f => f.Ref)
+                                    .ToDictionary(g => g.Key, g => g.First());
+
                 foreach (var itemListChecked in chkList_Sets.CheckedItems)
                 {
                     Set set = itemListChecked as Set;
@@ -202,39 +275,37 @@ namespace RotoTools
                                     string condiciones = GetOptionsStringArticle(setDescription, article);
                                     if (GenerateRowCheckingConditions(condiciones))
                                     {
-                                        IRow fila = hoja.CreateRow(filaActual++);
+                                        //Insertar en hoja general
+                                        InsertRowFittingFicticio(hojaTodo, filaActualTodo++, set, setDescription, article, condiciones, fittingDict);
 
-                                        int col = 0;
-
-
-                                        if (showSetId)
-                                            fila.CreateCell(col++).SetCellValue(set.Id);
-
-                                        fila.CreateCell(col++).SetCellValue(set.Code);
-
-                                        if (showSetDescriptionId)
-                                            fila.CreateCell(col++).SetCellValue(setDescription.Id);
-                                        
-                                        fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
-                                        fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
-                                        fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
-                                        fila.CreateCell(col++).SetCellValue(setDescription.MaxWidth);
-
-                                        if (showFittingId)
-                                            fila.CreateCell(col++).SetCellValue(setDescription.FittingId);
-
-                                        fila.CreateCell(col++).SetCellValue(ExportDataXml.FittingList.FirstOrDefault(f => f.Ref == article.Ref.ToString())?.Description);
-                                        fila.CreateCell(col++).SetCellValue(GetFinalReferenceColor(article.Ref));
-
-                                        if (showSetDescriptionPosition)
-                                            fila.CreateCell(col++).SetCellValue(setDescription.Position);
-
-                                        if (showFittingLength)
-                                            fila.CreateCell(col++).SetCellValue(ExportDataXml.FittingList.FirstOrDefault(f => f.Ref == article.Ref.ToString()).Lenght);
-
-                                        fila.CreateCell(col++).SetCellValue(GetColour(article.Ref));
-                                        fila.CreateCell(col++).SetCellValue(1);
-                                        fila.CreateCell(col++).SetCellValue(condiciones);
+                                        switch (set.WindowType)
+                                        {
+                                            case (int)enumWindowType.Ventana:
+                                                InsertRowFittingFicticio(hojaVentanas, filaActualVentanas++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Balconera:
+                                            case (int)enumWindowType.PuertaSecundaria:
+                                                InsertRowFittingFicticio(hojaBalconeras, filaActualBalconeras++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Puerta:
+                                                InsertRowFittingFicticio(hojaPuertas, filaActualPuertas++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Corredera:
+                                                InsertRowFittingFicticio(hojaCorrederas, filaActualCorrederas++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Elevable:
+                                                InsertRowFittingFicticio(hojaElevables, filaActualElevables++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Osciloparalela:
+                                                InsertRowFittingFicticio(hojaOsciloparalelas, filaActualOsciloparalelas++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Abatible:
+                                                InsertRowFittingFicticio(hojaAbatibles, filaActualAbatibles++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                            case (int)enumWindowType.Plegable:
+                                                InsertRowFittingFicticio(hojaPlegables, filaActualPlegables++, set, setDescription, article, condiciones, fittingDict);
+                                                break;
+                                        }
                                     }
                                 }
                             }
@@ -243,66 +314,98 @@ namespace RotoTools
                                 string condicionesSetDescription = GetOptionsString(setDescription);
                                 if (GenerateRowCheckingConditions(condicionesSetDescription))
                                 {
-                                    IRow fila = hoja.CreateRow(filaActual++);
-                                    int col = 0;
+                                    //Insertar en hoja general
+                                    InsertRowFitting(hojaTodo, filaActualTodo++, set, setDescription, condicionesSetDescription);
 
-                                    if (showSetId)
-                                        fila.CreateCell(col++).SetCellValue(set.Id);
-
-                                    fila.CreateCell(col++).SetCellValue(set.Code);
-
-                                    if (showSetDescriptionId)
-                                        fila.CreateCell(col++).SetCellValue(setDescription.Id);
-
-                                    fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
-                                    fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
-                                    fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
-                                    fila.CreateCell(col++).SetCellValue(setDescription.MaxWidth);
-
-                                    if (showFittingId)
-                                        fila.CreateCell(col++).SetCellValue(setDescription.FittingId);
-
-                                    fila.CreateCell(col++).SetCellValue(setDescription.Fitting?.Description);
-                                    fila.CreateCell(col++).SetCellValue(GetFinalReferenceColor(setDescription.Fitting?.Ref));
-
-                                    if (showSetDescriptionPosition)
-                                        fila.CreateCell(col++).SetCellValue(setDescription.Position);
-
-                                    if (showFittingLength)
-                                        fila.CreateCell(col++).SetCellValue(setDescription.Fitting.Lenght);
-
-                                    fila.CreateCell(col++).SetCellValue(GetColour(setDescription.Fitting?.Ref));
-                                    fila.CreateCell(col++).SetCellValue(1);
-                                    fila.CreateCell(col++).SetCellValue(condicionesSetDescription);
+                                    switch (set.WindowType)
+                                    {
+                                        case (int)enumWindowType.Ventana:
+                                            InsertRowFitting(hojaVentanas, filaActualVentanas++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Balconera:
+                                        case (int)enumWindowType.PuertaSecundaria:
+                                            InsertRowFitting(hojaBalconeras, filaActualBalconeras++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Puerta:
+                                            InsertRowFitting(hojaPuertas, filaActualPuertas++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Corredera:
+                                            InsertRowFitting(hojaCorrederas, filaActualCorrederas++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Elevable:
+                                            InsertRowFitting(hojaElevables, filaActualElevables++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Osciloparalela:
+                                            InsertRowFitting(hojaOsciloparalelas, filaActualOsciloparalelas++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Abatible:
+                                            InsertRowFitting(hojaAbatibles, filaActualAbatibles++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                        case (int)enumWindowType.Plegable:
+                                            InsertRowFitting(hojaPlegables, filaActualPlegables++, set, setDescription, condicionesSetDescription);
+                                            break;
+                                    }
                                 }
                             }
                             // Actualizar progreso
                             progress_Export.Value++;
-                            progress_Export.Refresh(); // Fuerza el repintado si el proceso es muy rápido
+
+                            if (progress_Export.Value % 100 == 0)
+                                Application.DoEvents();
                         }
                     }
                 }
 
                 //Ajustar ancho de columnas
-                SetColumnsWidth(hoja);
+                SetColumnsWidth(hojaTodo);
+                SetColumnsWidth(hojaVentanas);
+                SetColumnsWidth(hojaBalconeras);
+                SetColumnsWidth(hojaPuertas);
+                SetColumnsWidth(hojaCorrederas);
+                SetColumnsWidth(hojaElevables);
+                SetColumnsWidth(hojaOsciloparalelas);
+                SetColumnsWidth(hojaAbatibles);
+                SetColumnsWidth(hojaPlegables);
 
-                if (formatoTabla)
-                {
-                    int columnasTotales = 10;
-                    if (showSetId) columnasTotales++;                        
-                    if (showSetDescriptionId) columnasTotales++;
-                    if (showSetDescriptionPosition) columnasTotales++;
-                    if (showFittingId) columnasTotales++;
-                    if (showFittingLength) columnasTotales++;
-
-                    DarFomartoTabla(hoja, filaActual - 1, columnasTotales);
-                }
 
                 // Guardar el archivo Excel
                 using (FileStream fs = new FileStream(excelPath, FileMode.Create, FileAccess.Write))
                 {
                     workbook.Write(fs);
                 }
+
+                if (workbook is SXSSFWorkbook sx)
+                {
+                    sx.Dispose(); // Limpia archivos temporales
+                }
+
+
+
+                if (formatoTabla)
+                {
+                    int columnasTotales = 10;
+                    if (showSetId) columnasTotales++;
+                    if (showSetDescriptionId) columnasTotales++;
+                    if (showSetDescriptionPosition) columnasTotales++;
+                    if (showFittingId) columnasTotales++;
+                    if (showFittingLength) columnasTotales++;
+
+                    var configTablas = new Dictionary<string, (int, int)>
+                    {
+                        { "Todo", (filaActualTodo - 1, columnasTotales) },
+                        { "Ventanas", (filaActualVentanas - 1, columnasTotales) },
+                        { "Balconeras", (filaActualBalconeras - 1, columnasTotales) },
+                        { "Puertas", (filaActualPuertas - 1, columnasTotales) },
+                        { "Correderas", (filaActualCorrederas - 1, columnasTotales) },
+                        { "Elevables", (filaActualElevables - 1, columnasTotales) },
+                        { "Osciloparalelas", (filaActualOsciloparalelas - 1, columnasTotales) },
+                        { "Abatibles", (filaActualAbatibles - 1, columnasTotales) },
+                        { "Plegables", (filaActualPlegables - 1, columnasTotales) }
+                    };
+
+                    ReabrirYAplicarFormatoTabla(excelPath, configTablas);
+                }
+
 
                 EnableControls(true);
                 progress_Export.Value = 0;
@@ -314,6 +417,78 @@ namespace RotoTools
                 EnableControls(true);
                 return false;
             }
+        }
+        private void InsertRowFitting(ISheet hoja, int filaActual, Set set, SetDescription setDescription, string condicionesSetDescription)
+        {
+            IRow fila = hoja.CreateRow(filaActual);
+            int col = 0;
+
+            if (showSetId)
+                fila.CreateCell(col++).SetCellValue(set.Id);
+
+            fila.CreateCell(col++).SetCellValue(set.Code);
+
+            if (showSetDescriptionId)
+                fila.CreateCell(col++).SetCellValue(setDescription.Id);
+
+            fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
+            fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
+            fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
+            fila.CreateCell(col++).SetCellValue(setDescription.MaxWidth);
+
+            if (showFittingId)
+                fila.CreateCell(col++).SetCellValue(setDescription.FittingId);
+
+            var fitting = setDescription.Fitting;
+
+            fila.CreateCell(col++).SetCellValue(fitting?.Description ?? string.Empty);
+            fila.CreateCell(col++).SetCellValue(GetFinalReferenceColor(fitting?.Ref));
+
+            if (showSetDescriptionPosition)
+                fila.CreateCell(col++).SetCellValue(setDescription.Position);
+
+            if (showFittingLength)
+                fila.CreateCell(col++).SetCellValue(fitting?.Lenght ?? 0);
+
+            fila.CreateCell(col++).SetCellValue(GetColour(fitting?.Ref));
+            fila.CreateCell(col++).SetCellValue(1);
+            fila.CreateCell(col++).SetCellValue(condicionesSetDescription ?? string.Empty);
+        }
+        private void InsertRowFittingFicticio(ISheet hoja, int filaActual, Set set, SetDescription setDescription, Article article, string condiciones, Dictionary<string, Fitting> fittingDict)
+        {
+            IRow fila = hoja.CreateRow(filaActual);
+            int col = 0;
+
+            if (showSetId)
+                fila.CreateCell(col++).SetCellValue(set.Id);
+
+            fila.CreateCell(col++).SetCellValue(set.Code);
+
+            if (showSetDescriptionId)
+                fila.CreateCell(col++).SetCellValue(setDescription.Id);
+
+            fila.CreateCell(col++).SetCellValue(setDescription.MinHeight);
+            fila.CreateCell(col++).SetCellValue(setDescription.MaxHeight);
+            fila.CreateCell(col++).SetCellValue(setDescription.MinWidth);
+            fila.CreateCell(col++).SetCellValue(setDescription.MaxWidth);
+
+            if (showFittingId)
+                fila.CreateCell(col++).SetCellValue(setDescription.FittingId);
+
+            fittingDict.TryGetValue(article.Ref.ToString(), out var fitting);
+
+            fila.CreateCell(col++).SetCellValue(fitting?.Description ?? string.Empty);
+            fila.CreateCell(col++).SetCellValue(GetFinalReferenceColor(article.Ref));
+
+            if (showSetDescriptionPosition)
+                fila.CreateCell(col++).SetCellValue(setDescription.Position);
+
+            if (showFittingLength)
+                fila.CreateCell(col++).SetCellValue(fitting?.Lenght ?? 0);
+
+            fila.CreateCell(col++).SetCellValue(GetColour(article.Ref));
+            fila.CreateCell(col++).SetCellValue(1);
+            fila.CreateCell(col++).SetCellValue(condiciones ?? string.Empty);
         }
         private void EnableControls(bool enable)
         {
@@ -372,94 +547,74 @@ namespace RotoTools
         }
         private string GetOptionsStringArticle(SetDescription setDescription, Article article)
         {
-            try
+            var baseOptions = GetOptionsString(setDescription);
+
+            if (article?.OptionList == null || article.OptionList.Count == 0)
+                return baseOptions;
+
+            var sb = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(baseOptions))
             {
-                string optionString = GetOptionsString(setDescription);
-
-                if (!string.IsNullOrEmpty(optionString))
-                {
-                    optionString += " y ";
-                }
-
-                if (article.OptionList != null || article.OptionList.Count > 0)
-                {
-                    foreach (Option option in article.OptionList)
-                    {
-                        optionString += "(";
-                        optionString += option.Name;
-                        optionString += " = ";
-                        optionString += option.Value;
-                        optionString += ")";
-
-                        optionString += " y ";
-                    }
-
-                    optionString = optionString.Substring(0, optionString.Length - 3);
-                }
-                return optionString;
+                sb.Append(baseOptions).Append(" y ");
             }
-            catch
+
+            foreach (Option option in article.OptionList)
             {
-                return string.Empty;
+                sb.Append("(")
+                  .Append(option.Name)
+                  .Append(" = ")
+                  .Append(option.Value)
+                  .Append(") y ");
             }
+
+            sb.Length -= 3; // quitar último " y "
+            return sb.ToString();
         }
         private string GetOptionsString(SetDescription setDescription)
         {
-            try
-            {
-                string optionString = "";
-                if (setDescription.OptionList != null || setDescription.OptionList.Count > 0)
-                {
-                    foreach (Option option in setDescription.OptionList)
-                    {
-                        optionString += "(";
-                        optionString += option.Name;
-                        optionString += " = ";
-                        optionString += option.Value;
-                        optionString += ")";
-
-                        optionString += " y ";
-                    }
-
-                    optionString = optionString.Substring(0, optionString.Length - 3);
-                }
-                return optionString;
-            }
-            catch
-            {
+            if (setDescription?.OptionList == null || setDescription.OptionList.Count == 0)
                 return string.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (Option option in setDescription.OptionList)
+            {
+                sb.Append("(")
+                  .Append(option.Name)
+                  .Append(" = ")
+                  .Append(option.Value)
+                  .Append(") y ");
             }
+
+            sb.Length -= 3; // quitar último " y "
+            return sb.ToString();
         }
         private bool GenerateRowCheckingConditions(string condiciones)
         {
             bool generateRowPerfil = true;
             bool generateRowSistema = true;
+
             //Si no hay filtro por perfil se genera siempre la linea
-            if (string.IsNullOrEmpty(cmb_Perfil.Text) && string.IsNullOrEmpty(cmb_Sistema.Text))
+            if (string.IsNullOrEmpty(cmb_Perfil.Text) && string.IsNullOrEmpty(cmb_Sistema.Text) && !_filtroListaPerfilesActivo)
             {
                 return true;
             }
             else
             {
-                if (!string.IsNullOrEmpty(cmb_Perfil.Text))
+                if (condiciones.Contains("1PERFIL = "))
                 {
-                    //XML PVC
-                    if (condiciones.Contains("1PERFIL = "))
-                    {
-                        //Si tiene la opción, y el combo está filtrando, el valor de la opción debe ser igual al combo
-                        if (condiciones.Contains("1PERFIL = " + cmb_Perfil.Text))
-                        {
-                            generateRowPerfil = true;
-                        }
-                        else
-                        {
-                            generateRowPerfil = false;
-                        }
-                    }
-                    else
-                    {
-                        generateRowPerfil = true;
-                    }
+                    var perfilesSeleccionados = new List<string>();
+
+                    if (_perfilesListSelected != null && _perfilesListSelected.Any())
+                        perfilesSeleccionados = _perfilesListSelected
+                                                .Select(p => p.Valor)
+                                                .ToList();
+                    else if (!string.IsNullOrWhiteSpace(cmb_Perfil.Text))
+                        perfilesSeleccionados.Add(cmb_Perfil.Text);
+
+                    generateRowPerfil = perfilesSeleccionados.Any(p => condiciones.Contains("1PERFIL = " + p));
+
                 }
 
                 if (!string.IsNullOrEmpty(cmb_Sistema.Text))
@@ -574,28 +729,29 @@ namespace RotoTools
             hoja.SetColumnWidth(col++, 15 * 256); // Cantidad
             hoja.SetColumnWidth(col++, 140 * 256); // Condiciones
         }
-        private void DarFomartoTabla(ISheet hoja, int totalFilas, int totalColumnas)
+        private void DarFormatoTabla(XSSFSheet hoja, int totalFilas, int totalColumnas)
         {
-            var xssfSheet = hoja as XSSFSheet;
-            if (xssfSheet == null) return;
+            if (totalFilas < 1) return;
 
-            XSSFTable table = xssfSheet.CreateTable();
-            table.Name = "RotoTabla";
-            table.DisplayName = "RotoTabla";
+            // Crear tabla
+            XSSFTable table = hoja.CreateTable();
 
-            // Rango de la tabla
+            string tableName = $"Tabla_{hoja.SheetName.Replace(" ", "")}";
+
+            table.Name = tableName;
+            table.DisplayName = tableName;
+
+            // Definir rango
             var startCell = new NPOI.SS.Util.CellReference(0, 0);
             var endCell = new NPOI.SS.Util.CellReference(totalFilas, totalColumnas - 1);
             string areaRef = $"{startCell.FormatAsString()}:{endCell.FormatAsString()}";
 
             CT_Table ctTable = table.GetCTTable();
             ctTable.@ref = areaRef;
-            ctTable.displayName = "RotoTabla";
-            ctTable.name = "RotoTabla";
-            ctTable.id = (uint)1;
+            ctTable.id = (uint)(hoja.Workbook.GetSheetIndex(hoja) + 1);
             ctTable.headerRowCount = 1;
 
-            // Habilita autofiltro para que aparezca el botón de ordenar/filtrar en la cabecera
+            // Autofiltro
             ctTable.autoFilter = new NPOI.OpenXmlFormats.Spreadsheet.CT_AutoFilter
             {
                 @ref = areaRef
@@ -609,17 +765,23 @@ namespace RotoTools
             };
 
             IRow headerRow = hoja.GetRow(0);
+
             for (int i = 0; i < totalColumnas; i++)
             {
-                string colName = headerRow?.GetCell(i)?.ToString() ?? $"Col{i + 1}";
-                ctTable.tableColumns.tableColumn.Add(new NPOI.OpenXmlFormats.Spreadsheet.CT_TableColumn
-                {
-                    id = (uint)(i + 1),
-                    name = colName
-                });
+                string colName = headerRow?.GetCell(i)?.ToString();
+
+                if (string.IsNullOrWhiteSpace(colName))
+                    colName = $"Col{i + 1}";
+
+                ctTable.tableColumns.tableColumn.Add(
+                    new NPOI.OpenXmlFormats.Spreadsheet.CT_TableColumn
+                    {
+                        id = (uint)(i + 1),
+                        name = colName
+                    });
             }
 
-            // Estilo
+            // Estilo visual
             ctTable.tableStyleInfo = new NPOI.OpenXmlFormats.Spreadsheet.CT_TableStyleInfo
             {
                 name = "TableStyleMedium2",
@@ -629,6 +791,38 @@ namespace RotoTools
                 showLastColumn = false
             };
         }
+        public void ReabrirYAplicarFormatoTabla(string rutaFichero, Dictionary<string, (int totalFilas, int totalColumnas)> configuracionTablas)
+        {
+            // Abrir fichero generado previamente
+            using (FileStream fs = new FileStream(rutaFichero, FileMode.Open, FileAccess.Read))
+            {
+                XSSFWorkbook workbook = new XSSFWorkbook(fs);
+
+                foreach (var kvp in configuracionTablas)
+                {
+                    string nombreHoja = kvp.Key;
+                    int totalFilas = kvp.Value.totalFilas;
+                    int totalColumnas = kvp.Value.totalColumnas;
+
+                    XSSFSheet hoja = workbook.GetSheet(nombreHoja) as XSSFSheet;
+
+                    if (hoja == null)
+                        continue;
+
+                    if (totalFilas <= 0 || totalColumnas <= 0)
+                        continue;
+
+                    DarFormatoTabla(hoja, totalFilas, totalColumnas);
+                }
+
+                // Guardar cambios
+                using (FileStream fsFinal = new FileStream(rutaFichero, FileMode.Create, FileAccess.Write))
+                {
+                    workbook.Write(fsFinal);
+                }
+            }
+        }
         #endregion
+
     }
 }

@@ -24,6 +24,7 @@ namespace RotoTools
                 {
                     new LanguageItem { Text = "Español", Value = "es" },
                     new LanguageItem { Text = "English", Value = "en" },
+                    new LanguageItem { Text = "Português", Value = "pt" }
                     //new LanguageItem { Text = "Português", Value = "pt" },
                     //new LanguageItem { Text = "Italiano", Value = "it" }
                 };

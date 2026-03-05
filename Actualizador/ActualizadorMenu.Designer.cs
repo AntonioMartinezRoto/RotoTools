@@ -221,7 +221,7 @@
             btn_EjecutarCarpeta.ImageAlign = ContentAlignment.MiddleLeft;
             btn_EjecutarCarpeta.Location = new Point(12, 80);
             btn_EjecutarCarpeta.Name = "btn_EjecutarCarpeta";
-            btn_EjecutarCarpeta.Padding = new Padding(11, 0, 18, 0);
+            btn_EjecutarCarpeta.Padding = new Padding(11, 0, 0, 0);
             btn_EjecutarCarpeta.Size = new Size(157, 40);
             btn_EjecutarCarpeta.TabIndex = 6;
             btn_EjecutarCarpeta.Text = "Elegir Scripts";

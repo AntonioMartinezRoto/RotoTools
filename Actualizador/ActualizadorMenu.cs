@@ -51,7 +51,9 @@ namespace RotoTools
             CargarGruposProduccion();
             AsignarValoresPorDefecto();
             CargarTextos();
+            InitializeRotoInfo();
         }
+
         private void btn_EjecutarScripts_Click(object sender, EventArgs e)
         {
             try
@@ -307,6 +309,11 @@ namespace RotoTools
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
         }
+        private void InitializeRotoInfo()
+        {
+            lbl_XmlFileName.Text = Helpers.GetNombreXMLActualizacionRoto();
+            lbl_FechaActValor.Text = Helpers.GetFechaActualizacionRoto();
+        }
         private bool ExisteProveedorRotoEnBD()
         {
             using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
@@ -539,11 +546,28 @@ namespace RotoTools
             lbl_IdProduccion.Text = LocalizationManager.GetString("L_Produccion");
             lbl_Proveedor.Text = LocalizationManager.GetString("L_Nombre");
             this.Text = LocalizationManager.GetString("L_Actualizador");
+            lbl_Xml.Text = LocalizationManager.GetString("L_XML") + ":";
+            lbl_Fecha.Text = LocalizationManager.GetString("L_Fecha") + ":";
+            group_InfoActualizacion.Text = LocalizationManager.GetString("L_InfoActualizacion");
         }
 
         #endregion
 
 
+        private void btn_Refresh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML Files (*.xml)|*.xml";
+            openFileDialog.Title = "Selecciona XML";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Helpers.SetNombreXMLRoto(openFileDialog.SafeFileName);
+                Helpers.SetFechaActualizacionRoto(DateTime.Now);
+            }
+
+            InitializeRotoInfo();
+        }
     }
 
     public class Proveedor

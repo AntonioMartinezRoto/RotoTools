@@ -552,4 +552,13 @@
   <data name="L_MonedaAsociada" xml:space="preserve">
     <value>Associated currency</value>
   </data>
+  <data name="L_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="L_Fecha" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="L_InfoActualizacion" xml:space="preserve">
+    <value>Information about the latest update</value>
+  </data>
 </root>

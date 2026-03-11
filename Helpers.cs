@@ -1166,6 +1166,93 @@ namespace RotoTools
             }
             return String.Empty;
         }
+        public static string? GetNombreXMLActualizacionRoto()
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'RotoXmlNombre'", conn))
+            {
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
+        public static string GetFechaActualizacionRoto()
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'RotoFechaActualizacion'", conn))
+            {
+                conn.Open();
+                var resultado = cmd.ExecuteScalar(); // ExecuteScalar es más eficiente para un solo valor
+
+                if (resultado != null && resultado != DBNull.Value)
+                {
+                    if (DateTime.TryParse(resultado.ToString(), out DateTime fecha))
+                    {
+                        return fecha.ToString("dd/MM/yyyy HH:mm");
+                    }
+                }
+            }
+            return string.Empty;
+        }
+        public static void SetFechaActualizacionRoto(DateTime fecha)
+        {
+            // Convertimos la fecha al formato que espera tu columna 'Valor' (usualmente string)
+            string fechaString = fecha.ToString("yyyy-MM-dd HH:mm");
+
+            string sql = @"
+                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'RotoFechaActualizacion')
+                        BEGIN
+                            UPDATE VariablesGlobales 
+                            SET Valor = @valor 
+                            WHERE Nombre = N'RotoFechaActualizacion'
+                        END
+                        ELSE
+                        BEGIN
+                            INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) 
+                            VALUES (1, N'RotoFechaActualizacion', @valor)
+                        END";
+
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                // Usamos parámetros para evitar SQL Injection y errores de formato
+                cmd.Parameters.AddWithValue("@valor", fechaString);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void SetNombreXMLRoto(string fileName)
+        {
+            string sql = @"
+                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'RotoXmlNombre')
+                        BEGIN
+                            UPDATE VariablesGlobales 
+                            SET Valor = @valor 
+                            WHERE Nombre = N'RotoXmlNombre'
+                        END
+                        ELSE
+                        BEGIN
+                            INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) 
+                            VALUES (1, N'RotoXmlNombre', @valor)
+                        END";
+
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                // Usamos parámetros para evitar SQL Injection y errores de formato
+                cmd.Parameters.AddWithValue("@valor", fileName);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         #endregion
 
         #region Utilidades Generales

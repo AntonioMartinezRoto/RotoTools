@@ -49,9 +49,16 @@
             btn_ExportarEscandallos = new Button();
             btn_InstalarEscandallos = new Button();
             btn_ShowScripts = new Button();
+            group_InfoActualizacion = new GroupBox();
+            lbl_Fecha = new Label();
+            lbl_Xml = new Label();
+            lbl_XmlFileName = new Label();
+            btn_Refresh = new Button();
+            lbl_FechaActValor = new Label();
             statusStrip1.SuspendLayout();
             groupBox_Grupos.SuspendLayout();
             groupBox_Proveedor.SuspendLayout();
+            group_InfoActualizacion.SuspendLayout();
             SuspendLayout();
             // 
             // statusStrip1
@@ -100,7 +107,7 @@
             groupBox_Grupos.Controls.Add(cmb_IdProduccion);
             groupBox_Grupos.Controls.Add(lbl_IdPresupuestado);
             groupBox_Grupos.Controls.Add(cmb_IdPresupuestado);
-            groupBox_Grupos.Location = new Point(194, 70);
+            groupBox_Grupos.Location = new Point(194, 114);
             groupBox_Grupos.Name = "groupBox_Grupos";
             groupBox_Grupos.Size = new Size(425, 108);
             groupBox_Grupos.TabIndex = 3;
@@ -152,7 +159,7 @@
             groupBox_Proveedor.Controls.Add(txt_Proveedor);
             groupBox_Proveedor.Controls.Add(lbl_Proveedor);
             groupBox_Proveedor.Controls.Add(cmb_Proveedor);
-            groupBox_Proveedor.Location = new Point(194, 202);
+            groupBox_Proveedor.Location = new Point(194, 228);
             groupBox_Proveedor.Name = "groupBox_Proveedor";
             groupBox_Proveedor.Size = new Size(426, 73);
             groupBox_Proveedor.TabIndex = 4;
@@ -289,6 +296,66 @@
             btn_ShowScripts.UseVisualStyleBackColor = false;
             btn_ShowScripts.Click += btn_ShowScripts_Click;
             // 
+            // group_InfoActualizacion
+            // 
+            group_InfoActualizacion.BackColor = Color.Transparent;
+            group_InfoActualizacion.Controls.Add(lbl_Fecha);
+            group_InfoActualizacion.Controls.Add(lbl_Xml);
+            group_InfoActualizacion.Controls.Add(lbl_XmlFileName);
+            group_InfoActualizacion.Controls.Add(btn_Refresh);
+            group_InfoActualizacion.Controls.Add(lbl_FechaActValor);
+            group_InfoActualizacion.Location = new Point(194, 33);
+            group_InfoActualizacion.Name = "group_InfoActualizacion";
+            group_InfoActualizacion.Size = new Size(426, 73);
+            group_InfoActualizacion.TabIndex = 11;
+            group_InfoActualizacion.TabStop = false;
+            group_InfoActualizacion.Text = "Información última actualización";
+            // 
+            // lbl_Fecha
+            // 
+            lbl_Fecha.AutoSize = true;
+            lbl_Fecha.Location = new Point(59, 40);
+            lbl_Fecha.Name = "lbl_Fecha";
+            lbl_Fecha.Size = new Size(41, 15);
+            lbl_Fecha.TabIndex = 12;
+            lbl_Fecha.Text = "Fecha:";
+            // 
+            // lbl_Xml
+            // 
+            lbl_Xml.AutoSize = true;
+            lbl_Xml.Location = new Point(63, 22);
+            lbl_Xml.Name = "lbl_Xml";
+            lbl_Xml.Size = new Size(34, 15);
+            lbl_Xml.TabIndex = 11;
+            lbl_Xml.Text = "XML:";
+            // 
+            // lbl_XmlFileName
+            // 
+            lbl_XmlFileName.Location = new Point(123, 22);
+            lbl_XmlFileName.Name = "lbl_XmlFileName";
+            lbl_XmlFileName.Size = new Size(202, 18);
+            lbl_XmlFileName.TabIndex = 10;
+            lbl_XmlFileName.Text = "-";
+            // 
+            // btn_Refresh
+            // 
+            btn_Refresh.BackgroundImage = (Image)resources.GetObject("btn_Refresh.BackgroundImage");
+            btn_Refresh.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_Refresh.Location = new Point(347, 23);
+            btn_Refresh.Name = "btn_Refresh";
+            btn_Refresh.Size = new Size(32, 32);
+            btn_Refresh.TabIndex = 9;
+            btn_Refresh.UseVisualStyleBackColor = true;
+            btn_Refresh.Click += btn_Refresh_Click;
+            // 
+            // lbl_FechaActValor
+            // 
+            lbl_FechaActValor.Location = new Point(123, 40);
+            lbl_FechaActValor.Name = "lbl_FechaActValor";
+            lbl_FechaActValor.Size = new Size(202, 23);
+            lbl_FechaActValor.TabIndex = 8;
+            lbl_FechaActValor.Text = "-";
+            // 
             // ActualizadorMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -296,6 +363,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(780, 346);
+            Controls.Add(group_InfoActualizacion);
             Controls.Add(btn_ShowScripts);
             Controls.Add(btn_InstalarEscandallos);
             Controls.Add(btn_ExportarEscandallos);
@@ -319,6 +387,8 @@
             groupBox_Grupos.PerformLayout();
             groupBox_Proveedor.ResumeLayout(false);
             groupBox_Proveedor.PerformLayout();
+            group_InfoActualizacion.ResumeLayout(false);
+            group_InfoActualizacion.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -345,5 +415,13 @@
         private Button btn_InstalarEscandallos;
         private Button btn_ShowScripts;
         private Button btn_AddProveedor;
+        private GroupBox group_InfoActualizacion;
+        private Label lbl_FechaActualizacion;
+        private Label lbl_FechaActValor;
+        private Label lbl_XMLNombre;
+        private Button btn_Refresh;
+        private Label lbl_XmlFileName;
+        private Label lbl_Fecha;
+        private Label lbl_Xml;
     }
 }

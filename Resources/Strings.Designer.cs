@@ -592,6 +592,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Fecha.
+        /// </summary>
+        internal static string L_Fecha {
+            get {
+                return ResourceManager.GetString("L_Fecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fichero de configuración no encontrado..
         /// </summary>
         internal static string L_FicheroConfigNoEncontrado {
@@ -777,6 +786,15 @@ namespace RotoTools.Resources {
         internal static string L_HardwareSupplierObligatorio {
             get {
                 return ResourceManager.GetString("L_HardwareSupplierObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Información de la última actualización.
+        /// </summary>
+        internal static string L_InfoActualizacion {
+            get {
+                return ResourceManager.GetString("L_InfoActualizacion", resourceCulture);
             }
         }
         
@@ -1353,6 +1371,15 @@ namespace RotoTools.Resources {
         internal static string L_VerEscandallos {
             get {
                 return ResourceManager.GetString("L_VerEscandallos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a XML.
+        /// </summary>
+        internal static string L_XML {
+            get {
+                return ResourceManager.GetString("L_XML", resourceCulture);
             }
         }
         

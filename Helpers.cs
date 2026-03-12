@@ -973,6 +973,16 @@ namespace RotoTools
                                 traducciones.FittingGroups[desc] = trad;
                         }
                     }
+                    else if (nombreHoja.StartsWith("sets"))
+                    {
+                        foreach (var row in ws.RowsUsed().Skip(1))
+                        {
+                            string desc = row.Cell(1).GetString().Trim();
+                            string trad = row.Cell(2).GetString().Trim();
+                            if (!string.IsNullOrEmpty(desc) && !string.IsNullOrEmpty(trad))
+                                traducciones.Sets[desc] = trad;
+                        }
+                    }
                     else if (nombreHoja.StartsWith("colours"))
                     {
                         foreach (var row in ws.RowsUsed().Skip(1))
@@ -1321,6 +1331,21 @@ namespace RotoTools
 
 
             return new Option("RO_" + nombreTraducido, valorTraducido);
+        }
+    }
+    public static class SetHelpers
+    {
+        public static string TranslateSet(string setCode)
+        {
+            // Si no hay traducción activa, devolver tal cual
+            if (!TranslateManager.AplicarTraduccion || TranslateManager.TraduccionesActuales == null)
+                return setCode;
+
+            // Traducir codigo si existen en el diccionario
+            string setCodeTraducido = TranslateManager.TraduccionesActuales.TraducirSetCode(setCode);
+
+
+            return setCodeTraducido;
         }
     }
     public static class EscandalloHelper

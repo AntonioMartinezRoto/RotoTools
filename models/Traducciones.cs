@@ -7,6 +7,7 @@ namespace RotoEntities
     public class Traducciones
     {
         public Dictionary<string, string> FittingGroups { get; } = new();
+        public Dictionary<string, string> Sets { get; } = new();
         public Dictionary<string, string> Fittings { get; } = new();
         public Dictionary<string, string> Colours { get; } = new();
         public Dictionary<string, string> OptionNames { get; } = new();
@@ -41,6 +42,21 @@ namespace RotoEntities
                 }
             }
             return optionValue;
+        }
+        public string TraducirSetCode(string setCode)
+        {
+            if (Sets.TryGetValue(setCode, out string traduccionCode))
+            {
+                if (String.IsNullOrEmpty(traduccionCode))
+                {
+                    return setCode;
+                }
+                else
+                {
+                    return traduccionCode;
+                }
+            }
+            return setCode;
         }
     }
 }

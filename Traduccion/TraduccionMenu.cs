@@ -122,6 +122,13 @@ namespace RotoTools
                         attr.Value = nuevo;
                 }
 
+                foreach (var fg in doc.Descendants(hw + "Set"))
+                {
+                    var attr = fg.Attribute("code");
+                    if (attr != null && translations.Sets.TryGetValue(attr.Value.Trim(), out string nuevo))
+                        attr.Value = nuevo;
+                }
+
                 foreach (var f in doc.Descendants(hw + "Fitting"))
                 {
                     var refAttr = f.Attribute("ref")?.Value.Trim();
@@ -215,6 +222,7 @@ namespace RotoTools
             ISheet hojaOptions = workbook.CreateSheet("Options v" + xmlOrigen.OptionsVersion);
             ISheet hojaColours = workbook.CreateSheet("Colours v" + xmlOrigen.ColoursVersion);
             ISheet hojaFittingGroups = workbook.CreateSheet("FittingGroups v" + xmlOrigen.FittingGroupVersion);
+            ISheet hojaSets = workbook.CreateSheet("Sets");
 
             #endregion
 
@@ -224,6 +232,7 @@ namespace RotoTools
             CreateHeaderOptions(hojaOptions);
             CreateHeaderColours(hojaColours);
             CreateHeaderFittingGroups(hojaFittingGroups);
+            CreateHeaderSets(hojaSets);
 
             #endregion
 
@@ -294,6 +303,21 @@ namespace RotoTools
 
             #endregion
 
+            #region Sets
+
+            int filaActualSets = 1;
+            foreach (Set set in xmlOrigen.SetList)
+            {
+                IRow fila = hojaSets.CreateRow(filaActualSets++);
+                int colSet = 0;
+                FillSetSheet(colSet, set, fila);
+            }
+
+            //Ajustar ancho de columnas en hoja Kit List
+            SetColumnsWidthSet(hojaSets);
+
+            #endregion
+
             // Guardar el archivo Excel
             using (FileStream fs = new FileStream(excelPath, FileMode.Create, FileAccess.Write))
             {
@@ -342,6 +366,16 @@ namespace RotoTools
             filaCabecera.CreateCell(col++).SetCellValue("Clase");
             filaCabecera.CreateCell(col++).SetCellValue("Traducción");
         }
+        private void CreateHeaderSets(ISheet hoja)
+        {
+            // Crear encabezados en la primera fila
+            IRow filaCabecera = hoja.CreateRow(0);
+
+            int col = 0;
+
+            filaCabecera.CreateCell(col++).SetCellValue("Codigo");
+            filaCabecera.CreateCell(col++).SetCellValue("Traducción");
+        }
         private void FillFittingsSheet(int col, Fitting fitting, IRow fila)
         {
             fila.CreateCell(col++).SetCellValue(fitting.Ref);
@@ -362,6 +396,11 @@ namespace RotoTools
         private void FillFittingGroupSheet(int col, FittingGroup fittingGroup, IRow fila)
         {
             fila.CreateCell(col++).SetCellValue(fittingGroup.Class);
+            fila.CreateCell(col++).SetCellValue("");
+        }
+        private void FillSetSheet(int col, Set set, IRow fila)
+        {
+            fila.CreateCell(col++).SetCellValue(set.Code);
             fila.CreateCell(col++).SetCellValue("");
         }
         private void SetColumnsWidthFittings(ISheet hojaFittings)
@@ -397,6 +436,14 @@ namespace RotoTools
 
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Color
             hojaFittingGroup.SetColumnWidth(col++, 30 * 256);    // Traducción
+        }
+        private void SetColumnsWidthSet(ISheet hojaSets)
+        {
+            // El valor es en 1/256 de unidad de carácter
+            int col = 0;
+
+            hojaSets.SetColumnWidth(col++, 60 * 256);    // Codigo
+            hojaSets.SetColumnWidth(col++, 30 * 256);    // Traducción
         }
         private void AplicarTraduccionesOptions(XDocument doc, Traducciones traducciones, XNamespace hw)
         {

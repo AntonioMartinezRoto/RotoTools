@@ -95,6 +95,12 @@ namespace RotoTools
 
 
                 List<Set> setsConector = GetSetsToConnector();
+
+                //Traducción de Sets
+                foreach (Set set in setsConector)
+                {
+                    set.Code = SetHelpers.TranslateSet(set.Code);
+                }
                 ConectorHerrajeGenerador generaConectorForm = new ConectorHerrajeGenerador(xmlOrigen, setsConector, xmlOrigen.Supplier);
 
                 generaConectorForm.ShowDialog();

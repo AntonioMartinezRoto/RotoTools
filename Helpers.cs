@@ -1176,10 +1176,24 @@ namespace RotoTools
             }
             return String.Empty;
         }
-        public static string? GetNombreXMLActualizacionRoto()
+        public static string? GetNombreXMLActualizacionRoto(enumHardwareType hardwareType)
         {
+            string variableGlobalName = "RotoXmlNombrePVC";
+            switch (hardwareType)
+            {
+                case enumHardwareType.PVC:
+                    variableGlobalName = "RotoXmlNombrePVC";
+                    break;
+                case enumHardwareType.Aluminio:
+                    variableGlobalName = "RotoXmlNombreALU";
+                    break;
+                case enumHardwareType.PAX:
+                    variableGlobalName = "RotoXmlNombrePAX";
+                    break;
+            }
+
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'RotoXmlNombre'", conn))
+            using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'{variableGlobalName}'", conn))
             {
                 conn.Open();
                 using (var rdr = cmd.ExecuteReader())
@@ -1192,10 +1206,24 @@ namespace RotoTools
             }
             return String.Empty;
         }
-        public static string GetFechaActualizacionRoto()
+        public static string GetFechaActualizacionRoto(enumHardwareType hardwareType)
         {
+            string variableGlobalName = "RotoFechaActualizacionPVC";
+            switch (hardwareType)
+            {
+                case enumHardwareType.PVC:
+                    variableGlobalName = "RotoFechaActualizacionPVC";
+                    break;
+                case enumHardwareType.Aluminio:
+                    variableGlobalName = "RotoFechaActualizacionALU";
+                    break;
+                case enumHardwareType.PAX:
+                    variableGlobalName = "RotoFechaActualizacionPAX";
+                    break;
+            }
+
             using (var conn = new SqlConnection(GetConnectionString()))
-            using (var cmd = new SqlCommand("SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'RotoFechaActualizacion'", conn))
+            using (var cmd = new SqlCommand($"SELECT RTRIM(Valor) FROM VariablesGlobales WHERE Nombre=N'{variableGlobalName}'", conn))
             {
                 conn.Open();
                 var resultado = cmd.ExecuteScalar(); // ExecuteScalar es más eficiente para un solo valor
@@ -1210,23 +1238,37 @@ namespace RotoTools
             }
             return string.Empty;
         }
-        public static void SetFechaActualizacionRoto(DateTime fecha)
+        public static void SetFechaActualizacionRoto(enumHardwareType hardwareType, DateTime fecha)
         {
+            string variableGlobalName = "RotoFechaActualizacionPVC";
+            switch (hardwareType)
+            {
+                case enumHardwareType.PVC:
+                    variableGlobalName = "RotoFechaActualizacionPVC";
+                    break;
+                case enumHardwareType.Aluminio:
+                    variableGlobalName = "RotoFechaActualizacionALU";
+                    break;
+                case enumHardwareType.PAX:
+                    variableGlobalName = "RotoFechaActualizacionPAX";
+                    break;
+            }
+
             // Convertimos la fecha al formato que espera tu columna 'Valor' (usualmente string)
             string fechaString = fecha.ToString("yyyy-MM-dd HH:mm");
 
             string sql = @"
-                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'RotoFechaActualizacion')
-                        BEGIN
-                            UPDATE VariablesGlobales 
-                            SET Valor = @valor 
-                            WHERE Nombre = N'RotoFechaActualizacion'
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) 
-                            VALUES (1, N'RotoFechaActualizacion', @valor)
-                        END";
+                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'" + variableGlobalName + "')" +
+                        "BEGIN " +
+                            "UPDATE VariablesGlobales " +
+                            "SET Valor = @valor " +
+                            "WHERE Nombre = N'" + variableGlobalName + "' " +
+                        "END " +
+                        "ELSE " +
+                        "BEGIN " +
+                            "INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) " +
+                            "VALUES (1, N'" + variableGlobalName + "', @valor) " +
+                        "END;";
 
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand(sql, conn))
@@ -1238,20 +1280,34 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
-        public static void SetNombreXMLRoto(string fileName)
+        public static void SetNombreXMLRoto(enumHardwareType hardwareType, string fileName)
         {
+            string variableGlobalName = "RotoXmlNombrePVC";
+            switch (hardwareType)
+            {
+                case enumHardwareType.PVC:
+                    variableGlobalName = "RotoXmlNombrePVC";
+                    break;
+                case enumHardwareType.Aluminio:
+                    variableGlobalName = "RotoXmlNombreALU";
+                    break;
+                case enumHardwareType.PAX:
+                    variableGlobalName = "RotoXmlNombrePAX";
+                    break;
+            }
+
             string sql = @"
-                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'RotoXmlNombre')
-                        BEGIN
-                            UPDATE VariablesGlobales 
-                            SET Valor = @valor 
-                            WHERE Nombre = N'RotoXmlNombre'
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) 
-                            VALUES (1, N'RotoXmlNombre', @valor)
-                        END";
+                        IF EXISTS (SELECT 1 FROM VariablesGlobales WHERE Nombre = N'" + variableGlobalName + "')" +
+                        "BEGIN " +
+                            "UPDATE VariablesGlobales " +
+                            "SET Valor = @valor " +
+                            "WHERE Nombre = N'" + variableGlobalName + "' " +
+                        "END " +
+                        "ELSE " +
+                        "BEGIN " +
+                            "INSERT INTO VariablesGlobales (Empresa, Nombre, Valor) " +
+                            "VALUES (1, N'" + variableGlobalName + "', @valor) " +
+                        "END;";
 
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand(sql, conn))

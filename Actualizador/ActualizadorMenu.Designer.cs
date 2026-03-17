@@ -50,11 +50,7 @@
             btn_InstalarEscandallos = new Button();
             btn_ShowScripts = new Button();
             group_InfoActualizacion = new GroupBox();
-            lbl_Fecha = new Label();
-            lbl_Xml = new Label();
-            lbl_XmlFileName = new Label();
-            btn_Refresh = new Button();
-            lbl_FechaActValor = new Label();
+            btn_SetActualizacion = new Button();
             statusStrip1.SuspendLayout();
             groupBox_Grupos.SuspendLayout();
             groupBox_Proveedor.SuspendLayout();
@@ -299,11 +295,7 @@
             // group_InfoActualizacion
             // 
             group_InfoActualizacion.BackColor = Color.Transparent;
-            group_InfoActualizacion.Controls.Add(lbl_Fecha);
-            group_InfoActualizacion.Controls.Add(lbl_Xml);
-            group_InfoActualizacion.Controls.Add(lbl_XmlFileName);
-            group_InfoActualizacion.Controls.Add(btn_Refresh);
-            group_InfoActualizacion.Controls.Add(lbl_FechaActValor);
+            group_InfoActualizacion.Controls.Add(btn_SetActualizacion);
             group_InfoActualizacion.Location = new Point(194, 33);
             group_InfoActualizacion.Name = "group_InfoActualizacion";
             group_InfoActualizacion.Size = new Size(426, 73);
@@ -311,50 +303,16 @@
             group_InfoActualizacion.TabStop = false;
             group_InfoActualizacion.Text = "Información última actualización";
             // 
-            // lbl_Fecha
+            // btn_SetActualizacion
             // 
-            lbl_Fecha.AutoSize = true;
-            lbl_Fecha.Location = new Point(59, 40);
-            lbl_Fecha.Name = "lbl_Fecha";
-            lbl_Fecha.Size = new Size(41, 15);
-            lbl_Fecha.TabIndex = 12;
-            lbl_Fecha.Text = "Fecha:";
-            // 
-            // lbl_Xml
-            // 
-            lbl_Xml.AutoSize = true;
-            lbl_Xml.Location = new Point(63, 22);
-            lbl_Xml.Name = "lbl_Xml";
-            lbl_Xml.Size = new Size(34, 15);
-            lbl_Xml.TabIndex = 11;
-            lbl_Xml.Text = "XML:";
-            // 
-            // lbl_XmlFileName
-            // 
-            lbl_XmlFileName.Location = new Point(123, 22);
-            lbl_XmlFileName.Name = "lbl_XmlFileName";
-            lbl_XmlFileName.Size = new Size(202, 18);
-            lbl_XmlFileName.TabIndex = 10;
-            lbl_XmlFileName.Text = "-";
-            // 
-            // btn_Refresh
-            // 
-            btn_Refresh.BackgroundImage = (Image)resources.GetObject("btn_Refresh.BackgroundImage");
-            btn_Refresh.BackgroundImageLayout = ImageLayout.Stretch;
-            btn_Refresh.Location = new Point(347, 23);
-            btn_Refresh.Name = "btn_Refresh";
-            btn_Refresh.Size = new Size(32, 32);
-            btn_Refresh.TabIndex = 9;
-            btn_Refresh.UseVisualStyleBackColor = true;
-            btn_Refresh.Click += btn_Refresh_Click;
-            // 
-            // lbl_FechaActValor
-            // 
-            lbl_FechaActValor.Location = new Point(123, 40);
-            lbl_FechaActValor.Name = "lbl_FechaActValor";
-            lbl_FechaActValor.Size = new Size(202, 23);
-            lbl_FechaActValor.TabIndex = 8;
-            lbl_FechaActValor.Text = "-";
+            btn_SetActualizacion.BackgroundImage = (Image)resources.GetObject("btn_SetActualizacion.BackgroundImage");
+            btn_SetActualizacion.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_SetActualizacion.Location = new Point(203, 26);
+            btn_SetActualizacion.Name = "btn_SetActualizacion";
+            btn_SetActualizacion.Size = new Size(32, 32);
+            btn_SetActualizacion.TabIndex = 13;
+            btn_SetActualizacion.UseVisualStyleBackColor = true;
+            btn_SetActualizacion.Click += btn_SetActualizacion_Click;
             // 
             // ActualizadorMenu
             // 
@@ -388,7 +346,6 @@
             groupBox_Proveedor.ResumeLayout(false);
             groupBox_Proveedor.PerformLayout();
             group_InfoActualizacion.ResumeLayout(false);
-            group_InfoActualizacion.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -417,11 +374,7 @@
         private Button btn_AddProveedor;
         private GroupBox group_InfoActualizacion;
         private Label lbl_FechaActualizacion;
-        private Label lbl_FechaActValor;
         private Label lbl_XMLNombre;
-        private Button btn_Refresh;
-        private Label lbl_XmlFileName;
-        private Label lbl_Fecha;
-        private Label lbl_Xml;
+        private Button btn_SetActualizacion;
     }
 }

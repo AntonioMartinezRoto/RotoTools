@@ -133,6 +133,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cargar operaciones.
+        /// </summary>
+        internal static string L_CargarOperaciones {
+            get {
+                return ResourceManager.GetString("L_CargarOperaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código.
         /// </summary>
         internal static string L_Codigo {
@@ -367,6 +376,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se van a normalizar las operaciones de la base de datos que lo requieran. ¿Desea continuar?.
+        /// </summary>
+        internal static string L_ConfirmarNormalizacion {
+            get {
+                return ResourceManager.GetString("L_ConfirmarNormalizacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configuración Manillas FKS.
         /// </summary>
         internal static string L_ConfManillasFKS {
@@ -565,6 +583,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Exportar operaciones.
+        /// </summary>
+        internal static string L_ExportarMecanizados {
+            get {
+                return ResourceManager.GetString("L_ExportarMecanizados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Exportar a Opera.
         /// </summary>
         internal static string L_ExportarOpera {
@@ -678,6 +705,15 @@ namespace RotoTools.Resources {
         internal static string L_GenerarInforme {
             get {
                 return ResourceManager.GetString("L_GenerarInforme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Desea generar un log de la Normalización?.
+        /// </summary>
+        internal static string L_GenerarLog {
+            get {
+                return ResourceManager.GetString("L_GenerarLog", resourceCulture);
             }
         }
         
@@ -835,11 +871,38 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Instalar macros de mecanizados en la base de datos.
+        /// </summary>
+        internal static string L_InstalarMacros {
+            get {
+                return ResourceManager.GetString("L_InstalarMacros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Instalar operaciones seleccionadas en la base de datos.
+        /// </summary>
+        internal static string L_InstalarOperaciones {
+            get {
+                return ResourceManager.GetString("L_InstalarOperaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nivel 1 Materiales Base y Opciones.
         /// </summary>
         internal static string L_Level1MBOpciones {
             get {
                 return ResourceManager.GetString("L_Level1MBOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Limpiar información cargada.
+        /// </summary>
+        internal static string L_LimpiarInfo {
+            get {
+                return ResourceManager.GetString("L_LimpiarInfo", resourceCulture);
             }
         }
         
@@ -898,6 +961,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No encontrada.
+        /// </summary>
+        internal static string L_NoEncontrada {
+            get {
+                return ResourceManager.GetString("L_NoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No existe.
         /// </summary>
         internal static string L_NoExiste {
@@ -921,6 +993,24 @@ namespace RotoTools.Resources {
         internal static string L_NombreTarifaObligatorio {
             get {
                 return ResourceManager.GetString("L_NombreTarifaObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Normalización completada. Operaciones afectadas:.
+        /// </summary>
+        internal static string L_NormalizacionCompletada {
+            get {
+                return ResourceManager.GetString("L_NormalizacionCompletada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Normalizar nombre de las operaciones.
+        /// </summary>
+        internal static string L_NormalizarOperaciones {
+            get {
+                return ResourceManager.GetString("L_NormalizarOperaciones", resourceCulture);
             }
         }
         
@@ -1002,6 +1092,15 @@ namespace RotoTools.Resources {
         internal static string L_OperacionesInstaladas {
             get {
                 return ResourceManager.GetString("L_OperacionesInstaladas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La operación normalizada ya existe.
+        /// </summary>
+        internal static string L_OperacionNormalizadaExiste {
+            get {
+                return ResourceManager.GetString("L_OperacionNormalizadaExiste", resourceCulture);
             }
         }
         
@@ -1119,6 +1218,15 @@ namespace RotoTools.Resources {
         internal static string L_RegistrosActualizadosScript {
             get {
                 return ResourceManager.GetString("L_RegistrosActualizadosScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Renombrada.
+        /// </summary>
+        internal static string L_Renombrada {
+            get {
+                return ResourceManager.GetString("L_Renombrada", resourceCulture);
             }
         }
         

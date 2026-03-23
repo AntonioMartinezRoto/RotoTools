@@ -561,4 +561,40 @@
   <data name="L_InfoActualizacion" xml:space="preserve">
     <value>Información de la última actualización</value>
   </data>
+  <data name="L_GenerarLog" xml:space="preserve">
+    <value>Deseja gerar um log da Normalização?</value>
+  </data>
+  <data name="L_NormalizacionCompletada" xml:space="preserve">
+    <value>Normalização concluída. Operações afetadas:</value>
+  </data>
+  <data name="L_NoEncontrada" xml:space="preserve">
+    <value>Não encontrada</value>
+  </data>
+  <data name="L_Renombrada" xml:space="preserve">
+    <value>Renombrada</value>
+  </data>
+  <data name="L_OperacionNormalizadaExiste" xml:space="preserve">
+    <value>A operação normalizada já existe</value>
+  </data>
+  <data name="L_ConfirmarNormalizacion" xml:space="preserve">
+    <value>Vão ser normalizadas as operações da base de dados que o exigirem. Deseja continuar?</value>
+  </data>
+  <data name="L_CargarOperaciones" xml:space="preserve">
+    <value>Carregar operações</value>
+  </data>
+  <data name="L_LimpiarInfo" xml:space="preserve">
+    <value>Limpar informação carregada</value>
+  </data>
+  <data name="L_InstalarMacros" xml:space="preserve">
+    <value>Instalar macros de mecanizados na base de dados</value>
+  </data>
+  <data name="L_ExportarMecanizados" xml:space="preserve">
+    <value>Exportar operações</value>
+  </data>
+  <data name="L_NormalizarOperaciones" xml:space="preserve">
+    <value>Normalizar o nome das operações</value>
+  </data>
+  <data name="L_InstalarOperaciones" xml:space="preserve">
+    <value>Instalar operações selecionadas na base de dados</value>
+  </data>
 </root>

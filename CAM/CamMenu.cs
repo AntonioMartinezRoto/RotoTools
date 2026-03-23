@@ -1,10 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using RotoEntities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Text;
 using System.Text.Json;
 using System.Xml;
+using static RotoTools.Enums;
 
 namespace RotoTools
 {
@@ -45,7 +49,7 @@ namespace RotoTools
             DarEstiloCabecerasDetalleOperaciones();
 
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
-
+            SetToolTips();
         }
         private void btn_LoadXml_Click(object sender, EventArgs e)
         {
@@ -105,7 +109,7 @@ namespace RotoTools
                         progress_Install.Visible = true;
                         int totalFilas = 5;
                         progress_Install.Value = 0;
-                        progress_Install.Maximum = totalFilas ;
+                        progress_Install.Maximum = totalFilas;
 
                         progress_Install.Value++;
                         progress_Install.Refresh();
@@ -367,9 +371,329 @@ namespace RotoTools
                 frm.ShowDialog();
             }
         }
+        private void btn_NormalizarOperaciones_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(LocalizationManager.GetString("L_ConfirmarNormalizacion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                NormalizarOperaciones();
+            }            
+        }
+        private void btn_ImportEquivalencias_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel (*.xlsx)|*.xlsx";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var dict = ImportarExcelADiccionario(openFileDialog.FileName);
+                GenerarCodigoDesdeDiccionario(dict);
+
+                MessageBox.Show($"Equivalencias generadas.");
+            }
+        }
         #endregion
 
         #region Private methods
+        private void SetToolTips()
+        {
+            toolRefrescar.SetToolTip(btn_CargarOperations, LocalizationManager.GetString("L_CargarOperaciones"));
+            toolLimpiar.SetToolTip(btn_ClearOperations, LocalizationManager.GetString("L_LimpiarInfo"));
+            toolMacros.SetToolTip(btn_InstalarMacros, LocalizationManager.GetString("L_InstalarMacros"));
+            toolExportar.SetToolTip(btn_ExportMacros, LocalizationManager.GetString("L_ExportarMecanizados"));
+            toolNormalizar.SetToolTip(btn_NormalizarOperaciones, LocalizationManager.GetString("L_NormalizarOperaciones"));
+            toolInstalarOperaciones.SetToolTip(btn_InstallOperation, LocalizationManager.GetString("L_InstalarOperaciones"));
+        }
+        private void NormalizarOperaciones()
+        {
+            var mapaEquivalenciasOperaciones = Helpers.ObtenerMapaEquivalenciasOperaciones();
+            var log = new List<LogNormalizacion>();
+
+            using (var conn = new SqlConnection(Helpers.GetConnectionString()))
+            {
+                conn.Open();
+
+                int total = 0;
+
+                progress_Install.Visible = true;
+                int totalFilas = mapaEquivalenciasOperaciones.Count();
+                progress_Install.Value = 0;
+                progress_Install.Maximum = totalFilas > 0 ? totalFilas : 1;
+
+                foreach (var operacion in mapaEquivalenciasOperaciones)
+                {
+                    string sourceName = "RO_" + operacion.Key;
+                    string targetName = "RO_" + operacion.Value;
+
+                    var operaciones = ObtenerOperacionesExistentes(conn, sourceName);
+
+                    if (operaciones.Count == 0)
+                    {
+                        log.Add(new LogNormalizacion
+                        {
+                            SourceName = sourceName,
+                            TargetName = targetName,
+                            Resultado = LocalizationManager.GetString("L_NoEncontrada")
+                        });
+                    }
+
+                    foreach (var op in operaciones)
+                    {
+                        if (!Helpers.ExisteOperacionEnBD(targetName, op.External ? 1 : 0))
+                        {
+                            EjecutarRename(conn, sourceName, op.External, targetName);
+                            total++;
+
+                            log.Add(new LogNormalizacion
+                            {
+                                SourceName = sourceName,
+                                TargetName = targetName,
+                                External = op.External,
+                                Resultado = LocalizationManager.GetString("L_Renombrada")
+                            });
+                        }
+                        else
+                        {
+                            log.Add(new LogNormalizacion
+                            {
+                                SourceName = sourceName,
+                                TargetName = targetName,
+                                External = op.External,
+                                Resultado = LocalizationManager.GetString("L_OperacionNormalizadaExiste")
+                            });
+                        }
+                    }
+
+                    progress_Install.Value++;
+                    progress_Install.Refresh();
+                }
+
+                if (MessageBox.Show(LocalizationManager.GetString("L_GenerarLog"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Save as";
+                    saveFileDialog.FileName = "Log.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        GenerarExcelLog(log, saveFileDialog.FileName);
+                    }
+                }
+
+                MessageBox.Show(LocalizationManager.GetString("L_NormalizacionCompletada") + total);
+                progress_Install.Value = 0;
+                progress_Install.Visible = false;
+            }
+        }
+        private void GenerarExcelLog(List<LogNormalizacion> log, string excelPath)
+        {
+            IWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.CreateSheet("Log") as XSSFSheet;
+
+            // Cabecera
+            var header = sheet.CreateRow(0);
+            header.CreateCell(0).SetCellValue("Operación no normalizada");
+            header.CreateCell(1).SetCellValue("Operación normalizada");
+            header.CreateCell(2).SetCellValue("Exterior");
+            header.CreateCell(3).SetCellValue("Resultado");
+
+            // Datos
+            for (int i = 0; i < log.Count; i++)
+            {
+                var row = sheet.CreateRow(i + 1);
+
+                row.CreateCell(0).SetCellValue(log[i].SourceName);
+                row.CreateCell(1).SetCellValue(log[i].TargetName);
+                row.CreateCell(2).SetCellValue(log[i].External ? "1" : "0");
+                row.CreateCell(3).SetCellValue(log[i].Resultado);
+            }
+
+            // AutoSize columnas
+            for (int i = 0; i < 4; i++)
+            {
+                sheet.AutoSizeColumn(i);
+            }
+
+            DarFormatoTabla(sheet, log.Count(), 4);
+
+            using (var fs = new FileStream(excelPath, FileMode.Create, FileAccess.Write))
+            {
+                workbook.Write(fs);
+            }
+        }
+        private List<(string Name, bool External)> ObtenerOperacionesExistentes(SqlConnection conn, string sourceName)
+        {
+            var list = new List<(string, bool)>();
+
+            string query = @"SELECT OperationName, [External] 
+                             FROM MechanizedOperations 
+                             WHERE OperationName = @name";
+
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", sourceName);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader["OperationName"].ToString();
+                        bool external = Convert.ToBoolean(reader["External"]);
+
+                        list.Add((name, external));
+                    }
+                }
+            }
+
+            return list;
+        }
+        private void EjecutarRename(SqlConnection conn, string sourceName, bool sourceExternal, string targetName)
+        {
+            using (var cmd = new SqlCommand("pa_Rename_MechanizedOperation", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@SourceName", sourceName);
+                cmd.Parameters.AddWithValue("@SourceExternal", sourceExternal);
+                cmd.Parameters.AddWithValue("@TargetName", targetName);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        private void DarFormatoTabla(XSSFSheet hoja, int totalFilas, int totalColumnas)
+        {
+            if (totalFilas < 1) return;
+
+            // Crear tabla
+            XSSFTable table = hoja.CreateTable();
+
+            string tableName = $"Tabla_{hoja.SheetName.Replace(" ", "")}";
+
+            table.Name = tableName;
+            table.DisplayName = tableName;
+
+            // Definir rango
+            var startCell = new NPOI.SS.Util.CellReference(0, 0);
+            var endCell = new NPOI.SS.Util.CellReference(totalFilas, totalColumnas - 1);
+            string areaRef = $"{startCell.FormatAsString()}:{endCell.FormatAsString()}";
+
+            NPOI.OpenXmlFormats.Spreadsheet.CT_Table ctTable = table.GetCTTable();
+            ctTable.@ref = areaRef;
+            ctTable.id = (uint)(hoja.Workbook.GetSheetIndex(hoja) + 1);
+            ctTable.headerRowCount = 1;
+
+            // Autofiltro
+            ctTable.autoFilter = new NPOI.OpenXmlFormats.Spreadsheet.CT_AutoFilter
+            {
+                @ref = areaRef
+            };
+
+            // Columnas
+            ctTable.tableColumns = new NPOI.OpenXmlFormats.Spreadsheet.CT_TableColumns
+            {
+                count = (uint)totalColumnas,
+                tableColumn = new List<NPOI.OpenXmlFormats.Spreadsheet.CT_TableColumn>()
+            };
+
+            IRow headerRow = hoja.GetRow(0);
+
+            for (int i = 0; i < totalColumnas; i++)
+            {
+                string colName = headerRow?.GetCell(i)?.ToString();
+
+                if (string.IsNullOrWhiteSpace(colName))
+                    colName = $"Col{i + 1}";
+
+                ctTable.tableColumns.tableColumn.Add(
+                    new NPOI.OpenXmlFormats.Spreadsheet.CT_TableColumn
+                    {
+                        id = (uint)(i + 1),
+                        name = colName
+                    });
+            }
+
+            // Estilo visual
+            ctTable.tableStyleInfo = new NPOI.OpenXmlFormats.Spreadsheet.CT_TableStyleInfo
+            {
+                name = "TableStyleMedium2",
+                showColumnStripes = false,
+                showRowStripes = true,
+                showFirstColumn = false,
+                showLastColumn = false
+            };
+        }
+        private Dictionary<string, string> ImportarExcelADiccionario(string filePath)
+        {
+            var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                IWorkbook workbook = new XSSFWorkbook(fs);
+                ISheet sheet = workbook.GetSheetAt(0); // o workbook.GetSheet("NombreHoja");
+
+                if (sheet == null)
+                    throw new Exception("No se encontró la hoja en el Excel");
+
+                for (int i = 1; i <= sheet.LastRowNum; i++) // empieza en 1 para saltar cabecera
+                {
+                    IRow row = sheet.GetRow(i);
+                    if (row == null)
+                        continue;
+
+                    string source = ObtenerTextoCelda(row.GetCell(0));
+                    string target = ObtenerTextoCelda(row.GetCell(1));
+
+                    if (string.IsNullOrWhiteSpace(source) || string.IsNullOrWhiteSpace(target))
+                        continue;
+
+                    if (!dict.ContainsKey(source))
+                    {
+                        dict.Add(source.Trim(), target.Trim());
+                    }
+                }
+            }
+
+            return dict;
+        }
+        private string ObtenerTextoCelda(ICell cell)
+        {
+            if (cell == null)
+                return string.Empty;
+
+            switch (cell.CellType)
+            {
+                case CellType.String:
+                    return cell.StringCellValue;
+
+                case CellType.Numeric:
+                    return cell.NumericCellValue.ToString();
+
+                case CellType.Boolean:
+                    return cell.BooleanCellValue.ToString();
+
+                case CellType.Formula:
+                    return cell.ToString(); // NPOI evalúa o devuelve string
+
+                default:
+                    return cell.ToString();
+            }
+        }
+        private void GenerarCodigoDesdeDiccionario(Dictionary<string, string> dict)
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)");
+            sb.AppendLine("{");
+
+            foreach (var kvp in dict)
+            {
+                sb.AppendLine($"    {{ \"{kvp.Key}\", \"{kvp.Value}\" }},");
+            }
+
+            sb.AppendLine("};");
+
+            File.WriteAllText(@"C:\temp\EquivalenciasOperaciones.cs", sb.ToString());
+        }
         private void CargarTextos()
         {
             lbl_Xml.Text = LocalizationManager.GetString("L_SeleccionarXML");
@@ -931,7 +1255,7 @@ namespace RotoTools
 
                 chkList_Sets.DisplayMember = "Code"; // Muestra el código del Set
             }
-        }        
+        }
         private void CrearGridDetalleOperaciones()
         {
             dataGridView1.AutoGenerateColumns = false;
@@ -1139,7 +1463,6 @@ namespace RotoTools
 
         #endregion
 
-
     }
     public class OperationGridRow
     {
@@ -1174,5 +1497,12 @@ namespace RotoTools
         public string OperationName { get; set; }
         public List<OperationsShapes> OperationShapeList { get; set; }
         public List<OperationsShapes> OperationShapeExtList { get; set; }
+    }
+    public class LogNormalizacion
+    {
+        public string SourceName { get; set; }
+        public string TargetName { get; set; }
+        public bool External { get; set; }
+        public string Resultado { get; set; }
     }
 }

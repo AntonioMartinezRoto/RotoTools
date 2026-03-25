@@ -115,6 +115,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Debe asignar un nombre al Conector que se va a crear.
+        /// </summary>
+        internal static string L_AsignarNombreConector {
+            get {
+                return ResourceManager.GetString("L_AsignarNombreConector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Balconeras.
         /// </summary>
         internal static string L_Balconeras {
@@ -295,6 +304,33 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Conector actualizado correctamente..
+        /// </summary>
+        internal static string L_ConectorActualizado {
+            get {
+                return ResourceManager.GetString("L_ConectorActualizado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Conectores en la base de datos.
+        /// </summary>
+        internal static string L_ConectoresBBDD {
+            get {
+                return ResourceManager.GetString("L_ConectoresBBDD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Conectores a combinar.
+        /// </summary>
+        internal static string L_ConectoresCombinar {
+            get {
+                return ResourceManager.GetString("L_ConectoresCombinar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Conector generado correctamente..
         /// </summary>
         internal static string L_ConectorGenerado {
@@ -462,6 +498,15 @@ namespace RotoTools.Resources {
         internal static string L_Correderas {
             get {
                 return ResourceManager.GetString("L_Correderas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear nuevo Conector.
+        /// </summary>
+        internal static string L_CrearConector {
+            get {
+                return ResourceManager.GetString("L_CrearConector", resourceCulture);
             }
         }
         
@@ -876,6 +921,15 @@ namespace RotoTools.Resources {
         internal static string L_InfoActualizacion {
             get {
                 return ResourceManager.GetString("L_InfoActualizacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Insertar en Conector existente.
+        /// </summary>
+        internal static string L_InsertarEnConector {
+            get {
+                return ResourceManager.GetString("L_InsertarEnConector", resourceCulture);
             }
         }
         
@@ -1407,6 +1461,15 @@ namespace RotoTools.Resources {
         internal static string L_SeleccionarXMLNuevo {
             get {
                 return ResourceManager.GetString("L_SeleccionarXMLNuevo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debe seleccionar un Conector.
+        /// </summary>
+        internal static string L_SeleccioneConector {
+            get {
+                return ResourceManager.GetString("L_SeleccioneConector", resourceCulture);
             }
         }
         

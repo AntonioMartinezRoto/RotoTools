@@ -624,4 +624,25 @@
   <data name="L_Abatibles" xml:space="preserve">
     <value>Abatibles(EN)</value>
   </data>
+  <data name="L_ConectorActualizado" xml:space="preserve">
+    <value>Hardware connector updated successfully</value>
+  </data>
+  <data name="L_SeleccioneConector" xml:space="preserve">
+    <value>You must select a Connector</value>
+  </data>
+  <data name="L_AsignarNombreConector" xml:space="preserve">
+    <value>You must assign a name to the Connector that is going to be created</value>
+  </data>
+  <data name="L_ConectoresBBDD" xml:space="preserve">
+    <value>Hardware connector in the database</value>
+  </data>
+  <data name="L_ConectoresCombinar" xml:space="preserve">
+    <value>Hardware connector to combine</value>
+  </data>
+  <data name="L_CrearConector" xml:space="preserve">
+    <value>Create new Hardware Connector</value>
+  </data>
+  <data name="L_InsertarEnConector" xml:space="preserve">
+    <value>Insert in existing Hardware Connector</value>
+  </data>
 </root>

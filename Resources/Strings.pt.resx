@@ -624,4 +624,25 @@
   <data name="L_Abatibles" xml:space="preserve">
     <value>Rebatíveis</value>
   </data>
+  <data name="L_ConectorActualizado" xml:space="preserve">
+    <value>Conector atualizado corretamente.</value>
+  </data>
+  <data name="L_SeleccioneConector" xml:space="preserve">
+    <value>Deve selecionar um Conector</value>
+  </data>
+  <data name="L_AsignarNombreConector" xml:space="preserve">
+    <value>Deve atribuir um nome ao Conector que vai ser criado</value>
+  </data>
+  <data name="L_ConectoresBBDD" xml:space="preserve">
+    <value>Conectores na base de dados</value>
+  </data>
+  <data name="L_ConectoresCombinar" xml:space="preserve">
+    <value>Conectores a combinar</value>
+  </data>
+  <data name="L_CrearConector" xml:space="preserve">
+    <value>Criar novo Conector</value>
+  </data>
+  <data name="L_InsertarEnConector" xml:space="preserve">
+    <value>Inserir em Conector existente</value>
+  </data>
 </root>

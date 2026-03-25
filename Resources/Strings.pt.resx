@@ -597,4 +597,31 @@
   <data name="L_InstalarOperaciones" xml:space="preserve">
     <value>Instalar operações selecionadas na base de dados</value>
   </data>
+  <data name="L_BBDD" xml:space="preserve">
+    <value>BBDD</value>
+  </data>
+  <data name="L_Ventanas" xml:space="preserve">
+    <value>Janelas</value>
+  </data>
+  <data name="L_Balconeras" xml:space="preserve">
+    <value>Varandas</value>
+  </data>
+  <data name="L_Puertas" xml:space="preserve">
+    <value>Portas</value>
+  </data>
+  <data name="L_Correderas" xml:space="preserve">
+    <value>Corrediças</value>
+  </data>
+  <data name="L_Elevables" xml:space="preserve">
+    <value>Eleváveis</value>
+  </data>
+  <data name="L_Plegables" xml:space="preserve">
+    <value>Dobráveis</value>
+  </data>
+  <data name="L_Paralelas" xml:space="preserve">
+    <value>Osciloparalelas</value>
+  </data>
+  <data name="L_Abatibles" xml:space="preserve">
+    <value>Rebatíveis</value>
+  </data>
 </root>

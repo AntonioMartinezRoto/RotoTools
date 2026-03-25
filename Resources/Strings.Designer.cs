@@ -61,6 +61,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Abatibles.
+        /// </summary>
+        internal static string L_Abatibles {
+            get {
+                return ResourceManager.GetString("L_Abatibles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Instalación.
         /// </summary>
         internal static string L_Actualizador {
@@ -106,11 +115,29 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Balconeras.
+        /// </summary>
+        internal static string L_Balconeras {
+            get {
+                return ResourceManager.GetString("L_Balconeras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Balconeras AE con Sets de AI.
         /// </summary>
         internal static string L_BalconerasAEconAI {
             get {
                 return ResourceManager.GetString("L_BalconerasAEconAI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a BBDD.
+        /// </summary>
+        internal static string L_BBDD {
+            get {
+                return ResourceManager.GetString("L_BBDD", resourceCulture);
             }
         }
         
@@ -430,6 +457,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Correderas.
+        /// </summary>
+        internal static string L_Correderas {
+            get {
+                return ResourceManager.GetString("L_Correderas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Crear tarifa nueva.
         /// </summary>
         internal static string L_CrearTarifa {
@@ -480,6 +516,15 @@ namespace RotoTools.Resources {
         internal static string L_EjecutarSQL {
             get {
                 return ResourceManager.GetString("L_EjecutarSQL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Elevables.
+        /// </summary>
+        internal static string L_Elevables {
+            get {
+                return ResourceManager.GetString("L_Elevables", resourceCulture);
             }
         }
         
@@ -1105,6 +1150,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Osciloparalelas.
+        /// </summary>
+        internal static string L_Paralelas {
+            get {
+                return ResourceManager.GetString("L_Paralelas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Perfil.
         /// </summary>
         internal static string L_Perfil {
@@ -1137,6 +1191,15 @@ namespace RotoTools.Resources {
         internal static string L_PlantillaGenerada {
             get {
                 return ResourceManager.GetString("L_PlantillaGenerada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Plegables.
+        /// </summary>
+        internal static string L_Plegables {
+            get {
+                return ResourceManager.GetString("L_Plegables", resourceCulture);
             }
         }
         
@@ -1200,6 +1263,15 @@ namespace RotoTools.Resources {
         internal static string L_ProveedorAgregado {
             get {
                 return ResourceManager.GetString("L_ProveedorAgregado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Puertas.
+        /// </summary>
+        internal static string L_Puertas {
+            get {
+                return ResourceManager.GetString("L_Puertas", resourceCulture);
             }
         }
         
@@ -1470,6 +1542,15 @@ namespace RotoTools.Resources {
         internal static string L_Valor {
             get {
                 return ResourceManager.GetString("L_Valor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ventanas.
+        /// </summary>
+        internal static string L_Ventanas {
+            get {
+                return ResourceManager.GetString("L_Ventanas", resourceCulture);
             }
         }
         

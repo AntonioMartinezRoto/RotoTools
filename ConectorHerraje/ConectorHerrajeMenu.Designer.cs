@@ -81,7 +81,7 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(547, 17);
+            lbl_Conexion.Size = new Size(578, 17);
             lbl_Conexion.Spring = true;
             lbl_Conexion.Text = "toolStripStatusLabel1";
             lbl_Conexion.TextAlign = ContentAlignment.MiddleLeft;
@@ -151,7 +151,7 @@
             lbl_Combinar.BackColor = Color.Transparent;
             lbl_Combinar.Location = new Point(96, 178);
             lbl_Combinar.Name = "lbl_Combinar";
-            lbl_Combinar.Size = new Size(189, 15);
+            lbl_Combinar.Size = new Size(216, 18);
             lbl_Combinar.TabIndex = 14;
             lbl_Combinar.Text = "Combinar Conectores de Herraje";
             // 

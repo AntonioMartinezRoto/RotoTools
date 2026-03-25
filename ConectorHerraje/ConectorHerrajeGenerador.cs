@@ -61,18 +61,9 @@ namespace RotoTools
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
             lbl_ConectorActivo.Text = Helpers.GetConectorActivo();
         }
-
         private void txt_Filtro_TextChanged(object sender, EventArgs e)
         {
-            string filtro = txt_Filtro.Text.Trim().Replace("'", "''"); // evitar errores por comillas
-            if (string.IsNullOrEmpty(filtro))
-            {
-                _bindingSource.RemoveFilter();
-            }
-            else
-            {
-                _bindingSource.Filter = LocalizationManager.GetString("L_Codigo") + $" LIKE '%{filtro}%'";
-            }
+            AplicarFiltros();
         }
         private void btn_GenerarConector_Click(object sender, EventArgs e)
         {
@@ -138,10 +129,88 @@ namespace RotoTools
                 //EnableButtons(true);
             }
         }
+        private void chk_Ventanas_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Puertas_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Balconeras_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Correderas_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Elevables_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Paralelas_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Abatibles_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+        private void chk_Plegables_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
 
         #endregion
 
         #region PRIVATE METHODS
+        private void AplicarFiltros()
+        {
+            var filtros = new List<string>();
+
+            // Filtro por texto
+            string texto = txt_Filtro.Text.Trim().Replace("'", "''");
+
+            if (!string.IsNullOrEmpty(texto))
+            {
+                filtros.Add($"{LocalizationManager.GetString("L_Codigo")} LIKE '%{texto}%'");
+            }
+
+            // Filtro por WindowType (checkboxes)
+            var windowTypesSeleccionados = new List<int>();
+
+            if (chk_Ventanas.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Ventana);
+            if (chk_Puertas.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Puerta);
+            if (chk_Balconeras.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Balconera);
+            if (chk_Elevables.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Elevable);
+            if (chk_Correderas.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Corredera);
+            if (chk_Paralelas.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Osciloparalela);
+            if (chk_Abatibles.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Abatible);
+            if (chk_Plegables.Checked)
+                windowTypesSeleccionados.Add((int)enumWindowType.Plegable);
+
+            if (windowTypesSeleccionados.Any())
+            {
+                string filtroWindowType = string.Join(" OR ",
+                    windowTypesSeleccionados.Select(w => $"WindowType = {w}")
+                );
+
+                filtros.Add($"({filtroWindowType})");
+            }
+
+            //Aplicar filtro final
+            _bindingSource.Filter = filtros.Any()
+                ? string.Join(" AND ", filtros)
+                : string.Empty;
+        }
         private List<SetGridRow> ConvertSetsToGrid(List<Set> sets)
         {
             var result = new List<SetGridRow>();
@@ -216,7 +285,9 @@ namespace RotoTools
                     Apertura = img,
                     Opciones = options,
                     Codigo = set.Code,
-                    Escandallo = set.Script
+                    Escandallo = set.Script,
+                    WindowType = set.WindowType,
+                    Selected = false
                 });
             }
 
@@ -305,10 +376,12 @@ namespace RotoTools
 
             // Definir DataTable con columnas
             _dataTable = new DataTable();
+            _dataTable.Columns.Add("", typeof(bool));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Escandallo"), typeof(string));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Apertura"), typeof(Image));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Opciones"), typeof(string));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Codigo"), typeof(string));
+            _dataTable.Columns.Add("WindowType", typeof(int));
 
             // Crear BindingSource y asignarle la tabla
             _bindingSource = new BindingSource();
@@ -316,6 +389,13 @@ namespace RotoTools
 
             // Conectar la grilla al BindingSource (no directamente al DataTable)
             dataGridView1.DataSource = _bindingSource;
+
+            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                DataPropertyName = "Selected",
+                HeaderText = "",
+                Width = 30
+            });
 
             // Configuración de columnas (como ya lo tenías)
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -332,7 +412,7 @@ namespace RotoTools
                 HeaderText = LocalizationManager.GetString("L_Apertura"),
                 DataPropertyName = LocalizationManager.GetString("L_Apertura"),
                 ReadOnly = true,
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                //ImageLayout = DataGridViewImageCellLayout.Zoom,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
@@ -353,6 +433,16 @@ namespace RotoTools
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 DefaultCellStyle = { WrapMode = DataGridViewTriState.True }
             });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "WindowType",
+                DataPropertyName = "WindowType",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                DefaultCellStyle = { WrapMode = DataGridViewTriState.True },
+                Visible = false
+            });
         }
         private void CargarDatos(List<SetGridRow> listaSets)
         {
@@ -360,7 +450,7 @@ namespace RotoTools
 
             foreach (var set in listaSets)
             {
-                _dataTable.Rows.Add(set.Escandallo, set.Apertura, set.Opciones, set.Codigo);
+                _dataTable.Rows.Add(set.Selected, set.Escandallo, set.Apertura, set.Opciones, set.Codigo, set.WindowType);
             }
         }
         private void EstiloCabeceras()
@@ -382,8 +472,20 @@ namespace RotoTools
             lbl_SaveBD.Text = LocalizationManager.GetString("L_GuardarEnBD");
             chk_Predefinido.Text = LocalizationManager.GetString("L_PonerPredefinido");
             lbl_Filtro.Text = LocalizationManager.GetString("L_Buscar");
-        }
+            btn_GenerarConector.Text = LocalizationManager.GetString("L_XML");
+            btn_InsertConector.Text = LocalizationManager.GetString("L_BBDD");
+            groupSaveConector.Text = LocalizationManager.GetString("L_Guardar");
+            group_Buscar.Text = LocalizationManager.GetString("L_Buscar");
 
+            chk_Ventanas.Text = LocalizationManager.GetString("L_Ventanas");
+            chk_Balconeras.Text = LocalizationManager.GetString("L_Balconeras");
+            chk_Puertas.Text = LocalizationManager.GetString("L_Puertas");
+            chk_Correderas.Text = LocalizationManager.GetString("L_Correderas");
+            chk_Elevables.Text = LocalizationManager.GetString("L_Elevables");
+            chk_Paralelas.Text = LocalizationManager.GetString("L_Paralelas");
+            chk_Plegables.Text = LocalizationManager.GetString("L_Plegables");
+            chk_Abatibles.Text = LocalizationManager.GetString("L_Abatibles");
+        }
         private void CheckOpcionTipoCorredera()
         {
             bool existenSetsCorredera = this.setsWorkingList.Where(x => !String.IsNullOrEmpty(x.Code)).Any(s => s.Code.ToUpper().Contains("CORREDERA"));
@@ -396,6 +498,7 @@ namespace RotoTools
         }
         #endregion
 
+
     }
     public class SetGridRow
     {
@@ -403,5 +506,7 @@ namespace RotoTools
         public Image? Apertura { get; set; }
         public string Opciones { get; set; }
         public string Codigo { get; set; }
+        public bool Selected { get; set; }
+        public int WindowType { get; set; }
     }
 }

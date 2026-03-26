@@ -439,7 +439,7 @@ namespace RotoTools
 
             if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
+                setList.Add(new Set("INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
 
@@ -915,7 +915,7 @@ namespace RotoTools
 
             if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
+                setList.Add(new Set("INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
 
@@ -1390,7 +1390,7 @@ namespace RotoTools
 
             if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
+                setList.Add(new Set("INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
             #endregion

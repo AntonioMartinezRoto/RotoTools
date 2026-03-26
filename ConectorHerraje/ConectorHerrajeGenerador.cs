@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using RotoEntities;
+using SixLabors.Fonts.Tables.TrueType;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace RotoTools
         private BindingSource _bindingSource;
         XmlData xmlOrigen = new XmlData();
         private bool necesarioInsertarOpcionTipoCorredera = false;
+        private bool _initializing = false;
 
         #endregion
 
@@ -45,7 +47,8 @@ namespace RotoTools
         #region EVENTS
         private void ConectorHerrajeGenerador_Load(object sender, EventArgs e)
         {
-            List<Set> listaSets = setsWorkingList; // tu método para cargar Sets
+            CheckAllChecks();
+            List<Set> listaSets = setsWorkingList;
             txt_ConectorName.Text = supplierName;
 
             CrearGrid();
@@ -60,6 +63,10 @@ namespace RotoTools
             statusStrip1.BackColor = Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
             lbl_ConectorActivo.Text = Helpers.GetConectorActivo();
+
+            AplicarFiltros();
+
+            chk_SelectAll.Checked = true;
         }
         private void txt_Filtro_TextChanged(object sender, EventArgs e)
         {
@@ -85,7 +92,7 @@ namespace RotoTools
             try
             {
                 string sql = @"INSERT INTO ConectorHerrajes (DataVerId, Codigo, XML) VALUES (dbo.GetCurrentDVID(), @Codigo, @Xml);";
-                //EnableButtons(false);
+
                 if (ExisteConectorEnBD(txt_ConectorName.Text))
                 {
                     if (MessageBox.Show(LocalizationManager.GetString("L_ExisteConector"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -161,12 +168,64 @@ namespace RotoTools
         {
             AplicarFiltros();
         }
+        private void chk_SelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool seleccionar = chk_SelectAll.Checked;
 
+            foreach (DataRowView rowView in _bindingSource)
+            {
+                rowView["Selected"] = seleccionar;
+            }
+
+            dataGridView1.Refresh();
+        }
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                bool allChecked = true;
+
+                foreach (DataRowView rowView in _bindingSource)
+                {
+                    if (!(rowView["Selected"] as bool? ?? false))
+                    {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                chk_SelectAll.CheckedChanged -= chk_SelectAll_CheckedChanged;
+                chk_SelectAll.Checked = allChecked;
+                chk_SelectAll.CheckedChanged += chk_SelectAll_CheckedChanged;
+            }
+        }
+        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.IsCurrentCellDirty)
+            {
+                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
         #endregion
 
         #region PRIVATE METHODS
+        private void CheckAllChecks()
+        {
+            _initializing = true;
+            chk_Ventanas.Checked = true;
+            chk_Balconeras.Checked = true;
+            chk_Puertas.Checked = true;
+            chk_Correderas.Checked = true;
+            chk_Elevables.Checked = true;
+            chk_Paralelas.Checked = true;
+            chk_Abatibles.Checked = true;
+            chk_Plegables.Checked = true;
+            _initializing = false;
+        }
         private void AplicarFiltros()
         {
+            if (_initializing) return;
+
             var filtros = new List<string>();
 
             // Filtro por texto
@@ -185,7 +244,10 @@ namespace RotoTools
             if (chk_Puertas.Checked)
                 windowTypesSeleccionados.Add((int)enumWindowType.Puerta);
             if (chk_Balconeras.Checked)
+            {
                 windowTypesSeleccionados.Add((int)enumWindowType.Balconera);
+                windowTypesSeleccionados.Add((int)enumWindowType.PuertaSecundaria);
+            }
             if (chk_Elevables.Checked)
                 windowTypesSeleccionados.Add((int)enumWindowType.Elevable);
             if (chk_Correderas.Checked)
@@ -210,6 +272,10 @@ namespace RotoTools
             _bindingSource.Filter = filtros.Any()
                 ? string.Join(" AND ", filtros)
                 : string.Empty;
+
+            lbl_Total.Text = _bindingSource.Count.ToString() + " " + LocalizationManager.GetString("L_Lineas");
+
+            //ShowFilasFaltantes();
         }
         private List<SetGridRow> ConvertSetsToGrid(List<Set> sets)
         {
@@ -303,7 +369,13 @@ namespace RotoTools
             connectorNode.SetAttribute("Message", "true");
             doc.AppendChild(connectorNode);
 
-            foreach (Set set in setsWorkingList)
+            var codigosSeleccionados = ObtenerCodigosSeleccionados();
+
+            var setsSeleccionados = setsWorkingList
+                .Where(s => codigosSeleccionados.Contains(s.Code) || codigosSeleccionados.Contains(s.Script))
+                .ToList();
+
+            foreach (Set set in setsSeleccionados)
             {
                 if (!set.IsTitle && set.OpeningFlagConectorList == null) continue;
 
@@ -353,6 +425,28 @@ namespace RotoTools
 
             return doc;
         }
+        private List<string> ObtenerCodigosSeleccionados()
+        {
+            var codigos = new List<string>();
+
+            foreach (DataRowView row in _bindingSource)
+            {
+                bool selected = row["Selected"] != DBNull.Value && (bool)row["Selected"];
+
+                if (selected)
+                {
+                    string codigo = row[LocalizationManager.GetString("L_Codigo")]?.ToString();
+                    string escandallo = row[LocalizationManager.GetString("L_Escandallo")]?.ToString();
+
+                    if (!string.IsNullOrEmpty(codigo))
+                        codigos.Add(codigo);
+                    else if (!string.IsNullOrEmpty(escandallo))
+                        codigos.Add(escandallo);
+                }
+            }
+
+            return codigos;
+        }
         private bool ExisteConectorEnBD(string conectorName)
         {
             using SqlConnection conexion = new SqlConnection(Helpers.GetConnectionString());
@@ -373,10 +467,11 @@ namespace RotoTools
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.RowTemplate.Height = 50;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
 
             // Definir DataTable con columnas
             _dataTable = new DataTable();
-            _dataTable.Columns.Add("", typeof(bool));
+            _dataTable.Columns.Add("Selected", typeof(bool));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Escandallo"), typeof(string));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Apertura"), typeof(Image));
             _dataTable.Columns.Add(LocalizationManager.GetString("L_Opciones"), typeof(string));
@@ -496,7 +591,25 @@ namespace RotoTools
                 necesarioInsertarOpcionTipoCorredera = true;
             }
         }
+        private void ShowFilasFaltantes()
+        {
+            var filasFaltantes = _dataTable.AsEnumerable()
+                    .Where(r =>
+                    {
+                        int tipo = Convert.ToInt32(r["WindowType"]);
+                        return !_bindingSource.Cast<DataRowView>()
+                            .Any(v => Convert.ToInt32(v["WindowType"]) == tipo);
+                    })
+                    .ToList();
+
+            var codigos = filasFaltantes
+                .Select(r => r[LocalizationManager.GetString("L_Codigo")]?.ToString())
+                .Take(500); // limitar
+
+            MessageBox.Show("Ejemplos faltantes:\n" + string.Join("\n", codigos));
+        }
         #endregion
+
 
 
     }

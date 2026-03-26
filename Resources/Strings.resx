@@ -645,4 +645,7 @@
   <data name="L_InsertarEnConector" xml:space="preserve">
     <value>Insertar en Conector existente</value>
   </data>
+  <data name="L_Lineas" xml:space="preserve">
+    <value>Líneas</value>
+  </data>
 </root>

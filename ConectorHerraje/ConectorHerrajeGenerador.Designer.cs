@@ -51,6 +51,8 @@
             chk_Puertas = new CheckBox();
             chk_Balconeras = new CheckBox();
             chk_Ventanas = new CheckBox();
+            chk_SelectAll = new CheckBox();
+            lbl_Total = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             statusStrip1.SuspendLayout();
             groupSaveConector.SuspendLayout();
@@ -154,11 +156,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(41, 95);
+            dataGridView1.Location = new Point(41, 116);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Size = new Size(1115, 780);
+            dataGridView1.Size = new Size(1115, 759);
             dataGridView1.TabIndex = 30;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            dataGridView1.CurrentCellDirtyStateChanged += dataGridView1_CurrentCellDirtyStateChanged;
             // 
             // statusStrip1
             // 
@@ -308,6 +312,28 @@
             chk_Ventanas.UseVisualStyleBackColor = true;
             chk_Ventanas.CheckedChanged += chk_Ventanas_CheckedChanged;
             // 
+            // chk_SelectAll
+            // 
+            chk_SelectAll.AutoSize = true;
+            chk_SelectAll.BackColor = Color.Transparent;
+            chk_SelectAll.Location = new Point(51, 95);
+            chk_SelectAll.Name = "chk_SelectAll";
+            chk_SelectAll.Size = new Size(118, 19);
+            chk_SelectAll.TabIndex = 34;
+            chk_SelectAll.Text = "Seleccionar todas";
+            chk_SelectAll.UseVisualStyleBackColor = false;
+            chk_SelectAll.CheckedChanged += chk_SelectAll_CheckedChanged;
+            // 
+            // lbl_Total
+            // 
+            lbl_Total.AutoSize = true;
+            lbl_Total.BackColor = Color.Transparent;
+            lbl_Total.Location = new Point(1081, 99);
+            lbl_Total.Name = "lbl_Total";
+            lbl_Total.Size = new Size(49, 15);
+            lbl_Total.TabIndex = 35;
+            lbl_Total.Text = "0 Líneas";
+            // 
             // ConectorHerrajeGenerador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -315,6 +341,8 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1434, 861);
+            Controls.Add(lbl_Total);
+            Controls.Add(chk_SelectAll);
             Controls.Add(group_Buscar);
             Controls.Add(groupSaveConector);
             Controls.Add(lbl_SaveXML);
@@ -364,5 +392,7 @@
         private CheckBox chk_Plegables;
         private CheckBox chk_Elevables;
         private CheckBox chk_Paralelas;
+        private CheckBox chk_SelectAll;
+        private Label lbl_Total;
     }
 }

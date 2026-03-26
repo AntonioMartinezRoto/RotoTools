@@ -240,7 +240,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaFija);
             }
 
@@ -248,21 +248,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaFija = GetSetsCF2HActivaVentanaOsciloBatiente();
             if (sets2HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaFija = GetSetsCF2HActivaVentanaPracticable();
             if (sets2HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaFija);
             }
 
@@ -270,7 +270,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaFija = GetSetsCF2HPasivaVentanaPracticable();
             if (sets2HVentanaPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PASIVA"));
+                setList.Add(new Set("CF KSR V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaFija);
             }
 
@@ -280,56 +280,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF1HActivaBalconeraOsciloBatiente();
             if (sets1HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFija = GetSetsCF1HActivaBalconeraPracticable();
             if (sets1HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H PRACTICABLE"));
+                setList.Add(new Set("CF B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF2HActivaBalconeraOsciloBatiente();
             if (sets2HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFija = GetSetsCF2HActivaBalconeraPracticable();
             if (sets2HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H PRACTICABLE"));
+                setList.Add(new Set("CF B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPasivaCotaFija = GetSetsCF2HPasivaBalconeraPracticable();
             if (sets2HBalconeraPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR B2H PASIVA"));
+                setList.Add(new Set("CF KSR B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaBalconeraPracticableAperturaExterior();
             if (sets1HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B1H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B1H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaBalconeraPracticableAperturaExterior();
             if (sets2HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaBalconeraPracticableAperturaExterior();
             if (sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H PASIVA APERTURA EX"));
+                setList.Add(new Set("CF B2H PASIVA APERTURA EX", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -339,42 +339,42 @@ namespace RotoTools
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF1HActivaPuertaSecundariaPracticable();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H"));
+                setList.Add(new Set("CF P SEC. 1H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF2HActivaPuertaSecundariaPracticable();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H"));
+                setList.Add(new Set("CF P SEC. 2H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFija = GetSetsCF2HPasivaPuertaSecundariaPracticable();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA"));
+                setList.Add(new Set("CF P SEC. 2H PASIVA", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFija);
             }
 
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaPuertaSecundariaPracticableAperturaExterior();
             if (sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H A.E."));
+                setList.Add(new Set("CF P SEC. 1H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaSecundariaPracticableAperturaExterior();
             if (sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H A.E."));
+                setList.Add(new Set("CF P SEC. 2H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaSecundariaPracticableAperturaExterior();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA A.E."));
+                setList.Add(new Set("CF P SEC. 2H PASIVA A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -385,42 +385,42 @@ namespace RotoTools
             List<Set> sets1HPuertaCotaFija = GetSetsCF1HActivaPuerta();
             if (sets1HPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P1H"));
+                setList.Add(new Set("CF P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFija);
             }
 
             List<Set> sets2HActivaPuertaCotaFija = GetSetsCF2HActivaPuerta();
             if (sets2HActivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H"));
+                setList.Add(new Set("CF P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFija);
             }
 
             List<Set> sets2HPasivaPuertaCotaFija = GetSetsCF2HPasivaPuerta();
             if (sets2HPasivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA"));
+                setList.Add(new Set("CF P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFija);
             }
 
             List<Set> sets1HPuertaCotaFijaAperturaExterior = GetSetsCF1HPuertaAperturaExterior();
             if (sets1HPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P1H APERTURA EXT"));
+                setList.Add(new Set("CF P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaAperturaExterior();
             if (sets2HActivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H APERTURA EXT"));
+                setList.Add(new Set("CF P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaAperturaExterior();
             if (sets2HPasivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CF P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFijaAperturaExterior);
             }
             #endregion
@@ -431,15 +431,15 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF CORREDERA"));
+                setList.Add(new Set("CF CORREDERA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsCorrederaCotaFija);
             }
 
             List<Set> setsInowaCotaFija = GetSetsCFInowa();
 
-            if (setsCorrederaCotaFija.Any())
+            if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA"));
+                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
 
@@ -451,7 +451,7 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF PATIO LIFT"));
+                setList.Add(new Set("CF PATIO LIFT", (int)enumWindowType.Elevable));
                 setList.AddRange(setsPatioLiftCotaFija);
             }
 
@@ -463,7 +463,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaFija.Any())
             {
-                setList.Add(new Set("CF PLEGABLE"));
+                setList.Add(new Set("CF PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaFija);
             }
 
@@ -479,7 +479,7 @@ namespace RotoTools
 
             if (setsAbatiblesCotaVariable.Any())
             {
-                setList.Add(new Set("CV ABATIBLES"));
+                setList.Add(new Set("CV ABATIBLES", (int)enumWindowType.Abatible));
                 setList.AddRange(setsAbatiblesCotaVariable);
             }
 
@@ -492,7 +492,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaVariable);
             }
 
@@ -500,21 +500,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H PRACTICABLE"));
+                setList.Add(new Set("CV V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaVentanaOsciloBatiente();
             if (sets2HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaVariable = GetSetsCV2HActivaVentanaPracticable();
             if (sets2HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PRACTICABLE"));
+                setList.Add(new Set("CV V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaVariable);
             }
 
@@ -522,7 +522,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaVariable = GetSetsCV2HPasivaVentanaPracticable();
             if (sets2HVentanaPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PASIVA"));
+                setList.Add(new Set("CV V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaVariable);
             }
 
@@ -533,56 +533,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV1HActivaBalconeraOsciloBatiente();
             if (sets1HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariable = GetSetsCV1HActivaBalconeraPracticable();
             if (sets1HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H PRACTICABLE"));
+                setList.Add(new Set("CV B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaBalconeraOsciloBatiente();
             if (sets2HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariable = GetSetsCV2HActivaBalconeraPracticable();
             if (sets2HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PRACTICABLE"));
+                setList.Add(new Set("CV B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPasivaCotaVariable = GetSetsCV2HPasivaBalconeraPracticable();
             if (sets2HBalconeraPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA"));
+                setList.Add(new Set("CV B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV1HActivaBalconeraPracticableAperturaExterior();
             if (sets1HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B1H APERTURA EXT"));
+                setList.Add(new Set("CV B1H APERTURA EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV2HActivaBalconeraPracticableAperturaExterior();
             if (sets2HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CV B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior = GetSetsCV2HPasivaBalconeraPracticableAperturaExterior();
             if (sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA AP. EXT"));
+                setList.Add(new Set("CV B2H PASIVA AP. EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior);
             }
             #endregion
@@ -593,7 +593,7 @@ namespace RotoTools
 
             if (setsPuerta1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV P1H"));
+                setList.Add(new Set("CV P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta1HCotaVariable);
             }
 
@@ -601,35 +601,35 @@ namespace RotoTools
 
             if (setsPuerta2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H"));
+                setList.Add(new Set("CV P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta2HActivaCotaVariable);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariable = GetSetsCV2HPasivaPuerta();
             if (sets2HPasivaPuertaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA"));
+                setList.Add(new Set("CV P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariable);
             }
 
             List<Set> sets1HPuertaCotaVariableAperturaExterior = GetSetsCV1HPuertaAperturaExterior();
             if (sets1HPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P1H APERTURA EXT"));
+                setList.Add(new Set("CV P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaVariableAperturaExterior = GetSetsCV2HActivaPuertaAperturaExterior();
             if (sets2HActivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H APERTURA EXT"));
+                setList.Add(new Set("CV P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariableAperturaExterior = GetSetsCV2HPasivaPuertaAperturaExterior();
             if (sets2HPasivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CV P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariableAperturaExterior);
             }
             #endregion
@@ -640,7 +640,7 @@ namespace RotoTools
 
             if (setsOsciloParalela1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA"));
+                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela1HCotaVariable);
             }
 
@@ -648,14 +648,14 @@ namespace RotoTools
 
             if (setsOsciloParalela2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H ACT."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HActivaCotaVariable);
             }
             List<Set> setsOsciloParalela2HPasivaCotaVariable = GetSetsCVOsciloParalela2HPasiva();
 
             if (setsOsciloParalela2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H PAS."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HPasivaCotaVariable);
             }
 
@@ -667,7 +667,7 @@ namespace RotoTools
 
             if (setsParalelaCorredera1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA"));
+                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera1HCotaVariable);
             }
 
@@ -675,14 +675,14 @@ namespace RotoTools
 
             if (setsParalelaCorredera2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HActivaCotaVariable);
             }
             List<Set> setsParalelaCorredera2HPasivaCotaVariable = GetSetsCVParalelaCorredera2HPasiva();
 
             if (setsParalelaCorredera2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HPasivaCotaVariable);
             }
 
@@ -694,7 +694,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaVariable.Any())
             {
-                setList.Add(new Set("CV PLEGABLE"));
+                setList.Add(new Set("CV PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaVariable);
             }
 
@@ -716,7 +716,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaFija);
             }
 
@@ -724,21 +724,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaFija = GetSetsCF2HActivaVentanaOsciloBatienteALU();
             if (sets2HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaFija = GetSetsCF2HActivaVentanaPracticableALU();
             if (sets2HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaFija);
             }
 
@@ -746,7 +746,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaFija = GetSetsCF2HPasivaVentanaPracticableALU();
             if (sets2HVentanaPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PASIVA"));
+                setList.Add(new Set("CF KSR V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaFija);
             }
 
@@ -756,56 +756,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF1HActivaBalconeraOsciloBatienteALU();
             if (sets1HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFija = GetSetsCF1HActivaBalconeraPracticableALU();
             if (sets1HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H PRACTICABLE"));
+                setList.Add(new Set("CF B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF2HActivaBalconeraOsciloBatienteALU();
             if (sets2HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFija = GetSetsCF2HActivaBalconeraPracticableALU();
             if (sets2HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H PRACTICABLE"));
+                setList.Add(new Set("CF B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPasivaCotaFija = GetSetsCF2HPasivaBalconeraPracticableALU();
             if (sets2HBalconeraPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR B2H PASIVA"));
+                setList.Add(new Set("CF KSR B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaBalconeraPracticableAperturaExteriorALU();
             if (sets1HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B1H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B1H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaBalconeraPracticableAperturaExteriorALU();
             if (sets2HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaBalconeraPracticableAperturaExteriorALU();
             if (sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H PASIVA APERTURA EX"));
+                setList.Add(new Set("CF B2H PASIVA APERTURA EX", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -815,42 +815,42 @@ namespace RotoTools
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF1HActivaPuertaSecundariaPracticableALU();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H"));
+                setList.Add(new Set("CF P SEC. 1H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF2HActivaPuertaSecundariaPracticableALU();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H"));
+                setList.Add(new Set("CF P SEC. 2H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFija = GetSetsCF2HPasivaPuertaSecundariaPracticableALU();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA"));
+                setList.Add(new Set("CF P SEC. 2H PASIVA", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFija);
             }
 
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaPuertaSecundariaPracticableAperturaExteriorALU();
             if (sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H A.E."));
+                setList.Add(new Set("CF P SEC. 1H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaSecundariaPracticableAperturaExteriorALU();
             if (sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H A.E."));
+                setList.Add(new Set("CF P SEC. 2H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaSecundariaPracticableAperturaExteriorALU();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA A.E."));
+                setList.Add(new Set("CF P SEC. 2H PASIVA A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -861,42 +861,42 @@ namespace RotoTools
             List<Set> sets1HPuertaCotaFija = GetSetsCF1HActivaPuertaALU();
             if (sets1HPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P1H"));
+                setList.Add(new Set("CF P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFija);
             }
 
             List<Set> sets2HActivaPuertaCotaFija = GetSetsCF2HActivaPuertaALU();
             if (sets2HActivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H"));
+                setList.Add(new Set("CF P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFija);
             }
 
             List<Set> sets2HPasivaPuertaCotaFija = GetSetsCF2HPasivaPuertaALU();
             if (sets2HPasivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA"));
+                setList.Add(new Set("CF P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFija);
             }
 
             List<Set> sets1HPuertaCotaFijaAperturaExterior = GetSetsCF1HPuertaAperturaExteriorALU();
             if (sets1HPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P1H APERTURA EXT"));
+                setList.Add(new Set("CF P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaAperturaExteriorALU();
             if (sets2HActivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H APERTURA EXT"));
+                setList.Add(new Set("CF P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaAperturaExteriorALU();
             if (sets2HPasivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CF P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFijaAperturaExterior);
             }
             #endregion
@@ -907,15 +907,15 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF CORREDERA"));
+                setList.Add(new Set("CF CORREDERA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsCorrederaCotaFija);
             }
 
             List<Set> setsInowaCotaFija = GetSetsCFInowa();
 
-            if (setsCorrederaCotaFija.Any())
+            if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA"));
+                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
 
@@ -927,7 +927,7 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF PATIO LIFT"));
+                setList.Add(new Set("CF PATIO LIFT", (int)enumWindowType.Elevable));
                 setList.AddRange(setsPatioLiftCotaFija);
             }
 
@@ -939,7 +939,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaFija.Any())
             {
-                setList.Add(new Set("CF PLEGABLE"));
+                setList.Add(new Set("CF PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaFija);
             }
 
@@ -955,7 +955,7 @@ namespace RotoTools
 
             if (setsAbatiblesCotaVariable.Any())
             {
-                setList.Add(new Set("CV ABATIBLES"));
+                setList.Add(new Set("CV ABATIBLES", (int)enumWindowType.Abatible));
                 setList.AddRange(setsAbatiblesCotaVariable);
             }
 
@@ -968,7 +968,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaVariable);
             }
 
@@ -976,21 +976,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H PRACTICABLE"));
+                setList.Add(new Set("CV V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaVentanaOsciloBatienteALU();
             if (sets2HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaVariable = GetSetsCV2HActivaVentanaPracticableALU();
             if (sets2HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PRACTICABLE"));
+                setList.Add(new Set("CV V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaVariable);
             }
 
@@ -998,7 +998,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaVariable = GetSetsCV2HPasivaVentanaPracticableALU();
             if (sets2HVentanaPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PASIVA"));
+                setList.Add(new Set("CV V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaVariable);
             }
 
@@ -1009,56 +1009,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV1HActivaBalconeraOsciloBatienteALU();
             if (sets1HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariable = GetSetsCV1HActivaBalconeraPracticableALU();
             if (sets1HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H PRACTICABLE"));
+                setList.Add(new Set("CV B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaBalconeraOsciloBatienteALU();
             if (sets2HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariable = GetSetsCV2HActivaBalconeraPracticableALU();
             if (sets2HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PRACTICABLE"));
+                setList.Add(new Set("CV B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPasivaCotaVariable = GetSetsCV2HPasivaBalconeraPracticableALU();
             if (sets2HBalconeraPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA"));
+                setList.Add(new Set("CV B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV1HActivaBalconeraPracticableAperturaExteriorALU();
             if (sets1HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B1H APERTURA EXT"));
+                setList.Add(new Set("CV B1H APERTURA EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV2HActivaBalconeraPracticableAperturaExteriorALU();
             if (sets2HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CV B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior = GetSetsCV2HPasivaBalconeraPracticableAperturaExteriorALU();
             if (sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA AP. EXT"));
+                setList.Add(new Set("CV B2H PASIVA AP. EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior);
             }
             #endregion
@@ -1069,7 +1069,7 @@ namespace RotoTools
 
             if (setsPuerta1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV P1H"));
+                setList.Add(new Set("CV P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta1HCotaVariable);
             }
 
@@ -1077,35 +1077,35 @@ namespace RotoTools
 
             if (setsPuerta2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H"));
+                setList.Add(new Set("CV P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta2HActivaCotaVariable);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariable = GetSetsCV2HPasivaPuertaALU();
             if (sets2HPasivaPuertaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA"));
+                setList.Add(new Set("CV P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariable);
             }
 
             List<Set> sets1HPuertaCotaVariableAperturaExterior = GetSetsCV1HPuertaAperturaExteriorALU();
             if (sets1HPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P1H APERTURA EXT"));
+                setList.Add(new Set("CV P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaVariableAperturaExterior = GetSetsCV2HActivaPuertaAperturaExteriorALU();
             if (sets2HActivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H APERTURA EXT"));
+                setList.Add(new Set("CV P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariableAperturaExterior = GetSetsCV2HPasivaPuertaAperturaExteriorALU();
             if (sets2HPasivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CV P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariableAperturaExterior);
             }
             #endregion
@@ -1116,7 +1116,7 @@ namespace RotoTools
 
             if (setsOsciloParalela1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA"));
+                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela1HCotaVariable);
             }
 
@@ -1124,14 +1124,14 @@ namespace RotoTools
 
             if (setsOsciloParalela2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H ACT."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HActivaCotaVariable);
             }
             List<Set> setsOsciloParalela2HPasivaCotaVariable = GetSetsCVOsciloParalela2HPasivaALU();
 
             if (setsOsciloParalela2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H PAS."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HPasivaCotaVariable);
             }
 
@@ -1143,7 +1143,7 @@ namespace RotoTools
 
             if (setsParalelaCorredera1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA"));
+                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA, (int)enumWindowType.Osciloparalela"));
                 setList.AddRange(setsParalelaCorredera1HCotaVariable);
             }
 
@@ -1151,14 +1151,14 @@ namespace RotoTools
 
             if (setsParalelaCorredera2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HActivaCotaVariable);
             }
             List<Set> setsParalelaCorredera2HPasivaCotaVariable = GetSetsCVParalelaCorredera2HPasivaALU();
 
             if (setsParalelaCorredera2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HPasivaCotaVariable);
             }
 
@@ -1170,7 +1170,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaVariable.Any())
             {
-                setList.Add(new Set("CV PLEGABLE"));
+                setList.Add(new Set("CV PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaVariable);
             }
 
@@ -1191,7 +1191,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaFija);
             }
 
@@ -1199,21 +1199,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V1H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaFija = GetSetsCF2HActivaVentanaOsciloBatientePAX();
             if (sets2HVentanaOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF KSR V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaFija = GetSetsCF2HActivaVentanaPracticablePAX();
             if (sets2HVentanaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PRACTICABLE"));
+                setList.Add(new Set("CF KSR V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaFija);
             }
 
@@ -1221,7 +1221,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaFija = GetSetsCF2HPasivaVentanaPracticablePAX();
             if (sets2HVentanaPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR V2H PASIVA"));
+                setList.Add(new Set("CF KSR V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaFija);
             }
 
@@ -1231,56 +1231,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF1HActivaBalconeraOsciloBatientePAX();
             if (sets1HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFija = GetSetsCF1HActivaBalconeraPracticablePAX();
             if (sets1HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B1H PRACTICABLE"));
+                setList.Add(new Set("CF B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaFija = GetSetsCF2HActivaBalconeraOsciloBatientePAX();
             if (sets2HBalconeraOsciloBatienteActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CF B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFija = GetSetsCF2HActivaBalconeraPracticablePAX();
             if (sets2HBalconeraPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF B2H PRACTICABLE"));
+                setList.Add(new Set("CF B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFija);
             }
 
             List<Set> sets2HBalconeraPasivaCotaFija = GetSetsCF2HPasivaBalconeraPracticablePAX();
             if (sets2HBalconeraPasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF KSR B2H PASIVA"));
+                setList.Add(new Set("CF KSR B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaFija);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaBalconeraPracticableAperturaExteriorPAX();
             if (sets1HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B1H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B1H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaBalconeraPracticableAperturaExteriorPAX();
             if (sets2HBalconeraPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CF B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaBalconeraPracticableAperturaExteriorPAX();
             if (sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF B2H PASIVA APERTURA EX"));
+                setList.Add(new Set("CF B2H PASIVA APERTURA EX", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -1290,42 +1290,42 @@ namespace RotoTools
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF1HActivaPuertaSecundariaPracticablePAX();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H"));
+                setList.Add(new Set("CF P SEC. 1H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFija = GetSetsCF2HActivaPuertaSecundariaPracticablePAX();
             if (sets1HPuertaSecundariaPracticableActivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H"));
+                setList.Add(new Set("CF P SEC. 2H", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFija);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFija = GetSetsCF2HPasivaPuertaSecundariaPracticablePAX();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFija.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA"));
+                setList.Add(new Set("CF P SEC. 2H PASIVA", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFija);
             }
 
             List<Set> sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF1HActivaPuertaSecundariaPracticableAperturaExteriorPAX();
             if (sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 1H A.E."));
+                setList.Add(new Set("CF P SEC. 1H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets1HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaSecundariaPracticableAperturaExteriorPAX();
             if (sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H A.E."));
+                setList.Add(new Set("CF P SEC. 2H A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticableActivaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaSecundariaPracticableAperturaExteriorPAX();
             if (sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P SEC. 2H PASIVA A.E."));
+                setList.Add(new Set("CF P SEC. 2H PASIVA A.E.", (int)enumWindowType.PuertaSecundaria));
                 setList.AddRange(sets2HPuertaSecundariaPracticablePasivaCotaFijaAperturaExterior);
             }
 
@@ -1336,42 +1336,42 @@ namespace RotoTools
             List<Set> sets1HPuertaCotaFija = GetSetsCF1HActivaPuertaPAX();
             if (sets1HPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P1H"));
+                setList.Add(new Set("CF P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFija);
             }
 
             List<Set> sets2HActivaPuertaCotaFija = GetSetsCF2HActivaPuertaPAX();
             if (sets2HActivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H"));
+                setList.Add(new Set("CF P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFija);
             }
 
             List<Set> sets2HPasivaPuertaCotaFija = GetSetsCF2HPasivaPuertaPAX();
             if (sets2HPasivaPuertaCotaFija.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA"));
+                setList.Add(new Set("CF P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFija);
             }
 
             List<Set> sets1HPuertaCotaFijaAperturaExterior = GetSetsCF1HPuertaAperturaExteriorPAX();
             if (sets1HPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P1H APERTURA EXT"));
+                setList.Add(new Set("CF P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaFijaAperturaExterior = GetSetsCF2HActivaPuertaAperturaExteriorPAX();
             if (sets2HActivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H APERTURA EXT"));
+                setList.Add(new Set("CF P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaFijaAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaFijaAperturaExterior = GetSetsCF2HPasivaPuertaAperturaExteriorPAX();
             if (sets2HPasivaPuertaCotaFijaAperturaExterior.Any())
             {
-                setList.Add(new Set("CF P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CF P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaFijaAperturaExterior);
             }
             #endregion
@@ -1382,15 +1382,15 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF CORREDERA"));
+                setList.Add(new Set("CF CORREDERA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsCorrederaCotaFija);
             }
 
             List<Set> setsInowaCotaFija = GetSetsCFInowa();
 
-            if (setsCorrederaCotaFija.Any())
+            if (setsInowaCotaFija.Any())
             {
-                setList.Add(new Set("CF INOWA"));
+                setList.Add(new Set("CF INOWA", (int)enumWindowType.Corredera));
                 setList.AddRange(setsInowaCotaFija);
             }
             #endregion
@@ -1401,7 +1401,7 @@ namespace RotoTools
 
             if (setsCorrederaCotaFija.Any())
             {
-                setList.Add(new Set("CF PATIO LIFT"));
+                setList.Add(new Set("CF PATIO LIFT", (int)enumWindowType.Elevable));
                 setList.AddRange(setsPatioLiftCotaFija);
             }
 
@@ -1413,7 +1413,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaFija.Any())
             {
-                setList.Add(new Set("CF PLEGABLE"));
+                setList.Add(new Set("CF PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaFija);
             }
 
@@ -1429,7 +1429,7 @@ namespace RotoTools
 
             if (setsAbatiblesCotaVariable.Any())
             {
-                setList.Add(new Set("CV ABATIBLES"));
+                setList.Add(new Set("CV ABATIBLES", (int)enumWindowType.Abatible));
                 setList.AddRange(setsAbatiblesCotaVariable);
             }
 
@@ -1442,7 +1442,7 @@ namespace RotoTools
 
             if (sets1HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V1H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaOsciloBatienteActivaCotaVariable);
             }
 
@@ -1450,21 +1450,21 @@ namespace RotoTools
 
             if (sets1HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V1H PRACTICABLE"));
+                setList.Add(new Set("CV V1H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets1HVentanaPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaVentanaOsciloBatientePAX();
             if (sets2HVentanaOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV V2H OSCILOBATIENTE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HVentanaPracticableActivaCotaVariable = GetSetsCV2HActivaVentanaPracticablePAX();
             if (sets2HVentanaPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PRACTICABLE"));
+                setList.Add(new Set("CV V2H PRACTICABLE", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPracticableActivaCotaVariable);
             }
 
@@ -1472,7 +1472,7 @@ namespace RotoTools
             List<Set> sets2HVentanaPasivaCotaVariable = GetSetsCV2HPasivaVentanaPracticablePAX();
             if (sets2HVentanaPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV V2H PASIVA"));
+                setList.Add(new Set("CV V2H PASIVA", (int)enumWindowType.Ventana));
                 setList.AddRange(sets2HVentanaPasivaCotaVariable);
             }
 
@@ -1483,56 +1483,56 @@ namespace RotoTools
             List<Set> sets1HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV1HActivaBalconeraOsciloBatientePAX();
             if (sets1HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B1H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariable = GetSetsCV1HActivaBalconeraPracticablePAX();
             if (sets1HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B1H PRACTICABLE"));
+                setList.Add(new Set("CV B1H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraOsciloBatienteActivaCotaVariable = GetSetsCV2HActivaBalconeraOsciloBatientePAX();
             if (sets2HBalconeraOsciloBatienteActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H OSCILOBATIENTE"));
+                setList.Add(new Set("CV B2H OSCILOBATIENTE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraOsciloBatienteActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariable = GetSetsCV2HActivaBalconeraPracticablePAX();
             if (sets2HBalconeraPracticableActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PRACTICABLE"));
+                setList.Add(new Set("CV B2H PRACTICABLE", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariable);
             }
 
             List<Set> sets2HBalconeraPasivaCotaVariable = GetSetsCV2HPasivaBalconeraPracticablePAX();
             if (sets2HBalconeraPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA"));
+                setList.Add(new Set("CV B2H PASIVA", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPasivaCotaVariable);
             }
 
             List<Set> sets1HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV1HActivaBalconeraPracticableAperturaExteriorPAX();
             if (sets1HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B1H APERTURA EXT"));
+                setList.Add(new Set("CV B1H APERTURA EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets1HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticableActivaCotaVariableAperturaExterior = GetSetsCV2HActivaBalconeraPracticableAperturaExteriorPAX();
             if (sets2HBalconeraPracticableActivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H APERTURA EXTERIOR"));
+                setList.Add(new Set("CV B2H APERTURA EXTERIOR", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticableActivaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior = GetSetsCV2HPasivaBalconeraPracticableAperturaExteriorPAX();
             if (sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV B2H PASIVA AP. EXT"));
+                setList.Add(new Set("CV B2H PASIVA AP. EXT", (int)enumWindowType.Balconera));
                 setList.AddRange(sets2HBalconeraPracticablePasivaCotaVariableAperturaExterior);
             }
             #endregion
@@ -1543,7 +1543,7 @@ namespace RotoTools
 
             if (setsPuerta1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV P1H"));
+                setList.Add(new Set("CV P1H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta1HCotaVariable);
             }
 
@@ -1551,35 +1551,35 @@ namespace RotoTools
 
             if (setsPuerta2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H"));
+                setList.Add(new Set("CV P2H", (int)enumWindowType.Puerta));
                 setList.AddRange(setsPuerta2HActivaCotaVariable);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariable = GetSetsCV2HPasivaPuertaPAX();
             if (sets2HPasivaPuertaCotaVariable.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA"));
+                setList.Add(new Set("CV P2H PASIVA", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariable);
             }
 
             List<Set> sets1HPuertaCotaVariableAperturaExterior = GetSetsCV1HPuertaAperturaExteriorPAX();
             if (sets1HPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P1H APERTURA EXT"));
+                setList.Add(new Set("CV P1H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets1HPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HActivaPuertaCotaVariableAperturaExterior = GetSetsCV2HActivaPuertaAperturaExteriorPAX();
             if (sets2HActivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H APERTURA EXT"));
+                setList.Add(new Set("CV P2H APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HActivaPuertaCotaVariableAperturaExterior);
             }
 
             List<Set> sets2HPasivaPuertaCotaVariableAperturaExterior = GetSetsCV2HPasivaPuertaAperturaExteriorPAX();
             if (sets2HPasivaPuertaCotaVariableAperturaExterior.Any())
             {
-                setList.Add(new Set("CV P2H PASIVA APERTURA EXT"));
+                setList.Add(new Set("CV P2H PASIVA APERTURA EXT", (int)enumWindowType.Puerta));
                 setList.AddRange(sets2HPasivaPuertaCotaVariableAperturaExterior);
             }
             #endregion
@@ -1590,7 +1590,7 @@ namespace RotoTools
 
             if (setsOsciloParalela1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA"));
+                setList.Add(new Set("CV OSCILOPARALELA 1 HOJA", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela1HCotaVariable);
             }
 
@@ -1598,14 +1598,14 @@ namespace RotoTools
 
             if (setsOsciloParalela2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H ACT."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HActivaCotaVariable);
             }
             List<Set> setsOsciloParalela2HPasivaCotaVariable = GetSetsCVOsciloParalela2HPasiva();
 
             if (setsOsciloParalela2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV OSCILOPARALELA 2H PAS."));
+                setList.Add(new Set("CV OSCILOPARALELA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsOsciloParalela2HPasivaCotaVariable);
             }
 
@@ -1617,7 +1617,7 @@ namespace RotoTools
 
             if (setsParalelaCorredera1HCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA"));
+                setList.Add(new Set("CV PARALELA CORREDERA 1 HOJA", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera1HCotaVariable);
             }
 
@@ -1625,14 +1625,14 @@ namespace RotoTools
 
             if (setsParalelaCorredera2HActivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H ACT.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HActivaCotaVariable);
             }
             List<Set> setsParalelaCorredera2HPasivaCotaVariable = GetSetsCVParalelaCorredera2HPasiva();
 
             if (setsParalelaCorredera2HPasivaCotaVariable.Any())
             {
-                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS."));
+                setList.Add(new Set("CV PARALELA CORREDERA 2H PAS.", (int)enumWindowType.Osciloparalela));
                 setList.AddRange(setsParalelaCorredera2HPasivaCotaVariable);
             }
 
@@ -1644,7 +1644,7 @@ namespace RotoTools
 
             if (setsPlegablesCotaVariable.Any())
             {
-                setList.Add(new Set("CV PLEGABLE"));
+                setList.Add(new Set("CV PLEGABLE", (int)enumWindowType.Plegable));
                 setList.AddRange(setsPlegablesCotaVariable);
             }
 

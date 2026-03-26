@@ -24,6 +24,12 @@ namespace RotoEntities
             Script = script;
             IsTitle = true;
         }
+        public Set(string script, int windowType)
+        {
+            Script = script;
+            IsTitle = true;
+            WindowType = windowType;
+        }
         public Set()
         {
 
@@ -39,6 +45,7 @@ namespace RotoEntities
             MinHeight = set.MinHeight;
             MaxHeight = set.MaxHeight;
             Opening = set.Opening;
+            WindowType = set.WindowType;
             OptionConectorList = set.OptionConectorList != null
                 ? new List<Option>(set.OptionConectorList.Select(o => new Option(o.Name, o.Value)))
                 : new List<Option>();

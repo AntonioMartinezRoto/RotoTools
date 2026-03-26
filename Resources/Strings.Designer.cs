@@ -1006,6 +1006,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Líneas.
+        /// </summary>
+        internal static string L_Lineas {
+            get {
+                return ResourceManager.GetString("L_Lineas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Location.
         /// </summary>
         internal static string L_Location {

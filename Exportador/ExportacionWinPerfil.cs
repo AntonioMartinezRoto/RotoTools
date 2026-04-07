@@ -345,6 +345,52 @@ namespace RotoTools
                                             InsertRowFitting(hojaPlegables, filaActualPlegables++, set, setDescription, condicionesSetDescription);
                                             break;
                                     }
+
+                                    //Generar lineas de articles ficticios si el fitting es ficticio
+                                    foreach (var article in setDescription.Fitting.ArticleList)
+                                    {
+                                        if (EsFittingFicticio(article.Fitting))
+                                        {
+                                            foreach (Article articleFitting in article.Fitting.ArticleList)
+                                            {
+                                                string condiciones = GetOptionsStringArticle(setDescription, articleFitting);
+                                                if (GenerateRowCheckingConditions(condiciones))
+                                                {
+                                                    //Insertar en hoja general
+                                                    InsertRowFittingFicticio(hojaTodo, filaActualTodo++, set, setDescription, articleFitting, condiciones, fittingDict);
+
+                                                    switch (set.WindowType)
+                                                    {
+                                                        case (int)enumWindowType.Ventana:
+                                                            InsertRowFittingFicticio(hojaVentanas, filaActualVentanas++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Balconera:
+                                                        case (int)enumWindowType.PuertaSecundaria:
+                                                            InsertRowFittingFicticio(hojaBalconeras, filaActualBalconeras++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Puerta:
+                                                            InsertRowFittingFicticio(hojaPuertas, filaActualPuertas++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Corredera:
+                                                            InsertRowFittingFicticio(hojaCorrederas, filaActualCorrederas++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Elevable:
+                                                            InsertRowFittingFicticio(hojaElevables, filaActualElevables++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Osciloparalela:
+                                                            InsertRowFittingFicticio(hojaOsciloparalelas, filaActualOsciloparalelas++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Abatible:
+                                                            InsertRowFittingFicticio(hojaAbatibles, filaActualAbatibles++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                        case (int)enumWindowType.Plegable:
+                                                            InsertRowFittingFicticio(hojaPlegables, filaActualPlegables++, set, setDescription, articleFitting, condiciones, fittingDict);
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             // Actualizar progreso

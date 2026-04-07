@@ -271,6 +271,7 @@ namespace RotoTools
             if (rb_NuevoConector.Checked)
             {
                 cmb_Conectores.SelectedIndex = -1;
+                listBox_Combinar.Items.Clear();
             }
         }
         private void LoadItemsConectorHerraje()

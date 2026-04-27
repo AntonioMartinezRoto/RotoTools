@@ -311,6 +311,14 @@ namespace RotoTools
                 CrearContenidoOpcionesTipoCorredera();
             }
         }
+        public static void InstalarOpcionTipoLWC()
+        {
+            if (!ExisteOpcionEnBD("RO_TIPO_VENTANA_STD"))
+            {
+                CrearOpcionTipoLWC();
+                CrearContenidoOpcionesTipoLWC();
+            }
+        }
         public static bool ExisteOpcionEnBD(string optionName)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
@@ -370,6 +378,28 @@ namespace RotoTools
                 MessageBox.Show("Error (22)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public static void CrearContenidoOpcionesTipoLWC()
+        {
+            try
+            {
+                List<string> contenidoOpcionesTipoLwc =
+                [
+                    "STD",
+                    "LWC"
+                ];
+                int orden = 0;
+                foreach (string contenidoOpcionValor in contenidoOpcionesTipoLwc)
+                {
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion("RO_TIPO_VENTANA_STD", contenidoOpcionValor, "", "0", orden.ToString(), "0", "");
+                    InsertContenidoOpcion("RO_TIPO_VENTANA_STD", contenidoOpcion);
+                    orden++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (26)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public static void CrearOpcionConfiguracionStandard()
         {
             try
@@ -390,6 +420,17 @@ namespace RotoTools
             catch (Exception ex)
             {
                 MessageBox.Show("Error (23)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CrearOpcionTipoLWC()
+        {
+            try
+            {
+                InsertOpcion("RO_TIPO_VENTANA_STD");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error (28)" + Environment.NewLine + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

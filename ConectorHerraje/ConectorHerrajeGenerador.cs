@@ -26,6 +26,7 @@ namespace RotoTools
         private BindingSource _bindingSource;
         XmlData xmlOrigen = new XmlData();
         private bool necesarioInsertarOpcionTipoCorredera = false;
+        private bool necesarioInsertarOpcionTipoLWC = false;        
         private bool _initializing = false;
 
         #endregion
@@ -59,6 +60,7 @@ namespace RotoTools
             CargarTextos();
 
             CheckOpcionTipoCorredera();
+            CheckOpcionTipoVentanaLwc();
 
             statusStrip1.BackColor = Color.Transparent;
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
@@ -67,6 +69,8 @@ namespace RotoTools
             AplicarFiltros();
 
             chk_SelectAll.Checked = true;
+
+            //ShowFilasFaltantes();
         }
         private void txt_Filtro_TextChanged(object sender, EventArgs e)
         {
@@ -124,6 +128,13 @@ namespace RotoTools
                 if (necesarioInsertarOpcionTipoCorredera)
                 {
                     Helpers.InstalarOpcionTipoCorredera();
+                }
+
+
+                //Si están los sets de LOW COST hay que distinguir las tablas STD de LWC con la opción RO_TIPO_VENTANA_STD y hay que instalarla
+                if (necesarioInsertarOpcionTipoLWC)
+                {
+                    Helpers.InstalarOpcionTipoLWC();
                 }
 
                 MessageBox.Show(LocalizationManager.GetString("L_ConectorInsertado"));
@@ -589,6 +600,15 @@ namespace RotoTools
             if (existenSetsCorredera && existenSetsInowa)
             {
                 necesarioInsertarOpcionTipoCorredera = true;
+            }
+        }
+        private void CheckOpcionTipoVentanaLwc()
+        {
+            bool existenSetsLWC = this.setsWorkingList.Where(x => !String.IsNullOrEmpty(x.Code)).Any(s => s.Code.ToUpper().Contains("LWC"));
+
+            if (existenSetsLWC)
+            {
+                necesarioInsertarOpcionTipoLWC = true;
             }
         }
         private void ShowFilasFaltantes()

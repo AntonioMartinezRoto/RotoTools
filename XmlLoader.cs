@@ -457,7 +457,13 @@ namespace RotoTools
             {
                 return (int)enumWindowType.Plegable;
             }
-            if (setCode.ToUpper().Contains("V)2P"))
+            if ((setCode.ToUpper().Contains("V)2P") || setCode.ToUpper().Contains("E)2P") || setCode.ToUpper().Contains("1)2P")) &&
+                !setCode.ToUpper().Contains("-2P") &&
+                !setCode.ToUpper().Contains("ALV") &&
+                !setCode.ToUpper().Contains("PATIO") &&
+                !setCode.ToUpper().Contains("PUERTA") &&
+                !setCode.ToUpper().Contains("SEC") &&
+                !setCode.ToUpper().Contains("BALC"))
             {
                 return (int)enumWindowType.Ventana;
             }

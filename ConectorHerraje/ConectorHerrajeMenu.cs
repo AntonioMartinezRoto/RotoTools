@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Data.SqlClient;
 using RotoEntities;
+using RotoTools.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,17 +97,29 @@ namespace RotoTools
 
                 List<Set> setsConector = GetSetsToConnector();
 
-                //Traducción de Sets
-                foreach (Set set in setsConector)
-                {
-                    set.Code = SetHelpers.TranslateSet(set.Code);
-                }
-                ConectorHerrajeGenerador generaConectorForm = new ConectorHerrajeGenerador(xmlOrigen, setsConector, xmlOrigen.Supplier);
+                
+                //Gestión Sets Ventana para Low Cost
+                if (xmlOrigen.SetList.Any(s => s.Code.ToUpper().Contains("LWC")))
+                    SetLWCOptions(setsConector);
 
+
+                //Traducción de Sets
+                if (TranslateManager.AplicarTraduccion)
+                {
+                    foreach (Set set in setsConector)
+                    {
+                        set.Code = SetHelpers.TranslateSet(set.Code);
+                    }
+                }
+
+
+                ConectorHerrajeGenerador generaConectorForm = new ConectorHerrajeGenerador(xmlOrigen, setsConector, xmlOrigen.Supplier);
                 generaConectorForm.ShowDialog();
+
                 InitializeInfoConnection();
             }
         }
+
         private void btn_CombinarConectores_Click(object sender, EventArgs e)
         {
             ConectorHerrajeCombinar conectorHerrajeCombinarForm = new ConectorHerrajeCombinar();
@@ -223,7 +236,26 @@ namespace RotoTools
             }
             return setList;
         }
-
+        private void SetLWCOptions(List<Set> setsConector)
+        {
+            foreach (Set set in setsConector.Where(s => s.WindowType == (int)enumWindowType.Ventana && !String.IsNullOrEmpty(s.Code)))
+            {
+                if(set.Code.ToUpper().Contains("LWC"))
+                {
+                    if (!set.OptionConectorList.Any(o => o.Name == "RO_TIPO_VENTANA_STD"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("TIPO_VENTANA_STD", "LWC"));
+                    }
+                }
+                else
+                {
+                    if (!set.OptionConectorList.Any(o => o.Name == "RO_TIPO_VENTANA_STD"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("TIPO_VENTANA_STD", "STD"));
+                    }
+                }
+            }
+        }
 
         #endregion
 
@@ -1758,6 +1790,9 @@ namespace RotoTools
             List<Set> setCF1HVentanaOscilobatiente = xmlOrigen.SetList.OrderBy(x => x.Code).Where(s => (s.Code.ToUpper().StartsWith("(1V)1H") || s.Code.ToUpper().StartsWith("(1V)1H")) &&
                                                                                     s.Code.ToUpper().Contains("OSCILOBATIENTE") &&
                                                                                     !s.Code.ToUpper().Contains("BALC")).ToList();
+            
+
+
             foreach (Set set in setCF1HVentanaOscilobatiente)
             {
                 List<Option> optionList =
@@ -2208,9 +2243,14 @@ namespace RotoTools
         private List<Set> GetSetsCF2HPasivaVentanaPracticable()
         {
             List<Set> setCF2HPasivaVentanaPracticable = xmlOrigen.SetList.OrderBy(x => x.Code)
-                                                                            .Where(s => s.Code.ToUpper().StartsWith("(1V)2P") &&
+                                                                            .Where(s => (s.Code.ToUpper().StartsWith("(1V)2P") || s.Code.ToUpper().StartsWith("(1E)2P") || s.Code.ToUpper().StartsWith("(1)2P")) &&
                                                                                         !s.Code.ToUpper().Contains("-2P") &&
+                                                                                        !s.Code.ToUpper().Contains("ALV") &&
+                                                                                        !s.Code.ToUpper().Contains("PATIO") &&
+                                                                                        !s.Code.ToUpper().Contains("PUERTA") &&
+                                                                                        !s.Code.ToUpper().Contains("SEC") &&
                                                                                         !s.Code.ToUpper().Contains("BALC")).ToList();
+
             foreach (Set set in setCF2HPasivaVentanaPracticable)
             {
                 //Asignar opening flags
@@ -2293,10 +2333,14 @@ namespace RotoTools
         private List<Set> GetSetsCV2HPasivaVentanaPracticable()
         {
             List<Set> setCF2HPasivaVentanaPracticable = xmlOrigen.SetList.OrderBy(x => x.Code)
-                                                                            .Where(s => s.Code.ToUpper().StartsWith("(2V)2P") &&
+                                                                            .Where(s => (s.Code.ToUpper().StartsWith("(1V)2P") || s.Code.ToUpper().StartsWith("(1E)2P") || s.Code.ToUpper().StartsWith("(1)2P")) &&
                                                                                         !s.Code.ToUpper().Contains("-2P") &&
+                                                                                        !s.Code.ToUpper().Contains("PUERTA") &&
                                                                                         !s.Code.ToUpper().Contains("ALV") &&
+                                                                                        !s.Code.ToUpper().Contains("PATIO") &&
+                                                                                        !s.Code.ToUpper().Contains("SEC") &&
                                                                                         !s.Code.ToUpper().Contains("BALC")).ToList();
+
             foreach (Set set in setCF2HPasivaVentanaPracticable)
             {
                 //Asignar opening flags

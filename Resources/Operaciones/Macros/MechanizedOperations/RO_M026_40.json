@@ -8,8 +8,7 @@
   "Level3": "",
   "Level4": "",
   "Level5": "",
-  "Phase": null,
-  "XmlParameters": null,
+  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"40\" /></VariablesList>",
   "RGB": 255,
   "Disable": false
 }

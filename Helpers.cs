@@ -718,8 +718,8 @@ namespace RotoTools
         {
 
             string insert = @"INSERT INTO MechanizedOperations 
-                                        (OperationName, [Description], [External], RGB, Level1, Level2, Level3, Level4, Level5, IsPrimitive, Disable)
-                                        VALUES (@OperationName, @Description, @External, @Rgb, @Level1, @Level2, @Level3, @Level4, @Level5, @IsPrimitive, @Disable)";
+                                        (OperationName, [Description], [External], RGB, Level1, Level2, Level3, Level4, Level5, IsPrimitive, XMLParameters, Disable)
+                                        VALUES (@OperationName, @Description, @External, @Rgb, @Level1, @Level2, @Level3, @Level4, @Level5, @IsPrimitive, @XMLParameters, @Disable)";
 
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
@@ -736,6 +736,7 @@ namespace RotoTools
                     cmd.Parameters.AddWithValue("@Level4", (object)mechanizedOperation.Level4 ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@Level5", (object)mechanizedOperation.Level5 ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@IsPrimitive", (object)mechanizedOperation.IsPrimitive ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@XMLParameters", (object)mechanizedOperation.XmlParameters ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@Disable", (object)mechanizedOperation.Disable ?? DBNull.Value);
 
                     cmd.ExecuteNonQuery();

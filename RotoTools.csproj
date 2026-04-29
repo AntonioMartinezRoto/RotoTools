@@ -390,9 +390,13 @@
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M291.json" />
     <None Remove="Resources\Operaciones\Macros\MechanizedOperations\RO_M461.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_T_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_T_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_T_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000D_1.json" />
+    <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000D_T_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000E_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000F_1.json" />
     <None Remove="Resources\Operaciones\Macros\OperationsShapes\RO_M000_1.json" />
@@ -2456,9 +2460,13 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M291.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M461.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000A_T_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000B_T_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000C_T_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000D_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000D_T_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000E_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000F_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M000_1.json" />

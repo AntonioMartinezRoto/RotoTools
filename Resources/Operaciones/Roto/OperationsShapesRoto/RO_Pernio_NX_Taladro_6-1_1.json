@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Pernio_NX_Taladro_6",
-  "BasicShape": "RO_M006_T6",
+  "BasicShape": "RO_M006_T6_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "40",

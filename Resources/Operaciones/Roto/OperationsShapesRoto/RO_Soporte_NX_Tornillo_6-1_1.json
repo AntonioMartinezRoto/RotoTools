@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Soporte_NX_Tornillo_6",
-  "BasicShape": "RO_M004",
+  "BasicShape": "RO_M004_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "0",

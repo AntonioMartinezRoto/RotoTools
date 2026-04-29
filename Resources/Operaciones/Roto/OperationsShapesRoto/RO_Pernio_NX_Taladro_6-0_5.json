@@ -1,15 +1,15 @@
 {
-  "OperationName": "RO_Soporte_NX_Tornillo_6",
-  "BasicShape": "RO_M004",
+  "OperationName": "RO_Pernio_NX_Taladro_6",
+  "BasicShape": "RO_M006_T6_T",
   "External": 0,
   "XDistance": "0",
-  "YDistance": "0",
+  "YDistance": "-40",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "389286DF-D458-425B-A4F9-358D39684935",
+  "Conditions": "35146CA3-43C9-4C36-AFA9-D3628D522BAB",
   "Order": 0
 }

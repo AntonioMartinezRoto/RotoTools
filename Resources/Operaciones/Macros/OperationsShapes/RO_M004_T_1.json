@@ -1,6 +1,6 @@
 {
-  "OperationName": "RO_Soporte_NX_Tornillo_6",
-  "BasicShape": "RO_M004",
+  "OperationName": "RO_M004_T",
+  "BasicShape": "Marking",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "389286DF-D458-425B-A4F9-358D39684935",
+  "Conditions": "",
   "Order": 0
 }

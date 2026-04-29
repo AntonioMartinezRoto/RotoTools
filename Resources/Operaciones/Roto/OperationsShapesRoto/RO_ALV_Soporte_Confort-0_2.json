@@ -1,9 +1,9 @@
 {
-  "OperationName": "RO_Mrc_FM_Marco",
-  "BasicShape": "RO_M000D",
-  "External": 1,
+  "OperationName": "RO_ALV_Soporte_Confort",
+  "BasicShape": "RO_M000A",
+  "External": 0,
   "XDistance": "0",
-  "YDistance": "-25",
+  "YDistance": "-17.5",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,

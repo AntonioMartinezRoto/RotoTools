@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Mrc_Cierre_Oculto_Hoja",
-  "BasicShape": "RO_M000",
+  "BasicShape": "RO_M000_Hoja",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",

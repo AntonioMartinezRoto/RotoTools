@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Mrc_Cerr_Pasador",
-  "BasicShape": "RO_M000A_T",
+  "BasicShape": "RO_M000A",
   "External": 1,
   "XDistance": "0",
   "YDistance": "0",

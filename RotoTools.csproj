@@ -798,6 +798,8 @@
     <None Remove="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Lado Exterior.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\Lado Interior.json" />
+    <None Remove="Resources\Operaciones\MechanizedConditions\Rol Marco.json" />
+    <None Remove="Resources\Operaciones\MechanizedConditions\Rol Poste.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\TRAMO_DR.json" />
     <None Remove="Resources\Operaciones\MechanizedConditions\TRAMO_IZ.json" />
     <None Remove="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_150P_Hoja-0.json" />
@@ -2862,6 +2864,8 @@
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Carril 2.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Lado Exterior.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Lado Interior.json" />
+    <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Rol Marco.json" />
+    <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\Rol Poste.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\TRAMO_DR.json" />
     <EmbeddedResource Include="Resources\Operaciones\MechanizedConditions\TRAMO_IZ.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\MechanizedOperationsRoto\RO_150P_Hoja-0.json" />

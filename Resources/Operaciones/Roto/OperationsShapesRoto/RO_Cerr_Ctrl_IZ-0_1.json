@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Cerr_Ctrl_IZ",
-  "BasicShape": "RO_M036",
+  "BasicShape": "RO_M037",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "",
+  "Conditions": "389286DF-D458-425B-A4F9-358D39684935",
   "Order": 0
 }

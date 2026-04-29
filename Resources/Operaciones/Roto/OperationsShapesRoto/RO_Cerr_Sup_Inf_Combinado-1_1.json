@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Cerr_Sup_Inf_Combinado",
-  "BasicShape": "RO_M057",
+  "BasicShape": "RO_M057_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "0",

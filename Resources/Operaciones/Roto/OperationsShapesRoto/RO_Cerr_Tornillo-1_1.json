@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_Cerr_Tornillo",
-  "BasicShape": "RO_M038",
+  "BasicShape": "RO_M038_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "0",

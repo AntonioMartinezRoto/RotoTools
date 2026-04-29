@@ -1,7 +1,7 @@
 {
-  "OperationName": "RO_Cerr_Sup_Inf_Combinado",
-  "BasicShape": "RO_M057",
-  "External": 0,
+  "OperationName": "RO_Eneo_Pasacables",
+  "BasicShape": "RO_M055_T",
+  "External": 1,
   "XDistance": "0",
   "YDistance": "0",
   "ZDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "389286DF-D458-425B-A4F9-358D39684935",
+  "Conditions": "",
   "Order": 0
 }

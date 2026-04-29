@@ -1,6 +1,6 @@
 {
-  "OperationName": "RO_Cerr_Sup_Inf_Combinado",
-  "BasicShape": "RO_M057",
+  "OperationName": "RO_Cerr_Sup_Inf_Automatico",
+  "BasicShape": "RO_M058_T",
   "External": 0,
   "XDistance": "0",
   "YDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "389286DF-D458-425B-A4F9-358D39684935",
+  "Conditions": "35146CA3-43C9-4C36-AFA9-D3628D522BAB",
   "Order": 0
 }

@@ -2,5 +2,8 @@
   "RowId": "35146CA3-43C9-4C36-AFA9-D3628D522BAB",
   "Name": "Rol Poste",
   "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"ROLE\" CONDITION=\"=\" VARIABLE2=\"Mullion\" /></CONDITIONS>",
-  "XmlOptions": ""
+  "XmlOptions": "",
+  "NecesitaObjetoDeUsuario": "false",
+  "ObjetoDeUsuario": "",
+  "XmlObject": ""
 }

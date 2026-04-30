@@ -645,12 +645,76 @@ namespace RotoTools
             }
             return false;
         }
-        public static bool ExisteCondicionEnBD(string mechanizedConditionXmlConditions)
+        public static bool ExisteCondicionEnBD(string mechanizedConditionXmlConditions, bool necesitaObjetoDeUsuario)
+        {
+            bool existeCondicionEnBD = ExisteCondicion(mechanizedConditionXmlConditions);
+            if (existeCondicionEnBD)
+                return true;
+
+            if (necesitaObjetoDeUsuario)
+            {
+                bool existeParteDeCondicion = false;
+                var partes = mechanizedConditionXmlConditions?.Split(new[] { "OBJECTID=" }, StringSplitOptions.None);
+                if (partes != null && partes.Length == 2)
+                {
+                    existeParteDeCondicion = ExisteContenidoCondicion(partes[0]);
+                    if (existeParteDeCondicion) 
+                        return true;
+                }
+            }
+
+            return false;
+        }
+        public static bool ExisteCondicion(string mechanizedConditionXmlConditions)
         {
             using SqlConnection conexion = new SqlConnection(GetConnectionString());
             conexion.Open();
 
             using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM MechanizedConditions WHERE XmlConditions like '{mechanizedConditionXmlConditions}'", conexion);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return Convert.ToInt32(reader[0].ToString()) > 0;
+
+            }
+            return false;
+        }
+        public static bool ExisteContenidoCondicion(string mechanizedConditionXmlConditions)
+        {
+            // La consulta busca cualquier coincidencia que contenga el fragmento de XML proporcionado
+            const string sql = "SELECT COUNT(1) FROM MechanizedConditions WHERE XmlConditions LIKE @XmlConditions";
+
+            try
+            {
+                using (var conn = new SqlConnection(GetConnectionString()))
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    // Limpiamos espacios en blanco y rodeamos con comodines %
+                    // El uso de SqlDbType.NVarChar es más seguro para contenido XML
+                    cmd.Parameters.Add("@XmlConditions", SqlDbType.NVarChar).Value = $"%{mechanizedConditionXmlConditions.Trim()}%";
+
+                    conn.Open();
+
+                    // ExecuteScalar devuelve el resultado de COUNT(1)
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Opcional: Loguear el error según tu sistema de logs
+                // Console.WriteLine($"Error al consultar condiciones: {ex.Message}");
+                return false;
+            }
+        }
+        public static bool ExisteObjetoUsuarioEnBD(string name)
+        {
+            using SqlConnection conexion = new SqlConnection(GetConnectionString());
+            conexion.Open();
+
+            using SqlCommand cmd = new SqlCommand($"SELECT Count(*) FROM MechanizedObjects WHERE Name like '%{name}%'", conexion);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -772,7 +836,7 @@ namespace RotoTools
                 }
             }
         }
-        internal static void InstallMechanizedCondition(MechanizedConditions mechanizedCondition)
+        public static void InstallMechanizedCondition(MechanizedConditions mechanizedCondition)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand($"INSERT INTO MechanizedConditions (Name, XmlConditions) VALUES (@conditionName, @xmlConditions)", conn))
@@ -783,12 +847,41 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
+        public static void InstallMechanizedObject(string name, string xmlObject)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"INSERT INTO MechanizedObjects ([Name], [XmlObject]) VALUES (@name, @xmlObject)", conn))
+            {
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@xmlObject", xmlObject);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         public static string? GetMechanizedConditionRowId(string conditionName)
         {
             using (var conn = new SqlConnection(GetConnectionString()))
             using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedConditions WHERE Name = @name", conn))
             {
                 cmd.Parameters.AddWithValue("@name", conditionName);
+
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        return rdr[0].ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        }
+        public static string? GetMechanizedObjectRowId(string objectName)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand($"SELECT RowId FROM MechanizedObjects WHERE Name = @name", conn))
+            {
+                cmd.Parameters.AddWithValue("@name", objectName);
 
                 conn.Open();
                 using (var rdr = cmd.ExecuteReader())
@@ -819,6 +912,46 @@ namespace RotoTools
             }
             return String.Empty;
 
+        }
+        public static string? GetMechanizedConditionRowIdByXmlConditionsConObjetoUsuario(string mechanizedConditionXmlConditions)
+        {
+            var parteCondicion = mechanizedConditionXmlConditions?.Split(new[] { "OBJECTID=" }, StringSplitOptions.None);
+            if (parteCondicion == null || parteCondicion.Length != 2)
+            {
+                return String.Empty;
+            }
+
+            // La consulta busca cualquier coincidencia que contenga el fragmento de XML proporcionado
+            const string sql = "SELECT RowId FROM MechanizedConditions WHERE XmlConditions LIKE @XmlConditions";
+
+            try
+            {
+                using (var conn = new SqlConnection(GetConnectionString()))
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    // Limpiamos espacios en blanco y rodeamos con comodines %
+                    // El uso de SqlDbType.NVarChar es más seguro para contenido XML
+                    cmd.Parameters.Add("@XmlConditions", SqlDbType.NVarChar).Value = $"%{parteCondicion[0].Trim()}%";
+
+                    conn.Open();
+
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            return rdr[0].ToString();
+                        }
+                    }
+                }
+
+                return String.Empty;
+            }
+            catch (Exception ex)
+            {
+                // Opcional: Loguear el error según tu sistema de logs
+                // Console.WriteLine($"Error al consultar condiciones: {ex.Message}");
+                return String.Empty;
+            }
         }
         public static Dictionary<string, string> ObtenerMapaEquivalenciasOperacionesTest()
         {

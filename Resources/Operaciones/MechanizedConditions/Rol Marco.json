@@ -2,5 +2,8 @@
   "RowId": "389286DF-D458-425B-A4F9-358D39684935",
   "Name": "Rol Marco",
   "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"ROLE\" CONDITION=\"=\" VARIABLE2=\"Frame\" /></CONDITIONS>",
-  "XmlOptions": ""
+  "XmlOptions": "",
+  "NecesitaObjetoDeUsuario": "false",
+  "ObjetoDeUsuario": "",
+  "XmlObject": ""
 }

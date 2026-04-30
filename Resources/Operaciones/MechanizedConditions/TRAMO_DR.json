@@ -2,5 +2,8 @@
   "RowId": "cecbe796-86ce-468c-8af5-81680a25a2b1",
   "Name": "TRAMO_DR",
   "XmlConditions": "<CONDITIONS><CONDITION LOGIC=\"AND\" NEGATION=\"0\" PARENTHESIS=\"0\" VARIABLE1=\"ANG\" CONDITION=\"=\" VARIABLE2=\"90\" /></CONDITIONS>",
-  "XmlOptions": ""
+  "XmlOptions": "",
+  "NecesitaObjetoDeUsuario": "false",
+  "ObjetoDeUsuario": "",
+  "XmlObject": ""
 }

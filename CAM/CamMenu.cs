@@ -1413,8 +1413,23 @@ namespace RotoTools
             if (mechanizedCondition != null)
             {
                 //Comprobar si existe en base de datos una condicion con el mismo contenido en XmlConditions (El RowId puede variar)
-                if (!Helpers.ExisteCondicionEnBD(mechanizedCondition.XmlConditions))
+                if (!Helpers.ExisteCondicionEnBD(mechanizedCondition.XmlConditions, Convert.ToBoolean(mechanizedCondition.NecesitaObjetoDeUsuario)))
                 {
+                    string rowIdMechanizedObject = "";
+
+                    //Si la condición necesita un objeto de usuario, comprobar si existe en base de datos y si no existe, instalarlo
+                    if (mechanizedCondition.NecesitaObjetoDeUsuario == "true" && !String.IsNullOrEmpty(mechanizedCondition.XmlObject))
+                    {
+                        if (!Helpers.ExisteObjetoUsuarioEnBD(mechanizedCondition.ObjetoDeUsuario))
+                        {
+                            Helpers.InstallMechanizedObject(mechanizedCondition.ObjetoDeUsuario, mechanizedCondition.XmlObject);
+                        }
+
+                        //Obtener el rowId del objeto de usuario para reemplazarlo en el XmlConditions de la condición antes de instalarla
+                        rowIdMechanizedObject = Helpers.GetMechanizedObjectRowId(mechanizedCondition.ObjetoDeUsuario);
+                        mechanizedCondition.XmlConditions = mechanizedCondition.XmlConditions.Replace("RowIdObjetoDeUsuario", rowIdMechanizedObject);
+                    }
+
                     //Insertar la condición en la base de datos
                     Helpers.InstallMechanizedCondition(mechanizedCondition);
 
@@ -1423,8 +1438,16 @@ namespace RotoTools
                 }
                 else
                 {
-                    //Obtener el rowId de la condición existente
-                    return Helpers.GetMechanizedConditionRowIdByXmlConditions(mechanizedCondition.XmlConditions);
+                    if (Convert.ToBoolean(mechanizedCondition.NecesitaObjetoDeUsuario))
+                    {
+                        //Obtener el rowId de la condición existente con objeto de usuario
+                        return Helpers.GetMechanizedConditionRowIdByXmlConditionsConObjetoUsuario(mechanizedCondition.XmlConditions);
+                    }
+                    else
+                    {
+                        //Obtener el rowId de la condición existente
+                        return Helpers.GetMechanizedConditionRowIdByXmlConditions(mechanizedCondition.XmlConditions);
+                    }
                 }
             }
             else

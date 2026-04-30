@@ -1,0 +1,15 @@
+{
+  "OperationName": "RO_M072_T12_7",
+  "Description": "Taladro de 12 manilla Ag7 interior",
+  "External": 0,
+  "IsPrimitive": 1,
+  "Level1": "ROTO",
+  "Level2": "MACROS",
+  "Level3": "",
+  "Level4": "",
+  "Level5": "",
+  "Phase": null,
+  "XmlParameters": "<VariablesList><Variable Name=\"Param\" Value=\"7\" /></VariablesList>",
+  "RGB": 255,
+  "Disable": false
+}

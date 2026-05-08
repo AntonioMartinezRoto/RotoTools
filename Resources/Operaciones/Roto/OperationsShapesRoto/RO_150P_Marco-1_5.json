@@ -1,6 +1,6 @@
 {
   "OperationName": "RO_150P_Marco",
-  "BasicShape": "RO_M135_T5",
+  "BasicShape": "RO_M135_T5_T",
   "External": 1,
   "XDistance": "0",
   "YDistance": "11",

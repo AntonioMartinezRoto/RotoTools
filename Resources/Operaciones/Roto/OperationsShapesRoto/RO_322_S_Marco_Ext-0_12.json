@@ -1,15 +1,15 @@
 {
   "OperationName": "RO_322_S_Marco_Ext",
-  "BasicShape": "RO_M163_T5",
-  "External": 1,
+  "BasicShape": "RO_M163_T5_T",
+  "External": 0,
   "XDistance": "0",
-  "YDistance": "-48.5",
+  "YDistance": "-79",
   "ZDistance": "0",
   "Mill": "",
   "Depth": 0,
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "",
+  "Conditions": "35146CA3-43C9-4C36-AFA9-D3628D522BAB",
   "Order": 0
 }

@@ -2898,7 +2898,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M153_T_6.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M162_T_7.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M153_T_7.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M153_T_8 - Copia.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M162_T_8.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M153_T_8.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M159_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M158_1.json" />

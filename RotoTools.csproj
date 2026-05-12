@@ -4628,6 +4628,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_FM_Marco-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_FM_Marco-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_FM_Marco-1_2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_Retenedor_Marco-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_Retenedor_Marco-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_Retenedor_Marco-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Hoja-0_1.json" />

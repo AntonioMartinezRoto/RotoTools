@@ -152,7 +152,7 @@ namespace RotoTools
                 HeaderText = LocalizationManager.GetString("L_Valor"),
                 DataPropertyName = "Valor",
                 ReadOnly = true,
-                Width = 144
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             };
 
             var colTexto = new DataGridViewTextBoxColumn

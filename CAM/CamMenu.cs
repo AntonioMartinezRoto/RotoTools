@@ -1292,7 +1292,7 @@ namespace RotoTools
                 HeaderText = LocalizationManager.GetString("L_Descripcion"),
                 DataPropertyName = nameof(OperationGridRow.Descripcion),
                 ReadOnly = true,
-                Width = 330
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -1338,7 +1338,7 @@ namespace RotoTools
                 DataPropertyName = "OperationName",
                 HeaderText = LocalizationManager.GetString("L_Operacion"),
                 ReadOnly = true,
-                Width = 400,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 Name = "OperationName"
             });
 

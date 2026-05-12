@@ -2356,7 +2356,9 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M051_T5_P55.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M051_T5_P57.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M052.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053_T4_T.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M053_T4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M054.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M055.json" />
@@ -2763,7 +2765,9 @@
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M051_6.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M051_7.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M052_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M053_T_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M053_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M053_T_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M053_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M054_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\OperationsShapes\RO_M055_1.json" />
@@ -4603,8 +4607,11 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Mrc_Retenedor_Marco-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Hoja-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Hoja_Ext-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_5.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_6.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-0_3.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Pb10_Marco-1_2.json" />

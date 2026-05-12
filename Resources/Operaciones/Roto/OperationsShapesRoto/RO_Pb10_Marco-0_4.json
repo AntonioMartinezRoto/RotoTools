@@ -1,7 +1,7 @@
 {
   "OperationName": "RO_Pb10_Marco",
   "BasicShape": "RO_M053_T4_T",
-  "External": 1,
+  "External": 0,
   "XDistance": "0",
   "YDistance": "15.5",
   "ZDistance": "0",
@@ -10,6 +10,6 @@
   "XmlParameters": "<VariablesList />",
   "Dimension": 0,
   "Rotation": 0,
-  "Conditions": "",
+  "Conditions": "35146CA3-43C9-4C36-AFA9-D3628D522BAB",
   "Order": 0
 }

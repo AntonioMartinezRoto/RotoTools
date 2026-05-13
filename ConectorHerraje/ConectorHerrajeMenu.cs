@@ -2333,7 +2333,7 @@ namespace RotoTools
         private List<Set> GetSetsCV2HPasivaVentanaPracticable()
         {
             List<Set> setCF2HPasivaVentanaPracticable = xmlOrigen.SetList.OrderBy(x => x.Code)
-                                                                            .Where(s => (s.Code.ToUpper().StartsWith("(1V)2P") || s.Code.ToUpper().StartsWith("(1E)2P") || s.Code.ToUpper().StartsWith("(1)2P")) &&
+                                                                            .Where(s => (s.Code.ToUpper().StartsWith("(2V)2P") || s.Code.ToUpper().StartsWith("(2E)2P") || s.Code.ToUpper().StartsWith("(2)2P")) &&
                                                                                         !s.Code.ToUpper().Contains("-2P") &&
                                                                                         !s.Code.ToUpper().Contains("PUERTA") &&
                                                                                         !s.Code.ToUpper().Contains("ALV") &&

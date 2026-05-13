@@ -3848,6 +3848,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Bombillo_Int_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura1P_Ctrl-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura_Ctrl_1-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_25_Caja_Cremona_Inf-0_1.json" />
@@ -3892,6 +3893,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_Ext-0_4.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Bombillo_Int_ie-0_2.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Caja_Cerradura_Ctrl_1-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_28_Manilla_Ext_ie-0_1.json" />
@@ -3923,6 +3925,7 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Bombillo_Int_ie-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Bombillo_Int_ie-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Caja_Cerradura1P_Ctrl-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Caja_Cerradura_Ctrl_1-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Caja_Cerradura_Ctrl-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Caja_Cremona-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_30_Caja_Cremona_Inf-0_1.json" />

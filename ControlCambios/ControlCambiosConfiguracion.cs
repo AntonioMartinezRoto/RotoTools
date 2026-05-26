@@ -1,4 +1,5 @@
 ﻿
+using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using RotoEntities;
 
 namespace RotoTools
@@ -10,6 +11,7 @@ namespace RotoTools
         public ComparaFittingsProperties compararFittings { get; set; }
         public ComparaSetsProperties compararSets { get; set; }
         public bool compararColores { get; set; }
+        public bool compararMecanizados { get; set; }
         public enum enumTipoItem
         {
             set = 1,
@@ -21,12 +23,13 @@ namespace RotoTools
             InitializeComponent();
         }
         public ControlCambiosConfiguracion(bool compararOpciones, bool compararFittingGroups, ComparaFittingsProperties compararFittings,
-            ComparaSetsProperties compararSets, bool compararColores)
+            ComparaSetsProperties compararSets, bool compararColores, bool compararMecanizados)
         {
             InitializeComponent();
             this.compararOpciones = compararOpciones;
             this.compararFittingGroups = compararFittingGroups;
             this.compararColores = compararColores;
+            this.compararMecanizados = compararMecanizados;
 
             this.compararFittings = compararFittings;
             this.compararSets = compararSets;
@@ -34,6 +37,7 @@ namespace RotoTools
             chk_ComparaOpciones.Checked = compararOpciones;
             chk_CompararColores.Checked = compararColores;
             chk_CompararFittingGroups.Checked = compararFittingGroups;
+            chk_ComparaMecanizados.Checked = compararMecanizados;
 
             chk_CompararFittings.Checked = compararFittings.compararFittings;
             chk_FittingsFiltrados.Checked = compararFittings.compararFittingsFiltrados;
@@ -56,6 +60,7 @@ namespace RotoTools
             compararOpciones = chk_ComparaOpciones.Checked;
             compararFittingGroups = chk_CompararFittingGroups.Checked;
             compararColores = chk_CompararColores.Checked;
+            compararMecanizados = chk_ComparaMecanizados.Checked;
 
             compararFittings.compararFittings = chk_CompararFittings.Checked;
             compararFittings.compararFittingsFiltrados = chk_FittingsFiltrados.Checked;
@@ -176,6 +181,7 @@ namespace RotoTools
             chk_CompararFittingGroups.Text = LocalizationManager.GetString("L_CompararFittingGroups");
             chk_CompararColores.Text = LocalizationManager.GetString("L_CompararColores");
             chk_ComparaOpciones.Text = LocalizationManager.GetString("L_CompararOpciones");
+            chk_ComparaMecanizados.Text = LocalizationManager.GetString("L_CompararMecanizados");
 
             chk_CompararSets.Text = LocalizationManager.GetString("L_CompararSets");
             chk_SetsNumero.Text = LocalizationManager.GetString("L_CompararNumeroSets");

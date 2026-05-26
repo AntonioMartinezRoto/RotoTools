@@ -648,4 +648,7 @@
   <data name="L_Lineas" xml:space="preserve">
     <value>Lines</value>
   </data>
+  <data name="L_CompararMecanizados" xml:space="preserve">
+    <value>Compare machinings</value>
+  </data>
 </root>

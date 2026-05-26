@@ -277,7 +277,16 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Comparar nº de setdescriptions.
+        ///   Busca una cadena traducida similar a Comparar mecanizados.
+        /// </summary>
+        internal static string L_CompararMecanizados {
+            get {
+                return ResourceManager.GetString("L_CompararMecanizados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nº de setdescriptions.
         /// </summary>
         internal static string L_CompararNumeroSets {
             get {

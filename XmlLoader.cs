@@ -178,6 +178,31 @@ namespace RotoTools
                 return new List<Option>();
             }
         }
+        public List<Option> LoadOperationOptions(XmlNode generationOperationNode)
+        {
+            List<Option> optionList = new List<Option>();
+            try
+            {
+                foreach (XmlNode optionNode in generationOperationNode.ChildNodes)
+                {
+                    if (optionNode.Attributes == null)
+                    {
+                        continue;
+                    }
+                    Option option = new Option();
+                    option.Name = optionNode.Attributes["Name"]?.Value;
+                    option.Value = optionNode.Attributes["Value"]?.Value;
+
+                    optionList.Add(option);
+                }
+
+                return optionList;
+            }
+            catch
+            {
+                return new List<Option>();
+            }
+        }
         public List<Option> LoadDocOptions(XmlDocument doc)
         {
             try
@@ -296,6 +321,7 @@ namespace RotoTools
                                     operation.XPosition = generationOperationNode?.Attributes["x"]?.Value;
                                     operation.ReferencePoint = generationOperationNode?.Attributes["referencePoint"]?.Value;
                                     operation.Location = generationOperationNode?.Attributes["location"]?.Value;
+                                    operation.OptionList = LoadOperationOptions(generationOperationNode);
                                     operationsList.Add(operation);
                                 }
                             }

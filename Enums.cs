@@ -85,7 +85,14 @@ namespace RotoTools
             articuloNoExistenteEnColor = 21,
             grupoOpciones = 22,
             opcionGlobalNueva = 23,
-            valorOpcionGlobalModificada = 24
+            valorOpcionGlobalModificada = 24,
+            cambioNombreOperacion = 25,
+            grupoMecanizados = 26,
+            cambioReferenciaOpcionMecanizado = 27,
+            mecanizadoNoExistente = 28,
+            locationMecanizadoDistinto = 29,
+            xPositionMecanizadoDistinto = 30,
+            referencePointMecanizadosDiferente = 31
         }
         public enum enumSeveridadDiferencia
         {
@@ -97,6 +104,11 @@ namespace RotoTools
             anterior = 1,
             actual = 2,
             ambos = 3
+        }
+        public enum enumControlCambiosMode
+        {
+            simple = 1,
+            completo = 2
         }
     }
 }

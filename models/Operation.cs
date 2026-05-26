@@ -7,5 +7,6 @@ namespace RotoEntities
         public string XPosition { get; set; }
         public string ReferencePoint { get; set; }
         public string Location {  get; set; }
+        public List<Option> OptionList { get; set; }
     }
 }

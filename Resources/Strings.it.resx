@@ -328,7 +328,7 @@
     <value>Comparar sets(IT)</value>
   </data>
   <data name="L_CompararNumeroSets" xml:space="preserve">
-    <value>Comparar nº de setdescriptions(IT)</value>
+    <value>Nº de setdescriptions(IT)</value>
   </data>
   <data name="L_FiltrarSets" xml:space="preserve">
     <value>Filtrar sets(IT)</value>
@@ -647,5 +647,8 @@
   </data>
   <data name="L_Lineas" xml:space="preserve">
     <value>Lineas(IT)</value>
+  </data>
+  <data name="L_CompararMecanizados" xml:space="preserve">
+    <value>Comparar mecanizados(IT)</value>
   </data>
 </root>

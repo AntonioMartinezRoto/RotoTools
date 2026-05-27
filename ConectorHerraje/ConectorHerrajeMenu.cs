@@ -9167,6 +9167,18 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("ELV_TIPO", "Estandar 300/400"));
                 }
+
+                if (set.Code.ToUpper().Contains("SLIM"))
+                {
+                    if (set.Code.ToUpper().Contains("150"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("ELV_TIPO", "Slim 150"));
+                    }
+                    if (set.Code.ToUpper().Contains("200/400"))
+                    {
+                        set.OptionConectorList.Add(OpcionHelper.Crear("ELV_TIPO", "Slim 200/400"));
+                    }
+                }
             }
 
             return setCFPatioLift;

@@ -64,6 +64,19 @@ namespace RotoTools
                 MessageBox.Show(LocalizationManager.GetString("L_ErrorGuardarConfiguracion") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btn_Ejecutar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ExecuteOpcionesConfig();
+                MessageBox.Show(LocalizationManager.GetString("L_GuardadoCorrectamente"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(LocalizationManager.GetString("L_ErrorGuardarConfiguracion") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         #endregion
 
@@ -81,6 +94,7 @@ namespace RotoTools
             lbl_Filtrar.Text = LocalizationManager.GetString("L_Buscar");
             this.Text = LocalizationManager.GetString("L_ConfigurarOpciones");
             btn_SaveConfig.Text = LocalizationManager.GetString("L_Guardar");
+            btn_Ejecutar.Text = LocalizationManager.GetString("L_Ejecutar");
         }
         private void InitializeInfoConnection()
         {
@@ -132,7 +146,7 @@ namespace RotoTools
                 List<ContenidoOpcion> contenidoOpcionList = new List<ContenidoOpcion>();
                 while (reader.Read())
                 {
-                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion(opcion.Name, reader[0].ToString().Trim(), reader[1].ToString().Trim(), 
+                    ContenidoOpcion contenidoOpcion = new ContenidoOpcion(opcion.Name, reader[0].ToString().Trim(), reader[1].ToString().Trim(),
                                                                             reader[2].ToString().Trim(), reader[3].ToString().Trim(), reader[4].ToString().Trim(), reader[5].ToString().Trim());
                     contenidoOpcionList.Add(contenidoOpcion);
                 }
@@ -235,7 +249,7 @@ namespace RotoTools
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error guardando archivo de configuración: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return String.Empty;
@@ -243,7 +257,17 @@ namespace RotoTools
 
         }
 
+        private void ExecuteOpcionesConfig()
+        {
+            foreach (Opcion opcion in opcionesList)
+            {
+                foreach (ContenidoOpcion contenidoOpcion in opcion.ContenidoOpcionesList)
+                {
+                    contenidoOpcion.Flags = Helpers.CalcularFlags(contenidoOpcion);
+                    Helpers.UpdateContenidoOpcion(opcion.Name, contenidoOpcion);
+                }                    
+            }
+        }
         #endregion
-
     }
 }

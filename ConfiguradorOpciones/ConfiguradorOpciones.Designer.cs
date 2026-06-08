@@ -36,6 +36,7 @@
             txt_Filter = new TextBox();
             datagrid_ContenidoOpciones = new DataGridView();
             lbl_Filtrar = new Label();
+            btn_Ejecutar = new Button();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)datagrid_ContenidoOpciones).BeginInit();
             SuspendLayout();
@@ -45,9 +46,10 @@
             statusStrip1.BackColor = Color.Transparent;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion });
-            statusStrip1.Location = new Point(0, 455);
+            statusStrip1.Location = new Point(0, 610);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(902, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(1031, 26);
             statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
@@ -55,40 +57,40 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(118, 17);
+            lbl_Conexion.Size = new Size(151, 20);
             lbl_Conexion.Text = "toolStripStatusLabel1";
             // 
             // btn_SaveConfig
             // 
             btn_SaveConfig.Image = (Image)resources.GetObject("btn_SaveConfig.Image");
             btn_SaveConfig.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_SaveConfig.Location = new Point(645, 414);
+            btn_SaveConfig.Location = new Point(708, 552);
             btn_SaveConfig.Margin = new Padding(0);
             btn_SaveConfig.Name = "btn_SaveConfig";
-            btn_SaveConfig.Padding = new Padding(2, 0, 0, 0);
-            btn_SaveConfig.Size = new Size(87, 41);
+            btn_SaveConfig.Padding = new Padding(11, 0, 10, 0);
+            btn_SaveConfig.Size = new Size(128, 55);
             btn_SaveConfig.TabIndex = 1;
             btn_SaveConfig.Text = "Guardar";
             btn_SaveConfig.TextAlign = ContentAlignment.MiddleRight;
-            btn_SaveConfig.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_SaveConfig.UseVisualStyleBackColor = true;
             btn_SaveConfig.Click += btn_SaveConfig_Click;
             // 
             // listBox_Opciones
             // 
             listBox_Opciones.FormattingEnabled = true;
-            listBox_Opciones.ItemHeight = 15;
-            listBox_Opciones.Location = new Point(30, 82);
+            listBox_Opciones.Location = new Point(34, 109);
+            listBox_Opciones.Margin = new Padding(3, 4, 3, 4);
             listBox_Opciones.Name = "listBox_Opciones";
-            listBox_Opciones.Size = new Size(197, 319);
+            listBox_Opciones.Size = new Size(225, 424);
             listBox_Opciones.TabIndex = 2;
             listBox_Opciones.SelectedIndexChanged += listBox_Opciones_SelectedIndexChanged;
             // 
             // txt_Filter
             // 
-            txt_Filter.Location = new Point(121, 52);
+            txt_Filter.Location = new Point(138, 69);
+            txt_Filter.Margin = new Padding(3, 4, 3, 4);
             txt_Filter.Name = "txt_Filter";
-            txt_Filter.Size = new Size(106, 23);
+            txt_Filter.Size = new Size(121, 27);
             txt_Filter.TabIndex = 3;
             txt_Filter.TextChanged += txt_Filter_TextChanged;
             // 
@@ -96,29 +98,46 @@
             // 
             datagrid_ContenidoOpciones.BackgroundColor = Color.White;
             datagrid_ContenidoOpciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            datagrid_ContenidoOpciones.Location = new Point(256, 52);
+            datagrid_ContenidoOpciones.Location = new Point(293, 69);
+            datagrid_ContenidoOpciones.Margin = new Padding(3, 4, 3, 4);
             datagrid_ContenidoOpciones.Name = "datagrid_ContenidoOpciones";
             datagrid_ContenidoOpciones.RowHeadersWidth = 51;
-            datagrid_ContenidoOpciones.Size = new Size(476, 349);
+            datagrid_ContenidoOpciones.Size = new Size(544, 465);
             datagrid_ContenidoOpciones.TabIndex = 4;
             // 
             // lbl_Filtrar
             // 
             lbl_Filtrar.AutoSize = true;
             lbl_Filtrar.BackColor = Color.Transparent;
-            lbl_Filtrar.Location = new Point(34, 55);
+            lbl_Filtrar.Location = new Point(39, 73);
             lbl_Filtrar.Name = "lbl_Filtrar";
-            lbl_Filtrar.Size = new Size(37, 15);
+            lbl_Filtrar.Size = new Size(47, 20);
             lbl_Filtrar.TabIndex = 5;
             lbl_Filtrar.Text = "Filtrar";
             // 
+            // btn_Ejecutar
+            // 
+            btn_Ejecutar.Image = (Image)resources.GetObject("btn_Ejecutar.Image");
+            btn_Ejecutar.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Ejecutar.Location = new Point(566, 552);
+            btn_Ejecutar.Margin = new Padding(0);
+            btn_Ejecutar.Name = "btn_Ejecutar";
+            btn_Ejecutar.Padding = new Padding(10, 0, 10, 0);
+            btn_Ejecutar.Size = new Size(128, 55);
+            btn_Ejecutar.TabIndex = 6;
+            btn_Ejecutar.Text = "Ejecutar";
+            btn_Ejecutar.TextAlign = ContentAlignment.MiddleRight;
+            btn_Ejecutar.UseVisualStyleBackColor = true;
+            btn_Ejecutar.Click += btn_Ejecutar_Click;
+            // 
             // ConfiguradorOpciones
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(902, 477);
+            ClientSize = new Size(1031, 636);
+            Controls.Add(btn_Ejecutar);
             Controls.Add(lbl_Filtrar);
             Controls.Add(datagrid_ContenidoOpciones);
             Controls.Add(txt_Filter);
@@ -128,6 +147,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "ConfiguradorOpciones";
             StartPosition = FormStartPosition.CenterScreen;
@@ -149,5 +169,6 @@
         private TextBox txt_Filter;
         private DataGridView datagrid_ContenidoOpciones;
         private Label lbl_Filtrar;
+        private Button btn_Ejecutar;
     }
 }

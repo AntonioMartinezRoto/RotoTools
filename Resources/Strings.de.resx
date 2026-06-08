@@ -651,4 +651,7 @@
   <data name="L_CompararMecanizados" xml:space="preserve">
     <value>Comparar mecanizados(DE)</value>
   </data>
+  <data name="L_Ejecutar" xml:space="preserve">
+    <value>Ejecutar(DE)</value>
+  </data>
 </root>

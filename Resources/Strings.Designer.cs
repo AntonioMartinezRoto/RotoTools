@@ -556,6 +556,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ejecutar.
+        /// </summary>
+        internal static string L_Ejecutar {
+            get {
+                return ResourceManager.GetString("L_Ejecutar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Elegir Scripts.
         /// </summary>
         internal static string L_EjecutarCarpeta {

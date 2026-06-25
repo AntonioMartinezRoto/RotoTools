@@ -22,7 +22,9 @@ namespace RotoTools
         #region PRIVATE PROPERTIES
 
         private List<Value> _perfilesListSelected = new List<Value>();
+        private List<Value> _perfilesAluListSelected = new List<Value>();
         private bool _filtroListaPerfilesActivo = false;
+        private bool _filtroListaPerfilesAluActivo = false;
 
         #endregion
 
@@ -56,6 +58,7 @@ namespace RotoTools
             chkList_Sets.Items.Clear();
             LoadColours();
             LoadProfiles();
+            LoadProfilesAlu();
             LoadSistemas();
             LoadSets("");
             CargarTextos();
@@ -135,6 +138,29 @@ namespace RotoTools
                 _filtroListaPerfilesActivo = false;
             }
         }
+
+        private void btn_FiltrarPerfilAlu_Click(object sender, EventArgs e)
+        {
+            List<Value> profileList = ExportDataXml.OptionList.FirstOrDefault(o => o.Name == "1PERFIL_ALU").ValuesList.OrderBy(v => v.Valor).ToList();
+            ExportacionWinPerfilListaPerfiles exportacionWinPerfilListaPerfilesForm = new ExportacionWinPerfilListaPerfiles(profileList, _perfilesListSelected);
+
+            if (exportacionWinPerfilListaPerfilesForm.ShowDialog() == DialogResult.OK)
+            {
+                this._perfilesAluListSelected = exportacionWinPerfilListaPerfilesForm.PerfilesListSelected;
+            }
+
+            if (this._perfilesAluListSelected.Any())
+            {
+                cmb_PerfilAlu.SelectedIndex = -1;
+                cmb_PerfilAlu.Enabled = false;
+                _filtroListaPerfilesAluActivo = true;
+            }
+            else
+            {
+                cmb_PerfilAlu.Enabled = true;
+                _filtroListaPerfilesAluActivo = false;
+            }
+        }
         #endregion
 
         #region PRIVATE METHODS
@@ -198,6 +224,14 @@ namespace RotoTools
 
             cmb_Perfil.DataSource = valueList;
             cmb_Perfil.DisplayMember = "Valor";
+        }
+        private void LoadProfilesAlu()
+        {
+            List<Value> valueList = ExportDataXml.OptionList.Where(o => o.Name == "1PERFIL_ALU").FirstOrDefault().ValuesList.OrderBy(v => v.Valor).ToList();
+            valueList.Insert(0, new Value { Valor = "" });
+
+            cmb_PerfilAlu.DataSource = valueList;
+            cmb_PerfilAlu.DisplayMember = "Valor";
         }
         private bool GenerarExportacion(string excelPath)
         {
@@ -542,6 +576,7 @@ namespace RotoTools
             chk_All.Enabled = enable;
             btn_ExportSets.Enabled = enable;
             cmb_Perfil.Enabled = enable;
+            cmb_PerfilAlu.Enabled = enable;
             cmb_Sistema.Enabled = enable;
             cmb_Color.Enabled = enable;
             txt_filter.Enabled = enable;
@@ -642,12 +677,27 @@ namespace RotoTools
             bool generateRowSistema = true;
 
             //Si no hay filtro por perfil se genera siempre la linea
-            if (string.IsNullOrEmpty(cmb_Perfil.Text) && string.IsNullOrEmpty(cmb_Sistema.Text) && !_filtroListaPerfilesActivo)
+            if (string.IsNullOrEmpty(cmb_Perfil.Text) && string.IsNullOrEmpty(cmb_Sistema.Text) && !_filtroListaPerfilesActivo &&
+                !_filtroListaPerfilesAluActivo && string.IsNullOrEmpty(cmb_PerfilAlu.Text))
             {
                 return true;
             }
             else
             {
+                if (condiciones.Contains("1PERFIL_ALU = "))
+                {
+                    var perfilesAluSeleccionados = new List<string>();
+
+                    if (_perfilesAluListSelected != null && _perfilesAluListSelected.Any())
+                        perfilesAluSeleccionados = _perfilesAluListSelected
+                                                    .Select(p => p.Valor)
+                                                    .ToList();
+                    else if (!string.IsNullOrWhiteSpace(cmb_PerfilAlu.Text))
+                        perfilesAluSeleccionados.Add(cmb_PerfilAlu.Text);
+
+                    generateRowPerfil = perfilesAluSeleccionados.Any(p => condiciones.Contains("1PERFIL_ALU = " + p));
+                }
+
                 if (condiciones.Contains("1PERFIL = "))
                 {
                     var perfilesSeleccionados = new List<string>();

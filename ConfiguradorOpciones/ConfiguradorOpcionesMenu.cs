@@ -63,6 +63,7 @@ namespace RotoTools
             lbl_ConfigOpciones.Text = LocalizationManager.GetString("L_ConfigurarGuardarOpciones");
             this.Text = LocalizationManager.GetString("L_MenuConfigurarOpciones");
             lbl_RestoreOptions.Text = LocalizationManager.GetString("L_RestaurarOpciones");
+            lbl_ImportarConfigCliente.Text = LocalizationManager.GetString("L_ImportarConfigCliente");
         }
 
         private void SetOptionsVisibleFromCliente()

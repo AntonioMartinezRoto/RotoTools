@@ -660,4 +660,7 @@
   <data name="L_ErrorImportandoConfiguracion" xml:space="preserve">
     <value>Error en la importación</value>
   </data>
+  <data name="L_ImportarConfigCliente" xml:space="preserve">
+    <value>Importar configuración de cliente</value>
+  </data>
 </root>

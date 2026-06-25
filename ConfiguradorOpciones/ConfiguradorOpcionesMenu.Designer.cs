@@ -35,7 +35,7 @@
             lbl_Conexion = new ToolStripStatusLabel();
             lbl_RestoreOptions = new Label();
             btn_Restore = new Button();
-            label1 = new Label();
+            lbl_ImportarConfigCliente = new Label();
             btn_ImportConfigCliente = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -103,15 +103,15 @@
             btn_Restore.UseVisualStyleBackColor = true;
             btn_Restore.Click += btn_Restore_Click;
             // 
-            // label1
+            // lbl_ImportarConfigCliente
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(109, 233);
-            label1.Name = "label1";
-            label1.Size = new Size(231, 20);
-            label1.TabIndex = 12;
-            label1.Text = "Importar configuración de cliente";
+            lbl_ImportarConfigCliente.AutoSize = true;
+            lbl_ImportarConfigCliente.BackColor = Color.Transparent;
+            lbl_ImportarConfigCliente.Location = new Point(109, 233);
+            lbl_ImportarConfigCliente.Name = "lbl_ImportarConfigCliente";
+            lbl_ImportarConfigCliente.Size = new Size(231, 20);
+            lbl_ImportarConfigCliente.TabIndex = 12;
+            lbl_ImportarConfigCliente.Text = "Importar configuración de cliente";
             // 
             // btn_ImportConfigCliente
             // 
@@ -132,7 +132,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(583, 341);
-            Controls.Add(label1);
+            Controls.Add(lbl_ImportarConfigCliente);
             Controls.Add(btn_ImportConfigCliente);
             Controls.Add(lbl_RestoreOptions);
             Controls.Add(btn_Restore);
@@ -162,7 +162,7 @@
         private ToolStripStatusLabel lbl_Conexion;
         private Label lbl_RestoreOptions;
         private Button btn_Restore;
-        private Label label1;
+        private Label lbl_ImportarConfigCliente;
         private Button btn_ImportConfigCliente;
     }
 }

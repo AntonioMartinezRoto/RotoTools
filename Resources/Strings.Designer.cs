@@ -952,6 +952,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Importar configuración de cliente.
+        /// </summary>
+        internal static string L_ImportarConfigCliente {
+            get {
+                return ResourceManager.GetString("L_ImportarConfigCliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Información de la última actualización.
         /// </summary>
         internal static string L_InfoActualizacion {

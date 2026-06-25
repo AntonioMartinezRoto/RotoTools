@@ -654,4 +654,10 @@
   <data name="L_Ejecutar" xml:space="preserve">
     <value>Ejecutar(DE)</value>
   </data>
+  <data name="L_ConfiguracionImportada" xml:space="preserve">
+    <value>Configuración instalada correctamente(DE)</value>
+  </data>
+  <data name="L_ErrorImportandoConfiguracion" xml:space="preserve">
+    <value>Error en la importación(DE)</value>
+  </data>
 </root>

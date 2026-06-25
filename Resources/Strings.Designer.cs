@@ -376,6 +376,15 @@ namespace RotoTools.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Configuración instalada correctamente.
+        /// </summary>
+        internal static string L_ConfiguracionImportada {
+            get {
+                return ResourceManager.GetString("L_ConfiguracionImportada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configuración del informe.
         /// </summary>
         internal static string L_ConfiguracionInforme {
@@ -597,6 +606,15 @@ namespace RotoTools.Resources {
         internal static string L_ErrorGuardarConfiguracion {
             get {
                 return ResourceManager.GetString("L_ErrorGuardarConfiguracion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error en la importación.
+        /// </summary>
+        internal static string L_ErrorImportandoConfiguracion {
+            get {
+                return ResourceManager.GetString("L_ErrorImportandoConfiguracion", resourceCulture);
             }
         }
         

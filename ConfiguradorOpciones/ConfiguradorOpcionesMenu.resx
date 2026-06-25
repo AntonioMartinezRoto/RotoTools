@@ -683,6 +683,20 @@
         AElFTkSuQmCC
 </value>
   </data>
+  <data name="btn_ImportConfigCliente.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        6gAAAOoB+Ss1JgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHISURBVFhH7Zc7
+        L0RBGIZXBImEzq0REgUFlctP4AdQSNyj8BtUKv/ApaFQaDREgRKNQkhIKEgkKIhChLgVeN6Jk5w9Obc5
+        Ziv7JE9259s535zdmfnmbK5IBnpwGa/wHe9wB0exFAtGGS7gF35HeIzN6JwSXEUN8oqz2IYV2IBjeIn6
+        /OY35pRhVPIn7FIghGrcQ/XbUMAl56jEmuc46lA3qb4dCrigBZXwHtMssnlU/2nTckAfKuGWaSUzjuqv
+        neKEXlTCbdNKZgLVf8m0HGA7BXOo/s6mQJyhko6YVjT+RdiugCuGUEmVvFOBELQNd1H91hVwSVghakVV
+        x3rU9vQXIsWco8E0v3Gl+AibsKB0o3cYfaJ3GGl9FPQw+n9U4iRu4jV+YNi86wByzgDeYtiAQffRj7Zj
+        1ImZihn0VvoBqrZrZZdjErV4iro2ql7EMoW6WKtb77X/0+IfXK/6JaxoxDfUtx9UwIIaPEENrmeHTIVo
+        EZVgxbTsOERdm8YX1INtHiogD6gOKrG22NzAM6qY5aGTSx9emJY9wSmwfii1feoJ40+LsB914ZppZSfz
+        NvRuIIvBSliF1jVAfzIeMWyAJIOVsIgFudwPlGe3S+IUrWQAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAg4AAAEnCAYAAADB8MtaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW

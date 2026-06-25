@@ -156,10 +156,21 @@ namespace RotoTools
             opcionAgujasGlobal.ContenidoOpcionesList.Add(new ContenidoOpcion("RO_AGUJA", "Ag8"));
             opcionAgujasGlobal.ContenidoOpcionesList.Add(new ContenidoOpcion("RO_AGUJA", "Ag15"));
 
+            var opcionPasivaGlobal = new Opcion
+            {
+                Name = "RO_NX_HERR. HOJA PASIVA",
+                ContenidoOpcionesList = doc.Descendants("Pasiva")
+                    .Select(c => new ContenidoOpcion
+                    {
+                        Valor = ((string?)c.Attribute("Nombre"))?.Trim() ?? string.Empty
+                    }).ToList()
+            };
+
             UpdateValores(valoresCerradura.First().ContenidoOpcionesList, "RO_PU_CERRADURA PUERTA");
             UpdateValores(valoresBisagrasPuerta.First().ContenidoOpcionesList, "RO_PU_BISAGRA");
             UpdateValores(valoresSoporteCompas.First().ContenidoOpcionesList, "RO_NX_SOPORTE COMPAS P");
             UpdateValores(opcionAgujasGlobal.ContenidoOpcionesList, "RO_AGUJA");
+            UpdateValores(opcionPasivaGlobal.ContenidoOpcionesList, "RO_NX_HERR. HOJA PASIVA");
             foreach (var tipoPerfil in valoresTipoPerfil.First().ContenidoOpcionesList)
             {
                 UpdateValoresPerfiles(valoresTipoPerfil.First().ContenidoOpcionesList, valoresPerfiles.First().ContenidoOpcionesList, tipoPerfil.Valor, tipoPerfil.Valor == "PVC" ? "RO_1PERFIL" : "RO_1PERFIL_ALU");

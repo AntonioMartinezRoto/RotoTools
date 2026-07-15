@@ -11,8 +11,8 @@
 	<SelfContained>true</SelfContained>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<PublishTrimmed>false</PublishTrimmed>
-    <FileVersion>6.9</FileVersion>
-    <AssemblyVersion>6.9</AssemblyVersion>
+    <FileVersion>7.0</FileVersion>
+    <AssemblyVersion>7.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -1916,17 +1916,12 @@
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cajeado_Tandem-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-1_1.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_DR-0_1.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_IZ-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_IZ-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_IZ-1_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_DR-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_DR-1_1.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_DR-0_1.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_IZ-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_IZ-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_IZ-1_1.json" />
-    <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Inv_Combinado-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Pasador_Puerta-0_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Pasador_Puerta-1_1.json" />
     <None Remove="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Sup_Inf_Automatico-0_1.json" />
@@ -4547,20 +4542,20 @@
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_DR-1_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_DR-0_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_IZ-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_DR-1_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_Inv_IZ-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_IZ-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_IZ-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Ctrl_IZ-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_DR-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_DR-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_DR-1_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_DR-0_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_IZ-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_DR-1_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_Inv_IZ-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_IZ-0_2.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_IZ-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Elect_IZ-1_1.json" />
-    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Inv_Combinado-0_1.json" />
+    <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Inv_Combinado-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Pasador_Puerta-0_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Pasador_Puerta-1_1.json" />
     <EmbeddedResource Include="Resources\Operaciones\Roto\OperationsShapesRoto\RO_Cerr_Sup_Inf_Automatico-0_2.json" />

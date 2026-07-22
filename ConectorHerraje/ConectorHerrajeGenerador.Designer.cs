@@ -63,18 +63,19 @@
             // 
             lbl_Filtro.AutoSize = true;
             lbl_Filtro.BackColor = Color.Transparent;
-            lbl_Filtro.Location = new Point(1162, 219);
+            lbl_Filtro.Location = new Point(1328, 292);
             lbl_Filtro.Name = "lbl_Filtro";
-            lbl_Filtro.Size = new Size(42, 15);
+            lbl_Filtro.Size = new Size(52, 20);
             lbl_Filtro.TabIndex = 25;
             lbl_Filtro.Text = "Buscar";
             lbl_Filtro.Visible = false;
             // 
             // txt_Filtro
             // 
-            txt_Filtro.Location = new Point(405, 35);
+            txt_Filtro.Location = new Point(463, 47);
+            txt_Filtro.Margin = new Padding(3, 4, 3, 4);
             txt_Filtro.Name = "txt_Filtro";
-            txt_Filtro.Size = new Size(139, 23);
+            txt_Filtro.Size = new Size(158, 27);
             txt_Filtro.TabIndex = 24;
             txt_Filtro.TextChanged += txt_Filtro_TextChanged;
             // 
@@ -82,28 +83,30 @@
             // 
             chk_Predefinido.AutoSize = true;
             chk_Predefinido.BackColor = Color.Transparent;
-            chk_Predefinido.Location = new Point(290, 51);
+            chk_Predefinido.Location = new Point(331, 68);
+            chk_Predefinido.Margin = new Padding(3, 4, 3, 4);
             chk_Predefinido.Name = "chk_Predefinido";
-            chk_Predefinido.Size = new Size(155, 19);
+            chk_Predefinido.Size = new Size(192, 24);
             chk_Predefinido.TabIndex = 23;
             chk_Predefinido.Text = "Poner como predefinido";
             chk_Predefinido.UseVisualStyleBackColor = false;
             // 
             // txt_ConectorName
             // 
-            txt_ConectorName.Location = new Point(290, 22);
+            txt_ConectorName.Location = new Point(331, 29);
+            txt_ConectorName.Margin = new Padding(3, 4, 3, 4);
             txt_ConectorName.MaxLength = 25;
             txt_ConectorName.Name = "txt_ConectorName";
-            txt_ConectorName.Size = new Size(155, 23);
+            txt_ConectorName.Size = new Size(177, 27);
             txt_ConectorName.TabIndex = 22;
             // 
             // lbl_SaveBD
             // 
             lbl_SaveBD.AutoSize = true;
             lbl_SaveBD.BackColor = Color.Transparent;
-            lbl_SaveBD.Location = new Point(1162, 290);
+            lbl_SaveBD.Location = new Point(1328, 387);
             lbl_SaveBD.Name = "lbl_SaveBD";
-            lbl_SaveBD.Size = new Size(98, 15);
+            lbl_SaveBD.Size = new Size(126, 20);
             lbl_SaveBD.TabIndex = 29;
             lbl_SaveBD.Text = "Guardar en BBDD";
             lbl_SaveBD.Visible = false;
@@ -114,10 +117,9 @@
             btn_InsertConector.BackgroundImageLayout = ImageLayout.Stretch;
             btn_InsertConector.Image = (Image)resources.GetObject("btn_InsertConector.Image");
             btn_InsertConector.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_InsertConector.Location = new Point(148, 22);
-            btn_InsertConector.Margin = new Padding(3, 2, 3, 2);
+            btn_InsertConector.Location = new Point(169, 29);
             btn_InsertConector.Name = "btn_InsertConector";
-            btn_InsertConector.Size = new Size(88, 48);
+            btn_InsertConector.Size = new Size(101, 64);
             btn_InsertConector.TabIndex = 28;
             btn_InsertConector.Text = "BBDD";
             btn_InsertConector.TextAlign = ContentAlignment.MiddleRight;
@@ -128,9 +130,9 @@
             // 
             lbl_SaveXML.AutoSize = true;
             lbl_SaveXML.BackColor = Color.Transparent;
-            lbl_SaveXML.Location = new Point(1162, 252);
+            lbl_SaveXML.Location = new Point(1328, 336);
             lbl_SaveXML.Name = "lbl_SaveXML";
-            lbl_SaveXML.Size = new Size(92, 15);
+            lbl_SaveXML.Size = new Size(115, 20);
             lbl_SaveXML.TabIndex = 27;
             lbl_SaveXML.Text = "Guardar en XML";
             lbl_SaveXML.Visible = false;
@@ -141,10 +143,9 @@
             btn_GenerarConector.BackgroundImageLayout = ImageLayout.Stretch;
             btn_GenerarConector.Image = (Image)resources.GetObject("btn_GenerarConector.Image");
             btn_GenerarConector.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_GenerarConector.Location = new Point(15, 21);
-            btn_GenerarConector.Margin = new Padding(3, 2, 3, 2);
+            btn_GenerarConector.Location = new Point(17, 28);
             btn_GenerarConector.Name = "btn_GenerarConector";
-            btn_GenerarConector.Size = new Size(88, 48);
+            btn_GenerarConector.Size = new Size(101, 64);
             btn_GenerarConector.TabIndex = 26;
             btn_GenerarConector.Text = "XML";
             btn_GenerarConector.TextAlign = ContentAlignment.MiddleRight;
@@ -156,10 +157,12 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(41, 116);
+            dataGridView1.Location = new Point(47, 155);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Size = new Size(1115, 759);
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(1274, 963);
             dataGridView1.TabIndex = 30;
             dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
             dataGridView1.CurrentCellDirtyStateChanged += dataGridView1_CurrentCellDirtyStateChanged;
@@ -167,10 +170,12 @@
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
+            statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lbl_Conexion, lbl_ConectorActivo });
-            statusStrip1.Location = new Point(0, 839);
+            statusStrip1.Location = new Point(0, 1122);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1434, 22);
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(1639, 26);
             statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 31;
             statusStrip1.Text = "statusStrip1";
@@ -178,7 +183,7 @@
             // lbl_Conexion
             // 
             lbl_Conexion.Name = "lbl_Conexion";
-            lbl_Conexion.Size = new Size(1329, 17);
+            lbl_Conexion.Size = new Size(1511, 20);
             lbl_Conexion.Spring = true;
             lbl_Conexion.Text = "toolStripStatusLabel1";
             lbl_Conexion.TextAlign = ContentAlignment.MiddleLeft;
@@ -187,7 +192,7 @@
             // 
             lbl_ConectorActivo.ForeColor = Color.White;
             lbl_ConectorActivo.Name = "lbl_ConectorActivo";
-            lbl_ConectorActivo.Size = new Size(90, 17);
+            lbl_ConectorActivo.Size = new Size(111, 20);
             lbl_ConectorActivo.Text = "ConectorActivo";
             lbl_ConectorActivo.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -198,9 +203,11 @@
             groupSaveConector.Controls.Add(btn_InsertConector);
             groupSaveConector.Controls.Add(txt_ConectorName);
             groupSaveConector.Controls.Add(chk_Predefinido);
-            groupSaveConector.Location = new Point(41, 12);
+            groupSaveConector.Location = new Point(47, 16);
+            groupSaveConector.Margin = new Padding(3, 4, 3, 4);
             groupSaveConector.Name = "groupSaveConector";
-            groupSaveConector.Size = new Size(522, 77);
+            groupSaveConector.Padding = new Padding(3, 4, 3, 4);
+            groupSaveConector.Size = new Size(597, 103);
             groupSaveConector.TabIndex = 32;
             groupSaveConector.TabStop = false;
             groupSaveConector.Text = "Guardar";
@@ -217,9 +224,11 @@
             group_Buscar.Controls.Add(chk_Balconeras);
             group_Buscar.Controls.Add(chk_Ventanas);
             group_Buscar.Controls.Add(txt_Filtro);
-            group_Buscar.Location = new Point(580, 12);
+            group_Buscar.Location = new Point(663, 16);
+            group_Buscar.Margin = new Padding(3, 4, 3, 4);
             group_Buscar.Name = "group_Buscar";
-            group_Buscar.Size = new Size(576, 77);
+            group_Buscar.Padding = new Padding(3, 4, 3, 4);
+            group_Buscar.Size = new Size(658, 103);
             group_Buscar.TabIndex = 33;
             group_Buscar.TabStop = false;
             group_Buscar.Text = "Buscar";
@@ -227,9 +236,10 @@
             // chk_Elevables
             // 
             chk_Elevables.AutoSize = true;
-            chk_Elevables.Location = new Point(14, 47);
+            chk_Elevables.Location = new Point(16, 63);
+            chk_Elevables.Margin = new Padding(3, 4, 3, 4);
             chk_Elevables.Name = "chk_Elevables";
-            chk_Elevables.Size = new Size(74, 19);
+            chk_Elevables.Size = new Size(93, 24);
             chk_Elevables.TabIndex = 32;
             chk_Elevables.Text = "Elevables";
             chk_Elevables.UseVisualStyleBackColor = true;
@@ -238,9 +248,10 @@
             // chk_Plegables
             // 
             chk_Plegables.AutoSize = true;
-            chk_Plegables.Location = new Point(288, 46);
+            chk_Plegables.Location = new Point(329, 61);
+            chk_Plegables.Margin = new Padding(3, 4, 3, 4);
             chk_Plegables.Name = "chk_Plegables";
-            chk_Plegables.Size = new Size(76, 19);
+            chk_Plegables.Size = new Size(95, 24);
             chk_Plegables.TabIndex = 31;
             chk_Plegables.Text = "Plegables";
             chk_Plegables.UseVisualStyleBackColor = true;
@@ -249,9 +260,10 @@
             // chk_Abatibles
             // 
             chk_Abatibles.AutoSize = true;
-            chk_Abatibles.Location = new Point(209, 46);
+            chk_Abatibles.Location = new Point(239, 61);
+            chk_Abatibles.Margin = new Padding(3, 4, 3, 4);
             chk_Abatibles.Name = "chk_Abatibles";
-            chk_Abatibles.Size = new Size(75, 19);
+            chk_Abatibles.Size = new Size(94, 24);
             chk_Abatibles.TabIndex = 30;
             chk_Abatibles.Text = "Abatibles";
             chk_Abatibles.UseVisualStyleBackColor = true;
@@ -260,9 +272,10 @@
             // chk_Paralelas
             // 
             chk_Paralelas.AutoSize = true;
-            chk_Paralelas.Location = new Point(105, 46);
+            chk_Paralelas.Location = new Point(120, 61);
+            chk_Paralelas.Margin = new Padding(3, 4, 3, 4);
             chk_Paralelas.Name = "chk_Paralelas";
-            chk_Paralelas.Size = new Size(105, 19);
+            chk_Paralelas.Size = new Size(132, 24);
             chk_Paralelas.TabIndex = 29;
             chk_Paralelas.Text = "Osciloparalelas";
             chk_Paralelas.UseVisualStyleBackColor = true;
@@ -271,9 +284,10 @@
             // chk_Correderas
             // 
             chk_Correderas.AutoSize = true;
-            chk_Correderas.Location = new Point(288, 21);
+            chk_Correderas.Location = new Point(329, 28);
+            chk_Correderas.Margin = new Padding(3, 4, 3, 4);
             chk_Correderas.Name = "chk_Correderas";
-            chk_Correderas.Size = new Size(83, 19);
+            chk_Correderas.Size = new Size(103, 24);
             chk_Correderas.TabIndex = 28;
             chk_Correderas.Text = "Correderas";
             chk_Correderas.UseVisualStyleBackColor = true;
@@ -282,9 +296,10 @@
             // chk_Puertas
             // 
             chk_Puertas.AutoSize = true;
-            chk_Puertas.Location = new Point(209, 21);
+            chk_Puertas.Location = new Point(239, 28);
+            chk_Puertas.Margin = new Padding(3, 4, 3, 4);
             chk_Puertas.Name = "chk_Puertas";
-            chk_Puertas.Size = new Size(65, 19);
+            chk_Puertas.Size = new Size(79, 24);
             chk_Puertas.TabIndex = 27;
             chk_Puertas.Text = "Puertas";
             chk_Puertas.UseVisualStyleBackColor = true;
@@ -293,9 +308,10 @@
             // chk_Balconeras
             // 
             chk_Balconeras.AutoSize = true;
-            chk_Balconeras.Location = new Point(105, 21);
+            chk_Balconeras.Location = new Point(120, 28);
+            chk_Balconeras.Margin = new Padding(3, 4, 3, 4);
             chk_Balconeras.Name = "chk_Balconeras";
-            chk_Balconeras.Size = new Size(83, 19);
+            chk_Balconeras.Size = new Size(103, 24);
             chk_Balconeras.TabIndex = 26;
             chk_Balconeras.Text = "Balconeras";
             chk_Balconeras.UseVisualStyleBackColor = true;
@@ -304,9 +320,10 @@
             // chk_Ventanas
             // 
             chk_Ventanas.AutoSize = true;
-            chk_Ventanas.Location = new Point(14, 21);
+            chk_Ventanas.Location = new Point(16, 28);
+            chk_Ventanas.Margin = new Padding(3, 4, 3, 4);
             chk_Ventanas.Name = "chk_Ventanas";
-            chk_Ventanas.Size = new Size(73, 19);
+            chk_Ventanas.Size = new Size(90, 24);
             chk_Ventanas.TabIndex = 25;
             chk_Ventanas.Text = "Ventanas";
             chk_Ventanas.UseVisualStyleBackColor = true;
@@ -316,9 +333,10 @@
             // 
             chk_SelectAll.AutoSize = true;
             chk_SelectAll.BackColor = Color.Transparent;
-            chk_SelectAll.Location = new Point(51, 95);
+            chk_SelectAll.Location = new Point(58, 127);
+            chk_SelectAll.Margin = new Padding(3, 4, 3, 4);
             chk_SelectAll.Name = "chk_SelectAll";
-            chk_SelectAll.Size = new Size(118, 19);
+            chk_SelectAll.Size = new Size(148, 24);
             chk_SelectAll.TabIndex = 34;
             chk_SelectAll.Text = "Seleccionar todas";
             chk_SelectAll.UseVisualStyleBackColor = false;
@@ -328,19 +346,19 @@
             // 
             lbl_Total.AutoSize = true;
             lbl_Total.BackColor = Color.Transparent;
-            lbl_Total.Location = new Point(1081, 99);
+            lbl_Total.Location = new Point(1235, 132);
             lbl_Total.Name = "lbl_Total";
-            lbl_Total.Size = new Size(49, 15);
+            lbl_Total.Size = new Size(62, 20);
             lbl_Total.TabIndex = 35;
             lbl_Total.Text = "0 Líneas";
             // 
             // ConectorHerrajeGenerador
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1434, 861);
+            ClientSize = new Size(1639, 1148);
             Controls.Add(lbl_Total);
             Controls.Add(chk_SelectAll);
             Controls.Add(group_Buscar);
@@ -352,6 +370,7 @@
             Controls.Add(lbl_Filtro);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "ConectorHerrajeGenerador";
             StartPosition = FormStartPosition.CenterScreen;

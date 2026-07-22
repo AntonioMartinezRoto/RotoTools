@@ -6890,27 +6890,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -6924,38 +6908,23 @@ namespace RotoTools
                     }
 
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7025,14 +6994,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -7081,14 +7042,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -7097,6 +7050,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7252,27 +7214,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -7285,38 +7231,23 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7385,14 +7316,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -7440,14 +7363,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -7456,6 +7371,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7622,27 +7546,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -7655,38 +7563,23 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7756,14 +7649,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -7812,14 +7697,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -7828,6 +7705,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -7983,27 +7869,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -8016,38 +7886,23 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -8116,14 +7971,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -8171,14 +8018,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -8187,6 +8026,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -8353,27 +8201,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -8386,38 +8218,23 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -8487,14 +8304,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -8543,14 +8352,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -8559,6 +8360,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -8714,27 +8524,11 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "A700"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("COMBINADA"))
                 {
@@ -8747,38 +8541,23 @@ namespace RotoTools
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Combinada"));
                     }
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "E700"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 
@@ -8847,14 +8626,6 @@ namespace RotoTools
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Tandeo"));
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_PLETINA", "P16"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("A700"))
                 {
@@ -8902,14 +8673,6 @@ namespace RotoTools
                 else if (set.Code.ToUpper().Contains("ENEO A"))
                 {
                     set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADURA PUERTA", "Eneo A"));
-                    if (set.Code.ToUpper().Contains("KF"))
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
-                    }
-                    else
-                    {
-                        set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
-                    }
                 }
                 else if (set.Code.ToUpper().Contains("ENEO E700"))
                 {
@@ -8918,6 +8681,15 @@ namespace RotoTools
                     {
                         set.OptionConectorList.Add(OpcionHelper.Crear("PU_PASIVA", "Cremona (2CC)"));
                     }
+                }
+
+                if (set.Code.ToUpper().Contains("KF"))
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Komfort"));
+                }
+                else
+                {
+                    set.OptionConectorList.Add(OpcionHelper.Crear("PU_CERRADERO", "Clasico"));
                 }
             }
 

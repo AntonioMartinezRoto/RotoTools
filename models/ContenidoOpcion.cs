@@ -57,5 +57,10 @@ namespace RotoEntities
         {
 
         }
+        public ContenidoOpcion(string optionName, string valor)
+        {
+            Opcion = optionName; 
+            Valor = valor;
+        }
     }
 }

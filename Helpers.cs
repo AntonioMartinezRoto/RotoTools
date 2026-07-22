@@ -190,6 +190,18 @@ namespace RotoTools
                 cmd.ExecuteNonQuery();
             }
         }
+        public static void UpdateFlagsContenidoOpcion(string opcionName, string valorContenidoOpcion, int flags)
+        {
+            using (var conn = new SqlConnection(GetConnectionString()))
+            using (var cmd = new SqlCommand("UPDATE ContenidoOpciones SET Flags=@flags WHERE Opcion=@nombre AND Valor=@valor", conn))
+            {
+                cmd.Parameters.AddWithValue("@nombre", opcionName);
+                cmd.Parameters.AddWithValue("@valor", valorContenidoOpcion);
+                cmd.Parameters.AddWithValue("@flags", flags);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         public static void DeleteContenidoOpcion(string opcionName, string valor)
         {
             using (var conn = new SqlConnection(GetConnectionString()))

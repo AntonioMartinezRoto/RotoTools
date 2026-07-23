@@ -803,6 +803,21 @@ namespace RotoTools
                         foreach (var op in article.Fitting.OperationList)
                             yield return op;
                     }
+
+                    if (article.Fitting?.ArticleList != null)
+                    {
+                        foreach (var articleProgram in article.Fitting.ArticleList)
+                        {
+                            if (articleProgram.Fitting?.OperationList != null)
+                            {
+                                foreach (var opProgram in articleProgram.Fitting.OperationList)
+                                {
+                                    yield return opProgram;
+                                }
+
+                            }
+                        }
+                    }
                 }
             }
         }

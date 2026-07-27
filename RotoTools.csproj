@@ -7,12 +7,15 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images\roto_icon.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationVisualStyles>true</ApplicationVisualStyles>
+    <ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
 	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<PublishTrimmed>false</PublishTrimmed>
-    <FileVersion>7.2</FileVersion>
-    <AssemblyVersion>7.2</AssemblyVersion>
+    <FileVersion>7.1</FileVersion>
+    <AssemblyVersion>7.1</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -2122,6 +2125,8 @@
     <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Practicable.json" />
     <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Puerta.json" />
     <EmbeddedResource Include="Resources\Escandallos\RO_MANILLAS.json" />
+    <EmbeddedResource Include="Resources\Mecanizados3D\BibliotecaPerfiles3D.json" />
+    <EmbeddedResource Include="Resources\Mecanizados3D\CatalogoOperaciones3D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000A.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000A_T.json" />

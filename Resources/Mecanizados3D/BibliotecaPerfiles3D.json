@@ -1,0 +1,5552 @@
+[
+	{
+		"ReferenciaBase": "0001-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001E-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001E-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001HV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001HV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0001MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0004-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0004-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0004E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0004E-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0004E-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0006-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0006-L",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0011-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0011-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0011M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0011M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0011M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102E-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102E-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102HV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102HV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0102MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0105-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0105-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0113-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0113-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114PL-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0114PL-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115PV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115PV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115RP",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115RP-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0115RP-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116RP",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116RP-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0116RP-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PL-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PL-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0118PV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0121M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0122M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0123M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0125M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0140E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0140PVINF",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0140PVSUP",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0141E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0204MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0207MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0210MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0432IV",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0510-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0510-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0510M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0510M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0510M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0832IV",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0997MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "0998MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "10000",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "10000S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "10010",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "10011",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "10012",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 29.5
+	},
+	{
+		"ReferenciaBase": "10013",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 40.5
+	},
+	{
+		"ReferenciaBase": "10020",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "102",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "10221",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "10221S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1023",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1023CE",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1023CI",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1046MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "105",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1067A",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "11",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "11026",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "11026S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "113",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "114",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "115",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "116",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172-D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172-G",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172E-D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172E-G",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172EPL",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PL",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVINF",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVINF-D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVINF-G",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVSUP",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVSUP-D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1172PVSUP-G",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "118",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1201MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "121",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "12130",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "12131",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 60.5
+	},
+	{
+		"ReferenciaBase": "12132",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 55.5
+	},
+	{
+		"ReferenciaBase": "12133",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 29.5
+	},
+	{
+		"ReferenciaBase": "122",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "123",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "12420",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "12421",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "12421AUX",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "12422",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "12480",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "12481",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 43.5
+	},
+	{
+		"ReferenciaBase": "12485",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "125",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1272MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1351INI_CV",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1351INV_CV",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1391HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1394C",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1394KTKC",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1396",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1396-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1396-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1396C",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1397",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1397-3CA",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1397P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1397PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1397S",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1398",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1398-EXT",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1398-INT",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1398C",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "140",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1400",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1400-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1400HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1400HV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1400MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401E-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401E-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401HV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401HV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1401MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402E-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402E-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402HV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402HV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1402MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1403",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1403-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1403-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "141",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1410",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1410-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1410M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1410M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1411M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1413",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1413-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1413-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414PL-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1414PL-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415PV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415PV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415RP",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415RP-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1415RP-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416RP",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416RP-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1416RP-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PL-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PL-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PV-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1418PV-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1422M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423E-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423E-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423M-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1423M-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1452",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1452-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1452-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14883",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14883T",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14884",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14884T",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14885",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "14885T",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1501",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1501-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1501-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1565",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1565E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1586",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1586-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1586-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "15863",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "1587",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1587-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1587-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1588",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1588-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1588-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1592",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1594",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1594-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1594-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1599",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1599-D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1599-G",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "1781C",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2166",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2166P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2166PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2167",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2168",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2169",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2169-EXT",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2169-INT",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2173",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2173P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2173PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2174",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2174P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2174PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2252",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2399",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2400",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2400-L",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2400HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2400MV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2403",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2403-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2403-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2414",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2420",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2420-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2420-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2420HV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2421",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2422",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2422-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2422-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2423",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2423-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2423-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2425",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2442",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2442-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2442-G",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "245",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2470",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2471",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2472",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "2871IV",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3007",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3007S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3062",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 33.0
+	},
+	{
+		"ReferenciaBase": "3159",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3159I",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3159IS",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3159S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "319",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "331",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "331E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3331",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3331E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3372",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3372E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3400",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3401",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3405",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3410",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 35.0
+	},
+	{
+		"ReferenciaBase": "3413",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3422",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3423",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3429",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3435",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3436",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3437",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3446",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3452",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3456",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3460",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 24.0
+	},
+	{
+		"ReferenciaBase": "3461",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3462",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3463",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3464",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3465",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 24.0
+	},
+	{
+		"ReferenciaBase": "3470",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3471",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3472",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3473",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3474",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3475",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3482",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3485",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3557",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3570",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3571",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3572",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3573",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3582",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3583",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3600",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3604",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3610",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3611",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3617",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3622",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3630",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3654",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3655",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3675",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "370",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "370E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "371",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "371E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "373",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "373PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "374",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "374PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "374PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "375",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "375M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "376",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "378",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "379",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "380",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3800",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3805",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "380E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "381",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "381E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "382",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3820",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3821",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3825",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3826",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "382E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3830",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3831",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3833",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3834",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3834D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "3835",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "385",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "385E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "385PVINF",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "385PVSUP",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "386",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "386E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "390",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "390E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "392",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "392E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "395",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "396",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "397",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4600",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4604",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4610",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4611",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4617",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4622",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4624",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4630",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4654",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4655",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "4675",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5000",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5000S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5001",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5001S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5002",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5002S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5005",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5005S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5006",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5006S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5008",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5008S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5010",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5010S",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5040",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5041",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5042",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5049",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5069",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 33.0
+	},
+	{
+		"ReferenciaBase": "5069-T",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5094",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5095",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "5096",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 37.0
+	},
+	{
+		"ReferenciaBase": "510",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5101",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5101S",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5102",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5102S",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5105",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5105S",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5106",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5106S",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5115",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5116",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 29.5
+	},
+	{
+		"ReferenciaBase": "5125",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5126",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5137",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5150",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5150AUX",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5151",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5152",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 29.5
+	},
+	{
+		"ReferenciaBase": "5153",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 62.5
+	},
+	{
+		"ReferenciaBase": "5153AUX",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 62.5
+	},
+	{
+		"ReferenciaBase": "5178",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5178S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5179",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5179S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5182",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5430",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5431",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5432",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5433",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5450",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5457",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5460",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "5461",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 20.5
+	},
+	{
+		"ReferenciaBase": "5462",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5462-E",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5462-I",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5462S",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5467",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5480",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5481",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5482",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5483",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5484",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5510",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5511",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5512",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5513",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 33.0
+	},
+	{
+		"ReferenciaBase": "5520",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5521",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5530",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5534",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5535",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5536",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5536S",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "5590",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 49.0
+	},
+	{
+		"ReferenciaBase": "5709",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5711",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5712",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 50.5
+	},
+	{
+		"ReferenciaBase": "5713",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 34.5
+	},
+	{
+		"ReferenciaBase": "58101",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58101E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58201",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58202",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58203",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58204",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58301",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58301E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58402",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "58402E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6040-D",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6040-DHV",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6040-L",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6040-LHV",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6040C",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6040PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6041-D",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6041-DHV",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6041-L",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6041-LHV",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6041C",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 27.0
+	},
+	{
+		"ReferenciaBase": "6048-D",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6048-L",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6048C",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6050",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6050-3CA",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6051",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6052",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6052-3CA",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6052P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6052PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6054",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6055",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6055_6",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6060",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6060C",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6060D",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6061",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6063",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6068",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6068P",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6068PS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6069",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6105",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6105-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6105-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6107",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6107-D",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6107-G",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6121",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6121-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6121-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6123",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6123-D",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6123-G",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "6130",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70101",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70101E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70102",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70102E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70103",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70103E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70107",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70107E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70121",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70123",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70123E",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70201",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70202",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70203",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70203PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70204",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70204PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70204PV",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70206",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70207",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70208",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70211",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70212",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70213",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70220",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 39.5
+	},
+	{
+		"ReferenciaBase": "70221",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 39.5
+	},
+	{
+		"ReferenciaBase": "70222",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "70301",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70302",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70302E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70303",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70303E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70304",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70304E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70306",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70320",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70320E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401EPL",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401PL",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401PVINF",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70401PVSUP",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70420",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "70420E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "71121",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76101",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76101E",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76101PRS",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76102",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76102E",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76168",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76168_Fijo",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76171",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76171E",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76172",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76172E",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76179",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76185",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76200M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76201",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76201M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76202",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76204",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76204PL",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76205",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76205PL",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76205PV--2S",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76205RP",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76206",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76206PL",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76206RP",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76207",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76207PL",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76207PV--2S",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76207RP",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76208",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76211",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 26.5
+	},
+	{
+		"ReferenciaBase": "76268",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76268---1L",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76268---1S",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76269",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76269---1L",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76269---1S",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76269LUX",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76269LUX-L",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76269LUX-S",
+		"Role": "Lift Sash",
+		"PosicionCanalHerraje": 38.0
+	},
+	{
+		"ReferenciaBase": "76270",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76271",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76272",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 45.5
+	},
+	{
+		"ReferenciaBase": "76272RP",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76273",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76274",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76281",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76283",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 30.5
+	},
+	{
+		"ReferenciaBase": "76300",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76300E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76301",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76301E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76301M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76302",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76302E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76302M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76303",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76303E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76303M",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76303PRS",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76371",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76371E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76372",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76372E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76373",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76373E",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76401",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76401E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76402",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76402E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76402PVINF",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76402PVSUP",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76471",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76471E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76472",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76472E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "76473",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77201",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77203",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 57.0
+	},
+	{
+		"ReferenciaBase": "77205",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77212",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77221",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77222",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "77223",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 57.0
+	},
+	{
+		"ReferenciaBase": "77224",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 20.0
+	},
+	{
+		"ReferenciaBase": "77232",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85110",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85111",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85112",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85113",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85170",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85171",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85172",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85173",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85210",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85211",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85212",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85213",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85214",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85215",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85310",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85370",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "85410",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "A647",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "AB_RT600",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "AB_RT602",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "AB_RT604",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "AB_RT605",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13132",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13142",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13191",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13201",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13201AC",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13201ACH",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13201ACV",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13211",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR13221",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13221AC",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13221ACH",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13221ACV",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13221PL",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13221PU",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13231",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 38.5
+	},
+	{
+		"ReferenciaBase": "COR13242",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR13261",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR13261PR",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR13261PU",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR13271",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR13301",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13301AC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13301ACH",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13301ACV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13301JC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13311",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13311AC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13311ACH",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13311ACV",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13311JC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13321",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13321JC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13331",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13331JC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13341",
+		"Role": "Outer Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13362",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501AC",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501DAC",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501H",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501HM",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501JC",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13501V",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13521",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13521H",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13521JC",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR13521V",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14201",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+1445",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+1445B",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+1445E",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+4750",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+4750B",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201+4750E",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201B",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14201E",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14221",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14231",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR14301",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14301 A TESTA",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14301_T",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14321",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14331",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14331 A TESTA",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14331_T",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR14551",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR15231",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR15231_FIJO",
+		"Role": "Slide Sash",
+		"PosicionCanalHerraje": 23.0
+	},
+	{
+		"ReferenciaBase": "COR15241",
+		"Role": "Elevadora",
+		"PosicionCanalHerraje": 35.0
+	},
+	{
+		"ReferenciaBase": "COR15251",
+		"Role": "Elevadora",
+		"PosicionCanalHerraje": 35.0
+	},
+	{
+		"ReferenciaBase": "COR15251AC",
+		"Role": "Elevadora",
+		"PosicionCanalHerraje": 35.0
+	},
+	{
+		"ReferenciaBase": "COR15251AC2",
+		"Role": "Elevadora",
+		"PosicionCanalHerraje": 35.0
+	},
+	{
+		"ReferenciaBase": "COR16191",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16201",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16201PH_1.0",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16221",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16221PH_1.0",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16221PU",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16251",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16261",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16261V",
+		"Role": "Door Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16271",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 31.5
+	},
+	{
+		"ReferenciaBase": "COR16281",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16291",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 52.5
+	},
+	{
+		"ReferenciaBase": "COR16301",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16301PH",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16301PH_1.0",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16341",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16351",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16371",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16401",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16401PH",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16401PH_1.0",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16501",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16501H",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16501PH",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16501PH_1.0",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16501V",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16511",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16511H",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR16511V",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18302",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18312",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18322",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18332",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18402",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18402INF",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18412",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR18412INF",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR19202",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR19222",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR19222PU",
+		"Role": "Balcony Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR19232",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR19242",
+		"Role": "Window Sash",
+		"PosicionCanalHerraje": 48.5
+	},
+	{
+		"ReferenciaBase": "COR19262",
+		"Role": "Outer Sash",
+		"PosicionCanalHerraje": 29.5
+	},
+	{
+		"ReferenciaBase": "COR19302",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR19322",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR19342",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR19502",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "COR19512",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA1600",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA1601",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA1602",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA1950",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA1951",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20600",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20601",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20602",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20603",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20604",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20605",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20609",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20614",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20615",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20622",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20623",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20626",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20627",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA20628",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2215",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2216",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2219",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2219C1",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2219C2",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2221",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2222",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2223",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2225",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2226",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2227",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2230",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2230FT",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2239",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2800",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2801",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2802",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2803",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2810",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2811",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2854",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2855",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA2856",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3800",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3801",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3804",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3805",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3806",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3807",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3808",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3809",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3825",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3840",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3841",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3842",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3843",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3846",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3847",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3849",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3850",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3851",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3852",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3853",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3854",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3855",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3858",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3859",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3862",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3863",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3866",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3867",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3869",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3873",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3874",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3875",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3876",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3877",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3878",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3879",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3881",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3882",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3883",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3884",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA3885",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60011",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60041",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60102",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60112",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60303",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 45.1
+	},
+	{
+		"ReferenciaBase": "CSA60305",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA60314",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 19.9
+	},
+	{
+		"ReferenciaBase": "CSA60373",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 45.1
+	},
+	{
+		"ReferenciaBase": "CSA60403",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 45.1
+	},
+	{
+		"ReferenciaBase": "CSA95025",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 17.2
+	},
+	{
+		"ReferenciaBase": "CSA95201",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSA95211",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1000",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1001",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1003",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1003I",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1009",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1010",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1011",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1039",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSAM1039Z",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1350",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1351",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1352",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1353",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1650",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1651",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1652",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1653",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1655",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1656",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1657",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1660",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1661",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1700",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1701",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1703",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1704",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1708",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART1710",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART20608",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART20616",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART20621",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART20624",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "CSART20629",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "GUIA_INFERIOR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "GUIA_INFERIOR_FIC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "GUIA_SUPEIOR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "GUIA_SUPERIOR_FIC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_CNTRL_CORR",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_INF_CORR",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_LAT_CORR",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_MALL_CORR",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_MALL_PRAC",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_PRAC",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_PRAC_EXT",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "HOJA_SUP_CORR",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "INV_PRAC",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "INV_PRAC_EXT",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "INV_PRAC_MALL",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock ALUALU",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock ALUALU MO",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock ALUINERCIA",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock ALUINERCIA MO",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock Ficticio",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock PVCALU",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock PVCINERCIA",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Interlock PVCPVC",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Inversor_Marco",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "K134",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "K134E",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "K734",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "KSG1",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "M1002",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "M1003",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_FIJO",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_INF_2C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_INF_3C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_LAT1_2C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_LAT1_3C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_LAT_2C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_LAT_3C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_PRAC",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_SUP_2C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "MARCO_SUP_3C_CORR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1240C",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1386C",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1666C",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1672C",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1683C",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1941",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1942",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1953",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1956",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "P1957",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "PERFILCONTRA",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO0",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO10",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO100",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO15",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO20",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO25",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO30",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO40",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO5",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO50",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "RECIBIDO60",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP64534",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP64536",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65779",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65781",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65782",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65783",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65830",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP65832",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP66642",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SAP71029",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SIN ALFEIZAR",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SINUNION",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2014",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2022",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2022Z",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2023",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2023Z",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2070",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2074",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2075",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2077",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2079",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO2080",
+		"Role": "Sash Stop",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO3345",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SO3347",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "SP368",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "TALON_MARCO",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "TRAVESAÑO_MALL",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "TRAV_MARCO",
+		"Role": "Mullion",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "Tubo_100x40",
+		"Role": "Frame",
+		"PosicionCanalHerraje": 0.0
+	},
+	{
+		"ReferenciaBase": "ZENTRADAFAKE",
+		"Role": "Sash",
+		"PosicionCanalHerraje": 0.0
+	}
+]

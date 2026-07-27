@@ -164,6 +164,22 @@ namespace RotoTools
                 LoadOperations();
             }
         }
+        private void btn_Mecanizados3D_Click(object sender, EventArgs e)
+        {
+            List<OperationInstalarGridITem> operacionesSeleccionadas = this._bindingSource.List
+                .Cast<OperationInstalarGridITem>()
+                .Where(item => item.Selected)
+                .ToList();
+
+            if (!operacionesSeleccionadas.Any())
+            {
+                MessageBox.Show("Seleccione primero una o varias operaciones para instalar en 3D.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Cam3D cam3DForm = new Cam3D(operacionesSeleccionadas);
+            cam3DForm.ShowDialog();
+        }
         private void txt_filter_TextChanged(object sender, EventArgs e)
         {
             chk_All.Checked = false;
@@ -376,7 +392,7 @@ namespace RotoTools
             if (MessageBox.Show(LocalizationManager.GetString("L_ConfirmarNormalizacion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 NormalizarOperaciones();
-            }            
+            }
         }
         private void btn_ImportEquivalencias_Click(object sender, EventArgs e)
         {

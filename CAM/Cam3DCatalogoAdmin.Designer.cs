@@ -54,44 +54,44 @@ namespace RotoTools
             lbl_TituloCatalogo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lbl_TituloCatalogo.Location = new Point(12, 41);
             lbl_TituloCatalogo.Name = "lbl_TituloCatalogo";
-            lbl_TituloCatalogo.Size = new Size(425, 25);
+            lbl_TituloCatalogo.Size = new Size(150, 25);
             lbl_TituloCatalogo.TabIndex = 0;
-            lbl_TituloCatalogo.Text = "Catálogo actual (CatalogoOperaciones3D.json)";
-            //
+            lbl_TituloCatalogo.Text = "Catálogo actual";
+            // 
             // lbl_FiltroExterior
-            //
+            // 
             lbl_FiltroExterior.AutoSize = true;
             lbl_FiltroExterior.BackColor = Color.Transparent;
-            lbl_FiltroExterior.Location = new Point(480, 41);
+            lbl_FiltroExterior.Location = new Point(901, 40);
             lbl_FiltroExterior.Name = "lbl_FiltroExterior";
-            lbl_FiltroExterior.Size = new Size(65, 20);
+            lbl_FiltroExterior.Size = new Size(45, 20);
             lbl_FiltroExterior.TabIndex = 11;
-            lbl_FiltroExterior.Text = "Exterior:";
-            //
+            lbl_FiltroExterior.Text = "Lado:";
+            // 
             // cmb_FiltroExterior
-            //
-            cmb_FiltroExterior.Location = new Point(550, 38);
+            // 
+            cmb_FiltroExterior.Location = new Point(971, 37);
             cmb_FiltroExterior.Name = "cmb_FiltroExterior";
             cmb_FiltroExterior.Size = new Size(110, 28);
             cmb_FiltroExterior.TabIndex = 12;
-            //
+            // 
             // lbl_FiltroRol
-            //
+            // 
             lbl_FiltroRol.AutoSize = true;
             lbl_FiltroRol.BackColor = Color.Transparent;
-            lbl_FiltroRol.Location = new Point(675, 41);
+            lbl_FiltroRol.Location = new Point(1096, 40);
             lbl_FiltroRol.Name = "lbl_FiltroRol";
-            lbl_FiltroRol.Size = new Size(35, 20);
+            lbl_FiltroRol.Size = new Size(34, 20);
             lbl_FiltroRol.TabIndex = 13;
             lbl_FiltroRol.Text = "Rol:";
-            //
+            // 
             // cmb_FiltroRol
-            //
-            cmb_FiltroRol.Location = new Point(715, 38);
+            // 
+            cmb_FiltroRol.Location = new Point(1136, 37);
             cmb_FiltroRol.Name = "cmb_FiltroRol";
             cmb_FiltroRol.Size = new Size(180, 28);
             cmb_FiltroRol.TabIndex = 14;
-            //
+            // 
             // lbl_BuscarCatalogo
             // 
             lbl_BuscarCatalogo.AutoSize = true;
@@ -163,9 +163,9 @@ namespace RotoTools
             dataGridViewFaltantes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFaltantes.Size = new Size(1660, 330);
             dataGridViewFaltantes.TabIndex = 3;
-            //
+            // 
             // btn_Guardar
-            //
+            // 
             btn_Guardar.BackColor = Color.White;
             btn_Guardar.Image = (Image)resources.GetObject("btn_Guardar.Image");
             btn_Guardar.ImageAlign = ContentAlignment.MiddleLeft;

@@ -416,7 +416,8 @@ namespace RotoTools
                 HeaderText = "Operación",
                 DataPropertyName = "OperationName",
                 ReadOnly = true,
-                Width = 260
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                //Width = 260
             });
 
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
@@ -535,7 +536,8 @@ namespace RotoTools
                 Name = "OperationName",
                 HeaderText = "Operación (RO_...)",
                 DataPropertyName = "OperationName",
-                Width = 260
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                //Width = 260
             });
 
             var columnaRole = new DataGridViewComboBoxColumn

@@ -32,9 +32,11 @@ namespace RotoTools
         private string _rutaArchivoCatalogo;
 
         // Iconos dibujados por código (sin fichero de recurso) para los botones "Copiar de
-        // catálogo" y "Agregar al catálogo" de la grid de operaciones sin definición.
+        // catálogo", "Agregar al catálogo" y "Copiar todos los roles" de la grid de operaciones
+        // sin definición.
         private readonly Bitmap _iconoCopiar = CrearIconoCopiar();
         private readonly Bitmap _iconoAgregarAlCatalogo = CrearIconoAgregarAlCatalogo();
+        private readonly Bitmap _iconoCopiarTodosRoles = CrearIconoCopiarTodosRoles();
         #endregion
 
         #region Constructors
@@ -75,6 +77,9 @@ namespace RotoTools
         /// fila con los datos de la fila actualmente seleccionada en la grid del catálogo, para
         /// agilizar el rellenado cuando existe una operación similar (mismo patrón de fórmulas) de
         /// la que partir. El nombre de la operación de esta fila no se toca.
+        /// "Copiar todos los roles": si la operación seleccionada en la grid del catálogo tiene
+        /// varias filas (una por cada Rol), copia los datos de TODAS esas filas directamente a la
+        /// grid del catálogo, usando el nombre de esta operación sin definición.
         /// </summary>
         private void dataGridViewFaltantes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -90,6 +95,10 @@ namespace RotoTools
             else if (nombreColumna == "AgregarAlCatalogo")
             {
                 AgregarFilaFaltanteAlCatalogo(e.RowIndex);
+            }
+            else if (nombreColumna == "CopiarTodosLosRoles")
+            {
+                CopiarTodosLosRolesDesdeCatalogoSeleccionado(e.RowIndex);
             }
         }
 
@@ -183,6 +192,118 @@ namespace RotoTools
                 "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Botón por fila "Copiar todos los roles": toma la operación actualmente seleccionada en
+        /// la grid del catálogo y, si esa operación tiene varias filas (una por cada Rol distinto),
+        /// añade directamente a la grid del catálogo una copia de cada una de esas filas, usando el
+        /// nombre de la operación sin definición en vez del nombre de la operación de origen. Así se
+        /// puede definir de golpe una operación nueva para todos los roles que ya tiene otra
+        /// operación similar, sin tener que copiar/rellenar/añadir rol a rol.
+        /// </summary>
+        private void CopiarTodosLosRolesDesdeCatalogoSeleccionado(int indiceFilaFaltante)
+        {
+            dataGridViewFaltantes.EndEdit();
+            _bindingFaltantes.EndEdit();
+
+            if (dataGridViewFaltantes.Rows[indiceFilaFaltante].DataBoundItem is not OperacionFaltanteRow fila)
+                return;
+
+            if (string.IsNullOrWhiteSpace(fila.OperationName))
+            {
+                MessageBox.Show("Indique al menos 'Operación' en esta fila para poder añadirla al catálogo.",
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dataGridViewCatalogo.CurrentRow?.DataBoundItem is not Operacion3DTemplate plantillaSeleccionada)
+            {
+                MessageBox.Show("Seleccione primero, en la grid del catálogo, una operación de la que quiera copiar todos sus roles.",
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            List<Operacion3DTemplate> variantesPorRol = _catalogoTrabajo
+                .Where(p => string.Equals(p.OperationName, plantillaSeleccionada.OperationName, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (variantesPorRol.Count <= 1)
+            {
+                MessageBox.Show(
+                    $"La operación seleccionada ({plantillaSeleccionada.OperationName}) solo tiene un rol definido en el catálogo." + Environment.NewLine +
+                    "Use el botón 'Copiar de catálogo' para copiar sus datos a esta fila.",
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int anadidas = 0;
+            int yaExistian = 0;
+
+            foreach (Operacion3DTemplate variante in variantesPorRol)
+            {
+                bool yaExiste = _catalogoTrabajo.Any(p =>
+                    string.Equals(p.OperationName, fila.OperationName, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(p.Role, variante.Role, StringComparison.OrdinalIgnoreCase) &&
+                    p.Outer == variante.Outer);
+
+                if (yaExiste)
+                {
+                    yaExistian++;
+                    continue;
+                }
+
+                _catalogoTrabajo.Add(new Operacion3DTemplate
+                {
+                    OperationName = fila.OperationName.Trim(),
+                    Role = variante.Role,
+                    Outer = variante.Outer,
+                    XFormula = variante.XFormula,
+                    YFormula = variante.YFormula,
+                    ZFormula = variante.ZFormula,
+                    Plane = variante.Plane,
+                    Depth = variante.Depth,
+                    Master = variante.Master,
+                    XmlParameters = variante.XmlParameters,
+                    Layers = variante.Layers,
+                    MirrorHorizontalForMachining = variante.MirrorHorizontalForMachining,
+                    MirrorVerticalForMachining = variante.MirrorVerticalForMachining,
+                    RotationForMachining = variante.RotationForMachining,
+                    Face = variante.Face,
+                    Disabled = variante.Disabled,
+                    IsBidirectional = variante.IsBidirectional
+                });
+
+                anadidas++;
+            }
+
+            string mensaje;
+
+            if (anadidas > 0)
+            {
+                // Igual que CargarOperacionesFaltantes() no distingue Outer al comprobar si una
+                // operación ya tiene definición, se quitan aquí las dos filas (Outer 0 y 1, si las
+                // hubiera) de "sin definición" para esta operación.
+                _operacionesFaltantes.RemoveAll(f =>
+                    string.Equals(f.OperationName, fila.OperationName, StringComparison.OrdinalIgnoreCase));
+
+                RefrescarGridCatalogo();
+                AplicarFiltroFaltantes();
+
+                mensaje = $"Se han añadido {anadidas} fila(s) a la grid del catálogo para {fila.OperationName}, copiando los roles de {plantillaSeleccionada.OperationName}.";
+            }
+            else
+            {
+                mensaje = $"Todas las combinaciones de rol de {plantillaSeleccionada.OperationName} ya existían para {fila.OperationName}; no se ha añadido ninguna fila nueva.";
+            }
+
+            if (yaExistian > 0)
+                mensaje += Environment.NewLine + $"({yaExistian} ya existían y no se han duplicado.)";
+
+            if (anadidas > 0)
+                mensaje += Environment.NewLine + "Pulse 'Guardar' para escribirlas en el fichero CatalogoOperaciones3D.json.";
+
+            MessageBox.Show(mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
             dataGridViewCatalogo.EndEdit();
@@ -272,6 +393,7 @@ namespace RotoTools
             {
                 "CopiarDeCatalogo" => _iconoCopiar,
                 "AgregarAlCatalogo" => _iconoAgregarAlCatalogo,
+                "CopiarTodosLosRoles" => _iconoCopiarTodosRoles,
                 _ => null
             };
 
@@ -286,6 +408,26 @@ namespace RotoTools
             e.Graphics.DrawImage(icono, x, y, icono.Width, icono.Height);
 
             e.Handled = true;
+        }
+
+        /// <summary>
+        /// Texto emergente (tooltip) para los tres botones de icono de la grid de "sin
+        /// definición", ya que sin texto visible su acción no es evidente a simple vista.
+        /// </summary>
+        private void dataGridViewFaltantes_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            string nombreColumna = dataGridViewFaltantes.Columns[e.ColumnIndex].Name;
+
+            e.ToolTipText = nombreColumna switch
+            {
+                "CopiarDeCatalogo" => "Copiar de catálogo: rellena esta fila con los datos de la fila seleccionada en la grid del catálogo.",
+                "AgregarAlCatalogo" => "Agregar al catálogo: añade esta fila a la grid del catálogo.",
+                "CopiarTodosLosRoles" => "Copiar todos los roles: si la operación seleccionada en la grid del catálogo tiene varios roles, añade una fila al catálogo por cada uno de ellos, con este nombre de operación.",
+                _ => e.ToolTipText
+            };
         }
 
         /// <summary>
@@ -379,6 +521,36 @@ namespace RotoTools
 
             return bmp;
         }
+
+        /// <summary>
+        /// Icono para "Copiar todos los roles": tres rectángulos apilados en diagonal, para
+        /// distinguirlo visualmente del icono de "Copiar de catálogo" (una sola operación/rol) e
+        /// indicar que copia varias filas (una por cada rol) de golpe.
+        /// </summary>
+        private static Bitmap CrearIconoCopiarTodosRoles()
+        {
+            var bmp = new Bitmap(18, 18, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(Color.Transparent);
+
+                using Pen pen = new Pen(Color.FromArgb(30, 90, 160), 1.2f);
+                using SolidBrush fondo = new SolidBrush(Color.White);
+
+                g.FillRectangle(fondo, 1, 9, 8, 8);
+                g.DrawRectangle(pen, 1, 9, 8, 8);
+
+                g.FillRectangle(fondo, 5, 5, 8, 8);
+                g.DrawRectangle(pen, 5, 5, 8, 8);
+
+                g.FillRectangle(fondo, 9, 1, 8, 8);
+                g.DrawRectangle(pen, 9, 1, 8, 8);
+            }
+
+            return bmp;
+        }
         #endregion
 
         #region Private methods
@@ -406,7 +578,10 @@ namespace RotoTools
         private void ConfigurarGridCatalogo()
         {
             // Mismas columnas (y mismo orden) que la grid de "operaciones sin definición en el
-            // catálogo", para que sea fácil comparar una con otra. Aquí siempre en solo lectura.
+            // catálogo", para que sea fácil comparar una con otra. Editable, para poder corregir
+            // operaciones ya existentes sin tener que borrarlas y volver a añadirlas: los cambios
+            // se aplican directamente sobre _catalogoTrabajo (misma instancia que la fila
+            // enlazada) y se escriben en disco al pulsar "Guardar".
             dataGridViewCatalogo.AutoGenerateColumns = false;
             dataGridViewCatalogo.Columns.Clear();
 
@@ -415,26 +590,30 @@ namespace RotoTools
                 Name = "OperationName",
                 HeaderText = "Operación",
                 DataPropertyName = "OperationName",
-                ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 //Width = 260
             });
 
-            dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
+            var columnaRoleCatalogo = new DataGridViewComboBoxColumn
             {
                 Name = "Role",
                 HeaderText = "Rol",
                 DataPropertyName = "Role",
-                ReadOnly = true,
-                Width = 150
-            });
+                Width = 150,
+                FlatStyle = FlatStyle.Flat,
+                DropDownWidth = 150
+            };
+
+            List<string> opcionesRolCatalogo = new List<string> { "" };
+            opcionesRolCatalogo.AddRange(Cam3DHelpers.RolesMecanizado3D);
+            columnaRoleCatalogo.DataSource = opcionesRolCatalogo;
+            dataGridViewCatalogo.Columns.Add(columnaRoleCatalogo);
 
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Outer",
                 HeaderText = "Exterior",
                 DataPropertyName = "Outer",
-                ReadOnly = true,
                 Width = 70
             });
 
@@ -443,7 +622,6 @@ namespace RotoTools
                 Name = "YFormula",
                 HeaderText = "Y",
                 DataPropertyName = "YFormula",
-                ReadOnly = true,
                 Width = 280
             });
 
@@ -452,7 +630,6 @@ namespace RotoTools
                 Name = "ZFormula",
                 HeaderText = "Z",
                 DataPropertyName = "ZFormula",
-                ReadOnly = true,
                 Width = 280
             });
 
@@ -461,7 +638,6 @@ namespace RotoTools
                 Name = "Plane",
                 HeaderText = "Plano",
                 DataPropertyName = "Plane",
-                ReadOnly = true,
                 Width = 90
             });
 
@@ -470,7 +646,6 @@ namespace RotoTools
                 Name = "Depth",
                 HeaderText = "Profundidad",
                 DataPropertyName = "Depth",
-                ReadOnly = true,
                 Width = 100
             });
 
@@ -534,7 +709,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "OperationName",
-                HeaderText = "Operación (RO_...)",
+                HeaderText = "Operación",
                 DataPropertyName = "OperationName",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 //Width = 260
@@ -558,7 +733,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Outer",
-                HeaderText = "Outer",
+                HeaderText = "Exterior",
                 DataPropertyName = "Outer",
                 Width = 70
             });
@@ -566,7 +741,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "YFormula",
-                HeaderText = "Fórmula Y",
+                HeaderText = "Y",
                 DataPropertyName = "YFormula",
                 Width = 280
             });
@@ -574,7 +749,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "ZFormula",
-                HeaderText = "Fórmula Z",
+                HeaderText = "Z",
                 DataPropertyName = "ZFormula",
                 Width = 280
             });
@@ -613,11 +788,21 @@ namespace RotoTools
                 Width = 50
             });
 
+            dataGridViewFaltantes.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "CopiarTodosLosRoles",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = true,
+                Width = 50
+            });
+
             _bindingFaltantes = new BindingSource();
             dataGridViewFaltantes.DataSource = _bindingFaltantes;
             dataGridViewFaltantes.CellContentClick += dataGridViewFaltantes_CellContentClick;
             dataGridViewFaltantes.CellPainting += dataGridViewFaltantes_CellPainting;
             dataGridViewFaltantes.CellPainting += DataGridViewPlano_CellPainting;
+            dataGridViewFaltantes.CellToolTipTextNeeded += dataGridViewFaltantes_CellToolTipTextNeeded;
         }
 
         /// <summary>

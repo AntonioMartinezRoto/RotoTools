@@ -118,7 +118,7 @@ namespace RotoTools
             dataGridViewCatalogo.Location = new Point(12, 74);
             dataGridViewCatalogo.MultiSelect = false;
             dataGridViewCatalogo.Name = "dataGridViewCatalogo";
-            dataGridViewCatalogo.ReadOnly = true;
+            dataGridViewCatalogo.ReadOnly = false;
             dataGridViewCatalogo.RowHeadersWidth = 51;
             dataGridViewCatalogo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCatalogo.Size = new Size(1660, 420);

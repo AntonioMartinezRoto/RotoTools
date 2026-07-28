@@ -31,6 +31,7 @@ namespace RotoTools
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cam3D));
             btn_InstalarOperaciones = new Button();
+            btn_Volver = new Button();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
             treeViewMateriales = new TreeView();
@@ -65,6 +66,20 @@ namespace RotoTools
             btn_InstalarOperaciones.TextAlign = ContentAlignment.MiddleRight;
             btn_InstalarOperaciones.UseVisualStyleBackColor = false;
             btn_InstalarOperaciones.Click += btn_InstalarOperaciones_Click;
+            // 
+            // btn_Volver
+            // 
+            btn_Volver.BackColor = Color.White;
+            btn_Volver.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Volver.Location = new Point(1521, 884);
+            btn_Volver.Margin = new Padding(3, 4, 3, 4);
+            btn_Volver.Name = "btn_Volver";
+            btn_Volver.Padding = new Padding(5, 0, 20, 0);
+            btn_Volver.Size = new Size(151, 53);
+            btn_Volver.TabIndex = 40;
+            btn_Volver.Text = "Volver";
+            btn_Volver.UseVisualStyleBackColor = false;
+            btn_Volver.Click += btn_Volver_Click;
             // 
             // statusStrip1
             // 
@@ -200,7 +215,7 @@ namespace RotoTools
             // 
             progress_Instalar3D.Location = new Point(12, 899);
             progress_Instalar3D.Name = "progress_Instalar3D";
-            progress_Instalar3D.Size = new Size(1660, 27);
+            progress_Instalar3D.Size = new Size(1478, 27);
             progress_Instalar3D.TabIndex = 35;
             progress_Instalar3D.Visible = false;
             // 
@@ -222,6 +237,7 @@ namespace RotoTools
             Controls.Add(treeViewMateriales);
             Controls.Add(statusStrip1);
             Controls.Add(btn_InstalarOperaciones);
+            Controls.Add(btn_Volver);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Cam3D";
@@ -240,6 +256,7 @@ namespace RotoTools
         #endregion
 
         private Button btn_InstalarOperaciones;
+        private Button btn_Volver;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
         private TreeView treeViewMateriales;

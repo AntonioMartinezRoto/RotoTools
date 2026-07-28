@@ -136,6 +136,11 @@ namespace RotoTools
 
         private static List<Operacion3DTemplate> _catalogoCache;
 
+        // El JSON embebido está organizado como un diccionario "Role" -> lista de operaciones
+        // (en vez de una única lista plana) para que en un editor de código las secciones de
+        // cada Role se puedan plegar/colapsar como si fueran regiones, facilitando localizar
+        // y modificar operaciones concretas. Aquí se aplana de nuevo a una List<Operacion3DTemplate>
+        // para que el resto del código (que consume una lista plana) no tenga que cambiar.
         public static List<Operacion3DTemplate> CargarCatalogoOperaciones3D()
         {
             if (_catalogoCache != null) return _catalogoCache;
@@ -153,7 +158,10 @@ namespace RotoTools
             using var reader = new StreamReader(stream);
             string json = reader.ReadToEnd();
 
-            _catalogoCache = JsonSerializer.Deserialize<List<Operacion3DTemplate>>(json) ?? new List<Operacion3DTemplate>();
+            var porRole = JsonSerializer.Deserialize<Dictionary<string, List<Operacion3DTemplate>>>(json)
+                ?? new Dictionary<string, List<Operacion3DTemplate>>();
+
+            _catalogoCache = porRole.SelectMany(kvp => kvp.Value).ToList();
             return _catalogoCache;
         }
 

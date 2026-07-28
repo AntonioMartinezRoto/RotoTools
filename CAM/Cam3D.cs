@@ -106,6 +106,11 @@ namespace RotoTools
 
             _bindingMateriales.DataSource = resultados;
         }
+        private void btn_Volver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btn_InstalarOperaciones_Click(object sender, EventArgs e)
         {
             if (_operacionesSeleccionadas == null || !_operacionesSeleccionadas.Any())
@@ -679,6 +684,15 @@ namespace RotoTools
                 Name = "CuerpoExterior",
                 HeaderText = "Cuerpo exterior",
                 DataPropertyName = "CuerpoExterior",
+                ReadOnly = true,
+                Width = 110
+            });
+
+            dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Altura",
+                HeaderText = "Altura",
+                DataPropertyName = "Altura",
                 ReadOnly = true,
                 Width = 110
             });

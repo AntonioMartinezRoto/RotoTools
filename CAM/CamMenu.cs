@@ -179,6 +179,14 @@ namespace RotoTools
 
             Cam3D cam3DForm = new Cam3D(operacionesSeleccionadas);
             cam3DForm.ShowDialog();
+
+            // Instalar operaciones 3D puede instalar automáticamente definiciones 2D que faltaban
+            // (Cam3DHelpers.AsegurarDefinicion2DInstalada), dejando desactualizado el cache de
+            // "existe en BD". Se refresca aquí para que el usuario vea en tiempo real el estado
+            // de las operaciones (conteos "todas" / "no existen") al cerrar el formulario Cam3D.
+            _cacheExisteBD = new();
+            chk_AllOperations.Checked = false;
+            LoadOperations();
         }
         private void txt_filter_TextChanged(object sender, EventArgs e)
         {
@@ -339,6 +347,8 @@ namespace RotoTools
         private void dataGridView2_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0) return;
+
+            if (e.RowIndex < 0 ) return;
 
             if (dataGridView2.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
             {

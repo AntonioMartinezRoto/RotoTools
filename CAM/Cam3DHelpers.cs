@@ -64,7 +64,15 @@ namespace RotoTools
         public int PerfilesProcesados { get; set; }
         public int OperacionesInstaladas { get; set; }
         public int OperacionesOmitidasPorExistente { get; set; }
+
+        // Perfiles para los que no se han encontrado datos constructivos (Perfiles/MaterialesBase),
+        // es decir, un problema de datos del perfil, no del catálogo de operaciones 3D.
         public List<string> CombinacionesSinDefinicion { get; } = new List<string>();
+
+        // Operaciones seleccionadas por el usuario que no han encontrado ninguna plantilla en el
+        // catálogo para NINGÚN rol de los perfiles de la lista (si solo falta para algún rol
+        // concreto, no se informa: puede que esa operación no la necesite).
+        public List<string> OperacionesSinDefinicionEnCatalogo { get; } = new List<string>();
     }
 
     /// <summary>
@@ -163,6 +171,18 @@ namespace RotoTools
 
             _catalogoCache = porRole.SelectMany(kvp => kvp.Value).ToList();
             return _catalogoCache;
+        }
+
+        /// <summary>
+        /// Reemplaza la caché en memoria del catálogo (usado por la pantalla de administración
+        /// "Catálogo 3D", tras guardar el fichero fuente en disco), para que la sesión en curso
+        /// use inmediatamente las plantillas nuevas/editadas sin reiniciar la aplicación. El
+        /// recurso embebido en el ensamblado en ejecución NO se modifica: solo estará actualizado
+        /// en la próxima compilación, una vez el fichero fuente se suba al repositorio.
+        /// </summary>
+        public static void ActualizarCacheCatalogo(List<Operacion3DTemplate> catalogoActualizado)
+        {
+            _catalogoCache = catalogoActualizado ?? new List<Operacion3DTemplate>();
         }
 
         // ------------------------------------------------------------------

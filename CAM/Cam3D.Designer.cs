@@ -32,6 +32,7 @@ namespace RotoTools
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cam3D));
             btn_InstalarOperaciones = new Button();
             btn_Volver = new Button();
+            btn_CatalogoOperaciones = new Button();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
             treeViewMateriales = new TreeView();
@@ -70,16 +71,34 @@ namespace RotoTools
             // btn_Volver
             // 
             btn_Volver.BackColor = Color.White;
+            btn_Volver.Image = (Image)resources.GetObject("btn_Volver.Image");
             btn_Volver.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Volver.Location = new Point(1521, 884);
             btn_Volver.Margin = new Padding(3, 4, 3, 4);
             btn_Volver.Name = "btn_Volver";
-            btn_Volver.Padding = new Padding(5, 0, 20, 0);
+            btn_Volver.Padding = new Padding(15, 0, 20, 0);
             btn_Volver.Size = new Size(151, 53);
             btn_Volver.TabIndex = 40;
             btn_Volver.Text = "Volver";
+            btn_Volver.TextAlign = ContentAlignment.MiddleRight;
             btn_Volver.UseVisualStyleBackColor = false;
             btn_Volver.Click += btn_Volver_Click;
+            // 
+            // btn_CatalogoOperaciones
+            // 
+            btn_CatalogoOperaciones.BackColor = Color.White;
+            btn_CatalogoOperaciones.Image = (Image)resources.GetObject("btn_CatalogoOperaciones.Image");
+            btn_CatalogoOperaciones.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_CatalogoOperaciones.Location = new Point(1355, 884);
+            btn_CatalogoOperaciones.Margin = new Padding(3, 4, 3, 4);
+            btn_CatalogoOperaciones.Name = "btn_CatalogoOperaciones";
+            btn_CatalogoOperaciones.Padding = new Padding(5, 0, 20, 0);
+            btn_CatalogoOperaciones.Size = new Size(151, 53);
+            btn_CatalogoOperaciones.TabIndex = 41;
+            btn_CatalogoOperaciones.Text = "Catálogo";
+            btn_CatalogoOperaciones.TextAlign = ContentAlignment.MiddleRight;
+            btn_CatalogoOperaciones.UseVisualStyleBackColor = false;
+            btn_CatalogoOperaciones.Click += btn_CatalogoOperaciones_Click;
             // 
             // statusStrip1
             // 
@@ -132,6 +151,7 @@ namespace RotoTools
             dataGridViewMateriales.Size = new Size(1173, 403);
             dataGridViewMateriales.TabIndex = 31;
             dataGridViewMateriales.CellDoubleClick += dataGridViewMateriales_CellDoubleClick;
+            dataGridViewMateriales.SelectionChanged += dataGridViewMateriales_SelectionChanged;
             // 
             // dataGridViewResultado
             // 
@@ -215,7 +235,7 @@ namespace RotoTools
             // 
             progress_Instalar3D.Location = new Point(12, 899);
             progress_Instalar3D.Name = "progress_Instalar3D";
-            progress_Instalar3D.Size = new Size(1478, 27);
+            progress_Instalar3D.Size = new Size(1325, 27);
             progress_Instalar3D.TabIndex = 35;
             progress_Instalar3D.Visible = false;
             // 
@@ -238,6 +258,7 @@ namespace RotoTools
             Controls.Add(statusStrip1);
             Controls.Add(btn_InstalarOperaciones);
             Controls.Add(btn_Volver);
+            Controls.Add(btn_CatalogoOperaciones);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Cam3D";
@@ -257,6 +278,7 @@ namespace RotoTools
 
         private Button btn_InstalarOperaciones;
         private Button btn_Volver;
+        private Button btn_CatalogoOperaciones;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
         private TreeView treeViewMateriales;

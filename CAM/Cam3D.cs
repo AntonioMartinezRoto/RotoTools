@@ -77,6 +77,13 @@ namespace RotoTools
                 AgregarPerfilAResultado(fila.ReferenciaBase);
             }
         }
+        private void dataGridViewMateriales_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewMateriales.CurrentRow?.DataBoundItem is MaterialBaseTreeRow fila)
+            {
+                SeleccionarNodoEnTreeView(fila.ReferenciaBase);
+            }
+        }
         private void dataGridViewResultado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -109,6 +116,15 @@ namespace RotoTools
         private void btn_Volver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_CatalogoOperaciones_Click(object sender, EventArgs e)
+        {
+            // Pantalla exclusiva de administración: permite añadir al catálogo embebido
+            // (CatalogoOperaciones3D.json) las combinaciones Operación/Rol que todavía no
+            // tienen una plantilla definida, para las operaciones seleccionadas actualmente.
+            Cam3DCatalogoAdmin formCatalogo = new Cam3DCatalogoAdmin(_operacionesSeleccionadas);
+            formCatalogo.ShowDialog();
         }
 
         private void btn_InstalarOperaciones_Click(object sender, EventArgs e)
@@ -182,6 +198,20 @@ namespace RotoTools
                 // 1. Catálogo de plantillas de mecanizado 3D (embebido)
                 List<Operacion3DTemplate> catalogo = Cam3DHelpers.CargarCatalogoOperaciones3D();
 
+                // Para cada operación seleccionada, indica si se ha encontrado una plantilla en el
+                // catálogo para AL MENOS uno de los roles de los perfiles de la lista (da igual
+                // cuál). Solo se informará al usuario de una operación como "no instalada" si no ha
+                // encontrado definición para NINGÚN perfil/rol de los seleccionados: que falte la
+                // definición para algún rol concreto no se considera un problema, porque puede que
+                // esa operación sencillamente no la necesite.
+                Dictionary<string, bool> operacionesConDefinicion = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+                foreach (OperationInstalarGridITem opSeleccionada in _operacionesSeleccionadas)
+                {
+                    string nombreOperacion = "RO_" + opSeleccionada.OperationName;
+                    if (!operacionesConDefinicion.ContainsKey(nombreOperacion))
+                        operacionesConDefinicion[nombreOperacion] = false;
+                }
+
                 // 2. Asegurar que la definición 2D de cada operación seleccionada está instalada
                 List<MechanizedOperation> mechanizedOperationsEmbebidos = Helpers.CargarMechanizedOperationsRotoEmbebidos();
                 List<MechanizedOperation> macrosEmbeddedMechanizedOperations = Helpers.CargarMacrosMechanizedOperationsEmbebidos();
@@ -219,6 +249,7 @@ namespace RotoTools
                                     resultado.CombinacionesSinDefinicion.Add($"{perfil.ReferenciaBase}: no se han encontrado datos constructivos.");
                                     progress_Instalar3D.Value++;
                                     progress_Instalar3D.Refresh();
+                                    Application.DoEvents();
                                     continue;
                                 }
 
@@ -250,9 +281,14 @@ namespace RotoTools
 
                                     if (!plantillas.Any())
                                     {
-                                        resultado.CombinacionesSinDefinicion.Add($"{nombreCompleto} / {perfil.RolMecanizado} (perfil {perfil.ReferenciaBase})");
+                                        // No se informa aquí: puede que esta operación, sencillamente,
+                                        // no necesite definición para este rol en concreto. Se avisará
+                                        // al final únicamente si no se ha encontrado definición para
+                                        // NINGÚN perfil/rol de los seleccionados (ver más abajo).
                                         continue;
                                     }
+
+                                    operacionesConDefinicion[nombreCompleto] = true;
 
                                     foreach (Operacion3DTemplate plantilla in plantillas)
                                     {
@@ -269,6 +305,7 @@ namespace RotoTools
 
                                 progress_Instalar3D.Value++;
                                 progress_Instalar3D.Refresh();
+                                Application.DoEvents();
                             }
 
                             tx.Commit();
@@ -279,6 +316,13 @@ namespace RotoTools
                             throw;
                         }
                     }
+                }
+
+                // Una operación seleccionada solo se informa como "no instalada" si no se ha
+                // encontrado definición para ninguno de los perfiles/roles de la lista.
+                foreach (KeyValuePair<string, bool> operacionSinInstalar in operacionesConDefinicion.Where(kvp => !kvp.Value))
+                {
+                    resultado.OperacionesSinDefinicionEnCatalogo.Add(operacionSinInstalar.Key);
                 }
 
                 // Vaciar la lista de perfiles a instalar tras un proceso correcto
@@ -292,15 +336,27 @@ namespace RotoTools
                 if (resultado.CombinacionesSinDefinicion.Any())
                 {
                     resumen += Environment.NewLine + Environment.NewLine +
-                        "No se ha encontrado definición en el catálogo 3D para:" + Environment.NewLine +
+                        "Perfiles sin datos constructivos:" + Environment.NewLine +
                         string.Join(Environment.NewLine, resultado.CombinacionesSinDefinicion.Take(20));
 
                     if (resultado.CombinacionesSinDefinicion.Count > 20)
                         resumen += Environment.NewLine + $"... y {resultado.CombinacionesSinDefinicion.Count - 20} más.";
                 }
 
+                if (resultado.OperacionesSinDefinicionEnCatalogo.Any())
+                {
+                    resumen += Environment.NewLine + Environment.NewLine +
+                        "No se ha encontrado definición en el catálogo 3D (para ningún rol de los perfiles de la lista) para:" + Environment.NewLine +
+                        string.Join(Environment.NewLine, resultado.OperacionesSinDefinicionEnCatalogo.Take(20));
+
+                    if (resultado.OperacionesSinDefinicionEnCatalogo.Count > 20)
+                        resumen += Environment.NewLine + $"... y {resultado.OperacionesSinDefinicionEnCatalogo.Count - 20} más.";
+                }
+
+                bool hayAvisos = resultado.CombinacionesSinDefinicion.Any() || resultado.OperacionesSinDefinicionEnCatalogo.Any();
+
                 MessageBox.Show(resumen, "Instalación de mecanizados 3D", MessageBoxButtons.OK,
-                    resultado.CombinacionesSinDefinicion.Any() ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                    hayAvisos ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -520,6 +576,38 @@ namespace RotoTools
             nodos.Add(nuevoNodo);
 
             return nuevoNodo;
+        }
+        /// <summary>
+        /// Al seleccionar una fila en la grid de todos los perfiles, navega automáticamente en el
+        /// árbol hasta el nodo del perfil correspondiente (expandiendo sus nodos padre si hace
+        /// falta) y lo deja visible y seleccionado, para localizarlo dentro de su jerarquía.
+        /// </summary>
+        private void SeleccionarNodoEnTreeView(string referencia)
+        {
+            if (string.IsNullOrWhiteSpace(referencia))
+                return;
+
+            TreeNode nodo = BuscarNodoPorTag(treeViewMateriales.Nodes, referencia);
+
+            if (nodo == null)
+                return;
+
+            treeViewMateriales.SelectedNode = nodo;
+            nodo.EnsureVisible();
+        }
+        private TreeNode BuscarNodoPorTag(TreeNodeCollection nodos, string referencia)
+        {
+            foreach (TreeNode nodo in nodos)
+            {
+                if (nodo.Tag != null && string.Equals(nodo.Tag.ToString(), referencia, StringComparison.OrdinalIgnoreCase))
+                    return nodo;
+
+                TreeNode encontrado = BuscarNodoPorTag(nodo.Nodes, referencia);
+                if (encontrado != null)
+                    return encontrado;
+            }
+
+            return null;
         }
         private void ConfigurarGridMateriales()
         {

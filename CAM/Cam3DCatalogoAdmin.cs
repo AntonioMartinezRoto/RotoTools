@@ -31,6 +31,10 @@ namespace RotoTools
         private BindingSource _bindingFaltantes;
         private string _rutaArchivoCatalogo;
 
+        // Texto original (sin el contador) de lbl_Faltantes, capturado en el Load antes de
+        // empezar a añadirle " (N)" con la cantidad de operaciones sin definición.
+        private string _tituloFaltantesBase;
+
         // Iconos dibujados por código (sin fichero de recurso) para los botones "Copiar de
         // catálogo", "Agregar al catálogo" y "Copiar todos los roles" de la grid de operaciones
         // sin definición.
@@ -54,6 +58,8 @@ namespace RotoTools
         #region Events
         private void Cam3DCatalogoAdmin_Load(object sender, EventArgs e)
         {
+            _tituloFaltantesBase = lbl_Faltantes.Text;
+
             // La ruta del fichero no se muestra en pantalla; se resuelve igualmente aquí para no
             // tener que pedirla al pulsar 'Guardar' salvo que no se localice automáticamente.
             _rutaArchivoCatalogo = ResolverRutaArchivoCatalogo();
@@ -344,6 +350,12 @@ namespace RotoTools
                     "Recuerde subir este cambio al repositorio (git) para que quede disponible en la próxima compilación." + Environment.NewLine +
                     "Mientras tanto, esta sesión ya utiliza el catálogo actualizado.",
                     "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refrescar ambas grids tras guardar: la del catálogo (por si se han editado datos
+                // directamente en sus celdas) y la de "sin definición" (recalculada desde cero, por
+                // si alguna operación ya tiene ahora definición gracias a esos cambios).
+                RefrescarGridCatalogo();
+                CargarOperacionesFaltantes();
             }
             catch (Exception ex)
             {
@@ -663,9 +675,22 @@ namespace RotoTools
         /// Vuelve a enlazar la grid del catálogo con una copia de _catalogoTrabajo (filtrada por el
         /// texto del buscador y por los combos de Exterior/Rol, si los hay) ordenada por
         /// OperationName, para que se pueda localizar fácilmente una operación concreta.
+        /// Conserva la fila seleccionada (por Operación/Rol/Exterior) si sigue existiendo tras el
+        /// refresco: si no se hiciera, cada vez que se añade algo al catálogo (p.ej. con "Agregar
+        /// al catálogo" o "Copiar todos los roles") se perdería la selección y habría que volver a
+        /// elegir la misma fila de origen a mano antes de poder repetir la acción.
         /// </summary>
         private void RefrescarGridCatalogo()
         {
+            // Cierra cualquier edición pendiente antes de volver a enlazar: si no se hace, tras
+            // añadir filas desde la grid de "sin definición" (p.ej. con "Copiar todos los roles")
+            // la grid del catálogo puede quedar dibujada con datos de una celda que ya no
+            // corresponde a la fila real hasta que se fuerza un refresco completo (como el que hace
+            // 'Guardar').
+            dataGridViewCatalogo.EndEdit();
+
+            Operacion3DTemplate seleccionActual = dataGridViewCatalogo.CurrentRow?.DataBoundItem as Operacion3DTemplate;
+
             string texto = txt_BuscarCatalogo.Text.Trim();
 
             IEnumerable<Operacion3DTemplate> query = _catalogoTrabajo;
@@ -694,11 +719,30 @@ namespace RotoTools
                 query = query.Where(p => string.Equals(p.Role, filtroRol, StringComparison.OrdinalIgnoreCase));
             }
 
-            _bindingCatalogo.DataSource = query
+            List<Operacion3DTemplate> lista = query
                 .OrderBy(p => p.OperationName, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(p => p.Role, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(p => p.Outer)
                 .ToList();
+
+            _bindingCatalogo.DataSource = lista;
+
+            if (seleccionActual != null)
+            {
+                int indice = lista.FindIndex(p =>
+                    string.Equals(p.OperationName, seleccionActual.OperationName, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(p.Role, seleccionActual.Role, StringComparison.OrdinalIgnoreCase) &&
+                    p.Outer == seleccionActual.Outer);
+
+                if (indice >= 0)
+                    _bindingCatalogo.Position = indice;
+            }
+
+            // Fuerza un repintado completo: al añadir filas desde otra grid (botones de la grid de
+            // "sin definición"), el cambio de tamaño/orden de la lista enlazada puede dejar alguna
+            // celda con el contenido dibujado de la fila anterior hasta que algo repinta la grid
+            // entera (como ya ocurría al pulsar 'Guardar').
+            dataGridViewCatalogo.Refresh();
         }
 
         private void ConfigurarGridFaltantes()
@@ -870,7 +914,9 @@ namespace RotoTools
         /// Vuelve a enlazar la grid de "operaciones sin definición" con _operacionesFaltantes (o con
         /// una vista filtrada por el texto del buscador). Mientras haya un filtro activo se
         /// deshabilita "añadir fila nueva" en la grid, para no añadir filas nuevas a una vista
-        /// parcial y perderlas al limpiar el filtro.
+        /// parcial y perderlas al limpiar el filtro. También actualiza, junto al título de la
+        /// sección, el número de operaciones (no de filas: una operación exterior puede tener dos
+        /// filas, una por Outer) que siguen sin definición en el catálogo.
         /// </summary>
         private void AplicarFiltroFaltantes()
         {
@@ -889,6 +935,13 @@ namespace RotoTools
                         f.OperationName.Contains(texto, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
+
+            int cantidadOperaciones = _operacionesFaltantes
+                .Select(f => f.OperationName)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Count();
+
+            lbl_Faltantes.Text = $"{_tituloFaltantesBase} ({cantidadOperaciones})";
         }
 
         /// <summary>

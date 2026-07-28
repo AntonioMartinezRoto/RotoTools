@@ -43,6 +43,7 @@ namespace RotoTools
             lbl_Buscar = new Label();
             lbl_TodosPerfiles = new Label();
             lbl_Resultado = new Label();
+            btn_LimpiarResultado = new Button();
             grp_OperacionesInfo = new GroupBox();
             lst_OperacionesInfo = new ListBox();
             progress_Instalar3D = new ProgressBar();
@@ -206,7 +207,18 @@ namespace RotoTools
             lbl_Resultado.Size = new Size(146, 23);
             lbl_Resultado.TabIndex = 38;
             lbl_Resultado.Text = "Perfiles a instalar";
-            // 
+            //
+            // btn_LimpiarResultado
+            //
+            btn_LimpiarResultado.BackColor = Color.White;
+            btn_LimpiarResultado.Location = new Point(175, 587);
+            btn_LimpiarResultado.Name = "btn_LimpiarResultado";
+            btn_LimpiarResultado.Size = new Size(110, 30);
+            btn_LimpiarResultado.TabIndex = 42;
+            btn_LimpiarResultado.Text = "Limpiar";
+            btn_LimpiarResultado.UseVisualStyleBackColor = false;
+            btn_LimpiarResultado.Click += btn_LimpiarResultado_Click;
+            //
             // grp_OperacionesInfo
             // 
             grp_OperacionesInfo.BackColor = Color.Gainsboro;
@@ -250,6 +262,7 @@ namespace RotoTools
             Controls.Add(lbl_Buscar);
             Controls.Add(lbl_TodosPerfiles);
             Controls.Add(lbl_Resultado);
+            Controls.Add(btn_LimpiarResultado);
             Controls.Add(grp_OperacionesInfo);
             Controls.Add(progress_Instalar3D);
             Controls.Add(dataGridViewMateriales);
@@ -289,6 +302,7 @@ namespace RotoTools
         private Label lbl_Buscar;
         private Label lbl_TodosPerfiles;
         private Label lbl_Resultado;
+        private Button btn_LimpiarResultado;
         private GroupBox grp_OperacionesInfo;
         private ListBox lst_OperacionesInfo;
         private ProgressBar progress_Instalar3D;

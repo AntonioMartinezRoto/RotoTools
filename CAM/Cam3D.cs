@@ -54,18 +54,34 @@ namespace RotoTools
         }
         private void treeViewMateriales_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node?.Tag == null)
+            if (e.Node == null)
                 return;
 
-            AgregarPerfilAResultado(e.Node.Tag.ToString());
+            if (e.Node.Tag != null)
+            {
+                AgregarPerfilAResultado(e.Node.Tag.ToString());
+            }
+            else
+            {
+                // Doble clic sobre una carpeta (nivel del árbol, sin Tag propio): añadir de golpe
+                // todos los perfiles que cuelguen de ella, en vez de tener que ir uno a uno.
+                AgregarPerfilesDeNodoAResultado(e.Node);
+            }
         }
         private void treeViewMateriales_DoubleClick(object sender, EventArgs e)
         {
             var nodo = treeViewMateriales.SelectedNode;
-            if (nodo?.Tag == null)
+            if (nodo == null)
                 return;
 
-            AgregarPerfilAResultado(nodo.Tag.ToString());
+            if (nodo.Tag != null)
+            {
+                AgregarPerfilAResultado(nodo.Tag.ToString());
+            }
+            else
+            {
+                AgregarPerfilesDeNodoAResultado(nodo);
+            }
         }
         private void dataGridViewMateriales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -883,12 +899,62 @@ namespace RotoTools
 
             _bindingResultado.ResetBindings(false);
         }
+        /// <summary>
+        /// Doble clic sobre una carpeta del árbol (un nivel, sin Tag propio): añade a la grid de
+        /// "Perfiles a instalar" todos los perfiles (nodos hoja, con Tag) que cuelguen de ella, en
+        /// cualquier subnivel, para no tener que ir añadiéndolos uno a uno.
+        /// </summary>
+        private void AgregarPerfilesDeNodoAResultado(TreeNode nodoCarpeta)
+        {
+            if (nodoCarpeta == null)
+                return;
+
+            List<string> referencias = new List<string>();
+            RecolectarReferenciasHoja(nodoCarpeta, referencias);
+
+            foreach (string referencia in referencias)
+            {
+                AgregarPerfilAResultado(referencia);
+            }
+        }
+        private void RecolectarReferenciasHoja(TreeNode nodo, List<string> referencias)
+        {
+            if (nodo.Tag != null)
+            {
+                referencias.Add(nodo.Tag.ToString());
+                return;
+            }
+
+            foreach (TreeNode hijo in nodo.Nodes)
+            {
+                RecolectarReferenciasHoja(hijo, referencias);
+            }
+        }
         private void QuitarPerfilDeResultado(int indiceFila)
         {
             if (indiceFila < 0 || indiceFila >= _perfilesAInstalar.Count)
                 return;
 
             _perfilesAInstalar.RemoveAt(indiceFila);
+            _bindingResultado.ResetBindings(false);
+        }
+        /// <summary>
+        /// Botón "Limpiar": vacía de golpe toda la grid de "Perfiles a instalar", para no tener que
+        /// pulsar "Quitar" fila a fila.
+        /// </summary>
+        private void btn_LimpiarResultado_Click(object sender, EventArgs e)
+        {
+            if (_perfilesAInstalar.Count == 0)
+                return;
+
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Quitar los {_perfilesAInstalar.Count} perfil(es) de la lista de perfiles a instalar?",
+                "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta != DialogResult.Yes)
+                return;
+
+            _perfilesAInstalar.Clear();
             _bindingResultado.ResetBindings(false);
         }
         private void EnableControls(bool enabled)

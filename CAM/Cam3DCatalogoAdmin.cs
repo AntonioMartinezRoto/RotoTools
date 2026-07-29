@@ -35,12 +35,20 @@ namespace RotoTools
         // empezar a añadirle " (N)" con la cantidad de operaciones sin definición.
         private string _tituloFaltantesBase;
 
+        // Filas de _catalogoTrabajo añadidas en esta sesión que todavía no se han guardado en el
+        // fichero: bien porque vienen de la grid de "sin definición" ("Agregar al catálogo" /
+        // "Copiar todos los roles"), bien porque se han creado con el botón "Duplicar" de esta
+        // misma grid. Se usa comparación por referencia (son las mismas instancias que las de
+        // _catalogoTrabajo), no por valor. Se vacía al guardar correctamente.
+        private readonly HashSet<Operacion3DTemplate> _filasNuevasSinGuardar = new HashSet<Operacion3DTemplate>();
+
         // Iconos dibujados por código (sin fichero de recurso) para los botones "Copiar de
         // catálogo", "Agregar al catálogo" y "Copiar todos los roles" de la grid de operaciones
-        // sin definición.
+        // sin definición, y "Duplicar" de la grid del catálogo.
         private readonly Bitmap _iconoCopiar = CrearIconoCopiar();
         private readonly Bitmap _iconoAgregarAlCatalogo = CrearIconoAgregarAlCatalogo();
         private readonly Bitmap _iconoCopiarTodosRoles = CrearIconoCopiarTodosRoles();
+        private readonly Bitmap _iconoDuplicar = CrearIconoDuplicar();
         #endregion
 
         #region Constructors
@@ -166,7 +174,7 @@ namespace RotoTools
             // usa prácticamente la totalidad del catálogo actual (XFormula = "0", Master = 0,
             // sin XmlParameters/Layers, sin espejados/rotación, Face = 0, Disabled = 0,
             // IsBidirectional = 0).
-            _catalogoTrabajo.Add(new Operacion3DTemplate
+            Operacion3DTemplate nueva = new Operacion3DTemplate
             {
                 OperationName = fila.OperationName.Trim(),
                 Role = fila.Role.Trim(),
@@ -185,7 +193,10 @@ namespace RotoTools
                 Face = 0,
                 Disabled = 0,
                 IsBidirectional = 0
-            });
+            };
+
+            _catalogoTrabajo.Add(nueva);
+            _filasNuevasSinGuardar.Add(nueva);
 
             _operacionesFaltantes.Remove(fila);
 
@@ -257,7 +268,7 @@ namespace RotoTools
                     continue;
                 }
 
-                _catalogoTrabajo.Add(new Operacion3DTemplate
+                Operacion3DTemplate nueva = new Operacion3DTemplate
                 {
                     OperationName = fila.OperationName.Trim(),
                     Role = variante.Role,
@@ -276,7 +287,10 @@ namespace RotoTools
                     Face = variante.Face,
                     Disabled = variante.Disabled,
                     IsBidirectional = variante.IsBidirectional
-                });
+                };
+
+                _catalogoTrabajo.Add(nueva);
+                _filasNuevasSinGuardar.Add(nueva);
 
                 anadidas++;
             }
@@ -315,6 +329,30 @@ namespace RotoTools
             dataGridViewCatalogo.EndEdit();
             _bindingCatalogo.EndEdit();
 
+            // Las filas duplicadas con el botón "Duplicar" se dejan a propósito con el Rol vacío
+            // (para no guardar sin querer una fila idéntica a la original); si se guarda sin
+            // rellenarlo, SerializarCatalogoPorRole las descarta en silencio, así que se avisa aquí
+            // antes de continuar.
+            List<Operacion3DTemplate> filasSinRol = _catalogoTrabajo
+                .Where(p => string.IsNullOrWhiteSpace(p.Role))
+                .ToList();
+
+            if (filasSinRol.Count > 0)
+            {
+                string nombres = string.Join(", ", filasSinRol
+                    .Select(p => p.OperationName)
+                    .Distinct(StringComparer.OrdinalIgnoreCase));
+
+                DialogResult respuestaRolVacio = MessageBox.Show(
+                    $"Hay {filasSinRol.Count} fila(s) en el catálogo sin Rol asignado ({nombres})." + Environment.NewLine +
+                    "Esas filas NO se guardarán en el fichero hasta que se les asigne un Rol." + Environment.NewLine + Environment.NewLine +
+                    "¿Continuar guardando el resto igualmente?",
+                    "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuestaRolVacio != DialogResult.Yes)
+                    return;
+            }
+
             string ruta = _rutaArchivoCatalogo;
 
             if (string.IsNullOrEmpty(ruta))
@@ -350,6 +388,10 @@ namespace RotoTools
                     "Recuerde subir este cambio al repositorio (git) para que quede disponible en la próxima compilación." + Environment.NewLine +
                     "Mientras tanto, esta sesión ya utiliza el catálogo actualizado.",
                     "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Ya está guardado: ninguna fila del catálogo sigue "sin guardar", así que se
+                // quita el resaltado de todas.
+                _filasNuevasSinGuardar.Clear();
 
                 // Refrescar ambas grids tras guardar: la del catálogo (por si se han editado datos
                 // directamente en sus celdas) y la de "sin definición" (recalculada desde cero, por
@@ -440,6 +482,123 @@ namespace RotoTools
                 "CopiarTodosLosRoles" => "Copiar todos los roles: si la operación seleccionada en la grid del catálogo tiene varios roles, añade una fila al catálogo por cada uno de ellos, con este nombre de operación.",
                 _ => e.ToolTipText
             };
+        }
+
+        /// <summary>
+        /// Dibuja, encima del botón normal de la celda, el icono de "Duplicar" (en vez del texto)
+        /// en su columna de la grid del catálogo.
+        /// </summary>
+        private void dataGridViewCatalogo_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name != "Duplicar")
+                return;
+
+            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+            int x = e.CellBounds.X + (e.CellBounds.Width - _iconoDuplicar.Width) / 2;
+            int y = e.CellBounds.Y + (e.CellBounds.Height - _iconoDuplicar.Height) / 2;
+
+            e.Graphics.DrawImage(_iconoDuplicar, x, y, _iconoDuplicar.Width, _iconoDuplicar.Height);
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Texto emergente (tooltip) para el botón de icono "Duplicar" de la grid del catálogo.
+        /// </summary>
+        private void dataGridViewCatalogo_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name == "Duplicar")
+            {
+                e.ToolTipText = "Duplicar: añade una copia de esta fila al catálogo con el Rol vacío, para asignarle uno distinto sin sobrescribir esta operación.";
+            }
+        }
+
+        /// <summary>
+        /// Resalta con un fondo distinto las filas del catálogo añadidas en esta sesión que
+        /// todavía no se han guardado en el fichero (ver _filasNuevasSinGuardar), para
+        /// distinguirlas claramente de las que ya estaban en el catálogo.
+        /// </summary>
+        private void dataGridViewCatalogo_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dataGridViewCatalogo.Rows[e.RowIndex].DataBoundItem is not Operacion3DTemplate plantilla)
+                return;
+
+            if (!_filasNuevasSinGuardar.Contains(plantilla))
+                return;
+
+            e.CellStyle.BackColor = Color.FromArgb(255, 244, 204);
+            e.CellStyle.SelectionBackColor = Color.FromArgb(255, 224, 130);
+        }
+
+        private void dataGridViewCatalogo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name == "Duplicar")
+            {
+                DuplicarFilaCatalogo(e.RowIndex);
+            }
+        }
+
+        /// <summary>
+        /// Botón por fila "Duplicar": añade una copia de esta fila al catálogo (copia de trabajo
+        /// en memoria) con el Rol vacío, para poder definir la misma operación para un rol
+        /// distinto sin rellenar de cero fórmulas/plano/profundidad. Se deja el Rol vacío a
+        /// propósito, para no guardar sin querer dos filas idénticas (Operación + Rol + Exterior)
+        /// antes de que el administrador elija el nuevo rol.
+        /// </summary>
+        private void DuplicarFilaCatalogo(int indiceFila)
+        {
+            dataGridViewCatalogo.EndEdit();
+            _bindingCatalogo.EndEdit();
+
+            if (dataGridViewCatalogo.Rows[indiceFila].DataBoundItem is not Operacion3DTemplate origen)
+                return;
+
+            Operacion3DTemplate duplicado = ClonarPlantilla(origen);
+            duplicado.Role = "";
+
+            _catalogoTrabajo.Add(duplicado);
+            _filasNuevasSinGuardar.Add(duplicado);
+
+            RefrescarGridCatalogo();
+            SeleccionarOperacionEnGridCatalogo(duplicado);
+        }
+
+        /// <summary>
+        /// Selecciona, en la grid del catálogo, la fila que corresponde exactamente a esa
+        /// instancia de Operacion3DTemplate (comparando por referencia, no por valor), si sigue
+        /// visible con los filtros/búsqueda actuales.
+        /// </summary>
+        private void SeleccionarOperacionEnGridCatalogo(Operacion3DTemplate plantilla)
+        {
+            if (_bindingCatalogo.DataSource is not List<Operacion3DTemplate> lista)
+                return;
+
+            int indice = -1;
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (ReferenceEquals(lista[i], plantilla))
+                {
+                    indice = i;
+                    break;
+                }
+            }
+
+            if (indice >= 0)
+                _bindingCatalogo.Position = indice;
         }
 
         /// <summary>
@@ -563,6 +722,42 @@ namespace RotoTools
 
             return bmp;
         }
+
+        /// <summary>
+        /// Icono para "Duplicar" (grid del catálogo): el mismo motivo de dos rectángulos
+        /// superpuestos que "Copiar de catálogo", con una insignia "+" para indicar que crea una
+        /// fila NUEVA (duplicado), en vez de solo rellenar los campos de una fila existente.
+        /// </summary>
+        private static Bitmap CrearIconoDuplicar()
+        {
+            var bmp = new Bitmap(18, 18, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(Color.Transparent);
+
+                using Pen pen = new Pen(Color.FromArgb(90, 90, 90), 1.3f);
+                using SolidBrush fondo = new SolidBrush(Color.White);
+
+                g.DrawRectangle(pen, 1, 4, 9, 10);
+                g.FillRectangle(fondo, 5, 1, 9, 10);
+                g.DrawRectangle(pen, 5, 1, 9, 10);
+
+                using SolidBrush fondoInsignia = new SolidBrush(Color.FromArgb(46, 125, 50));
+                g.FillEllipse(fondoInsignia, 8, 8, 9, 9);
+
+                using Pen penInsignia = new Pen(Color.White, 1.4f)
+                {
+                    StartCap = LineCap.Round,
+                    EndCap = LineCap.Round
+                };
+                g.DrawLine(penInsignia, 12.5f, 10.5f, 12.5f, 13.5f);
+                g.DrawLine(penInsignia, 11f, 12f, 14f, 12f);
+            }
+
+            return bmp;
+        }
         #endregion
 
         #region Private methods
@@ -661,9 +856,22 @@ namespace RotoTools
                 Width = 100
             });
 
+            dataGridViewCatalogo.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "Duplicar",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = true,
+                Width = 50
+            });
+
             _bindingCatalogo = new BindingSource();
             dataGridViewCatalogo.DataSource = _bindingCatalogo;
             dataGridViewCatalogo.CellPainting += DataGridViewPlano_CellPainting;
+            dataGridViewCatalogo.CellPainting += dataGridViewCatalogo_CellPainting;
+            dataGridViewCatalogo.CellFormatting += dataGridViewCatalogo_CellFormatting;
+            dataGridViewCatalogo.CellContentClick += dataGridViewCatalogo_CellContentClick;
+            dataGridViewCatalogo.CellToolTipTextNeeded += dataGridViewCatalogo_CellToolTipTextNeeded;
         }
 
         private void CargarGridCatalogo()

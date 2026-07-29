@@ -190,6 +190,35 @@ namespace RotoTools
         // ------------------------------------------------------------------
 
         private static Dictionary<string, PerfilLibreriaEntry> _bibliotecaPerfilesCache;
+        private static List<PerfilLibreriaEntry> _bibliotecaPerfilesListaCache;
+
+        /// <summary>
+        /// Lista plana (mismo formato que el fichero fuente) con todas las entradas de la
+        /// biblioteca de perfiles, usada por la pantalla de administración "Biblioteca de perfiles"
+        /// (Cam3DPerfilesCatalogoAdmin) para poder editarla, añadir perfiles nuevos, eliminarlos o
+        /// duplicarlos. El resto del código sigue usando CargarBibliotecaPerfiles3D() (diccionario
+        /// por ReferenciaBase), que se construye a partir de esta misma lista.
+        /// </summary>
+        public static List<PerfilLibreriaEntry> CargarListaBibliotecaPerfiles3D()
+        {
+            if (_bibliotecaPerfilesListaCache != null) return _bibliotecaPerfilesListaCache;
+
+            var assembly = Assembly.GetExecutingAssembly();
+            const string resourceName = "RotoTools.Resources.Mecanizados3D.BibliotecaPerfiles3D.json";
+
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+            {
+                _bibliotecaPerfilesListaCache = new List<PerfilLibreriaEntry>();
+                return _bibliotecaPerfilesListaCache;
+            }
+
+            using var reader = new StreamReader(stream);
+            string json = reader.ReadToEnd();
+
+            _bibliotecaPerfilesListaCache = JsonSerializer.Deserialize<List<PerfilLibreriaEntry>>(json) ?? new List<PerfilLibreriaEntry>();
+            return _bibliotecaPerfilesListaCache;
+        }
 
         /// <summary>
         /// Diccionario (clave = ReferenciaBase recortada, sin distinguir mayúsculas) con los datos ya
@@ -200,30 +229,37 @@ namespace RotoTools
         {
             if (_bibliotecaPerfilesCache != null) return _bibliotecaPerfilesCache;
 
+            _bibliotecaPerfilesCache = ConstruirDiccionarioBiblioteca(CargarListaBibliotecaPerfiles3D());
+            return _bibliotecaPerfilesCache;
+        }
+
+        private static Dictionary<string, PerfilLibreriaEntry> ConstruirDiccionarioBiblioteca(List<PerfilLibreriaEntry> lista)
+        {
             var resultado = new Dictionary<string, PerfilLibreriaEntry>(StringComparer.OrdinalIgnoreCase);
 
-            var assembly = Assembly.GetExecutingAssembly();
-            const string resourceName = "RotoTools.Resources.Mecanizados3D.BibliotecaPerfiles3D.json";
-
-            using var stream = assembly.GetManifestResourceStream(resourceName);
-            if (stream != null)
+            foreach (PerfilLibreriaEntry entrada in lista)
             {
-                using var reader = new StreamReader(stream);
-                string json = reader.ReadToEnd();
+                string clave = entrada.ReferenciaBase?.Trim();
+                if (string.IsNullOrEmpty(clave)) continue;
 
-                List<PerfilLibreriaEntry> lista = JsonSerializer.Deserialize<List<PerfilLibreriaEntry>>(json) ?? new List<PerfilLibreriaEntry>();
-
-                foreach (PerfilLibreriaEntry entrada in lista)
-                {
-                    string clave = entrada.ReferenciaBase?.Trim();
-                    if (string.IsNullOrEmpty(clave)) continue;
-
-                    resultado[clave] = entrada;
-                }
+                resultado[clave] = entrada;
             }
 
-            _bibliotecaPerfilesCache = resultado;
-            return _bibliotecaPerfilesCache;
+            return resultado;
+        }
+
+        /// <summary>
+        /// Reemplaza la caché en memoria (lista y diccionario) de la biblioteca de perfiles (usado
+        /// por Cam3DPerfilesCatalogoAdmin tras guardar el fichero fuente en disco), para que la
+        /// sesión en curso use inmediatamente los perfiles nuevos/editados sin reiniciar la
+        /// aplicación. El recurso embebido en el ensamblado en ejecución NO se modifica: solo
+        /// estará actualizado en la próxima compilación, una vez el fichero fuente se suba al
+        /// repositorio.
+        /// </summary>
+        public static void ActualizarCacheBibliotecaPerfiles(List<PerfilLibreriaEntry> listaActualizada)
+        {
+            _bibliotecaPerfilesListaCache = listaActualizada ?? new List<PerfilLibreriaEntry>();
+            _bibliotecaPerfilesCache = ConstruirDiccionarioBiblioteca(_bibliotecaPerfilesListaCache);
         }
 
         /// <summary>

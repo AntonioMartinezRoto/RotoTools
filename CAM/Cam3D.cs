@@ -143,6 +143,14 @@ namespace RotoTools
             formCatalogo.ShowDialog();
         }
 
+        private void btn_CatalogoPerfiles_Click(object sender, EventArgs e)
+        {
+            // Pantalla exclusiva de administración: permite añadir, modificar, eliminar o
+            // duplicar perfiles de la biblioteca embebida (BibliotecaPerfiles3D.json).
+            Cam3DPerfilesCatalogoAdmin formPerfiles = new Cam3DPerfilesCatalogoAdmin();
+            formPerfiles.ShowDialog();
+        }
+
         private void btn_InstalarOperaciones_Click(object sender, EventArgs e)
         {
             if (_operacionesSeleccionadas == null || !_operacionesSeleccionadas.Any())

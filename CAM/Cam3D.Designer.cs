@@ -33,6 +33,7 @@ namespace RotoTools
             btn_InstalarOperaciones = new Button();
             btn_Volver = new Button();
             btn_CatalogoOperaciones = new Button();
+            btn_CatalogoPerfiles = new Button();
             statusStrip1 = new StatusStrip();
             lbl_Conexion = new ToolStripStatusLabel();
             treeViewMateriales = new TreeView();
@@ -96,11 +97,27 @@ namespace RotoTools
             btn_CatalogoOperaciones.Padding = new Padding(5, 0, 20, 0);
             btn_CatalogoOperaciones.Size = new Size(151, 53);
             btn_CatalogoOperaciones.TabIndex = 41;
-            btn_CatalogoOperaciones.Text = "Catálogo";
+            btn_CatalogoOperaciones.Text = "Operaciones";
             btn_CatalogoOperaciones.TextAlign = ContentAlignment.MiddleRight;
             btn_CatalogoOperaciones.UseVisualStyleBackColor = false;
             btn_CatalogoOperaciones.Click += btn_CatalogoOperaciones_Click;
-            // 
+            //
+            // btn_CatalogoPerfiles
+            //
+            btn_CatalogoPerfiles.BackColor = Color.White;
+            btn_CatalogoPerfiles.Image = (Image)resources.GetObject("btn_CatalogoPerfiles.Image");
+            btn_CatalogoPerfiles.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_CatalogoPerfiles.Location = new Point(1189, 884);
+            btn_CatalogoPerfiles.Margin = new Padding(3, 4, 3, 4);
+            btn_CatalogoPerfiles.Name = "btn_CatalogoPerfiles";
+            btn_CatalogoPerfiles.Padding = new Padding(5, 0, 20, 0);
+            btn_CatalogoPerfiles.Size = new Size(151, 53);
+            btn_CatalogoPerfiles.TabIndex = 43;
+            btn_CatalogoPerfiles.Text = "Perfiles";
+            btn_CatalogoPerfiles.TextAlign = ContentAlignment.MiddleRight;
+            btn_CatalogoPerfiles.UseVisualStyleBackColor = false;
+            btn_CatalogoPerfiles.Click += btn_CatalogoPerfiles_Click;
+            //
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
@@ -272,6 +289,7 @@ namespace RotoTools
             Controls.Add(btn_InstalarOperaciones);
             Controls.Add(btn_Volver);
             Controls.Add(btn_CatalogoOperaciones);
+            Controls.Add(btn_CatalogoPerfiles);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Cam3D";
@@ -292,6 +310,7 @@ namespace RotoTools
         private Button btn_InstalarOperaciones;
         private Button btn_Volver;
         private Button btn_CatalogoOperaciones;
+        private Button btn_CatalogoPerfiles;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lbl_Conexion;
         private TreeView treeViewMateriales;

@@ -124,7 +124,7 @@ namespace RotoTools
             // 
             treeViewMateriales.Location = new Point(12, 172);
             treeViewMateriales.Name = "treeViewMateriales";
-            treeViewMateriales.Size = new Size(647, 403);
+            treeViewMateriales.Size = new Size(647, 320);
             treeViewMateriales.TabIndex = 13;
             treeViewMateriales.DoubleClick += treeViewMateriales_DoubleClick;
             // 
@@ -149,7 +149,7 @@ namespace RotoTools
             dataGridViewMateriales.ReadOnly = true;
             dataGridViewMateriales.RowHeadersWidth = 51;
             dataGridViewMateriales.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMateriales.Size = new Size(1173, 403);
+            dataGridViewMateriales.Size = new Size(1173, 320);
             dataGridViewMateriales.TabIndex = 31;
             dataGridViewMateriales.CellDoubleClick += dataGridViewMateriales_CellDoubleClick;
             dataGridViewMateriales.SelectionChanged += dataGridViewMateriales_SelectionChanged;
@@ -160,13 +160,13 @@ namespace RotoTools
             dataGridViewResultado.AllowUserToDeleteRows = false;
             dataGridViewResultado.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewResultado.EditMode = DataGridViewEditMode.EditOnEnter;
-            dataGridViewResultado.Location = new Point(12, 619);
+            dataGridViewResultado.Location = new Point(12, 538);
             dataGridViewResultado.Margin = new Padding(3, 4, 3, 4);
             dataGridViewResultado.MultiSelect = false;
             dataGridViewResultado.Name = "dataGridViewResultado";
             dataGridViewResultado.RowHeadersWidth = 51;
             dataGridViewResultado.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewResultado.Size = new Size(1826, 257);
+            dataGridViewResultado.Size = new Size(1826, 338);
             dataGridViewResultado.TabIndex = 36;
             // 
             // txt_Buscar
@@ -202,23 +202,23 @@ namespace RotoTools
             lbl_Resultado.AutoSize = true;
             lbl_Resultado.BackColor = Color.Transparent;
             lbl_Resultado.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            lbl_Resultado.Location = new Point(12, 592);
+            lbl_Resultado.Location = new Point(12, 511);
             lbl_Resultado.Name = "lbl_Resultado";
             lbl_Resultado.Size = new Size(146, 23);
             lbl_Resultado.TabIndex = 38;
             lbl_Resultado.Text = "Perfiles a instalar";
-            //
+            // 
             // btn_LimpiarResultado
-            //
+            // 
             btn_LimpiarResultado.BackColor = Color.White;
-            btn_LimpiarResultado.Location = new Point(175, 587);
+            btn_LimpiarResultado.Location = new Point(175, 506);
             btn_LimpiarResultado.Name = "btn_LimpiarResultado";
             btn_LimpiarResultado.Size = new Size(110, 30);
             btn_LimpiarResultado.TabIndex = 42;
             btn_LimpiarResultado.Text = "Limpiar";
             btn_LimpiarResultado.UseVisualStyleBackColor = false;
             btn_LimpiarResultado.Click += btn_LimpiarResultado_Click;
-            //
+            // 
             // grp_OperacionesInfo
             // 
             grp_OperacionesInfo.BackColor = Color.Gainsboro;

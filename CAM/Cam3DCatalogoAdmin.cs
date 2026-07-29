@@ -44,11 +44,12 @@ namespace RotoTools
 
         // Iconos dibujados por código (sin fichero de recurso) para los botones "Copiar de
         // catálogo", "Agregar al catálogo" y "Copiar todos los roles" de la grid de operaciones
-        // sin definición, y "Duplicar" de la grid del catálogo.
+        // sin definición, y "Duplicar"/"Eliminar" de la grid del catálogo.
         private readonly Bitmap _iconoCopiar = CrearIconoCopiar();
         private readonly Bitmap _iconoAgregarAlCatalogo = CrearIconoAgregarAlCatalogo();
         private readonly Bitmap _iconoCopiarTodosRoles = CrearIconoCopiarTodosRoles();
         private readonly Bitmap _iconoDuplicar = CrearIconoDuplicar();
+        private readonly Bitmap _iconoEliminarDeCatalogo = CrearIconoEliminarDeCatalogo();
         #endregion
 
         #region Constructors
@@ -485,39 +486,53 @@ namespace RotoTools
         }
 
         /// <summary>
-        /// Dibuja, encima del botón normal de la celda, el icono de "Duplicar" (en vez del texto)
-        /// en su columna de la grid del catálogo.
+        /// Dibuja, encima del botón normal de la celda, el icono de "Duplicar" o "Eliminar" (en vez
+        /// del texto) en sus columnas de la grid del catálogo.
         /// </summary>
         private void dataGridViewCatalogo_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
-            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name != "Duplicar")
+            string nombreColumna = dataGridViewCatalogo.Columns[e.ColumnIndex].Name;
+
+            Bitmap icono = nombreColumna switch
+            {
+                "Duplicar" => _iconoDuplicar,
+                "EliminarDeCatalogo" => _iconoEliminarDeCatalogo,
+                _ => null
+            };
+
+            if (icono == null)
                 return;
 
             e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
 
-            int x = e.CellBounds.X + (e.CellBounds.Width - _iconoDuplicar.Width) / 2;
-            int y = e.CellBounds.Y + (e.CellBounds.Height - _iconoDuplicar.Height) / 2;
+            int x = e.CellBounds.X + (e.CellBounds.Width - icono.Width) / 2;
+            int y = e.CellBounds.Y + (e.CellBounds.Height - icono.Height) / 2;
 
-            e.Graphics.DrawImage(_iconoDuplicar, x, y, _iconoDuplicar.Width, _iconoDuplicar.Height);
+            e.Graphics.DrawImage(icono, x, y, icono.Width, icono.Height);
 
             e.Handled = true;
         }
 
         /// <summary>
-        /// Texto emergente (tooltip) para el botón de icono "Duplicar" de la grid del catálogo.
+        /// Texto emergente (tooltip) para los botones de icono "Duplicar" y "Eliminar" de la grid
+        /// del catálogo.
         /// </summary>
         private void dataGridViewCatalogo_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
-            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name == "Duplicar")
+            string nombreColumna = dataGridViewCatalogo.Columns[e.ColumnIndex].Name;
+
+            e.ToolTipText = nombreColumna switch
             {
-                e.ToolTipText = "Duplicar: añade una copia de esta fila al catálogo con el Rol vacío, para asignarle uno distinto sin sobrescribir esta operación.";
-            }
+                "Duplicar" => "Duplicar: añade una copia de esta fila al catálogo con el Rol vacío, para asignarle uno distinto sin sobrescribir esta operación.",
+                "EliminarDeCatalogo" => "Eliminar: quita esta fila del catálogo (de la copia de trabajo en memoria; no se borra del fichero hasta que se pulse 'Guardar').",
+                _ => e.ToolTipText
+            };
         }
 
         /// <summary>
@@ -545,9 +560,15 @@ namespace RotoTools
             if (e.RowIndex < 0)
                 return;
 
-            if (dataGridViewCatalogo.Columns[e.ColumnIndex].Name == "Duplicar")
+            string nombreColumna = dataGridViewCatalogo.Columns[e.ColumnIndex].Name;
+
+            if (nombreColumna == "Duplicar")
             {
                 DuplicarFilaCatalogo(e.RowIndex);
+            }
+            else if (nombreColumna == "EliminarDeCatalogo")
+            {
+                EliminarFilaCatalogo(e.RowIndex);
             }
         }
 
@@ -599,6 +620,31 @@ namespace RotoTools
 
             if (indice >= 0)
                 _bindingCatalogo.Position = indice;
+        }
+
+        /// <summary>
+        /// Botón por fila "Eliminar": quita esta fila del catálogo (copia de trabajo en memoria),
+        /// previa confirmación. El fichero fuente no se toca hasta que se pulsa 'Guardar'.
+        /// </summary>
+        private void EliminarFilaCatalogo(int indiceFila)
+        {
+            dataGridViewCatalogo.EndEdit();
+            _bindingCatalogo.EndEdit();
+
+            if (dataGridViewCatalogo.Rows[indiceFila].DataBoundItem is not Operacion3DTemplate plantilla)
+                return;
+
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Eliminar del catálogo la operación {plantilla.OperationName} / {plantilla.Role} (Exterior={plantilla.Outer})?",
+                "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta != DialogResult.Yes)
+                return;
+
+            _catalogoTrabajo.Remove(plantilla);
+            _filasNuevasSinGuardar.Remove(plantilla);
+
+            RefrescarGridCatalogo();
         }
 
         /// <summary>
@@ -758,6 +804,42 @@ namespace RotoTools
 
             return bmp;
         }
+
+        /// <summary>
+        /// Icono para "Eliminar" (grid del catálogo): una papelera sencilla en rojo, para que se
+        /// distinga a simple vista de los demás botones de icono (acciones no destructivas).
+        /// </summary>
+        private static Bitmap CrearIconoEliminarDeCatalogo()
+        {
+            var bmp = new Bitmap(18, 18, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(Color.Transparent);
+
+                using Pen pen = new Pen(Color.FromArgb(180, 40, 40), 1.4f)
+                {
+                    StartCap = LineCap.Round,
+                    EndCap = LineCap.Round
+                };
+
+                // Tapa y asa
+                g.DrawLine(pen, 3, 5, 15, 5);
+                g.DrawLine(pen, 7, 3, 11, 3);
+
+                // Cuerpo de la papelera
+                g.DrawLine(pen, 4, 5, 5, 16);
+                g.DrawLine(pen, 14, 5, 13, 16);
+                g.DrawLine(pen, 5, 16, 13, 16);
+
+                // Líneas verticales internas
+                g.DrawLine(pen, 7.5f, 7, 8, 14);
+                g.DrawLine(pen, 10.5f, 7, 10, 14);
+            }
+
+            return bmp;
+        }
         #endregion
 
         #region Private methods
@@ -859,6 +941,15 @@ namespace RotoTools
             dataGridViewCatalogo.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "Duplicar",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = true,
+                Width = 50
+            });
+
+            dataGridViewCatalogo.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "EliminarDeCatalogo",
                 HeaderText = "",
                 Text = "",
                 UseColumnTextForButtonValue = true,

@@ -160,7 +160,7 @@
             // 
             lbl_Busqueda.AutoSize = true;
             lbl_Busqueda.BackColor = Color.Transparent;
-            lbl_Busqueda.Location = new Point(232, 27);
+            lbl_Busqueda.Location = new Point(212, 27);
             lbl_Busqueda.Name = "lbl_Busqueda";
             lbl_Busqueda.Size = new Size(52, 20);
             lbl_Busqueda.TabIndex = 19;
@@ -204,7 +204,7 @@
             // 
             lbl_BusquedaOp.AutoSize = true;
             lbl_BusquedaOp.BackColor = Color.Transparent;
-            lbl_BusquedaOp.Location = new Point(445, 27);
+            lbl_BusquedaOp.Location = new Point(431, 27);
             lbl_BusquedaOp.Name = "lbl_BusquedaOp";
             lbl_BusquedaOp.Size = new Size(52, 20);
             lbl_BusquedaOp.TabIndex = 23;

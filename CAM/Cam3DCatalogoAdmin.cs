@@ -67,6 +67,8 @@ namespace RotoTools
         #region Events
         private void Cam3DCatalogoAdmin_Load(object sender, EventArgs e)
         {
+            CargarTextos();
+
             _tituloFaltantesBase = lbl_Faltantes.Text;
 
             // La ruta del fichero no se muestra en pantalla; se resuelve igualmente aquí para no
@@ -478,9 +480,9 @@ namespace RotoTools
 
             e.ToolTipText = nombreColumna switch
             {
-                "CopiarDeCatalogo" => "Copiar de catálogo: rellena esta fila con los datos de la fila seleccionada en la grid del catálogo.",
-                "AgregarAlCatalogo" => "Agregar al catálogo: añade esta fila a la grid del catálogo.",
-                "CopiarTodosLosRoles" => "Copiar todos los roles: si la operación seleccionada en la grid del catálogo tiene varios roles, añade una fila al catálogo por cada uno de ellos, con este nombre de operación.",
+                "CopiarDeCatalogo" => LocalizationManager.GetString("L_TooltipCopiarDeCatalogo"),
+                "AgregarAlCatalogo" => LocalizationManager.GetString("L_TooltipAgregarAlCatalogo"),
+                "CopiarTodosLosRoles" => LocalizationManager.GetString("L_TooltipCopiarTodosLosRoles"),
                 _ => e.ToolTipText
             };
         }
@@ -529,8 +531,8 @@ namespace RotoTools
 
             e.ToolTipText = nombreColumna switch
             {
-                "Duplicar" => "Duplicar: añade una copia de esta fila al catálogo con el Rol vacío, para asignarle uno distinto sin sobrescribir esta operación.",
-                "EliminarDeCatalogo" => "Eliminar: quita esta fila del catálogo (de la copia de trabajo en memoria; no se borra del fichero hasta que se pulse 'Guardar').",
+                "Duplicar" => LocalizationManager.GetString("L_TooltipDuplicarCatalogo"),
+                "EliminarDeCatalogo" => LocalizationManager.GetString("L_TooltipEliminarCatalogo"),
                 _ => e.ToolTipText
             };
         }
@@ -843,22 +845,42 @@ namespace RotoTools
         #endregion
 
         #region Private methods
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_CatalogoOperaciones3D");
+            lbl_TituloCatalogo.Text = LocalizationManager.GetString("L_CatalogoActual");
+            lbl_FiltroExterior.Text = LocalizationManager.GetString("L_Lado") + ":";
+            lbl_FiltroRol.Text = LocalizationManager.GetString("L_Rol") + ":";
+            lbl_BuscarCatalogo.Text = LocalizationManager.GetString("L_Buscar");
+            lbl_Faltantes.Text = LocalizationManager.GetString("L_OperacionesSinDefinicionEnCatalogo");
+            lbl_BuscarFaltantes.Text = LocalizationManager.GetString("L_Buscar");
+            btn_Guardar.Text = LocalizationManager.GetString("L_Guardar");
+            btn_Volver.Text = LocalizationManager.GetString("L_Volver");
+        }
+
         /// <summary>
         /// Rellena los combos de filtro por Exterior (Interior/Exterior/Todas) y por Rol (uno de
         /// los 9 roles de mecanizado 3D, o Todas) que aparecen encima de la grid del catálogo, con
-        /// "Todas" seleccionado por defecto en ambos.
+        /// "Todas" seleccionado por defecto en ambos. Los roles de Cam3DHelpers.RolesMecanizado3D
+        /// no se traducen (son valores técnicos, iguales a los almacenados en el catálogo), solo
+        /// "Todas"/"Interior"/"Exterior".
         /// </summary>
         private void ConfigurarFiltrosCatalogo()
         {
             cmb_FiltroExterior.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_FiltroExterior.Items.Clear();
-            cmb_FiltroExterior.Items.AddRange(new object[] { "Todas", "Interior", "Exterior" });
+            cmb_FiltroExterior.Items.AddRange(new object[]
+            {
+                LocalizationManager.GetString("L_Todas"),
+                LocalizationManager.GetString("L_Interior"),
+                LocalizationManager.GetString("L_Exterior")
+            });
             cmb_FiltroExterior.SelectedIndex = 0;
             cmb_FiltroExterior.SelectedIndexChanged += cmb_FiltroExterior_SelectedIndexChanged;
 
             cmb_FiltroRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_FiltroRol.Items.Clear();
-            cmb_FiltroRol.Items.Add("Todas");
+            cmb_FiltroRol.Items.Add(LocalizationManager.GetString("L_Todas"));
             cmb_FiltroRol.Items.AddRange(Cam3DHelpers.RolesMecanizado3D);
             cmb_FiltroRol.SelectedIndex = 0;
             cmb_FiltroRol.SelectedIndexChanged += cmb_FiltroRol_SelectedIndexChanged;
@@ -877,7 +899,7 @@ namespace RotoTools
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "OperationName",
-                HeaderText = "Operación",
+                HeaderText = LocalizationManager.GetString("L_Operacion"),
                 DataPropertyName = "OperationName",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 //Width = 260
@@ -886,7 +908,7 @@ namespace RotoTools
             var columnaRoleCatalogo = new DataGridViewComboBoxColumn
             {
                 Name = "Role",
-                HeaderText = "Rol",
+                HeaderText = LocalizationManager.GetString("L_Rol"),
                 DataPropertyName = "Role",
                 Width = 150,
                 FlatStyle = FlatStyle.Flat,
@@ -901,7 +923,7 @@ namespace RotoTools
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Outer",
-                HeaderText = "Exterior",
+                HeaderText = LocalizationManager.GetString("L_Exterior"),
                 DataPropertyName = "Outer",
                 Width = 70
             });
@@ -925,7 +947,7 @@ namespace RotoTools
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Plane",
-                HeaderText = "Plano",
+                HeaderText = LocalizationManager.GetString("L_Plano"),
                 DataPropertyName = "Plane",
                 Width = 90
             });
@@ -933,7 +955,7 @@ namespace RotoTools
             dataGridViewCatalogo.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Depth",
-                HeaderText = "Profundidad",
+                HeaderText = LocalizationManager.GetString("L_Profundidad"),
                 DataPropertyName = "Depth",
                 Width = 100
             });
@@ -1000,20 +1022,23 @@ namespace RotoTools
                     p.OperationName.Contains(texto, StringComparison.OrdinalIgnoreCase));
             }
 
-            string filtroExterior = cmb_FiltroExterior.SelectedItem as string;
-
-            if (string.Equals(filtroExterior, "Interior", StringComparison.OrdinalIgnoreCase))
+            // Índices fijos dentro de cmb_FiltroExterior (0 = Todas, 1 = Interior, 2 = Exterior) en
+            // vez de comparar por el texto mostrado, que ahora está traducido según el idioma
+            // (ver ConfigurarFiltrosCatalogo) y ya no coincidiría con un literal en español.
+            if (cmb_FiltroExterior.SelectedIndex == 1)
             {
                 query = query.Where(p => p.Outer == 0);
             }
-            else if (string.Equals(filtroExterior, "Exterior", StringComparison.OrdinalIgnoreCase))
+            else if (cmb_FiltroExterior.SelectedIndex == 2)
             {
                 query = query.Where(p => p.Outer == 1);
             }
 
-            string filtroRol = cmb_FiltroRol.SelectedItem as string;
+            // cmb_FiltroRol: el índice 0 es "Todas" (traducido); el resto de elementos son los
+            // roles técnicos de Cam3DHelpers.RolesMecanizado3D, que no se traducen.
+            string filtroRol = cmb_FiltroRol.SelectedIndex > 0 ? cmb_FiltroRol.SelectedItem as string : null;
 
-            if (!string.IsNullOrWhiteSpace(filtroRol) && !string.Equals(filtroRol, "Todas", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrWhiteSpace(filtroRol))
             {
                 query = query.Where(p => string.Equals(p.Role, filtroRol, StringComparison.OrdinalIgnoreCase));
             }
@@ -1052,7 +1077,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "OperationName",
-                HeaderText = "Operación",
+                HeaderText = LocalizationManager.GetString("L_Operacion"),
                 DataPropertyName = "OperationName",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
                 //Width = 260
@@ -1061,7 +1086,7 @@ namespace RotoTools
             var columnaRole = new DataGridViewComboBoxColumn
             {
                 Name = "Role",
-                HeaderText = "Rol",
+                HeaderText = LocalizationManager.GetString("L_Rol"),
                 DataPropertyName = "Role",
                 Width = 150,
                 FlatStyle = FlatStyle.Flat,
@@ -1076,7 +1101,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Outer",
-                HeaderText = "Exterior",
+                HeaderText = LocalizationManager.GetString("L_Exterior"),
                 DataPropertyName = "Outer",
                 Width = 70
             });
@@ -1100,7 +1125,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Plane",
-                HeaderText = "Plano",
+                HeaderText = LocalizationManager.GetString("L_Plano"),
                 DataPropertyName = "Plane",
                 Width = 90
             });
@@ -1108,7 +1133,7 @@ namespace RotoTools
             dataGridViewFaltantes.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Depth",
-                HeaderText = "Profundidad",
+                HeaderText = LocalizationManager.GetString("L_Profundidad"),
                 DataPropertyName = "Depth",
                 Width = 100
             });

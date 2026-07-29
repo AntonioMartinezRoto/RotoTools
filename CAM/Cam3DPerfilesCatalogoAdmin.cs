@@ -50,6 +50,8 @@ namespace RotoTools
         #region Events
         private void Cam3DPerfilesCatalogoAdmin_Load(object sender, EventArgs e)
         {
+            CargarTextos();
+
             // La ruta del fichero no se muestra en pantalla; se resuelve igualmente aquí para no
             // tener que pedirla al pulsar 'Guardar' salvo que no se localice automáticamente.
             _rutaArchivoBiblioteca = ResolverRutaArchivoBiblioteca();
@@ -133,8 +135,8 @@ namespace RotoTools
 
             e.ToolTipText = nombreColumna switch
             {
-                "Duplicar" => "Duplicar: añade una copia de esta fila con la Referencia base vacía, para asignarle una distinta sin sobrescribir esta.",
-                "Eliminar" => "Eliminar: quita este perfil de la biblioteca (de la copia de trabajo en memoria; no se borra del fichero hasta que se pulse 'Guardar').",
+                "Duplicar" => LocalizationManager.GetString("L_TooltipDuplicarPerfil"),
+                "Eliminar" => LocalizationManager.GetString("L_TooltipEliminarPerfil"),
                 _ => e.ToolTipText
             };
         }
@@ -337,6 +339,16 @@ namespace RotoTools
         #endregion
 
         #region Private methods
+        private void CargarTextos()
+        {
+            this.Text = LocalizationManager.GetString("L_BibliotecaPerfiles");
+            lbl_TituloBiblioteca.Text = LocalizationManager.GetString("L_BibliotecaPerfiles");
+            btn_NuevoPerfil.Text = LocalizationManager.GetString("L_NuevoPerfil");
+            lbl_BuscarBiblioteca.Text = LocalizationManager.GetString("L_Buscar");
+            btn_Guardar.Text = LocalizationManager.GetString("L_Guardar");
+            btn_Volver.Text = LocalizationManager.GetString("L_Volver");
+        }
+
         private void ConfigurarGridBiblioteca()
         {
             dataGridViewBiblioteca.AutoGenerateColumns = false;
@@ -345,7 +357,7 @@ namespace RotoTools
             dataGridViewBiblioteca.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "ReferenciaBase",
-                HeaderText = "Referencia base",
+                HeaderText = LocalizationManager.GetString("L_ReferenciaBase"),
                 DataPropertyName = "ReferenciaBase",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
@@ -353,7 +365,7 @@ namespace RotoTools
             var columnaRolBiblioteca = new DataGridViewComboBoxColumn
             {
                 Name = "Role",
-                HeaderText = "Rol",
+                HeaderText = LocalizationManager.GetString("L_Rol"),
                 DataPropertyName = "Role",
                 Width = 220,
                 FlatStyle = FlatStyle.Flat,
@@ -379,7 +391,7 @@ namespace RotoTools
             dataGridViewBiblioteca.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "PosicionCanalHerraje",
-                HeaderText = "Canal herraje (altura)",
+                HeaderText = LocalizationManager.GetString("L_CanalHerrajeAltura"),
                 DataPropertyName = "PosicionCanalHerraje",
                 Width = 180
             });

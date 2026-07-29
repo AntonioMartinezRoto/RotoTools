@@ -1781,7 +1781,7 @@
   <data name="btn_NormalizarOperaciones.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        5QAAAOUBj+WbPAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGxSURBVFhH7ZZN
+        4wAAAOMBD+bfpwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGxSURBVFhH7ZZN
         KwVRGICv71BSfgIba9kJC1tLCxtZ2rgLJRuxEpY2IiUbhWxYEMpCScrCH1D+gwX5fp5bU7fbLObM3O5s
         5qlnMac5M+85877nnVJBQR0Zxl0cqVzlwBP+4SdOO9BoXvEEr/EXF7ChGMA+dqCBuBsbmJomvMKXhH6h
         AUgL7qFBbGMzpmINXU0Sj3AUI1zAOhrEMbZjLszjD95ijwNZGMRVHKhcJWcG/USP2OdAGibwDd3SewcC
@@ -1822,7 +1822,7 @@
   <data name="btn_InstallOperation3D.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6AAAAOgBhtX2rwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJ1SURBVFhHxZfZ
+        5gAAAOYBIly6UQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJ1SURBVFhHxZfZ
         q01RHIA3mZUhQ5mHB8k/YEopylxSkifPXvAkou7LNcQDca/yICkUf4EheRClFK8UGUpmD4aSDN+3zl1a
         59rn7GPYe3/1dfdv3bXP/p119vrt387+ka34AR/gDezFVTgMK2MbfscfiZ/wGE7CSshLQj/jfhyMpZMm
         cQvPJ/FNnIqlsx29+KgQZdkifIQm8QLnYukM6vsbGY3X0CQe42SsnOF4FU3iLlZyT/RnLLpdTWKXA3Ww

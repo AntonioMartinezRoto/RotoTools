@@ -663,4 +663,118 @@
   <data name="L_ImportarConfigCliente" xml:space="preserve">
     <value>Import customer configuration</value>
   </data>
+  <data name="L_Volver" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="L_Perfiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="L_TodosPerfiles" xml:space="preserve">
+    <value>All profiles (double-click to add to the list)</value>
+  </data>
+  <data name="L_PerfilesAInstalar" xml:space="preserve">
+    <value>Profiles to install</value>
+  </data>
+  <data name="L_Limpiar" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="L_OperacionesAInstalarEn3D" xml:space="preserve">
+    <value>Operations to install in 3D</value>
+  </data>
+  <data name="L_Quitar" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="L_Referencia" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="L_Rol" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="L_Lado" xml:space="preserve">
+    <value>Side</value>
+  </data>
+  <data name="L_Interior" xml:space="preserve">
+    <value>Interior</value>
+  </data>
+  <data name="L_Exterior" xml:space="preserve">
+    <value>Exterior</value>
+  </data>
+  <data name="L_Plano" xml:space="preserve">
+    <value>Plane</value>
+  </data>
+  <data name="L_Profundidad" xml:space="preserve">
+    <value>Depth</value>
+  </data>
+  <data name="L_Nivel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="L_CatalogoActual" xml:space="preserve">
+    <value>Current catalog</value>
+  </data>
+  <data name="L_OperacionesSinDefinicionEnCatalogo" xml:space="preserve">
+    <value>Selected operations without a definition in the catalog</value>
+  </data>
+  <data name="L_CatalogoOperaciones3D" xml:space="preserve">
+    <value>3D operations catalog</value>
+  </data>
+  <data name="L_NuevoPerfil" xml:space="preserve">
+    <value>New profile</value>
+  </data>
+  <data name="L_BibliotecaPerfiles" xml:space="preserve">
+    <value>Profile library</value>
+  </data>
+  <data name="L_ReferenciaBase" xml:space="preserve">
+    <value>Base reference</value>
+  </data>
+  <data name="L_CanalHerrajeAltura" xml:space="preserve">
+    <value>Hardware channel (height)</value>
+  </data>
+  <data name="L_AnchoInterior" xml:space="preserve">
+    <value>Inner width</value>
+  </data>
+  <data name="L_AnchoExterior" xml:space="preserve">
+    <value>Outer width</value>
+  </data>
+  <data name="L_CuerpoInterior" xml:space="preserve">
+    <value>Inner body</value>
+  </data>
+  <data name="L_CuerpoExterior" xml:space="preserve">
+    <value>Outer body</value>
+  </data>
+  <data name="L_Altura" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="L_RolMecanizado" xml:space="preserve">
+    <value>Machining role</value>
+  </data>
+  <data name="L_DescuentoCanalHerraje" xml:space="preserve">
+    <value>Hardware channel discount</value>
+  </data>
+  <data name="L_PosicionCanalHerraje" xml:space="preserve">
+    <value>Hardware channel position</value>
+  </data>
+  <data name="L_TooltipCopiarDeCatalogo" xml:space="preserve">
+    <value>Copy from catalog: fills this row with the data of the row currently selected in the catalog grid.</value>
+  </data>
+  <data name="L_TooltipAgregarAlCatalogo" xml:space="preserve">
+    <value>Add to catalog: adds this row to the catalog grid.</value>
+  </data>
+  <data name="L_TooltipCopiarTodosLosRoles" xml:space="preserve">
+    <value>Copy all roles: if the operation selected in the catalog grid has several roles, adds one row to the catalog for each of them, using this operation name.</value>
+  </data>
+  <data name="L_TooltipDuplicarCatalogo" xml:space="preserve">
+    <value>Duplicate: adds a copy of this row to the catalog with the Role left empty, so you can assign a different one without overwriting this operation.</value>
+  </data>
+  <data name="L_TooltipEliminarCatalogo" xml:space="preserve">
+    <value>Delete: removes this row from the catalog (from the in-memory working copy; it is not removed from the file until 'Save' is pressed).</value>
+  </data>
+  <data name="L_TooltipDuplicarPerfil" xml:space="preserve">
+    <value>Duplicate: adds a copy of this row with the Base reference left empty, so you can assign a different one without overwriting this one.</value>
+  </data>
+  <data name="L_TooltipEliminarPerfil" xml:space="preserve">
+    <value>Delete: removes this profile from the library (from the in-memory working copy; it is not removed from the file until 'Save' is pressed).</value>
+  </data>
+  <data name="L_NoHayOperacionesSeleccionadas" xml:space="preserve">
+    <value>No operations selected.</value>
+  </data>
 </root>

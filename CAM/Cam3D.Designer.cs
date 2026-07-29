@@ -94,16 +94,16 @@ namespace RotoTools
             btn_CatalogoOperaciones.Location = new Point(1355, 884);
             btn_CatalogoOperaciones.Margin = new Padding(3, 4, 3, 4);
             btn_CatalogoOperaciones.Name = "btn_CatalogoOperaciones";
-            btn_CatalogoOperaciones.Padding = new Padding(5, 0, 20, 0);
+            btn_CatalogoOperaciones.Padding = new Padding(5, 0, 10, 0);
             btn_CatalogoOperaciones.Size = new Size(151, 53);
             btn_CatalogoOperaciones.TabIndex = 41;
             btn_CatalogoOperaciones.Text = "Operaciones";
             btn_CatalogoOperaciones.TextAlign = ContentAlignment.MiddleRight;
             btn_CatalogoOperaciones.UseVisualStyleBackColor = false;
             btn_CatalogoOperaciones.Click += btn_CatalogoOperaciones_Click;
-            //
+            // 
             // btn_CatalogoPerfiles
-            //
+            // 
             btn_CatalogoPerfiles.BackColor = Color.White;
             btn_CatalogoPerfiles.Image = (Image)resources.GetObject("btn_CatalogoPerfiles.Image");
             btn_CatalogoPerfiles.ImageAlign = ContentAlignment.MiddleLeft;
@@ -117,7 +117,7 @@ namespace RotoTools
             btn_CatalogoPerfiles.TextAlign = ContentAlignment.MiddleRight;
             btn_CatalogoPerfiles.UseVisualStyleBackColor = false;
             btn_CatalogoPerfiles.Click += btn_CatalogoPerfiles_Click;
-            //
+            // 
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.Transparent;
@@ -264,7 +264,7 @@ namespace RotoTools
             // 
             progress_Instalar3D.Location = new Point(12, 899);
             progress_Instalar3D.Name = "progress_Instalar3D";
-            progress_Instalar3D.Size = new Size(1325, 27);
+            progress_Instalar3D.Size = new Size(1156, 27);
             progress_Instalar3D.TabIndex = 35;
             progress_Instalar3D.Visible = false;
             // 

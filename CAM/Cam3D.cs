@@ -37,6 +37,8 @@ namespace RotoTools
         #region Events
         private void Cam3D_Load(object sender, EventArgs e)
         {
+            CargarTextos();
+
             InitializeInfoConnection();
 
             MostrarOperacionesSeleccionadas();
@@ -398,6 +400,18 @@ namespace RotoTools
         #endregion
 
         #region Private methods
+        private void CargarTextos()
+        {
+            btn_Volver.Text = LocalizationManager.GetString("L_Volver");
+            btn_CatalogoOperaciones.Text = LocalizationManager.GetString("L_Operaciones");
+            btn_CatalogoPerfiles.Text = LocalizationManager.GetString("L_Perfiles");
+            btn_InstalarOperaciones.Text = LocalizationManager.GetString("L_Instalar");
+            btn_LimpiarResultado.Text = LocalizationManager.GetString("L_Limpiar");
+            lbl_Buscar.Text = LocalizationManager.GetString("L_Buscar");
+            lbl_TodosPerfiles.Text = LocalizationManager.GetString("L_TodosPerfiles");
+            lbl_Resultado.Text = LocalizationManager.GetString("L_PerfilesAInstalar");
+            grp_OperacionesInfo.Text = LocalizationManager.GetString("L_OperacionesAInstalarEn3D");
+        }
         private void InitializeInfoConnection()
         {
             lbl_Conexion.Text = Helpers.GetServer() + @"\" + Helpers.GetDataBase();
@@ -411,7 +425,7 @@ namespace RotoTools
 
             if (_operacionesSeleccionadas == null || !_operacionesSeleccionadas.Any())
             {
-                lst_OperacionesInfo.Items.Add("No hay operaciones seleccionadas.");
+                lst_OperacionesInfo.Items.Add(LocalizationManager.GetString("L_NoHayOperacionesSeleccionadas"));
                 return;
             }
 
@@ -422,7 +436,10 @@ namespace RotoTools
 
             if (grp_OperacionesInfo != null)
             {
-                grp_OperacionesInfo.Text = $"Operaciones a instalar en 3D ({_operacionesSeleccionadas.Count})";
+                // Se reconstruye a partir del texto ya traducido (puesto por CargarTextos en el
+                // Load), no de un literal en español, para no perder la traducción al añadir el
+                // contador de operaciones seleccionadas.
+                grp_OperacionesInfo.Text = $"{LocalizationManager.GetString("L_OperacionesAInstalarEn3D")} ({_operacionesSeleccionadas.Count})";
             }
         }
         private void CargarMaterialesBase()
@@ -648,7 +665,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "ReferenciaBase",
-                HeaderText = "Referencia",
+                HeaderText = LocalizationManager.GetString("L_Referencia"),
                 DataPropertyName = "ReferenciaBase",
                 Width = 130
             });
@@ -656,7 +673,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Descripcion",
-                HeaderText = "Descripción",
+                HeaderText = LocalizationManager.GetString("L_Descripcion"),
                 DataPropertyName = "Descripcion",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
@@ -664,15 +681,17 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Rol",
-                HeaderText = "Rol",
+                HeaderText = LocalizationManager.GetString("L_Rol"),
                 DataPropertyName = "Role",
                 Width = 90
             });
 
+            string tituloNivel = LocalizationManager.GetString("L_Nivel");
+
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nivel1",
-                HeaderText = "Nivel 1",
+                HeaderText = $"{tituloNivel} 1",
                 DataPropertyName = "Nivel1",
                 Width = 120
             });
@@ -680,7 +699,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nivel2",
-                HeaderText = "Nivel 2",
+                HeaderText = $"{tituloNivel} 2",
                 DataPropertyName = "Nivel2",
                 Width = 120
             });
@@ -688,7 +707,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nivel3",
-                HeaderText = "Nivel 3",
+                HeaderText = $"{tituloNivel} 3",
                 DataPropertyName = "Nivel3",
                 Width = 120
             });
@@ -696,7 +715,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nivel4",
-                HeaderText = "Nivel 4",
+                HeaderText = $"{tituloNivel} 4",
                 DataPropertyName = "Nivel4",
                 Width = 120
             });
@@ -704,7 +723,7 @@ namespace RotoTools
             dataGridViewMateriales.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nivel5",
-                HeaderText = "Nivel 5",
+                HeaderText = $"{tituloNivel} 5",
                 DataPropertyName = "Nivel5",
                 Width = 120
             });
@@ -732,7 +751,7 @@ namespace RotoTools
             {
                 Name = "Quitar",
                 HeaderText = "",
-                Text = "Quitar",
+                Text = LocalizationManager.GetString("L_Quitar"),
                 UseColumnTextForButtonValue = true,
                 Width = 80
             });
@@ -740,7 +759,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "ReferenciaBase",
-                HeaderText = "Referencia",
+                HeaderText = LocalizationManager.GetString("L_Referencia"),
                 DataPropertyName = "ReferenciaBase",
                 ReadOnly = true,
                 Width = 130
@@ -749,7 +768,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Descripcion",
-                HeaderText = "Descripción",
+                HeaderText = LocalizationManager.GetString("L_Descripcion"),
                 DataPropertyName = "Descripcion",
                 ReadOnly = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
@@ -758,7 +777,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Rol",
-                HeaderText = "Rol",
+                HeaderText = LocalizationManager.GetString("L_Rol"),
                 DataPropertyName = "Role",
                 ReadOnly = true,
                 Width = 100
@@ -767,7 +786,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "AnchoInterior",
-                HeaderText = "Ancho interior",
+                HeaderText = LocalizationManager.GetString("L_AnchoInterior"),
                 DataPropertyName = "AnchoInterior",
                 ReadOnly = true,
                 Width = 110
@@ -776,7 +795,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "AnchoExterior",
-                HeaderText = "Ancho exterior",
+                HeaderText = LocalizationManager.GetString("L_AnchoExterior"),
                 DataPropertyName = "AnchoExterior",
                 ReadOnly = true,
                 Width = 110
@@ -785,7 +804,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "CuerpoInterior",
-                HeaderText = "Cuerpo interior",
+                HeaderText = LocalizationManager.GetString("L_CuerpoInterior"),
                 DataPropertyName = "CuerpoInterior",
                 ReadOnly = true,
                 Width = 110
@@ -794,7 +813,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "CuerpoExterior",
-                HeaderText = "Cuerpo exterior",
+                HeaderText = LocalizationManager.GetString("L_CuerpoExterior"),
                 DataPropertyName = "CuerpoExterior",
                 ReadOnly = true,
                 Width = 110
@@ -803,7 +822,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Altura",
-                HeaderText = "Altura",
+                HeaderText = LocalizationManager.GetString("L_Altura"),
                 DataPropertyName = "Altura",
                 ReadOnly = true,
                 Width = 110
@@ -812,7 +831,7 @@ namespace RotoTools
             var columnaRolMecanizado = new DataGridViewComboBoxColumn
             {
                 Name = "RolMecanizado",
-                HeaderText = "Rol mecanizado",
+                HeaderText = LocalizationManager.GetString("L_RolMecanizado"),
                 DataPropertyName = "RolMecanizado",
                 Width = 160,
                 FlatStyle = FlatStyle.Flat,
@@ -827,7 +846,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "DescuentoCanalHerraje",
-                HeaderText = "Descuento canal de herraje",
+                HeaderText = LocalizationManager.GetString("L_DescuentoCanalHerraje"),
                 DataPropertyName = "DescuentoCanalHerraje",
                 Width = 200
             });
@@ -835,7 +854,7 @@ namespace RotoTools
             dataGridViewResultado.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "PosicionCanalHerraje",
-                HeaderText = "Posición canal de herraje",
+                HeaderText = LocalizationManager.GetString("L_PosicionCanalHerraje"),
                 DataPropertyName = "PosicionCanalHerraje",
                 Width = 200
             });

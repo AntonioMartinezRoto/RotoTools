@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Textos propios de RotoTools.Suite (no del proyecto original RotoTools): se mantienen en un
+    recurso aparte, RotoTools.Suite.Resources.SuiteStrings, en vez de añadir claves al
+    Resources/Strings*.resx del proyecto original, para no modificar ese proyecto en absoluto.
+    SuiteLocalization.GetString sigue el mismo idioma seleccionado que
+    RotoTools.LocalizationManager (ver Services/SuiteLocalization.cs).
+  -->
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="L_Suite_CamSubtitulo" xml:space="preserve">
+    <value>Carga de XML e instalación de operaciones.</value>
+  </data>
+  <data name="L_Suite_ConfigOpcionesSubtitulo" xml:space="preserve">
+    <value>Consulta, guarda, restaura e importa la configuración de opciones.</value>
+  </data>
+  <data name="L_Suite_ConectorHerrajeSubtitulo" xml:space="preserve">
+    <value>Carga de XML y generación/combinación de conectores de herraje.</value>
+  </data>
+  <data name="L_Suite_ConectorActivo" xml:space="preserve">
+    <value>Conector activo</value>
+  </data>
+</root>

@@ -1,0 +1,85 @@
+<Window
+    x:Class="RotoTools.Suite.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="RotoTools Suite"
+    Width="1440" Height="900"
+    MinWidth="1100" MinHeight="650"
+    WindowStartupLocation="CenterScreen"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--
+            Cabecera corporativa: logo Roto real (images/logo.png del proyecto original) + nombre
+            de la suite + selector de idioma, para dar corporativismo a la app y sustituir el
+            fondo plano de la ventana principal WinForms.
+        -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logo.png" Height="32" Margin="0,0,16,0" />
+                    <TextBlock Text="RotoTools Suite" FontSize="18" FontWeight="SemiBold"
+                               Foreground="White" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtConexion" Foreground="#B9BBC2" FontSize="12"
+                               VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <!-- Migrado de Main.cs (btn_Refresh): vuelve a leer servidor/base de datos por
+                         si ha cambiado la conexión, sin reiniciar la aplicación. -->
+                    <Button x:Name="BtnActualizarConexion" Style="{StaticResource RotoHeaderIconButton}"
+                            Margin="0,0,20,0" Click="BtnActualizarConexion_Click" ToolTip="Actualizar">
+                        <Path Data="{StaticResource IconRefresh}" Fill="#B9BBC2" Width="15" Height="15" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock x:Name="LblIdioma" Text="Idioma" Foreground="White"
+                               VerticalAlignment="Center" Margin="0,0,8,0" />
+                    <ComboBox x:Name="CmbIdioma" Width="140" Style="{StaticResource RotoComboHeader}"
+                              SelectionChanged="CmbIdioma_SelectionChanged" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--
+            Cuerpo: panel de navegación lateral oscuro (en vez del menú de botones planos del
+            Main.cs original) a la izquierda, y el contenido del módulo seleccionado a la derecha.
+        -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource RotoNavBackgroundBrush}">
+                <ListBox x:Name="ListaModulos" Style="{StaticResource RotoNavList}"
+                         Margin="0,14,0,0"
+                         SelectionChanged="ListaModulos_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Style="{StaticResource RotoNavBadge}" Background="{Binding Color}">
+                                    <Path Data="{Binding Icono}" Fill="White" Width="14" Height="14" Stretch="Uniform"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <TextBlock Text="{Binding Titulo}" Foreground="White" FontSize="13.5"
+                                           VerticalAlignment="Center" Margin="12,0,0,0" TextWrapping="Wrap" Width="150" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <ContentControl x:Name="ContentHost" Grid.Column="1" />
+        </Grid>
+    </Grid>
+</Window>

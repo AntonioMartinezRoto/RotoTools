@@ -1,0 +1,74 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Cam.CamConfigurarGeometriaWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Geometría" Height="640" Width="900" MinHeight="420" MinWidth="640"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a CamConfigurarGeometria.cs (WinForms). En el original, Guardar/Añadir
+        primitiva/Exportar condiciones estaban ocultos en producción (Visible=false en el
+        Designer), así que el diálogo real solo permitía consultar la geometría con los filtros
+        Interior/Exterior y Condición. Se migra tal cual ese comportamiento de solo consulta.
+    -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TxtTitulo" Grid.Row="0" Style="{StaticResource RotoPageTitle}" Margin="0,0,0,14" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12">
+            <RadioButton x:Name="RbInterior" Content="Interior" GroupName="InteriorExterior" Margin="0,0,20,0"
+                         VerticalAlignment="Center" Checked="RbInterior_Checked" />
+            <RadioButton x:Name="RbExterior" Content="Exterior" GroupName="InteriorExterior"
+                         VerticalAlignment="Center" Checked="RbExterior_Checked" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                    CornerRadius="8" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Condiciones" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,8" />
+                    <ListBox Grid.Row="1" x:Name="ListaCondiciones" Style="{StaticResource RotoList}"
+                             SelectionChanged="ListaCondiciones_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Etiqueta}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                    CornerRadius="8" Padding="10">
+                <DataGrid x:Name="GridGeometria" Style="{StaticResource RotoDataGrid}" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Operación" Binding="{Binding BasicShape}" Width="2*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn Header="X" Binding="{Binding XDistance}" Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn Header="Y" Binding="{Binding YDistance}" Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn Header="Z" Binding="{Binding ZDistance}" Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <Button Grid.Row="3" x:Name="BtnCerrar" Style="{StaticResource RotoButtonPrimary}"
+                HorizontalAlignment="Right" Margin="0,14,0,0" Click="BtnCerrar_Click" Content="Cerrar" />
+    </Grid>
+</Window>

@@ -1,0 +1,291 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.Cam.CamPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a CamMenu.cs/CamMenu.Designer.cs (WinForms). A diferencia de las páginas ya
+        migradas (p.ej. Configurador de opciones), este módulo tiene varias grids/listas grandes
+        (Sets, operaciones a instalar, detalle de operación), así que en vez de tarjetas pequeñas
+        se usa todo el ancho/alto disponible con un layout de rejilla y separadores arrastrables
+        (GridSplitter), tal y como se pidió explícitamente.
+    -->
+
+    <UserControl.Resources>
+        <!-- Botón "solo icono" para las columnas de acción de las grids (Info / Configurar
+             geometría): mismo criterio que un DataGridViewImageColumn clicable en WinForms, pero
+             como un Button transparente para que reaccione al primer clic sin robar la selección
+             de fila. -->
+        <Style x:Key="RotoGridIconButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Width" Value="28" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#E9E9EC" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="32,24,32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,16">
+            <Border Style="{StaticResource RotoPageBadge}" Background="#2E7D32" Margin="0,0,16,0">
+                <Path Data="{StaticResource IconGearHex}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Barra de carga de XML -->
+        <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                CornerRadius="8" Padding="14,10" Margin="0,0,0,10">
+            <DockPanel LastChildFill="True">
+                <Button x:Name="BtnLoadXml" DockPanel.Dock="Left" Style="{StaticResource RotoButtonPrimary}"
+                        Click="BtnLoadXml_Click" Margin="0,0,14,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconFolderOpen}" Fill="White" Width="16" Height="16" Stretch="Uniform"
+                              Margin="0,0,8,0" />
+                        <TextBlock x:Name="TxtBtnCargarXml" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="LblXml" VerticalAlignment="Center" Foreground="{StaticResource RotoGrayBrush}"
+                           TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Border>
+
+        <!-- Acciones genéricas (no ligadas al filtro/selección de la lista de operaciones):
+             instalar macros, exportar, normalizar y limpiar toda la información cargada. -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                CornerRadius="8" Padding="14,10" Margin="0,0,0,16">
+            <WrapPanel>
+                <Button x:Name="BtnInstalarMacros" Style="{StaticResource RotoButtonSecondary}"
+                        Margin="0,0,8,0" Click="BtnInstalarMacros_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconDownload}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                        <TextBlock x:Name="TxtBtnInstalarMacros" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnExportarMecanizados" Style="{StaticResource RotoButtonSecondary}"
+                        Margin="0,0,8,0" Click="BtnExportarMecanizados_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconUpload}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                        <TextBlock x:Name="TxtBtnExportar" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnNormalizarOperaciones" Style="{StaticResource RotoButtonSecondary}"
+                        Margin="0,0,8,0" Click="BtnNormalizarOperaciones_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconSliders}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                        <TextBlock x:Name="TxtBtnNormalizar" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnClearOperations" Style="{StaticResource RotoButtonSecondary}"
+                        Click="BtnClearOperations_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                        <TextBlock x:Name="TxtBtnLimpiar" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </Border>
+
+        <!-- Cuerpo: Sets | (operaciones a instalar / detalle) -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Panel de Sets -->
+            <Border Grid.Column="0" Background="White" BorderBrush="{StaticResource RotoBorderBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Sets" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,10" />
+
+                    <TextBox Grid.Row="1" x:Name="TxtFiltroSets" Style="{StaticResource RotoTextBox}" Margin="0,0,0,6"
+                             TextChanged="TxtFiltroSets_TextChanged" />
+
+                    <CheckBox Grid.Row="2" x:Name="ChkSetsTodos" Content="Seleccionar todos" Margin="2,4,0,10"
+                              Checked="ChkSetsTodos_Changed" Unchecked="ChkSetsTodos_Changed" />
+
+                    <ListBox Grid.Row="3" x:Name="ListaSets" Style="{StaticResource RotoList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Code}"
+                                          IsChecked="{Binding Checked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Button Grid.Row="4" x:Name="BtnCargarOperaciones" Style="{StaticResource RotoButtonPrimary}"
+                            HorizontalAlignment="Stretch" Margin="0,12,0,0" Click="BtnCargarOperaciones_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Path Data="{StaticResource IconArrowRight}" Fill="White" Width="14" Height="14" Stretch="Uniform"
+                                  Margin="0,0,8,0" />
+                            <TextBlock x:Name="TxtBtnCargarOperaciones" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <GridSplitter Grid.Column="1" Width="8" HorizontalAlignment="Stretch" Background="Transparent" />
+
+            <!-- Operaciones a instalar (arriba) / detalle (abajo) -->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.2*" MinHeight="220" />
+                    <RowDefinition Height="8" />
+                    <RowDefinition Height="1.2*" MinHeight="140" />
+                </Grid.RowDefinitions>
+
+                <!-- Operaciones a instalar -->
+                <Border Grid.Row="0" Background="White" BorderBrush="{StaticResource RotoBorderBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="14">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" x:Name="GrpOperaciones" Style="{StaticResource RotoSectionTitle}"
+                                   Margin="0,0,0,10" />
+
+                        <WrapPanel Grid.Row="1" Margin="0,0,0,10">
+                            <TextBox x:Name="TxtFiltroOperaciones" Style="{StaticResource RotoTextBox}" Width="200"
+                                     Margin="0,0,10,6" TextChanged="TxtFiltroOperaciones_TextChanged" />
+                            <RadioButton x:Name="RbTodas" GroupName="FiltroOperaciones" VerticalAlignment="Center"
+                                         Margin="0,0,14,6" Checked="RbFiltro_Checked" />
+                            <RadioButton x:Name="RbNoExisten" GroupName="FiltroOperaciones" VerticalAlignment="Center"
+                                         Margin="0,0,14,6" Checked="RbFiltro_Checked" />
+                            <CheckBox x:Name="ChkOperacionesTodas" Content="Seleccionar todos" VerticalAlignment="Center"
+                                      Margin="0,0,18,6" Checked="ChkOperacionesTodas_Changed" Unchecked="ChkOperacionesTodas_Changed" />
+
+                            <Button x:Name="BtnInstallOperation" Style="{StaticResource RotoButtonPrimary}"
+                                    Margin="0,0,8,6" Click="BtnInstallOperation_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconPlay}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                                    <TextBlock x:Name="TxtBtnInstalar" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="BtnInstalar3D" Style="{StaticResource RotoButtonPrimary}"
+                                    Margin="0,0,0,6" Click="BtnInstalar3D_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconGearHex}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                                    <TextBlock x:Name="TxtBtnInstalar3D" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
+
+                        <DataGrid Grid.Row="2" x:Name="GridInstalarOperaciones" Style="{StaticResource RotoDataGrid}"
+                                  SelectionChanged="GridInstalarOperaciones_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="" Width="36">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox HorizontalAlignment="Center"
+                                                      IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Operación" Binding="{Binding OperationName}" Width="*" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTemplateColumn Header="" Width="44">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource RotoGridIconButton}" Click="BtnConfigurarGeometria_Click"
+                                                    ToolTip="Configurar geometría">
+                                                <Path Data="{StaticResource IconSliders}" Fill="{StaticResource RotoGrayBrush}"
+                                                      Width="14" Height="14" Stretch="Uniform" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+                <GridSplitter Grid.Row="1" Height="8" HorizontalAlignment="Stretch" Background="Transparent" />
+
+                <!-- Detalle de la operación seleccionada -->
+                <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="14">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Text="Detalle (apariciones por herraje)" Style="{StaticResource RotoSectionTitle}"
+                                   Margin="0,0,0,10" />
+
+                        <DataGrid Grid.Row="1" x:Name="GridDetalleOperaciones" Style="{StaticResource RotoDataGrid}"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Operación" Binding="{Binding Operation}" Width="1.4*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTextColumn Header="Fitting Id" Binding="{Binding FittingID}" Width="0.8*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTextColumn Header="Artículo" Binding="{Binding Article}" Width="0.8*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="1.8*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTextColumn Header="Ubicación" Binding="{Binding Location}" Width="0.8*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTextColumn Header="Posición" Binding="{Binding X}" Width="0.8*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                                <DataGridTemplateColumn Header="" Width="40">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource RotoGridIconButton}" Click="BtnInfoOperacion_Click"
+                                                    ToolTip="Ver información">
+                                                <Path Data="{StaticResource IconChatBubble}" Fill="{StaticResource RotoGrayBrush}"
+                                                      Width="14" Height="14" Stretch="Uniform" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Barra de progreso (la conexión servidor/BBDD ya se muestra siempre arriba, junto al
+             selector de idioma, así que no hace falta repetirla aquí). -->
+        <DockPanel Grid.Row="4" Margin="0,14,0,0" LastChildFill="False">
+            <ProgressBar x:Name="ProgressInstall" DockPanel.Dock="Right" Width="260" Height="16" Visibility="Collapsed" />
+        </DockPanel>
+    </Grid>
+</UserControl>

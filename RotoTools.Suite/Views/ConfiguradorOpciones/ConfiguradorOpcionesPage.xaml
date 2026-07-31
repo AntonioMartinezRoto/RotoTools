@@ -1,0 +1,73 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.ConfiguradorOpciones.ConfiguradorOpcionesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ConfiguradorOpcionesMenu.cs (WinForms): mismas 3 acciones, mismo comportamiento,
+        ahora como tarjetas dentro de la suite en vez de una ventana aparte con 3 botones cuadrados.
+        Cada tarjeta entera es un botón (RotoActionCard, ver Theme/RotoBrand.xaml): se puede pulsar
+        en cualquier punto de su superficie, no solo sobre el texto de la acción.
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40,32,40,32">
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Border Style="{StaticResource RotoPageBadge}" Background="#6A5ACD" Margin="0,0,16,0">
+                    <Path Data="{StaticResource IconSliders}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                    <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+                </StackPanel>
+            </StackPanel>
+
+            <UniformGrid Columns="3" Rows="1">
+
+                <!-- Tarjeta 1: Configurar y guardar opciones -->
+                <Button x:Name="BtnConfigOpciones" Style="{StaticResource RotoActionCard}" Margin="0,0,12,0"
+                        Click="BtnConfigOpciones_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#6A5ACD" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconFolderOpen}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard1Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock Text="Abre el listado completo de opciones y su contenido para consultarlos, marcarlos y guardarlos."
+                                   Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 2: Restaurar configuración -->
+                <Button x:Name="BtnRestore" Style="{StaticResource RotoActionCard}" Margin="6,0,6,0"
+                        Click="BtnRestore_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#1976D2" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconUpload}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard2Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock Text="Aplica de nuevo un archivo XML de configuración de opciones guardado previamente."
+                                   Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 3: Importar configuración de cliente -->
+                <Button x:Name="BtnImportConfigCliente" Style="{StaticResource RotoActionCard}" Margin="12,0,0,0"
+                        Click="BtnImportConfigCliente_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#F57C00" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconDownload}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard3Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock Text="Importa un archivo .rotoconfig de cliente y ajusta automáticamente las opciones visibles."
+                                   Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

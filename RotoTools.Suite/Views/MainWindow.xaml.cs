@@ -1,0 +1,218 @@
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using RotoTools.Suite.Services;
+using RotoTools.Suite.Views.Cam;
+using RotoTools.Suite.Views.ConectorHerraje;
+using RotoTools.Suite.Views.ConfiguradorOpciones;
+
+namespace RotoTools.Suite.Views
+{
+    /// <summary>
+    /// Elemento del menú de navegación lateral: un módulo del menú principal original
+    /// (Main.Designer.cs). "Icono"+"Color" forman la insignia circular de cada módulo (icono
+    /// vectorial propio, ver Theme/RotoBrand.xaml: sin depender de ningún paquete de iconos de
+    /// terceros); "CrearPagina" construye la página que se muestra al seleccionar el módulo. El
+    /// mismo icono se reutiliza en la cabecera de la página del módulo (ver PlaceholderPage y
+    /// ConfiguradorOpcionesPage) para que panel lateral y página central siempre coincidan.
+    /// </summary>
+    public class NavModuleItem
+    {
+        public string Titulo { get; set; } = "";
+        public Geometry Icono { get; set; } = Geometry.Empty;
+        public Brush Color { get; set; } = Brushes.Gray;
+        public Func<UserControl> CrearPagina { get; set; } = () => new UserControl();
+    }
+
+    /// <summary>
+    /// Ventana principal (shell) de RotoTools Suite: sustituye a Main.cs/Main.Designer.cs de la
+    /// app WinForms original. Estructura + menú principal, con páginas "próximamente" para los
+    /// módulos aún no migrados; Configurador de opciones y CAM (mecanizados 2D/3D, ver
+    /// Views/Cam/CamPage.xaml) ya están migrados. El resto se irá añadiendo módulo a módulo en
+    /// próximas entregas.
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private bool _cargandoIdioma;
+        private List<NavModuleItem> _modulos = new();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            CargarModulos();
+            CargarSelectorIdioma();
+            CargarTextos();
+            CargarInfoConexion();
+
+            if (ListaModulos.Items.Count > 0)
+                ListaModulos.SelectedIndex = 0;
+        }
+
+        private void CargarTextos()
+        {
+            LblIdioma.Text = RotoTools.LocalizationManager.GetString("L_SeleccionarIdioma");
+        }
+
+        private void CargarInfoConexion()
+        {
+            try
+            {
+                string servidor = RotoTools.Helpers.GetServer();
+                string baseDatos = RotoTools.Helpers.GetDataBase();
+                TxtConexion.Text = string.IsNullOrWhiteSpace(servidor) ? "" : $@"{servidor}\{baseDatos}";
+            }
+            catch
+            {
+                TxtConexion.Text = "";
+            }
+        }
+
+        /// <summary>Migrado tal cual de Main.cs (btn_Refresh_Click -> CargarDatos ->
+        /// InitializeInfoConnection): simplemente vuelve a leer y mostrar el servidor/base de
+        /// datos actuales (no hace ping ni prueba la conexión), por si han cambiado desde que se
+        /// abrió la aplicación.</summary>
+        private void BtnActualizarConexion_Click(object sender, RoutedEventArgs e)
+        {
+            CargarInfoConexion();
+        }
+
+        /// <summary>
+        /// Mismo inventario de 10 módulos que Main.Designer.cs original, más "Inicio" (nuevo,
+        /// pantalla de bienvenida que no existía en la app WinForms). Configurador de opciones y
+        /// CAM ya abren su página real migrada; el resto sigue abriendo una página
+        /// "próximamente" hasta que se migre en próximas entregas.
+        /// </summary>
+        private void CargarModulos()
+        {
+            var rojoRoto = (Brush)FindResource("RotoRedBrush");
+
+            var iconoInicio = (Geometry)FindResource("IconHome");
+            var iconoCam = (Geometry)FindResource("IconGearHex");
+            var iconoConfigOpciones = (Geometry)FindResource("IconSliders");
+            var iconoActualizador = (Geometry)FindResource("IconDownload");
+            var iconoExportar = (Geometry)FindResource("IconUpload");
+            var iconoConector = (Geometry)FindResource("IconLink");
+            var iconoControlCambios = (Geometry)FindResource("IconClipboard");
+            var iconoTraduccion = (Geometry)FindResource("IconChatBubble");
+            var iconoManillas = (Geometry)FindResource("IconHandle");
+            var iconoTarifas = (Geometry)FindResource("IconTag");
+            var iconoAjustes = (Geometry)FindResource("IconDots");
+
+            _modulos = new List<NavModuleItem>
+            {
+                new() { Titulo = "Inicio", Icono = iconoInicio, Color = rojoRoto,
+                        CrearPagina = () => new DashboardPage() },
+
+                new() { Titulo = "CAM · Mecanizados", Icono = iconoCam, Color = new SolidColorBrush(Color.FromRgb(0x2E,0x7D,0x32)),
+                        CrearPagina = () => new CamPage() },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfiguradorOpciones"), Icono = iconoConfigOpciones, Color = new SolidColorBrush(Color.FromRgb(0x6A,0x5A,0xCD)),
+                        CrearPagina = () => new ConfiguradorOpcionesPage() },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Actualizador"), Icono = iconoActualizador, Color = new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Actualizador"), "Actualización de datos y catálogos.", iconoActualizador, new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ExportarDatos"), "Exportación de datos a ficheros externos.", iconoExportar, new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConectorHerraje"), Icono = iconoConector, Color = new SolidColorBrush(Color.FromRgb(0x00,0x83,0x8F)),
+                        CrearPagina = () => new ConectorHerrajePage() },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ControlCambios"), Icono = iconoControlCambios, Color = new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ControlCambios"), "Control de cambios.", iconoControlCambios, new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Traduccion"), Icono = iconoTraduccion, Color = new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Traduccion"), "Gestión de traducciones multilenguaje.", iconoTraduccion, new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), Icono = iconoManillas, Color = new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), "Configuración de manillas FKS.", iconoManillas, new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_TariffImporter"), Icono = iconoTarifas, Color = new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_TariffImporter"), "Carga de precios / tarifas.", iconoTarifas, new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7))) },
+
+                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Opciones"), Icono = iconoAjustes, Color = new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64)),
+                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Opciones"), "Ajustes generales de la aplicación.", iconoAjustes, new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64))) },
+            };
+
+            ListaModulos.ItemsSource = _modulos;
+        }
+
+        private void ListaModulos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListaModulos.SelectedItem is NavModuleItem modulo)
+                ContentHost.Content = modulo.CrearPagina();
+        }
+
+        /// <summary>
+        /// Mismos 3 idiomas que ofrece hoy OptionsMenu.cs en la app WinForms original (es/en/pt):
+        /// alemán e italiano existen como culturas de recursos, pero sus .resx todavía no tienen
+        /// traducción real, así que de momento se dejan fuera del selector, igual que en la app
+        /// original.
+        /// </summary>
+        private void CargarSelectorIdioma()
+        {
+            _cargandoIdioma = true;
+
+            CmbIdioma.Items.Clear();
+            CmbIdioma.Items.Add(new IdiomaItem("Español", "es"));
+            CmbIdioma.Items.Add(new IdiomaItem("English", "en"));
+            CmbIdioma.Items.Add(new IdiomaItem("Português", "pt"));
+
+            CmbIdioma.DisplayMemberPath = "Nombre";
+
+            string actual = RotoTools.LocalizationManager.CurrentCulture.TwoLetterISOLanguageName;
+
+            foreach (var item in CmbIdioma.Items)
+            {
+                if (item is IdiomaItem idioma && idioma.Codigo == actual)
+                {
+                    CmbIdioma.SelectedItem = idioma;
+                    break;
+                }
+            }
+
+            if (CmbIdioma.SelectedItem == null && CmbIdioma.Items.Count > 0)
+                CmbIdioma.SelectedIndex = 0;
+
+            _cargandoIdioma = false;
+        }
+
+        private void CmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_cargandoIdioma)
+                return;
+
+            if (CmbIdioma.SelectedItem is not IdiomaItem idioma)
+                return;
+
+            RotoTools.LocalizationManager.SetLanguage(idioma.Codigo);
+
+            App.CurrentSettings.Language = idioma.Codigo;
+            AppSettingsService.Save(App.CurrentSettings);
+
+            CargarTextos();
+
+            // Reconstruye el menú (los títulos de los módulos vienen de LocalizationManager) y
+            // vuelve a mostrar la página actualmente seleccionada, ya en el nuevo idioma.
+            int indiceSeleccionado = ListaModulos.SelectedIndex;
+            CargarModulos();
+            ListaModulos.SelectedIndex = indiceSeleccionado >= 0 ? indiceSeleccionado : 0;
+        }
+
+        private class IdiomaItem
+        {
+            public string Nombre { get; }
+            public string Codigo { get; }
+
+            public IdiomaItem(string nombre, string codigo)
+            {
+                Nombre = nombre;
+                Codigo = codigo;
+            }
+
+            public override string ToString() => Nombre;
+        }
+    }
+}

@@ -188,7 +188,7 @@ Connector updated successfully.</value>
     <value>General application preferences.</value>
   </data>
   <data name="L_Suite_DashboardTagline" xml:space="preserve">
-    <value>All RotoTools modules brought together in a single modern.</value>
+    <value>All RotoTools modules brought together in a single modern, portable application, with the same logic as always.</value>
   </data>
   <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
     <value>Available modules</value>
@@ -210,5 +210,11 @@ Connector updated successfully.</value>
   </data>
   <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
     <value>Press F11 for more column options.</value>
+  </data>
+  <data name="L_Suite_LimpiarActualizacionTooltip" xml:space="preserve">
+    <value>Deletes this update's record (XML and date).</value>
+  </data>
+  <data name="L_Suite_ConfirmarLimpiarActualizacion" xml:space="preserve">
+    <value>The record for this update (XML name and date) will be deleted. Do you want to continue?</value>
   </data>
 </root>

@@ -93,6 +93,9 @@ namespace RotoTools.Suite.Views.Actualizador
             BtnRefreshPVC.ToolTip = Loc("L_Suite_InfoActualizacionTooltip");
             BtnRefreshALU.ToolTip = Loc("L_Suite_InfoActualizacionTooltip");
             BtnRefreshPAX.ToolTip = Loc("L_Suite_InfoActualizacionTooltip");
+            BtnClearPVC.ToolTip = Loc("L_Suite_LimpiarActualizacionTooltip");
+            BtnClearALU.ToolTip = Loc("L_Suite_LimpiarActualizacionTooltip");
+            BtnClearPAX.ToolTip = Loc("L_Suite_LimpiarActualizacionTooltip");
             LblXmlPVC.Text = RotoTools.LocalizationManager.GetString("L_XML") + ":";
             LblFechaPVC.Text = RotoTools.LocalizationManager.GetString("L_Fecha") + ":";
             LblXmlALU.Text = RotoTools.LocalizationManager.GetString("L_XML") + ":";
@@ -575,6 +578,57 @@ namespace RotoTools.Suite.Views.Actualizador
         private void BtnRefreshALU_Click(object sender, RoutedEventArgs e) => SeleccionarYActualizarXml(EnumHardware.Aluminio);
 
         private void BtnRefreshPAX_Click(object sender, RoutedEventArgs e) => SeleccionarYActualizarXml(EnumHardware.PAX);
+
+        /// <summary>
+        /// Nuevo (no existía en el original): borra de VariablesGlobales el registro de la última
+        /// actualización de un herraje, es decir las 2 filas que
+        /// GetNombreXMLActualizacionRoto/GetFechaActualizacionRoto leen y
+        /// SetNombreXMLRoto/SetFechaActualizacionRoto escriben (RotoXmlNombrePVC/ALU/PAX +
+        /// RotoFechaActualizacionPVC/ALU/PAX, ver Helpers.cs). RotoTools.Helpers no expone ningún
+        /// método para borrar esas filas (solo leer/upsert), y no se puede añadir uno allí sin
+        /// modificar RotoTools.csproj, así que el DELETE vive aquí, con el mismo mapeo
+        /// tipo→nombre de variable que usan esos 4 métodos del original (letra por letra) y
+        /// reutilizando RotoTools.Helpers.EjecutarNonQuery para ejecutarlo, igual que ya hace esta
+        /// misma página en AgregarProveedorRotoFrankSA. Los nombres de variable son constantes
+        /// fijas del propio código (no entrada del usuario), así que interpolarlos directamente en
+        /// el SQL es seguro, igual criterio que Helpers.SetNombreXMLRoto/SetFechaActualizacionRoto.
+        /// </summary>
+        private void LimpiarActualizacionRoto(EnumHardware tipo)
+        {
+            if (MessageBox.Show(Loc("L_Suite_ConfirmarLimpiarActualizacion"), Loc("L_Suite_ConfirmarEliminacion"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+
+            string variableXmlName;
+            string variableFechaName;
+            switch (tipo)
+            {
+                case EnumHardware.Aluminio:
+                    variableXmlName = "RotoXmlNombreALU";
+                    variableFechaName = "RotoFechaActualizacionALU";
+                    break;
+                case EnumHardware.PAX:
+                    variableXmlName = "RotoXmlNombrePAX";
+                    variableFechaName = "RotoFechaActualizacionPAX";
+                    break;
+                case EnumHardware.PVC:
+                default:
+                    variableXmlName = "RotoXmlNombrePVC";
+                    variableFechaName = "RotoFechaActualizacionPVC";
+                    break;
+            }
+
+            string sql = "DELETE FROM VariablesGlobales WHERE Nombre = N'" + variableXmlName + "' OR Nombre = N'" + variableFechaName + "'";
+            RotoTools.Helpers.EjecutarNonQuery(sql);
+
+            InitializeRotoInfo();
+        }
+
+        private void BtnClearPVC_Click(object sender, RoutedEventArgs e) => LimpiarActualizacionRoto(EnumHardware.PVC);
+
+        private void BtnClearALU_Click(object sender, RoutedEventArgs e) => LimpiarActualizacionRoto(EnumHardware.Aluminio);
+
+        private void BtnClearPAX_Click(object sender, RoutedEventArgs e) => LimpiarActualizacionRoto(EnumHardware.PAX);
 
         #endregion
     }

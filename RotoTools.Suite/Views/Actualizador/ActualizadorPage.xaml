@@ -166,6 +166,13 @@
                                         Width="26" Height="26" Click="BtnRefreshPVC_Click">
                                     <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
                                 </Button>
+                                <!-- Nuevo: mismo tamaño que BtnRefreshPVC, borra el registro de VariablesGlobales
+                                     de este herraje (RotoXmlNombrePVC + RotoFechaActualizacionPVC), ver
+                                     LimpiarActualizacionRoto en ActualizadorPage.xaml.cs. -->
+                                <Button x:Name="BtnClearPVC" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Margin="0,0,6,0" Click="BtnClearPVC_Click">
+                                    <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
                                 <TextBlock Text="PVC" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
                             </DockPanel>
                             <TextBlock x:Name="LblXmlPVC" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
@@ -181,6 +188,13 @@
                                         Width="26" Height="26" Click="BtnRefreshALU_Click">
                                     <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
                                 </Button>
+                                <!-- Nuevo: mismo tamaño que BtnRefreshALU, borra el registro de VariablesGlobales
+                                     de este herraje (RotoXmlNombreALU + RotoFechaActualizacionALU), ver
+                                     LimpiarActualizacionRoto en ActualizadorPage.xaml.cs. -->
+                                <Button x:Name="BtnClearALU" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Margin="0,0,6,0" Click="BtnClearALU_Click">
+                                    <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
                                 <TextBlock Text="ALU" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
                             </DockPanel>
                             <TextBlock x:Name="LblXmlALU" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
@@ -195,6 +209,13 @@
                                 <Button x:Name="BtnRefreshPAX" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
                                         Width="26" Height="26" Click="BtnRefreshPAX_Click">
                                     <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
+                                <!-- Nuevo: mismo tamaño que BtnRefreshPAX, borra el registro de VariablesGlobales
+                                     de este herraje (RotoXmlNombrePAX + RotoFechaActualizacionPAX), ver
+                                     LimpiarActualizacionRoto en ActualizadorPage.xaml.cs. -->
+                                <Button x:Name="BtnClearPAX" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Margin="0,0,6,0" Click="BtnClearPAX_Click">
+                                    <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
                                 </Button>
                                 <TextBlock Text="PAX" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
                             </DockPanel>

@@ -195,7 +195,7 @@ Conector actualizado correctamente.</value>
     <value>Preferencias generales de la aplicación.</value>
   </data>
   <data name="L_Suite_DashboardTagline" xml:space="preserve">
-    <value>Todos los módulos de RotoTools reunidos en una única aplicación.</value>
+    <value>Todos los módulos de RotoTools reunidos en una única aplicación moderna y portable, con la misma lógica de siempre.</value>
   </data>
   <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
     <value>Módulos disponibles</value>
@@ -217,5 +217,11 @@ Conector actualizado correctamente.</value>
   </data>
   <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
     <value>Pulsa F11 para más opciones de columnas.</value>
+  </data>
+  <data name="L_Suite_LimpiarActualizacionTooltip" xml:space="preserve">
+    <value>Elimina el registro de esta actualización (XML y fecha).</value>
+  </data>
+  <data name="L_Suite_ConfirmarLimpiarActualizacion" xml:space="preserve">
+    <value>Se eliminará el registro de esta actualización (nombre del XML y fecha). ¿Deseas continuar?</value>
   </data>
 </root>

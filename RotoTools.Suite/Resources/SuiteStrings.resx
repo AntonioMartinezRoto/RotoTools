@@ -176,4 +176,25 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_Salir" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="L_Suite_ControlCambiosSubtitulo" xml:space="preserve">
+    <value>Compara dos XML de herrajes y genera un informe en PDF con las diferencias.</value>
+  </data>
+  <data name="L_Suite_FicherosXmlTitulo" xml:space="preserve">
+    <value>Ficheros XML</value>
+  </data>
+  <data name="L_Suite_GenerarInformeDesc" xml:space="preserve">
+    <value>Compara los dos XML cargados y genera un PDF con las diferencias encontradas.</value>
+  </data>
+  <data name="L_Suite_ConfiguracionInformeDesc" xml:space="preserve">
+    <value>Elige qué apartados se comparan (fittings, sets, opciones, colores, mecanizados...).</value>
+  </data>
+  <data name="L_Suite_GenerarInformeSimpleDesc" xml:space="preserve">
+    <value>Genera directamente un PDF resumido con las diferencias entre los dos XML cargados.</value>
+  </data>
+  <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
+    <value>Preferencias generales de la aplicación.</value>
+  </data>
+  <data name="L_Suite_NotaSelectorIdioma" xml:space="preserve">
+    <value>El idioma se cambia desde el selector de la barra lateral.</value>
+  </data>
 </root>

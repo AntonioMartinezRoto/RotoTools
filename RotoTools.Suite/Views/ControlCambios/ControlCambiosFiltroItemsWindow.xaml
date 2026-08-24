@@ -1,0 +1,84 @@
+<Window
+    x:Class="RotoTools.Suite.Views.ControlCambios.ControlCambiosFiltroItemsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Filtro de elementos comunes"
+    Width="560" Height="520"
+    MinWidth="460" MinHeight="360"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ControlCambiosFiltroItems.cs/.Designer.cs (WinForms): mismo comportamiento
+        (filtro por texto + "Seleccionar todos" + "Solo seleccionados" + lista marcable de
+        sets/fitting groups comunes a ambos XML + Guardar), reutilizando el mismo patrón ya
+        establecido en ActualizadorInstalarManualEscandallosWindow.xaml (CheckedListBox -> ItemsControl
+        con CheckBox real por fila, enlazado TwoWay a una clase envoltorio con INotifyPropertyChanged).
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <TextBlock x:Name="TxtTitulo" FontSize="17" FontWeight="SemiBold"
+                       Foreground="White" VerticalAlignment="Center" Margin="24,0" />
+        </Border>
+
+        <!-- Cuerpo -->
+        <Grid Grid.Row="1" Margin="24,20,24,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
+                <CheckBox x:Name="ChkSelectAll" DockPanel.Dock="Left" VerticalAlignment="Center"
+                          Checked="ChkSelectAll_CheckedChanged" Unchecked="ChkSelectAll_CheckedChanged" Margin="0,0,20,0" />
+                <CheckBox x:Name="ChkSoloFiltrados" DockPanel.Dock="Left" VerticalAlignment="Center"
+                          Checked="ChkSoloFiltrados_CheckedChanged" Unchecked="ChkSoloFiltrados_CheckedChanged" />
+                <!-- LastChildFill="False" arriba: mismo motivo que TxtFiltro en
+                     ActualizadorInstalarManualEscandallosWindow (ver comentario allí). -->
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="LblBuscar" Margin="0,0,8,0" VerticalAlignment="Center"
+                               Foreground="{StaticResource RotoInkBrush}" />
+                    <TextBox x:Name="TxtFiltro" Style="{StaticResource RotoTextBox}" Width="200"
+                             TextChanged="TxtFiltro_TextChanged" />
+                </StackPanel>
+            </DockPanel>
+
+            <TextBlock x:Name="LblNumeroComunes" Grid.Row="1" Margin="0,0,0,10"
+                       Foreground="{StaticResource RotoGrayBrush}" />
+
+            <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1" CornerRadius="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+                    <ItemsControl x:Name="ListaItems" HorizontalContentAlignment="Stretch">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Seleccionado, Mode=TwoWay}"
+                                          VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                                          Padding="6,7" Margin="4,1">
+                                    <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                                </CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Pie -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="24,10">
+                <Button x:Name="BtnGuardarFiltro" Style="{StaticResource RotoButtonPrimary}" Click="BtnGuardarFiltro_Click">
+                    <TextBlock x:Name="TxtBtnGuardarFiltro" VerticalAlignment="Center" />
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

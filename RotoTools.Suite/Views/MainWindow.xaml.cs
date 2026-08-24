@@ -7,7 +7,9 @@ using RotoTools.Suite.Views.Actualizador;
 using RotoTools.Suite.Views.Cam;
 using RotoTools.Suite.Views.ConectorHerraje;
 using RotoTools.Suite.Views.ConfiguradorOpciones;
+using RotoTools.Suite.Views.ControlCambios;
 using RotoTools.Suite.Views.ManillasFKS;
+using RotoTools.Suite.Views.Opciones;
 using RotoTools.Suite.Views.TariffImporter;
 using RotoTools.Suite.Views.Traduccion;
 
@@ -36,8 +38,10 @@ namespace RotoTools.Suite.Views
     /// Views/Cam/CamPage.xaml), Conector de Herraje, Instalación (antes "Actualizador", ver
     /// Views/Actualizador/ActualizadorPage.xaml), Configuración Manillas FKS (ver
     /// Views/ManillasFKS/ManillasFKSPage.xaml), Cargar precios (antes "TariffImporter", ver
-    /// Views/TariffImporter/TariffImporterPage.xaml) y Traducción (ver
-    /// Views/Traduccion/TraduccionPage.xaml) ya están migrados. El resto se irá añadiendo módulo a
+    /// Views/TariffImporter/TariffImporterPage.xaml), Traducción (ver
+    /// Views/Traduccion/TraduccionPage.xaml), Control de cambios (ver
+    /// Views/ControlCambios/ControlCambiosPage.xaml) y Opciones (ver
+    /// Views/Opciones/OpcionesPage.xaml) ya están migrados. El resto se irá añadiendo módulo a
     /// módulo en próximas entregas.
     /// </summary>
     public partial class MainWindow : Window
@@ -138,7 +142,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new ConectorHerrajePage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ControlCambios"), Icono = iconoControlCambios, Color = new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ControlCambios"), "Control de cambios.", iconoControlCambios, new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA))) },
+                        CrearPagina = () => new ControlCambiosPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Traduccion"), Icono = iconoTraduccion, Color = new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B)),
                         CrearPagina = () => new TraduccionPage() },
@@ -150,7 +154,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new TariffImporterPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Opciones"), Icono = iconoAjustes, Color = new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Opciones"), "Ajustes generales de la aplicación.", iconoAjustes, new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64))) },
+                        CrearPagina = () => new OpcionesPage() },
             };
 
             ListaModulos.ItemsSource = _modulos;

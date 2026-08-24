@@ -10,6 +10,20 @@ namespace RotoTools.Suite.Services
     public class AppSettings
     {
         public string Language { get; set; } = "es";
+
+        /// <summary>
+        /// Equivale a Properties.Settings.Default["ControlCambiosAvanzado"] de la app WinForms
+        /// original (ver RotoTools/Properties/Settings.settings, valor por defecto False):
+        /// alterna entre el informe "avanzado" (con diálogo de configuración, ver
+        /// Views/ControlCambios/ControlCambiosConfiguracionWindow.xaml) y el informe "simple"
+        /// (un único botón, sin configuración) de Control de cambios. En la app original se
+        /// cambiaba desde OptionsMenu (chk_ControlCambiosAvanzado); ese módulo ("Opciones") todavía
+        /// no está migrado a la Suite (sigue siendo un PlaceholderPage en MainWindow), así que de
+        /// momento esta preferencia solo se puede cambiar editando a mano
+        /// rototools.suite.settings.json — se deja aquí ya preparada para cuando se migre ese
+        /// módulo, igual que Language ya lo estaba antes de que existiera el selector de idioma.
+        /// </summary>
+        public bool ControlCambiosAvanzado { get; set; } = false;
     }
 
     public static class AppSettingsService

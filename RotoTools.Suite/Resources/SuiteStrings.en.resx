@@ -169,4 +169,25 @@ Connector updated successfully.</value>
 
 </value>
   </data>
+  <data name="L_Suite_ControlCambiosSubtitulo" xml:space="preserve">
+    <value>Compares two hardware XML files and generates a PDF report with the differences.</value>
+  </data>
+  <data name="L_Suite_FicherosXmlTitulo" xml:space="preserve">
+    <value>XML files</value>
+  </data>
+  <data name="L_Suite_GenerarInformeDesc" xml:space="preserve">
+    <value>Compares the two loaded XML files and generates a PDF with the differences found.</value>
+  </data>
+  <data name="L_Suite_ConfiguracionInformeDesc" xml:space="preserve">
+    <value>Choose which sections are compared (fittings, sets, options, colours, machining...).</value>
+  </data>
+  <data name="L_Suite_GenerarInformeSimpleDesc" xml:space="preserve">
+    <value>Directly generates a summarized PDF with the differences between the two loaded XML files.</value>
+  </data>
+  <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
+    <value>General application preferences.</value>
+  </data>
+  <data name="L_Suite_NotaSelectorIdioma" xml:space="preserve">
+    <value>The language is changed from the selector in the sidebar.</value>
+  </data>
 </root>

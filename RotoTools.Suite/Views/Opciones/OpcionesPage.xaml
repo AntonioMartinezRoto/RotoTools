@@ -1,0 +1,85 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.Opciones.OpcionesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a OptionsMenu.cs/.Designer.cs (WinForms), con 2 excepciones deliberadas:
+
+        1) El selector de idioma (antes cmb_Idioma/lbl_Idioma, groupBox_Idioma) NO se repite aquí:
+           MainWindow ya tiene su propio selector en la barra lateral (CmbIdioma, ver
+           CargarSelectorIdioma/CmbIdioma_SelectionChanged en MainWindow.xaml.cs), añadido en una
+           entrega anterior de la Suite. Repetirlo aquí sería un segundo control haciendo lo mismo;
+           en su lugar se deja una nota señalando dónde está.
+
+        2) btn_ExportarResources/btn_ImportarResources (exportar/importar todos los .resx de
+           traducciones a/desde un Excel) NO se migran: en el original están ocultos
+           (Visible = false en OptionsMenu.Designer.cs) y no hay ningún sitio en el código que los
+           vuelva a mostrar, así que en la práctica son controles muertos/inalcanzables en la app
+           actual. Migrar fielmente significa no exponerlos tampoco aquí. Si en el futuro se
+           necesitan, además habría que resolver que las rutas relativas que usan
+           (Path.Combine(AppContext.BaseDirectory, "..","..","..","..","Resources")) asumen la
+           carpeta de compilación del proyecto original (RotoTools/bin/Debug/net8.0-windows/) y no
+           tienen por qué apuntar al sitio correcto desde la carpeta de compilación de la Suite
+           (que además añade una carpeta win-x64 de por medio).
+
+        Lo que sí se migra, y es el motivo de esta entrega: los 2 interruptores que hasta ahora no
+        tenían ninguna manera de activarse en la Suite (SIEMPRE con su valor por defecto, false, sin
+        ningún sitio desde el que cambiarlos):
+          - "Permitir traducciones en Escandallos y Conector de Herraje" (chk_PermitirTraduccion):
+            ya estaba LEÍDO por ActualizadorInstalarEscandallosWindow, ActualizadorInstalarManual-
+            EscandallosWindow y ConectorHerrajePage (RotoTools.TranslateManager.
+            PermitirTraduccionesEnConectorEscandallos), pero al no existir esta página no había
+            forma de ponerlo a true, así que esas ramas de código nunca se ejecutaban.
+          - "Modo avanzado herramienta Control de Cambios" (chk_ControlCambiosAvanzado): ya estaba
+            preparado en AppSettingsService.ControlCambiosAvanzado (ver comentario allí) para
+            cuando se migrara este módulo.
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40,32,40,32">
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Border Style="{StaticResource RotoPageBadge}" Background="#455A64" Margin="0,0,16,0">
+                    <Path Data="{StaticResource IconDots}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                    <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Antes groupBox_Idioma: el selector de idioma vive ahora en la barra lateral. -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20" Background="{StaticResource RotoContentBackgroundBrush}">
+                <DockPanel LastChildFill="False">
+                    <Path Data="{StaticResource IconGearHex}" Fill="{StaticResource RotoGrayBrush}" Width="16" Height="16"
+                          Stretch="Uniform" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" />
+                    <TextBlock x:Name="TxtNotaIdioma" DockPanel.Dock="Left" VerticalAlignment="Center" TextWrapping="Wrap"
+                               Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" />
+                </DockPanel>
+            </Border>
+
+            <!-- Antes groupBox_Opciones (chk_PermitirTraduccion). -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock x:Name="TxtTraduccionesTitulo" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,10" />
+                    <CheckBox x:Name="ChkPermitirTraduccion" />
+                </StackPanel>
+            </Border>
+
+            <!-- Antes groupBox_ControlCambios (chk_ControlCambiosAvanzado). -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock x:Name="TxtControlCambiosTitulo" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,10" />
+                    <CheckBox x:Name="ChkControlCambiosAvanzado" />
+                </StackPanel>
+            </Border>
+
+            <Button x:Name="BtnGuardar" Style="{StaticResource RotoButtonPrimary}"
+                    HorizontalAlignment="Right" Click="BtnGuardar_Click">
+                <TextBlock x:Name="TxtBtnGuardar" VerticalAlignment="Center" />
+            </Button>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

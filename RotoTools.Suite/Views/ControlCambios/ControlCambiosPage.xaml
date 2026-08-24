@@ -1,0 +1,117 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.ControlCambios.ControlCambiosPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ControlCambiosMenu.cs/.Designer.cs (WinForms). Este es, con mucha diferencia, el
+        módulo más grande migrado hasta ahora (el .cs original tiene más de 3000 líneas): además de
+        los 2 selectores de XML, tiene una familia enorme de métodos que generan el PDF con
+        iTextSharp (~30 métodos "WriteInPdf*") y todo el motor de comparación de XML (CompareFittings,
+        CompareSets, CompareDocOptions...). Toda esa lógica es autocontenida (no depende de ningún
+        control de WinForms, solo recibe/devuelve List&lt;DiferenciaXml&gt; y tipos de RotoEntities),
+        pero transcribirla a mano aquí sería enorme y muy arriesgado de copiar sin errores.
+
+        En vez de eso se reutiliza el MISMO criterio ya usado en ConectorHerrajePage
+        (ObtenerSetsParaConector/GetSetsToConnector): se crea una instancia oculta (nunca visible)
+        de RotoTools.ControlCambiosMenu y se invocan por reflexión sus métodos privados
+        CompareXmlData/CompareXmlDataSimple/GeneratePdf/GeneratePdfSimple tal cual, inyectando antes
+        por reflexión los mismos campos privados que usaría el menú clásico (xmlOrigen/xmlNuevo,
+        lbl_Xml1/lbl_Xml2). Ver el comentario en ControlCambiosPage.xaml.cs (método CrearMenuOculto)
+        para el detalle. RotoTools.csproj no se modifica en absoluto.
+
+        El original era un único formulario fijo (633x253, FixedDialog) con 2 selectores de XML y,
+        según Properties.Settings.Default["ControlCambiosAvanzado"] (ver SetMode en el original),
+        O BIEN 2 botones (btn_Compare "Generar informe" + btn_Config "Configuración") O BIEN 1 solo
+        botón (btn_GenerarInformeSimple "Generar informe"). Aquí se mantiene exactamente el mismo
+        criterio (PanelAvanzado/PanelSimple, uno de los dos visible según
+        App.CurrentSettings.ControlCambiosAvanzado), con el mismo layout de tarjetas que el resto de
+        la Suite en vez de botones sueltos.
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40,32,40,32">
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Border Style="{StaticResource RotoPageBadge}" Background="#8E24AA" Margin="0,0,16,0">
+                    <Path Data="{StaticResource IconClipboard}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                    <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Antes btn_SelectXml1/lbl_Xml1 y btn_SelectXml2/lbl_Xml2: mismo patrón "botón de
+                 icono + etiqueta de estado" que TraduccionPage, uno para cada XML. -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock x:Name="TxtFicherosTitulo" Style="{StaticResource RotoSectionTitle}" />
+
+                    <DockPanel LastChildFill="False" Margin="0,10,0,0">
+                        <Button x:Name="BtnSelectXml1" DockPanel.Dock="Left" Style="{StaticResource RotoCardIconButton}"
+                                Click="BtnSelectXml1_Click" Margin="0,0,12,0">
+                            <Path Data="{StaticResource IconFolderOpen}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" />
+                        </Button>
+                        <TextBlock x:Name="LblXml1" DockPanel.Dock="Left" VerticalAlignment="Center"
+                                   Foreground="{StaticResource RotoGrayBrush}" TextTrimming="CharacterEllipsis" />
+                    </DockPanel>
+
+                    <DockPanel LastChildFill="False" Margin="0,12,0,0">
+                        <Button x:Name="BtnSelectXml2" DockPanel.Dock="Left" Style="{StaticResource RotoCardIconButton}"
+                                Click="BtnSelectXml2_Click" Margin="0,0,12,0">
+                            <Path Data="{StaticResource IconFolderOpen}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" />
+                        </Button>
+                        <TextBlock x:Name="LblXml2" DockPanel.Dock="Left" VerticalAlignment="Center"
+                                   Foreground="{StaticResource RotoGrayBrush}" TextTrimming="CharacterEllipsis" />
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Antes lbl_ControlCambios/btn_Compare + lbl_Configuracion/btn_Config, visibles solo
+                 si Properties.Settings.Default["ControlCambiosAvanzado"] es true (ver SetMode). -->
+            <UniformGrid x:Name="PanelAvanzado" Columns="2" Rows="1" Visibility="Collapsed">
+                <Button x:Name="BtnCompare" Style="{StaticResource RotoActionCard}" Margin="0,0,6,0"
+                        Click="BtnCompare_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#8E24AA" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconDocument}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCardCompareTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCardCompareDesc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnConfig" Style="{StaticResource RotoActionCard}" Margin="6,0,0,0"
+                        Click="BtnConfig_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#455A64" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconSliders}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCardConfigTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCardConfigDesc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+
+            <!-- Antes lbl_ControlCambiosSimple/btn_GenerarInformeSimple, visible solo si
+                 Properties.Settings.Default["ControlCambiosAvanzado"] es false (por defecto). -->
+            <UniformGrid x:Name="PanelSimple" Columns="1" Rows="1" Visibility="Collapsed">
+                <Button x:Name="BtnGenerarInformeSimple" Style="{StaticResource RotoActionCard}"
+                        Click="BtnGenerarInformeSimple_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#8E24AA" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconDocument}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCardSimpleTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCardSimpleDesc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

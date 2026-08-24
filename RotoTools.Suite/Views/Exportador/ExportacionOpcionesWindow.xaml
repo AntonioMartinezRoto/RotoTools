@@ -1,0 +1,71 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Exportador.ExportacionOpcionesWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Opciones exportación"
+    Width="460"
+    SizeToContent="Height"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ExportacionOpciones.cs/.Designer.cs (WinForms): diálogo de opciones de columnas
+        para la exportación a WinPerfil, que en el original solo se abre pulsando F11 sobre
+        ExportacionWinPerfil (ver ExportacionWinPerfil_KeyDown), sin ningún botón visible que lo
+        abra — se mantiene tal cual el mismo único disparador (F11) en
+        ExportacionWinPerfilWindow.xaml.cs, ver ExportacionWinPerfilWindow_KeyDown.
+
+        El original NO tiene ningún método CargarTextos ni ninguna llamada a LocalizationManager en
+        todo el fichero: los 6 textos de las casillas ("Dar formato tabla", "Ver SetDescription Id",
+        "Ver Set Id", "Ver Fitting Id", "Ver SetDescription Position", "Ver Fitting Longitud"), el
+        título del GroupBox ("Opciones exportación") y el texto del botón ("Guardar") están escritos
+        directamente en el Designer, en español, sin pasar por localización. Se mantiene tal cual
+        aquí (no se corrige): todos los textos de esta ventana son literales fijos en español, igual
+        que en la app original, incluso si el usuario tiene seleccionado otro idioma en el resto de
+        la Suite. El formulario original tampoco fijaba ningún Text para la propia ventana (quedaba
+        en blanco); aquí se reutiliza el título del GroupBox ("Opciones exportación") como título de
+        la ventana, ya que es el único texto descriptivo que existía en el original.
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"
+                       Margin="24,0" Text="Opciones exportación" />
+        </Border>
+
+        <!-- Cuerpo: antes groupBoxEscandallos, mismas 6 casillas en 2 columnas -->
+        <Border Grid.Row="1" Style="{StaticResource RotoCard}" Margin="24,20,24,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <CheckBox x:Name="ChkFormatoTabla" Content="Dar formato tabla" Margin="0,0,0,14" />
+                    <CheckBox x:Name="ChkSDId" Content="Ver SetDescription Id" Margin="0,0,0,14" />
+                    <CheckBox x:Name="ChkSetId" Content="Ver Set Id" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <CheckBox x:Name="ChkPosition" Content="Ver SetDescription Position" Margin="0,0,0,14" />
+                    <CheckBox x:Name="ChkFittingId" Content="Ver Fitting Id" Margin="0,0,0,14" />
+                    <CheckBox x:Name="ChkFittingLength" Content="Ver Fitting Longitud" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Pie -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="24,10">
+                <Button x:Name="BtnSaveOptions" Content="Guardar" Style="{StaticResource RotoButtonPrimary}"
+                        Click="BtnSaveOptions_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

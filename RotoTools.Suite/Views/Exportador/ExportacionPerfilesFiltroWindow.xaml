@@ -1,0 +1,77 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Exportador.ExportacionPerfilesFiltroWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Filtro de perfiles"
+    Width="460" Height="480"
+    MinWidth="380" MinHeight="320"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ExportacionWinPerfilListaPerfiles.cs/.Designer.cs (WinForms): diálogo reutilizado
+        2 veces desde ExportacionWinPerfilWindow (btn_FiltrarPerfil_Click/btn_FiltrarPerfilAlu_Click
+        en el original), con filtro de texto + lista marcable de perfiles (Value.Valor) + Guardar. A
+        diferencia de ControlCambiosFiltroItemsWindow, el original de este diálogo no tiene
+        "Seleccionar todos" ni "Solo seleccionados" (mismo criterio: se mantiene tal cual, sin
+        añadir controles que no existían), así que aquí tampoco.
+
+        Mismo patrón ya establecido en ControlCambiosFiltroItemsWindow (CheckedListBox -> ItemsControl
+        con CheckBox real por fila, envuelto en una clase con INotifyPropertyChanged): ver
+        PerfilSeleccionable en ExportadorModels.cs.
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <TextBlock x:Name="TxtTitulo" FontSize="17" FontWeight="SemiBold"
+                       Foreground="White" VerticalAlignment="Center" Margin="24,0" />
+        </Border>
+
+        <!-- Cuerpo -->
+        <Grid Grid.Row="1" Margin="24,20,24,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
+                <TextBlock x:Name="LblBuscar" DockPanel.Dock="Left" Margin="0,0,8,0" VerticalAlignment="Center"
+                           Foreground="{StaticResource RotoInkBrush}" />
+                <TextBox x:Name="TxtFiltro" DockPanel.Dock="Left" Style="{StaticResource RotoTextBox}"
+                         Width="220" TextChanged="TxtFiltro_TextChanged" />
+            </DockPanel>
+
+            <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1" CornerRadius="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+                    <ItemsControl x:Name="ListaPerfiles" HorizontalContentAlignment="Stretch">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Seleccionado, Mode=TwoWay}"
+                                          VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                                          Padding="6,7" Margin="4,1">
+                                    <TextBlock Text="{Binding Valor}" VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                                </CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Pie -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="24,10">
+                <Button x:Name="BtnGuardar" Style="{StaticResource RotoButtonPrimary}" Click="BtnGuardar_Click">
+                    <TextBlock x:Name="TxtBtnGuardar" VerticalAlignment="Center" />
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

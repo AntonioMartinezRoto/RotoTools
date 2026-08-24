@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,6 +9,7 @@ using RotoTools.Suite.Views.Cam;
 using RotoTools.Suite.Views.ConectorHerraje;
 using RotoTools.Suite.Views.ConfiguradorOpciones;
 using RotoTools.Suite.Views.ControlCambios;
+using RotoTools.Suite.Views.Exportador;
 using RotoTools.Suite.Views.ManillasFKS;
 using RotoTools.Suite.Views.Opciones;
 using RotoTools.Suite.Views.TariffImporter;
@@ -40,9 +42,11 @@ namespace RotoTools.Suite.Views
     /// Views/ManillasFKS/ManillasFKSPage.xaml), Cargar precios (antes "TariffImporter", ver
     /// Views/TariffImporter/TariffImporterPage.xaml), Traducción (ver
     /// Views/Traduccion/TraduccionPage.xaml), Control de cambios (ver
-    /// Views/ControlCambios/ControlCambiosPage.xaml) y Opciones (ver
-    /// Views/Opciones/OpcionesPage.xaml) ya están migrados. El resto se irá añadiendo módulo a
-    /// módulo en próximas entregas.
+    /// Views/ControlCambios/ControlCambiosPage.xaml), Opciones (ver
+    /// Views/Opciones/OpcionesPage.xaml) y Exportar datos (ver
+    /// Views/Exportador/ExportadorPage.xaml) ya están migrados — con este último se completa la
+    /// migración de todos los módulos del menú principal original. El resto (si lo hubiera) se irá
+    /// añadiendo módulo a módulo en próximas entregas.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -57,9 +61,25 @@ namespace RotoTools.Suite.Views
             CargarSelectorIdioma();
             CargarTextos();
             CargarInfoConexion();
+            CargarVersion();
 
             if (ListaModulos.Items.Count > 0)
                 ListaModulos.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Muestra junto a "RotoTools Suite", en la cabecera, la versión de ensamblado del propio
+        /// RotoTools.Suite.csproj (AssemblyVersion/FileVersion, ambas puestas a la misma tipología
+        /// X.X.X), con el formato "vX.X.X" pedido. Se lee de Assembly.GetName().Version en vez de
+        /// escribir el número a mano aquí: AssemblyVersion se completa siempre a 4 partes
+        /// (Major.Minor.Build.Revision, la última a 0 si no se especifica), así que solo se toman
+        /// las 3 primeras para no mostrar ese ".0" final que no forma parte de la tipología usada
+        /// en el .csproj.
+        /// </summary>
+        private void CargarVersion()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            RunVersion.Text = version == null ? "" : $"v{version.Major}.{version.Minor}.{version.Build}";
         }
 
         private void CargarTextos()
@@ -136,7 +156,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new ActualizadorPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ExportarDatos"), "Exportación de datos a ficheros externos.", iconoExportar, new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00))) },
+                        CrearPagina = () => new ExportadorPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConectorHerraje"), Icono = iconoConector, Color = new SolidColorBrush(Color.FromRgb(0x00,0x83,0x8F)),
                         CrearPagina = () => new ConectorHerrajePage() },

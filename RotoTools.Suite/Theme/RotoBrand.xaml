@@ -458,6 +458,9 @@
         <Setter Property="Padding" Value="8,4" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="#454851" />
+        <!-- Igual que RotoComboFilter: por defecto WPF no centra en vertical el texto del elemento
+             seleccionado dentro del cuadro cerrado (queda pegado arriba). -->
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
     <!-- ComboBox de filtro sobre fondo claro (p.ej. Lado/Rol en el catálogo de operaciones 3D):

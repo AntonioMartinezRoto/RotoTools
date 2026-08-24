@@ -194,7 +194,28 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
     <value>Preferencias generales de la aplicación.</value>
   </data>
-  <data name="L_Suite_NotaSelectorIdioma" xml:space="preserve">
-    <value>El idioma se cambia desde el selector de la barra lateral.</value>
+  <data name="L_Suite_DashboardTagline" xml:space="preserve">
+    <value>Todos los módulos de RotoTools reunidos en una única aplicación.</value>
+  </data>
+  <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
+    <value>Módulos disponibles</value>
+  </data>
+  <data name="L_Suite_ExportadorSubtitulo" xml:space="preserve">
+    <value>Exporta los Sets del XML cargado a los formatos de WinPerfil y Orgadata.</value>
+  </data>
+  <data name="L_Suite_ExportadorFicheroXmlTitulo" xml:space="preserve">
+    <value>Fichero XML</value>
+  </data>
+  <data name="L_Suite_ExportarWinPerfilDesc" xml:space="preserve">
+    <value>Exporta los Sets seleccionados a un Excel compatible con WinPerfil.</value>
+  </data>
+  <data name="L_Suite_ExportarOrgadataDesc" xml:space="preserve">
+    <value>Exporta los Sets seleccionados a un Excel compatible con Orgadata.</value>
+  </data>
+  <data name="L_Suite_Exportar" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
+    <value>Pulsa F11 para más opciones de columnas.</value>
   </data>
 </root>

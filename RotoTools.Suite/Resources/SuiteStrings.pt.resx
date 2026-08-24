@@ -187,7 +187,28 @@ Conector atualizado com sucesso.</value>
   <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
     <value>Preferências gerais da aplicação.</value>
   </data>
-  <data name="L_Suite_NotaSelectorIdioma" xml:space="preserve">
-    <value>O idioma é alterado a partir do seletor na barra lateral.</value>
+  <data name="L_Suite_DashboardTagline" xml:space="preserve">
+    <value>Todos os módulos do RotoTools reunidos numa única aplicação.</value>
+  </data>
+  <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
+    <value>Módulos disponíveis</value>
+  </data>
+  <data name="L_Suite_ExportadorSubtitulo" xml:space="preserve">
+    <value>Exporta os Sets do XML carregado para os formatos WinPerfil e Orgadata.</value>
+  </data>
+  <data name="L_Suite_ExportadorFicheroXmlTitulo" xml:space="preserve">
+    <value>Ficheiro XML</value>
+  </data>
+  <data name="L_Suite_ExportarWinPerfilDesc" xml:space="preserve">
+    <value>Exporta os Sets selecionados para um Excel compatível com o WinPerfil.</value>
+  </data>
+  <data name="L_Suite_ExportarOrgadataDesc" xml:space="preserve">
+    <value>Exporta os Sets selecionados para um Excel compatível com o Orgadata.</value>
+  </data>
+  <data name="L_Suite_Exportar" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
+    <value>Prima F11 para mais opções de colunas.</value>
   </data>
 </root>

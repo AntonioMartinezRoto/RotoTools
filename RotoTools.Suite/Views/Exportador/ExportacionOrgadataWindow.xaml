@@ -1,0 +1,104 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Exportador.ExportacionOrgadataWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Exportación a Orgadata"
+    Width="620" Height="720"
+    MinWidth="520" MinHeight="480"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ExportacionOrgadata.cs/.Designer.cs (WinForms): mismo criterio de reutilización
+        por reflexión que ExportacionWinPerfilWindow (ver su comentario), sobre una instancia OCULTA
+        de RotoTools.ExportacionOrgadata. A diferencia de WinPerfil, ExportDataXml es una propiedad
+        PRIVADA en este original (no pública), así que aquí también hace falta reflexión para
+        inyectarla (ver ExportacionOrgadataWindow.xaml.cs, CrearFormularioOculto).
+
+        El original tenía además 3 pares combo+etiqueta (cmb_Perfil/lbl_Profile, cmb_Sistema/
+        lbl_System, cmb_Color/lbl_Colour) que arrancaban con Enabled=false en el Designer y NUNCA se
+        volvían a habilitar ni se leían en ningún sitio de ExportacionOrgadata.cs (a diferencia de
+        WinPerfil, donde SÍ son funcionales) — controles muertos/decorativos. Se omiten aquí por
+        completo, mismo criterio ya aplicado a "Exportar a Opera" (botón oculto) en ExportadorPage:
+        no se migra UI inalcanzable/inerte del original. El único filtro realmente funcional en el
+        original era txt_filter (substring sobre Set.Code), que sí se mantiene.
+
+        El original también dejaba this.KeyPreview = true sin ningún KeyDown asociado en todo el
+        fichero (resto vestigial, probablemente copiado de ExportacionWinPerfil): no hay ningún
+        atajo de teclado que reproducir aquí.
+
+        La insignia de la cabecera usa el logotipo real de Orgadata (mismo PNG que la tarjeta de
+        ExportadorPage, ver su comentario) en vez del icono genérico IconOperations de
+        RotoBrand.xaml. A diferencia de WinPerfil, este PNG tiene fondo transparente, así que se
+        centra sobre la insignia circular con un fondo neutro en vez de pintarse como Background a
+        sangre (mismo criterio que en la tarjeta de ExportadorPage).
+    -->
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,16">
+            <Border Style="{StaticResource RotoPageBadge}" Background="#F2F2F4" Margin="0,0,16,0">
+                <Image Source="/Assets/export_orgadata.png" Width="28" Height="28" Stretch="Uniform"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <!-- Antes chk_All/txt_filter/lbl_Busqueda + chkList_Sets -->
+        <Border Grid.Row="1" Style="{StaticResource RotoCard}" Margin="0,0,0,14">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
+                    <CheckBox x:Name="ChkAll" DockPanel.Dock="Left" VerticalAlignment="Center"
+                              Checked="ChkAll_CheckedChanged" Unchecked="ChkAll_CheckedChanged" Margin="0,0,20,0" />
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                        <TextBlock x:Name="LblBusqueda" Margin="0,0,8,0" VerticalAlignment="Center"
+                                   Foreground="{StaticResource RotoInkBrush}" />
+                        <TextBox x:Name="TxtFilter" Style="{StaticResource RotoTextBox}" Width="200"
+                                 TextChanged="TxtFilter_TextChanged" />
+                    </StackPanel>
+                </DockPanel>
+
+                <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1" CornerRadius="6">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+                        <ItemsControl x:Name="ListaSets" HorizontalContentAlignment="Stretch">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Seleccionado, Mode=TwoWay}"
+                                              VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                                              Padding="6,7" Margin="4,1">
+                                        <TextBlock Text="{Binding Codigo}" VerticalAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Pie: antes btn_ExportSets (solo icono) + progress_Export -->
+        <StackPanel Grid.Row="2">
+            <ProgressBar x:Name="ProgressExport" Height="8" Margin="0,0,0,12" Visibility="Collapsed"
+                         IsIndeterminate="True" Foreground="{StaticResource RotoRedBrush}"
+                         Background="{StaticResource RotoBorderBrush}" BorderThickness="0" />
+            <Button x:Name="BtnExportSets" Style="{StaticResource RotoButtonPrimary}"
+                    HorizontalAlignment="Right" Click="BtnExportSets_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconDocument}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnExport" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

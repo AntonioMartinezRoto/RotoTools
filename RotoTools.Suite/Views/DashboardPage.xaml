@@ -4,6 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Background="{StaticResource RotoContentBackgroundBrush}">
 
+    <!--
+        Antes esta página explicaba que la Suite era una shell "en construcción" (párrafo +
+        aviso amarillo de "fase actual: estructura y menú principal, ningún módulo migrado
+        todavía"). Con los 11 módulos del menú ya migrados (ver comentario de CargarModulos en
+        MainWindow.xaml.cs) ese texto había quedado obsoleto y directamente falso, así que se
+        quita a petición expresa y se sustituye por: una frase breve que resume lo que es la
+        Suite ya terminada, y una cuadrícula "Módulos disponibles" a modo de resumen visual
+        (mismos icono/color por módulo que la barra lateral, ver CargarModulos de abajo) en vez
+        de una imagen decorativa suelta — así la portada sigue siendo útil de un vistazo y no
+        solo bonita. Es deliberadamente NO interactiva (ItemsControl, no RotoActionCard/Button):
+        la navegación real ya vive en la barra lateral, duplicarla aquí con clic solo añadiría
+        una segunda forma de hacer lo mismo sin necesidad.
+    -->
     <ScrollViewer Padding="36" VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="1000" HorizontalAlignment="Left">
 
@@ -16,12 +29,32 @@
             </StackPanel>
 
             <TextBlock x:Name="TxtDescripcion"
-                       TextWrapping="Wrap" Margin="0,12,0,20"
+                       TextWrapping="Wrap" Margin="0,12,0,32"
                        Foreground="{StaticResource RotoInkBrush}" FontSize="14" />
 
-            <Border Background="#FFF4CC" CornerRadius="6" Padding="12,8" Margin="0,0,0,24" HorizontalAlignment="Left">
-                <TextBlock x:Name="TxtAvisoFase" FontSize="12.5" Foreground="#7A5B00" TextWrapping="Wrap" MaxWidth="800" />
-            </Border>
+            <TextBlock x:Name="TxtModulosTitulo" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,14" />
+
+            <ItemsControl x:Name="ListaModulosInicio">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource RotoCard}" Width="176" Margin="0,0,16,16" Padding="18">
+                            <StackPanel>
+                                <Border Width="40" Height="40" CornerRadius="20" Background="{Binding Color}" Margin="0,0,0,12">
+                                    <Path Data="{Binding Icono}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <TextBlock Text="{Binding Titulo}" FontWeight="SemiBold" FontSize="13"
+                                           TextWrapping="Wrap" Foreground="{StaticResource RotoInkBrush}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
         </StackPanel>
     </ScrollViewer>

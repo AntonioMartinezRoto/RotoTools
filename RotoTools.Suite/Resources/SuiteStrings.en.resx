@@ -187,7 +187,28 @@ Connector updated successfully.</value>
   <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
     <value>General application preferences.</value>
   </data>
-  <data name="L_Suite_NotaSelectorIdioma" xml:space="preserve">
-    <value>The language is changed from the selector in the sidebar.</value>
+  <data name="L_Suite_DashboardTagline" xml:space="preserve">
+    <value>All RotoTools modules brought together in a single modern.</value>
+  </data>
+  <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
+    <value>Available modules</value>
+  </data>
+  <data name="L_Suite_ExportadorSubtitulo" xml:space="preserve">
+    <value>Exports the Sets from the loaded XML to the WinPerfil and Orgadata formats.</value>
+  </data>
+  <data name="L_Suite_ExportadorFicheroXmlTitulo" xml:space="preserve">
+    <value>XML file</value>
+  </data>
+  <data name="L_Suite_ExportarWinPerfilDesc" xml:space="preserve">
+    <value>Exports the selected Sets to an Excel file compatible with WinPerfil.</value>
+  </data>
+  <data name="L_Suite_ExportarOrgadataDesc" xml:space="preserve">
+    <value>Exports the selected Sets to an Excel file compatible with Orgadata.</value>
+  </data>
+  <data name="L_Suite_Exportar" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
+    <value>Press F11 for more column options.</value>
   </data>
 </root>

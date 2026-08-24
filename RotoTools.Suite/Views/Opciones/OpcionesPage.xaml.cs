@@ -30,7 +30,6 @@ namespace RotoTools.Suite.Views.Opciones
         {
             TxtTitulo.Text = RotoTools.LocalizationManager.GetString("L_Opciones");
             TxtSubtitulo.Text = Loc("L_Suite_OpcionesSubtitulo");
-            TxtNotaIdioma.Text = Loc("L_Suite_NotaSelectorIdioma");
 
             TxtTraduccionesTitulo.Text = RotoTools.LocalizationManager.GetString("L_Traduccion");
             ChkPermitirTraduccion.Content = RotoTools.LocalizationManager.GetString("L_PermitirTraduccion");

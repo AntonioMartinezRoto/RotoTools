@@ -10,8 +10,9 @@
         1) El selector de idioma (antes cmb_Idioma/lbl_Idioma, groupBox_Idioma) NO se repite aquí:
            MainWindow ya tiene su propio selector en la barra lateral (CmbIdioma, ver
            CargarSelectorIdioma/CmbIdioma_SelectionChanged en MainWindow.xaml.cs), añadido en una
-           entrega anterior de la Suite. Repetirlo aquí sería un segundo control haciendo lo mismo;
-           en su lugar se deja una nota señalando dónde está.
+           entrega anterior de la Suite. Repetirlo aquí sería un segundo control haciendo lo mismo.
+           Esta página llegó a tener una nota señalando dónde está el selector, pero se quitó a
+           petición expresa: no aporta nada al usuario final, solo ruido.
 
         2) btn_ExportarResources/btn_ImportarResources (exportar/importar todos los .resx de
            traducciones a/desde un Excel) NO se migran: en el original están ocultos
@@ -49,16 +50,6 @@
                     <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
                 </StackPanel>
             </StackPanel>
-
-            <!-- Antes groupBox_Idioma: el selector de idioma vive ahora en la barra lateral. -->
-            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20" Background="{StaticResource RotoContentBackgroundBrush}">
-                <DockPanel LastChildFill="False">
-                    <Path Data="{StaticResource IconGearHex}" Fill="{StaticResource RotoGrayBrush}" Width="16" Height="16"
-                          Stretch="Uniform" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" />
-                    <TextBlock x:Name="TxtNotaIdioma" DockPanel.Dock="Left" VerticalAlignment="Center" TextWrapping="Wrap"
-                               Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" />
-                </DockPanel>
-            </Border>
 
             <!-- Antes groupBox_Opciones (chk_PermitirTraduccion). -->
             <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">

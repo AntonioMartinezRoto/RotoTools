@@ -29,8 +29,21 @@
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="/Assets/logo.png" Height="32" Margin="0,0,16,0" />
-                    <TextBlock Text="RotoTools Suite" FontSize="18" FontWeight="SemiBold"
-                               Foreground="White" VerticalAlignment="Center" />
+                    <!--
+                        "RotoTools Suite" + versión de ensamblado (AssemblyVersion/FileVersion en
+                        RotoTools.Suite.csproj, p.ej. 2.1.1: se lee en tiempo de ejecución, ver
+                        CargarVersion en MainWindow.xaml.cs) en el MISMO TextBlock, como 2 Run con
+                        distinto FontSize, en vez de 2 TextBlock separados dentro del StackPanel:
+                        con 2 TextBlock, VerticalAlignment (Center/Bottom/...) alinea el CUADRO de
+                        cada uno, no su línea de base, y con tamaños de letra distintos eso deja la
+                        línea de base de "vX.X.X" más baja que la de "RotoTools Suite" (se veía
+                        desalineado). Dentro de un mismo TextBlock, en cambio, WPF alinea la línea
+                        de base de todos sus Run automáticamente sea cual sea su FontSize.
+                    -->
+                    <TextBlock VerticalAlignment="Center">
+                        <Run Text="RotoTools Suite" FontSize="18" FontWeight="SemiBold" Foreground="White" />
+                        <Run Text="  " />
+                        <Run x:Name="RunVersion" FontSize="12" Foreground="#B9BBC2" /></TextBlock>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">

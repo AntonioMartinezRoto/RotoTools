@@ -24,6 +24,12 @@
   <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
     <value>Configure se as manilhas usam geometria normalizada, geometria FKS, ou ambas, para o fornecedor de ferragem selecionado.</value>
   </data>
+  <data name="L_Suite_TariffImporterSubtitulo" xml:space="preserve">
+    <value>Importa preços a partir de um ficheiro Excel para a tarifa selecionada.</value>
+  </data>
+  <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
+    <value>Nenhum ficheiro selecionado</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Conector ativo</value>
   </data>

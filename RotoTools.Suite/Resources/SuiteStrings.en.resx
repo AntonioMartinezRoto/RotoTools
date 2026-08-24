@@ -24,6 +24,12 @@
   <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
     <value>Configure whether handles use normalized geometry, FKS geometry, or both, for the selected hardware supplier.</value>
   </data>
+  <data name="L_Suite_TariffImporterSubtitulo" xml:space="preserve">
+    <value>Import prices from an Excel file into the selected tariff.</value>
+  </data>
+  <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Active connector</value>
   </data>

@@ -31,6 +31,12 @@
   <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
     <value>Configura si las manillas usan geometría normalizada, geometría FKS, o ambas, para el proveedor de herraje seleccionado.</value>
   </data>
+  <data name="L_Suite_TariffImporterSubtitulo" xml:space="preserve">
+    <value>Importa precios desde un archivo Excel a la tarifa seleccionada.</value>
+  </data>
+  <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
+    <value>Ningún archivo seleccionado</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Conector activo</value>
   </data>

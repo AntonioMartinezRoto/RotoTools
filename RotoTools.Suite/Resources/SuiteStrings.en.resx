@@ -21,6 +21,9 @@
   <data name="L_Suite_ConectorHerrajeSubtitulo" xml:space="preserve">
     <value>XML loading and hardware connector generation/combination.</value>
   </data>
+  <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
+    <value>Configure whether handles use normalized geometry, FKS geometry, or both, for the selected hardware supplier.</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Active connector</value>
   </data>

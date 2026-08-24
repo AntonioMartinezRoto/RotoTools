@@ -21,6 +21,9 @@
   <data name="L_Suite_ConectorHerrajeSubtitulo" xml:space="preserve">
     <value>Carregamento de XML e geração/combinação de conectores de ferragem.</value>
   </data>
+  <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
+    <value>Configure se as manilhas usam geometria normalizada, geometria FKS, ou ambas, para o fornecedor de ferragem selecionado.</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Conector ativo</value>
   </data>

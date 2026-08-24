@@ -7,6 +7,7 @@ using RotoTools.Suite.Views.Actualizador;
 using RotoTools.Suite.Views.Cam;
 using RotoTools.Suite.Views.ConectorHerraje;
 using RotoTools.Suite.Views.ConfiguradorOpciones;
+using RotoTools.Suite.Views.ManillasFKS;
 
 namespace RotoTools.Suite.Views
 {
@@ -30,9 +31,10 @@ namespace RotoTools.Suite.Views
     /// Ventana principal (shell) de RotoTools Suite: sustituye a Main.cs/Main.Designer.cs de la
     /// app WinForms original. Estructura + menú principal, con páginas "próximamente" para los
     /// módulos aún no migrados; Configurador de opciones, CAM (mecanizados 2D/3D, ver
-    /// Views/Cam/CamPage.xaml), Conector de Herraje e Instalación (antes "Actualizador", ver
-    /// Views/Actualizador/ActualizadorPage.xaml) ya están migrados. El resto se irá añadiendo
-    /// módulo a módulo en próximas entregas.
+    /// Views/Cam/CamPage.xaml), Conector de Herraje, Instalación (antes "Actualizador", ver
+    /// Views/Actualizador/ActualizadorPage.xaml) y Configuración Manillas FKS (ver
+    /// Views/ManillasFKS/ManillasFKSPage.xaml) ya están migrados. El resto se irá añadiendo módulo
+    /// a módulo en próximas entregas.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -138,7 +140,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Traduccion"), "Gestión de traducciones multilenguaje.", iconoTraduccion, new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B))) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), Icono = iconoManillas, Color = new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), "Configuración de manillas FKS.", iconoManillas, new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37))) },
+                        CrearPagina = () => new ManillasFKSPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_TariffImporter"), Icono = iconoTarifas, Color = new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7)),
                         CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_TariffImporter"), "Carga de precios / tarifas.", iconoTarifas, new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7))) },

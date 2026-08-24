@@ -30,6 +30,15 @@
   <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
     <value>No file selected</value>
   </data>
+  <data name="L_Suite_TraduccionSubtitulo" xml:space="preserve">
+    <value>Load a hardware XML, generate the translation Excel template, and apply a translation onto the XML.</value>
+  </data>
+  <data name="L_Suite_TraducirXmlDesc" xml:space="preserve">
+    <value>Applies a translation (Excel) onto the loaded XML and generates a new translated XML.</value>
+  </data>
+  <data name="L_Suite_GenerarPlantillaDesc" xml:space="preserve">
+    <value>Generates an Excel template with Fittings, Options, Colours, FittingGroups and Sets to translate.</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Active connector</value>
   </data>

@@ -30,6 +30,15 @@
   <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
     <value>Nenhum ficheiro selecionado</value>
   </data>
+  <data name="L_Suite_TraduccionSubtitulo" xml:space="preserve">
+    <value>Carregue um XML de ferragens, gere o modelo Excel de tradução e aplique uma tradução ao XML.</value>
+  </data>
+  <data name="L_Suite_TraducirXmlDesc" xml:space="preserve">
+    <value>Aplica uma tradução (Excel) ao XML carregado e gera um novo XML traduzido.</value>
+  </data>
+  <data name="L_Suite_GenerarPlantillaDesc" xml:space="preserve">
+    <value>Gera um modelo Excel com Fittings, Options, Colours, FittingGroups e Sets para traduzir.</value>
+  </data>
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Conector ativo</value>
   </data>

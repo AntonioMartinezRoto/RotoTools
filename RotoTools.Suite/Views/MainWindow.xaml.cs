@@ -9,6 +9,7 @@ using RotoTools.Suite.Views.ConectorHerraje;
 using RotoTools.Suite.Views.ConfiguradorOpciones;
 using RotoTools.Suite.Views.ManillasFKS;
 using RotoTools.Suite.Views.TariffImporter;
+using RotoTools.Suite.Views.Traduccion;
 
 namespace RotoTools.Suite.Views
 {
@@ -34,9 +35,10 @@ namespace RotoTools.Suite.Views
     /// módulos aún no migrados; Configurador de opciones, CAM (mecanizados 2D/3D, ver
     /// Views/Cam/CamPage.xaml), Conector de Herraje, Instalación (antes "Actualizador", ver
     /// Views/Actualizador/ActualizadorPage.xaml), Configuración Manillas FKS (ver
-    /// Views/ManillasFKS/ManillasFKSPage.xaml) y Cargar precios (antes "TariffImporter", ver
-    /// Views/TariffImporter/TariffImporterPage.xaml) ya están migrados. El resto se irá añadiendo
-    /// módulo a módulo en próximas entregas.
+    /// Views/ManillasFKS/ManillasFKSPage.xaml), Cargar precios (antes "TariffImporter", ver
+    /// Views/TariffImporter/TariffImporterPage.xaml) y Traducción (ver
+    /// Views/Traduccion/TraduccionPage.xaml) ya están migrados. El resto se irá añadiendo módulo a
+    /// módulo en próximas entregas.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -139,7 +141,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ControlCambios"), "Control de cambios.", iconoControlCambios, new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA))) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Traduccion"), Icono = iconoTraduccion, Color = new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Traduccion"), "Gestión de traducciones multilenguaje.", iconoTraduccion, new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B))) },
+                        CrearPagina = () => new TraduccionPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), Icono = iconoManillas, Color = new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37)),
                         CrearPagina = () => new ManillasFKSPage() },

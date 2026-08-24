@@ -1,0 +1,105 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    RotoTools Suite — nueva shell moderna, en un proyecto NUEVO e independiente.
+
+    A propósito NO se usa ninguna librería de terceros de UI (como WPF-UI): solo WPF "de fábrica"
+    de .NET 8, con un tema propio (Theme/RotoBrand.xaml) hecho a mano. Motivo: la primera versión
+    (con la librería WPF-UI) dio muchos errores de compilación difíciles de depurar, varios de
+    ellos por nombres de iconos de esa librería que no se pudieron verificar uno a uno. Con WPF
+    "puro" evitamos ese riesgo por completo: todo lo que se usa aquí (Window, Grid, Button,
+    DataGrid, Style, ControlTemplate...) es API estándar y muy estable de .NET, sin nada que
+    adivinar.
+
+    Igual que el intento anterior, este proyecto REFERENCIA el proyecto original (..\RotoTools.csproj)
+    como si fuera una librería, para reutilizar el 100% de la lógica de negocio ya existente
+    (Helpers.cs, Cam3DHelpers.cs, LocalizationManager.cs, catálogos JSON embebidos, acceso a SQL
+    Server...) sin duplicar ni un solo fichero. La app WinForms original NO se modifica ni se ve
+    afectada por este proyecto.
+  -->
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <!--
+      Necesario SOLO para poder invocar por reflexión GetSetsToConnector() (método privado de
+      ConectorHerrajeMenu, ver Views/ConectorHerraje/ConectorHerrajePage.xaml.cs): esa lógica
+      (reglas de negocio de herrajes PVC/Aluminio/PAX, ~9000 líneas) no está expuesta por ninguna
+      clase pública reutilizable, así que se crea una instancia oculta (nunca mostrada) del
+      formulario original y se invoca su método tal cual, en vez de duplicar esa lógica aquí. Para
+      poder tipar esa instancia (RotoTools.ConectorHerrajeMenu, que hereda de Form) el propio
+      proyecto necesita también el SDK de Windows Forms, aunque la interfaz de la suite siga
+      siendo 100% WPF (UseWPF y UseWindowsForms pueden convivir en el mismo proyecto).
+    -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <AssemblyName>RotoTools.Suite</AssemblyName>
+    <RootNamespace>RotoTools.Suite</RootNamespace>
+    <Product>RotoTools Suite</Product>
+    <AssemblyTitle>RotoTools Suite</AssemblyTitle>
+    <Company>Roto Frank FTT GmbH</Company>
+    <Version>0.1.0</Version>
+    <FileVersion>2.1.1</FileVersion>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+
+    <ApplicationIcon>Assets\roto_icon.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+
+    <!-- Portable: un único .exe autocontenido, sin necesidad de instalar el runtime de .NET. -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <PublishTrimmed>false</PublishTrimmed>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+  </PropertyGroup>
+
+  <!-- Sin PackageReference de UI de terceros, a propósito (ver comentario de arriba). -->
+
+  <!--
+    Al activar UseWindowsForms (ver comentario arriba) el SDK añade automáticamente
+    "System.Windows.Forms" y "System.Drawing" como usings implícitos GLOBALES (afectan a TODO el
+    proyecto, no solo al fichero que los necesita), y eso choca con "System.Windows"/
+    "System.Windows.Controls"/"System.Windows.Media" (WPF): Application, UserControl y Brush
+    existen en ambos espacios de nombres, así que quedan ambiguos en cualquier fichero .xaml.cs de
+    la suite, no solo en el que usa reflexión. Se retiran aquí esos dos usings implícitos; el único
+    sitio que necesita System.Windows.Forms (el CheckBox de ConectorHerrajeMenu, ver
+    ObtenerSetsParaConector en ConectorHerrajePage.xaml.cs) ya lo referencia con el nombre
+    completo, así que no hace falta el using global para nada.
+  -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Referencia al proyecto WinForms original: reutiliza TODA su lógica de negocio ya probada. -->
+    <ProjectReference Include="..\RotoTools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Microsoft.Data.SqlClient: no es una librería de interfaz, es acceso a datos (SQL Server), la
+      misma versión que ya usa RotoTools.csproj. Las páginas que consultan la BBDD directamente
+      (p.ej. el editor de Configurador de opciones) la referencian aquí también de forma explícita,
+      para no depender de que Visual Studio resuelva la referencia transitiva del otro proyecto.
+    -->
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+
+    <!--
+      NPOI: igual criterio que Microsoft.Data.SqlClient de arriba, misma versión que ya usa
+      RotoTools.csproj. La necesita ConectorHerrajeRevisionSetsWindow para exportar a Excel (ver
+      Views/ConectorHerraje/ConectorHerrajeRevisionSetsWindow.xaml.cs), igual que el original
+      ConectorHerrajeRevisionSets.cs.
+    -->
+    <PackageReference Include="NPOI" Version="2.7.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\**\*" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,28 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.PlaceholderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <Grid>
+        <StackPanel MaxWidth="560" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Style="{StaticResource RotoCard}" Padding="36">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border x:Name="Badge" Width="56" Height="56" CornerRadius="28" Margin="0,0,0,16">
+                        <Path x:Name="IconoModulo" Fill="White" Width="24" Height="24" Stretch="Uniform"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}"
+                               HorizontalAlignment="Center" TextAlignment="Center" />
+                    <TextBlock x:Name="TxtDescripcion"
+                               Foreground="{StaticResource RotoGrayBrush}" FontSize="13"
+                               TextWrapping="Wrap" TextAlignment="Center" />
+                    <Border Background="#FFF4CC" CornerRadius="6" Padding="10,6" Margin="0,18,0,0">
+                        <TextBlock Text="Este módulo todavía se abre desde la versión clásica de RotoTools; se irá migrando a la suite en próximas actualizaciones."
+                                   FontSize="12" TextWrapping="Wrap" TextAlignment="Center" Foreground="#7A5B00" />
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

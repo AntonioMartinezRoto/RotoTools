@@ -1,0 +1,112 @@
+<Window
+    x:Class="RotoTools.Suite.Views.ConfiguradorOpciones.ConfiguradorOpcionesEditorWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Configurador de opciones"
+    Width="1180" Height="720"
+    MinWidth="900" MinHeight="560"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ConfiguradorOpciones.cs (WinForms): mismo comportamiento (listado de Opciones
+        filtrable a la izquierda, contenido de la Opción seleccionada en una tabla editable a la
+        derecha, y los botones Guardar/Ejecutar), con el aspecto moderno de la suite.
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <Grid Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="TxtTitulo" Text="Configurador de opciones" FontSize="17" FontWeight="SemiBold"
+                           Foreground="White" VerticalAlignment="Center" />
+                <TextBlock x:Name="TxtConexion" Grid.Column="1" Foreground="#B9BBC2" FontSize="12"
+                           VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <!-- Cuerpo: filtro + lista de Opciones a la izquierda, tabla de contenido a la derecha -->
+        <Grid Grid.Row="1" Margin="24,20,24,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <StackPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+                    <TextBlock x:Name="LblFiltrar" Text="Filtrar" Foreground="{StaticResource RotoInkBrush}"
+                               FontSize="12.5" Margin="0,0,0,4" />
+                    <TextBox x:Name="TxtFiltro" Style="{StaticResource RotoTextBox}"
+                             TextChanged="TxtFiltro_TextChanged" />
+                </StackPanel>
+                <ListBox x:Name="ListaOpciones" Style="{StaticResource RotoList}"
+                         DisplayMemberPath="Name"
+                         SelectionChanged="ListaOpciones_SelectionChanged" />
+            </DockPanel>
+
+            <DataGrid x:Name="GridContenidoOpciones" Grid.Column="2" Style="{StaticResource RotoDataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="ColValor" Binding="{Binding Valor}" IsReadOnly="True" Width="*" />
+                    <DataGridTextColumn x:Name="ColTexto" Binding="{Binding Texto}" IsReadOnly="True" Width="180" />
+
+                    <!--
+                        Las casillas van en columnas de plantilla (no DataGridCheckBoxColumn) para que
+                        se puedan marcar/desmarcar con UN solo click. Con DataGridCheckBoxColumn, la
+                        casilla que se ve normalmente está "apagada" hasta que la celda entra en modo
+                        edición: el primer click solo selecciona/edita la celda y hace falta un segundo
+                        click para que el click llegue realmente a la casilla. Poniendo un CheckBox de
+                        verdad dentro de la plantilla de celda (con enlace TwoWay), el click llega
+                        directamente a la casilla la primera vez.
+                    -->
+                    <DataGridTemplateColumn x:Name="ColOcultaEnLista" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding OcultaEnLista, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="ColOcultaEnArbol" Width="130">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding OcultaEnArbol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Pie: acciones. Botones más grandes y con más aire (ver RotoButtonPrimary/Secondary en
+             RotoBrand.xaml: más padding, tamaño mínimo y margen entre ellos), cada uno con su icono. -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="24,10">
+                <Button x:Name="BtnEjecutar" Style="{StaticResource RotoButtonSecondary}" Click="BtnEjecutar_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconPlay}" Fill="{StaticResource RotoInkBrush}"
+                              Width="15" Height="15" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnEjecutar" Text="Ejecutar" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnGuardar" Style="{StaticResource RotoButtonPrimary}" Click="BtnGuardar_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconDocument}" Fill="White"
+                              Width="15" Height="15" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnGuardar" Text="Guardar" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

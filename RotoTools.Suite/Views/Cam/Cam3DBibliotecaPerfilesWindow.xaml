@@ -1,0 +1,133 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Cam.Cam3DBibliotecaPerfilesWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Biblioteca de perfiles" Height="900" Width="1300" MinHeight="500" MinWidth="900"
+    WindowStartupLocation="CenterOwner" WindowState="Maximized"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a Cam3DPerfilesCatalogoAdmin.cs/.Designer.cs (WinForms): administración
+        exclusiva de la biblioteca embebida de perfiles (Resources\Mecanizados3D
+        \BibliotecaPerfiles3D.json: ReferenciaBase -> Rol de mecanizado + altura de canal de
+        herraje ya conocidos). El original era un diálogo fijo (1200x630, no maximizable); aquí se
+        abre maximizada/redimensionable como el resto de pantallas de CAM3D.
+    -->
+    <Window.Resources>
+        <Style x:Key="RotoGridIconButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Width" Value="28" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#E9E9EC" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera + acciones -->
+        <DockPanel Grid.Row="0" Margin="0,0,0,12" LastChildFill="False">
+            <StackPanel DockPanel.Dock="Left">
+                <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0,0,0,4" />
+                <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <TextBox x:Name="TxtBuscarBiblioteca" DockPanel.Dock="Right" Style="{StaticResource RotoTextBox}"
+                     Width="220" VerticalAlignment="Bottom" Margin="0,0,0,4" TextChanged="TxtBuscarBiblioteca_TextChanged" />
+            <TextBlock x:Name="LblBuscarBiblioteca" DockPanel.Dock="Right" VerticalAlignment="Bottom" Margin="0,0,8,10" />
+
+            <Button x:Name="BtnNuevoPerfil" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                    VerticalAlignment="Bottom" Margin="0,0,20,0" Click="BtnNuevoPerfil_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconPlus}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnNuevoPerfil" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+            <!-- Filtro por Rol de la grid (independiente del combo de edición ColRol): mismo
+                 criterio que CmbFiltroRolResultado en Cam3DWindow. -->
+            <ComboBox x:Name="CmbFiltroRol" DockPanel.Dock="Right" Style="{StaticResource RotoComboFilter}"
+                      Width="160" VerticalAlignment="Bottom" Margin="0,0,20,0"
+                      SelectionChanged="CmbFiltroRol_SelectionChanged" />
+            <TextBlock x:Name="LblFiltroRol" DockPanel.Dock="Right" VerticalAlignment="Bottom" Margin="0,0,8,10" />
+        </DockPanel>
+
+        <!-- Grid principal -->
+        <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                CornerRadius="8" Padding="14" Margin="0,0,0,12">
+            <DataGrid x:Name="GridBiblioteca" Style="{StaticResource RotoDataGrid}" LoadingRow="GridBiblioteca_LoadingRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="ColReferenciaBase" Header="Referencia base" Binding="{Binding ReferenciaBase}"
+                                         Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" />
+                    <DataGridComboBoxColumn x:Name="ColRol" Header="Rol" Width="220"
+                                             SelectedItemBinding="{Binding Role, Mode=TwoWay}"
+                                             ElementStyle="{StaticResource RotoDataGridCellCombo}"
+                                                 EditingElementStyle="{StaticResource RotoDataGridCellCombo}" />
+                    <DataGridTextColumn Header="Altura canal herraje" Binding="{Binding PosicionCanalHerraje}" Width="180"
+                                         ElementStyle="{StaticResource RotoDataGridCellText}" />
+                    <DataGridTemplateColumn Header="" Width="44">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource RotoGridIconButton}" Click="BtnDuplicarPerfil_Click"
+                                        ToolTip="Duplicar">
+                                    <Path Data="{StaticResource IconDuplicate}" Fill="{StaticResource RotoGrayBrush}"
+                                          Width="14" Height="14" Stretch="Uniform" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" Width="44">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource RotoGridIconButton}" Click="BtnEliminarPerfil_Click"
+                                        ToolTip="Eliminar">
+                                    <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoGrayBrush}"
+                                          Width="14" Height="14" Stretch="Uniform" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Barra inferior -->
+        <DockPanel Grid.Row="2" LastChildFill="False">
+            <Button x:Name="BtnGuardar" DockPanel.Dock="Left" Style="{StaticResource RotoButtonPrimary}"
+                    Click="BtnGuardar_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconDocument}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnGuardar" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="BtnVolver" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                    Click="BtnVolver_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconBack}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnVolver" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

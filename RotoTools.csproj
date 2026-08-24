@@ -7,13 +7,40 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>images\roto_icon.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationVisualStyles>true</ApplicationVisualStyles>
+    <ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
 	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 	<PublishTrimmed>false</PublishTrimmed>
-    <FileVersion>7.2</FileVersion>
-    <AssemblyVersion>7.2</AssemblyVersion>
+    <FileVersion>7.3</FileVersion>
+    <AssemblyVersion>7.3</AssemblyVersion>
   </PropertyGroup>
+
+  <!--
+    Excluye de este proyecto (RotoTools, el clásico WinForms) cualquier fichero de los proyectos
+    NUEVOS de la suite moderna (RotoTools.Suite, y el intento anterior descartado
+    RotoTools.Modern), que viven en subcarpetas DENTRO de esta misma carpeta.
+    Por defecto, un proyecto de estilo SDK como este incluye automáticamente TODOS los .cs/.xaml
+    de sus subcarpetas (globbing implícito) — así que, sin esta exclusión explícita, este proyecto
+    WinForms intenta compilar también los ficheros WPF de esas subcarpetas (y sus artefactos
+    intermedios en RotoTools.Modern\obj\ / RotoTools.Suite\obj\), lo cual provoca errores como
+    "el espacio de nombres 'Controls' no existe en 'System.Windows'" (porque este proyecto no
+    referencia WPF) o "no se pudo abrir el archivo de origen ...\Views\...\....xaml".
+    Esto NO cambia ninguna funcionalidad de la app: solo evita que el compilador confunda los
+    ficheros de un proyecto con los de otro.
+  -->
+  <ItemGroup>
+    <Compile Remove="RotoTools.Modern\**\*.cs" />
+    <Compile Remove="RotoTools.Suite\**\*.cs" />
+    <None Remove="RotoTools.Modern\**\*" />
+    <None Remove="RotoTools.Suite\**\*" />
+    <EmbeddedResource Remove="RotoTools.Modern\**\*" />
+    <EmbeddedResource Remove="RotoTools.Suite\**\*" />
+    <Page Remove="RotoTools.Modern\**\*" />
+    <Page Remove="RotoTools.Suite\**\*" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="images\logo.png" />
@@ -2122,6 +2149,8 @@
     <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Practicable.json" />
     <EmbeddedResource Include="Resources\Escandallos\RO_Herraje Puerta.json" />
     <EmbeddedResource Include="Resources\Escandallos\RO_MANILLAS.json" />
+    <EmbeddedResource Include="Resources\Mecanizados3D\BibliotecaPerfiles3D.json" />
+    <EmbeddedResource Include="Resources\Mecanizados3D\CatalogoOperaciones3D.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000A.json" />
     <EmbeddedResource Include="Resources\Operaciones\Macros\MechanizedOperations\RO_M000A_T.json" />

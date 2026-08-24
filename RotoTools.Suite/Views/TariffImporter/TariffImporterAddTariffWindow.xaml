@@ -1,0 +1,59 @@
+<Window
+    x:Class="RotoTools.Suite.Views.TariffImporter.TariffImporterAddTariffWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Crear tarifa" Width="420" MinWidth="420"
+    SizeToContent="Height"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a TariffsImporterAddTariff.cs/.Designer.cs (WinForms): mismo diálogo modal fijo
+        (antes 417x230, FixedDialog) para crear una tarifa nueva (nombre + moneda asociada), mismo
+        comportamiento y misma lógica de negocio, reutilizada tal cual vía ProjectReference. El
+        botón "Guardar" es el AcceptButton igual que el original (this.AcceptButton = btn_Aceptar),
+        aquí vía IsDefault="True" (se activa con Intro).
+
+        SizeToContent="Height" en vez de un Height fijo (a propósito, corrige un fallo reportado):
+        con una altura fija en píxeles el cálculo no tenía en cuenta la barra de título ni los
+        bordes de la ventana (Height en WPF mide la ventana completa, no solo el área de cliente
+        como ClientSize en WinForms), así que "Moneda asociada" quedaba recortado fuera de la
+        ventana sin poder redimensionarla (ResizeMode="NoResize"). Con SizeToContent="Height" la
+        ventana mide su contenido real y se ajusta sola, sin depender de cálculos a mano.
+    -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+            <Border Style="{StaticResource RotoPageBadge}" Background="#0097A7" Margin="0,0,16,0">
+                <Path Data="{StaticResource IconTag}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock x:Name="LblTarifa" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" Margin="0,0,0,4" />
+            <TextBox x:Name="TxtTariffName" Style="{StaticResource RotoTextBox}" MaxLength="20" Margin="0,0,0,16" />
+
+            <TextBlock x:Name="LblMonedas" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" Margin="0,0,0,4" />
+            <ComboBox x:Name="CmbMonedas" Style="{StaticResource RotoComboFilter}"
+                      DisplayMemberPath="Nombre" SelectedValuePath="Nombre" />
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" Margin="0,20,0,0" LastChildFill="False">
+            <Button x:Name="BtnAceptar" DockPanel.Dock="Right" Style="{StaticResource RotoButtonPrimary}"
+                    IsDefault="True" Click="BtnAceptar_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconDocument}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnAceptar" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

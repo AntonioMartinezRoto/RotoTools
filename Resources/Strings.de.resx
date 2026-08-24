@@ -663,4 +663,118 @@
   <data name="L_ImportarConfigCliente" xml:space="preserve">
     <value>Importar configuración de cliente(DE)</value>
   </data>
+  <data name="L_Volver" xml:space="preserve">
+    <value>Volver(DE)</value>
+  </data>
+  <data name="L_Perfiles" xml:space="preserve">
+    <value>Perfiles(DE)</value>
+  </data>
+  <data name="L_TodosPerfiles" xml:space="preserve">
+    <value>Todos los perfiles (doble clic para añadir a la lista)(DE)</value>
+  </data>
+  <data name="L_PerfilesAInstalar" xml:space="preserve">
+    <value>Perfiles a instalar(DE)</value>
+  </data>
+  <data name="L_Limpiar" xml:space="preserve">
+    <value>Limpiar(DE)</value>
+  </data>
+  <data name="L_OperacionesAInstalarEn3D" xml:space="preserve">
+    <value>Operaciones a instalar en 3D(DE)</value>
+  </data>
+  <data name="L_Quitar" xml:space="preserve">
+    <value>Quitar(DE)</value>
+  </data>
+  <data name="L_Referencia" xml:space="preserve">
+    <value>Referencia(DE)</value>
+  </data>
+  <data name="L_Rol" xml:space="preserve">
+    <value>Rol(DE)</value>
+  </data>
+  <data name="L_Lado" xml:space="preserve">
+    <value>Lado(DE)</value>
+  </data>
+  <data name="L_Interior" xml:space="preserve">
+    <value>Interior(DE)</value>
+  </data>
+  <data name="L_Exterior" xml:space="preserve">
+    <value>Exterior(DE)</value>
+  </data>
+  <data name="L_Plano" xml:space="preserve">
+    <value>Plano(DE)</value>
+  </data>
+  <data name="L_Profundidad" xml:space="preserve">
+    <value>Profundidad(DE)</value>
+  </data>
+  <data name="L_Nivel" xml:space="preserve">
+    <value>Nivel(DE)</value>
+  </data>
+  <data name="L_CatalogoActual" xml:space="preserve">
+    <value>Catálogo actual(DE)</value>
+  </data>
+  <data name="L_OperacionesSinDefinicionEnCatalogo" xml:space="preserve">
+    <value>Operaciones seleccionadas sin definición en el catálogo(DE)</value>
+  </data>
+  <data name="L_CatalogoOperaciones3D" xml:space="preserve">
+    <value>Catálogo de operaciones 3D(DE)</value>
+  </data>
+  <data name="L_NuevoPerfil" xml:space="preserve">
+    <value>Nuevo perfil(DE)</value>
+  </data>
+  <data name="L_BibliotecaPerfiles" xml:space="preserve">
+    <value>Biblioteca de perfiles(DE)</value>
+  </data>
+  <data name="L_ReferenciaBase" xml:space="preserve">
+    <value>Referencia base(DE)</value>
+  </data>
+  <data name="L_CanalHerrajeAltura" xml:space="preserve">
+    <value>Canal herraje (altura)(DE)</value>
+  </data>
+  <data name="L_AnchoInterior" xml:space="preserve">
+    <value>Ancho interior(DE)</value>
+  </data>
+  <data name="L_AnchoExterior" xml:space="preserve">
+    <value>Ancho exterior(DE)</value>
+  </data>
+  <data name="L_CuerpoInterior" xml:space="preserve">
+    <value>Cuerpo interior(DE)</value>
+  </data>
+  <data name="L_CuerpoExterior" xml:space="preserve">
+    <value>Cuerpo exterior(DE)</value>
+  </data>
+  <data name="L_Altura" xml:space="preserve">
+    <value>Altura(DE)</value>
+  </data>
+  <data name="L_RolMecanizado" xml:space="preserve">
+    <value>Rol mecanizado(DE)</value>
+  </data>
+  <data name="L_DescuentoCanalHerraje" xml:space="preserve">
+    <value>Descuento canal de herraje(DE)</value>
+  </data>
+  <data name="L_PosicionCanalHerraje" xml:space="preserve">
+    <value>Posición canal de herraje(DE)</value>
+  </data>
+  <data name="L_TooltipCopiarDeCatalogo" xml:space="preserve">
+    <value>Copiar de catálogo: rellena esta fila con los datos de la fila seleccionada en la grid del catálogo.(DE)</value>
+  </data>
+  <data name="L_TooltipAgregarAlCatalogo" xml:space="preserve">
+    <value>Agregar al catálogo: añade esta fila a la grid del catálogo.(DE)</value>
+  </data>
+  <data name="L_TooltipCopiarTodosLosRoles" xml:space="preserve">
+    <value>Copiar todos los roles: si la operación seleccionada en la grid del catálogo tiene varios roles, añade una fila al catálogo por cada uno de ellos, con este nombre de operación.(DE)</value>
+  </data>
+  <data name="L_TooltipDuplicarCatalogo" xml:space="preserve">
+    <value>Duplicar: añade una copia de esta fila al catálogo con el Rol vacío, para asignarle uno distinto sin sobrescribir esta operación.(DE)</value>
+  </data>
+  <data name="L_TooltipEliminarCatalogo" xml:space="preserve">
+    <value>Eliminar: quita esta fila del catálogo (de la copia de trabajo en memoria; no se borra del fichero hasta que se pulse 'Guardar').(DE)</value>
+  </data>
+  <data name="L_TooltipDuplicarPerfil" xml:space="preserve">
+    <value>Duplicar: añade una copia de esta fila con la Referencia base vacía, para asignarle una distinta sin sobrescribir esta.(DE)</value>
+  </data>
+  <data name="L_TooltipEliminarPerfil" xml:space="preserve">
+    <value>Eliminar: quita este perfil de la biblioteca (de la copia de trabajo en memoria; no se borra del fichero hasta que se pulse 'Guardar').(DE)</value>
+  </data>
+  <data name="L_NoHayOperacionesSeleccionadas" xml:space="preserve">
+    <value>No hay operaciones seleccionadas.(DE)</value>
+  </data>
 </root>

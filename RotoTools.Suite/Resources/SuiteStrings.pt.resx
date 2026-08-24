@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="L_Suite_CamSubtitulo" xml:space="preserve">
+    <value>Carregamento de XML e instalação de operações.</value>
+  </data>
+  <data name="L_Suite_ConfigOpcionesSubtitulo" xml:space="preserve">
+    <value>Consulte, guarde, restaure e importe a configuração de opções.</value>
+  </data>
+  <data name="L_Suite_ConectorHerrajeSubtitulo" xml:space="preserve">
+    <value>Carregamento de XML e geração/combinação de conectores de ferragem.</value>
+  </data>
+  <data name="L_Suite_ManillasFksSubtitulo" xml:space="preserve">
+    <value>Configure se as manilhas usam geometria normalizada, geometria FKS, ou ambas, para o fornecedor de ferragem selecionado.</value>
+  </data>
+  <data name="L_Suite_TariffImporterSubtitulo" xml:space="preserve">
+    <value>Importa preços a partir de um ficheiro Excel para a tarifa selecionada.</value>
+  </data>
+  <data name="L_Suite_NingunArchivoSeleccionado" xml:space="preserve">
+    <value>Nenhum ficheiro selecionado</value>
+  </data>
+  <data name="L_Suite_TraduccionSubtitulo" xml:space="preserve">
+    <value>Carregue um XML de ferragens, gere o modelo Excel de tradução e aplique uma tradução ao XML.</value>
+  </data>
+  <data name="L_Suite_TraducirXmlDesc" xml:space="preserve">
+    <value>Aplica uma tradução (Excel) ao XML carregado e gera um novo XML traduzido.</value>
+  </data>
+  <data name="L_Suite_GenerarPlantillaDesc" xml:space="preserve">
+    <value>Gera um modelo Excel com Fittings, Options, Colours, FittingGroups e Sets para traduzir.</value>
+  </data>
+  <data name="L_Suite_ConectorActivo" xml:space="preserve">
+    <value>Conector ativo</value>
+  </data>
+  <data name="L_Suite_CargarXml" xml:space="preserve">
+    <value>Carregar XML</value>
+  </data>
+  <data name="L_Suite_BaseDatosNoCompatible" xml:space="preserve">
+    <value>BASE DE DADOS NÃO COMPATÍVEL (v2020 necessária).</value>
+  </data>
+  <data name="L_Suite_GenerarConectorDesc" xml:space="preserve">
+    <value>Gera o conector de ferragem a partir do XML carregado e dos Sets selecionados.</value>
+  </data>
+  <data name="L_Suite_CombinarConectoresDesc" xml:space="preserve">
+    <value>Combina vários conectores de ferragem gerados anteriormente num só.</value>
+  </data>
+  <data name="L_Suite_ActualizadorSubtitulo" xml:space="preserve">
+    <value>Instale escandallos, execute scripts SQL e faça a gestão de grupos, fornecedor e dados de atualização Roto.</value>
+  </data>
+  <data name="L_Suite_InstalarEscandallosDesc" xml:space="preserve">
+    <value>Instala na base de dados os escandallos incorporados dos grupos selecionados (PVC, alumínio, gestão...).</value>
+  </data>
+  <data name="L_Suite_VerEscandallosDesc" xml:space="preserve">
+    <value>Consulte o conteúdo (programa) de qualquer escandallo incorporado, filtrando por código.</value>
+  </data>
+  <data name="L_Suite_ExportarEscandallosDesc" xml:space="preserve">
+    <value>Exporta para ficheiros JSON, na pasta que escolher, todos os escandallos Roto da base de dados.</value>
+  </data>
+  <data name="L_Suite_InfoActualizacionTooltip" xml:space="preserve">
+    <value>Informação da última atualização (PVC / Alumínio / PAX)</value>
+  </data>
+  <data name="L_Suite_AnadirProveedorTooltip" xml:space="preserve">
+    <value>Adicionar fornecedor Roto Frank SA</value>
+  </data>
+  <data name="L_Suite_SeleccionaXml" xml:space="preserve">
+    <value>Selecionar XML</value>
+  </data>
+  <data name="L_Suite_VerEscandallosSeleccionaUno" xml:space="preserve">
+    <value>Selecione um escandallo da lista para ver o seu conteúdo.</value>
+  </data>
+  <data name="L_Suite_Salir" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="L_Suite_RevisionSetsDesc" xml:space="preserve">
+    <value>Revê os Sets do XML carregado que não foram utilizados em nenhum conector.</value>
+  </data>
+  <data name="L_Suite_SeleccionarTodas" xml:space="preserve">
+    <value>Selecionar todas</value>
+  </data>
+  <data name="L_Suite_GuardarArchivoXML" xml:space="preserve">
+    <value>Guardar arquivo XML</value>
+  </data>
+  <data name="L_Suite_Subir" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="L_Suite_Bajar" xml:space="preserve">
+    <value>Descer</value>
+  </data>
+  <data name="L_Suite_Conector" xml:space="preserve">
+    <value>Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabIncluidos" xml:space="preserve">
+    <value>Sets incluídos no Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabNoIncluidos" xml:space="preserve">
+    <value>Sets NÃO incluídos no Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabCodigos" xml:space="preserve">
+    <value>Códigos que não estão no XML</value>
+  </data>
+  <data name="L_Suite_ExportarExcel" xml:space="preserve">
+    <value>Exportar para Excel</value>
+  </data>
+  <data name="L_Suite_EliminarLineasNoUsadas" xml:space="preserve">
+    <value>Remover linhas não usadas</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorIncluidos" xml:space="preserve">
+    <value>Selecione um conector para ver os Sets incluídos.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorNoIncluidos" xml:space="preserve">
+    <value>Selecione um conector para ver os Sets não incluídos.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorCodigos" xml:space="preserve">
+    <value>Selecione um conector para ver os códigos que não estão no XML.</value>
+  </data>
+  <data name="L_Suite_TotalSetsIncluidos" xml:space="preserve">
+    <value>Há {0} de {1} Sets incluídos no conector</value>
+  </data>
+  <data name="L_Suite_TotalSetsNoIncluidos" xml:space="preserve">
+    <value>Há {0} de {1} Sets NÃO incluídos no conector</value>
+  </data>
+  <data name="L_Suite_TotalCodigosNoXml" xml:space="preserve">
+    <value>Há {0} Códigos de Ferragem que não estão no XML</value>
+  </data>
+  <data name="L_Suite_ConectorSinInfoBD" xml:space="preserve">
+    <value>O conector selecionado não contém informação na base de dados</value>
+  </data>
+  <data name="L_Suite_ErrorCargarConector" xml:space="preserve">
+    <value>Erro ao carregar o conector: </value>
+  </data>
+  <data name="L_Suite_Copiado" xml:space="preserve">
+    <value>Copiado: </value>
+  </data>
+  <data name="L_Suite_ErrorExportarExcel" xml:space="preserve">
+    <value>Ocorreu um problema e não foi possível exportar para Excel.</value>
+  </data>
+  <data name="L_Suite_NoHayConectorCargado" xml:space="preserve">
+    <value>Não há nenhum conector carregado.</value>
+  </data>
+  <data name="L_Suite_NoHayLineasParaEliminar" xml:space="preserve">
+    <value>Não há linhas não usadas para remover.</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarLineas" xml:space="preserve">
+    <value>As linhas do conector que não estão no XML serão removidas.
+Deseja continuar?</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminacion" xml:space="preserve">
+    <value>Confirmar eliminação</value>
+  </data>
+  <data name="L_Suite_LineasEliminadas" xml:space="preserve">
+    <value>Removidas {0} linhas não usadas.
+Conector atualizado com sucesso.</value>
+  </data>
+  <data name="L_Suite_OperacionCompletada" xml:space="preserve">
+    <value>Operação concluída</value>
+  </data>
+  <data name="L_Suite_ErrorEliminarLineas" xml:space="preserve">
+    <value>Erro ao remover as linhas não usadas:
+
+</value>
+  </data>
+  <data name="L_Suite_ControlCambiosSubtitulo" xml:space="preserve">
+    <value>Compara dois XML de ferragens e gera um relatório em PDF com as diferenças.</value>
+  </data>
+  <data name="L_Suite_FicherosXmlTitulo" xml:space="preserve">
+    <value>Ficheiros XML</value>
+  </data>
+  <data name="L_Suite_GenerarInformeDesc" xml:space="preserve">
+    <value>Compara os dois XML carregados e gera um PDF com as diferenças encontradas.</value>
+  </data>
+  <data name="L_Suite_ConfiguracionInformeDesc" xml:space="preserve">
+    <value>Escolha quais secções são comparadas (fittings, sets, opções, cores, mecanizações...).</value>
+  </data>
+  <data name="L_Suite_GenerarInformeSimpleDesc" xml:space="preserve">
+    <value>Gera diretamente um PDF resumido com as diferenças entre os dois XML carregados.</value>
+  </data>
+  <data name="L_Suite_OpcionesSubtitulo" xml:space="preserve">
+    <value>Preferências gerais da aplicação.</value>
+  </data>
+  <data name="L_Suite_DashboardTagline" xml:space="preserve">
+    <value>Todos os módulos do RotoTools reunidos numa única aplicação.</value>
+  </data>
+  <data name="L_Suite_DashboardModulosTitulo" xml:space="preserve">
+    <value>Módulos disponíveis</value>
+  </data>
+  <data name="L_Suite_ExportadorSubtitulo" xml:space="preserve">
+    <value>Exporta os Sets do XML carregado para os formatos WinPerfil e Orgadata.</value>
+  </data>
+  <data name="L_Suite_ExportadorFicheroXmlTitulo" xml:space="preserve">
+    <value>Ficheiro XML</value>
+  </data>
+  <data name="L_Suite_ExportarWinPerfilDesc" xml:space="preserve">
+    <value>Exporta os Sets selecionados para um Excel compatível com o WinPerfil.</value>
+  </data>
+  <data name="L_Suite_ExportarOrgadataDesc" xml:space="preserve">
+    <value>Exporta os Sets selecionados para um Excel compatível com o Orgadata.</value>
+  </data>
+  <data name="L_Suite_Exportar" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="L_Suite_OpcionesF11Hint" xml:space="preserve">
+    <value>Prima F11 para mais opções de colunas.</value>
+  </data>
+</root>

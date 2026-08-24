@@ -164,6 +164,30 @@ namespace RotoTools
                 LoadOperations();
             }
         }
+        private void btn_Mecanizados3D_Click(object sender, EventArgs e)
+        {
+            List<OperationInstalarGridITem> operacionesSeleccionadas = this._bindingSource.List
+                .Cast<OperationInstalarGridITem>()
+                .Where(item => item.Selected)
+                .ToList();
+
+            if (!operacionesSeleccionadas.Any())
+            {
+                MessageBox.Show("Seleccione primero una o varias operaciones para instalar en 3D.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Cam3D cam3DForm = new Cam3D(operacionesSeleccionadas);
+            cam3DForm.ShowDialog();
+
+            // Instalar operaciones 3D puede instalar automáticamente definiciones 2D que faltaban
+            // (Cam3DHelpers.AsegurarDefinicion2DInstalada), dejando desactualizado el cache de
+            // "existe en BD". Se refresca aquí para que el usuario vea en tiempo real el estado
+            // de las operaciones (conteos "todas" / "no existen") al cerrar el formulario Cam3D.
+            _cacheExisteBD = new();
+            chk_AllOperations.Checked = false;
+            LoadOperations();
+        }
         private void txt_filter_TextChanged(object sender, EventArgs e)
         {
             chk_All.Checked = false;
@@ -324,6 +348,8 @@ namespace RotoTools
         {
             if (e.ColumnIndex < 0) return;
 
+            if (e.RowIndex < 0 ) return;
+
             if (dataGridView2.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
             {
                 dataGridView2.EndEdit();
@@ -376,7 +402,7 @@ namespace RotoTools
             if (MessageBox.Show(LocalizationManager.GetString("L_ConfirmarNormalizacion"), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 NormalizarOperaciones();
-            }            
+            }
         }
         private void btn_ImportEquivalencias_Click(object sender, EventArgs e)
         {

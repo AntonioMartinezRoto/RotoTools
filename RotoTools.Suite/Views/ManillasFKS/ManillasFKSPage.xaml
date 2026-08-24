@@ -1,0 +1,97 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.ManillasFKS.ManillasFKSPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ManillasFKSMenu.cs/.Designer.cs (WinForms): mismo comportamiento y misma
+        lógica de negocio (reutilizada tal cual vía RotoTools.Helpers/RotoTools.LocalizationManager
+        por ProjectReference). El original era un único formulario fijo (519x291, FixedSingle) con
+        un ComboBox "Hardware Supplier", un GroupBox "Seleccionar configuración" con 3 RadioButton,
+        una ProgressBar (oculta salvo durante la instalación/borrado) y un botón "Guardar"; aquí,
+        al no haber ninguna ventana ni diálogo adicional (el original no abre ninguno), se mantiene
+        como una única página, igual criterio que ConfiguradorOpcionesPage/ActualizadorPage.
+
+        Las 3 opciones del GroupBoxFKS (antes RadioButton apilados) pasan a ser 3 tarjetas
+        seleccionables en una fila, mismo patrón ya usado en
+        Views/ConectorHerraje/ConectorHerrajeCombinarWindow.xaml para "Modo: crear nuevo / insertar
+        en existente" (RadioButton estándar de WPF dentro de un Border con aspecto de tarjeta, sin
+        necesidad de un estilo RotoRadioButton propio).
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40,32,40,32">
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Border Style="{StaticResource RotoPageBadge}" Background="#5D4037" Margin="0,0,16,0">
+                    <Path Data="{StaticResource IconHandle}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                    <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+                </StackPanel>
+            </StackPanel>
+
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <StackPanel>
+
+                    <!-- Hardware Supplier (antes label1 + cmb_HardwareSupplier): el original no
+                         localiza este texto (label1.Text = "Hardware Supplier" fijo, nunca se toca
+                         en CargarTextos), así que se mantiene igual aquí. -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Hardware Supplier" VerticalAlignment="Center"
+                                   Foreground="{StaticResource RotoInkBrush}" />
+                        <ComboBox x:Name="CmbHardwareSupplier" Grid.Column="1" Style="{StaticResource RotoComboFilter}"
+                                  Width="220" HorizontalAlignment="Left"
+                                  SelectionChanged="CmbHardwareSupplier_SelectionChanged" />
+                    </Grid>
+
+                    <TextBlock x:Name="TxtSeleccionarConfiguracion" Style="{StaticResource RotoSectionTitle}" />
+
+                    <UniformGrid Columns="3" Rows="1">
+                        <Border Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                                CornerRadius="8" Padding="16" Margin="0,0,7,0">
+                            <RadioButton x:Name="RbNormalizada" GroupName="ConfiguracionManillasFKS" VerticalAlignment="Center">
+                                <TextBlock x:Name="TxtRbNormalizada" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            </RadioButton>
+                        </Border>
+
+                        <Border Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                                CornerRadius="8" Padding="16" Margin="7,0,7,0">
+                            <RadioButton x:Name="RbSoloFks" GroupName="ConfiguracionManillasFKS" VerticalAlignment="Center">
+                                <TextBlock x:Name="TxtRbSoloFks" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            </RadioButton>
+                        </Border>
+
+                        <Border Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                                CornerRadius="8" Padding="16" Margin="7,0,0,0">
+                            <RadioButton x:Name="RbNormalizadaYFks" GroupName="ConfiguracionManillasFKS" VerticalAlignment="Center">
+                                <TextBlock x:Name="TxtRbNormalizadaYFks" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            </RadioButton>
+                        </Border>
+                    </UniformGrid>
+
+                    <!-- Antes progress_Export (ProgressBar oculta salvo durante
+                         CrearFKSOperations/DeleteFKSConfiguracion): mismo comportamiento, visible
+                         solo mientras dura la instalación/el borrado de la configuración. -->
+                    <ProgressBar x:Name="ProgressExport" Height="8" Margin="0,20,0,0" Visibility="Collapsed"
+                                 Foreground="{StaticResource RotoRedBrush}" Background="{StaticResource RotoBorderBrush}"
+                                 BorderThickness="0" />
+
+                    <Button x:Name="BtnGuardar" Style="{StaticResource RotoButtonPrimary}"
+                            HorizontalAlignment="Right" Margin="0,20,0,0" Click="BtnGuardar_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource IconDocument}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                            <TextBlock x:Name="TxtBtnGuardar" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

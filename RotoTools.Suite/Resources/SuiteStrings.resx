@@ -31,4 +31,131 @@
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Conector activo</value>
   </data>
+  <data name="L_Suite_CargarXml" xml:space="preserve">
+    <value>Cargar XML</value>
+  </data>
+  <data name="L_Suite_BaseDatosNoCompatible" xml:space="preserve">
+    <value>BASE DE DATOS NO COMPATIBLE (v2020 requerida).</value>
+  </data>
+  <data name="L_Suite_GenerarConectorDesc" xml:space="preserve">
+    <value>Genera el conector de herraje a partir del XML cargado y los Sets seleccionados.</value>
+  </data>
+  <data name="L_Suite_CombinarConectoresDesc" xml:space="preserve">
+    <value>Combina varios conectores de herraje generados previamente en uno solo.</value>
+  </data>
+  <data name="L_Suite_RevisionSetsDesc" xml:space="preserve">
+    <value>Revisa los Sets del XML cargado que no se han utilizado en ningún conector.</value>
+  </data>
+  <data name="L_Suite_SeleccionarTodas" xml:space="preserve">
+    <value>Seleccionar todas</value>
+  </data>
+  <data name="L_Suite_GuardarArchivoXML" xml:space="preserve">
+    <value>Guardar archivo XML</value>
+  </data>
+  <data name="L_Suite_Subir" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="L_Suite_Bajar" xml:space="preserve">
+    <value>Bajar</value>
+  </data>
+  <data name="L_Suite_Conector" xml:space="preserve">
+    <value>Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabIncluidos" xml:space="preserve">
+    <value>Sets incluidos en Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabNoIncluidos" xml:space="preserve">
+    <value>Sets NO incluidos en Conector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabCodigos" xml:space="preserve">
+    <value>Códigos que no están en XML</value>
+  </data>
+  <data name="L_Suite_ExportarExcel" xml:space="preserve">
+    <value>Exportar a Excel</value>
+  </data>
+  <data name="L_Suite_EliminarLineasNoUsadas" xml:space="preserve">
+    <value>Eliminar líneas no usadas</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorIncluidos" xml:space="preserve">
+    <value>Selecciona un conector para ver los Sets incluidos.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorNoIncluidos" xml:space="preserve">
+    <value>Selecciona un conector para ver los Sets no incluidos.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorCodigos" xml:space="preserve">
+    <value>Selecciona un conector para ver los códigos que no están en el XML.</value>
+  </data>
+  <data name="L_Suite_TotalSetsIncluidos" xml:space="preserve">
+    <value>Hay {0} de {1} Sets que están incluidos en el conector</value>
+  </data>
+  <data name="L_Suite_TotalSetsNoIncluidos" xml:space="preserve">
+    <value>Hay {0} de {1} Sets NO incluidos en el conector</value>
+  </data>
+  <data name="L_Suite_TotalCodigosNoXml" xml:space="preserve">
+    <value>Hay {0} Códigos de Herraje que no están en el XML</value>
+  </data>
+  <data name="L_Suite_ConectorSinInfoBD" xml:space="preserve">
+    <value>El conector seleccionado no contiene información en la base de datos</value>
+  </data>
+  <data name="L_Suite_ErrorCargarConector" xml:space="preserve">
+    <value>Error al cargar el conector: </value>
+  </data>
+  <data name="L_Suite_Copiado" xml:space="preserve">
+    <value>Copiado: </value>
+  </data>
+  <data name="L_Suite_ErrorExportarExcel" xml:space="preserve">
+    <value>Ha ocurrido un problema y no se ha podido exportar a Excel.</value>
+  </data>
+  <data name="L_Suite_NoHayConectorCargado" xml:space="preserve">
+    <value>No hay ningún conector cargado.</value>
+  </data>
+  <data name="L_Suite_NoHayLineasParaEliminar" xml:space="preserve">
+    <value>No hay líneas no usadas para eliminar.</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarLineas" xml:space="preserve">
+    <value>Se eliminarán las líneas del conector que no están en el XML.
+¿Deseas continuar?</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminacion" xml:space="preserve">
+    <value>Confirmar eliminación</value>
+  </data>
+  <data name="L_Suite_LineasEliminadas" xml:space="preserve">
+    <value>Eliminadas {0} líneas no usadas.
+Conector actualizado correctamente.</value>
+  </data>
+  <data name="L_Suite_OperacionCompletada" xml:space="preserve">
+    <value>Operación completada</value>
+  </data>
+  <data name="L_Suite_ErrorEliminarLineas" xml:space="preserve">
+    <value>Error eliminando las líneas no usadas:
+
+</value>
+  </data>
+  <data name="L_Suite_ActualizadorSubtitulo" xml:space="preserve">
+    <value>Instala escandallos, ejecuta scripts SQL y gestiona grupos, proveedor y datos de actualización Roto.</value>
+  </data>
+  <data name="L_Suite_InstalarEscandallosDesc" xml:space="preserve">
+    <value>Instala en la base de datos los escandallos embebidos de los grupos seleccionados (PVC, aluminio, gestión...).</value>
+  </data>
+  <data name="L_Suite_VerEscandallosDesc" xml:space="preserve">
+    <value>Consulta el contenido (programa) de cualquier escandallo embebido, filtrando por código.</value>
+  </data>
+  <data name="L_Suite_ExportarEscandallosDesc" xml:space="preserve">
+    <value>Exporta a ficheros JSON, en la carpeta que elijas, todos los escandallos Roto de la base de datos.</value>
+  </data>
+  <data name="L_Suite_InfoActualizacionTooltip" xml:space="preserve">
+    <value>Información de la última actualización (PVC / Aluminio / PAX)</value>
+  </data>
+  <data name="L_Suite_AnadirProveedorTooltip" xml:space="preserve">
+    <value>Añadir proveedor Roto Frank SA</value>
+  </data>
+  <data name="L_Suite_SeleccionaXml" xml:space="preserve">
+    <value>Selecciona XML</value>
+  </data>
+  <data name="L_Suite_VerEscandallosSeleccionaUno" xml:space="preserve">
+    <value>Selecciona un escandallo de la lista para ver su contenido.</value>
+  </data>
+  <data name="L_Suite_Salir" xml:space="preserve">
+    <value>Salir</value>
+  </data>
 </root>

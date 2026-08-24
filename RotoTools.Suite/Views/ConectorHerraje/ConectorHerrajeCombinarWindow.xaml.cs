@@ -51,6 +51,10 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             LblConectoresBD.Text = RotoTools.LocalizationManager.GetString("L_ConectoresBBDD");
             LblConectoresCombinar.Text = RotoTools.LocalizationManager.GetString("L_ConectoresCombinar");
             TxtBtnGuardar.Text = RotoTools.LocalizationManager.GetString("L_Guardar");
+            TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
+
+            BtnUp.ToolTip = RotoTools.Suite.Services.SuiteLocalization.GetString("L_Suite_Subir");
+            BtnDown.ToolTip = RotoTools.Suite.Services.SuiteLocalization.GetString("L_Suite_Bajar");
         }
 
         private void ActualizarInfoConexion()
@@ -305,6 +309,12 @@ namespace RotoTools.Suite.Views.ConectorHerraje
                 }
 
                 MessageBox.Show(RotoTools.LocalizationManager.GetString("L_ConectorInsertado"));
+
+                // Igual que en ConectorHerrajeGeneradorWindow: si se ha marcado "Poner como
+                // predefinido" el UPDATE de VARIABLESGLOBALES de arriba ya se ha ejecutado, así
+                // que refrescamos aquí el texto de "Conector activo" para verlo sin cerrar la
+                // ventana.
+                ActualizarInfoConexion();
             }
             catch (Exception ex)
             {

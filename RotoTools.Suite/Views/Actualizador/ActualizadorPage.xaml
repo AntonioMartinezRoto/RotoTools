@@ -1,0 +1,238 @@
+<UserControl
+    x:Class="RotoTools.Suite.Views.Actualizador.ActualizadorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ActualizadorMenu.cs/.Designer.cs (WinForms): mismas acciones y misma lógica de
+        negocio (reutilizada tal cual vía RotoTools.Helpers/RotoTools.LocalizationManager por
+        ProjectReference), reorganizadas con el aspecto moderno de la suite en vez de 6 botones
+        cuadrados + 2 groupbox sobre un formulario fijo de 780x346:
+          - Las 3 acciones que abren una ventana o hacen un trabajo largo (Instalar/Ver/Exportar
+            Escandallos) son tarjetas grandes (RotoActionCard), igual que ConfiguradorOpcionesPage.
+          - Grupos/Proveedor (antes 2 GroupBox) son una única tarjeta con dos columnas.
+          - Ejecutar Scripts / Elegir Scripts / Ocultar Opciones / Información de actualización
+            (antes botones cuadrados con icono a la izquierda y texto pegado a la derecha) son
+            botones secundarios normales (RotoButtonSecondary) con icono, igual que el pie de
+            ConfiguradorOpcionesEditorWindow.
+        No se repite aquí el servidor/base de datos (antes lbl_Conexion): ya se muestra siempre en
+        la cabecera de MainWindow, así que sería información duplicada (mismo criterio ya aplicado
+        en ConectorHerrajePage, que solo añade el "conector activo" por ser información propia del
+        módulo que no aparece en ningún otro sitio).
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40,32,40,32">
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Border Style="{StaticResource RotoPageBadge}" Background="#1976D2" Margin="0,0,16,0">
+                    <Path Data="{StaticResource IconDownload}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" />
+                    <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="13" />
+                </StackPanel>
+            </StackPanel>
+
+            <UniformGrid Columns="3" Rows="1" Margin="0,0,0,20">
+
+                <!-- Tarjeta 1: Instalar Escandallos -->
+                <Button x:Name="BtnInstalarEscandallos" Style="{StaticResource RotoActionCard}" Margin="0,0,12,0"
+                        Click="BtnInstalarEscandallos_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#2E7D32" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconPlus}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard1Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard1Desc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 2: Ver Escandallos -->
+                <Button x:Name="BtnVerEscandallos" Style="{StaticResource RotoActionCard}" Margin="6,0,6,0"
+                        Click="BtnVerEscandallos_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#1976D2" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconEye}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard2Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard2Desc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 3: Exportar Escandallos -->
+                <Button x:Name="BtnExportarEscandallos" Style="{StaticResource RotoActionCard}" Margin="12,0,0,0"
+                        Click="BtnExportarEscandallos_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#F57C00" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconUpload}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard3Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard3Desc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+
+            <!-- Tarjeta "Grupos" + "Proveedor" (antes groupBox_Grupos / groupBox_Proveedor, dos
+                 GroupBox aparte): mismos 3 combos (Presupuestado/Producción/Proveedor) con su
+                 identificador de solo lectura al lado, igual comportamiento que
+                 ActualizadorMenu.CargarGruposPresupuestado/CargarGruposProduccion/CargarProveedores
+                 + AsignarValoresPorDefecto (ver ActualizadorPage.xaml.cs). -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="32" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Grupos -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock x:Name="TxtGruposTitulo" Style="{StaticResource RotoSectionTitle}" />
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="56" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="LblPresupuestado" VerticalAlignment="Center" Foreground="{StaticResource RotoInkBrush}" />
+                            <ComboBox x:Name="CmbPresupuestado" Grid.Column="1" Style="{StaticResource RotoComboFilter}" Margin="0,0,8,0"
+                                      DisplayMemberPath="Name" SelectedValuePath="Id"
+                                      SelectionChanged="CmbPresupuestado_SelectionChanged" />
+                            <TextBox x:Name="TxtPresupuestado" Grid.Column="2" Style="{StaticResource RotoTextBox}" IsReadOnly="True" />
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="56" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="LblProduccion" VerticalAlignment="Center" Foreground="{StaticResource RotoInkBrush}" />
+                            <ComboBox x:Name="CmbProduccion" Grid.Column="1" Style="{StaticResource RotoComboFilter}" Margin="0,0,8,0"
+                                      DisplayMemberPath="Name" SelectedValuePath="Id"
+                                      SelectionChanged="CmbProduccion_SelectionChanged" />
+                            <TextBox x:Name="TxtProduccion" Grid.Column="2" Style="{StaticResource RotoTextBox}" IsReadOnly="True" />
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- Proveedor -->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock x:Name="TxtProveedorTitulo" Style="{StaticResource RotoSectionTitle}" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="56" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="LblProveedor" VerticalAlignment="Center" Foreground="{StaticResource RotoInkBrush}" />
+                            <ComboBox x:Name="CmbProveedor" Grid.Column="1" Style="{StaticResource RotoComboFilter}" Margin="0,0,8,0"
+                                      DisplayMemberPath="Nombre" SelectedValuePath="CodigoProveedor"
+                                      SelectionChanged="CmbProveedor_SelectionChanged" />
+                            <TextBox x:Name="TxtProveedor" Grid.Column="2" Style="{StaticResource RotoTextBox}" IsReadOnly="True" Margin="0,0,8,0" />
+
+                            <Button x:Name="BtnAddProveedor" Grid.Column="3" Style="{StaticResource RotoCardIconButton}"
+                                    Click="BtnAddProveedor_Click">
+                                <Path Data="{StaticResource IconPlus}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" />
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Información de la última actualización (antes ActualizadorInfoWindow, una ventana
+                 aparte abierta con un botón de icono): al haber espacio libre en esta página se
+                 pone el contenido directamente aquí en vez de abrir otro formulario, con las
+                 mismas 3 secciones PVC/Aluminio/PAX (nombre del XML + fecha + botón para volver a
+                 seleccionar el XML), reutilizando tal cual
+                 RotoTools.Helpers.GetNombreXMLActualizacionRoto/GetFechaActualizacionRoto/
+                 SetNombreXMLRoto/SetFechaActualizacionRoto (ver ActualizadorPage.xaml.cs). -->
+            <Border Style="{StaticResource RotoCard}" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock x:Name="TxtInfoActualizacionTitulo" Style="{StaticResource RotoSectionTitle}" />
+                    <UniformGrid Columns="3">
+
+                        <!-- PVC -->
+                        <StackPanel Margin="0,0,12,0">
+                            <DockPanel Margin="0,0,0,8">
+                                <Button x:Name="BtnRefreshPVC" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Click="BtnRefreshPVC_Click">
+                                    <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
+                                <TextBlock Text="PVC" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
+                            </DockPanel>
+                            <TextBlock x:Name="LblXmlPVC" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblPVCFile" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" TextTrimming="CharacterEllipsis" Margin="0,0,0,8" />
+                            <TextBlock x:Name="LblFechaPVC" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblPVCData" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" />
+                        </StackPanel>
+
+                        <!-- Aluminio -->
+                        <StackPanel Margin="12,0,12,0">
+                            <DockPanel Margin="0,0,0,8">
+                                <Button x:Name="BtnRefreshALU" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Click="BtnRefreshALU_Click">
+                                    <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
+                                <TextBlock Text="ALU" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
+                            </DockPanel>
+                            <TextBlock x:Name="LblXmlALU" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblALUFile" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" TextTrimming="CharacterEllipsis" Margin="0,0,0,8" />
+                            <TextBlock x:Name="LblFechaALU" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblALUData" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" />
+                        </StackPanel>
+
+                        <!-- PAX -->
+                        <StackPanel Margin="12,0,0,0">
+                            <DockPanel Margin="0,0,0,8">
+                                <Button x:Name="BtnRefreshPAX" DockPanel.Dock="Right" Style="{StaticResource RotoCardIconButton}"
+                                        Width="26" Height="26" Click="BtnRefreshPAX_Click">
+                                    <Path Data="{StaticResource IconRefresh}" Fill="{StaticResource RotoInkBrush}" Width="12" Height="12" Stretch="Uniform" />
+                                </Button>
+                                <TextBlock Text="PAX" FontWeight="SemiBold" Foreground="{StaticResource RotoInkBrush}" VerticalAlignment="Center" />
+                            </DockPanel>
+                            <TextBlock x:Name="LblXmlPAX" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblPAXFile" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" TextTrimming="CharacterEllipsis" Margin="0,0,0,8" />
+                            <TextBlock x:Name="LblFechaPAX" Foreground="{StaticResource RotoGrayBrush}" FontSize="11.5" />
+                            <TextBlock x:Name="LblPAXData" Foreground="{StaticResource RotoInkBrush}" FontSize="12.5" />
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- Antes 3 botones cuadrados sueltos (btn_EjecutarScripts, btn_EjecutarCarpeta,
+                 btn_OcultaOpciones): aquí, una fila de botones secundarios con icono, igual
+                 criterio que el pie de ConfiguradorOpcionesEditorWindow. -->
+            <WrapPanel Orientation="Horizontal">
+                <Button x:Name="BtnEjecutarScripts" Style="{StaticResource RotoButtonSecondary}" Click="BtnEjecutarScripts_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconPlay}" Fill="{StaticResource RotoInkBrush}"
+                              Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnEjecutarScripts" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnEjecutarCarpeta" Style="{StaticResource RotoButtonSecondary}" Click="BtnEjecutarCarpeta_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconFolderOpen}" Fill="{StaticResource RotoInkBrush}"
+                              Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnEjecutarCarpeta" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnOcultaOpciones" Style="{StaticResource RotoButtonSecondary}" Click="BtnOcultaOpciones_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconEyeOff}" Fill="{StaticResource RotoInkBrush}"
+                              Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnOcultaOpciones" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

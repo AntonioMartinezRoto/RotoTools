@@ -61,22 +61,43 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Background="{StaticResource RotoNavBackgroundBrush}">
-                <ListBox x:Name="ListaModulos" Style="{StaticResource RotoNavList}"
-                         Margin="0,14,0,0"
-                         SelectionChanged="ListaModulos_SelectionChanged">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
+                <!--
+                    DockPanel para poder anclar "Salir" al fondo del panel lateral (ver
+                    BtnSalir/BtnSalir_Click en MainWindow.xaml.cs), dejando que el listado de
+                    módulos ocupe el resto: el ListBox tiene que ser el ÚLTIMO hijo para que
+                    LastChildFill (activo por defecto) le dé el espacio restante.
+                -->
+                <DockPanel>
+                    <Border DockPanel.Dock="Bottom" BorderBrush="{StaticResource RotoNavHoverBrush}" BorderThickness="0,1,0,0" Padding="0,8,0,10">
+                        <Button x:Name="BtnSalir" Style="{StaticResource RotoNavExitButton}" Click="BtnSalir_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Border Style="{StaticResource RotoNavBadge}" Background="{Binding Color}">
-                                    <Path Data="{Binding Icono}" Fill="White" Width="14" Height="14" Stretch="Uniform"
+                                <Border Style="{StaticResource RotoNavBadge}" Background="#455A64">
+                                    <Path Data="{StaticResource IconExit}" Fill="White" Width="14" Height="14" Stretch="Uniform"
                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
-                                <TextBlock Text="{Binding Titulo}" Foreground="White" FontSize="13.5"
-                                           VerticalAlignment="Center" Margin="12,0,0,0" TextWrapping="Wrap" Width="150" />
+                                <TextBlock x:Name="TxtBtnSalir" Foreground="White" FontSize="13.5"
+                                           VerticalAlignment="Center" Margin="12,0,0,0" />
                             </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                        </Button>
+                    </Border>
+
+                    <ListBox x:Name="ListaModulos" Style="{StaticResource RotoNavList}"
+                             Margin="0,14,0,0"
+                             SelectionChanged="ListaModulos_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Style="{StaticResource RotoNavBadge}" Background="{Binding Color}">
+                                        <Path Data="{Binding Icono}" Fill="White" Width="14" Height="14" Stretch="Uniform"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <TextBlock Text="{Binding Titulo}" Foreground="White" FontSize="13.5"
+                                               VerticalAlignment="Center" Margin="12,0,0,0" TextWrapping="Wrap" Width="150" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
             </Border>
 
             <ContentControl x:Name="ContentHost" Grid.Column="1" />

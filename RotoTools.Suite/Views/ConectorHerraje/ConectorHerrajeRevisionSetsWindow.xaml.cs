@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -41,25 +42,56 @@ namespace RotoTools.Suite.Views.ConectorHerraje
 
             _xmlData = xmlData;
 
+            CargarTextos();
             InitializeInfoConnection();
             LoadItemsConectorHerraje();
             LoadItemsHardwareSupplier();
 
             // Sin conector seleccionado todavía: estado inicial vacío (más claro que el "label1"
             // literal que mostraba el Designer original hasta la primera carga).
-            LblTotalSetsIncluidos.Text = "Selecciona un conector para ver los Sets incluidos.";
-            LblTotalSetsNoIncluidos.Text = "Selecciona un conector para ver los Sets no incluidos.";
-            LblTotalCodigosNoXml.Text = "Selecciona un conector para ver los códigos que no están en el XML.";
+            LblTotalSetsIncluidos.Text = Loc("L_Suite_SeleccionaConectorIncluidos");
+            LblTotalSetsNoIncluidos.Text = Loc("L_Suite_SeleccionaConectorNoIncluidos");
+            LblTotalCodigosNoXml.Text = Loc("L_Suite_SeleccionaConectorCodigos");
         }
 
+        /// <summary>Atajo a RotoTools.Suite.Services.SuiteLocalization.GetString: todos los textos
+        /// propios de esta ventana (no existentes en el proyecto original, ver el comentario al
+        /// inicio del XAML sobre por qué el original no usaba LocalizationManager aquí) se
+        /// resuelven a través de él, igual idioma que el resto de la Suite.</summary>
+        private static string Loc(string key) => RotoTools.Suite.Services.SuiteLocalization.GetString(key);
+
         #region Cabecera / conexión
+
+        private void CargarTextos()
+        {
+            Title = RotoTools.LocalizationManager.GetString("L_RevisionSets");
+            TxtTitulo.Text = Title;
+
+            LblConector.Text = Loc("L_Suite_Conector");
+
+            RbTabIncluidos.Content = Loc("L_Suite_RevisionSets_TabIncluidos");
+            RbTabNoIncluidos.Content = Loc("L_Suite_RevisionSets_TabNoIncluidos");
+            RbTabCodigos.Content = Loc("L_Suite_RevisionSets_TabCodigos");
+
+            string buscar = RotoTools.LocalizationManager.GetString("L_Buscar");
+            LblBuscarIncluidos.Text = buscar;
+            LblBuscarNoIncluidos.Text = buscar;
+
+            string exportar = Loc("L_Suite_ExportarExcel");
+            TxtBtnExportIncluidos.Text = exportar;
+            TxtBtnExportNoIncluidos.Text = exportar;
+            TxtBtnExportCodigos.Text = exportar;
+
+            TxtBtnEliminarLineas.Text = Loc("L_Suite_EliminarLineasNoUsadas");
+            TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
+        }
 
         private void InitializeInfoConnection()
         {
             string servidor = RotoTools.Helpers.GetServer();
             string baseDatos = RotoTools.Helpers.GetDataBase();
             string conectorActivo = RotoTools.Helpers.GetConectorActivo() ?? "";
-            LblConectorActivo.Text = $@"{servidor}\{baseDatos}    ·    Conector activo: {conectorActivo}";
+            LblConectorActivo.Text = $@"{servidor}\{baseDatos}    ·    " + Loc("L_Suite_ConectorActivo") + ": " + conectorActivo;
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e) => Close();
@@ -146,7 +178,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
                     else
                     {
                         _connectorHerraje = null;
-                        MessageBox.Show("El conector seleccionado no contiene información en la base de datos", "",
+                        MessageBox.Show(Loc("L_Suite_ConectorSinInfoBD"), "",
                             MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
@@ -156,7 +188,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el conector: " + ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Loc("L_Suite_ErrorCargarConector") + ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -224,11 +256,11 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             }
 
             LblTotalSetsIncluidos.Text =
-                $"Hay {_setsIncluidosList.Count} de {_xmlData.SetList.Count} Sets que están incluidos en el conector";
+                string.Format(Loc("L_Suite_TotalSetsIncluidos"), _setsIncluidosList.Count, _xmlData.SetList.Count);
             LblTotalSetsNoIncluidos.Text =
-                $"Hay {_setsNoIncluidosList.Count} de {_xmlData.SetList.Count} Sets NO incluidos en el conector";
+                string.Format(Loc("L_Suite_TotalSetsNoIncluidos"), _setsNoIncluidosList.Count, _xmlData.SetList.Count);
             LblTotalCodigosNoXml.Text =
-                $"Hay {_codigosNoIncluidosEnXml.Count} Códigos de Herraje que no están en el XML";
+                string.Format(Loc("L_Suite_TotalCodigosNoXml"), _codigosNoIncluidosEnXml.Count);
 
             ActualizarListaIncluidos();
             ActualizarListaNoIncluidos();
@@ -322,7 +354,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
 
             Clipboard.SetText(texto);
 
-            LblCopiado.Text = $"Copiado: {texto}";
+            LblCopiado.Text = Loc("L_Suite_Copiado") + texto;
             LblCopiado.Visibility = Visibility.Visible;
 
             _timerCopiado?.Stop();
@@ -381,7 +413,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
         private static void MostrarResultadoExportacion(bool ok)
         {
             MessageBox.Show(
-                ok ? "Guardado correctamente." : "Ha ocurrido un problema y no se ha podido exportar a Excel.",
+                ok ? RotoTools.LocalizationManager.GetString("L_GuardadoCorrectamente") : Loc("L_Suite_ErrorExportarExcel"),
                 "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -471,19 +503,19 @@ namespace RotoTools.Suite.Views.ConectorHerraje
         {
             if (_connectorHerraje == null)
             {
-                MessageBox.Show("No hay ningún conector cargado.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Loc("L_Suite_NoHayConectorCargado"), "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (_codigosNoIncluidosEnXml.Count == 0)
             {
-                MessageBox.Show("No hay líneas no usadas para eliminar.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Loc("L_Suite_NoHayLineasParaEliminar"), "", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
             var confirm = MessageBox.Show(
-                "Se eliminarán las líneas del conector que no están en el XML.\n¿Deseas continuar?",
-                "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                Loc("L_Suite_ConfirmarEliminarLineas"),
+                Loc("L_Suite_ConfirmarEliminacion"), MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (confirm != MessageBoxResult.Yes) return;
 
@@ -511,14 +543,14 @@ namespace RotoTools.Suite.Views.ConectorHerraje
                 }
 
                 MessageBox.Show(
-                    $"Eliminadas {eliminados} líneas no usadas.\nConector actualizado correctamente.",
-                    "Operación completada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string.Format(Loc("L_Suite_LineasEliminadas"), eliminados),
+                    Loc("L_Suite_OperacionCompletada"), MessageBoxButton.OK, MessageBoxImage.Information);
 
                 FillData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error eliminando las líneas no usadas:\n\n" + ex.Message,
+                MessageBox.Show(Loc("L_Suite_ErrorEliminarLineas") + ex.Message,
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally

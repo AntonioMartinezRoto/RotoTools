@@ -24,4 +24,131 @@
   <data name="L_Suite_ConectorActivo" xml:space="preserve">
     <value>Active connector</value>
   </data>
+  <data name="L_Suite_CargarXml" xml:space="preserve">
+    <value>Load XML</value>
+  </data>
+  <data name="L_Suite_BaseDatosNoCompatible" xml:space="preserve">
+    <value>DATABASE NOT COMPATIBLE (v2020 required).</value>
+  </data>
+  <data name="L_Suite_GenerarConectorDesc" xml:space="preserve">
+    <value>Generates the hardware connector from the loaded XML and the selected Sets.</value>
+  </data>
+  <data name="L_Suite_CombinarConectoresDesc" xml:space="preserve">
+    <value>Combines several previously generated hardware connectors into one.</value>
+  </data>
+  <data name="L_Suite_ActualizadorSubtitulo" xml:space="preserve">
+    <value>Install escandallos, run SQL scripts and manage groups, supplier and Roto update data.</value>
+  </data>
+  <data name="L_Suite_InstalarEscandallosDesc" xml:space="preserve">
+    <value>Installs the embedded escandallos of the selected groups (PVC, aluminium, management...) into the database.</value>
+  </data>
+  <data name="L_Suite_VerEscandallosDesc" xml:space="preserve">
+    <value>View the content (program) of any embedded escandallo, filtering by code.</value>
+  </data>
+  <data name="L_Suite_ExportarEscandallosDesc" xml:space="preserve">
+    <value>Exports all Roto escandallos from the database to JSON files, in the folder you choose.</value>
+  </data>
+  <data name="L_Suite_InfoActualizacionTooltip" xml:space="preserve">
+    <value>Last update information (PVC / Aluminium / PAX)</value>
+  </data>
+  <data name="L_Suite_AnadirProveedorTooltip" xml:space="preserve">
+    <value>Add Roto Frank SA supplier</value>
+  </data>
+  <data name="L_Suite_SeleccionaXml" xml:space="preserve">
+    <value>Select XML</value>
+  </data>
+  <data name="L_Suite_VerEscandallosSeleccionaUno" xml:space="preserve">
+    <value>Select an escandallo from the list to view its content.</value>
+  </data>
+  <data name="L_Suite_Salir" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="L_Suite_RevisionSetsDesc" xml:space="preserve">
+    <value>Reviews the Sets from the loaded XML that have not been used in any connector.</value>
+  </data>
+  <data name="L_Suite_SeleccionarTodas" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="L_Suite_GuardarArchivoXML" xml:space="preserve">
+    <value>Save XML file</value>
+  </data>
+  <data name="L_Suite_Subir" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="L_Suite_Bajar" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="L_Suite_Conector" xml:space="preserve">
+    <value>Connector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabIncluidos" xml:space="preserve">
+    <value>Sets included in Connector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabNoIncluidos" xml:space="preserve">
+    <value>Sets NOT included in Connector</value>
+  </data>
+  <data name="L_Suite_RevisionSets_TabCodigos" xml:space="preserve">
+    <value>Codes not in XML</value>
+  </data>
+  <data name="L_Suite_ExportarExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="L_Suite_EliminarLineasNoUsadas" xml:space="preserve">
+    <value>Remove unused lines</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorIncluidos" xml:space="preserve">
+    <value>Select a connector to see the included Sets.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorNoIncluidos" xml:space="preserve">
+    <value>Select a connector to see the Sets not included.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorCodigos" xml:space="preserve">
+    <value>Select a connector to see the codes that are not in the XML.</value>
+  </data>
+  <data name="L_Suite_TotalSetsIncluidos" xml:space="preserve">
+    <value>{0} of {1} Sets are included in the connector</value>
+  </data>
+  <data name="L_Suite_TotalSetsNoIncluidos" xml:space="preserve">
+    <value>{0} of {1} Sets are NOT included in the connector</value>
+  </data>
+  <data name="L_Suite_TotalCodigosNoXml" xml:space="preserve">
+    <value>There are {0} Hardware Codes that are not in the XML</value>
+  </data>
+  <data name="L_Suite_ConectorSinInfoBD" xml:space="preserve">
+    <value>The selected connector does not contain information in the database</value>
+  </data>
+  <data name="L_Suite_ErrorCargarConector" xml:space="preserve">
+    <value>Error loading the connector: </value>
+  </data>
+  <data name="L_Suite_Copiado" xml:space="preserve">
+    <value>Copied: </value>
+  </data>
+  <data name="L_Suite_ErrorExportarExcel" xml:space="preserve">
+    <value>A problem occurred and the export to Excel could not be completed.</value>
+  </data>
+  <data name="L_Suite_NoHayConectorCargado" xml:space="preserve">
+    <value>There is no connector loaded.</value>
+  </data>
+  <data name="L_Suite_NoHayLineasParaEliminar" xml:space="preserve">
+    <value>There are no unused lines to remove.</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarLineas" xml:space="preserve">
+    <value>The connector lines that are not in the XML will be removed.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminacion" xml:space="preserve">
+    <value>Confirm deletion</value>
+  </data>
+  <data name="L_Suite_LineasEliminadas" xml:space="preserve">
+    <value>{0} unused lines removed.
+Connector updated successfully.</value>
+  </data>
+  <data name="L_Suite_OperacionCompletada" xml:space="preserve">
+    <value>Operation completed</value>
+  </data>
+  <data name="L_Suite_ErrorEliminarLineas" xml:space="preserve">
+    <value>Error removing the unused lines:
+
+</value>
+  </data>
 </root>

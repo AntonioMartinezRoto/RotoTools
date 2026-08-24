@@ -18,9 +18,19 @@
         La columna "Apertura" del original mostraba un pequeño icono (bitmap embebido en
         Properties.Resources: Opening1..Opening14/Escandallo) según el tipo de apertura de cada
         Set. Esas imágenes no forman parte de este entorno de migración (viven en un .resx del
-        proyecto original que no se ha sincronizado aquí), así que por ahora se muestra el tipo de
-        apertura como texto (ver SetGridRowVm.ObtenerEtiquetaApertura); se puede sustituir por
-        iconos vectoriales más adelante si hace falta.
+        proyecto original que no se ha sincronizado aquí), así que se ha sustituido por un icono
+        vectorial propio en trazo simple (ver IconApertura* en RotoBrand.xaml, rediseñados sobre
+        una referencia visual del usuario: líneas/flechas/triángulos, sin marco y sin texto en la
+        celda). El icono da de un vistazo la familia de apertura (practicable/oscilobatiente/
+        abatible/corredera/oscilocorredera/elevable); el texto completo que antes se mostraba
+        junto al icono (izda./dcha., int./ext., calculado por ObtenerEtiquetaApertura) se conserva
+        como ToolTip del icono en vez de texto visible en la grid. Las variantes izda./dcha.
+        reutilizan el mismo icono con un volteo horizontal (ver SetGridRowVm.AperturaIconoFlip) en
+        vez de duplicar geometrías.
+
+        Las filas que son solo cabecera de un grupo de líneas (Set.IsTitle = true, ninguna otra
+        columna tiene contenido) se resaltan con fondo y negrita (ver DataGrid.RowStyle) para que
+        se distingan de las líneas de datos reales.
     -->
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -45,31 +55,49 @@
 
             <Border Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
                     CornerRadius="8" Padding="16" Margin="0,0,7,0">
+                <!--
+                    Reorganizado de nuevo: antes Código/checkbox iban en un StackPanel con Width
+                    fijo pero sin HorizontalAlignment="Left", así que WPF lo centraba dentro de la
+                    tarjeta (Stretch por defecto + Width explícito = centrado, no alineado a la
+                    izquierda) y además la etiqueta "Código" en su propia línea desplazaba el
+                    textbox hacia abajo respecto al textbox de "Buscar" de la tarjeta vecina.
+                    Ahora la etiqueta va en línea junto al propio textbox (misma fila, altura
+                    igual a la de "Buscar"), todo alineado a la izquierda, y los botones de
+                    Guardar en XML/BBDD pasan a una columna de ancho variable (*) a la derecha
+                    que ocupa el resto del ancho de la tarjeta en vez de dejarlo en blanco.
+                -->
                 <StackPanel>
                     <TextBlock x:Name="TxtGuardarGrupoTitulo" Style="{StaticResource RotoSectionTitle}" />
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="200" Margin="0,0,20,0">
-                            <TextBlock x:Name="LblCodigoConector" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" Margin="0,0,0,4" />
-                            <TextBox x:Name="TxtConectorName" Style="{StaticResource RotoTextBox}" MaxLength="25" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="230">
+                            <DockPanel LastChildFill="True">
+                                <TextBlock x:Name="LblCodigoConector" DockPanel.Dock="Left" VerticalAlignment="Center"
+                                           Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" Margin="0,0,8,0" />
+                                <TextBox x:Name="TxtConectorName" Style="{StaticResource RotoTextBox}" MaxLength="25" />
+                            </DockPanel>
                             <CheckBox x:Name="ChkPredefinido" Margin="0,10,0,0" />
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Bottom">
-                            <Button x:Name="BtnGuardarXml" Style="{StaticResource RotoButtonPrimary}" Margin="0,0,0,8"
+                        <UniformGrid Grid.Column="1" Columns="2" Rows="1" VerticalAlignment="Top" Margin="16,0,0,0">
+                            <Button x:Name="BtnGuardarXml" Style="{StaticResource RotoButtonPrimary}" Margin="0,0,7,0"
                                     Click="BtnGuardarXml_Click" HorizontalContentAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource IconDocument}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
                                     <TextBlock x:Name="TxtBtnGuardarXml" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnGuardarBD" Style="{StaticResource RotoButtonSecondary}"
+                            <Button x:Name="BtnGuardarBD" Style="{StaticResource RotoButtonSecondary}" Margin="7,0,0,0"
                                     Click="BtnGuardarBD_Click" HorizontalContentAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource IconUpload}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
                                     <TextBlock x:Name="TxtBtnGuardarBD" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                    </StackPanel>
+                        </UniformGrid>
+                    </Grid>
                 </StackPanel>
             </Border>
 
@@ -95,7 +123,7 @@
 
         <!-- Seleccionar todas + total de líneas -->
         <DockPanel Grid.Row="2" Margin="0,0,0,10" LastChildFill="False">
-            <CheckBox x:Name="ChkSeleccionarTodas" DockPanel.Dock="Left" Content="Seleccionar todas"
+            <CheckBox x:Name="ChkSeleccionarTodas" DockPanel.Dock="Left"
                       Checked="ChkSeleccionarTodas_Checked" Unchecked="ChkSeleccionarTodas_Unchecked" />
             <TextBlock x:Name="LblTotal" DockPanel.Dock="Right" Foreground="{StaticResource RotoGrayBrush}"
                        FontSize="13" VerticalAlignment="Center" />
@@ -105,6 +133,19 @@
         <Border Grid.Row="3" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
                 CornerRadius="8" Padding="14" Margin="0,0,0,14">
             <DataGrid x:Name="GridSets" Style="{StaticResource RotoDataGrid}" RowHeight="NaN">
+                <DataGrid.RowStyle>
+                    <!-- Filas "cabecera" (Set.IsTitle, solo tienen Escandallo) resaltadas: mismo
+                         tono que usa RotoDataGrid para una celda seleccionada, reutilizado aquí
+                         como acento de marca en vez de introducir un color nuevo. -->
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EsCabecera}" Value="True">
+                                <Setter Property="Background" Value="#FDE7E7" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="" Width="40">
                         <DataGridTemplateColumn.CellTemplate>
@@ -114,23 +155,64 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Escandallo" Binding="{Binding Escandallo}" Width="1.6*" IsReadOnly="True">
+                    <DataGridTextColumn x:Name="ColEscandallo" Binding="{Binding Escandallo}" Width="1.6*" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock" BasedOn="{StaticResource RotoDataGridCellText}">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Apertura" Binding="{Binding Apertura}" Width="1.2*" IsReadOnly="True"
-                                         ElementStyle="{StaticResource RotoDataGridCellText}" />
-                    <DataGridTextColumn Header="Opciones" Binding="{Binding Opciones}" Width="2*" IsReadOnly="True">
+                    <!-- Apertura: icono vectorial (familia de apertura, volteado izda./dcha. según
+                         corresponda) + el mismo texto descriptivo de siempre, para que el icono
+                         aporte reconocimiento visual inmediato sin perder el detalle del texto. -->
+                    <DataGridTemplateColumn x:Name="ColApertura" Width="0.8*">
+                        <!-- El header de columna usa por defecto HorizontalContentAlignment="Left"
+                             (RotoDataGridColumnHeader, igual que el resto de columnas de esta
+                             grid), pero el icono de esta columna va centrado en el ancho de la
+                             columna: sin este HeaderStyle el texto "Apertura" del header queda a
+                             la izquierda mientras el icono queda centrado más a la derecha, un
+                             desajuste visible entre cabecera y contenido. Se centra aquí solo el
+                             header de esta columna (BasedOn RotoDataGridColumnHeader para no
+                             perder el resto de su estilo) para que quede alineado con el icono. -->
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource RotoDataGridColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!-- Solo icono, sin texto (antes: icono + TextBlock con Apertura):
+                                     el tipo de apertura se explica por sí solo con la imagen; el
+                                     texto completo (izda./dcha., int./ext.) sigue disponible como
+                                     ToolTip para quien lo necesite. Tamaño más grande (antes 22) y
+                                     RenderTransformOrigin="0.5,0.5" en vez de CenterX/CenterY fijos
+                                     en coordenadas de la Geometry (12,12): ese valor no coincidía
+                                     con el centro real del Path ya renderizado (Width/2), lo que
+                                     provocaba una ligera desviación en los iconos volteados;
+                                     RenderTransformOrigin en coordenadas relativas (0.5,0.5) siempre
+                                     es el centro exacto, sea cual sea el tamaño del Path. -->
+                                <Path Data="{Binding AperturaIconoGeometria}" Fill="Transparent"
+                                      Stroke="{StaticResource RotoInkBrush}" StrokeThickness="1.6"
+                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                      Width="40" Height="40" Stretch="Uniform"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4"
+                                      RenderTransformOrigin="0.5,0.5"
+                                      ToolTip="{Binding Apertura}">
+                                    <Path.RenderTransform>
+                                        <ScaleTransform ScaleX="{Binding AperturaIconoFlip}" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="ColOpciones" Binding="{Binding Opciones}" Width="2*" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock" BasedOn="{StaticResource RotoDataGridCellText}">
                                 <Setter Property="TextWrapping" Value="Wrap" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="1.6*" IsReadOnly="True">
+                    <DataGridTextColumn x:Name="ColCodigo" Binding="{Binding Codigo}" Width="1.6*" IsReadOnly="True">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock" BasedOn="{StaticResource RotoDataGridCellText}">
                                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -149,7 +231,7 @@
                     Click="BtnVolver_Click">
                 <StackPanel Orientation="Horizontal">
                     <Path Data="{StaticResource IconBack}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
-                    <TextBlock Text="Volver" VerticalAlignment="Center" />
+                    <TextBlock x:Name="TxtBtnVolver" VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
         </DockPanel>

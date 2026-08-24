@@ -1,0 +1,104 @@
+<Window
+    x:Class="RotoTools.Suite.Views.Actualizador.ActualizadorInstalarManualEscandallosWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Instalar escandallos individualmente"
+    Width="620" Height="600"
+    MinWidth="480" MinHeight="420"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Sustituye a ActualizadorInstalarManualEscandallos.cs/.Designer.cs (WinForms): mismo
+        comportamiento (filtro por código + "Seleccionar todos" + lista de escandallos marcables +
+        Instalar), reutilizando tal cual RotoTools.Helpers/RotoTools.EscandalloHelper/
+        RotoTools.TranslateManager vía ProjectReference. El CheckedListBox original se sustituye por
+        un ItemsControl con un CheckBox de verdad por fila (enlazado TwoWay a una clase envoltorio
+        EscandalloSeleccionable, ver el .xaml.cs): a diferencia de DataGridCheckBoxColumn, un
+        CheckBox real dentro de una plantilla de ListBox/ItemsControl SÍ reacciona al primer click
+        sin problema, así que no hace falta la misma solución que en
+        ConfiguradorOpcionesEditorWindow (columnas de plantilla en vez de DataGridCheckBoxColumn).
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera -->
+        <Border Grid.Row="0" Background="{StaticResource RotoNavBackgroundBrush}">
+            <TextBlock x:Name="TxtTitulo" Text="Instalar escandallos individualmente" FontSize="17" FontWeight="SemiBold"
+                       Foreground="White" VerticalAlignment="Center" Margin="24,0" />
+        </Border>
+
+        <!-- Cuerpo -->
+        <Grid Grid.Row="1" Margin="24,20,24,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
+                <CheckBox x:Name="ChkSelectAll" DockPanel.Dock="Left" VerticalAlignment="Center"
+                          Checked="ChkSelectAll_CheckedChanged" Unchecked="ChkSelectAll_CheckedChanged" />
+                <!-- LastChildFill="False" arriba es la parte importante: por defecto DockPanel
+                     hace que su ÚLTIMO hijo "rellene" el hueco restante en vez de respetar el
+                     Dock="Right" que se le puso, así que este grupo (aunque tenga Dock="Right")
+                     terminaba pegado justo detrás de la casilla "Seleccionar todos" en vez de ir al
+                     borde derecho del formulario. Con LastChildFill="False" cada hijo respeta su
+                     propio Dock, y el grupo completo (etiqueta + textbox, uno junto al otro) queda
+                     anclado a la derecha. -->
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="LblBuscar" Margin="0,0,8,0" VerticalAlignment="Center"
+                               Foreground="{StaticResource RotoInkBrush}" />
+                    <TextBox x:Name="TxtFiltro" Style="{StaticResource RotoTextBox}" Width="220"
+                             TextChanged="TxtFiltro_TextChanged" />
+                </StackPanel>
+            </DockPanel>
+
+            <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1" CornerRadius="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="4">
+                    <!--
+                        HorizontalContentAlignment="Stretch" para que cada fila (el CheckBox
+                        generado por la plantilla) ocupe todo el ancho disponible: sin esto, el
+                        contenedor que ItemsControl genera para cada elemento se queda con el ancho
+                        justo de su contenido, así que el texto largo del código no tiene ancho real
+                        donde recortarse con puntos suspensivos y sale cortado a lo bruto por el
+                        borde de la lista en vez de mostrar "...". El texto se envuelve en un
+                        TextBlock explícito (en vez de dejar que el CheckBox cree uno implícito a
+                        partir de la cadena) para poder fijar VerticalAlignment="Center" - así el
+                        texto queda centrado con la casilla en vez de pegado arriba - y
+                        TextTrimming="CharacterEllipsis" + TextWrapping="NoWrap" para ese recorte
+                        con puntos suspensivos en una sola línea.
+                    -->
+                    <ItemsControl x:Name="ListaEscandallos" HorizontalContentAlignment="Stretch">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Seleccionado, Mode=TwoWay}"
+                                          VerticalContentAlignment="Center" HorizontalAlignment="Stretch"
+                                          Padding="6,7" Margin="4,1">
+                                    <TextBlock Text="{Binding Codigo}" VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                                </CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Pie -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="24,10">
+                <Button x:Name="BtnInstalarEscandallos" Style="{StaticResource RotoButtonPrimary}" Click="BtnInstalarEscandallos_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource IconPlus}" Fill="White"
+                              Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtBtnInstalarEscandallos" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

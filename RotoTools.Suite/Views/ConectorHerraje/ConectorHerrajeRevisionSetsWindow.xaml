@@ -63,27 +63,6 @@
             </Setter>
         </Style>
 
-        <Style x:Key="RotoGridIconButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Width" Value="32" />
-            <Setter Property="Height" Value="32" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="6">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bg" Property="Background" Value="#E9E9EC" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
 
     <Grid Margin="20">
@@ -101,7 +80,7 @@
                 <Path Data="{StaticResource IconLink}" Fill="White" Width="20" Height="20" Stretch="Uniform"
                       HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>
-            <TextBlock Text="Revisión de Sets" Style="{StaticResource RotoPageTitle}" Margin="0" VerticalAlignment="Center" />
+            <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" VerticalAlignment="Center" />
         </StackPanel>
 
         <!-- Selección de conector + filtro de proveedor -->
@@ -109,7 +88,7 @@
                 CornerRadius="8" Padding="16" Margin="0,0,0,14">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Width="260" Margin="0,0,24,0">
-                    <TextBlock Text="Conector" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" Margin="0,0,0,4" />
+                    <TextBlock x:Name="LblConector" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" Margin="0,0,0,4" />
                     <ComboBox x:Name="CmbConectores" Style="{StaticResource RotoComboFilter}"
                               SelectionChanged="CmbConectores_SelectionChanged" />
                 </StackPanel>
@@ -124,11 +103,11 @@
         <!-- Selector de pestañas -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,14">
             <RadioButton x:Name="RbTabIncluidos" GroupName="TabsRevisionSets" Style="{StaticResource TabChip}"
-                         Content="Sets incluidos en Conector" IsChecked="True" Checked="Tab_Changed" />
+                         IsChecked="True" Checked="Tab_Changed" />
             <RadioButton x:Name="RbTabNoIncluidos" GroupName="TabsRevisionSets" Style="{StaticResource TabChip}"
-                         Content="Sets NO incluidos en Conector" Checked="Tab_Changed" />
+                         Checked="Tab_Changed" />
             <RadioButton x:Name="RbTabCodigos" GroupName="TabsRevisionSets" Style="{StaticResource TabChip}"
-                         Content="Códigos que no están en XML" Checked="Tab_Changed" />
+                         Checked="Tab_Changed" />
         </StackPanel>
 
         <!-- Contenido de la pestaña activa -->
@@ -145,11 +124,19 @@
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
                         <TextBox x:Name="TxtFiltroIncluidos" DockPanel.Dock="Left" Style="{StaticResource RotoTextBox}"
-                                 Width="240" TextChanged="TxtFiltroIncluidos_TextChanged" />
-                        <TextBlock Text="Buscar" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
-                        <Button x:Name="BtnExportIncluidos" DockPanel.Dock="Right" Style="{StaticResource RotoGridIconButton}"
-                                Click="BtnExportIncluidos_Click" ToolTip="Exportar a Excel">
-                            <Path Data="{StaticResource IconDownload}" Fill="{StaticResource RotoGrayBrush}" Width="16" Height="16" Stretch="Uniform" />
+                                 Width="240" VerticalAlignment="Center" TextChanged="TxtFiltroIncluidos_TextChanged" />
+                        <TextBlock x:Name="LblBuscarIncluidos" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                        <Button x:Name="BtnExportIncluidos" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                                Click="BtnExportIncluidos_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <Grid Width="24" Height="24">
+                                        <Path Data="{StaticResource IconExcelDoc}" Fill="#1D6F42" />
+                                        <Path Data="{StaticResource IconExcelGrid}" Fill="White" />
+                                    </Grid>
+                                </Viewbox>
+                                <TextBlock x:Name="TxtBtnExportIncluidos" VerticalAlignment="Center" />
+                            </StackPanel>
                         </Button>
                     </DockPanel>
                     <TextBlock x:Name="LblTotalSetsIncluidos" Grid.Row="1" Foreground="{StaticResource RotoGrayBrush}"
@@ -175,11 +162,19 @@
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="False">
                         <TextBox x:Name="TxtFiltroNoIncluidos" DockPanel.Dock="Left" Style="{StaticResource RotoTextBox}"
-                                 Width="240" TextChanged="TxtFiltroNoIncluidos_TextChanged" />
-                        <TextBlock Text="Buscar" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
-                        <Button x:Name="BtnExportNoIncluidos" DockPanel.Dock="Right" Style="{StaticResource RotoGridIconButton}"
-                                Click="BtnExportNoIncluidos_Click" ToolTip="Exportar a Excel">
-                            <Path Data="{StaticResource IconDownload}" Fill="{StaticResource RotoGrayBrush}" Width="16" Height="16" Stretch="Uniform" />
+                                 Width="240" VerticalAlignment="Center" TextChanged="TxtFiltroNoIncluidos_TextChanged" />
+                        <TextBlock x:Name="LblBuscarNoIncluidos" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                        <Button x:Name="BtnExportNoIncluidos" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                                Click="BtnExportNoIncluidos_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <Grid Width="24" Height="24">
+                                        <Path Data="{StaticResource IconExcelDoc}" Fill="#1D6F42" />
+                                        <Path Data="{StaticResource IconExcelGrid}" Fill="White" />
+                                    </Grid>
+                                </Viewbox>
+                                <TextBlock x:Name="TxtBtnExportNoIncluidos" VerticalAlignment="Center" />
+                            </StackPanel>
                         </Button>
                     </DockPanel>
                     <TextBlock x:Name="LblTotalSetsNoIncluidos" Grid.Row="1" Foreground="{StaticResource RotoGrayBrush}"
@@ -209,12 +204,20 @@
                                 Click="BtnEliminarLineas_Click" Margin="8,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource IconTrash}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
-                                <TextBlock Text="Eliminar líneas no usadas" VerticalAlignment="Center" />
+                                <TextBlock x:Name="TxtBtnEliminarLineas" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
-                        <Button x:Name="BtnExportCodigos" DockPanel.Dock="Right" Style="{StaticResource RotoGridIconButton}"
-                                Click="BtnExportCodigos_Click" ToolTip="Exportar a Excel">
-                            <Path Data="{StaticResource IconDownload}" Fill="{StaticResource RotoGrayBrush}" Width="16" Height="16" Stretch="Uniform" />
+                        <Button x:Name="BtnExportCodigos" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                                Click="BtnExportCodigos_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <Grid Width="24" Height="24">
+                                        <Path Data="{StaticResource IconExcelDoc}" Fill="#1D6F42" />
+                                        <Path Data="{StaticResource IconExcelGrid}" Fill="White" />
+                                    </Grid>
+                                </Viewbox>
+                                <TextBlock x:Name="TxtBtnExportCodigos" VerticalAlignment="Center" />
+                            </StackPanel>
                         </Button>
                     </DockPanel>
                     <ListBox x:Name="ListCodigosNoXml" Grid.Row="1" Style="{StaticResource RotoList}"
@@ -234,7 +237,7 @@
                     Click="BtnVolver_Click">
                 <StackPanel Orientation="Horizontal">
                     <Path Data="{StaticResource IconBack}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
-                    <TextBlock Text="Volver" VerticalAlignment="Center" />
+                    <TextBlock x:Name="TxtBtnVolver" VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
         </DockPanel>

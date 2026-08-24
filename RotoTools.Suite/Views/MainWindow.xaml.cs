@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using RotoTools.Suite.Services;
+using RotoTools.Suite.Views.Actualizador;
 using RotoTools.Suite.Views.Cam;
 using RotoTools.Suite.Views.ConectorHerraje;
 using RotoTools.Suite.Views.ConfiguradorOpciones;
@@ -28,9 +29,10 @@ namespace RotoTools.Suite.Views
     /// <summary>
     /// Ventana principal (shell) de RotoTools Suite: sustituye a Main.cs/Main.Designer.cs de la
     /// app WinForms original. Estructura + menú principal, con páginas "próximamente" para los
-    /// módulos aún no migrados; Configurador de opciones y CAM (mecanizados 2D/3D, ver
-    /// Views/Cam/CamPage.xaml) ya están migrados. El resto se irá añadiendo módulo a módulo en
-    /// próximas entregas.
+    /// módulos aún no migrados; Configurador de opciones, CAM (mecanizados 2D/3D, ver
+    /// Views/Cam/CamPage.xaml), Conector de Herraje e Instalación (antes "Actualizador", ver
+    /// Views/Actualizador/ActualizadorPage.xaml) ya están migrados. El resto se irá añadiendo
+    /// módulo a módulo en próximas entregas.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -53,6 +55,15 @@ namespace RotoTools.Suite.Views
         private void CargarTextos()
         {
             LblIdioma.Text = RotoTools.LocalizationManager.GetString("L_SeleccionarIdioma");
+            TxtBtnSalir.Text = SuiteLocalization.GetString("L_Suite_Salir");
+        }
+
+        /// <summary>Botón nuevo (no existía como tal en el menú principal original, donde se
+        /// cerraba la aplicación con los controles estándar de la ventana): cierra toda la
+        /// aplicación, no solo la ventana principal, igual que el aspa de la ventana.</summary>
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void CargarInfoConexion()
@@ -80,9 +91,9 @@ namespace RotoTools.Suite.Views
 
         /// <summary>
         /// Mismo inventario de 10 módulos que Main.Designer.cs original, más "Inicio" (nuevo,
-        /// pantalla de bienvenida que no existía en la app WinForms). Configurador de opciones y
-        /// CAM ya abren su página real migrada; el resto sigue abriendo una página
-        /// "próximamente" hasta que se migre en próximas entregas.
+        /// pantalla de bienvenida que no existía en la app WinForms). Configurador de opciones,
+        /// CAM, Conector de Herraje e Instalación ya abren su página real migrada; el resto sigue
+        /// abriendo una página "próximamente" hasta que se migre en próximas entregas.
         /// </summary>
         private void CargarModulos()
         {
@@ -112,7 +123,7 @@ namespace RotoTools.Suite.Views
                         CrearPagina = () => new ConfiguradorOpcionesPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Actualizador"), Icono = iconoActualizador, Color = new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2)),
-                        CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_Actualizador"), "Actualización de datos y catálogos.", iconoActualizador, new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2))) },
+                        CrearPagina = () => new ActualizadorPage() },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)),
                         CrearPagina = () => new PlaceholderPage(RotoTools.LocalizationManager.GetString("L_ExportarDatos"), "Exportación de datos a ficheros externos.", iconoExportar, new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00))) },

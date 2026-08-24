@@ -43,13 +43,16 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             TxtTitulo.Text = RotoTools.LocalizationManager.GetString("L_ConectorHerraje");
             TxtSubtitulo.Text = SuiteLocalization.GetString("L_Suite_ConectorHerrajeSubtitulo");
 
-            TxtBtnCargarXml.Text = "Cargar XML";
+            TxtBtnCargarXml.Text = SuiteLocalization.GetString("L_Suite_CargarXml");
             LblXml.Text = "";
 
             TxtCard1Titulo.Text = RotoTools.LocalizationManager.GetString("L_GenerarConector");
+            TxtCard1Desc.Text = SuiteLocalization.GetString("L_Suite_GenerarConectorDesc");
             ChkConfigAE.Content = RotoTools.LocalizationManager.GetString("L_BalconerasAEconAI");
             TxtCard2Titulo.Text = RotoTools.LocalizationManager.GetString("L_CombinarConectores");
+            TxtCard2Desc.Text = SuiteLocalization.GetString("L_Suite_CombinarConectoresDesc");
             TxtCard3Titulo.Text = RotoTools.LocalizationManager.GetString("L_RevisionSets");
+            TxtCard3Desc.Text = SuiteLocalization.GetString("L_Suite_RevisionSetsDesc");
         }
 
         /// <summary>Igual que ConectorHerrajeMenu.CargarDatos: comprueba la conexión/conector
@@ -68,7 +71,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             {
                 EnableButtons(false);
                 BorderAvisoVersion.Visibility = Visibility.Visible;
-                TxtAvisoVersion.Text = "BASE DE DATOS NO COMPATIBLE (v2020 requerida).";
+                TxtAvisoVersion.Text = SuiteLocalization.GetString("L_Suite_BaseDatosNoCompatible");
             }
         }
 

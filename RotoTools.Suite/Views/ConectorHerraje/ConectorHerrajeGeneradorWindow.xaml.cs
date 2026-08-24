@@ -3,10 +3,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Xml;
 using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using RotoEntities;
+using EOT = RotoTools.Enums.enumOpeningType;
 
 namespace RotoTools.Suite.Views.ConectorHerraje
 {
@@ -91,6 +93,17 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             ChkParalelas.Content = RotoTools.LocalizationManager.GetString("L_Paralelas");
             ChkAbatibles.Content = RotoTools.LocalizationManager.GetString("L_Abatibles");
             ChkPlegables.Content = RotoTools.LocalizationManager.GetString("L_Plegables");
+
+            ChkSeleccionarTodas.Content = RotoTools.Suite.Services.SuiteLocalization.GetString("L_Suite_SeleccionarTodas");
+            TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
+
+            // Los headers de columna de la grid de Sets: Escandallo/Apertura/Opciones ya existen
+            // en el proyecto original (se usan también en otras pantallas clásicas), Código
+            // reutiliza la misma clave que LblCodigoConector de arriba.
+            ColEscandallo.Header = RotoTools.LocalizationManager.GetString("L_Escandallo");
+            ColApertura.Header = RotoTools.LocalizationManager.GetString("L_Apertura");
+            ColOpciones.Header = RotoTools.LocalizationManager.GetString("L_Opciones");
+            ColCodigo.Header = RotoTools.LocalizationManager.GetString("L_Codigo");
         }
 
         /// <summary>Igual que ConectorHerrajeGenerador_Load: el servidor/base de datos y el
@@ -231,7 +244,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = "Archivo XML (*.xml)|*.xml",
-                Title = "Guardar archivo XML"
+                Title = RotoTools.Suite.Services.SuiteLocalization.GetString("L_Suite_GuardarArchivoXML")
             };
 
             if (saveFileDialog.ShowDialog() == true)
@@ -288,6 +301,11 @@ namespace RotoTools.Suite.Views.ConectorHerraje
                     RotoTools.Helpers.InstalarOpcionTipoLWC();
 
                 MessageBox.Show(RotoTools.LocalizationManager.GetString("L_ConectorInsertado"));
+
+                // Si se ha marcado "Poner como predefinido", el UPDATE de VARIABLESGLOBALES de
+                // arriba ya se ha ejecutado: refrescamos aquí el texto de "Conector activo" para
+                // que se vea el cambio sin tener que cerrar y volver a abrir esta ventana.
+                ActualizarInfoConexion();
             }
             catch (Exception ex)
             {
@@ -413,8 +431,9 @@ namespace RotoTools.Suite.Views.ConectorHerraje
 
     /// <summary>Equivalente a SetGridRow (ConectorHerrajeGenerador.cs): una fila de la grid de
     /// Sets. "Apertura" era una imagen (Properties.Resources.OpeningN) en el original; aquí se
-    /// muestra como una etiqueta de texto (ver ObtenerEtiquetaApertura) porque esos recursos
-    /// gráficos no están disponibles en este entorno de migración.</summary>
+    /// muestra con un icono vectorial propio (ver AperturaIconoGeometria/AperturaIconoFlip) más
+    /// el mismo texto descriptivo que ya calculaba ObtenerEtiquetaApertura, en vez del bitmap
+    /// original (esos recursos gráficos no están disponibles en este entorno de migración).</summary>
     public class SetGridRowVm : INotifyPropertyChanged
     {
         private bool _selected;
@@ -428,6 +447,13 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             Opciones = set.OptionConectorList != null && set.OptionConectorList.Count > 0
                 ? string.Join(Environment.NewLine, set.OptionConectorList.Select(o => $@"{o.Name}\{o.Value}"))
                 : "";
+
+            // Fila "cabecera" de un grupo (solo tiene Escandallo, ninguna otra columna): se
+            // resalta en la grid (ver DataGrid.RowStyle en el XAML) para que se distinga de una
+            // línea de datos real, tal y como se usan habitualmente estas filas.
+            EsCabecera = set.IsTitle;
+
+            (AperturaIconoGeometria, AperturaIconoFlip) = ObtenerIconoApertura(set);
         }
 
         public string Escandallo { get; }
@@ -435,6 +461,9 @@ namespace RotoTools.Suite.Views.ConectorHerraje
         public string Opciones { get; }
         public string Codigo { get; }
         public int WindowType { get; }
+        public bool EsCabecera { get; }
+        public Geometry? AperturaIconoGeometria { get; }
+        public double AperturaIconoFlip { get; }
 
         public bool Selected
         {
@@ -464,6 +493,61 @@ namespace RotoTools.Suite.Views.ConectorHerraje
                 (int)RotoTools.Enums.enumOpeningType.PracticableDerechaExt => "Practicable dcha. ext.",
                 _ => ""
             };
+        }
+
+        /// <summary>Elige el icono de RotoBrand.xaml para la familia de apertura y si hay que
+        /// voltearlo horizontalmente (variantes "derecha"): un mismo icono sirve para izda./dcha.
+        /// de cada familia, así que solo se necesitan 7 geometrías en vez de 14. La distinción
+        /// int./ext. de Practicable no se representa en el icono (solo en el texto de al lado):
+        /// requeriría una perspectiva que estas geometrías, deliberadamente simples, no dan.</summary>
+        private static (Geometry? icono, double flip) ObtenerIconoApertura(Set set)
+        {
+            if (set.Opening == null) return (null, 1);
+
+            string? clave;
+            double flip = 1;
+
+            switch (set.Opening.openingType)
+            {
+                case var v when v == (int)EOT.PracticableIzquierdaInt:
+                    clave = "IconAperturaPracticable"; break;
+                case var v when v == (int)EOT.PracticableDerechaInt:
+                    clave = "IconAperturaPracticable"; flip = -1; break;
+                // Exterior: mismo dibujo que el interior pero con doble línea (ver comentario de
+                // IconApertura* en RotoBrand.xaml), para que se distinga a simple vista - antes
+                // interior y exterior compartían el mismo icono sin ninguna diferencia visual.
+                case var v when v == (int)EOT.PracticableIzquierdaExt:
+                    clave = "IconAperturaPracticableExterior"; break;
+                case var v when v == (int)EOT.PracticableDerechaExt:
+                    clave = "IconAperturaPracticableExterior"; flip = -1; break;
+                case var v when v == (int)EOT.OscilobatienteIzquierdaInt:
+                    clave = "IconAperturaOscilobatiente"; break;
+                case var v when v == (int)EOT.OscilobatienteDerechaInt:
+                    clave = "IconAperturaOscilobatiente"; flip = -1; break;
+                case var v when v == (int)EOT.Abatible:
+                    clave = "IconAperturaAbatible"; break;
+                case var v when v == (int)EOT.CorrederaIzquierda:
+                    clave = "IconAperturaCorrederaSimple"; flip = -1; break;
+                case var v when v == (int)EOT.CorrederaDerecha:
+                    clave = "IconAperturaCorrederaSimple"; break;
+                case var v when v == (int)EOT.CorrederaIzqDcha:
+                    clave = "IconAperturaCorrederaDoble"; break;
+                case var v when v == (int)EOT.OsciloCorrederaIzquierda:
+                    clave = "IconAperturaOsciloCorredera"; flip = -1; break;
+                case var v when v == (int)EOT.OsciloCorrederaDerecha:
+                    clave = "IconAperturaOsciloCorredera"; break;
+                case var v when v == (int)EOT.ElevableIzquierda:
+                    clave = "IconAperturaElevable"; flip = -1; break;
+                case var v when v == (int)EOT.ElevableDerecha:
+                    clave = "IconAperturaElevable"; break;
+                default:
+                    clave = null; break;
+            }
+
+            if (clave == null) return (null, 1);
+
+            var geometria = Application.Current.TryFindResource(clave) as Geometry;
+            return (geometria, flip);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

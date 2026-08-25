@@ -42,10 +42,22 @@
     <AssemblyTitle>RotoTools Suite</AssemblyTitle>
     <Company>Roto Frank FTT GmbH</Company>
     <Version>0.1.0</Version>
-    <FileVersion>2.1.2</FileVersion>
-    <AssemblyVersion>2.1.2</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
 
-    <ApplicationIcon>Assets\roto_icon.ico</ApplicationIcon>
+    <!--
+      Icono NUEVO y propio de la Suite (Assets\roto_suite_icon.ico), en vez de reutilizar
+      Assets\roto_icon.ico (idéntico al icono de la app WinForms clásica, images\roto_icon.ico en
+      RotoTools.csproj): con el mismo icono, RotoTools.exe y RotoTools.Suite.exe eran
+      indistinguibles en la barra de tareas. El nuevo icono reutiliza el propio chevron rojo de
+      Roto (recortado del logotipo real, images/logo.png, no redibujado a mano) sobre un cuadrado
+      de esquinas redondeadas con el mismo degradado oscuro que ya usa la cabecera/barra lateral
+      de la Suite (RotoNavBackgroundBrush en Theme/RotoBrand.xaml), con una segunda copia del
+      chevron más pequeña y en rojo detrás, a modo de "capas apiladas" (varios módulos = un solo
+      Suite). roto_icon.ico se deja tal cual en Assets/ sin usarse, por si se prefiriera volver a
+      él, en vez de borrarlo.
+    -->
+    <ApplicationIcon>Assets\roto_suite_icon.ico</ApplicationIcon>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
 
     <!-- Portable: un único .exe autocontenido, sin necesidad de instalar el runtime de .NET. -->

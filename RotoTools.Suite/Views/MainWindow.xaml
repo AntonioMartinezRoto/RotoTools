@@ -6,7 +6,8 @@
     Width="1440" Height="900"
     MinWidth="1100" MinHeight="650"
     WindowStartupLocation="CenterScreen"
-    Background="{StaticResource RotoContentBackgroundBrush}">
+    Background="{StaticResource RotoContentBackgroundBrush}"
+    Icon="/Assets/roto_suite_icon.ico">
 
     <Grid>
         <Grid.RowDefinitions>

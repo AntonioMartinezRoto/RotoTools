@@ -110,13 +110,20 @@ namespace RotoTools.Suite.Views
             }
         }
 
-        /// <summary>Migrado tal cual de Main.cs (btn_Refresh_Click -> CargarDatos ->
-        /// InitializeInfoConnection): simplemente vuelve a leer y mostrar el servidor/base de
-        /// datos actuales (no hace ping ni prueba la conexión), por si han cambiado desde que se
-        /// abrió la aplicación.</summary>
+        /// <summary>Migrado de Main.cs (btn_Refresh_Click -> CargarDatos -> InitializeInfoConnection):
+        /// vuelve a leer y mostrar el servidor/base de datos actuales, por si han cambiado desde
+        /// que se abrió la aplicación. Añadido (no existía en el original): si el módulo Conector
+        /// de Herraje es el que está abierto ahora mismo, también se repite su propia comprobación
+        /// de compatibilidad de versión de BBDD (ConectorHerrajePage.CargarDatos), ya que esa
+        /// comprobación solo se ejecutaba antes en el constructor de la página. Sin esto, si se
+        /// cambiaba la cadena de conexión fuera de la Suite estando ya en ese módulo, el aviso de
+        /// "base de datos no compatible" se quedaba bloqueado hasta cambiar de módulo y volver.</summary>
         private void BtnActualizarConexion_Click(object sender, RoutedEventArgs e)
         {
             CargarInfoConexion();
+
+            if (ContentHost.Content is ConectorHerrajePage paginaConectorHerraje)
+                paginaConectorHerraje.CargarDatos();
         }
 
         /// <summary>

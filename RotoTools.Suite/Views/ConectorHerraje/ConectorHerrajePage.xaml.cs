@@ -60,8 +60,12 @@ namespace RotoTools.Suite.Views.ConectorHerraje
 
         /// <summary>Igual que ConectorHerrajeMenu.CargarDatos: comprueba la conexión/conector
         /// activo y si la versión de base de datos es compatible con la suite (v2020+); si no lo
-        /// es, deshabilita las 4 acciones y muestra el aviso, igual que ShowVersionNoCompatible.</summary>
-        private void CargarDatos()
+        /// es, deshabilita las 4 acciones y muestra el aviso, igual que ShowVersionNoCompatible.
+        /// Público (no solo se llama desde el constructor): MainWindow.BtnActualizarConexion_Click
+        /// también lo invoca para volver a comprobar la compatibilidad si la cadena de conexión
+        /// se ha cambiado fuera de la Suite (por ejemplo con el propio RotoTools) mientras este
+        /// módulo ya estaba abierto, sin necesidad de navegar a otro módulo y volver.</summary>
+        public void CargarDatos()
         {
             ActualizarInfoConexion();
 

@@ -233,4 +233,29 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
     <value>Debes seleccionar un conector.</value>
   </data>
+  <data name="L_Suite_EliminarConectores" xml:space="preserve">
+    <value>Eliminar conectores</value>
+  </data>
+  <data name="L_Suite_EliminarConectoresDesc" xml:space="preserve">
+    <value>Elimina definitivamente de la base de datos uno o varios conectores de herraje ya guardados.</value>
+  </data>
+  <data name="L_Suite_Eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="L_Suite_Activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarConectores" xml:space="preserve">
+    <value>Se eliminarán definitivamente {0} conector(es) de la base de datos. Esta acción no se puede deshacer.
+¿Desea continuar?</value>
+  </data>
+  <data name="L_Suite_ConectoresEliminados" xml:space="preserve">
+    <value>Se han eliminado {0} conector(es).</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnConector" xml:space="preserve">
+    <value>Debes seleccionar al menos un conector para eliminar.</value>
+  </data>
+  <data name="L_Suite_TotalConectoresGuardados" xml:space="preserve">
+    <value>Hay {0} conector(es) guardado(s).</value>
+  </data>
 </root>

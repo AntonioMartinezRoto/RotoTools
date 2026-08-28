@@ -226,4 +226,29 @@ Connector updated successfully.</value>
   <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
     <value>You must select a connector.</value>
   </data>
+  <data name="L_Suite_EliminarConectores" xml:space="preserve">
+    <value>Delete connectors</value>
+  </data>
+  <data name="L_Suite_EliminarConectoresDesc" xml:space="preserve">
+    <value>Permanently deletes one or more already saved hardware connectors from the database.</value>
+  </data>
+  <data name="L_Suite_Eliminar" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="L_Suite_Activo" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarConectores" xml:space="preserve">
+    <value>{0} connector(s) will be permanently deleted from the database. This action cannot be undone.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ConectoresEliminados" xml:space="preserve">
+    <value>{0} connector(s) deleted.</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnConector" xml:space="preserve">
+    <value>You must select at least one connector to delete.</value>
+  </data>
+  <data name="L_Suite_TotalConectoresGuardados" xml:space="preserve">
+    <value>There are {0} saved connector(s).</value>
+  </data>
 </root>

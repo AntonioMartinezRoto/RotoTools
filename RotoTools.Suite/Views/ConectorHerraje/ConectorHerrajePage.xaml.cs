@@ -56,6 +56,9 @@ namespace RotoTools.Suite.Views.ConectorHerraje
 
             TxtCard4Titulo.Text = SuiteLocalization.GetString("L_Suite_CambiarConectorActivo");
             TxtCard4Desc.Text = SuiteLocalization.GetString("L_Suite_CambiarConectorActivoDesc");
+
+            TxtCard5Titulo.Text = SuiteLocalization.GetString("L_Suite_EliminarConectores");
+            TxtCard5Desc.Text = SuiteLocalization.GetString("L_Suite_EliminarConectoresDesc");
         }
 
         /// <summary>Igual que ConectorHerrajeMenu.CargarDatos: comprueba la conexión/conector
@@ -99,6 +102,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             BtnCombinarConectores.IsEnabled = habilitado;
             BtnSetsNoUtilizados.IsEnabled = habilitado;
             BtnCambiarConectorActivo.IsEnabled = habilitado;
+            BtnEliminarConectores.IsEnabled = habilitado;
         }
 
         #endregion
@@ -300,6 +304,17 @@ namespace RotoTools.Suite.Views.ConectorHerraje
         private void BtnCambiarConectorActivo_Click(object sender, RoutedEventArgs e)
         {
             new ConectorHerrajeActivoWindow { Owner = Window.GetWindow(this) }.ShowDialog();
+            ActualizarInfoConexion();
+        }
+
+        /// <summary>Nueva (no existía en el original): abre el diálogo que permite eliminar
+        /// definitivamente de la tabla ConectorHerrajes uno o varios conectores ya guardados (ver
+        /// comentario de clase en ConectorHerrajeEliminarWindow). ActualizarInfoConexion() refresca
+        /// aquí LblConectorActivo por si acaso, aunque el propio diálogo ya impide eliminar el
+        /// conector activo actual.</summary>
+        private void BtnEliminarConectores_Click(object sender, RoutedEventArgs e)
+        {
+            new ConectorHerrajeEliminarWindow { Owner = Window.GetWindow(this) }.ShowDialog();
             ActualizarInfoConexion();
         }
 

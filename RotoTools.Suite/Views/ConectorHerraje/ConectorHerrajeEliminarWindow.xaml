@@ -1,0 +1,83 @@
+<Window
+    x:Class="RotoTools.Suite.Views.ConectorHerraje.ConectorHerrajeEliminarWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Eliminar conectores" Width="460" Height="480"
+    MinWidth="420" MinHeight="360"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Nueva (no existía en el original): permite eliminar definitivamente de la tabla
+        ConectorHerrajes uno o varios de los conectores ya guardados (ver el comentario grande en
+        el .xaml.cs). Mismo patrón de lista con casillas + "Seleccionar todas" que
+        ConectorHerrajeGeneradorWindow (GridSets/ChkSeleccionarTodas), pero aquí cada fila es un
+        conector completo en vez de un Set, y la fila del conector activo actual no se puede
+        seleccionar (su casilla queda deshabilitada, ver PuedeEliminarse en el .xaml.cs).
+    -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+            <Border Style="{StaticResource RotoPageBadge}" Background="#C62828" Margin="0,0,16,0">
+                <Path Data="{StaticResource IconTrash}" Fill="White" Width="20" Height="20" Stretch="Uniform"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TextBlock x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <!-- Seleccionar todas (nunca marca la fila del conector activo) + total de conectores -->
+        <DockPanel Grid.Row="1" Margin="0,0,0,10" LastChildFill="False">
+            <CheckBox x:Name="ChkSeleccionarTodas" DockPanel.Dock="Left"
+                      Checked="ChkSeleccionarTodas_Checked" Unchecked="ChkSeleccionarTodas_Unchecked" />
+            <TextBlock x:Name="LblTotal" DockPanel.Dock="Right" Foreground="{StaticResource RotoGrayBrush}"
+                       FontSize="12.5" VerticalAlignment="Center" />
+        </DockPanel>
+
+        <!-- Lista de conectores -->
+        <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                CornerRadius="8" Padding="10" Margin="0,0,0,16">
+            <DataGrid x:Name="GridConectores" Style="{StaticResource RotoDataGrid}" RowHeight="NaN"
+                      AutoGenerateColumns="False" HeadersVisibility="None">
+                <DataGrid.Columns>
+                    <!-- Casilla de selección: deshabilitada en la fila del conector activo -->
+                    <DataGridTemplateColumn Width="34">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged}"
+                                          IsEnabled="{Binding PuedeEliminarse}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding Codigo}" Width="*" IsReadOnly="True"
+                                         ElementStyle="{StaticResource RotoDataGridCellText}" />
+                    <!-- Etiqueta "Activo" junto al conector que no se puede eliminar -->
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EtiquetaActivo}" FontSize="11" FontWeight="SemiBold"
+                                           Foreground="{StaticResource RotoRedBrush}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <DockPanel Grid.Row="3" LastChildFill="False">
+            <Button x:Name="BtnEliminar" DockPanel.Dock="Right" Style="{StaticResource RotoButtonPrimary}"
+                    Click="BtnEliminar_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconTrash}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                    <TextBlock x:Name="TxtBtnEliminar" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

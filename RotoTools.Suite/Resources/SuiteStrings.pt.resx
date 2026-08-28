@@ -226,4 +226,29 @@ Conector atualizado com sucesso.</value>
   <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
     <value>Tem de selecionar um conector.</value>
   </data>
+  <data name="L_Suite_EliminarConectores" xml:space="preserve">
+    <value>Eliminar conectores</value>
+  </data>
+  <data name="L_Suite_EliminarConectoresDesc" xml:space="preserve">
+    <value>Elimina definitivamente da base de dados um ou vários conectores de ferragem já guardados.</value>
+  </data>
+  <data name="L_Suite_Eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="L_Suite_Activo" xml:space="preserve">
+    <value>Ativo</value>
+  </data>
+  <data name="L_Suite_ConfirmarEliminarConectores" xml:space="preserve">
+    <value>Serão eliminados definitivamente {0} conector(es) da base de dados. Esta ação não pode ser desfeita.
+Deseja continuar?</value>
+  </data>
+  <data name="L_Suite_ConectoresEliminados" xml:space="preserve">
+    <value>Foram eliminados {0} conector(es).</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnConector" xml:space="preserve">
+    <value>Tem de selecionar pelo menos um conector para eliminar.</value>
+  </data>
+  <data name="L_Suite_TotalConectoresGuardados" xml:space="preserve">
+    <value>Há {0} conector(es) guardado(s).</value>
+  </data>
 </root>

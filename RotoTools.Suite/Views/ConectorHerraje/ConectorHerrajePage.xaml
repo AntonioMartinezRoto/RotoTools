@@ -57,11 +57,17 @@
                 </DockPanel>
             </Border>
 
-            <!-- Tarjetas de acción: mismas 3 que ConectorHerrajeMenu (pnlCard1/2/3) -->
-            <UniformGrid Columns="3" Rows="1">
+            <!-- Tarjetas de acción: las 3 de ConectorHerrajeMenu (pnlCard1/2/3) + una nueva, "Cambiar
+                 conector activo" (no existía en el original: antes el conector activo solo se
+                 podía cambiar de rebote, marcando "Poner como predefinido" al generar/combinar un
+                 conector, ver ChkPredefinido en ConectorHerrajeCombinarWindow/ChkPredefinido en
+                 ConectorHerrajeGeneradorWindow). Esta tarjeta abre un diálogo pequeño (ver
+                 ConectorHerrajeActivoWindow) para elegir cualquiera de los conectores ya guardados
+                 en BBDD como activo, sin tener que generar ni combinar nada. -->
+            <UniformGrid Columns="4" Rows="1">
 
                 <!-- Tarjeta 1: Generar Conector de Herraje (+ checkbox "Balconeras AE con Sets de AI") -->
-                <Button x:Name="BtnGeneraConector" Style="{StaticResource RotoActionCard}" Margin="0,0,12,0"
+                <Button x:Name="BtnGeneraConector" Style="{StaticResource RotoActionCard}" Margin="0,0,8,0"
                         Click="BtnGeneraConector_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#00838F" Margin="0,0,0,14">
@@ -76,7 +82,7 @@
                 </Button>
 
                 <!-- Tarjeta 2: Combinar Conectores de Herraje -->
-                <Button x:Name="BtnCombinarConectores" Style="{StaticResource RotoActionCard}" Margin="6,0,6,0"
+                <Button x:Name="BtnCombinarConectores" Style="{StaticResource RotoActionCard}" Margin="8,0,8,0"
                         Click="BtnCombinarConectores_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#1976D2" Margin="0,0,0,14">
@@ -90,7 +96,7 @@
                 </Button>
 
                 <!-- Tarjeta 3: Revisión de Sets -->
-                <Button x:Name="BtnSetsNoUtilizados" Style="{StaticResource RotoActionCard}" Margin="12,0,0,0"
+                <Button x:Name="BtnSetsNoUtilizados" Style="{StaticResource RotoActionCard}" Margin="8,0,8,0"
                         Click="BtnSetsNoUtilizados_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#F57C00" Margin="0,0,0,14">
@@ -99,6 +105,20 @@
                         </Border>
                         <TextBlock x:Name="TxtCard3Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
                         <TextBlock x:Name="TxtCard3Desc"
+                                   Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 4 (nueva): Cambiar conector activo -->
+                <Button x:Name="BtnCambiarConectorActivo" Style="{StaticResource RotoActionCard}" Margin="8,0,0,0"
+                        Click="BtnCambiarConectorActivo_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#5E35B1" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconRefresh}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard4Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard4Desc"
                                    Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
                     </StackPanel>
                 </Button>

@@ -217,4 +217,13 @@ Conector atualizado com sucesso.</value>
   <data name="L_Suite_ConfirmarLimpiarActualizacion" xml:space="preserve">
     <value>O registo desta atualização (nome do XML e data) será eliminado. Deseja continuar?</value>
   </data>
+  <data name="L_Suite_CambiarConectorActivo" xml:space="preserve">
+    <value>Alterar conector ativo</value>
+  </data>
+  <data name="L_Suite_CambiarConectorActivoDesc" xml:space="preserve">
+    <value>Selecione qual dos conectores de ferragem já guardados fica ativo para o resto da aplicação.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
+    <value>Tem de selecionar um conector.</value>
+  </data>
 </root>

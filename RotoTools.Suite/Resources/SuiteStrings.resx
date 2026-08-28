@@ -224,4 +224,13 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_ConfirmarLimpiarActualizacion" xml:space="preserve">
     <value>Se eliminará el registro de esta actualización (nombre del XML y fecha). ¿Deseas continuar?</value>
   </data>
+  <data name="L_Suite_CambiarConectorActivo" xml:space="preserve">
+    <value>Cambiar conector activo</value>
+  </data>
+  <data name="L_Suite_CambiarConectorActivoDesc" xml:space="preserve">
+    <value>Selecciona qué conector de herraje, de los ya guardados, queda como activo para el resto de la aplicación.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
+    <value>Debes seleccionar un conector.</value>
+  </data>
 </root>

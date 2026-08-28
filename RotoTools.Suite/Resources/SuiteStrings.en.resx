@@ -217,4 +217,13 @@ Connector updated successfully.</value>
   <data name="L_Suite_ConfirmarLimpiarActualizacion" xml:space="preserve">
     <value>The record for this update (XML name and date) will be deleted. Do you want to continue?</value>
   </data>
+  <data name="L_Suite_CambiarConectorActivo" xml:space="preserve">
+    <value>Change active connector</value>
+  </data>
+  <data name="L_Suite_CambiarConectorActivoDesc" xml:space="preserve">
+    <value>Select which of the already saved hardware connectors becomes active for the rest of the application.</value>
+  </data>
+  <data name="L_Suite_SeleccionaConectorObligatorio" xml:space="preserve">
+    <value>You must select a connector.</value>
+  </data>
 </root>

@@ -53,6 +53,9 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             TxtCard2Desc.Text = SuiteLocalization.GetString("L_Suite_CombinarConectoresDesc");
             TxtCard3Titulo.Text = RotoTools.LocalizationManager.GetString("L_RevisionSets");
             TxtCard3Desc.Text = SuiteLocalization.GetString("L_Suite_RevisionSetsDesc");
+
+            TxtCard4Titulo.Text = SuiteLocalization.GetString("L_Suite_CambiarConectorActivo");
+            TxtCard4Desc.Text = SuiteLocalization.GetString("L_Suite_CambiarConectorActivoDesc");
         }
 
         /// <summary>Igual que ConectorHerrajeMenu.CargarDatos: comprueba la conexión/conector
@@ -91,6 +94,7 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             BtnGeneraConector.IsEnabled = habilitado;
             BtnCombinarConectores.IsEnabled = habilitado;
             BtnSetsNoUtilizados.IsEnabled = habilitado;
+            BtnCambiarConectorActivo.IsEnabled = habilitado;
         }
 
         #endregion
@@ -282,6 +286,17 @@ namespace RotoTools.Suite.Views.ConectorHerraje
             if (!_xmlCargado || _xmlOrigen == null) return;
 
             new ConectorHerrajeRevisionSetsWindow(_xmlOrigen) { Owner = Window.GetWindow(this) }.ShowDialog();
+        }
+
+        /// <summary>Nueva (no existía en el original): igual que btn_CombinarConectores_Click, no
+        /// exige tener un XML cargado, ya que solo cambia qué conector ya guardado en BBDD queda
+        /// como activo (RotoTools.Helpers.GetConectorActivo/VariablesGlobales, ver
+        /// ConectorHerrajeActivoWindow). ActualizarInfoConexion() refresca aquí LblConectorActivo
+        /// para que la página muestre el nuevo activo sin tener que reabrir el módulo.</summary>
+        private void BtnCambiarConectorActivo_Click(object sender, RoutedEventArgs e)
+        {
+            new ConectorHerrajeActivoWindow { Owner = Window.GetWindow(this) }.ShowDialog();
+            ActualizarInfoConexion();
         }
 
         #endregion

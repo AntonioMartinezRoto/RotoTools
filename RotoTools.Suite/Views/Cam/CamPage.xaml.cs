@@ -74,7 +74,7 @@ namespace RotoTools.Suite.Views.Cam
             RbNoExisten.Content = RotoTools.LocalizationManager.GetString("L_NoExiste");
             RbTodas.IsChecked = true;
 
-            TxtBtnCargarXml.Text = "Cargar XML";
+            TxtBtnCargarXml.Text = SuiteLocalization.GetString("L_Suite_AccesoCargarXml");
             TxtBtnCargarOperaciones.Text = RotoTools.LocalizationManager.GetString("L_CargarOperaciones");
             TxtBtnLimpiar.Text = RotoTools.LocalizationManager.GetString("L_LimpiarInfo");
             TxtBtnInstalarMacros.Text = RotoTools.LocalizationManager.GetString("L_InstalarMacros");
@@ -82,6 +82,12 @@ namespace RotoTools.Suite.Views.Cam
             TxtBtnNormalizar.Text = RotoTools.LocalizationManager.GetString("L_NormalizarOperaciones");
             TxtBtnInstalar.Text = RotoTools.LocalizationManager.GetString("L_InstalarOperaciones");
             TxtBtnInstalar3D.Text = "3D";
+
+            ChkSetsTodos.Content = RotoTools.LocalizationManager.GetString("L_SeleccionarTodos");
+            ChkOperacionesTodas.Content = RotoTools.LocalizationManager.GetString("L_SeleccionarTodos");
+
+            Resources["TooltipConfigurarGeometria"] = SuiteLocalization.GetString("L_Suite_TooltipConfigurarGeometria");
+            Resources["TooltipVerInformacion"] = SuiteLocalization.GetString("L_Suite_TooltipVerInformacion");
         }
 
         // Nota: ya no se muestra aquí abajo el servidor/base de datos de conexión (InitializeInfoConnection
@@ -92,7 +98,11 @@ namespace RotoTools.Suite.Views.Cam
 
         #region Carga de XML (LoadXml / btn_LoadXml_Click)
 
-        private void BtnLoadXml_Click(object sender, RoutedEventArgs e)
+        /// <summary>Público (no solo se llama desde el propio botón): es también el acceso directo
+        /// "Cargar XML" de la portada Inicio (ver BtnAccesoCam_Click en DashboardPage.xaml.cs y
+        /// MainWindow.IrAModulo), que navega a este módulo y ejecuta esta misma acción tal cual,
+        /// sin duplicar su lógica.</summary>
+        public void BtnLoadXml_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog { Filter = "XML Files (*.xml)|*.xml" };
 
@@ -654,7 +664,7 @@ namespace RotoTools.Suite.Views.Cam
         private void MostrarAvisoPendiente()
         {
             MessageBox.Show(
-                "Esta función todavía no se ha migrado a RotoTools Suite (se incorporará en una próxima entrega). " +
+                "Esta función todavía no se ha migrado a RotoTools (se incorporará en una próxima entrega). " +
                 "Por ahora, utilice el RotoTools clásico para esta acción.",
                 "Próximamente", MessageBoxButton.OK, MessageBoxImage.Information);
         }

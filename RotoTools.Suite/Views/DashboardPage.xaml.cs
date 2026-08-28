@@ -1,17 +1,24 @@
-using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using RotoTools.Suite.Services;
+using RotoTools.Suite.Views.Actualizador;
+using RotoTools.Suite.Views.Cam;
+using RotoTools.Suite.Views.ConectorHerraje;
+using RotoTools.Suite.Views.ConfiguradorOpciones;
+using RotoTools.Suite.Views.TariffImporter;
 
 namespace RotoTools.Suite.Views
 {
     /// <summary>
     /// Página de inicio de la suite (nueva: la app WinForms original no tenía una pantalla de
-    /// bienvenida propiamente dicha, era directamente el menú). Ahora que los 11 módulos del
-    /// menú principal ya están migrados, sirve como portada de resumen: nombre + marca Roto,
-    /// una frase breve, y una cuadrícula no interactiva con los módulos disponibles (ver
-    /// CargarModulos). Ya no explica ninguna "fase de migración" porque no queda ninguna
-    /// pendiente.
+    /// bienvenida propiamente dicha, era directamente el menú). Rediseñada a petición del usuario
+    /// para parecerse a la portada de RotoGestionClientes: logo + "Bienvenido a RotoTools" y un
+    /// dashboard con accesos directos REALMENTE clicables a la acción más habitual de 5 módulos
+    /// (antes había una cuadrícula con los 11 módulos que solo se veía, sin reaccionar al clic, lo
+    /// que confundía, y una frase de introducción que también se quitó a petición del usuario).
+    /// Cada acceso directo reutiliza tal cual el método público del Click del propio botón de
+    /// destino (ver comentario de cada uno más abajo), así que no hay ninguna lógica de negocio
+    /// duplicada aquí: esta página solo sabe navegar y disparar el evento correspondiente.
     /// </summary>
     public partial class DashboardPage : UserControl
     {
@@ -19,63 +26,74 @@ namespace RotoTools.Suite.Views
         {
             InitializeComponent();
             CargarTextos();
-            CargarModulos();
         }
 
         private static string Loc(string key) => SuiteLocalization.GetString(key);
 
         private void CargarTextos()
         {
-            TxtBienvenida.Text = "RotoTools Suite";
+            TxtBienvenida.Text = Loc("L_Suite_Bienvenido");
             TxtSubtitulo.Text = "Roto Frank FTT GmbH";
-            TxtDescripcion.Text = Loc("L_Suite_DashboardTagline");
-            TxtModulosTitulo.Text = Loc("L_Suite_DashboardModulosTitulo");
+            TxtAccesosTitulo.Text = Loc("L_Suite_AccesosDirectosTitulo");
+
+            TxtAccesoCamTitulo.Text = Loc("L_Suite_AccesoCargarXml");
+            TxtAccesoCamModulo.Text = "CAM · Mecanizados";
+
+            TxtAccesoConfigOpcionesTitulo.Text = RotoTools.LocalizationManager.GetString("L_RestaurarOpciones");
+            TxtAccesoConfigOpcionesModulo.Text = RotoTools.LocalizationManager.GetString("L_ConfiguradorOpciones");
+
+            TxtAccesoActualizadorTitulo.Text = RotoTools.LocalizationManager.GetString("L_InstalarEscandallos");
+            TxtAccesoActualizadorModulo.Text = RotoTools.LocalizationManager.GetString("L_Actualizador");
+
+            TxtAccesoConectorHerrajeTitulo.Text = Loc("L_Suite_CambiarConectorActivo");
+            TxtAccesoConectorHerrajeModulo.Text = RotoTools.LocalizationManager.GetString("L_ConectorHerraje");
+
+            TxtAccesoTariffImporterTitulo.Text = RotoTools.LocalizationManager.GetString("L_SeleccionarArchivo");
+            TxtAccesoTariffImporterModulo.Text = RotoTools.LocalizationManager.GetString("L_TariffImporter");
         }
 
-        /// <summary>
-        /// Mismo inventario de iconos/colores por módulo que MainWindow.xaml.cs (CargarModulos),
-        /// para que la cuadrícula de esta portada coincida visualmente con la barra lateral, sin
-        /// "Inicio" (ya estamos en él) ni CrearPagina (aquí no se navega, ver comentario del
-        /// XAML). NavModuleItem se reutiliza tal cual porque DashboardPage vive en el mismo
-        /// espacio de nombres (RotoTools.Suite.Views) que la clase donde se define.
-        /// </summary>
-        private void CargarModulos()
+        /// <summary>Navega al módulo TPagina (ver MainWindow.IrAModulo) y, si la ventana actual es
+        /// de verdad una MainWindow (siempre lo es en ejecución normal: DashboardPage solo vive
+        /// dentro de ContentHost), ejecuta la acción del acceso directo sobre la página recién
+        /// creada.</summary>
+        private void IrAModulo<TPagina>(System.Action<TPagina>? accion) where TPagina : UserControl
         {
-            var iconoCam = (Geometry)FindResource("IconGearHex");
-            var iconoConfigOpciones = (Geometry)FindResource("IconSliders");
-            var iconoActualizador = (Geometry)FindResource("IconDownload");
-            var iconoExportar = (Geometry)FindResource("IconUpload");
-            var iconoConector = (Geometry)FindResource("IconLink");
-            var iconoControlCambios = (Geometry)FindResource("IconClipboard");
-            var iconoTraduccion = (Geometry)FindResource("IconChatBubble");
-            var iconoManillas = (Geometry)FindResource("IconHandle");
-            var iconoTarifas = (Geometry)FindResource("IconTag");
-            var iconoAjustes = (Geometry)FindResource("IconDots");
-
-            var modulos = new List<NavModuleItem>
-            {
-                new() { Titulo = "CAM · Mecanizados", Icono = iconoCam, Color = new SolidColorBrush(Color.FromRgb(0x2E,0x7D,0x32)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfiguradorOpciones"), Icono = iconoConfigOpciones, Color = new SolidColorBrush(Color.FromRgb(0x6A,0x5A,0xCD)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Actualizador"), Icono = iconoActualizador, Color = new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConectorHerraje"), Icono = iconoConector, Color = new SolidColorBrush(Color.FromRgb(0x00,0x83,0x8F)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ControlCambios"), Icono = iconoControlCambios, Color = new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Traduccion"), Icono = iconoTraduccion, Color = new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), Icono = iconoManillas, Color = new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_TariffImporter"), Icono = iconoTarifas, Color = new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7)) },
-
-                new() { Titulo = RotoTools.LocalizationManager.GetString("L_Opciones"), Icono = iconoAjustes, Color = new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64)) },
-            };
-
-            ListaModulosInicio.ItemsSource = modulos;
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+                mainWindow.IrAModulo(accion);
         }
+
+        /// <summary>Acceso directo a "Cargar XML" del módulo CAM: reutiliza tal cual
+        /// CamPage.BtnLoadXml_Click (ahora público).</summary>
+        private void BtnAccesoCam_Click(object sender, RoutedEventArgs e) =>
+            IrAModulo<CamPage>(pagina => pagina.BtnLoadXml_Click(pagina, new RoutedEventArgs()));
+
+        /// <summary>Acceso directo a "Restaurar opciones" del Configurador de opciones: reutiliza
+        /// tal cual ConfiguradorOpcionesPage.BtnRestore_Click (ahora público).</summary>
+        private void BtnAccesoConfigOpciones_Click(object sender, RoutedEventArgs e) =>
+            IrAModulo<ConfiguradorOpcionesPage>(pagina => pagina.BtnRestore_Click(pagina, new RoutedEventArgs()));
+
+        /// <summary>Acceso directo a "Instalar Escandallos" del módulo Instalación: reutiliza tal
+        /// cual ActualizadorPage.BtnInstalarEscandallos_Click (ahora público).</summary>
+        private void BtnAccesoActualizador_Click(object sender, RoutedEventArgs e) =>
+            IrAModulo<ActualizadorPage>(pagina => pagina.BtnInstalarEscandallos_Click(pagina, new RoutedEventArgs()));
+
+        /// <summary>Acceso directo a "Establecer conector activo" del módulo Conector de herraje:
+        /// reutiliza tal cual ConectorHerrajePage.BtnCambiarConectorActivo_Click (ahora público).
+        /// A diferencia de los otros 4 accesos, este módulo puede estar bloqueado (base de datos
+        /// con versión anterior a 2020, ver CargarDatos/BorderAvisoVersion en ConectorHerrajePage):
+        /// si BtnCambiarConectorActivo está deshabilitado por ese motivo, el acceso directo se
+        /// limita a navegar al módulo -- que ya muestra su propio aviso -- en vez de forzar la
+        /// apertura del diálogo.</summary>
+        private void BtnAccesoConectorHerraje_Click(object sender, RoutedEventArgs e) =>
+            IrAModulo<ConectorHerrajePage>(pagina =>
+            {
+                if (pagina.ModuloDesbloqueado)
+                    pagina.BtnCambiarConectorActivo_Click(pagina, new RoutedEventArgs());
+            });
+
+        /// <summary>Acceso directo a "Seleccionar fichero de precios" del módulo Cargar precios:
+        /// reutiliza tal cual TariffImporterPage.BtnLoadTariff_Click (ahora público).</summary>
+        private void BtnAccesoTariffImporter_Click(object sender, RoutedEventArgs e) =>
+            IrAModulo<TariffImporterPage>(pagina => pagina.BtnLoadTariff_Click(pagina, new RoutedEventArgs()));
     }
 }

@@ -525,7 +525,11 @@ namespace RotoTools.Suite.Views.Actualizador
 
         #region Ventanas hijas (Instalar / Ver Escandallos)
 
-        private void BtnInstalarEscandallos_Click(object sender, RoutedEventArgs e)
+        /// <summary>Público (no solo se llama desde el propio botón): es también el acceso directo
+        /// "Instalar Escandallos" de la portada Inicio (ver BtnAccesoActualizador_Click en
+        /// DashboardPage.xaml.cs y MainWindow.IrAModulo), que navega a este módulo y ejecuta esta
+        /// misma acción tal cual, sin duplicar su lógica.</summary>
+        public void BtnInstalarEscandallos_Click(object sender, RoutedEventArgs e)
         {
             var ventana = new ActualizadorInstalarEscandallosWindow { Owner = Window.GetWindow(this) };
             ventana.ShowDialog();

@@ -41,7 +41,6 @@ namespace RotoTools.Suite.Views.Cam
         {
             Title = RotoTools.LocalizationManager.GetString("L_BibliotecaPerfiles");
             TxtTitulo.Text = Title;
-            TxtSubtitulo.Text = "Perfiles ya conocidos (AluEuropa OM, Cortizo, Deceuninck, Kommerling): Rol de mecanizado y altura de canal de herraje para autocompletar al añadirlos a la instalación 3D.";
             LblBuscarBiblioteca.Text = RotoTools.LocalizationManager.GetString("L_Buscar");
             LblFiltroRol.Text = RotoTools.LocalizationManager.GetString("L_Rol") + ":";
             TxtBtnNuevoPerfil.Text = RotoTools.LocalizationManager.GetString("L_NuevoPerfil");
@@ -49,6 +48,9 @@ namespace RotoTools.Suite.Views.Cam
             TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
             ColReferenciaBase.Header = RotoTools.LocalizationManager.GetString("L_ReferenciaBase");
             ColRol.Header = RotoTools.LocalizationManager.GetString("L_Rol");
+            ColPosicionCanalHerraje.Header = RotoTools.LocalizationManager.GetString("L_PosicionCanalHerraje");
+            Resources["TooltipDuplicarPerfil"] = RotoTools.LocalizationManager.GetString("L_TooltipDuplicarPerfil");
+            Resources["TooltipEliminarPerfil"] = RotoTools.LocalizationManager.GetString("L_TooltipEliminarPerfil");
         }
 
         /// <summary>Igual criterio que ConfigurarComboRol, pero para el combo de FILTRADO de la

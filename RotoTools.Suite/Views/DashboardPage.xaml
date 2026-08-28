@@ -5,56 +5,106 @@
     Background="{StaticResource RotoContentBackgroundBrush}">
 
     <!--
-        Antes esta página explicaba que la Suite era una shell "en construcción" (párrafo +
-        aviso amarillo de "fase actual: estructura y menú principal, ningún módulo migrado
-        todavía"). Con los 11 módulos del menú ya migrados (ver comentario de CargarModulos en
-        MainWindow.xaml.cs) ese texto había quedado obsoleto y directamente falso, así que se
-        quita a petición expresa y se sustituye por: una frase breve que resume lo que es la
-        Suite ya terminada, y una cuadrícula "Módulos disponibles" a modo de resumen visual
-        (mismos icono/color por módulo que la barra lateral, ver CargarModulos de abajo) en vez
-        de una imagen decorativa suelta — así la portada sigue siendo útil de un vistazo y no
-        solo bonita. Es deliberadamente NO interactiva (ItemsControl, no RotoActionCard/Button):
-        la navegación real ya vive en la barra lateral, duplicarla aquí con clic solo añadiría
-        una segunda forma de hacer lo mismo sin necesidad.
+        Rediseñada a petición del usuario: la portada anterior (cuadrícula ItemsControl NO
+        interactiva con los 11 módulos disponibles) confundía porque parecía una lista de botones
+        pero no reaccionaba al clic ("no me parece claro para el usuario y puede que lo confunda
+        al no poder hacer nada"). Se sustituye por: logo + "Bienvenido a RotoTools" y una fila de
+        accesos directos REALMENTE clicables (RotoActionCard, mismo estilo que las tarjetas de
+        acción de cada módulo) a la acción más habitual de 5 módulos, en vez de un resumen visual
+        pasivo de los 11. La navegación a TODOS los módulos sigue viviendo en la barra lateral (no
+        se duplica aquí): estos 5 accesos son solo un atajo directo a una acción concreta dentro
+        de su módulo, ver IrAModulo en MainWindow.xaml.cs y los BtnAcceso*_Click de abajo.
+
+        Sin frase de introducción bajo el título (se quitó a petición del usuario): el logo +
+        "Bienvenido a RotoTools" + los accesos directos ya son autoexplicativos.
+
+        El logo de esta cabecera es Assets/roto_suite_logo.png, el mismo dibujo que
+        Assets/roto_suite_icon.ico (el icono de la barra de tareas: ver ApplicationIcon en
+        RotoTools.Suite.csproj), exportado a PNG para poder mostrarlo en un Image normal en vez
+        del logo de fábrica anterior (Assets/logo_suite.png), que era un boceto previo y no
+        coincidía con el icono real de la aplicación.
     -->
     <ScrollViewer Padding="36" VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="1000" HorizontalAlignment="Left">
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <Image Source="/Assets/logo_suite.png" Height="52" Margin="0,0,18,0" />
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,32">
+                <Image Source="/Assets/roto_suite_logo.png" Height="52" Margin="0,0,18,0" />
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock x:Name="TxtBienvenida" Style="{StaticResource RotoPageTitle}" Margin="0" />
                     <TextBlock x:Name="TxtSubtitulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="14" />
                 </StackPanel>
             </StackPanel>
 
-            <TextBlock x:Name="TxtDescripcion"
-                       TextWrapping="Wrap" Margin="0,12,0,32"
-                       Foreground="{StaticResource RotoInkBrush}" FontSize="14" />
+            <TextBlock x:Name="TxtAccesosTitulo" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,14" />
 
-            <TextBlock x:Name="TxtModulosTitulo" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,14" />
+            <WrapPanel Orientation="Horizontal">
 
-            <ItemsControl x:Name="ListaModulosInicio">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border Style="{StaticResource RotoCard}" Width="176" Margin="0,0,16,16" Padding="18">
-                            <StackPanel>
-                                <Border Width="40" Height="40" CornerRadius="20" Background="{Binding Color}" Margin="0,0,0,12">
-                                    <Path Data="{Binding Icono}" Fill="White" Width="18" Height="18" Stretch="Uniform"
-                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                                <TextBlock Text="{Binding Titulo}" FontWeight="SemiBold" FontSize="13"
-                                           TextWrapping="Wrap" Foreground="{StaticResource RotoInkBrush}" />
-                            </StackPanel>
+                <!-- CAM: acceso directo a Cargar XML -->
+                <Button x:Name="BtnAccesoCam" Style="{StaticResource RotoActionCard}" Width="184" Margin="0,0,16,16"
+                        Click="BtnAccesoCam_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#2E7D32" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconGearHex}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        <TextBlock x:Name="TxtAccesoCamTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtAccesoCamModulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Configurador de opciones: acceso directo a Restaurar opciones -->
+                <Button x:Name="BtnAccesoConfigOpciones" Style="{StaticResource RotoActionCard}" Width="184" Margin="0,0,16,16"
+                        Click="BtnAccesoConfigOpciones_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#6A5ACD" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconSliders}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtAccesoConfigOpcionesTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtAccesoConfigOpcionesModulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Instalación (Actualizador): acceso directo a Instalar Escandallos -->
+                <Button x:Name="BtnAccesoActualizador" Style="{StaticResource RotoActionCard}" Width="184" Margin="0,0,16,16"
+                        Click="BtnAccesoActualizador_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#1976D2" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconDownload}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtAccesoActualizadorTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtAccesoActualizadorModulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Conector de herraje: acceso directo a Establecer conector activo -->
+                <Button x:Name="BtnAccesoConectorHerraje" Style="{StaticResource RotoActionCard}" Width="184" Margin="0,0,16,16"
+                        Click="BtnAccesoConectorHerraje_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#00838F" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconLink}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtAccesoConectorHerrajeTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtAccesoConectorHerrajeModulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Cargar precios (TariffImporter): acceso directo a Seleccionar fichero de precios -->
+                <Button x:Name="BtnAccesoTariffImporter" Style="{StaticResource RotoActionCard}" Width="184" Margin="0,0,16,16"
+                        Click="BtnAccesoTariffImporter_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#0097A7" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconTag}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtAccesoTariffImporterTitulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtAccesoTariffImporterModulo" Foreground="{StaticResource RotoGrayBrush}" FontSize="12" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+            </WrapPanel>
 
         </StackPanel>
     </ScrollViewer>

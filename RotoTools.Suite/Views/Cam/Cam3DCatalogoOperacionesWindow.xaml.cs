@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using RotoTools;
+using RotoTools.Suite.Services;
 
 namespace RotoTools.Suite.Views.Cam
 {
@@ -50,7 +51,7 @@ namespace RotoTools.Suite.Views.Cam
         {
             Title = RotoTools.LocalizationManager.GetString("L_CatalogoOperaciones3D");
             TxtTitulo.Text = Title;
-            TxtSubtitulo.Text = "Añada al catálogo las combinaciones Operación/Rol que todavía no tienen una plantilla definida.";
+            TxtSubtitulo.Text = SuiteLocalization.GetString("L_Suite_CatalogoOperacionesSubtitulo");
             LblCatalogoActual.Text = RotoTools.LocalizationManager.GetString("L_CatalogoActual");
             LblFaltantes.Text = RotoTools.LocalizationManager.GetString("L_OperacionesSinDefinicionEnCatalogo");
             LblFiltroExterior.Text = RotoTools.LocalizationManager.GetString("L_Lado") + ":";
@@ -59,7 +60,29 @@ namespace RotoTools.Suite.Views.Cam
             LblBuscarFaltantes.Text = RotoTools.LocalizationManager.GetString("L_Buscar");
             TxtBtnGuardar.Text = RotoTools.LocalizationManager.GetString("L_Guardar");
             TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
-            TxtBtnAnadirFilaFaltante.Text = "Añadir fila";
+            TxtBtnAnadirFilaFaltante.Text = SuiteLocalization.GetString("L_Suite_AnadirFila");
+
+            ColCatOperacion.Header = RotoTools.LocalizationManager.GetString("L_Operacion");
+            ColCatRol.Header = RotoTools.LocalizationManager.GetString("L_Rol");
+            ColCatExterior.Header = RotoTools.LocalizationManager.GetString("L_Exterior");
+            ColCatY.Header = SuiteLocalization.GetString("L_Suite_ColumnaY");
+            ColCatZ.Header = SuiteLocalization.GetString("L_Suite_ColumnaZ");
+            ColCatPlano.Header = RotoTools.LocalizationManager.GetString("L_Plano");
+            ColCatProfundidad.Header = RotoTools.LocalizationManager.GetString("L_Profundidad");
+
+            ColFalOperacion.Header = RotoTools.LocalizationManager.GetString("L_Operacion");
+            ColFalRol.Header = RotoTools.LocalizationManager.GetString("L_Rol");
+            ColFalExterior.Header = RotoTools.LocalizationManager.GetString("L_Exterior");
+            ColFalY.Header = SuiteLocalization.GetString("L_Suite_ColumnaY");
+            ColFalZ.Header = SuiteLocalization.GetString("L_Suite_ColumnaZ");
+            ColFalPlano.Header = RotoTools.LocalizationManager.GetString("L_Plano");
+            ColFalProfundidad.Header = RotoTools.LocalizationManager.GetString("L_Profundidad");
+
+            Resources["TooltipDuplicarCatalogo"] = RotoTools.LocalizationManager.GetString("L_TooltipDuplicarCatalogo");
+            Resources["TooltipEliminarCatalogo"] = RotoTools.LocalizationManager.GetString("L_TooltipEliminarCatalogo");
+            Resources["TooltipCopiarDeCatalogo"] = RotoTools.LocalizationManager.GetString("L_TooltipCopiarDeCatalogo");
+            Resources["TooltipAgregarAlCatalogo"] = RotoTools.LocalizationManager.GetString("L_TooltipAgregarAlCatalogo");
+            Resources["TooltipCopiarTodosLosRoles"] = RotoTools.LocalizationManager.GetString("L_TooltipCopiarTodosLosRoles");
         }
 
         private void ConfigurarFiltros()

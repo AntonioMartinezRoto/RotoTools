@@ -31,6 +31,13 @@ namespace RotoTools.Suite.Views
         public Geometry Icono { get; set; } = Geometry.Empty;
         public Brush Color { get; set; } = Brushes.Gray;
         public Func<UserControl> CrearPagina { get; set; } = () => new UserControl();
+
+        /// <summary>Nuevo (no existía en el original): tipo de UserControl que crea CrearPagina,
+        /// para poder localizar un módulo por su página sin tener que invocar CrearPagina (que
+        /// construiría una instancia nueva de verdad, con su propio acceso a BBDD en el
+        /// constructor) solo para comparar tipos. Lo usa IrAModulo, más abajo, para los accesos
+        /// directos de DashboardPage.</summary>
+        public Type? TipoPagina { get; set; }
     }
 
     /// <summary>
@@ -68,7 +75,7 @@ namespace RotoTools.Suite.Views
         }
 
         /// <summary>
-        /// Muestra junto a "RotoTools Suite", en la cabecera, la versión de ensamblado del propio
+        /// Muestra junto a "RotoTools", en la cabecera, la versión de ensamblado del propio
         /// RotoTools.Suite.csproj (AssemblyVersion/FileVersion, ambas puestas a la misma tipología
         /// X.X.X), con el formato "vX.X.X" pedido. Se lee de Assembly.GetName().Version en vez de
         /// escribir el número a mano aquí: AssemblyVersion se completa siempre a 4 partes
@@ -151,37 +158,37 @@ namespace RotoTools.Suite.Views
             _modulos = new List<NavModuleItem>
             {
                 new() { Titulo = "Inicio", Icono = iconoInicio, Color = rojoRoto,
-                        CrearPagina = () => new DashboardPage() },
+                        CrearPagina = () => new DashboardPage(), TipoPagina = typeof(DashboardPage) },
 
                 new() { Titulo = "CAM · Mecanizados", Icono = iconoCam, Color = new SolidColorBrush(Color.FromRgb(0x2E,0x7D,0x32)),
-                        CrearPagina = () => new CamPage() },
+                        CrearPagina = () => new CamPage(), TipoPagina = typeof(CamPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfiguradorOpciones"), Icono = iconoConfigOpciones, Color = new SolidColorBrush(Color.FromRgb(0x6A,0x5A,0xCD)),
-                        CrearPagina = () => new ConfiguradorOpcionesPage() },
+                        CrearPagina = () => new ConfiguradorOpcionesPage(), TipoPagina = typeof(ConfiguradorOpcionesPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Actualizador"), Icono = iconoActualizador, Color = new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2)),
-                        CrearPagina = () => new ActualizadorPage() },
+                        CrearPagina = () => new ActualizadorPage(), TipoPagina = typeof(ActualizadorPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)),
-                        CrearPagina = () => new ExportadorPage() },
+                        CrearPagina = () => new ExportadorPage(), TipoPagina = typeof(ExportadorPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConectorHerraje"), Icono = iconoConector, Color = new SolidColorBrush(Color.FromRgb(0x00,0x83,0x8F)),
-                        CrearPagina = () => new ConectorHerrajePage() },
+                        CrearPagina = () => new ConectorHerrajePage(), TipoPagina = typeof(ConectorHerrajePage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ControlCambios"), Icono = iconoControlCambios, Color = new SolidColorBrush(Color.FromRgb(0x8E,0x24,0xAA)),
-                        CrearPagina = () => new ControlCambiosPage() },
+                        CrearPagina = () => new ControlCambiosPage(), TipoPagina = typeof(ControlCambiosPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Traduccion"), Icono = iconoTraduccion, Color = new SolidColorBrush(Color.FromRgb(0xC2,0x18,0x5B)),
-                        CrearPagina = () => new TraduccionPage() },
+                        CrearPagina = () => new TraduccionPage(), TipoPagina = typeof(TraduccionPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ConfManillasFKS"), Icono = iconoManillas, Color = new SolidColorBrush(Color.FromRgb(0x5D,0x40,0x37)),
-                        CrearPagina = () => new ManillasFKSPage() },
+                        CrearPagina = () => new ManillasFKSPage(), TipoPagina = typeof(ManillasFKSPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_TariffImporter"), Icono = iconoTarifas, Color = new SolidColorBrush(Color.FromRgb(0x00,0x97,0xA7)),
-                        CrearPagina = () => new TariffImporterPage() },
+                        CrearPagina = () => new TariffImporterPage(), TipoPagina = typeof(TariffImporterPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Opciones"), Icono = iconoAjustes, Color = new SolidColorBrush(Color.FromRgb(0x45,0x5A,0x64)),
-                        CrearPagina = () => new OpcionesPage() },
+                        CrearPagina = () => new OpcionesPage(), TipoPagina = typeof(OpcionesPage) },
             };
 
             ListaModulos.ItemsSource = _modulos;
@@ -191,6 +198,26 @@ namespace RotoTools.Suite.Views
         {
             if (ListaModulos.SelectedItem is NavModuleItem modulo)
                 ContentHost.Content = modulo.CrearPagina();
+        }
+
+        /// <summary>
+        /// Nuevo (no existía en el original): usado por los accesos directos de la portada
+        /// "Inicio" (ver DashboardPage.xaml.cs) para saltar directamente a un módulo concreto y,
+        /// opcionalmente, ejecutar una acción sobre la página recién creada -- normalmente para
+        /// abrir de un solo clic el diálogo/acción de destino del acceso directo, en vez de dejar
+        /// al usuario un paso más para encontrarla dentro del módulo. El módulo se localiza por el
+        /// tipo de su página (NavModuleItem.TipoPagina) en vez de por un índice fijo, para no
+        /// depender del orden del menú (CargarModulos) ni tener que duplicarlo aquí.
+        /// </summary>
+        public void IrAModulo<TPagina>(Action<TPagina>? accionTrasNavegar = null) where TPagina : UserControl
+        {
+            int indice = _modulos.FindIndex(m => m.TipoPagina == typeof(TPagina));
+            if (indice < 0) return;
+
+            ListaModulos.SelectedIndex = indice;
+
+            if (accionTrasNavegar != null && ContentHost.Content is TPagina pagina)
+                accionTrasNavegar(pagina);
         }
 
         /// <summary>

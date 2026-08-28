@@ -251,4 +251,46 @@ Do you want to continue?</value>
   <data name="L_Suite_TotalConectoresGuardados" xml:space="preserve">
     <value>There are {0} saved connector(s).</value>
   </data>
+  <data name="L_Suite_Bienvenido" xml:space="preserve">
+    <value>Welcome to RotoTools</value>
+  </data>
+  <data name="L_Suite_AccesosDirectosTitulo" xml:space="preserve">
+    <value>Quick access</value>
+  </data>
+  <data name="L_Suite_AccesoCargarXml" xml:space="preserve">
+    <value>Load XML</value>
+  </data>
+  <data name="L_Suite_CatalogoOperacionesSubtitulo" xml:space="preserve">
+    <value>Add to the catalog the Operation/Role combinations that don't have a template defined yet.</value>
+  </data>
+  <data name="L_Suite_ColumnaY" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="L_Suite_ColumnaZ" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="L_Suite_AnadirFila" xml:space="preserve">
+    <value>Add row</value>
+  </data>
+  <data name="L_Suite_AnchoInt" xml:space="preserve">
+    <value>Width int.</value>
+  </data>
+  <data name="L_Suite_AnchoExt" xml:space="preserve">
+    <value>Width ext.</value>
+  </data>
+  <data name="L_Suite_CuerpoInt" xml:space="preserve">
+    <value>Body int.</value>
+  </data>
+  <data name="L_Suite_CuerpoExt" xml:space="preserve">
+    <value>Body ext.</value>
+  </data>
+  <data name="L_Suite_Materiales" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="L_Suite_TooltipConfigurarGeometria" xml:space="preserve">
+    <value>Configure geometry</value>
+  </data>
+  <data name="L_Suite_TooltipVerInformacion" xml:space="preserve">
+    <value>View information</value>
+  </data>
 </root>

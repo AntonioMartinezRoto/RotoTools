@@ -98,7 +98,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Materiales" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,10" />
+                    <TextBlock Grid.Row="0" x:Name="TxtMateriales" Text="Materiales" Style="{StaticResource RotoSectionTitle}" Margin="0,0,0,10" />
                     <TreeView Grid.Row="1" x:Name="TreeMateriales" BorderThickness="0"
                               MouseDoubleClick="TreeMateriales_MouseDoubleClick">
                         <TreeView.ItemContainerStyle>
@@ -128,14 +128,14 @@
                               MouseDoubleClick="GridMateriales_MouseDoubleClick"
                               SelectionChanged="GridMateriales_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Referencia" Binding="{Binding ReferenciaBase}" Width="130" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Rol" Binding="{Binding Role}" Width="90" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Nivel 1" Binding="{Binding Nivel1}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Nivel 2" Binding="{Binding Nivel2}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Nivel 3" Binding="{Binding Nivel3}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Nivel 4" Binding="{Binding Nivel4}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                            <DataGridTextColumn Header="Nivel 5" Binding="{Binding Nivel5}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatReferencia" Header="Referencia" Binding="{Binding ReferenciaBase}" Width="130" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatDescripcion" Header="Descripción" Binding="{Binding Descripcion}" Width="*" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatRol" Header="Rol" Binding="{Binding Role}" Width="90" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatNivel1" Header="Nivel 1" Binding="{Binding Nivel1}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatNivel2" Header="Nivel 2" Binding="{Binding Nivel2}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatNivel3" Header="Nivel 3" Binding="{Binding Nivel3}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatNivel4" Header="Nivel 4" Binding="{Binding Nivel4}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                            <DataGridTextColumn x:Name="ColMatNivel5" Header="Nivel 5" Binding="{Binding Nivel5}" Width="100" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -181,22 +181,22 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Referencia" Binding="{Binding ReferenciaBase}" Width="120" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="1.6*" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Rol" Binding="{Binding Role}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Ancho int." Binding="{Binding AnchoInterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Ancho ext." Binding="{Binding AnchoExterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Cuerpo int." Binding="{Binding CuerpoInterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Cuerpo ext." Binding="{Binding CuerpoExterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
-                        <DataGridTextColumn Header="Altura" Binding="{Binding Altura}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResReferencia" Header="Referencia" Binding="{Binding ReferenciaBase}" Width="120" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResDescripcion" Header="Descripción" Binding="{Binding Descripcion}" Width="1.6*" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResRol" Header="Rol" Binding="{Binding Role}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResAnchoInt" Header="Ancho int." Binding="{Binding AnchoInterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResAnchoExt" Header="Ancho ext." Binding="{Binding AnchoExterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResCuerpoInt" Header="Cuerpo int." Binding="{Binding CuerpoInterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResCuerpoExt" Header="Cuerpo ext." Binding="{Binding CuerpoExterior}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
+                        <DataGridTextColumn x:Name="ColResAltura" Header="Altura" Binding="{Binding Altura}" Width="90" IsReadOnly="True" ElementStyle="{StaticResource RotoDataGridCellText}" EditingElementStyle="{StaticResource RotoDataGridCellEditText}" />
                         <DataGridComboBoxColumn Header="Rol mecanizado" Width="160"
                                                  SelectedItemBinding="{Binding RolMecanizado, Mode=TwoWay}"
                                                  ElementStyle="{StaticResource RotoDataGridCellCombo}"
                                                  x:Name="ColRolMecanizado"
                                                  EditingElementStyle="{StaticResource RotoDataGridCellCombo}" />
-                        <DataGridTextColumn Header="Descuento canal herraje" Width="150" ElementStyle="{StaticResource RotoDataGridCellText}"
+                        <DataGridTextColumn x:Name="ColResDescuentoCanalHerraje" Header="Descuento canal herraje" Width="150" ElementStyle="{StaticResource RotoDataGridCellText}"
                                              Binding="{Binding DescuentoCanalHerraje, Converter={StaticResource NullableDoubleConverter}}" />
-                        <DataGridTextColumn Header="Posición canal herraje" Width="150" ElementStyle="{StaticResource RotoDataGridCellText}"
+                        <DataGridTextColumn x:Name="ColResPosicionCanalHerraje" Header="Posición canal herraje" Width="150" ElementStyle="{StaticResource RotoDataGridCellText}"
                                              Binding="{Binding PosicionCanalHerraje, Converter={StaticResource NullableDoubleConverter}}" />
                     </DataGrid.Columns>
                 </DataGrid>

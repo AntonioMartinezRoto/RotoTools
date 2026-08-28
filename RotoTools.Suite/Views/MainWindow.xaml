@@ -2,7 +2,7 @@
     x:Class="RotoTools.Suite.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="RotoTools Suite"
+    Title="RotoTools"
     Width="1440" Height="900"
     MinWidth="1100" MinHeight="650"
     WindowStartupLocation="CenterScreen"
@@ -29,20 +29,28 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/Assets/logo.png" Height="32" Margin="0,0,16,0" />
                     <!--
-                        "RotoTools Suite" + versión de ensamblado (AssemblyVersion/FileVersion en
+                        Fondo blanco (nuevo) detrás del logo real de Roto (images/logo.png del
+                        proyecto original): el logo tiene el texto "Roto" y el resto de trazos en
+                        colores pensados para fondo claro, así que sobre el fondo oscuro de esta
+                        cabecera (RotoNavBackgroundBrush) no se distinguían bien.
+                    -->
+                    <Border Background="White" CornerRadius="6" Padding="10,5" Margin="0,0,16,0">
+                        <Image Source="/Assets/logo.png" Height="26" />
+                    </Border>
+                    <!--
+                        "RotoTools" + versión de ensamblado (AssemblyVersion/FileVersion en
                         RotoTools.Suite.csproj, p.ej. 2.1.1: se lee en tiempo de ejecución, ver
                         CargarVersion en MainWindow.xaml.cs) en el MISMO TextBlock, como 2 Run con
                         distinto FontSize, en vez de 2 TextBlock separados dentro del StackPanel:
                         con 2 TextBlock, VerticalAlignment (Center/Bottom/...) alinea el CUADRO de
                         cada uno, no su línea de base, y con tamaños de letra distintos eso deja la
-                        línea de base de "vX.X.X" más baja que la de "RotoTools Suite" (se veía
+                        línea de base de "vX.X.X" más baja que la de "RotoTools" (se veía
                         desalineado). Dentro de un mismo TextBlock, en cambio, WPF alinea la línea
                         de base de todos sus Run automáticamente sea cual sea su FontSize.
                     -->
                     <TextBlock VerticalAlignment="Center">
-                        <Run Text="RotoTools Suite" FontSize="18" FontWeight="SemiBold" Foreground="White" />
+                        <Run Text="RotoTools" FontSize="18" FontWeight="SemiBold" Foreground="White" />
                         <Run Text="  " />
                         <Run x:Name="RunVersion" FontSize="12" Foreground="#B9BBC2" /></TextBlock>
                 </StackPanel>

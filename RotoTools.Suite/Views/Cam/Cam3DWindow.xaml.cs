@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Data.SqlClient;
 using RotoTools;
+using RotoTools.Suite.Services;
 
 namespace RotoTools.Suite.Views.Cam
 {
@@ -79,6 +80,30 @@ namespace RotoTools.Suite.Views.Cam
             LblTodosPerfiles.Text = "Todos los perfiles (doble clic para añadir a la lista)";
             LblResultado.Text = RotoTools.LocalizationManager.GetString("L_PerfilesAInstalar");
             LblFiltroRolResultado.Text = RotoTools.LocalizationManager.GetString("L_Rol") + ":";
+
+            TxtMateriales.Text = SuiteLocalization.GetString("L_Suite_Materiales");
+
+            ColMatReferencia.Header = RotoTools.LocalizationManager.GetString("L_Referencia");
+            ColMatDescripcion.Header = RotoTools.LocalizationManager.GetString("L_Descripcion");
+            ColMatRol.Header = RotoTools.LocalizationManager.GetString("L_Rol");
+            string nivel = RotoTools.LocalizationManager.GetString("L_Nivel");
+            ColMatNivel1.Header = nivel + " 1";
+            ColMatNivel2.Header = nivel + " 2";
+            ColMatNivel3.Header = nivel + " 3";
+            ColMatNivel4.Header = nivel + " 4";
+            ColMatNivel5.Header = nivel + " 5";
+
+            ColResReferencia.Header = RotoTools.LocalizationManager.GetString("L_Referencia");
+            ColResDescripcion.Header = RotoTools.LocalizationManager.GetString("L_Descripcion");
+            ColResRol.Header = RotoTools.LocalizationManager.GetString("L_Rol");
+            ColResAnchoInt.Header = SuiteLocalization.GetString("L_Suite_AnchoInt");
+            ColResAnchoExt.Header = SuiteLocalization.GetString("L_Suite_AnchoExt");
+            ColResCuerpoInt.Header = SuiteLocalization.GetString("L_Suite_CuerpoInt");
+            ColResCuerpoExt.Header = SuiteLocalization.GetString("L_Suite_CuerpoExt");
+            ColResAltura.Header = RotoTools.LocalizationManager.GetString("L_Altura");
+            ColRolMecanizado.Header = RotoTools.LocalizationManager.GetString("L_RolMecanizado");
+            ColResDescuentoCanalHerraje.Header = RotoTools.LocalizationManager.GetString("L_DescuentoCanalHerraje");
+            ColResPosicionCanalHerraje.Header = RotoTools.LocalizationManager.GetString("L_PosicionCanalHerraje");
         }
 
         private bool FiltrarPerfilAInstalarPorRol(object obj)

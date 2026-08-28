@@ -251,4 +251,46 @@ Deseja continuar?</value>
   <data name="L_Suite_TotalConectoresGuardados" xml:space="preserve">
     <value>Há {0} conector(es) guardado(s).</value>
   </data>
+  <data name="L_Suite_Bienvenido" xml:space="preserve">
+    <value>Bem-vindo ao RotoTools</value>
+  </data>
+  <data name="L_Suite_AccesosDirectosTitulo" xml:space="preserve">
+    <value>Acessos rápidos</value>
+  </data>
+  <data name="L_Suite_AccesoCargarXml" xml:space="preserve">
+    <value>Carregar XML</value>
+  </data>
+  <data name="L_Suite_CatalogoOperacionesSubtitulo" xml:space="preserve">
+    <value>Adicione ao catálogo as combinações Operação/Função que ainda não têm um modelo definido.</value>
+  </data>
+  <data name="L_Suite_ColumnaY" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="L_Suite_ColumnaZ" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="L_Suite_AnadirFila" xml:space="preserve">
+    <value>Adicionar linha</value>
+  </data>
+  <data name="L_Suite_AnchoInt" xml:space="preserve">
+    <value>Larg. int.</value>
+  </data>
+  <data name="L_Suite_AnchoExt" xml:space="preserve">
+    <value>Larg. ext.</value>
+  </data>
+  <data name="L_Suite_CuerpoInt" xml:space="preserve">
+    <value>Corpo int.</value>
+  </data>
+  <data name="L_Suite_CuerpoExt" xml:space="preserve">
+    <value>Corpo ext.</value>
+  </data>
+  <data name="L_Suite_Materiales" xml:space="preserve">
+    <value>Materiais</value>
+  </data>
+  <data name="L_Suite_TooltipConfigurarGeometria" xml:space="preserve">
+    <value>Configurar geometria</value>
+  </data>
+  <data name="L_Suite_TooltipVerInformacion" xml:space="preserve">
+    <value>Ver informação</value>
+  </data>
 </root>

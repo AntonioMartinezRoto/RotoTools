@@ -69,7 +69,11 @@ namespace RotoTools.Suite.Views.TariffImporter
 
         #region Events
 
-        private void BtnLoadTariff_Click(object sender, RoutedEventArgs e)
+        /// <summary>Público (no solo se llama desde el propio botón): es también el acceso directo
+        /// "Seleccionar fichero de precios" de la portada Inicio (ver
+        /// BtnAccesoTariffImporter_Click en DashboardPage.xaml.cs y MainWindow.IrAModulo), que
+        /// navega a este módulo y ejecuta esta misma acción tal cual, sin duplicar su lógica.</summary>
+        public void BtnLoadTariff_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog { Filter = "Excel (*.xlsx)|*.xlsx" };
 

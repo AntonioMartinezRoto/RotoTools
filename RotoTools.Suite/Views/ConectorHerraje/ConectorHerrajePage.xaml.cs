@@ -301,11 +301,25 @@ namespace RotoTools.Suite.Views.ConectorHerraje
         /// como activo (RotoTools.Helpers.GetConectorActivo/VariablesGlobales, ver
         /// ConectorHerrajeActivoWindow). ActualizarInfoConexion() refresca aquí LblConectorActivo
         /// para que la página muestre el nuevo activo sin tener que reabrir el módulo.</summary>
-        private void BtnCambiarConectorActivo_Click(object sender, RoutedEventArgs e)
+        /// <summary>Público (no solo se llama desde el propio botón): es también el acceso directo
+        /// "Establecer conector activo" de la portada Inicio (ver
+        /// BtnAccesoConectorHerraje_Click en DashboardPage.xaml.cs y MainWindow.IrAModulo), que
+        /// navega a este módulo y ejecuta esta misma acción tal cual, sin duplicar su lógica. Ese
+        /// acceso directo comprueba antes ModuloDesbloqueado (ver más abajo): si la base de datos
+        /// no es compatible con la suite (ver CargarDatos más arriba) el botón está deshabilitado
+        /// y el acceso directo se limita a navegar aquí, sin forzar la apertura del diálogo.</summary>
+        public void BtnCambiarConectorActivo_Click(object sender, RoutedEventArgs e)
         {
             new ConectorHerrajeActivoWindow { Owner = Window.GetWindow(this) }.ShowDialog();
             ActualizarInfoConexion();
         }
+
+        /// <summary>Usado por el acceso directo "Establecer conector activo" de la portada Inicio
+        /// (ver BtnAccesoConectorHerraje_Click en DashboardPage.xaml.cs) para saber si tiene
+        /// sentido invocar BtnCambiarConectorActivo_Click directamente: expone
+        /// BtnCambiarConectorActivo.IsEnabled sin obligar a DashboardPage a depender de la
+        /// visibilidad del campo generado por WPF para ese control.</summary>
+        public bool ModuloDesbloqueado => BtnCambiarConectorActivo.IsEnabled;
 
         /// <summary>Nueva (no existía en el original): abre el diálogo que permite eliminar
         /// definitivamente de la tabla ConectorHerrajes uno o varios conectores ya guardados (ver

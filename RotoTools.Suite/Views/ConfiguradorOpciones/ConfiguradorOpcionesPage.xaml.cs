@@ -44,7 +44,11 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             editor.ShowDialog();
         }
 
-        private void BtnRestore_Click(object sender, RoutedEventArgs e)
+        /// <summary>Público (no solo se llama desde el propio botón): es también el acceso directo
+        /// "Restaurar opciones" de la portada Inicio (ver BtnAccesoConfigOpciones_Click en
+        /// DashboardPage.xaml.cs y MainWindow.IrAModulo), que navega a este módulo y ejecuta esta
+        /// misma acción tal cual, sin duplicar su lógica.</summary>
+        public void BtnRestore_Click(object sender, RoutedEventArgs e)
         {
             try
             {

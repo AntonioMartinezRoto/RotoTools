@@ -1,0 +1,59 @@
+<Window
+    x:Class="RotoTools.Suite.Views.ConfiguradorOpciones.SeleccionarCarpetaOpcionesWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:svc="clr-namespace:RotoTools.Suite.Services"
+    Title="Seleccionar carpeta" Width="480" Height="560" MinWidth="360" MinHeight="320"
+    WindowStartupLocation="CenterOwner"
+    Background="{StaticResource RotoContentBackgroundBrush}">
+
+    <!--
+        Nueva (no existía en el original): árbol de carpetas de la tabla OPCIONES (Nivel1..5, ver
+        DibujoOpcionesRotoService.GetArbolCarpetasOpciones) para que el usuario elija la carpeta
+        destino haciendo clic, en vez de escribir la ruta a mano (lo que se prestaba a errores de
+        tecleo). Se abre como diálogo modal desde ConfiguradorOpcionesAnadirRotoWindow.
+    -->
+    <Window.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type svc:OpcionCarpetaTreeNode}" ItemsSource="{Binding Hijos}">
+            <StackPanel Orientation="Horizontal" Margin="0,2">
+                <Path Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"
+                      Fill="{StaticResource RotoGrayBrush}" Data="{StaticResource IconFolderOpen}" />
+                <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="TxtTitulo" Style="{StaticResource RotoPageTitle}" Margin="0,0,0,14" />
+
+        <Border Grid.Row="1" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                CornerRadius="8" Padding="14">
+            <TreeView x:Name="TreeCarpetas" BorderThickness="0"
+                      MouseDoubleClick="TreeCarpetas_MouseDoubleClick">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </Border>
+
+        <DockPanel Grid.Row="2" Margin="0,16,0,0" LastChildFill="False">
+            <Button x:Name="BtnAceptar" DockPanel.Dock="Right" Style="{StaticResource RotoButtonPrimary}"
+                    IsDefault="True" Click="BtnAceptar_Click">
+                <TextBlock x:Name="TxtBtnAceptar" VerticalAlignment="Center" />
+            </Button>
+            <Button x:Name="BtnCancelar" DockPanel.Dock="Right" Style="{StaticResource RotoButtonSecondary}"
+                    IsCancel="True" Margin="0,0,10,0" Click="BtnCancelar_Click">
+                <TextBlock x:Name="TxtBtnCancelar" VerticalAlignment="Center" />
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>

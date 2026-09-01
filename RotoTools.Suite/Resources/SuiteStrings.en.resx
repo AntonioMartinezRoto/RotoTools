@@ -293,4 +293,101 @@ Do you want to continue?</value>
   <data name="L_Suite_TooltipVerInformacion" xml:space="preserve">
     <value>View information</value>
   </data>
+  <data name="L_Suite_AnadirOpcionesRoto" xml:space="preserve">
+    <value>Add ROTO options</value>
+  </data>
+  <data name="L_Suite_AnadirOpcionesRotoSubtitulo" xml:space="preserve">
+    <value>Adds the ROTO folder and a list of options to the XML of one or more drawings, to the general model or to each leaf element.</value>
+  </data>
+  <data name="L_Suite_CargarOpcionesXml" xml:space="preserve">
+    <value>Load options XML</value>
+  </data>
+  <data name="L_Suite_NingunaOpcionCargada" xml:space="preserve">
+    <value>No options loaded yet.</value>
+  </data>
+  <data name="L_Suite_OpcionesCargadasDesde" xml:space="preserve">
+    <value>{0} option(s) loaded from {1}</value>
+  </data>
+  <data name="L_Suite_ModoModeloGeneral" xml:space="preserve">
+    <value>Add to the general model</value>
+  </data>
+  <data name="L_Suite_ModoPorElemento" xml:space="preserve">
+    <value>Add per element (to each leaf)</value>
+  </data>
+  <data name="L_Suite_Carpetas" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="L_Suite_TodosDibujosHint" xml:space="preserve">
+    <value>All drawings (double-click to add)</value>
+  </data>
+  <data name="L_Suite_DibujosSeleccionados" xml:space="preserve">
+    <value>Selected drawings</value>
+  </data>
+  <data name="L_Suite_Codigo" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="L_Suite_Sistema" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="L_Suite_Aplicar" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoDibujos" xml:space="preserve">
+    <value>Error loading the list of drawings:</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoOpciones" xml:space="preserve">
+    <value>Error loading the options file:</value>
+  </data>
+  <data name="L_Suite_NoSeEncontraronOpcionesEnFichero" xml:space="preserve">
+    <value>No option (hw:Options) was found in the selected file.</value>
+  </data>
+  <data name="L_Suite_CargaPrimeroOpciones" xml:space="preserve">
+    <value>Load an options file first.</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnDibujo" xml:space="preserve">
+    <value>Select at least one drawing.</value>
+  </data>
+  <data name="L_Suite_ConfirmarAplicar" xml:space="preserve">
+    <value>Confirm apply</value>
+  </data>
+  <data name="L_Suite_ConfirmarAplicarOpcionesRoto" xml:space="preserve">
+    <value>The loaded options will be applied to folder "{1}" in {0} drawing(s), modifying the database directly. This action cannot be undone.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ResumenAplicarOpcionesRoto" xml:space="preserve">
+    <value>Applied to {0} of {1} drawing(s). Options added: {2}. Already existed: {3}. Elements modified: {4}.</value>
+  </data>
+  <data name="L_Suite_ErrorEnDibujo" xml:space="preserve">
+    <value>Error in {0}: {1}</value>
+  </data>
+  <data name="L_Suite_CarpetaDestino" xml:space="preserve">
+    <value>Target folder</value>
+  </data>
+  <data name="L_Suite_CarpetaDestinoHint" xml:space="preserve">
+    <value>Up to 6 levels separated by \ (e.g.: ROTO or SERIES PVC\ROTO)</value>
+  </data>
+  <data name="L_Suite_ElegirCarpeta" xml:space="preserve">
+    <value>Choose folder…</value>
+  </data>
+  <data name="L_Suite_NingunaCarpetaSeleccionada" xml:space="preserve">
+    <value>No folder selected</value>
+  </data>
+  <data name="L_Suite_SeleccionaCarpetaDestino" xml:space="preserve">
+    <value>Select the target folder in the tree.</value>
+  </data>
+  <data name="L_Suite_SeleccionarCarpetaOpciones" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoCarpetasOpciones" xml:space="preserve">
+    <value>Error loading option folders from the database.</value>
+  </data>
+  <data name="L_Suite_Aceptar" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="L_Suite_Cancelar" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="L_Suite_AplicandoOpcionesProgreso" xml:space="preserve">
+    <value>Applying to {0} of {1} drawing(s)…</value>
+  </data>
 </root>

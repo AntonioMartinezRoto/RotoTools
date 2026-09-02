@@ -399,4 +399,38 @@ Do you want to continue?</value>
   <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
     <value>The loaded options XML does not define a supplier ("supplier"): the HardwareSupplier option cannot be added.</value>
   </data>
+  <data name="L_Suite_AsociarConstructivos" xml:space="preserve">
+    <value>Associate Constructives</value>
+  </data>
+  <data name="L_Suite_AsociarConstructivosSubtitulo" xml:space="preserve">
+    <value>Associates one or more Escandallos, with their variables, to the constructive script of each leaf element of the XML of one or more drawings.</value>
+  </data>
+  <data name="L_Suite_AsociarConstructivosDesc" xml:space="preserve">
+    <value>Associates escandallos to the constructive script of each leaf element of the selected drawings.</value>
+  </data>
+  <data name="L_Suite_TodosEscandallosHint" xml:space="preserve">
+    <value>All escandallos (double-click to add)</value>
+  </data>
+  <data name="L_Suite_EscandallosSeleccionados" xml:space="preserve">
+    <value>Selected escandallos</value>
+  </data>
+  <data name="L_Suite_Variables" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoEscandallos" xml:space="preserve">
+    <value>Error loading the list of escandallos:</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnEscandallo" xml:space="preserve">
+    <value>Select at least one escandallo.</value>
+  </data>
+  <data name="L_Suite_EscribeVariables" xml:space="preserve">
+    <value>Enter the variables to associate (for example, L=L1;A=L2;).</value>
+  </data>
+  <data name="L_Suite_ConfirmarAsociarConstructivos" xml:space="preserve">
+    <value>{0} escandallo(s) will be associated to the constructive script of each leaf element of {1} drawing(s), modifying the database directly. This action cannot be undone.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ResumenAsociarConstructivos" xml:space="preserve">
+    <value>Applied to {0} of {1} drawing(s). Escandallos added: {2}. Already existed: {3}. Elements modified: {4}.</value>
+  </data>
 </root>

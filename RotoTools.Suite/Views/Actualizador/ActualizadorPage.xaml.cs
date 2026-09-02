@@ -76,6 +76,8 @@ namespace RotoTools.Suite.Views.Actualizador
             TxtCard2Desc.Text = Loc("L_Suite_VerEscandallosDesc");
             TxtCard3Titulo.Text = RotoTools.LocalizationManager.GetString("L_ExportarEscandallos");
             TxtCard3Desc.Text = Loc("L_Suite_ExportarEscandallosDesc");
+            TxtCard4Titulo.Text = Loc("L_Suite_AsociarConstructivos");
+            TxtCard4Desc.Text = Loc("L_Suite_AsociarConstructivosDesc");
 
             TxtGruposTitulo.Text = RotoTools.LocalizationManager.GetString("L_Grupos");
             LblPresupuestado.Text = RotoTools.LocalizationManager.GetString("L_Presupuestado");
@@ -126,6 +128,7 @@ namespace RotoTools.Suite.Views.Actualizador
             BtnOcultaOpciones.IsEnabled = enable;
             BtnInstalarEscandallos.IsEnabled = enable;
             BtnExportarEscandallos.IsEnabled = enable;
+            BtnAsociarConstructivos.IsEnabled = enable;
             CmbPresupuestado.IsEnabled = enable;
             CmbProduccion.IsEnabled = enable;
             CmbProveedor.IsEnabled = enable;
@@ -538,6 +541,14 @@ namespace RotoTools.Suite.Views.Actualizador
         private void BtnVerEscandallos_Click(object sender, RoutedEventArgs e)
         {
             var ventana = new ActualizadorVerEscandallosWindow { Owner = Window.GetWindow(this) };
+            ventana.ShowDialog();
+        }
+
+        /// <summary>Nueva (no existía en el original): abre "Asociar Constructivos" (ver
+        /// ActualizadorAsociarConstructivosWindow/DibujoConstructivosService).</summary>
+        private void BtnAsociarConstructivos_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new ActualizadorAsociarConstructivosWindow { Owner = Window.GetWindow(this) };
             ventana.ShowDialog();
         }
 

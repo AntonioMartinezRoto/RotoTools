@@ -406,4 +406,47 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
     <value>El XML de opciones cargado no tiene definido el proveedor ("supplier"): no se puede añadir la opción HardwareSupplier.</value>
   </data>
+  <data name="L_Suite_AsociarConstructivos" xml:space="preserve">
+    <value>Asociar Constructivos</value>
+  </data>
+  <data name="L_Suite_AsociarConstructivosSubtitulo" xml:space="preserve">
+    <value>Asocia uno o varios Escandallos, con sus variables, al constructivo de cada elemento hoja de uno o varios Modelos.</value>
+  </data>
+  <data name="L_Suite_AsociarConstructivosDesc" xml:space="preserve">
+    <value>Asocia escandallos al constructivo de cada elemento hoja de los dibujos seleccionados.</value>
+  </data>
+  <data name="L_Suite_TodosEscandallosHint" xml:space="preserve">
+    <value>Todos los escandallos (doble clic para añadir)</value>
+  </data>
+  <data name="L_Suite_EscandallosSeleccionados" xml:space="preserve">
+    <value>Escandallos seleccionados</value>
+  </data>
+  <data name="L_Suite_Variables" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoEscandallos" xml:space="preserve">
+    <value>Error al cargar el listado de escandallos:</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnEscandallo" xml:space="preserve">
+    <value>Selecciona al menos un escandallo.</value>
+  </data>
+  <data name="L_Suite_EscribeVariables" xml:space="preserve">
+    <value>Escribe las variables a asociar (por ejemplo, L=L1;A=L2;).</value>
+  </data>
+  <data name="L_Suite_ConfirmarAsociarConstructivos" xml:space="preserve">
+    <value>Se van a asociar {0} escandallo(s) al constructivo de cada elemento hoja de {1} dibujo(s), modificando directamente la base de datos. Esta acción no se puede deshacer.
+¿Desea continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenAsociarConstructivos" xml:space="preserve">
+    <value>Aplicado a {0} de {1} dibujo(s). Escandallos añadidos: {2}. Actualizados: {3}. Ya existían igual: {4}. Elementos modificados: {5}.</value>
+  </data>
+  <data name="L_Suite_TabEscandallos" xml:space="preserve">
+    <value>1. Escandallos</value>
+  </data>
+  <data name="L_Suite_TabDibujos" xml:space="preserve">
+    <value>2. Dibujos</value>
+  </data>
+  <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
+    <value>Escribe las variables para el/los escandallo(s): {0}.</value>
+  </data>
 </root>

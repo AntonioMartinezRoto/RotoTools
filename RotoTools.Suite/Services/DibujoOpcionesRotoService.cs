@@ -124,8 +124,12 @@ namespace RotoTools.Suite.Services
     /// </summary>
     public static class DibujoOpcionesRotoService
     {
-        private static readonly XNamespace PsrNs = "http://www.preference.com/XMLSchemas/2006/Serialization";
-        private static readonly XNamespace XsiNs = "http://www.w3.org/2001/XMLSchema-instance";
+        // internal (no solo private): DibujoConstructivosService reutiliza el mismo namespace y
+        // los mismos helpers de compresión/detección de hoja en vez de duplicarlos (ver más abajo
+        // ObtenerElementosHoja/EjecutarConReintentoZlib/LeerXmlDescomprimido/ResolverFuncionComprimir/
+        // ComprimirBytes/DescomprimirBytes/GuardarBufferComprimido/DecodificarTexto).
+        internal static readonly XNamespace PsrNs = "http://www.preference.com/XMLSchemas/2006/Serialization";
+        internal static readonly XNamespace XsiNs = "http://www.w3.org/2001/XMLSchema-instance";
 
         private static string? _nombreFuncionComprimirCache;
 
@@ -548,7 +552,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// esquema, así que si apareciera algún caso que contradijera este criterio habría que
         /// revisarlo de nuevo con más ejemplos reales.
         /// </summary>
-        private static IEnumerable<XElement> ObtenerElementosHoja(XElement raiz, XNamespace psr)
+        internal static IEnumerable<XElement> ObtenerElementosHoja(XElement raiz, XNamespace psr)
         {
             foreach (var hole in raiz.Descendants(psr + "Hole"))
             {
@@ -571,7 +575,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// explícito en cada consulta más abajo, que es lo que realmente evita el error visto en
         /// producción).
         /// </summary>
-        private static T EjecutarConReintentoZlib<T>(Func<T> accion)
+        internal static T EjecutarConReintentoZlib<T>(Func<T> accion)
         {
             try
             {
@@ -592,7 +596,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// deja de intentar devolver el tipo CLR "en crudo" y lo convierte a NVARCHAR dentro de
         /// la propia llamada, evitando el fallo.
         /// </summary>
-        private static string LeerXmlDescomprimido(SqlConnection conexion, string codigoDibujo)
+        internal static string LeerXmlDescomprimido(SqlConnection conexion, string codigoDibujo)
         {
             using var cmd = new SqlCommand(
                 "SELECT CAST([zlib].[UnzipBLOB](Buffer) AS NVARCHAR(MAX)) FROM Dibujos WHERE Codigo=@codigo", conexion);
@@ -617,7 +621,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// orden alfabético; ese fue precisamente el bug visto en producción (se compilaba con
         /// UnzipXML en vez de ZipXml). Se cachea en memoria del proceso una vez resuelta.
         /// </summary>
-        private static string ResolverFuncionComprimir(SqlConnection conexion)
+        internal static string ResolverFuncionComprimir(SqlConnection conexion)
         {
             if (_nombreFuncionComprimirCache != null) return _nombreFuncionComprimirCache;
 
@@ -661,7 +665,7 @@ ORDER BY o.name", conexion))
         /// verificación round-trip de más abajo (comprimir + descomprimir + comparar contra el
         /// XML final) lo detectaría con un error claro antes de escribir nada en BBDD.
         /// </summary>
-        private static byte[] ComprimirBytes(SqlConnection conexion, string xmlTexto, string funcionComprimir)
+        internal static byte[] ComprimirBytes(SqlConnection conexion, string xmlTexto, string funcionComprimir)
         {
             using var cmd = new SqlCommand($"SELECT CAST([zlib].[{funcionComprimir}](@xml) AS VARBINARY(MAX))", conexion);
             cmd.Parameters.Add("@xml", System.Data.SqlDbType.NVarChar, -1).Value = xmlTexto;
@@ -674,7 +678,7 @@ ORDER BY o.name", conexion))
         }
 
         /// <summary>Mismo CAST explícito que LeerXmlDescomprimido, por el mismo motivo.</summary>
-        private static string DescomprimirBytes(SqlConnection conexion, byte[] bytesComprimidos)
+        internal static string DescomprimirBytes(SqlConnection conexion, byte[] bytesComprimidos)
         {
             using var cmd = new SqlCommand("SELECT CAST([zlib].[UnzipBLOB](@buffer) AS NVARCHAR(MAX))", conexion);
             cmd.Parameters.Add("@buffer", System.Data.SqlDbType.VarBinary, -1).Value = bytesComprimidos;
@@ -684,7 +688,7 @@ ORDER BY o.name", conexion))
             return resultado is byte[] bytes ? DecodificarTexto(bytes) : resultado.ToString() ?? "";
         }
 
-        private static void GuardarBufferComprimido(SqlConnection conexion, string codigoDibujo, byte[] bytesComprimidos)
+        internal static void GuardarBufferComprimido(SqlConnection conexion, string codigoDibujo, byte[] bytesComprimidos)
         {
             using var cmd = new SqlCommand("UPDATE Dibujos SET Buffer=@buffer WHERE Codigo=@codigo", conexion);
             cmd.Parameters.Add("@buffer", System.Data.SqlDbType.VarBinary, -1).Value = bytesComprimidos;
@@ -692,7 +696,7 @@ ORDER BY o.name", conexion))
             cmd.ExecuteNonQuery();
         }
 
-        private static string DecodificarTexto(byte[] bytes)
+        internal static string DecodificarTexto(byte[] bytes)
         {
             if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
                 return new UTF8Encoding(false).GetString(bytes, 3, bytes.Length - 3);

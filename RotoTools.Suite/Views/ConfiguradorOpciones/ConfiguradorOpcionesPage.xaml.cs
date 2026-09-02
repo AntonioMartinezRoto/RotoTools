@@ -34,6 +34,10 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             TxtCard2Titulo.Text = RotoTools.LocalizationManager.GetString("L_RestaurarOpciones");
             TxtCard3Titulo.Text = RotoTools.LocalizationManager.GetString("L_ImportarConfigCliente");
             TxtCard4Titulo.Text = SuiteLocalization.GetString("L_Suite_AnadirOpcionesRoto");
+            // Antes fijo en español directamente en el XAML (Text="Añade la carpeta ROTO..."):
+            // por eso esta tarjeta siempre se veía en español aunque se cambiara el idioma de la
+            // Suite. Ahora localizado igual que el resto de textos de esta página.
+            TxtCard4Descripcion.Text = SuiteLocalization.GetString("L_Suite_AnadirOpcionesRotoTarjetaDescripcion");
         }
 
         private void BtnConfigOpciones_Click(object sender, RoutedEventArgs e)

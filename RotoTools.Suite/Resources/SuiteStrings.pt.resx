@@ -296,6 +296,9 @@ Deseja continuar?</value>
   <data name="L_Suite_AnadirOpcionesRoto" xml:space="preserve">
     <value>Adicionar opções ROTO</value>
   </data>
+  <data name="L_Suite_AnadirOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Adiciona a pasta ROTO e as suas opções a um desenho, ao modelo geral ou a cada elemento folha.</value>
+  </data>
   <data name="L_Suite_AnadirOpcionesRotoSubtitulo" xml:space="preserve">
     <value>Adiciona a pasta ROTO e uma lista de opções ao XML de um ou vários desenhos, ao modelo geral ou a cada elemento folha.</value>
   </data>
@@ -389,5 +392,11 @@ Deseja continuar?</value>
   </data>
   <data name="L_Suite_AplicandoOpcionesProgreso" xml:space="preserve">
     <value>A aplicar a {0} de {1} desenho(s)…</value>
+  </data>
+  <data name="L_Suite_AnadirHardwareSupplier" xml:space="preserve">
+    <value>Adicionar opção HardwareSupplier</value>
+  </data>
+  <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
+    <value>O XML de opções carregado não tem definido o fornecedor ("supplier"): não é possível adicionar a opção HardwareSupplier.</value>
   </data>
 </root>

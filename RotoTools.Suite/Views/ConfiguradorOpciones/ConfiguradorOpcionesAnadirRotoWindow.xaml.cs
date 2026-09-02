@@ -27,6 +27,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         private List<XElement> _opcionesCargadas = new();
         private string? _nombreFicheroOpciones;
+        private string? _valorSupplier;
         private OpcionCarpetaTreeNode? _carpetaSeleccionada;
 
         public ConfiguradorOpcionesAnadirRotoWindow()
@@ -60,6 +61,8 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             LblCarpetaDestino.Text = Loc("L_Suite_CarpetaDestino");
             TxtBtnElegirCarpeta.Text = Loc("L_Suite_ElegirCarpeta");
             ActualizarLblCarpetaDestino();
+
+            ChkAnadirHardwareSupplier.Content = Loc("L_Suite_AnadirHardwareSupplier");
 
             TxtCarpetas.Text = Loc("L_Suite_Carpetas");
             LblTodosDibujos.Text = Loc("L_Suite_TodosDibujosHint");
@@ -341,7 +344,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
             try
             {
-                var opciones = DibujoOpcionesRotoService.CargarOpcionesDesdeXml(openFileDialog.FileName);
+                var (opciones, supplier) = DibujoOpcionesRotoService.CargarOpcionesDesdeXml(openFileDialog.FileName);
                 if (opciones.Count == 0)
                 {
                     MessageBox.Show(Loc("L_Suite_NoSeEncontraronOpcionesEnFichero"), "", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -349,6 +352,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 }
 
                 _opcionesCargadas = opciones;
+                _valorSupplier = supplier;
                 _nombreFicheroOpciones = System.IO.Path.GetFileName(openFileDialog.FileName);
                 ActualizarLblOpcionesCargadas();
             }
@@ -404,6 +408,17 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 return;
             }
 
+            // El checkbox es independiente del modo (modelo general / por elemento): si está
+            // marcado, la opción "HardwareSupplier" siempre va al modelo, con el valor del
+            // atributo "supplier" del XML cargado (ver BtnCargarOpciones_Click). Se valida aquí,
+            // antes de confirmar, igual que la carpeta destino.
+            bool anadirHardwareSupplier = ChkAnadirHardwareSupplier.IsChecked == true;
+            if (anadirHardwareSupplier && string.IsNullOrWhiteSpace(_valorSupplier))
+            {
+                MessageBox.Show(Loc("L_Suite_HardwareSupplierSinValor"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             bool porElemento = RbModoElemento.IsChecked == true;
             string carpetaTexto = string.Join("\\", _carpetaSeleccionada.Ruta);
             string mensajeConfirmacion = string.Format(Loc("L_Suite_ConfirmarAplicarOpcionesRoto"), _seleccionados.Count, carpetaTexto);
@@ -423,7 +438,8 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
                 for (int i = 0; i < lista.Count; i++)
                 {
-                    var resultado = DibujoOpcionesRotoService.AplicarOpcionesRoto(lista[i].Codigo, _opcionesCargadas, porElemento, nivelCarpeta);
+                    var resultado = DibujoOpcionesRotoService.AplicarOpcionesRoto(lista[i].Codigo, _opcionesCargadas, porElemento, nivelCarpeta,
+                        anadirHardwareSupplier, _valorSupplier);
                     resultados.Add(resultado);
                     MostrarProgreso(i + 1, lista.Count);
                     DoEvents();

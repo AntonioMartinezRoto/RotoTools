@@ -296,6 +296,9 @@ Do you want to continue?</value>
   <data name="L_Suite_AnadirOpcionesRoto" xml:space="preserve">
     <value>Add ROTO options</value>
   </data>
+  <data name="L_Suite_AnadirOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Adds the ROTO folder and its options to a drawing, to the general model or to each leaf element.</value>
+  </data>
   <data name="L_Suite_AnadirOpcionesRotoSubtitulo" xml:space="preserve">
     <value>Adds the ROTO folder and a list of options to the XML of one or more drawings, to the general model or to each leaf element.</value>
   </data>
@@ -389,5 +392,11 @@ Do you want to continue?</value>
   </data>
   <data name="L_Suite_AplicandoOpcionesProgreso" xml:space="preserve">
     <value>Applying to {0} of {1} drawing(s)…</value>
+  </data>
+  <data name="L_Suite_AnadirHardwareSupplier" xml:space="preserve">
+    <value>Add HardwareSupplier option</value>
+  </data>
+  <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
+    <value>The loaded options XML does not define a supplier ("supplier"): the HardwareSupplier option cannot be added.</value>
   </data>
 </root>

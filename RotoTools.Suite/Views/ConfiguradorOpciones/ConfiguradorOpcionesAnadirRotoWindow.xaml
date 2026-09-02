@@ -118,25 +118,34 @@
                  ruta. Van juntos porque ambos son "dónde se aplican las opciones". -->
             <Border Grid.Row="2" Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
                     CornerRadius="8" Padding="16,14">
-                <DockPanel LastChildFill="False">
-                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
-                        <RadioButton x:Name="RbModoModelo" GroupName="ModoAplicar" IsChecked="True" VerticalAlignment="Center" Margin="0,0,20,0" />
-                        <RadioButton x:Name="RbModoElemento" GroupName="ModoAplicar" VerticalAlignment="Center" />
-                    </StackPanel>
+                <StackPanel>
+                    <DockPanel LastChildFill="False">
+                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                            <RadioButton x:Name="RbModoModelo" GroupName="ModoAplicar" IsChecked="True" VerticalAlignment="Center" Margin="0,0,20,0" />
+                            <RadioButton x:Name="RbModoElemento" GroupName="ModoAplicar" VerticalAlignment="Center" />
+                        </StackPanel>
 
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock x:Name="LblCarpetaDestino" VerticalAlignment="Center" Margin="0,0,10,0" />
-                        <Button x:Name="BtnElegirCarpeta" Style="{StaticResource RotoButtonSecondary}"
-                                Click="BtnElegirCarpeta_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource IconFolderOpen}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
-                                <TextBlock x:Name="TxtBtnElegirCarpeta" VerticalAlignment="Center" />
-                            </StackPanel>
-                        </Button>
-                        <TextBlock x:Name="LblCarpetaDestinoElegida" VerticalAlignment="Center"
-                                   Margin="12,0,0,0" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" />
-                    </StackPanel>
-                </DockPanel>
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock x:Name="LblCarpetaDestino" VerticalAlignment="Center" Margin="0,0,10,0" />
+                            <Button x:Name="BtnElegirCarpeta" Style="{StaticResource RotoButtonSecondary}"
+                                    Click="BtnElegirCarpeta_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource IconFolderOpen}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                                    <TextBlock x:Name="TxtBtnElegirCarpeta" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <TextBlock x:Name="LblCarpetaDestinoElegida" VerticalAlignment="Center"
+                                       Margin="12,0,0,0" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" />
+                        </StackPanel>
+                    </DockPanel>
+
+                    <!-- Separación clara (línea + margen) respecto a los radiobuttons de arriba,
+                         para que no se confunda con el modo modelo/elemento: esta opción es
+                         independiente y siempre va al modelo, nunca por elemento. -->
+                    <Border BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="0,1,0,0" Margin="0,14,0,12" />
+
+                    <CheckBox x:Name="ChkAnadirHardwareSupplier" VerticalAlignment="Center" />
+                </StackPanel>
             </Border>
         </Grid>
 

@@ -303,6 +303,9 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_AnadirOpcionesRoto" xml:space="preserve">
     <value>Añadir opciones ROTO</value>
   </data>
+  <data name="L_Suite_AnadirOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Añade la carpeta ROTO y sus opciones a un dibujo, al modelo general o a cada elemento hoja.</value>
+  </data>
   <data name="L_Suite_AnadirOpcionesRotoSubtitulo" xml:space="preserve">
     <value>Añade la carpeta ROTO y una lista de opciones al XML de uno o varios dibujos, al modelo general o a cada elemento hoja.</value>
   </data>
@@ -396,5 +399,11 @@ Conector actualizado correctamente.</value>
   </data>
   <data name="L_Suite_AplicandoOpcionesProgreso" xml:space="preserve">
     <value>Aplicando a {0} de {1} dibujo(s)…</value>
+  </data>
+  <data name="L_Suite_AnadirHardwareSupplier" xml:space="preserve">
+    <value>Añadir opción HardwareSupplier</value>
+  </data>
+  <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
+    <value>El XML de opciones cargado no tiene definido el proveedor ("supplier"): no se puede añadir la opción HardwareSupplier.</value>
   </data>
 </root>

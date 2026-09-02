@@ -77,7 +77,7 @@
                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <TextBlock x:Name="TxtCard4Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
-                        <TextBlock Text="Añade la carpeta ROTO y sus opciones a un dibujo, al modelo general o a cada elemento hoja."
+                        <TextBlock x:Name="TxtCard4Descripcion"
                                    Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
                     </StackPanel>
                 </Button>

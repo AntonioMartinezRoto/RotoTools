@@ -1,5 +1,4 @@
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Data.SqlClient;
@@ -240,8 +239,15 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// prefijo "RO_", más la traducción activa si TranslateManager.AplicarTraduccion está
         /// puesta), tomando el primer hw:Value del Option como valor — en este XML general cada
         /// opción trae un único valor.
+        ///
+        /// También se lee (igual que CamPage/ConectorHerrajePage/TraduccionPage, con
+        /// XmlLoader.LoadSupplier) el atributo hw:PrefHardware/@supplier del mismo XML: es el
+        /// valor que se usa para la opción "HardwareSupplier" cuando el usuario marca la casilla
+        /// correspondiente en ConfiguradorOpcionesAnadirRotoWindow (ver
+        /// AplicarOpcionHardwareSupplier), así que se captura aquí, al cargar el fichero, en vez
+        /// de tener que volver a abrirlo más tarde.
         /// </summary>
-        public static List<XElement> CargarOpcionesDesdeXml(string rutaXml)
+        public static (List<XElement> Opciones, string? Supplier) CargarOpcionesDesdeXml(string rutaXml)
         {
             var doc = new XmlDocument();
             doc.Load(rutaXml);
@@ -250,8 +256,10 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
             nsmgr.AddNamespace("hw", "http://www.preference.com/XMLSchemas/2006/Hardware");
 
             var loader = new RotoTools.XmlLoader(nsmgr);
+            string? supplier = loader.LoadSupplier(doc);
+
             List<RotoEntities.Option>? opcionesHw = loader.LoadDocOptions(doc);
-            if (opcionesHw == null) return new List<XElement>();
+            if (opcionesHw == null) return (new List<XElement>(), supplier);
 
             var resultado = new List<XElement>();
             foreach (var opcionHw in opcionesHw)
@@ -269,7 +277,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
                     new XAttribute("value", opcionRo.Value)));
             }
 
-            return resultado;
+            return (resultado, supplier);
         }
 
         #endregion
@@ -302,7 +310,16 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
             return string.Join("\\", todos);
         }
 
-        public static ResultadoAplicarOpciones AplicarOpcionesRoto(string codigoDibujo, List<XElement> opcionesFuente, bool porElemento, string nivelCarpeta)
+        /// <param name="anadirHardwareSupplier">Si está a true, además de la carpeta y las
+        /// opciones del XML (aplicadas según "porElemento" como siempre), se añade la opción
+        /// "HardwareSupplier" a la lista de opciones del MODELO (nunca por elemento, con
+        /// independencia de "porElemento"): ver AplicarOpcionHardwareSupplier.</param>
+        /// <param name="valorHardwareSupplier">Valor de esa opción: el mismo atributo
+        /// hw:PrefHardware/@supplier del XML de opciones cargado (ver
+        /// CargarOpcionesDesdeXml/XmlLoader.LoadSupplier). Obligatorio si anadirHardwareSupplier
+        /// es true.</param>
+        public static ResultadoAplicarOpciones AplicarOpcionesRoto(string codigoDibujo, List<XElement> opcionesFuente, bool porElemento, string nivelCarpeta,
+            bool anadirHardwareSupplier = false, string? valorHardwareSupplier = null)
         {
             var resultado = new ResultadoAplicarOpciones { Codigo = codigoDibujo };
 
@@ -350,6 +367,20 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
                         resultado.Mensaje = "No se ha encontrado ningún elemento hoja en este dibujo.";
                         return resultado;
                     }
+                }
+
+                // Independiente del modo (modelo general / por elemento) elegido para la carpeta y
+                // las opciones del XML: la opción "HardwareSupplier" es aparte y siempre va al
+                // MODELO, nunca por elemento.
+                if (anadirHardwareSupplier)
+                {
+                    if (string.IsNullOrWhiteSpace(valorHardwareSupplier))
+                        throw new InvalidOperationException(
+                            "El XML de opciones cargado no tiene definido el proveedor (atributo \"supplier\"): no se puede añadir la opción HardwareSupplier.");
+
+                    bool anadida = AplicarOpcionHardwareSupplier(raiz, psr, valorHardwareSupplier);
+                    if (anadida) resultado.OpcionesAnadidas++;
+                    else resultado.OpcionesYaExistian++;
                 }
 
                 string xmlFinal = doc.ToString(SaveOptions.DisableFormatting);
@@ -451,29 +482,71 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
             return (anadidas, yaExistian, nivelAnadido);
         }
 
-        /// <summary>Id de hoja real: "H" + número (H8, H9, H10, H11...), igual en todos los
-        /// ejemplos vistos (practicables de 2/4 hojas y una corredera de 3), tanto si el modelo
-        /// tiene un tipo de perfil PVC/Alu/PAX como si es corredera.</summary>
-        private static readonly Regex IdHojaRegex = new(@"^H\d+$", RegexOptions.Compiled);
+        /// <summary>
+        /// Añade (si no existe ya) la opción "HardwareSupplier" a la lista de opciones del MODELO
+        /// (psr:Model/psr:Options/psr:List) -nunca por elemento, con independencia del modo
+        /// elegido para el resto de opciones-, ligada al checkbox correspondiente en
+        /// ConfiguradorOpcionesAnadirRotoWindow. A diferencia de las opciones cargadas del XML
+        /// (que pasan por OpcionHelper.Crear y llevan el prefijo "RO_"), esta se añade con el
+        /// nombre EXACTO "HardwareSupplier", sin prefijo: ya es un nombre de Opción real y
+        /// existente en Preference (ver p.ej. ManillasFKSPage/ConectorHerrajeRevisionSetsWindow,
+        /// que leen su contenido de ContenidoOpciones con Opcion = 'HardwareSupplier'), no una
+        /// opción nueva creada por esta herramienta. Su valor es el atributo
+        /// hw:PrefHardware/@supplier del XML de opciones cargado (ver
+        /// CargarOpcionesDesdeXml/XmlLoader.LoadSupplier). Si ya existe una opción con ese nombre
+        /// en la lista, no se toca (mismo criterio de "no duplicar" que
+        /// AplicarOpcionesYNivelRotoEnContenedor).
+        /// </summary>
+        private static bool AplicarOpcionHardwareSupplier(XElement raiz, XNamespace psr, string valorSupplier)
+        {
+            XElement? options = raiz.Element(psr + "Options");
+            if (options == null)
+            {
+                options = new XElement(psr + "Options", new XAttribute(XsiNs + "type", "psr:typeOptions"));
+                raiz.Add(options);
+            }
+
+            XElement? list = options.Element(psr + "List");
+            if (list == null)
+            {
+                list = new XElement(psr + "List");
+                options.AddFirst(list);
+            }
+
+            bool yaExiste = list.Elements(psr + "Option")
+                .Any(o => string.Equals((string?)o.Attribute("name"), "HardwareSupplier", StringComparison.Ordinal));
+            if (yaExiste) return false;
+
+            var nuevaOpcion = new XElement(psr + "Option",
+                new XAttribute(XsiNs + "type", "psr:typeOption"),
+                new XAttribute("name", "HardwareSupplier"),
+                new XAttribute("value", valorSupplier));
+
+            var todas = list.Elements(psr + "Option")
+                .Concat(new[] { nuevaOpcion })
+                .OrderBy(o => (string?)o.Attribute("name") ?? "", StringComparer.Ordinal)
+                .ToList();
+            list.ReplaceNodes(todas);
+
+            return true;
+        }
 
         /// <summary>
         /// Elementos "hoja": el psr:Hole "de contenido" (el que tiene un psr:Element hijo directo;
         /// el otro nivel de psr:Hole, xsi:type="psr:typeBinaryHole", es solo un envoltorio del
-        /// árbol binario y no tiene psr:Element propio) que NO tiene un psr:Holes hijo, es decir,
-        /// que no se subdivide más (paño/hoja terminal, con o sin psr:Glass) Y cuyo
-        /// psr:Element/@id tiene el formato "H"+número.
+        /// árbol binario y no tiene psr:Element propio) que NO tiene un psr:Holes hijo -es decir,
+        /// que no se subdivide más, paño/hueco terminal- Y que tiene un psr:Opening hijo directo.
         ///
-        /// Este último filtro por id se añadió tras comparar ejemplos editados a mano de varios
-        /// modelos: en todos ellos, junto a las hojas reales (H8/H9 en un 2 hojas; H10/H11/H14/H15
-        /// en un 4 hojas; H7/H9/H10/H12 en una corredera de 3 hojas) aparecía siempre un
-        /// psr:Hole/psr:Element adicional que cumple el criterio estructural (Element sin Holes)
-        /// pero NO es una hoja -típicamente con id "RL0", ya con una única opción propia previa no
-        /// relacionada con ROTO- y que en ninguno de esos ejemplos recibió ni las opciones ni el
-        /// nivel ROTO. El XML lo genera un software externo (no RotoTools/PrefSuite) sobre el que
-        /// no hay control ni documentación de su convención de ids, así que este filtro es una
-        /// inferencia empírica a partir de los ejemplos disponibles, no una regla documentada del
-        /// esquema: si aparece un modelo cuyas hojas reales no sigan el patrón "H"+número, esta
-        /// función las dejaría fuera y habría que revisar el criterio.
+        /// El criterio por psr:Opening sustituye al filtro anterior por patrón de id ("H"+número):
+        /// se comprobó con datos reales que ese patrón daba falsos positivos (huecos terminales
+        /// cuyo id empieza por "H" pero que no son una hoja real, se les añadían opciones y el
+        /// nivel ROTO indebidamente). psr:Opening es la marca correcta porque, según se ha
+        /// verificado, únicamente las hojas (paños que realmente abren) pueden tener una apertura:
+        /// un hueco terminal sin psr:Opening es un paño fijo/vidrio (psr:Glass) u otro tipo de
+        /// contenido que no debe recibir opciones ni carpeta. El XML lo genera un software externo
+        /// (no RotoTools/PrefSuite) sobre el que no hay control ni documentación formal del
+        /// esquema, así que si apareciera algún caso que contradijera este criterio habría que
+        /// revisarlo de nuevo con más ejemplos reales.
         /// </summary>
         private static IEnumerable<XElement> ObtenerElementosHoja(XElement raiz, XNamespace psr)
         {
@@ -482,9 +555,7 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
                 var elemento = hole.Element(psr + "Element");
                 if (elemento == null) continue;
                 if (hole.Element(psr + "Holes") != null) continue;
-
-                string id = elemento.Attribute("id")?.Value ?? "";
-                if (!IdHojaRegex.IsMatch(id)) continue;
+                if (hole.Element(psr + "Opening") == null) continue;
 
                 yield return elemento;
             }

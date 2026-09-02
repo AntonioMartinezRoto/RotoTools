@@ -33,6 +33,11 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             TxtCard1Titulo.Text = RotoTools.LocalizationManager.GetString("L_ConfigurarGuardarOpciones");
             TxtCard2Titulo.Text = RotoTools.LocalizationManager.GetString("L_RestaurarOpciones");
             TxtCard3Titulo.Text = RotoTools.LocalizationManager.GetString("L_ImportarConfigCliente");
+            TxtCard4Titulo.Text = SuiteLocalization.GetString("L_Suite_AnadirOpcionesRoto");
+            // Antes fijo en español directamente en el XAML (Text="Añade la carpeta ROTO..."):
+            // por eso esta tarjeta siempre se veía en español aunque se cambiara el idioma de la
+            // Suite. Ahora localizado igual que el resto de textos de esta página.
+            TxtCard4Descripcion.Text = SuiteLocalization.GetString("L_Suite_AnadirOpcionesRotoTarjetaDescripcion");
         }
 
         private void BtnConfigOpciones_Click(object sender, RoutedEventArgs e)
@@ -94,6 +99,18 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 MessageBox.Show(RotoTools.LocalizationManager.GetString("L_ErrorImportandoConfiguracion") + Environment.NewLine + ex.Message, "",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        /// <summary>Tarjeta 4, nueva: abre la ventana para añadir la carpeta "ROTO" y sus opciones
+        /// a uno o varios dibujos (a nivel de modelo general o por cada elemento hoja), leyendo y
+        /// escribiendo directamente el XML comprimido del campo Buffer de la tabla Dibujos.</summary>
+        private void BtnAnadirOpcionesRoto_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new ConfiguradorOpcionesAnadirRotoWindow
+            {
+                Owner = Window.GetWindow(this)
+            };
+            ventana.ShowDialog();
         }
 
         #region Lógica portada tal cual de ConfiguradorOpcionesMenu.cs (WinForms)

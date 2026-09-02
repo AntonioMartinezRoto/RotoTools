@@ -300,4 +300,110 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_TooltipVerInformacion" xml:space="preserve">
     <value>Ver información</value>
   </data>
+  <data name="L_Suite_AnadirOpcionesRoto" xml:space="preserve">
+    <value>Añadir opciones ROTO</value>
+  </data>
+  <data name="L_Suite_AnadirOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Añade la carpeta ROTO y sus opciones a un dibujo, al modelo general o a cada elemento hoja.</value>
+  </data>
+  <data name="L_Suite_AnadirOpcionesRotoSubtitulo" xml:space="preserve">
+    <value>Añade la carpeta ROTO y una lista de opciones al XML de uno o varios dibujos, al modelo general o a cada elemento hoja.</value>
+  </data>
+  <data name="L_Suite_CargarOpcionesXml" xml:space="preserve">
+    <value>Cargar opciones XML</value>
+  </data>
+  <data name="L_Suite_NingunaOpcionCargada" xml:space="preserve">
+    <value>Ninguna opción cargada todavía.</value>
+  </data>
+  <data name="L_Suite_OpcionesCargadasDesde" xml:space="preserve">
+    <value>{0} opción(es) cargada(s) desde {1}</value>
+  </data>
+  <data name="L_Suite_ModoModeloGeneral" xml:space="preserve">
+    <value>Añadir al modelo general</value>
+  </data>
+  <data name="L_Suite_ModoPorElemento" xml:space="preserve">
+    <value>Añadir por elemento (a cada hoja)</value>
+  </data>
+  <data name="L_Suite_Carpetas" xml:space="preserve">
+    <value>Carpetas</value>
+  </data>
+  <data name="L_Suite_TodosDibujosHint" xml:space="preserve">
+    <value>Todos los dibujos (doble clic para añadir)</value>
+  </data>
+  <data name="L_Suite_DibujosSeleccionados" xml:space="preserve">
+    <value>Dibujos seleccionados</value>
+  </data>
+  <data name="L_Suite_Codigo" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="L_Suite_Sistema" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="L_Suite_Aplicar" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoDibujos" xml:space="preserve">
+    <value>Error al cargar el listado de dibujos:</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoOpciones" xml:space="preserve">
+    <value>Error al cargar el fichero de opciones:</value>
+  </data>
+  <data name="L_Suite_NoSeEncontraronOpcionesEnFichero" xml:space="preserve">
+    <value>No se ha encontrado ninguna opción (hw:Options) en el fichero seleccionado.</value>
+  </data>
+  <data name="L_Suite_CargaPrimeroOpciones" xml:space="preserve">
+    <value>Carga primero un fichero de opciones.</value>
+  </data>
+  <data name="L_Suite_SeleccionaAlMenosUnDibujo" xml:space="preserve">
+    <value>Selecciona al menos un dibujo.</value>
+  </data>
+  <data name="L_Suite_ConfirmarAplicar" xml:space="preserve">
+    <value>Confirmar aplicación</value>
+  </data>
+  <data name="L_Suite_ConfirmarAplicarOpcionesRoto" xml:space="preserve">
+    <value>Se van a aplicar las opciones cargadas a la carpeta "{1}" en {0} dibujo(s), modificando directamente la base de datos. Esta acción no se puede deshacer.
+¿Desea continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenAplicarOpcionesRoto" xml:space="preserve">
+    <value>Aplicado a {0} de {1} dibujo(s). Opciones añadidas: {2}. Ya existían: {3}. Elementos modificados: {4}.</value>
+  </data>
+  <data name="L_Suite_ErrorEnDibujo" xml:space="preserve">
+    <value>Error en {0}: {1}</value>
+  </data>
+  <data name="L_Suite_CarpetaDestino" xml:space="preserve">
+    <value>Carpeta destino</value>
+  </data>
+  <data name="L_Suite_CarpetaDestinoHint" xml:space="preserve">
+    <value>Hasta 6 niveles separados por \ (ej.: ROTO o SERIES PVC\ROTO)</value>
+  </data>
+  <data name="L_Suite_ElegirCarpeta" xml:space="preserve">
+    <value>Elegir carpeta…</value>
+  </data>
+  <data name="L_Suite_NingunaCarpetaSeleccionada" xml:space="preserve">
+    <value>Ninguna carpeta seleccionada</value>
+  </data>
+  <data name="L_Suite_SeleccionaCarpetaDestino" xml:space="preserve">
+    <value>Selecciona en el árbol la carpeta destino.</value>
+  </data>
+  <data name="L_Suite_SeleccionarCarpetaOpciones" xml:space="preserve">
+    <value>Seleccionar carpeta</value>
+  </data>
+  <data name="L_Suite_ErrorCargandoCarpetasOpciones" xml:space="preserve">
+    <value>Error al cargar las carpetas de opciones desde la base de datos.</value>
+  </data>
+  <data name="L_Suite_Aceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="L_Suite_Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="L_Suite_AplicandoOpcionesProgreso" xml:space="preserve">
+    <value>Aplicando a {0} de {1} dibujo(s)…</value>
+  </data>
+  <data name="L_Suite_AnadirHardwareSupplier" xml:space="preserve">
+    <value>Añadir opción HardwareSupplier</value>
+  </data>
+  <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
+    <value>El XML de opciones cargado no tiene definido el proveedor ("supplier"): no se puede añadir la opción HardwareSupplier.</value>
+  </data>
 </root>

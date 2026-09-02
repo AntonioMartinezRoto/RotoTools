@@ -24,7 +24,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <UniformGrid Columns="3" Rows="1">
+            <UniformGrid Columns="4" Rows="1">
 
                 <!-- Tarjeta 1: Configurar y guardar opciones -->
                 <Button x:Name="BtnConfigOpciones" Style="{StaticResource RotoActionCard}" Margin="0,0,12,0"
@@ -55,7 +55,7 @@
                 </Button>
 
                 <!-- Tarjeta 3: Importar configuración de cliente -->
-                <Button x:Name="BtnImportConfigCliente" Style="{StaticResource RotoActionCard}" Margin="12,0,0,0"
+                <Button x:Name="BtnImportConfigCliente" Style="{StaticResource RotoActionCard}" Margin="6,0,6,0"
                         Click="BtnImportConfigCliente_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#F57C00" Margin="0,0,0,14">
@@ -64,6 +64,20 @@
                         </Border>
                         <TextBlock x:Name="TxtCard3Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
                         <TextBlock Text="Importa un archivo .rotoconfig de cliente y ajusta automáticamente las opciones visibles."
+                                   Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 4: Añadir opciones ROTO -->
+                <Button x:Name="BtnAnadirOpcionesRoto" Style="{StaticResource RotoActionCard}" Margin="12,0,0,0"
+                        Click="BtnAnadirOpcionesRoto_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#2E7D32" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconPlus}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard4Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard4Descripcion"
                                    Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
                     </StackPanel>
                 </Button>

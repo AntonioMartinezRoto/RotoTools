@@ -410,7 +410,7 @@ Conector actualizado correctamente.</value>
     <value>Asociar Constructivos</value>
   </data>
   <data name="L_Suite_AsociarConstructivosSubtitulo" xml:space="preserve">
-    <value>Asocia uno o varios Escandallos, con sus variables, al constructivo de cada elemento hoja del XML de uno o varios dibujos.</value>
+    <value>Asocia uno o varios Escandallos, con sus variables, al constructivo de cada elemento hoja de uno o varios Modelos.</value>
   </data>
   <data name="L_Suite_AsociarConstructivosDesc" xml:space="preserve">
     <value>Asocia escandallos al constructivo de cada elemento hoja de los dibujos seleccionados.</value>
@@ -438,6 +438,15 @@ Conector actualizado correctamente.</value>
 ¿Desea continuar?</value>
   </data>
   <data name="L_Suite_ResumenAsociarConstructivos" xml:space="preserve">
-    <value>Aplicado a {0} de {1} dibujo(s). Escandallos añadidos: {2}. Ya existían: {3}. Elementos modificados: {4}.</value>
+    <value>Aplicado a {0} de {1} dibujo(s). Escandallos añadidos: {2}. Actualizados: {3}. Ya existían igual: {4}. Elementos modificados: {5}.</value>
+  </data>
+  <data name="L_Suite_TabEscandallos" xml:space="preserve">
+    <value>1. Escandallos</value>
+  </data>
+  <data name="L_Suite_TabDibujos" xml:space="preserve">
+    <value>2. Dibujos</value>
+  </data>
+  <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
+    <value>Escribe las variables para el/los escandallo(s): {0}.</value>
   </data>
 </root>

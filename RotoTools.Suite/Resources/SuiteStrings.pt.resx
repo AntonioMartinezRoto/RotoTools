@@ -403,7 +403,7 @@ Deseja continuar?</value>
     <value>Associar Construtivos</value>
   </data>
   <data name="L_Suite_AsociarConstructivosSubtitulo" xml:space="preserve">
-    <value>Associa um ou vários Escandallos, com as suas variáveis, ao construtivo de cada elemento folha do XML de um ou vários desenhos.</value>
+    <value>Associa um ou vários Escandallos, com as suas variáveis, ao construtivo de cada elemento folha de um ou vários Modelos.</value>
   </data>
   <data name="L_Suite_AsociarConstructivosDesc" xml:space="preserve">
     <value>Associa escandallos ao construtivo de cada elemento folha dos desenhos selecionados.</value>
@@ -431,6 +431,15 @@ Deseja continuar?</value>
 Deseja continuar?</value>
   </data>
   <data name="L_Suite_ResumenAsociarConstructivos" xml:space="preserve">
-    <value>Aplicado a {0} de {1} desenho(s). Escandallos adicionados: {2}. Já existiam: {3}. Elementos modificados: {4}.</value>
+    <value>Aplicado a {0} de {1} desenho(s). Escandallos adicionados: {2}. Atualizados: {3}. Já existiam iguais: {4}. Elementos modificados: {5}.</value>
+  </data>
+  <data name="L_Suite_TabEscandallos" xml:space="preserve">
+    <value>1. Escandallos</value>
+  </data>
+  <data name="L_Suite_TabDibujos" xml:space="preserve">
+    <value>2. Desenhos</value>
+  </data>
+  <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
+    <value>Introduza as variáveis para o(s) escandallo(s): {0}.</value>
   </data>
 </root>

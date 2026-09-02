@@ -54,12 +54,17 @@ namespace RotoTools.Suite.Services
     }
 
     /// <summary>Un escandallo elegido por el usuario para asociar, con las variables que ha
-    /// escrito para él (mismo texto de variables para todos los escandallos de una misma
-    /// aplicación, ver ActualizadorAsociarConstructivosWindow).</summary>
+    /// escrito para él. Cada escandallo seleccionado lleva sus propias Variables (editables en la
+    /// grid de seleccionados de ActualizadorAsociarConstructivosWindow): no se asume que todos los
+    /// escandallos de una misma aplicación compartan la misma definición.</summary>
     public class EscandalloSeleccionado
     {
         public string Codigo { get; set; } = "";
         public string Descripcion { get; set; } = "";
+
+        /// <summary>Por defecto "L=L1;A=L2;" (el caso más habitual, ver comentario de la clase
+        /// DibujoConstructivosService), editable por el usuario para cada escandallo.</summary>
+        public string Variables { get; set; } = "L=L1;A=L2;";
     }
 
     /// <summary>Resultado de asociar los constructivos elegidos a un único Dibujo, para el resumen final.</summary>
@@ -69,6 +74,13 @@ namespace RotoTools.Suite.Services
         public bool Exito { get; set; }
         public string Mensaje { get; set; } = "";
         public int EscandallosAnadidos { get; set; }
+
+        /// <summary>Ya estaba asociado pero con otras Variables: se ha sustituido su línea por la
+        /// nueva definición (ver InsertarEscandalloEnSeccion).</summary>
+        public int EscandallosActualizados { get; set; }
+
+        /// <summary>Ya estaba asociado con exactamente las mismas Variables: no ha hecho falta
+        /// tocar nada.</summary>
         public int EscandallosYaExistian { get; set; }
         public int ElementosModificados { get; set; }
     }
@@ -162,14 +174,23 @@ namespace RotoTools.Suite.Services
                     .Replace("\r\n", SepLinea)
                     .Replace("\n", SepLinea);
 
+        /// <summary>Resultado de intentar asociar un escandallo a una sección "Escandallos": no
+        /// existía y se ha insertado una línea nueva (Anadido), ya existía pero con otras Variables
+        /// y se ha sustituido su línea (Actualizado), o ya existía con exactamente las mismas
+        /// Variables y no ha hecho falta tocar nada (SinCambios).</summary>
+        private enum ResultadoInsercionEscandallo { Anadido, Actualizado, SinCambios }
+
         /// <summary>
-        /// Inserta (si no existe ya, comparando por Código) una línea
-        /// "ESCANDALLO(&quot;Codigo&quot;,&quot;Variables&quot;);" al final de la sección
-        /// "Escandallos" del texto de psr:ConstructiveScript indicado, sin tocar el resto de
-        /// secciones ni su contenido. Verificado contra un XML real (ver comentario de la clase):
-        /// reconstruye byte a byte el mismo texto cuando no hay nada que insertar.
+        /// Inserta o actualiza (comparando por Código) la línea
+        /// "ESCANDALLO(&quot;Codigo&quot;,&quot;Variables&quot;);" de la sección "Escandallos" del
+        /// texto de psr:ConstructiveScript indicado, sin tocar el resto de secciones ni su
+        /// contenido. Si el Código ya estaba asociado pero con otras Variables (p. ej. el usuario
+        /// las corrigió y vuelve a aplicar sobre los mismos dibujos), SUSTITUYE la línea entera en
+        /// el mismo sitio en vez de dejarla como estaba: las Variables nuevas siempre prevalecen.
+        /// Verificado contra un XML real (ver comentario de la clase): reconstruye byte a byte el
+        /// mismo texto cuando no hay nada que insertar ni actualizar.
         /// </summary>
-        private static (string TextoResultado, bool Anadido) InsertarEscandalloEnSeccion(string textoActual, string codigo, string variables)
+        private static (string TextoResultado, ResultadoInsercionEscandallo Resultado) InsertarEscandalloEnSeccion(string textoActual, string codigo, string variables)
         {
             string codigoEscapado = EscaparTextoConstructivo(codigo);
             string variablesEscapadas = EscaparTextoConstructivo(variables);
@@ -186,9 +207,12 @@ namespace RotoTools.Suite.Services
             if (idxSiguienteSeccion < 0)
                 idxSiguienteSeccion = lineas.Count - 1; // por si "Escandallos" fuera la última sección (no esperado, pero defensivo)
 
+            string nuevaLinea = "ESCANDALLO(" + ComillaLiteral + codigoEscapado + ComillaLiteral + "," +
+                                 ComillaLiteral + variablesEscapadas + ComillaLiteral + ");";
+
             // ¿Ya existe un ESCANDALLO con este mismo Código en la sección? (comparación por
-            // Código, no por línea completa: no se duplica aunque las Variables sean distintas,
-            // mismo criterio que AplicarOpcionesYNivelRotoEnContenedor con los nombres de Opción.)
+            // Código, no por línea completa: así se detecta también cuando solo cambian las
+            // Variables, que es precisamente el caso a actualizar.)
             var patronCodigo = new Regex(
                 "^ESCANDALLO\\(" + Regex.Escape(ComillaLiteral) + "(?<codigo>.*?)" + Regex.Escape(ComillaLiteral) + ",",
                 RegexOptions.Compiled);
@@ -196,15 +220,18 @@ namespace RotoTools.Suite.Services
             for (int i = idxEscandallos + 1; i < idxSiguienteSeccion; i++)
             {
                 var m = patronCodigo.Match(lineas[i]);
-                if (m.Success && string.Equals(m.Groups["codigo"].Value, codigoEscapado, StringComparison.Ordinal))
-                    return (textoActual, false);
+                if (!m.Success || !string.Equals(m.Groups["codigo"].Value, codigoEscapado, StringComparison.Ordinal))
+                    continue;
+
+                if (string.Equals(lineas[i], nuevaLinea, StringComparison.Ordinal))
+                    return (textoActual, ResultadoInsercionEscandallo.SinCambios);
+
+                lineas[i] = nuevaLinea;
+                return (string.Join(SepLinea, lineas), ResultadoInsercionEscandallo.Actualizado);
             }
 
-            string nuevaLinea = "ESCANDALLO(" + ComillaLiteral + codigoEscapado + ComillaLiteral + "," +
-                                 ComillaLiteral + variablesEscapadas + ComillaLiteral + ");";
             lineas.Insert(idxSiguienteSeccion, nuevaLinea);
-
-            return (string.Join(SepLinea, lineas), true);
+            return (string.Join(SepLinea, lineas), ResultadoInsercionEscandallo.Anadido);
         }
 
         #endregion
@@ -232,7 +259,7 @@ namespace RotoTools.Suite.Services
                     "El XML del dibujo está vacío o no es válido.");
                 XNamespace psr = raiz.Name.Namespace;
 
-                int totalAnadidos = 0, totalYaExistian = 0, elementos = 0;
+                int totalAnadidos = 0, totalActualizados = 0, totalYaExistian = 0, elementos = 0;
 
                 foreach (var elementoHoja in DibujoOpcionesRotoService.ObtenerElementosHoja(raiz, psr))
                 {
@@ -246,9 +273,14 @@ namespace RotoTools.Suite.Services
                     string textoActual = script.Value;
                     foreach (var (codigoEscandallo, variables) in escandallosSeleccionados)
                     {
-                        var (textoResultado, anadido) = InsertarEscandalloEnSeccion(textoActual, codigoEscandallo, variables);
+                        var (textoResultado, resultadoInsercion) = InsertarEscandalloEnSeccion(textoActual, codigoEscandallo, variables);
                         textoActual = textoResultado;
-                        if (anadido) totalAnadidos++; else totalYaExistian++;
+                        switch (resultadoInsercion)
+                        {
+                            case ResultadoInsercionEscandallo.Anadido: totalAnadidos++; break;
+                            case ResultadoInsercionEscandallo.Actualizado: totalActualizados++; break;
+                            case ResultadoInsercionEscandallo.SinCambios: totalYaExistian++; break;
+                        }
                     }
 
                     script.Value = textoActual;
@@ -256,6 +288,7 @@ namespace RotoTools.Suite.Services
                 }
 
                 resultado.EscandallosAnadidos = totalAnadidos;
+                resultado.EscandallosActualizados = totalActualizados;
                 resultado.EscandallosYaExistian = totalYaExistian;
                 resultado.ElementosModificados = elementos;
 

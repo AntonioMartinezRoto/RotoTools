@@ -13,10 +13,13 @@ namespace RotoTools.Suite.Views.Actualizador
     /// Nueva (no existía en el original): asocia uno o varios Escandallos al nodo
     /// psr:ConstructiveScript de cada elemento hoja del XML embebido de uno o varios dibujos (tabla
     /// Dibujos, columna Buffer, comprimido). Toda la lógica de BBDD/XML vive en
-    /// DibujoConstructivosService; esta ventana solo se encarga de elegir qué Escandallos, con qué
-    /// Variables, y a qué Dibujos, reutilizando dos veces el mismo patrón árbol+grid+buscador+
-    /// seleccionados de ConfiguradorOpcionesAnadirRotoWindow (una vez para Escandallos, otra para
-    /// Dibujos).
+    /// DibujoConstructivosService; esta ventana solo se encarga de elegir qué Escandallos (con qué
+    /// Variables, editables por fila) y a qué Dibujos.
+    ///
+    /// 3ª versión del diseño: pestañas "1. Escandallos" / "2. Dibujos" (ver PanelEscandallos/
+    /// PanelDibujos/CambiarTab) para elegir, ocupando la mayor parte de la altura; las dos grids de
+    /// "seleccionados" (GridEscSeleccionados/GridSeleccionados) son una franja fija siempre visible
+    /// abajo, sin importar la pestaña activa, para ver en todo momento qué se va a instalar y dónde.
     /// </summary>
     public partial class ActualizadorAsociarConstructivosWindow : Window
     {
@@ -45,6 +48,7 @@ namespace RotoTools.Suite.Views.Actualizador
             CargarTextos();
             CargarEscandallos();
             CargarDibujos();
+            CambiarTab(mostrarEscandallos: true);
         }
 
         private static string Loc(string key) => SuiteLocalization.GetString(key);
@@ -59,9 +63,7 @@ namespace RotoTools.Suite.Views.Actualizador
 
             TxtCarpetasEscandallos.Text = Loc("L_Suite_Carpetas");
             LblTodosEscandallos.Text = Loc("L_Suite_TodosEscandallosHint");
-            LblEscSeleccionados.Text = Loc("L_Suite_EscandallosSeleccionados");
             TxtBtnLimpiarEscSeleccionados.Text = RotoTools.LocalizationManager.GetString("L_Limpiar");
-            LblVariables.Text = Loc("L_Suite_Variables");
 
             ColEscCodigo.Header = Loc("L_Suite_Codigo");
             ColEscDescripcion.Header = RotoTools.LocalizationManager.GetString("L_Descripcion");
@@ -73,10 +75,10 @@ namespace RotoTools.Suite.Views.Actualizador
             ColEscNivel5.Header = nivel + " 5";
             ColEscSelCodigo.Header = Loc("L_Suite_Codigo");
             ColEscSelDescripcion.Header = RotoTools.LocalizationManager.GetString("L_Descripcion");
+            ColEscSelVariables.Header = Loc("L_Suite_Variables");
 
             TxtCarpetasDibujos.Text = Loc("L_Suite_Carpetas");
             LblTodosDibujos.Text = Loc("L_Suite_TodosDibujosHint");
-            LblSeleccionados.Text = Loc("L_Suite_DibujosSeleccionados");
             TxtBtnLimpiarSeleccionados.Text = RotoTools.LocalizationManager.GetString("L_Limpiar");
 
             ColDibujoCodigo.Header = Loc("L_Suite_Codigo");
@@ -94,6 +96,54 @@ namespace RotoTools.Suite.Views.Actualizador
 
             TxtBtnAplicar.Text = Loc("L_Suite_Aplicar");
             TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
+
+            ActualizarContadores();
+        }
+
+        #endregion
+
+        #region Pestañas (1. Escandallos / 2. Dibujos) — solo controlan qué árbol+grid de elegir se ve
+
+        private void BtnTabEscandallos_Click(object sender, RoutedEventArgs e) => CambiarTab(mostrarEscandallos: true);
+
+        private void BtnTabDibujos_Click(object sender, RoutedEventArgs e) => CambiarTab(mostrarEscandallos: false);
+
+        /// <summary>Control segmentado propio (no un TabControl real): conmuta la Visibility de
+        /// PanelEscandallos/PanelDibujos y el estilo (primario/secundario) de los dos botones de
+        /// pestaña. Las grids de seleccionados de abajo no dependen de esto: son siempre visibles.</summary>
+        private void CambiarTab(bool mostrarEscandallos)
+        {
+            PanelEscandallos.Visibility = mostrarEscandallos ? Visibility.Visible : Visibility.Collapsed;
+            PanelDibujos.Visibility = mostrarEscandallos ? Visibility.Collapsed : Visibility.Visible;
+
+            BtnTabEscandallos.Style = (Style)FindResource(mostrarEscandallos ? "RotoButtonPrimary" : "RotoButtonSecondary");
+            BtnTabDibujos.Style = (Style)FindResource(mostrarEscandallos ? "RotoButtonSecondary" : "RotoButtonPrimary");
+        }
+
+        /// <summary>El texto de cada pestaña y el de cada título de "seleccionados" lleva el número
+        /// de elementos ya elegidos (p. ej. "1. Escandallos (2)"), para verlo de un vistazo. Se
+        /// llama tras cualquier cambio en cualquiera de las dos listas de seleccionados.</summary>
+        private void ActualizarContadores()
+        {
+            string textoEscandallos = Loc("L_Suite_TabEscandallos");
+            BtnTabEscandallos.Content = _escandallosSeleccionados.Count == 0
+                ? textoEscandallos
+                : $"{textoEscandallos} ({_escandallosSeleccionados.Count})";
+
+            string textoDibujos = Loc("L_Suite_TabDibujos");
+            BtnTabDibujos.Content = _seleccionados.Count == 0
+                ? textoDibujos
+                : $"{textoDibujos} ({_seleccionados.Count})";
+
+            string tituloEsc = Loc("L_Suite_EscandallosSeleccionados");
+            LblEscSeleccionados.Text = _escandallosSeleccionados.Count == 0
+                ? tituloEsc
+                : $"{tituloEsc} ({_escandallosSeleccionados.Count})";
+
+            string tituloDib = Loc("L_Suite_DibujosSeleccionados");
+            LblSeleccionados.Text = _seleccionados.Count == 0
+                ? tituloDib
+                : $"{tituloDib} ({_seleccionados.Count})";
         }
 
         #endregion
@@ -248,6 +298,9 @@ namespace RotoTools.Suite.Views.Actualizador
             }
         }
 
+        /// <summary>Cada escandallo que se añade lleva su propia Variables, editable después
+        /// directamente en GridEscSeleccionados (columna "Variables"), con "L=L1;A=L2;" como valor
+        /// por defecto (ver EscandalloSeleccionado): no se comparte un único texto entre todos.</summary>
         private void AgregarEscandalloASeleccionados(string? codigo, string descripcion)
         {
             if (string.IsNullOrWhiteSpace(codigo)) return;
@@ -256,19 +309,27 @@ namespace RotoTools.Suite.Views.Actualizador
                 return;
 
             _escandallosSeleccionados.Add(new EscandalloSeleccionado { Codigo = codigo, Descripcion = descripcion });
+            ActualizarContadores();
         }
 
         private void BtnQuitarEscSeleccionado_Click(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement fe && fe.DataContext is EscandalloSeleccionado fila)
+            {
                 _escandallosSeleccionados.Remove(fila);
+                ActualizarContadores();
+            }
         }
 
-        private void BtnLimpiarEscSeleccionados_Click(object sender, RoutedEventArgs e) => _escandallosSeleccionados.Clear();
+        private void BtnLimpiarEscSeleccionados_Click(object sender, RoutedEventArgs e)
+        {
+            _escandallosSeleccionados.Clear();
+            ActualizarContadores();
+        }
 
         #endregion
 
-        #region Carga de Dibujos (árbol + grid, igual que ConfiguradorOpcionesAnadirRotoWindow)
+        #region Carga de Dibujos (árbol + grid, igual patrón que Escandallos)
 
         private void CargarDibujos()
         {
@@ -415,16 +476,27 @@ namespace RotoTools.Suite.Views.Actualizador
                 return;
 
             var fila = _todosDibujos.FirstOrDefault(d => string.Equals(d.Codigo, codigo, StringComparison.OrdinalIgnoreCase));
-            if (fila != null) _seleccionados.Add(fila);
+            if (fila != null)
+            {
+                _seleccionados.Add(fila);
+                ActualizarContadores();
+            }
         }
 
         private void BtnQuitarSeleccionado_Click(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement fe && fe.DataContext is DibujoRow fila)
+            {
                 _seleccionados.Remove(fila);
+                ActualizarContadores();
+            }
         }
 
-        private void BtnLimpiarSeleccionados_Click(object sender, RoutedEventArgs e) => _seleccionados.Clear();
+        private void BtnLimpiarSeleccionados_Click(object sender, RoutedEventArgs e)
+        {
+            _seleccionados.Clear();
+            ActualizarContadores();
+        }
 
         #endregion
 
@@ -473,30 +545,45 @@ namespace RotoTools.Suite.Views.Actualizador
         /// Pide confirmación (esto escribe en BBDD y no se puede deshacer), aplica dibujo a dibujo
         /// con DibujoConstructivosService.AplicarConstructivosRoto (siempre por elemento hoja, nunca
         /// al modelo general) y muestra un resumen final agregando éxitos/fallos, escandallos
-        /// añadidos/ya existentes y elementos hoja modificados.
+        /// añadidos/ya existentes y elementos hoja modificados. Válido sin importar qué pestaña esté
+        /// visible en ese momento: ambas selecciones se conservan siempre.
         /// </summary>
         private void BtnAplicar_Click(object sender, RoutedEventArgs e)
         {
+            // Fuerza a confirmar cualquier edición de "Variables" en curso (si el usuario pulsa
+            // Aplicar sin salir de la celda que estaba editando, el binding aún no se habría
+            // volcado al objeto EscandalloSeleccionado subyacente).
+            GridEscSeleccionados.CommitEdit(DataGridEditingUnit.Cell, true);
+            GridEscSeleccionados.CommitEdit(DataGridEditingUnit.Row, true);
+
             if (_escandallosSeleccionados.Count == 0)
             {
                 MessageBox.Show(Loc("L_Suite_SeleccionaAlMenosUnEscandallo"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                CambiarTab(mostrarEscandallos: true);
                 return;
             }
 
             if (_seleccionados.Count == 0)
             {
                 MessageBox.Show(Loc("L_Suite_SeleccionaAlMenosUnDibujo"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                CambiarTab(mostrarEscandallos: false);
                 return;
             }
 
-            string variables = TxtVariables.Text ?? "";
-            if (string.IsNullOrWhiteSpace(variables))
+            // Cada escandallo lleva sus propias Variables (columna editable de GridEscSeleccionados):
+            // se valida uno a uno, nombrando el escandallo concreto al que le falten, ya que la
+            // grid de seleccionados es siempre visible y el usuario puede corregirlo sin cambiar
+            // de pestaña.
+            var sinVariables = _escandallosSeleccionados.Where(esc => string.IsNullOrWhiteSpace(esc.Variables)).ToList();
+            if (sinVariables.Count > 0)
             {
-                MessageBox.Show(Loc("L_Suite_EscribeVariables"), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                string mensaje = string.Format(Loc("L_Suite_EscandalloSinVariables"),
+                    string.Join(", ", sinVariables.Select(esc => esc.Codigo)));
+                MessageBox.Show(mensaje, "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            var escandallos = _escandallosSeleccionados.Select(esc => (esc.Codigo, variables)).ToList();
+            var escandallos = _escandallosSeleccionados.Select(esc => (esc.Codigo, esc.Variables)).ToList();
 
             string mensajeConfirmacion = string.Format(Loc("L_Suite_ConfirmarAsociarConstructivos"), _escandallosSeleccionados.Count, _seleccionados.Count);
             if (MessageBox.Show(mensajeConfirmacion, Loc("L_Suite_ConfirmarAplicar"),
@@ -549,12 +636,13 @@ namespace RotoTools.Suite.Views.Actualizador
         {
             int exitosos = resultados.Count(r => r.Exito);
             int totalAnadidos = resultados.Where(r => r.Exito).Sum(r => r.EscandallosAnadidos);
+            int totalActualizados = resultados.Where(r => r.Exito).Sum(r => r.EscandallosActualizados);
             int totalYaExistian = resultados.Where(r => r.Exito).Sum(r => r.EscandallosYaExistian);
             int totalElementos = resultados.Where(r => r.Exito).Sum(r => r.ElementosModificados);
 
             var sb = new StringBuilder();
             sb.AppendLine(string.Format(Loc("L_Suite_ResumenAsociarConstructivos"),
-                exitosos, resultados.Count, totalAnadidos, totalYaExistian, totalElementos));
+                exitosos, resultados.Count, totalAnadidos, totalActualizados, totalYaExistian, totalElementos));
 
             var fallidos = resultados.Where(r => !r.Exito).ToList();
             if (fallidos.Count > 0)

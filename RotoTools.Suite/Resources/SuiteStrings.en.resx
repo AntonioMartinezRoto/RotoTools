@@ -55,16 +55,16 @@
     <value>Combines several previously generated hardware connectors into one.</value>
   </data>
   <data name="L_Suite_ActualizadorSubtitulo" xml:space="preserve">
-    <value>Install escandallos, run SQL scripts and manage groups, supplier and Roto update data.</value>
+    <value>Install scripts, run SQL scripts and manage groups, supplier and Roto update data.</value>
   </data>
   <data name="L_Suite_InstalarEscandallosDesc" xml:space="preserve">
-    <value>Installs the embedded escandallos of the selected groups (PVC, aluminium, management...) into the database.</value>
+    <value>Installs the embedded scripts of the selected groups (PVC, aluminium, management...) into the database.</value>
   </data>
   <data name="L_Suite_VerEscandallosDesc" xml:space="preserve">
-    <value>View the content (program) of any embedded escandallo, filtering by code.</value>
+    <value>View the content (program) of any embedded script, filtering by code.</value>
   </data>
   <data name="L_Suite_ExportarEscandallosDesc" xml:space="preserve">
-    <value>Exports all Roto escandallos from the database to JSON files, in the folder you choose.</value>
+    <value>Exports all Roto scripts from the database to JSON files, in the folder you choose.</value>
   </data>
   <data name="L_Suite_InfoActualizacionTooltip" xml:space="preserve">
     <value>Last update information (PVC / Aluminium / PAX)</value>
@@ -76,7 +76,7 @@
     <value>Select XML</value>
   </data>
   <data name="L_Suite_VerEscandallosSeleccionaUno" xml:space="preserve">
-    <value>Select an escandallo from the list to view its content.</value>
+    <value>Select a script from the list to view its content.</value>
   </data>
   <data name="L_Suite_Salir" xml:space="preserve">
     <value>Exit</value>
@@ -403,34 +403,43 @@ Do you want to continue?</value>
     <value>Associate Constructives</value>
   </data>
   <data name="L_Suite_AsociarConstructivosSubtitulo" xml:space="preserve">
-    <value>Associates one or more Escandallos, with their variables, to the constructive script of each leaf element of the XML of one or more drawings.</value>
+    <value>Associates one or more Scripts, with their variables, to the constructive script of each leaf element of one or more Models.</value>
   </data>
   <data name="L_Suite_AsociarConstructivosDesc" xml:space="preserve">
-    <value>Associates escandallos to the constructive script of each leaf element of the selected drawings.</value>
+    <value>Associates scripts to the constructive script of each leaf element of the selected drawings.</value>
   </data>
   <data name="L_Suite_TodosEscandallosHint" xml:space="preserve">
-    <value>All escandallos (double-click to add)</value>
+    <value>All scripts (double-click to add)</value>
   </data>
   <data name="L_Suite_EscandallosSeleccionados" xml:space="preserve">
-    <value>Selected escandallos</value>
+    <value>Selected scripts</value>
   </data>
   <data name="L_Suite_Variables" xml:space="preserve">
     <value>Variables</value>
   </data>
   <data name="L_Suite_ErrorCargandoEscandallos" xml:space="preserve">
-    <value>Error loading the list of escandallos:</value>
+    <value>Error loading the list of scripts:</value>
   </data>
   <data name="L_Suite_SeleccionaAlMenosUnEscandallo" xml:space="preserve">
-    <value>Select at least one escandallo.</value>
+    <value>Select at least one script.</value>
   </data>
   <data name="L_Suite_EscribeVariables" xml:space="preserve">
     <value>Enter the variables to associate (for example, L=L1;A=L2;).</value>
   </data>
   <data name="L_Suite_ConfirmarAsociarConstructivos" xml:space="preserve">
-    <value>{0} escandallo(s) will be associated to the constructive script of each leaf element of {1} drawing(s), modifying the database directly. This action cannot be undone.
+    <value>{0} script(s) will be associated to the constructive script of each leaf element of {1} drawing(s), modifying the database directly. This action cannot be undone.
 Do you want to continue?</value>
   </data>
   <data name="L_Suite_ResumenAsociarConstructivos" xml:space="preserve">
-    <value>Applied to {0} of {1} drawing(s). Escandallos added: {2}. Already existed: {3}. Elements modified: {4}.</value>
+    <value>Applied to {0} of {1} drawing(s). Scripts added: {2}. Updated: {3}. Already the same: {4}. Elements modified: {5}.</value>
+  </data>
+  <data name="L_Suite_TabEscandallos" xml:space="preserve">
+    <value>1. Scripts</value>
+  </data>
+  <data name="L_Suite_TabDibujos" xml:space="preserve">
+    <value>2. Drawings</value>
+  </data>
+  <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
+    <value>Enter the variables for script(s): {0}.</value>
   </data>
 </root>

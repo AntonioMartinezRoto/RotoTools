@@ -42,8 +42,8 @@
     <AssemblyTitle>RotoTools</AssemblyTitle>
     <Company>Roto Frank FTT GmbH</Company>
     <Version>0.1.0</Version>
-    <FileVersion>2.1.4</FileVersion>
-    <AssemblyVersion>2.1.4</AssemblyVersion>
+    <FileVersion>2.2.4</FileVersion>
+    <AssemblyVersion>2.2.4</AssemblyVersion>
 
     <!--
       Icono NUEVO y propio de la Suite (Assets\roto_suite_icon.ico), en vez de reutilizar

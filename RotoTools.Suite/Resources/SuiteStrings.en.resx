@@ -399,6 +399,34 @@ Do you want to continue?</value>
   <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
     <value>The loaded options XML does not define a supplier ("supplier"): the HardwareSupplier option cannot be added.</value>
   </data>
+  <data name="L_Suite_QuitarOpcionesRoto" xml:space="preserve">
+    <value>Remove ROTO options</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Removes the ROTO folder and its options from a drawing, from the general model or from each leaf element.</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoSubtitulo" xml:space="preserve">
+    <value>Removes the ROTO folder and every "RO_" option from the XML of one or more drawings, from the general model or from each leaf element.</value>
+  </data>
+  <data name="L_Suite_ModoQuitarModeloGeneral" xml:space="preserve">
+    <value>Remove from the general model</value>
+  </data>
+  <data name="L_Suite_ModoQuitarPorElemento" xml:space="preserve">
+    <value>Remove per element (from each leaf)</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitar" xml:space="preserve">
+    <value>Confirm removal</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitarOpcionesRoto" xml:space="preserve">
+    <value>Folder "{1}" and every "RO_" option will be removed from {0} drawing(s), modifying the database directly. This action cannot be undone.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ResumenQuitarOpcionesRoto" xml:space="preserve">
+    <value>Applied to {0} of {1} drawing(s). Options removed: {2}. Elements modified: {3}.</value>
+  </data>
+  <data name="L_Suite_QuitandoOpcionesProgreso" xml:space="preserve">
+    <value>Removing from {0} of {1} drawing(s)…</value>
+  </data>
   <data name="L_Suite_AsociarConstructivos" xml:space="preserve">
     <value>Associate Constructives</value>
   </data>

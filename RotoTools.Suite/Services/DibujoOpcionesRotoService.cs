@@ -97,6 +97,18 @@ namespace RotoTools.Suite.Services
         public bool NivelRotoAnadido { get; set; }
     }
 
+    /// <summary>Resultado de quitar las opciones ROTO de un único Dibujo (operación inversa de
+    /// ResultadoAplicarOpciones), para el resumen final de ConfiguradorOpcionesQuitarRotoWindow.</summary>
+    public class ResultadoQuitarOpciones
+    {
+        public string Codigo { get; set; } = "";
+        public bool Exito { get; set; }
+        public string Mensaje { get; set; } = "";
+        public int OpcionesQuitadas { get; set; }
+        public int ElementosModificados { get; set; }
+        public bool NivelRotoQuitado { get; set; }
+    }
+
     /// <summary>
     /// Nueva (no existía en el original ni en ningún otro módulo de la Suite): añade una carpeta
     /// elegida por el usuario (psr:Model\psr:Options\psr:Levels\psr:Level, ver
@@ -534,6 +546,139 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
 
             return true;
         }
+
+        #endregion
+
+        #region Quitar opciones de un Dibujo
+
+        /// <summary>
+        /// Operación inversa de AplicarOpcionesRoto (ver también el comentario de clase): en vez de
+        /// cargar un XML de opciones, aquí se quitan (si existen) TODAS las psr:Option cuyo
+        /// atributo "name" empiece por "RO_" -sin necesidad de conocer su lista exacta, a
+        /// diferencia de Añadir- y el psr:Level que coincide con la carpeta elegida por el usuario
+        /// (mismo árbol/mismo ConstruirNivelCarpeta que Añadir), del nodo raíz psr:Model o de cada
+        /// elemento hoja según "porElemento". No se asume que las opciones a quitar estén ligadas a
+        /// la carpeta elegida (las opciones y los niveles son listas independientes en el XML, ver
+        /// AplicarOpcionesYNivelRotoEnContenedor): se quitan todas las "RO_*" existan o no en la
+        /// carpeta indicada, igual que pide el usuario ("se quitarían todas las opciones que
+        /// comiencen por RO_").
+        /// </summary>
+        public static ResultadoQuitarOpciones QuitarOpcionesRoto(string codigoDibujo, bool porElemento, string nivelCarpeta)
+        {
+            var resultado = new ResultadoQuitarOpciones { Codigo = codigoDibujo };
+
+            try
+            {
+                using var conexion = new SqlConnection(RotoTools.Helpers.GetConnectionString());
+                conexion.Open();
+
+                string xmlOriginal = LeerXmlDescomprimido(conexion, codigoDibujo);
+                XDocument doc = XDocument.Parse(xmlOriginal);
+                XElement raiz = doc.Root ?? throw new InvalidOperationException(
+                    "El XML del dibujo está vacío o no es válido.");
+                XNamespace psr = raiz.Name.Namespace;
+
+                if (!porElemento)
+                {
+                    var (quitadas, nivelQuitado) = QuitarOpcionesYNivelRotoDeContenedor(raiz, psr, nivelCarpeta);
+                    resultado.OpcionesQuitadas = quitadas;
+                    resultado.NivelRotoQuitado = nivelQuitado;
+                    resultado.ElementosModificados = 1;
+                }
+                else
+                {
+                    int totalQuitadas = 0, elementos = 0;
+                    bool algunNivelQuitado = false;
+
+                    foreach (var elementoHoja in ObtenerElementosHoja(raiz, psr))
+                    {
+                        var (quitadas, nivelQuitado) = QuitarOpcionesYNivelRotoDeContenedor(elementoHoja, psr, nivelCarpeta);
+                        totalQuitadas += quitadas;
+                        if (nivelQuitado) algunNivelQuitado = true;
+                        elementos++;
+                    }
+
+                    resultado.OpcionesQuitadas = totalQuitadas;
+                    resultado.ElementosModificados = elementos;
+                    resultado.NivelRotoQuitado = algunNivelQuitado;
+
+                    if (elementos == 0)
+                    {
+                        resultado.Exito = false;
+                        resultado.Mensaje = "No se ha encontrado ningún elemento hoja en este dibujo.";
+                        return resultado;
+                    }
+                }
+
+                string xmlFinal = doc.ToString(SaveOptions.DisableFormatting);
+
+                string funcionComprimir = ResolverFuncionComprimir(conexion);
+                byte[] bytesComprimidos = ComprimirBytes(conexion, xmlFinal, funcionComprimir);
+
+                // Misma verificación de seguridad que AplicarOpcionesRoto antes de escribir en BBDD.
+                string verificacion = DescomprimirBytes(conexion, bytesComprimidos);
+                if (verificacion != xmlFinal)
+                {
+                    throw new InvalidOperationException(
+                        $"La función de compresión detectada ([zlib].[{funcionComprimir}]) no reproduce el mismo XML al " +
+                        "descomprimir el resultado. Puede que no sea la función correcta: revisa el esquema [zlib] en la " +
+                        "base de datos y ajusta ResolverFuncionComprimir si hace falta. No se ha modificado el dibujo.");
+                }
+
+                GuardarBufferComprimido(conexion, codigoDibujo, bytesComprimidos);
+                resultado.Exito = true;
+            }
+            catch (Exception ex)
+            {
+                resultado.Exito = false;
+                resultado.Mensaje = ex.Message;
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Quita de "contenedor" (psr:Model o psr:Element) todas las psr:Option de
+        /// psr:Options/psr:List cuyo "name" empiece por "RO_" y, si existe, el psr:Level de
+        /// psr:Options/psr:Levels que coincide exactamente con "nivelCarpeta" (ya construido con
+        /// ConstruirNivelCarpeta). Si "contenedor" no tiene psr:Options no hay nada que quitar.
+        /// </summary>
+        private static (int quitadas, bool nivelQuitado) QuitarOpcionesYNivelRotoDeContenedor(
+            XElement contenedor, XNamespace psr, string nivelCarpeta)
+        {
+            XElement? options = contenedor.Element(psr + "Options");
+            if (options == null) return (0, false);
+
+            int quitadas = 0;
+            XElement? list = options.Element(psr + "List");
+            if (list != null)
+            {
+                var aQuitar = list.Elements(psr + "Option")
+                    .Where(o => ((string?)o.Attribute("name"))?.StartsWith("RO_", StringComparison.Ordinal) == true)
+                    .ToList();
+                quitadas = aQuitar.Count;
+                foreach (var opcion in aQuitar) opcion.Remove();
+            }
+
+            bool nivelQuitado = false;
+            XElement? levels = options.Element(psr + "Levels");
+            if (levels != null)
+            {
+                XElement? nivelElem = levels.Elements(psr + "Level")
+                    .FirstOrDefault(l => string.Equals((string)l, nivelCarpeta, StringComparison.Ordinal));
+                if (nivelElem != null)
+                {
+                    nivelElem.Remove();
+                    nivelQuitado = true;
+                }
+            }
+
+            return (quitadas, nivelQuitado);
+        }
+
+        #endregion
+
+        #region Elementos hoja (compartido con Añadir y Asociar Constructivos)
 
         /// <summary>
         /// Elementos "hoja": el psr:Hole "de contenido" (el que tiene un psr:Element hijo directo;

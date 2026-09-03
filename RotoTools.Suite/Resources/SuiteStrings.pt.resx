@@ -399,6 +399,34 @@ Deseja continuar?</value>
   <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
     <value>O XML de opções carregado não tem definido o fornecedor ("supplier"): não é possível adicionar a opção HardwareSupplier.</value>
   </data>
+  <data name="L_Suite_QuitarOpcionesRoto" xml:space="preserve">
+    <value>Remover opções ROTO</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Remove a pasta ROTO e as suas opções de um desenho, do modelo geral ou de cada elemento folha.</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoSubtitulo" xml:space="preserve">
+    <value>Remove a pasta ROTO e todas as opções "RO_" do XML de um ou vários desenhos, do modelo geral ou de cada elemento folha.</value>
+  </data>
+  <data name="L_Suite_ModoQuitarModeloGeneral" xml:space="preserve">
+    <value>Remover do modelo geral</value>
+  </data>
+  <data name="L_Suite_ModoQuitarPorElemento" xml:space="preserve">
+    <value>Remover por elemento (de cada folha)</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitar" xml:space="preserve">
+    <value>Confirmar remoção</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitarOpcionesRoto" xml:space="preserve">
+    <value>A pasta "{1}" e todas as opções "RO_" serão removidas de {0} desenho(s), modificando diretamente a base de dados. Esta ação não pode ser desfeita.
+Deseja continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenQuitarOpcionesRoto" xml:space="preserve">
+    <value>Aplicado a {0} de {1} desenho(s). Opções removidas: {2}. Elementos modificados: {3}.</value>
+  </data>
+  <data name="L_Suite_QuitandoOpcionesProgreso" xml:space="preserve">
+    <value>A remover de {0} de {1} desenho(s)…</value>
+  </data>
   <data name="L_Suite_AsociarConstructivos" xml:space="preserve">
     <value>Associar Construtivos</value>
   </data>

@@ -406,6 +406,34 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_HardwareSupplierSinValor" xml:space="preserve">
     <value>El XML de opciones cargado no tiene definido el proveedor ("supplier"): no se puede añadir la opción HardwareSupplier.</value>
   </data>
+  <data name="L_Suite_QuitarOpcionesRoto" xml:space="preserve">
+    <value>Quitar opciones ROTO</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoTarjetaDescripcion" xml:space="preserve">
+    <value>Quita la carpeta ROTO y sus opciones de un dibujo, del modelo general o de cada elemento hoja.</value>
+  </data>
+  <data name="L_Suite_QuitarOpcionesRotoSubtitulo" xml:space="preserve">
+    <value>Quita la carpeta ROTO y todas las opciones "RO_" del XML de uno o varios dibujos, del modelo general o de cada elemento hoja.</value>
+  </data>
+  <data name="L_Suite_ModoQuitarModeloGeneral" xml:space="preserve">
+    <value>Quitar del modelo general</value>
+  </data>
+  <data name="L_Suite_ModoQuitarPorElemento" xml:space="preserve">
+    <value>Quitar por elemento (de cada hoja)</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitar" xml:space="preserve">
+    <value>Confirmar eliminación</value>
+  </data>
+  <data name="L_Suite_ConfirmarQuitarOpcionesRoto" xml:space="preserve">
+    <value>Se va a quitar la carpeta "{1}" y todas las opciones "RO_" de {0} dibujo(s), modificando directamente la base de datos. Esta acción no se puede deshacer.
+¿Desea continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenQuitarOpcionesRoto" xml:space="preserve">
+    <value>Aplicado a {0} de {1} dibujo(s). Opciones quitadas: {2}. Elementos modificados: {3}.</value>
+  </data>
+  <data name="L_Suite_QuitandoOpcionesProgreso" xml:space="preserve">
+    <value>Quitando de {0} de {1} dibujo(s)…</value>
+  </data>
   <data name="L_Suite_AsociarConstructivos" xml:space="preserve">
     <value>Asociar Constructivos</value>
   </data>

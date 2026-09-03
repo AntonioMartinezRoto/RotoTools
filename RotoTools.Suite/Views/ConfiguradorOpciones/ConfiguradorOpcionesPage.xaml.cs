@@ -38,6 +38,8 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             // por eso esta tarjeta siempre se veía en español aunque se cambiara el idioma de la
             // Suite. Ahora localizado igual que el resto de textos de esta página.
             TxtCard4Descripcion.Text = SuiteLocalization.GetString("L_Suite_AnadirOpcionesRotoTarjetaDescripcion");
+            TxtCard5Titulo.Text = SuiteLocalization.GetString("L_Suite_QuitarOpcionesRoto");
+            TxtCard5Descripcion.Text = SuiteLocalization.GetString("L_Suite_QuitarOpcionesRotoTarjetaDescripcion");
         }
 
         private void BtnConfigOpciones_Click(object sender, RoutedEventArgs e)
@@ -107,6 +109,18 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
         private void BtnAnadirOpcionesRoto_Click(object sender, RoutedEventArgs e)
         {
             var ventana = new ConfiguradorOpcionesAnadirRotoWindow
+            {
+                Owner = Window.GetWindow(this)
+            };
+            ventana.ShowDialog();
+        }
+
+        /// <summary>Tarjeta 5, nueva: abre la ventana para quitar la carpeta "ROTO" y todas las
+        /// opciones "RO_*" de uno o varios dibujos (operación inversa de la Tarjeta 4), leyendo y
+        /// escribiendo directamente el XML comprimido del campo Buffer de la tabla Dibujos.</summary>
+        private void BtnQuitarOpcionesRoto_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new ConfiguradorOpcionesQuitarRotoWindow
             {
                 Owner = Window.GetWindow(this)
             };

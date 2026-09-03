@@ -5,32 +5,32 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Xml.Linq;
-using Microsoft.Win32;
 using RotoTools.Suite.Services;
 
 namespace RotoTools.Suite.Views.ConfiguradorOpciones
 {
     /// <summary>
-    /// Nueva (no existía en el original): añade la carpeta "ROTO" y una lista de opciones al XML
-    /// embebido de uno o varios dibujos (tabla Dibujos, columna Buffer, comprimido). Toda la
-    /// lógica de BBDD/XML vive en DibujoOpcionesRotoService; esta ventana solo se encarga de la
-    /// selección de fichero de opciones, modo (modelo general / por elemento) y de qué dibujos
-    /// aplicar, reutilizando el patrón árbol+grid+seleccionados de Cam3DWindow.
+    /// Nueva (no existía en el original): operación inversa de
+    /// ConfiguradorOpcionesAnadirRotoWindow. Quita, del XML embebido de uno o varios dibujos
+    /// (tabla Dibujos, columna Buffer, comprimido), todas las opciones cuyo nombre empieza por
+    /// "RO_" y la carpeta (psr:Level) elegida por el usuario, del modelo general o de cada
+    /// elemento hoja. Toda la lógica de BBDD/XML vive en
+    /// DibujoOpcionesRotoService.QuitarOpcionesRoto; esta ventana solo se encarga del modo
+    /// (modelo general / por elemento), la carpeta y de qué dibujos aplicar, reutilizando el
+    /// mismo patrón árbol+grid+seleccionados que ConfiguradorOpcionesAnadirRotoWindow. A
+    /// diferencia de esa ventana, aquí no hay ningún paso de carga de fichero XML: no hace falta
+    /// indicar qué opciones quitar, se detectan todas por el prefijo "RO_".
     /// </summary>
-    public partial class ConfiguradorOpcionesAnadirRotoWindow : Window
+    public partial class ConfiguradorOpcionesQuitarRotoWindow : Window
     {
         private List<DibujoRow> _todosDibujos = new();
         private readonly ObservableCollection<DibujoRow> _dibujosVisibles = new();
         private readonly ObservableCollection<DibujoTreeNode> _nodosRaiz = new();
         private readonly ObservableCollection<DibujoRow> _seleccionados = new();
 
-        private List<XElement> _opcionesCargadas = new();
-        private string? _nombreFicheroOpciones;
-        private string? _valorSupplier;
         private OpcionCarpetaTreeNode? _carpetaSeleccionada;
 
-        public ConfiguradorOpcionesAnadirRotoWindow()
+        public ConfiguradorOpcionesQuitarRotoWindow()
         {
             InitializeComponent();
 
@@ -48,21 +48,16 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         private void CargarTextos()
         {
-            Title = Loc("L_Suite_AnadirOpcionesRoto");
+            Title = Loc("L_Suite_QuitarOpcionesRoto");
             TxtTitulo.Text = Title;
-            TxtSubtitulo.Text = Loc("L_Suite_AnadirOpcionesRotoSubtitulo");
+            TxtSubtitulo.Text = Loc("L_Suite_QuitarOpcionesRotoSubtitulo");
 
-            TxtBtnCargarOpciones.Text = Loc("L_Suite_CargarXml");
-            ActualizarLblOpcionesCargadas();
-
-            RbModoModelo.Content = Loc("L_Suite_ModoModeloGeneral");
-            RbModoElemento.Content = Loc("L_Suite_ModoPorElemento");
+            RbModoModelo.Content = Loc("L_Suite_ModoQuitarModeloGeneral");
+            RbModoElemento.Content = Loc("L_Suite_ModoQuitarPorElemento");
 
             LblCarpetaDestino.Text = Loc("L_Suite_CarpetaDestino");
             TxtBtnElegirCarpeta.Text = Loc("L_Suite_ElegirCarpeta");
             ActualizarLblCarpetaDestino();
-
-            ChkAnadirHardwareSupplier.Content = Loc("L_Suite_AnadirHardwareSupplier");
 
             TxtCarpetas.Text = Loc("L_Suite_Carpetas");
             LblTodosDibujos.Text = Loc("L_Suite_TodosDibujosHint");
@@ -83,15 +78,8 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             ColSelDescripcion.Header = RotoTools.LocalizationManager.GetString("L_Descripcion");
             Resources["TooltipQuitarSeleccionado"] = RotoTools.LocalizationManager.GetString("L_Quitar");
 
-            TxtBtnAplicar.Text = Loc("L_Suite_Aplicar");
+            TxtBtnAplicar.Text = RotoTools.LocalizationManager.GetString("L_Quitar");
             TxtBtnVolver.Text = RotoTools.LocalizationManager.GetString("L_Volver");
-        }
-
-        private void ActualizarLblOpcionesCargadas()
-        {
-            LblOpcionesCargadas.Text = _opcionesCargadas.Count == 0
-                ? Loc("L_Suite_NingunaOpcionCargada")
-                : string.Format(Loc("L_Suite_OpcionesCargadasDesde"), _opcionesCargadas.Count, _nombreFicheroOpciones);
         }
 
         private void ActualizarLblCarpetaDestino()
@@ -103,8 +91,8 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         /// <summary>El título de la grid de seleccionados lleva el número de dibujos ya elegidos
         /// (p. ej. "Dibujos seleccionados (3)"), para verlo de un vistazo sin tener que contar las
-        /// filas, igual que ActualizadorAsociarConstructivosWindow.ActualizarContadores. Se llama
-        /// tras cualquier cambio en _seleccionados.</summary>
+        /// filas, igual que ConfiguradorOpcionesAnadirRotoWindow.ActualizarLblSeleccionados. Se
+        /// llama tras cualquier cambio en _seleccionados.</summary>
         private void ActualizarLblSeleccionados()
         {
             string titulo = Loc("L_Suite_DibujosSeleccionados");
@@ -115,13 +103,10 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         #endregion
 
-        #region Selección de la carpeta destino (árbol de Opciones, Nivel1..5)
+        #region Selección de la carpeta a quitar (árbol de Opciones, Nivel1..5)
 
-        /// <summary>
-        /// Abre el árbol de carpetas de la tabla OPCIONES (ver
-        /// DibujoOpcionesRotoService.GetArbolCarpetasOpciones) en un diálogo modal: ya no se
-        /// escribe la ruta a mano, se elige haciendo clic, para evitar errores de tecleo.
-        /// </summary>
+        /// <summary>Mismo diálogo modal que ConfiguradorOpcionesAnadirRotoWindow.BtnElegirCarpeta_Click:
+        /// aquí la carpeta elegida es la que se quita de psr:Levels, no la que se añade.</summary>
         private void BtnElegirCarpeta_Click(object sender, RoutedEventArgs e)
         {
             List<OpcionCarpetaTreeNode> raiz;
@@ -146,7 +131,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         #endregion
 
-        #region Carga de dibujos (árbol + grid, igual que Cam3DWindow.CargarMaterialesBase/CargarTreeViewMateriales)
+        #region Carga de dibujos (árbol + grid, igual que ConfiguradorOpcionesAnadirRotoWindow)
 
         private void CargarDibujos()
         {
@@ -231,10 +216,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 SeleccionarNodoEnTreeView(fila.Codigo);
         }
 
-        /// <summary>Selecciona (y expande hasta) el nodo hoja cuyo Código coincide, igual que
-        /// Cam3DWindow.SeleccionarNodoEnTreeView + BuscarNodoPorTag, adaptado al patrón MVVM de
-        /// IsExpanded/IsSelected bindables (ver DibujoTreeNode en DibujoOpcionesRotoService.cs).
-        /// Además hace scroll para dejar el nodo visible (ver DesplazarTreeViewHastaNodo).</summary>
+        /// <summary>Igual que ConfiguradorOpcionesAnadirRotoWindow.SeleccionarNodoEnTreeView.</summary>
         private void SeleccionarNodoEnTreeView(string codigo)
         {
             var ruta = new List<DibujoTreeNode>();
@@ -267,13 +249,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             }
         }
 
-        /// <summary>A diferencia de TreeView.SelectedItem, marcar IsSelected=true en el
-        /// contenedor (TreeViewItem) vía binding NO hace scroll automático para dejarlo visible.
-        /// Además, los contenedores de los nodos que se acaban de expandir (IsExpanded=true de
-        /// arriba) todavía no existen en el momento en que se asigna: hay que esperar
-        /// (DispatcherPriority.ContextIdle) a que el árbol visual los genere y bajar nivel a
-        /// nivel con ItemContainerGenerator.ContainerFromItem (que solo busca en los hijos
-        /// directos, no de forma recursiva) hasta llegar al TreeViewItem de la hoja.</summary>
+        /// <summary>Igual que ConfiguradorOpcionesAnadirRotoWindow.DesplazarTreeViewHastaNodo.</summary>
         private void DesplazarTreeViewHastaNodo(List<DibujoTreeNode> ruta)
         {
             Dispatcher.BeginInvoke(new Action(() =>
@@ -353,62 +329,22 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         #endregion
 
-        #region Carga del fichero de opciones
-
-        private void BtnCargarOpciones_Click(object sender, RoutedEventArgs e)
-        {
-            var openFileDialog = new OpenFileDialog { Filter = "XML Files (*.xml)|*.xml" };
-            if (openFileDialog.ShowDialog() != true) return;
-
-            try
-            {
-                var (opciones, supplier) = DibujoOpcionesRotoService.CargarOpcionesDesdeXml(openFileDialog.FileName);
-                if (opciones.Count == 0)
-                {
-                    MessageBox.Show(Loc("L_Suite_NoSeEncontraronOpcionesEnFichero"), "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                _opcionesCargadas = opciones;
-                _valorSupplier = supplier;
-                _nombreFicheroOpciones = System.IO.Path.GetFileName(openFileDialog.FileName);
-                ActualizarLblOpcionesCargadas();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Loc("L_Suite_ErrorCargandoOpciones") + Environment.NewLine + Environment.NewLine + ex.Message,
-                    "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        #endregion
-
-        #region Aplicar
+        #region Aplicar (quitar)
 
         /// <summary>
         /// Pide confirmación (esto escribe en BBDD y no se puede deshacer, igual criterio que
-        /// ConectorHerrajeEliminarWindow.BtnEliminar_Click), aplica dibujo a dibujo con
-        /// DibujoOpcionesRotoService.AplicarOpcionesRoto y muestra un resumen final agregando
-        /// éxitos/fallos, opciones añadidas/ya existentes y elementos hoja modificados.
+        /// ConfiguradorOpcionesAnadirRotoWindow.BtnAplicar_Click), quita dibujo a dibujo con
+        /// DibujoOpcionesRotoService.QuitarOpcionesRoto y muestra un resumen final agregando
+        /// éxitos/fallos, opciones quitadas y elementos hoja modificados.
         /// </summary>
         private void BtnAplicar_Click(object sender, RoutedEventArgs e)
         {
-            if (_opcionesCargadas.Count == 0)
-            {
-                MessageBox.Show(Loc("L_Suite_CargaPrimeroOpciones"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             if (_seleccionados.Count == 0)
             {
                 MessageBox.Show(Loc("L_Suite_SeleccionaAlMenosUnDibujo"), "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // No se asume que la carpeta se llame siempre "ROTO": se construye a partir de la
-            // carpeta elegida por el usuario en el árbol (ver ConstruirNivelCarpeta y
-            // BtnElegirCarpeta_Click). Se valida aquí, una sola vez para todo el lote, antes de
-            // pedir confirmación y antes de tocar ningún dibujo.
             if (_carpetaSeleccionada == null)
             {
                 MessageBox.Show(Loc("L_Suite_SeleccionaCarpetaDestino"), "", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -426,25 +362,14 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 return;
             }
 
-            // El checkbox es independiente del modo (modelo general / por elemento): si está
-            // marcado, la opción "HardwareSupplier" siempre va al modelo, con el valor del
-            // atributo "supplier" del XML cargado (ver BtnCargarOpciones_Click). Se valida aquí,
-            // antes de confirmar, igual que la carpeta destino.
-            bool anadirHardwareSupplier = ChkAnadirHardwareSupplier.IsChecked == true;
-            if (anadirHardwareSupplier && string.IsNullOrWhiteSpace(_valorSupplier))
-            {
-                MessageBox.Show(Loc("L_Suite_HardwareSupplierSinValor"), "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             bool porElemento = RbModoElemento.IsChecked == true;
             string carpetaTexto = string.Join("\\", _carpetaSeleccionada.Ruta);
-            string mensajeConfirmacion = string.Format(Loc("L_Suite_ConfirmarAplicarOpcionesRoto"), _seleccionados.Count, carpetaTexto);
-            if (MessageBox.Show(mensajeConfirmacion, Loc("L_Suite_ConfirmarAplicar"),
-                    MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            string mensajeConfirmacion = string.Format(Loc("L_Suite_ConfirmarQuitarOpcionesRoto"), _seleccionados.Count, carpetaTexto);
+            if (MessageBox.Show(mensajeConfirmacion, Loc("L_Suite_ConfirmarQuitar"),
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
                 return;
 
-            var resultados = new List<ResultadoAplicarOpciones>();
+            var resultados = new List<ResultadoQuitarOpciones>();
             var lista = _seleccionados.ToList();
 
             try
@@ -456,8 +381,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
                 for (int i = 0; i < lista.Count; i++)
                 {
-                    var resultado = DibujoOpcionesRotoService.AplicarOpcionesRoto(lista[i].Codigo, _opcionesCargadas, porElemento, nivelCarpeta,
-                        anadirHardwareSupplier, _valorSupplier);
+                    var resultado = DibujoOpcionesRotoService.QuitarOpcionesRoto(lista[i].Codigo, porElemento, nivelCarpeta);
                     resultados.Add(resultado);
                     MostrarProgreso(i + 1, lista.Count);
                     DoEvents();
@@ -474,17 +398,13 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             MostrarResumen(resultados);
         }
 
-        /// <summary>Aplicar puede tardar (cada dibujo es una lectura + escritura en BBDD): se
-        /// muestra PanelProgreso con una ProgressBar determinada (Maximum = total de dibujos
-        /// seleccionados) y una etiqueta "X de Y", actualizada dibujo a dibujo. DoEvents() (ya
-        /// usado antes solo para repintar el cursor de espera) es lo que hace que estos cambios se
-        /// vean en pantalla mientras el bucle sigue ejecutándose.</summary>
+        /// <summary>Igual que ConfiguradorOpcionesAnadirRotoWindow.MostrarProgreso.</summary>
         private void MostrarProgreso(int hechos, int total)
         {
             PanelProgreso.Visibility = Visibility.Visible;
             BarraProgreso.Maximum = total;
             BarraProgreso.Value = hechos;
-            LblProgreso.Text = string.Format(Loc("L_Suite_AplicandoOpcionesProgreso"), hechos, total);
+            LblProgreso.Text = string.Format(Loc("L_Suite_QuitandoOpcionesProgreso"), hechos, total);
         }
 
         private void OcultarProgreso()
@@ -492,16 +412,15 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             PanelProgreso.Visibility = Visibility.Collapsed;
         }
 
-        private void MostrarResumen(List<ResultadoAplicarOpciones> resultados)
+        private void MostrarResumen(List<ResultadoQuitarOpciones> resultados)
         {
             int exitosos = resultados.Count(r => r.Exito);
-            int totalAnadidas = resultados.Where(r => r.Exito).Sum(r => r.OpcionesAnadidas);
-            int totalYaExistian = resultados.Where(r => r.Exito).Sum(r => r.OpcionesYaExistian);
+            int totalQuitadas = resultados.Where(r => r.Exito).Sum(r => r.OpcionesQuitadas);
             int totalElementos = resultados.Where(r => r.Exito).Sum(r => r.ElementosModificados);
 
             var sb = new StringBuilder();
-            sb.AppendLine(string.Format(Loc("L_Suite_ResumenAplicarOpcionesRoto"),
-                exitosos, resultados.Count, totalAnadidas, totalYaExistian, totalElementos));
+            sb.AppendLine(string.Format(Loc("L_Suite_ResumenQuitarOpcionesRoto"),
+                exitosos, resultados.Count, totalQuitadas, totalElementos));
 
             var fallidos = resultados.Where(r => !r.Exito).ToList();
             if (fallidos.Count > 0)
@@ -519,8 +438,7 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e) => Close();
 
-        /// <summary>Igual que en CamPage/Cam3DWindow: bombea el bucle de mensajes para que el
-        /// cursor de espera se repinte mientras se procesan varios dibujos seguidos.</summary>
+        /// <summary>Igual que ConfiguradorOpcionesAnadirRotoWindow.DoEvents.</summary>
         private static void DoEvents()
         {
             var frame = new DispatcherFrame();

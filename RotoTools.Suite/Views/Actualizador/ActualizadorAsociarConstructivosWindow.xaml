@@ -75,7 +75,10 @@
             </StackPanel>
         </HierarchicalDataTemplate>
 
-        <!-- Árbol de Dibujos (Nivel1..5, campo Codigo). -->
+        <!-- Árbol de Dibujos (Nivel1..5, campo Codigo): icono de ventana (IconWindowModel) para los
+             dibujos (hojas), no de documento genérico — un dibujo es un modelo de ventana/
+             balconera/puerta/corredera..., mismo criterio unificado que
+             ConfiguradorOpcionesAnadirRotoWindow. -->
         <HierarchicalDataTemplate DataType="{x:Type svc:DibujoTreeNode}" ItemsSource="{Binding Hijos}">
             <StackPanel Orientation="Horizontal" Margin="0,2">
                 <Path Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"
@@ -85,7 +88,7 @@
                             <Setter Property="Data" Value="{StaticResource IconFolderOpen}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding EsHoja}" Value="True">
-                                    <Setter Property="Data" Value="{StaticResource IconDocument}" />
+                                    <Setter Property="Data" Value="{StaticResource IconWindowModel}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

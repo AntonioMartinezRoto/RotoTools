@@ -41,8 +41,9 @@
             </Setter>
         </Style>
 
-        <!-- Icono de carpeta para los nodos de nivel, icono de documento para los dibujos (hojas):
-             mismo criterio que Cam3DWindow.MaterialTreeNode. -->
+        <!-- Icono de carpeta para los nodos de nivel, icono de ventana (IconWindowModel) para los
+             dibujos (hojas): un dibujo es un modelo de ventana/balconera/puerta/corredera..., no un
+             documento genérico. -->
         <HierarchicalDataTemplate DataType="{x:Type svc:DibujoTreeNode}" ItemsSource="{Binding Hijos}">
             <StackPanel Orientation="Horizontal" Margin="0,2">
                 <Path Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"
@@ -52,7 +53,7 @@
                             <Setter Property="Data" Value="{StaticResource IconFolderOpen}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding EsHoja}" Value="True">
-                                    <Setter Property="Data" Value="{StaticResource IconDocument}" />
+                                    <Setter Property="Data" Value="{StaticResource IconWindowModel}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

@@ -56,6 +56,22 @@
     <!-- Documento con esquina doblada: "guardar". -->
     <Geometry x:Key="IconDocument">M6,3 L14,3 L18,7 L18,21 L6,21 Z M14,3 L14,7 L18,7 Z</Geometry>
 
+    <!-- Ventana de 4 hojas (marco + cruceta): icono de hoja de un Dibujo (modelo de ventana,
+         balconera, puerta, corredera...) en los árboles de Dibujos (ver DibujoTreeNode en
+         DibujoOpcionesRotoService.cs, usado en ConfiguradorOpcionesAnadirRotoWindow y
+         ActualizadorAsociarConstructivosWindow): un dibujo no es "un documento", es un modelo de
+         ventana, así que se unifica con este icono en vez de IconDocument.
+         Construido como 7 rectángulos rellenos que se TOCAN pero NUNCA SE SOLAPAN entre sí (validado
+         con shapely: solape total = 0). Ojo con esto: una primera versión con solo 6 rectángulos
+         solapados en las esquinas y en el cruce central se veía bien en una simulación con relleno
+         "nonzero", pero PathGeometry en WPF usa por defecto FillRule="EvenOdd" al crear un Geometry
+         desde una cadena Data (no "NonZero"), que trata cualquier zona cubierta un número PAR de
+         veces como hueco: el resultado real en la aplicación era un icono roto con agujeros en las
+         esquinas y en el centro (parecía una flor, no una ventana). Con cero solape el resultado es
+         idéntico da igual la regla de relleno, mismo criterio que ya usa IconDuplicate en este
+         fichero. -->
+    <Geometry x:Key="IconWindowModel">M4,4 L6,4 L6,20 L4,20 Z M18,4 L20,4 L20,20 L18,20 Z M6,4 L18,4 L18,6 L6,6 Z M6,18 L18,18 L18,20 L6,20 Z M6,11 L18,11 L18,13 L6,13 Z M11,6 L13,6 L13,11 L11,11 Z M11,13 L13,13 L13,18 L11,18 Z</Geometry>
+
     <!-- Triángulo: "ejecutar". -->
     <Geometry x:Key="IconPlay">M8,5 L19,12 L8,19 Z</Geometry>
 

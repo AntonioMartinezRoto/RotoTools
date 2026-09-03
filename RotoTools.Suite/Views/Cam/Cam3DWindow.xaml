@@ -40,7 +40,10 @@
             </Setter>
         </Style>
 
-        <!-- Icono de carpeta para los nodos de nivel, icono de "perfil" (documento) para las hojas. -->
+        <!-- Icono de carpeta para los nodos de nivel, icono de "perfil" para las hojas: IconProfiles
+             (dos barras), el mismo que ya usa el botón "Catálogo de perfiles" (BtnCatalogoPerfiles,
+             más abajo) de esta misma ventana — antes era IconDocument, un documento genérico que no
+             tenía relación visual con un perfil. -->
         <HierarchicalDataTemplate DataType="{x:Type cam:MaterialTreeNode}" ItemsSource="{Binding Hijos}">
             <StackPanel Orientation="Horizontal" Margin="0,2">
                 <Path Width="13" Height="13" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"
@@ -50,7 +53,7 @@
                             <Setter Property="Data" Value="{StaticResource IconFolderOpen}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding EsHoja}" Value="True">
-                                    <Setter Property="Data" Value="{StaticResource IconDocument}" />
+                                    <Setter Property="Data" Value="{StaticResource IconProfiles}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

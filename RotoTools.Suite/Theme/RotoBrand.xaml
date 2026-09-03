@@ -125,7 +125,14 @@
 
     <!-- Flechas de navegación del menú CAM3D (mismo estilo lineal que el resto de iconos). -->
     <Geometry x:Key="IconOperations">M4,5 L20,5 L20,7 L4,7 Z M4,11 L20,11 L20,13 L4,13 Z M4,17 L20,17 L20,19 L4,19 Z M2,5 L4,5 L4,7 L2,7 Z M2,11 L4,11 L4,13 L2,13 Z M2,17 L4,17 L4,19 L2,19 Z</Geometry>
-    <Geometry x:Key="IconProfiles">M4,3 L10,3 L10,21 L4,21 Z M14,3 L20,3 L20,21 L14,21 Z</Geometry>
+    <!-- Perfiles (PVC/aluminio): sección hueca con una cámara interior, como el corte transversal
+         de un perfil real, en vez de las dos barras sueltas de antes (poco representativas, el
+         usuario las confundía). Reutilizado tal cual en el árbol de perfiles de Cam3DWindow (nodos
+         hoja de MaterialTreeNode) y en el botón "Catálogo de perfiles" de esa misma ventana: al
+         cambiar aquí el Geometry, se actualizan los dos sitios a la vez. 5 rectángulos que se TOCAN
+         pero NUNCA SE SOLAPAN entre sí (solape total = 0, comprobado con shapely), mismo criterio
+         que IconWindowModel para que el resultado sea idéntico con cualquier FillRule. -->
+    <Geometry x:Key="IconProfiles">M4,4 L6,4 L6,20 L4,20 Z M18,4 L20,4 L20,20 L18,20 Z M6,4 L18,4 L18,6 L6,6 Z M6,18 L18,18 L18,20 L6,20 Z M11,6 L13,6 L13,18 L11,18 Z</Geometry>
     <Geometry x:Key="IconBack">M11,4 L13,6 L8,11 L21,11 L21,13 L8,13 L13,18 L11,20 L3,12 Z</Geometry>
 
     <!-- Añadir (cruz): "Nuevo perfil" / "Añadir fila". -->

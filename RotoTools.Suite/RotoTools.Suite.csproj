@@ -114,4 +114,44 @@
     <Resource Include="Assets\**\*" />
   </ItemGroup>
 
+  <!--
+    Se quiere que el ejecutable publicado se llame "RotoTools.exe" (no "RotoTools.Suite.exe"), pero
+    el AssemblyName de ESTE proyecto no puede ser literalmente "RotoTools": ese nombre ya lo usa (por
+    defecto, al no definir <AssemblyName> propio) el proyecto original RotoTools.csproj, que se
+    referencia arriba como ProjectReference. Como esa referencia se copia siempre a la carpeta de
+    salida/publicación de este proyecto, poner aquí el mismo AssemblyName "RotoTools" hace que
+    existan dos ficheros de salida distintos con el mismo nombre ("RotoTools.exe") y la publicación
+    falla (error de MSBuild: "Found multiple publish output files with the same relative path").
+
+    Solución: se deja el AssemblyName tal cual (RotoTools.Suite, sin colisión con el proyecto
+    original) y, ya con la publicación terminada, se renombra el único .exe resultante a
+    "RotoTools.exe". Esto funciona sin problema porque se publica con PublishSingleFile=true +
+    SelfContained=true (ver arriba): al acabar Publish solo queda un único fichero .exe físico (toda
+    la lógica del proyecto original, RotoTools.csproj, queda empaquetada dentro de ese mismo
+    fichero), así que no hay ningún otro "RotoTools.exe" con el que pueda volver a chocar.
+  -->
+  <Target Name="RenombrarEjecutablePublicado" AfterTargets="Publish">
+    <Copy SourceFiles="$(PublishDir)$(AssemblyName).exe" DestinationFiles="$(PublishDir)RotoTools.exe" />
+    <Delete Files="$(PublishDir)$(AssemblyName).exe" />
+  </Target>
+
+  <!--
+    Automatiza el proceso manual que se repetía tras cada publicación (comprimir RotoTools.exe ya
+    publicado en un RotoTools_v<version>.zip, archivar en "old" cualquier .zip que ya hubiera en
+    N:\DATASOFT\Apps\RotoTools y copiar ahí el nuevo .zip): ver Scripts/PostPublicar.ps1, que es
+    donde vive toda la lógica (más fácil de leer/mantener/depurar ahí que como un Exec en una sola
+    línea de XML). Encadenado DESPUÉS de RenombrarEjecutablePublicado (no directamente después de
+    Publish) porque necesita que "RotoTools.exe" ya exista con ese nombre final en $(PublishDir).
+
+    $(PublishDir) SIEMPRE termina en "\" (p.ej. "...\publish\"). Pasado tal cual entre comillas en
+    la línea de comandos ("...\publish\"), Windows interpreta esa "\"" final como una comilla
+    ESCAPADA, no como el cierre de la cadena: el argumento -PublishDir se "come" el resto de la
+    línea (incluido -Version "..."), dando una ruta con caracteres inválidos (confirmado en
+    producción). TrimEnd('\') quita esa barra final antes de montar el Command, evitando el problema
+    sin afectar a la ruta en sí (con o sin barra final apunta a la misma carpeta).
+  -->
+  <Target Name="ComprimirYPublicarEnRed" AfterTargets="RenombrarEjecutablePublicado">
+    <Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\Scripts\PostPublicar.ps1&quot; -PublishDir &quot;$(PublishDir.TrimEnd('\'))&quot; -Version &quot;$(AssemblyVersion)&quot;" />
+  </Target>
+
 </Project>

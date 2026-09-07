@@ -222,6 +222,17 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
             }
         }
 
+        /// <summary>
+        /// Sincroniza los Flags de ContenidoOpciones en LOS DOS SENTIDOS a partir de los valores
+        /// que trae el .rotoconfig del cliente: oculta (Flags=3, oculto en lista y en árbol) los
+        /// valores de BBDD que el cliente NO usa, y TAMBIÉN vuelve a mostrar (Flags=0) los que SÍ
+        /// usa. Antes solo hacía lo primero: si un valor estaba oculto (Flags=3, por ejemplo por
+        /// una importación anterior) y el nuevo .rotoconfig ya no lo oculta, se quedaba oculto para
+        /// siempre porque nunca se le devolvía Flags=0 (bug reportado). El valor especial "OCULTO"
+        /// es una fila sentinela, no una opción real del cliente: se deja tal cual, igual que antes.
+        /// Solo se escribe en BBDD cuando el flag deseado difiere del actual, para no reescribir
+        /// filas que ya están correctas.
+        /// </summary>
         private void UpdateValores(List<ContenidoOpcion> valoresConfig, string rotoOptionName)
         {
             List<ContenidoOpcion> contenidoOpcionDbList = RotoTools.Helpers.GetContenidoOpciones(rotoOptionName);
@@ -231,40 +242,54 @@ namespace RotoTools.Suite.Views.ConfiguradorOpciones
                 .Select(o => o.Valor.Trim().ToUpper())
                 .ToHashSet();
 
-            List<ContenidoOpcion> contenidoOpcionToUpdate = contenidoOpcionDbList
-                .Where(c => c.Valor != null
-                         && c.Valor.Trim().ToUpper() != "OCULTO"
-                         && !valoresConfigSet.Contains(c.Valor.Trim().ToUpper()))
-                .ToList();
-
-            foreach (var contenidoOpcion in contenidoOpcionToUpdate)
+            foreach (var contenidoOpcion in contenidoOpcionDbList)
             {
-                RotoTools.Helpers.UpdateFlagsContenidoOpcion(rotoOptionName, contenidoOpcion.Valor, 3);
+                if (contenidoOpcion.Valor == null) continue;
+
+                string valorDb = contenidoOpcion.Valor.Trim().ToUpper();
+                if (valorDb == "OCULTO") continue;
+
+                int flagsDeseados = valoresConfigSet.Contains(valorDb) ? 0 : 3;
+                if (contenidoOpcion.Flags != flagsDeseados)
+                {
+                    RotoTools.Helpers.UpdateFlagsContenidoOpcion(rotoOptionName, contenidoOpcion.Valor, flagsDeseados);
+                }
             }
         }
 
+        /// <summary>
+        /// Igual que UpdateValores pero para RO_1PERFIL/RO_1PERFIL_ALU, donde la comparación es por
+        /// coincidencia parcial (el valor de BBDD "contiene" el código de perfil del cliente, no
+        /// igualdad exacta: ya era así en el criterio original). Reescrita para decidir un único
+        /// flag por fila de BBDD (antes, al recorrer los perfiles del cliente en un bucle anidado,
+        /// podía llamar a ocultar la misma fila varias veces sin ningún criterio que la volviera a
+        /// mostrar si coincidía con otro perfil del cliente; y, como UpdateValores, nunca revertía
+        /// Flags a 0 para un valor que sí seguía usando el cliente).
+        /// </summary>
         private void UpdateValoresPerfiles(List<ContenidoOpcion> valoresTipoPerfil, List<ContenidoOpcion> valoresPerfiles, string tipoPerfil, string nombreOpcion)
         {
             bool tieneTipoPerfil = valoresPerfiles.Any(c => c.Texto.Trim().ToUpper() == tipoPerfil.Trim().ToUpper());
+            if (!tieneTipoPerfil) return;
 
-            if (tieneTipoPerfil)
+            var perfilesXmlSet = valoresPerfiles
+                .Where(p => p.Texto == tipoPerfil)
+                .Select(p => p.Valor.Trim().ToUpper() ?? string.Empty)
+                .ToHashSet();
+
+            List<ContenidoOpcion> contenidoOpcionDbList = RotoTools.Helpers.GetContenidoOpciones(nombreOpcion);
+
+            foreach (var contenidoOpcion in contenidoOpcionDbList)
             {
-                var perfilesXmlSet = valoresPerfiles
-                    .Where(p => p.Texto == tipoPerfil)
-                    .Select(p => p.Valor.Trim().ToUpper() ?? string.Empty)
-                    .ToHashSet();
+                if (contenidoOpcion.Valor == null) continue;
 
-                List<ContenidoOpcion> contenidoOpcionDbList = RotoTools.Helpers.GetContenidoOpciones(nombreOpcion);
+                string valorDb = contenidoOpcion.Valor.Trim().ToUpper();
+                if (valorDb == "OCULTO") continue;
 
-                foreach (var contenidoOpcion in contenidoOpcionDbList)
+                bool loUsaElCliente = perfilesXmlSet.Any(perfil => valorDb.Contains(perfil));
+                int flagsDeseados = loUsaElCliente ? 0 : 3;
+                if (contenidoOpcion.Flags != flagsDeseados)
                 {
-                    foreach (var perfil in perfilesXmlSet)
-                    {
-                        if (!contenidoOpcion.Valor.Trim().ToUpper().Contains(perfil))
-                        {
-                            RotoTools.Helpers.UpdateFlagsContenidoOpcion(nombreOpcion, contenidoOpcion.Valor, 3);
-                        }
-                    }
+                    RotoTools.Helpers.UpdateFlagsContenidoOpcion(nombreOpcion, contenidoOpcion.Valor, flagsDeseados);
                 }
             }
         }

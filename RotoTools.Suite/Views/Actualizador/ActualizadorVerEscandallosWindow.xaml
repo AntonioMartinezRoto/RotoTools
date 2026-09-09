@@ -6,13 +6,27 @@
     Width="1180" Height="740"
     MinWidth="820" MinHeight="480"
     WindowStartupLocation="CenterOwner"
-    Background="{StaticResource RotoContentBackgroundBrush}">
+    Background="{StaticResource RotoContentBackgroundBrush}"
+    PreviewKeyDown="Window_PreviewKeyDown">
 
     <!--
         Sustituye a ActualizadorEscandallos.cs/.Designer.cs (WinForms): mismo comportamiento
         (filtro por código a la izquierda + contenido/Programa del escandallo seleccionado a la
         derecha, con scroll en las dos direcciones y sin ajuste de línea, igual que el original),
         reutilizando tal cual RotoTools.Helpers.CargarEscandallosEmbebidos vía ProjectReference.
+
+        Añadido (no existía en el original): buscador de texto DENTRO del contenido del escandallo
+        seleccionado (petición del usuario: el filtro de la izquierda ya buscaba por Código, pero
+        hacía falta "algo para encontrar textos dentro del contenido del propio escandallo").
+        Estilo editor de texto: Ctrl+F en cualquier punto de la ventana (PreviewKeyDown aquí en el
+        Window, no solo en el TextBox del contenido, para que funcione sea cual sea el control que
+        tenga el foco en ese momento -filtro, lista o el propio contenido-) abre una barra de
+        búsqueda flotante sobre la esquina superior derecha del contenido; Enter/F3 va a la
+        siguiente coincidencia, Mayús+Enter/Mayús+F3 a la anterior (circular: de la última vuelve a
+        la primera y viceversa), Esc la cierra. TODAS las coincidencias quedan resaltadas a la vez
+        (amarillo), con la actual en un tono distinto (naranja) para localizarla de un vistazo -ver
+        CanvasResaltadoBusqueda y el comentario de ActualizadorVerEscandallosWindow.xaml.cs sobre
+        cómo se pintan esos resaltados sobre un TextBox normal, que no soporta colores por rango-.
     -->
     <Grid>
         <Grid.RowDefinitions>
@@ -51,8 +65,52 @@
                              BorderThickness="0" Background="Transparent"
                              TextWrapping="NoWrap" Visibility="Collapsed"
                              HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+
+                    <!-- Resaltado de las coincidencias de la búsqueda: NO es hijo del TextBox de
+                         arriba a propósito -un TextBox normal no admite pintar colores de fondo
+                         distintos por rango de texto, así que los rectángulos de resaltado se
+                         dibujan aparte, encima, en las mismas coordenadas- (ver
+                         ObtenerRectanguloDeRango/DibujarResaltados en el code-behind). Sería hijo
+                         del TextBox si quisiéramos que el ScrollViewer interno del TextBox lo
+                         recortara solo automáticamente, pero al ser hermano (misma celda de Grid)
+                         hace falta ClipToBounds aquí para no “pintar” fuera del recuadro blanco
+                         cuando el texto está desplazado. IsHitTestVisible=False: es solo un dibujo,
+                         nunca debe robarle el clic/scroll al TextBox de debajo. -->
+                    <Canvas x:Name="CanvasResaltadoBusqueda" IsHitTestVisible="False" ClipToBounds="True" />
+
                     <TextBlock x:Name="TxtSeleccionaUno" Foreground="{StaticResource RotoGrayBrush}" FontSize="13"
                                HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
+
+                    <!-- Barra de búsqueda flotante (Ctrl+F), oculta hasta que se abre. Encima de
+                         todo lo demás porque se declara la última en esta misma celda de Grid (el
+                         orden de declaración decide el z-order cuando varios hijos comparten
+                         celda). -->
+                    <Border x:Name="PanelBusqueda" Visibility="Collapsed"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+                            Background="White" BorderBrush="{StaticResource RotoBorderBrush}" BorderThickness="1"
+                            CornerRadius="6" Padding="8,6">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.18" BlurRadius="12" ShadowDepth="2" Direction="270" />
+                        </Border.Effect>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="TxtBuscarContenido" Width="200" Style="{StaticResource RotoTextBox}"
+                                     TextChanged="TxtBuscarContenido_TextChanged" KeyDown="TxtBuscarContenido_KeyDown" />
+                            <TextBlock x:Name="TxtContadorBusqueda" Foreground="{StaticResource RotoGrayBrush}"
+                                       FontSize="12" VerticalAlignment="Center" Margin="8,0" MinWidth="70" TextAlignment="Center" />
+                            <Button x:Name="BtnBusquedaAnterior" Style="{StaticResource RotoCardIconButton}" Width="26" Height="26"
+                                    Margin="0,0,4,0" Click="BtnBusquedaAnterior_Click" ToolTip="Coincidencia anterior (Mayús+Enter)">
+                                <TextBlock Text="↑" FontSize="13" Foreground="{StaticResource RotoInkBrush}" />
+                            </Button>
+                            <Button x:Name="BtnBusquedaSiguiente" Style="{StaticResource RotoCardIconButton}" Width="26" Height="26"
+                                    Margin="0,0,8,0" Click="BtnBusquedaSiguiente_Click" ToolTip="Siguiente coincidencia (Enter)">
+                                <TextBlock Text="↓" FontSize="13" Foreground="{StaticResource RotoInkBrush}" />
+                            </Button>
+                            <Button x:Name="BtnCerrarBusqueda" Style="{StaticResource RotoCardIconButton}" Width="26" Height="26"
+                                    Click="BtnCerrarBusqueda_Click" ToolTip="Cerrar (Esc)">
+                                <Path Data="{StaticResource IconClose}" Fill="{StaticResource RotoGrayBrush}" Width="11" Height="11" Stretch="Uniform" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>

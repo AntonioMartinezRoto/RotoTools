@@ -149,12 +149,29 @@
          en vez de sumar. -->
     <Geometry x:Key="IconEye">M2,12 L7,6 L17,6 L22,12 L17,18 L7,18 Z M10,9 L14,9 L14,15 L10,15 Z</Geometry>
 
-    <!-- Ojo cerrado: "Ocultar Opciones" (btn_OcultaOpciones original). Misma lente que IconEye
-         pero aplastada en vertical y sin pupila (un único trazado, sin necesidad de hueco): se lee
-         como un párpado cerrado junto al IconEye de al lado, sin recurrir a una línea diagonal
-         superpuesta (que con la regla de relleno EvenOdd de por defecto abriría un hueco donde
-         cruza el óvalo en vez de verse como una raya sólida encima). -->
-    <Geometry x:Key="IconEyeOff">M2,12 L7,10 L17,10 L22,12 L17,14 L7,14 Z</Geometry>
+    <!-- Ojo tachado: "Ocultar Opciones" (btn_OcultaOpciones / AgregarValorOcultoOpcionesRoto -que
+         en realidad AÑADE el valor especial "Oculto" a la lista de valores posibles de cada opción
+         RO_, no "oculta" nada en la propia UI, ver ActualizadorPage.xaml.cs-). Petición del usuario:
+         el diseño anterior (una lente aplastada sin pupila, para leerse como "párpado cerrado" sin
+         recurrir a una raya diagonal) "no se distingue bien y no se identifica con su
+         funcionalidad" a este tamaño -demasiado sutil junto al IconEye de al lado-; pidió
+         explícitamente un ojo tachado, el icono universal de "oculto/desactivado".
+         Reutiliza EXACTAMENTE la misma lente+pupila que IconEye (mismo hexágono, mismo hueco
+         rectangular central) y le SUMA una barra diagonal gruesa de esquina a esquina, para que se
+         lea a la vez como "el mismo ojo de al lado" Y como "tachado". La raya diagonal es justo lo
+         que el comentario anterior de este icono decía que había que evitar por la regla de
+         relleno EvenOdd (por defecto en Geometry): con EvenOdd, una franja diagonal que atraviesa
+         el óvalo cuenta como un segundo solapamiento y ABRE un hueco donde cruza en vez de verse
+         sólida encima. Se resuelve aquí cambiando a la regla de relleno NoCero (prefijo "F1" del
+         Path Markup Syntax de WPF, al principio del todo de la cadena) y controlando el SENTIDO de
+         cada subtrazado: hexágono exterior y barra diagonal en el mismo sentido (sus áreas se SUMAN
+         sin cancelarse al solaparse, a diferencia de EvenOdd) y la pupila en sentido CONTRARIO al
+         hexágono (con NoCero, un subtrazado en sentido opuesto RESTA -mismo truco que usan las
+         fuentes TrueType para hacer agujeros-, así que sigue viéndose como un hueco donde no la
+         cruza la barra). Resultado: donde la barra cruza la pupila, hexágono(+1) + pupila(-1) +
+         barra(+1) = +1 → sigue rellena -la diagonal queda sólida y continua incluso sobre el hueco
+         de la pupila, en vez de partirse ahí-. -->
+    <Geometry x:Key="IconEyeOff">F1 M2,12 L7,6 L17,6 L22,12 L17,18 L7,18 Z M10,9 L10,15 L14,15 L14,9 Z M2.85,1.15 L22.85,21.15 L21.15,22.85 L1.15,2.85 Z</Geometry>
 
     <!-- Salir: marco de puerta abierto (forma de "C", el hueco se consigue con el propio trazado
          en vez de un hueco EvenOdd, ver comentario de IconEye para esa otra técnica) + una flecha

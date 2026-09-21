@@ -683,19 +683,31 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
         /// <summary>
         /// Elementos "hoja": el psr:Hole "de contenido" (el que tiene un psr:Element hijo directo;
         /// el otro nivel de psr:Hole, xsi:type="psr:typeBinaryHole", es solo un envoltorio del
-        /// árbol binario y no tiene psr:Element propio) que NO tiene un psr:Holes hijo -es decir,
-        /// que no se subdivide más, paño/hueco terminal- Y que tiene un psr:Opening hijo directo.
+        /// árbol binario y no tiene psr:Element propio) que tiene un psr:Opening hijo directo.
         ///
         /// El criterio por psr:Opening sustituye al filtro anterior por patrón de id ("H"+número):
         /// se comprobó con datos reales que ese patrón daba falsos positivos (huecos terminales
         /// cuyo id empieza por "H" pero que no son una hoja real, se les añadían opciones y el
         /// nivel ROTO indebidamente). psr:Opening es la marca correcta porque, según se ha
         /// verificado, únicamente las hojas (paños que realmente abren) pueden tener una apertura:
-        /// un hueco terminal sin psr:Opening es un paño fijo/vidrio (psr:Glass) u otro tipo de
-        /// contenido que no debe recibir opciones ni carpeta. El XML lo genera un software externo
-        /// (no RotoTools/PrefSuite) sobre el que no hay control ni documentación formal del
-        /// esquema, así que si apareciera algún caso que contradijera este criterio habría que
-        /// revisarlo de nuevo con más ejemplos reales.
+        /// un hueco sin psr:Opening es un paño fijo/vidrio (psr:Glass) u otro tipo de contenido que
+        /// no debe recibir opciones ni carpeta. El XML lo genera un software externo (no RotoTools/
+        /// PrefSuite) sobre el que no hay control ni documentación formal del esquema, así que si
+        /// apareciera algún caso que contradijera este criterio habría que revisarlo de nuevo con
+        /// más ejemplos reales.
+        ///
+        /// Bug corregido (reportado por el usuario con un modelo real "CT70 AS - BALCONERA [1 HOJA
+        /// + FIJOS]" de Schüco que daba "No se ha encontrado ningún elemento hoja" al asociar
+        /// constructivos, pese a tener 1 hoja real): la versión anterior exigía ADEMÁS que el
+        /// psr:Hole con el psr:Opening fuera terminal -sin ningún psr:Holes hijo-, asumiendo que una
+        /// hoja nunca se subdivide más. En ese modelo real, el psr:Hole que tiene el psr:Opening
+        /// (el paño/hoja con herraje) SÍ tiene a su vez un psr:Holes hijo, porque dentro de la propia
+        /// hoja se anida el hueco del vidrio (psr:Glass) como otro psr:Hole más -la hoja "contiene"
+        /// su vidrio, no es un hueco terminal en el sentido en que se había asumido-. psr:Opening ya
+        /// es por sí solo "la marca correcta" (ver párrafo de arriba); exigir terminalidad además
+        /// era una suposición extra sin base real que descartaba hojas válidas como esta. Se quita
+        /// esa exigencia: ahora basta con psr:Element + psr:Opening hijos directos, tenga o no el
+        /// propio psr:Hole más psr:Holes anidados por debajo (p.ej. para su vidrio).
         /// </summary>
         internal static IEnumerable<XElement> ObtenerElementosHoja(XElement raiz, XNamespace psr)
         {
@@ -703,7 +715,6 @@ ORDER BY NIVEL1, NIVEL2, NIVEL3, NIVEL4, NIVEL5", conexion);
             {
                 var elemento = hole.Element(psr + "Element");
                 if (elemento == null) continue;
-                if (hole.Element(psr + "Holes") != null) continue;
                 if (hole.Element(psr + "Opening") == null) continue;
 
                 yield return elemento;

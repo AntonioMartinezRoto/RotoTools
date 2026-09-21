@@ -470,6 +470,22 @@ Deseja continuar?</value>
   <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
     <value>Introduza as variáveis para o(s) escandallo(s): {0}.</value>
   </data>
+  <data name="L_Suite_AsociarComunes" xml:space="preserve">
+    <value>Associar Comuns</value>
+  </data>
+  <data name="L_Suite_AsociarComunesSubtitulo" xml:space="preserve">
+    <value>Associa um ou vários Escandallos, com as suas variáveis, ao comum de cada elemento folha de um ou vários Modelos.</value>
+  </data>
+  <data name="L_Suite_AsociarComunesDesc" xml:space="preserve">
+    <value>Associa escandallos ao comum de cada elemento folha dos desenhos selecionados.</value>
+  </data>
+  <data name="L_Suite_ConfirmarAsociarComunes" xml:space="preserve">
+    <value>Serão associados {0} escandallo(s) ao comum de cada elemento folha de {1} desenho(s), modificando diretamente a base de dados. Esta ação não pode ser desfeita.
+Deseja continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenAsociarComunes" xml:space="preserve">
+    <value>Aplicado a {0} de {1} desenho(s). Escandallos adicionados: {2}. Atualizados: {3}. Já existiam iguais: {4}. Elementos modificados: {5}.</value>
+  </data>
   <data name="L_Suite_ModuloDepuracionEscandallos" xml:space="preserve">
     <value>Depuração de Escandallos</value>
   </data>

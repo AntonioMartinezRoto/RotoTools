@@ -35,10 +35,10 @@
                 </StackPanel>
             </StackPanel>
 
-            <UniformGrid Columns="4" Rows="1" Margin="0,0,0,20">
+            <UniformGrid Columns="5" Rows="1" Margin="0,0,0,20">
 
                 <!-- Tarjeta 1: Instalar Escandallos -->
-                <Button x:Name="BtnInstalarEscandallos" Style="{StaticResource RotoActionCard}" Margin="0,0,9,0"
+                <Button x:Name="BtnInstalarEscandallos" Style="{StaticResource RotoActionCard}" Margin="0,0,8,0"
                         Click="BtnInstalarEscandallos_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#2E7D32" Margin="0,0,0,14">
@@ -51,7 +51,7 @@
                 </Button>
 
                 <!-- Tarjeta 2: Ver Escandallos -->
-                <Button x:Name="BtnVerEscandallos" Style="{StaticResource RotoActionCard}" Margin="4,0,5,0"
+                <Button x:Name="BtnVerEscandallos" Style="{StaticResource RotoActionCard}" Margin="2,0,6,0"
                         Click="BtnVerEscandallos_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#1976D2" Margin="0,0,0,14">
@@ -64,7 +64,7 @@
                 </Button>
 
                 <!-- Tarjeta 3: Exportar Escandallos -->
-                <Button x:Name="BtnExportarEscandallos" Style="{StaticResource RotoActionCard}" Margin="5,0,4,0"
+                <Button x:Name="BtnExportarEscandallos" Style="{StaticResource RotoActionCard}" Margin="4,0,4,0"
                         Click="BtnExportarEscandallos_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#F57C00" Margin="0,0,0,14">
@@ -76,8 +76,8 @@
                     </StackPanel>
                 </Button>
 
-                <!-- Tarjeta 4: Asociar Constructivos (nueva: no existía en el original) -->
-                <Button x:Name="BtnAsociarConstructivos" Style="{StaticResource RotoActionCard}" Margin="9,0,0,0"
+                <!-- Tarjeta 4: Asociar Constructivos -->
+                <Button x:Name="BtnAsociarConstructivos" Style="{StaticResource RotoActionCard}" Margin="6,0,2,0"
                         Click="BtnAsociarConstructivos_Click">
                     <StackPanel>
                         <Border Width="40" Height="40" CornerRadius="20" Background="#6A1B9A" Margin="0,0,0,14">
@@ -86,6 +86,21 @@
                         </Border>
                         <TextBlock x:Name="TxtCard4Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
                         <TextBlock x:Name="TxtCard4Desc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Tarjeta 5: Asociar Comunes (nueva: no existía en el original; misma ventana que
+                     Asociar Constructivos reaprovechada tal cual, ver
+                     ActualizadorAsociarConstructivosWindow/DibujoConstructivosService) -->
+                <Button x:Name="BtnAsociarComunes" Style="{StaticResource RotoActionCard}" Margin="8,0,0,0"
+                        Click="BtnAsociarComunes_Click">
+                    <StackPanel>
+                        <Border Width="40" Height="40" CornerRadius="20" Background="#00838F" Margin="0,0,0,14">
+                            <Path Data="{StaticResource IconLink}" Fill="White" Width="18" Height="18" Stretch="Uniform"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock x:Name="TxtCard5Titulo" Style="{StaticResource RotoSectionTitle}" TextWrapping="Wrap" />
+                        <TextBlock x:Name="TxtCard5Desc" Foreground="{StaticResource RotoGrayBrush}" FontSize="12.5" TextWrapping="Wrap" />
                     </StackPanel>
                 </Button>
             </UniformGrid>

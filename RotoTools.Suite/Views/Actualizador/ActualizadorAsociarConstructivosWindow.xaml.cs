@@ -11,10 +11,17 @@ namespace RotoTools.Suite.Views.Actualizador
 {
     /// <summary>
     /// Nueva (no existía en el original): asocia uno o varios Escandallos al nodo
-    /// psr:ConstructiveScript de cada elemento hoja del XML embebido de uno o varios dibujos (tabla
-    /// Dibujos, columna Buffer, comprimido). Toda la lógica de BBDD/XML vive en
-    /// DibujoConstructivosService; esta ventana solo se encarga de elegir qué Escandallos (con qué
-    /// Variables, editables por fila) y a qué Dibujos.
+    /// psr:ConstructiveScript -o psr:CommonScript, ver "esComun" del constructor- de cada elemento
+    /// hoja del XML embebido de uno o varios dibujos (tabla Dibujos, columna Buffer, comprimido).
+    /// Toda la lógica de BBDD/XML vive en DibujoConstructivosService; esta ventana solo se encarga
+    /// de elegir qué Escandallos (con qué Variables, editables por fila) y a qué Dibujos.
+    ///
+    /// Reutilizada tal cual (mismo formulario y mismo comportamiento, tal y como pidió el usuario)
+    /// para la funcionalidad "Asociar Comunes" del módulo de Instalación: el parámetro "esComun" del
+    /// constructor es lo único que cambia -los textos de CargarTextos() y, en BtnAplicar_Click, el
+    /// método de DibujoConstructivosService al que se llama (AplicarConstructivosRoto/
+    /// AplicarComunesRoto)-, así que no hay ninguna otra ventana ni lógica duplicada para "Asociar
+    /// Comunes".
     ///
     /// 3ª versión del diseño: pestañas "1. Escandallos" / "2. Dibujos" (ver PanelEscandallos/
     /// PanelDibujos/CambiarTab) para elegir, ocupando la mayor parte de la altura; las dos grids de
@@ -33,8 +40,13 @@ namespace RotoTools.Suite.Views.Actualizador
         private readonly ObservableCollection<DibujoTreeNode> _nodosRaizDibujos = new();
         private readonly ObservableCollection<DibujoRow> _seleccionados = new();
 
-        public ActualizadorAsociarConstructivosWindow()
+        /// <summary>true: "Asociar Comunes" (psr:CommonScript). false (por defecto): "Asociar
+        /// Constructivos" (psr:ConstructiveScript). Ver comentario de la clase.</summary>
+        private readonly bool _esComun;
+
+        public ActualizadorAsociarConstructivosWindow(bool esComun = false)
         {
+            _esComun = esComun;
             InitializeComponent();
 
             GridEscandallos.ItemsSource = _escandallosVisibles;
@@ -57,9 +69,9 @@ namespace RotoTools.Suite.Views.Actualizador
 
         private void CargarTextos()
         {
-            Title = Loc("L_Suite_AsociarConstructivos");
+            Title = Loc(_esComun ? "L_Suite_AsociarComunes" : "L_Suite_AsociarConstructivos");
             TxtTitulo.Text = Title;
-            TxtSubtitulo.Text = Loc("L_Suite_AsociarConstructivosSubtitulo");
+            TxtSubtitulo.Text = Loc(_esComun ? "L_Suite_AsociarComunesSubtitulo" : "L_Suite_AsociarConstructivosSubtitulo");
 
             TxtCarpetasEscandallos.Text = Loc("L_Suite_Carpetas");
             LblTodosEscandallos.Text = Loc("L_Suite_TodosEscandallosHint");
@@ -585,7 +597,9 @@ namespace RotoTools.Suite.Views.Actualizador
 
             var escandallos = _escandallosSeleccionados.Select(esc => (esc.Codigo, esc.Variables)).ToList();
 
-            string mensajeConfirmacion = string.Format(Loc("L_Suite_ConfirmarAsociarConstructivos"), _escandallosSeleccionados.Count, _seleccionados.Count);
+            string mensajeConfirmacion = string.Format(
+                Loc(_esComun ? "L_Suite_ConfirmarAsociarComunes" : "L_Suite_ConfirmarAsociarConstructivos"),
+                _escandallosSeleccionados.Count, _seleccionados.Count);
             if (MessageBox.Show(mensajeConfirmacion, Loc("L_Suite_ConfirmarAplicar"),
                     MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
@@ -602,7 +616,9 @@ namespace RotoTools.Suite.Views.Actualizador
 
                 for (int i = 0; i < lista.Count; i++)
                 {
-                    var resultado = DibujoConstructivosService.AplicarConstructivosRoto(lista[i].Codigo, escandallos);
+                    var resultado = _esComun
+                        ? DibujoConstructivosService.AplicarComunesRoto(lista[i].Codigo, escandallos)
+                        : DibujoConstructivosService.AplicarConstructivosRoto(lista[i].Codigo, escandallos);
                     resultados.Add(resultado);
                     MostrarProgreso(i + 1, lista.Count);
                     DoEvents();
@@ -641,7 +657,8 @@ namespace RotoTools.Suite.Views.Actualizador
             int totalElementos = resultados.Where(r => r.Exito).Sum(r => r.ElementosModificados);
 
             var sb = new StringBuilder();
-            sb.AppendLine(string.Format(Loc("L_Suite_ResumenAsociarConstructivos"),
+            sb.AppendLine(string.Format(
+                Loc(_esComun ? "L_Suite_ResumenAsociarComunes" : "L_Suite_ResumenAsociarConstructivos"),
                 exitosos, resultados.Count, totalAnadidos, totalActualizados, totalYaExistian, totalElementos));
 
             var fallidos = resultados.Where(r => !r.Exito).ToList();

@@ -87,16 +87,18 @@ namespace RotoTools.Suite.Services
 
     /// <summary>
     /// Nueva (no existía en el original ni en ningún otro módulo de la Suite): inserta uno o
-    /// varios Escandallos (tabla Escandallos) en el nodo psr:ConstructiveScript de cada elemento
-    /// "hoja" (mismo criterio que DibujoOpcionesRotoService.ObtenerElementosHoja: psr:Hole
-    /// terminal -sin psr:Holes anidado- con psr:Opening, que es lo único que distingue una hoja
-    /// real de otros huecos/paños intermedios) del XML de un Dibujo guardado en BBDD (tabla
+    /// varios Escandallos (tabla Escandallos) en el nodo psr:ConstructiveScript -o psr:CommonScript,
+    /// ver AplicarComunesRoto: mismo mecanismo, nodo hermano distinto- de cada elemento "hoja"
+    /// (mismo criterio que DibujoOpcionesRotoService.ObtenerElementosHoja: psr:Element con
+    /// psr:Opening, que es lo único que distingue una hoja real de otros huecos/paños
+    /// intermedios) del XML de un Dibujo guardado en BBDD (tabla
     /// Dibujos, columna Buffer, comprimido). A diferencia de las opciones ROTO, aquí SIEMPRE se
     /// aplica por elemento (a cada hoja), nunca al modelo general: así lo pidió el usuario, porque
-    /// un constructivo es intrínsecamente una propiedad de cada hoja, no del modelo.
+    /// un constructivo/común es intrínsecamente una propiedad de cada hoja, no del modelo.
     ///
     /// Formato de psr:ConstructiveScript (confirmado con un XML real de ejemplo, no documentado en
-    /// ningún sitio del proyecto): texto plano con 5 secciones fijas, en este orden, cada una
+    /// ningún sitio del proyecto; se asume el mismo formato para psr:CommonScript, ver
+    /// AplicarComunesRoto): texto plano con 5 secciones fijas, en este orden, cada una
     /// empezando por una línea "% NombreSección": Materiales, Escandallos, Mano de Obra, Tablas,
     /// Secciones. Cada línea termina con el separador "&amp;#D;&amp;#A;" (así, LITERAL: no son
     /// referencias de carácter XML reales -eso sería &amp;amp;#D;&amp;amp;#A; en el XML crudo-,
@@ -239,12 +241,14 @@ namespace RotoTools.Suite.Services
         #region Aplicar constructivos a un Dibujo
 
         /// <summary>
-        /// Asocia, a cada elemento "hoja" del Dibujo indicado, los escandallos de
-        /// "escandallosSeleccionados" (mismas Variables para todos, ver
-        /// ActualizadorAsociarConstructivosWindow) en su psr:ConstructiveScript. Siempre por
-        /// elemento (nunca al modelo general): un constructivo es una propiedad de cada hoja.
+        /// Lógica compartida entre AplicarConstructivosRoto y AplicarComunesRoto: asocia, a cada
+        /// elemento "hoja" del Dibujo indicado, los escandallos de "escandallosSeleccionados" (cada
+        /// uno con sus propias Variables) al nodo psr indicado por "nombreNodo" ("ConstructiveScript"
+        /// o "CommonScript", nodos hermanos dentro de psr:Element, ver comentario de la clase).
+        /// Siempre por elemento (nunca al modelo general): un constructivo/común es una propiedad de
+        /// cada hoja.
         /// </summary>
-        public static ResultadoAplicarConstructivo AplicarConstructivosRoto(string codigoDibujo, List<(string Codigo, string Variables)> escandallosSeleccionados)
+        private static ResultadoAplicarConstructivo AplicarEscandallosANodo(string codigoDibujo, List<(string Codigo, string Variables)> escandallosSeleccionados, string nombreNodo)
         {
             var resultado = new ResultadoAplicarConstructivo { Codigo = codigoDibujo };
 
@@ -263,10 +267,10 @@ namespace RotoTools.Suite.Services
 
                 foreach (var elementoHoja in DibujoOpcionesRotoService.ObtenerElementosHoja(raiz, psr))
                 {
-                    XElement? script = elementoHoja.Element(psr + "ConstructiveScript");
+                    XElement? script = elementoHoja.Element(psr + nombreNodo);
                     if (script == null)
                     {
-                        script = new XElement(psr + "ConstructiveScript", ConstruirEsqueletoConstructiveScript());
+                        script = new XElement(psr + nombreNodo, ConstruirEsqueletoConstructiveScript());
                         elementoHoja.AddFirst(script);
                     }
 
@@ -327,6 +331,27 @@ namespace RotoTools.Suite.Services
 
             return resultado;
         }
+
+        /// <summary>Asocia los escandallos elegidos al psr:ConstructiveScript de cada elemento hoja
+        /// (ver AplicarEscandallosANodo).</summary>
+        public static ResultadoAplicarConstructivo AplicarConstructivosRoto(string codigoDibujo, List<(string Codigo, string Variables)> escandallosSeleccionados)
+            => AplicarEscandallosANodo(codigoDibujo, escandallosSeleccionados, "ConstructiveScript");
+
+        /// <summary>
+        /// Nueva (no existía hasta ahora): igual que AplicarConstructivosRoto pero escribe en
+        /// psr:CommonScript en vez de psr:ConstructiveScript (nodo hermano dentro de psr:Element, ver
+        /// comentario de la clase). Es la funcionalidad "Asociar Comunes" pedida por el usuario, casi
+        /// idéntica a "Asociar Constructivos" salvo el nodo XML de destino (ver
+        /// ActualizadorAsociarConstructivosWindow, que reutiliza la misma ventana para las dos). Se
+        /// asume el mismo formato de texto de 5 secciones fijas
+        /// (Materiales/Escandallos/Mano de Obra/Tablas/Secciones) que psr:ConstructiveScript, ya que
+        /// ambos son nodos de script de Preference con la misma convención de separadores/comillas
+        /// literales (ver comentario de la clase); a diferencia de ConstructiveScript, esto no se ha
+        /// podido confirmar todavía contra un XML real con psr:CommonScript ya relleno, así que
+        /// conviene verificarlo la primera vez que se use sobre un dibujo real.
+        /// </summary>
+        public static ResultadoAplicarConstructivo AplicarComunesRoto(string codigoDibujo, List<(string Codigo, string Variables)> escandallosSeleccionados)
+            => AplicarEscandallosANodo(codigoDibujo, escandallosSeleccionados, "CommonScript");
 
         #endregion
     }

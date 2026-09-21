@@ -78,6 +78,8 @@ namespace RotoTools.Suite.Views.Actualizador
             TxtCard3Desc.Text = Loc("L_Suite_ExportarEscandallosDesc");
             TxtCard4Titulo.Text = Loc("L_Suite_AsociarConstructivos");
             TxtCard4Desc.Text = Loc("L_Suite_AsociarConstructivosDesc");
+            TxtCard5Titulo.Text = Loc("L_Suite_AsociarComunes");
+            TxtCard5Desc.Text = Loc("L_Suite_AsociarComunesDesc");
 
             TxtGruposTitulo.Text = RotoTools.LocalizationManager.GetString("L_Grupos");
             LblPresupuestado.Text = RotoTools.LocalizationManager.GetString("L_Presupuestado");
@@ -129,6 +131,7 @@ namespace RotoTools.Suite.Views.Actualizador
             BtnInstalarEscandallos.IsEnabled = enable;
             BtnExportarEscandallos.IsEnabled = enable;
             BtnAsociarConstructivos.IsEnabled = enable;
+            BtnAsociarComunes.IsEnabled = enable;
             CmbPresupuestado.IsEnabled = enable;
             CmbProduccion.IsEnabled = enable;
             CmbProveedor.IsEnabled = enable;
@@ -549,6 +552,16 @@ namespace RotoTools.Suite.Views.Actualizador
         private void BtnAsociarConstructivos_Click(object sender, RoutedEventArgs e)
         {
             var ventana = new ActualizadorAsociarConstructivosWindow { Owner = Window.GetWindow(this) };
+            ventana.ShowDialog();
+        }
+
+        /// <summary>Nueva (no existía en el original): abre "Asociar Comunes", casi idéntica a
+        /// "Asociar Constructivos" pero escribiendo en psr:CommonScript en vez de
+        /// psr:ConstructiveScript (misma ventana reaprovechada con esComun: true, ver
+        /// ActualizadorAsociarConstructivosWindow/DibujoConstructivosService.AplicarComunesRoto).</summary>
+        private void BtnAsociarComunes_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new ActualizadorAsociarConstructivosWindow(esComun: true) { Owner = Window.GetWindow(this) };
             ventana.ShowDialog();
         }
 

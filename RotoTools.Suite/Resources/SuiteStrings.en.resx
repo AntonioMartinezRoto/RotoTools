@@ -470,6 +470,22 @@ Do you want to continue?</value>
   <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
     <value>Enter the variables for script(s): {0}.</value>
   </data>
+  <data name="L_Suite_AsociarComunes" xml:space="preserve">
+    <value>Associate Commons</value>
+  </data>
+  <data name="L_Suite_AsociarComunesSubtitulo" xml:space="preserve">
+    <value>Associates one or more Scripts, with their variables, to the common script of each leaf element of one or more Models.</value>
+  </data>
+  <data name="L_Suite_AsociarComunesDesc" xml:space="preserve">
+    <value>Associates scripts to the common script of each leaf element of the selected drawings.</value>
+  </data>
+  <data name="L_Suite_ConfirmarAsociarComunes" xml:space="preserve">
+    <value>{0} script(s) will be associated to the common script of each leaf element of {1} drawing(s), modifying the database directly. This action cannot be undone.
+Do you want to continue?</value>
+  </data>
+  <data name="L_Suite_ResumenAsociarComunes" xml:space="preserve">
+    <value>Applied to {0} of {1} drawing(s). Scripts added: {2}. Updated: {3}. Already the same: {4}. Elements modified: {5}.</value>
+  </data>
   <data name="L_Suite_ModuloDepuracionEscandallos" xml:space="preserve">
     <value>Script Debugging</value>
   </data>

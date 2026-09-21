@@ -477,6 +477,22 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
     <value>Escribe las variables para el/los escandallo(s): {0}.</value>
   </data>
+  <data name="L_Suite_AsociarComunes" xml:space="preserve">
+    <value>Asociar Comunes</value>
+  </data>
+  <data name="L_Suite_AsociarComunesSubtitulo" xml:space="preserve">
+    <value>Asocia uno o varios Escandallos, con sus variables, al común de cada elemento hoja de uno o varios Modelos.</value>
+  </data>
+  <data name="L_Suite_AsociarComunesDesc" xml:space="preserve">
+    <value>Asocia escandallos al común de cada elemento hoja de los dibujos seleccionados.</value>
+  </data>
+  <data name="L_Suite_ConfirmarAsociarComunes" xml:space="preserve">
+    <value>Se van a asociar {0} escandallo(s) al común de cada elemento hoja de {1} dibujo(s), modificando directamente la base de datos. Esta acción no se puede deshacer.
+¿Desea continuar?</value>
+  </data>
+  <data name="L_Suite_ResumenAsociarComunes" xml:space="preserve">
+    <value>Aplicado a {0} de {1} dibujo(s). Escandallos añadidos: {2}. Actualizados: {3}. Ya existían igual: {4}. Elementos modificados: {5}.</value>
+  </data>
   <data name="L_Suite_ModuloDepuracionEscandallos" xml:space="preserve">
     <value>Depuración de Escandallos</value>
   </data>

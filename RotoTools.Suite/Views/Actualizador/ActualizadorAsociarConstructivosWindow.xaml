@@ -10,10 +10,13 @@
 
     <!--
         Nueva (no existía en el original): asocia uno o varios Escandallos (tabla Escandallos) al
-        nodo psr:ConstructiveScript (sección "Escandallos") de cada elemento "hoja" del XML embebido
-        (comprimido, tabla Dibujos, columna Buffer) de uno o varios dibujos (ver
-        DibujoConstructivosService). A diferencia de "Añadir opciones ROTO" no hay que cargar ningún
-        XML ni elegir modo modelo/elemento: aquí siempre se aplica por elemento hoja.
+        nodo psr:ConstructiveScript (sección "Escandallos") -o psr:CommonScript, ver el parámetro
+        "esComun" del constructor en el code-behind: misma ventana reaprovechada tal cual para
+        "Asociar Comunes" (módulo de Instalación), solo cambian los textos y el nodo de destino- de
+        cada elemento "hoja" del XML embebido (comprimido, tabla Dibujos, columna Buffer) de uno o
+        varios dibujos (ver DibujoConstructivosService). A diferencia de "Añadir opciones ROTO" no
+        hay que cargar ningún XML ni elegir modo modelo/elemento: aquí siempre se aplica por
+        elemento hoja.
 
         3ª versión del diseño (feedback del usuario sobre las 2 anteriores):
         1) La primera apilaba verticalmente DOS zonas completas de árbol+grid+seleccionados, dejando

@@ -12,6 +12,7 @@ using RotoTools.Suite.Views.ControlCambios;
 using RotoTools.Suite.Views.Exportador;
 using RotoTools.Suite.Views.ManillasFKS;
 using RotoTools.Suite.Views.Opciones;
+using RotoTools.Suite.Views.Simulacion;
 using RotoTools.Suite.Views.TariffImporter;
 using RotoTools.Suite.Views.Traduccion;
 
@@ -153,6 +154,7 @@ namespace RotoTools.Suite.Views
             var iconoTraduccion = (Geometry)FindResource("IconChatBubble");
             var iconoManillas = (Geometry)FindResource("IconHandle");
             var iconoTarifas = (Geometry)FindResource("IconTag");
+            var iconoSimulacion = (Geometry)FindResource("IconEye");
             var iconoAjustes = (Geometry)FindResource("IconDots");
 
             _modulos = new List<NavModuleItem>
@@ -168,6 +170,18 @@ namespace RotoTools.Suite.Views
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_Actualizador"), Icono = iconoActualizador, Color = new SolidColorBrush(Color.FromRgb(0x19,0x76,0xD2)),
                         CrearPagina = () => new ActualizadorPage(), TipoPagina = typeof(ActualizadorPage) },
+
+                // "Depuración de Escandallos" (antes "Simulación", nombre provisional -ver comentario
+                // de clase de SimulacionPage-, renombrado a petición del usuario): nueva (no existía
+                // en el original), asistente para recorrer paso a paso la cadena real de escandallos
+                // de una hoja y localizar por qué una opción queda con el valor que tiene. Título
+                // localizado vía SuiteLocalization (L_Suite_ModuloDepuracionEscandallos): a
+                // diferencia de "Inicio"/"CAM · Mecanizados" arriba (conceptos ya existentes en el
+                // original, con su propia clave en RotoTools.LocalizationManager), este módulo es
+                // nuevo de la Suite y no tiene equivalente en el original, así que usa su propia
+                // clave en SuiteStrings ES/EN/PT en vez de LocalizationManager.
+                new() { Titulo = SuiteLocalization.GetString("L_Suite_ModuloDepuracionEscandallos"), Icono = iconoSimulacion, Color = new SolidColorBrush(Color.FromRgb(0x39,0x49,0xAB)),
+                        CrearPagina = () => new SimulacionPage(), TipoPagina = typeof(SimulacionPage) },
 
                 new() { Titulo = RotoTools.LocalizationManager.GetString("L_ExportarDatos"), Icono = iconoExportar, Color = new SolidColorBrush(Color.FromRgb(0xF5,0x7C,0x00)),
                         CrearPagina = () => new ExportadorPage(), TipoPagina = typeof(ExportadorPage) },

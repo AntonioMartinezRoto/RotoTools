@@ -477,4 +477,319 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_EscandalloSinVariables" xml:space="preserve">
     <value>Escribe las variables para el/los escandallo(s): {0}.</value>
   </data>
+  <data name="L_Suite_ModuloDepuracionEscandallos" xml:space="preserve">
+    <value>Depuración de Escandallos</value>
+  </data>
+  <data name="L_Suite_DepuracionEscandallosSubtitulo" xml:space="preserve">
+    <value>Recorre paso a paso la cadena real de escandallos de una hoja para localizar por qué una opción queda con el valor que tiene.</value>
+  </data>
+  <data name="L_Suite_Paso1De5ElegirModelo" xml:space="preserve">
+    <value>Paso 1 de 5 · Elegir modelo</value>
+  </data>
+  <data name="L_Suite_Paso2De5ElegirHoja" xml:space="preserve">
+    <value>Paso 2 de 5 · Elegir hoja</value>
+  </data>
+  <data name="L_Suite_Paso3De5ValoresYEscandallo" xml:space="preserve">
+    <value>Paso 3 de 5 · Valores reales y escandallo de partida</value>
+  </data>
+  <data name="L_Suite_Paso4De5Asistente" xml:space="preserve">
+    <value>Paso 4 de 5 · Asistente</value>
+  </data>
+  <data name="L_Suite_Paso5De5MapaConceptual" xml:space="preserve">
+    <value>Paso 5 de 5 · Mapa conceptual</value>
+  </data>
+  <data name="L_Suite_OrigenBaseDatos" xml:space="preserve">
+    <value>Base de datos</value>
+  </data>
+  <data name="L_Suite_OrigenPresupuesto" xml:space="preserve">
+    <value>Presupuesto</value>
+  </data>
+  <data name="L_Suite_ElegirModeloDobleClic" xml:space="preserve">
+    <value>Elige el modelo a simular (doble clic)</value>
+  </data>
+  <data name="L_Suite_Nivel1" xml:space="preserve">
+    <value>Nivel 1</value>
+  </data>
+  <data name="L_Suite_Nivel2" xml:space="preserve">
+    <value>Nivel 2</value>
+  </data>
+  <data name="L_Suite_NoSeHanPodidoCargarDibujos" xml:space="preserve">
+    <value>No se han podido cargar los dibujos.</value>
+  </data>
+  <data name="L_Suite_NoSeHaPodidoLeerDibujo" xml:space="preserve">
+    <value>No se ha podido leer este dibujo: {0}</value>
+  </data>
+  <data name="L_Suite_NoSeHaEncontradoHojaDibujo" xml:space="preserve">
+    <value>No se ha encontrado ninguna hoja (paño con apertura) en este dibujo.</value>
+  </data>
+  <data name="L_Suite_ElegirPresupuesto" xml:space="preserve">
+    <value>Elige el presupuesto</value>
+  </data>
+  <data name="L_Suite_Numero" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="L_Suite_Version" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="L_Suite_OrdenLinea" xml:space="preserve">
+    <value>Orden (línea)</value>
+  </data>
+  <data name="L_Suite_ContinuarFlecha" xml:space="preserve">
+    <value>Continuar →</value>
+  </data>
+  <data name="L_Suite_ElegeNumVersOrdenVistaPrevia" xml:space="preserve">
+    <value>Elige Número, Versión y Orden para ver la vista previa.</value>
+  </data>
+  <data name="L_Suite_Ajustar" xml:space="preserve">
+    <value>Ajustar</value>
+  </data>
+  <data name="L_Suite_FuenteImagen" xml:space="preserve">
+    <value>Fuente: {0} ({1}×{2}px)</value>
+  </data>
+  <data name="L_Suite_CargandoVistaPreviaDibujo" xml:space="preserve">
+    <value>Cargando la vista previa del dibujo…</value>
+  </data>
+  <data name="L_Suite_NoSePudoGenerarVistaPreviaError" xml:space="preserve">
+    <value>No se ha podido generar una vista previa: {0}</value>
+  </data>
+  <data name="L_Suite_NoSePudoGenerarVistaPreviaDibujo" xml:space="preserve">
+    <value>No se ha podido generar una vista previa para este dibujo.</value>
+  </data>
+  <data name="L_Suite_NoSePudoGenerarVistaPreviaPresupuesto" xml:space="preserve">
+    <value>No se ha podido generar una vista previa para este presupuesto.</value>
+  </data>
+  <data name="L_Suite_NoSeHanPodidoCargarNumerosPresupuesto" xml:space="preserve">
+    <value>No se han podido cargar los números de presupuesto: {0}</value>
+  </data>
+  <data name="L_Suite_NoSeHanPodidoCargarVersiones" xml:space="preserve">
+    <value>No se han podido cargar las versiones: {0}</value>
+  </data>
+  <data name="L_Suite_NoSeHanPodidoCargarOrdenes" xml:space="preserve">
+    <value>No se han podido cargar los números de línea (Orden): {0}</value>
+  </data>
+  <data name="L_Suite_NoSeHaPodidoLeerPresupuesto" xml:space="preserve">
+    <value>No se ha podido leer este presupuesto: {0}</value>
+  </data>
+  <data name="L_Suite_NoSeHaEncontradoHojaPresupuesto" xml:space="preserve">
+    <value>No se ha encontrado ninguna hoja (paño con apertura) en este presupuesto.</value>
+  </data>
+  <data name="L_Suite_AtrasFlecha" xml:space="preserve">
+    <value>← Atrás</value>
+  </data>
+  <data name="L_Suite_EsteModeloTiene1Hoja" xml:space="preserve">
+    <value>Este modelo tiene 1 hoja</value>
+  </data>
+  <data name="L_Suite_EsteModeloTieneNHojas" xml:space="preserve">
+    <value>Este modelo tiene {0} hojas: elige cuál simular</value>
+  </data>
+  <data name="L_Suite_EscandalloDePartida" xml:space="preserve">
+    <value>Escandallo de partida</value>
+  </data>
+  <data name="L_Suite_HojaSinEscandalloPropuesta" xml:space="preserve">
+    <value>Esta hoja no tiene ningún escandallo asociado todavía en su psr:ConstructiveScript: se propone "RO_Gestion Herraje" (el punto de entrada habitual de la gestión de herraje), pero puedes escribir otro código.</value>
+  </data>
+  <data name="L_Suite_HojaTambienTieneAsociados" xml:space="preserve">
+    <value>Esta hoja también tiene asociados: {0}</value>
+  </data>
+  <data name="L_Suite_ValoresRealesDescripcion" xml:space="preserve">
+    <value>Valores reales ya guardados en esta hoja. Se usarán tal cual (sin preguntar); cambia aquí cualquiera para explorar una hipótesis distinta.</value>
+  </data>
+  <data name="L_Suite_MostrarOtrasOpcionesNoRoto" xml:space="preserve">
+    <value>Mostrar también el resto de opciones (no ROTO)</value>
+  </data>
+  <data name="L_Suite_Opcion" xml:space="preserve">
+    <value>Opción</value>
+  </data>
+  <data name="L_Suite_ValorReal" xml:space="preserve">
+    <value>Valor real</value>
+  </data>
+  <data name="L_Suite_Origen" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="L_Suite_IniciarSimulacionFlecha" xml:space="preserve">
+    <value>Iniciar simulación →</value>
+  </data>
+  <data name="L_Suite_EscribeCodigoEscandalloPartida" xml:space="preserve">
+    <value>Escribe el código del escandallo de partida.</value>
+  </data>
+  <data name="L_Suite_OrigenDeducidoOpening" xml:space="preserve">
+    <value>Deducido de Opening.value (tabla de tipos de apertura)</value>
+  </data>
+  <data name="L_Suite_OrigenValorRealGuardado" xml:space="preserve">
+    <value>Valor real guardado</value>
+  </data>
+  <data name="L_Suite_Recorrido" xml:space="preserve">
+    <value>Recorrido</value>
+  </data>
+  <data name="L_Suite_Pregunta" xml:space="preserve">
+    <value>Pregunta</value>
+  </data>
+  <data name="L_Suite_ResponderConValorElegido" xml:space="preserve">
+    <value>Responder con el valor elegido →</value>
+  </data>
+  <data name="L_Suite_OtroValorDosPuntos" xml:space="preserve">
+    <value>Otro valor:</value>
+  </data>
+  <data name="L_Suite_Responder" xml:space="preserve">
+    <value>Responder</value>
+  </data>
+  <data name="L_Suite_ReiniciarSimulacion" xml:space="preserve">
+    <value>Reiniciar simulación</value>
+  </data>
+  <data name="L_Suite_NuevaSimulacion" xml:space="preserve">
+    <value>Nueva simulación</value>
+  </data>
+  <data name="L_Suite_VerMapaConceptualFinal" xml:space="preserve">
+    <value>Ver mapa conceptual final →</value>
+  </data>
+  <data name="L_Suite_SimulacionTerminada" xml:space="preserve">
+    <value>✔ Simulación terminada</value>
+  </data>
+  <data name="L_Suite_RevisaRecorridoAviso" xml:space="preserve">
+    <value>Revisa el recorrido de la izquierda -por ejemplo, para localizar desde dónde se establece una opción fuera de los escandallos de ROTO- y pulsa "Ver mapa conceptual final" cuando quieras continuar.</value>
+  </data>
+  <data name="L_Suite_VariableEntreComillas" xml:space="preserve">
+    <value>Variable "{0}"</value>
+  </data>
+  <data name="L_Suite_NecesitaValorNumericoVariable" xml:space="preserve">
+    <value>{0} necesita un valor numérico para la variable "{1}" (no se ha podido deducir de ninguna llamada ESCANDALLO("...","...") anterior): escríbelo en "Otro valor".</value>
+  </data>
+  <data name="L_Suite_PreguntadoPor" xml:space="preserve">
+    <value>Preguntado por: {0}</value>
+  </data>
+  <data name="L_Suite_EligeValorListaOtroValor" xml:space="preserve">
+    <value>Elige un valor de la lista, o escribe uno en "Otro valor".</value>
+  </data>
+  <data name="L_Suite_EscribeUnValor" xml:space="preserve">
+    <value>Escribe un valor.</value>
+  </data>
+  <data name="L_Suite_ValorNoValidoNumerico" xml:space="preserve">
+    <value>"{0}" no es un número válido. La variable "{1}" necesita un valor numérico (p.ej. 1200 o 850.5).</value>
+  </data>
+  <data name="L_Suite_LogEntraEn" xml:space="preserve">
+    <value>→ Entra en {0}</value>
+  </data>
+  <data name="L_Suite_LogSaleDe" xml:space="preserve">
+    <value>← Sale de {0}</value>
+  </data>
+  <data name="L_Suite_LogOpcionEstablecida" xml:space="preserve">
+    <value>    {0} = "{1}"  (establecido por {2})</value>
+  </data>
+  <data name="L_Suite_LogVariablePasada" xml:space="preserve">
+    <value>    {0} pasa la variable "{1}" = "{2}"</value>
+  </data>
+  <data name="L_Suite_LogVariableAsignada" xml:space="preserve">
+    <value>    {0} asigna la variable "{1}" = "{2}"  (SEA)</value>
+  </data>
+  <data name="L_Suite_LogNecesitaValorNumericoVariable" xml:space="preserve">
+    <value>?   {0} necesita el valor numérico de la variable "{1}"</value>
+  </data>
+  <data name="L_Suite_LogNecesitaValorOpcion" xml:space="preserve">
+    <value>?   {0} necesita el valor de "{1}"</value>
+  </data>
+  <data name="L_Suite_LogFragmentoNoReconocido" xml:space="preserve">
+    <value>⚠ {0}: fragmento no reconocido por el intérprete — "{1}"</value>
+  </data>
+  <data name="L_Suite_LogErrorInterpretarPrograma" xml:space="preserve">
+    <value>⚠ {0}: error al interpretar su Programa — {1}</value>
+  </data>
+  <data name="L_Suite_LogEscandalloNoEncontrado" xml:space="preserve">
+    <value>⚠ No se ha encontrado el escandallo "{0}" en la base de datos</value>
+  </data>
+  <data name="L_Suite_LogCicloDetectado" xml:space="preserve">
+    <value>⚠ Ciclo detectado: "{0}" ya estaba en la pila de llamadas ({1})</value>
+  </data>
+  <data name="L_Suite_LogRespondidoEnAsistente" xml:space="preserve">
+    <value>✓   {0} = "{1}"  (respondido en el asistente)</value>
+  </data>
+  <data name="L_Suite_ValorSi" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="L_Suite_ValorNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="L_Suite_ValorIzquierda" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="L_Suite_ValorDerecha" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="L_Suite_ValorNinguna" xml:space="preserve">
+    <value>Ninguna</value>
+  </data>
+  <data name="L_Suite_ValorIzquierdaDerecha" xml:space="preserve">
+    <value>Izquierda y derecha</value>
+  </data>
+  <data name="L_Suite_ValorInferior" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="L_Suite_ValorPracticable" xml:space="preserve">
+    <value>Practicable</value>
+  </data>
+  <data name="L_Suite_ValorOscilobatiente" xml:space="preserve">
+    <value>Oscilobatiente</value>
+  </data>
+  <data name="L_Suite_OrigenEstablecidoPorEstablece" xml:space="preserve">
+    <value>establecido por ESTABLECEOPCION</value>
+  </data>
+  <data name="L_Suite_OrigenElegidoEnAsistente" xml:space="preserve">
+    <value>elegido en el asistente</value>
+  </data>
+  <data name="L_Suite_OrigenValorRealDibujo" xml:space="preserve">
+    <value>valor real del dibujo</value>
+  </data>
+  <data name="L_Suite_OrigenVariablePasadaPor" xml:space="preserve">
+    <value>variable pasada por ESCANDALLO("Código","Variables")</value>
+  </data>
+  <data name="L_Suite_OrigenEstablecidoNumerico" xml:space="preserve">
+    <value>establecido por ESTABLECEOPCIONNUMERICA (expresión numérica)</value>
+  </data>
+  <data name="L_Suite_OrigenAsignadoPorSea" xml:space="preserve">
+    <value>asignado por SEA</value>
+  </data>
+  <data name="L_Suite_SinValor" xml:space="preserve">
+    <value>(sin valor)</value>
+  </data>
+  <data name="L_Suite_HistorialLinea" xml:space="preserve">
+    <value>{0}. {1} → "{2}"  [{3}]</value>
+  </data>
+  <data name="L_Suite_NoEstablecidoEnRecorrido" xml:space="preserve">
+    <value>(no se ha establecido en este recorrido)</value>
+  </data>
+  <data name="L_Suite_MapaConceptualFinal" xml:space="preserve">
+    <value>Mapa conceptual final</value>
+  </data>
+  <data name="L_Suite_MostrarOpcionesValorOculto" xml:space="preserve">
+    <value>Mostrar también las opciones con valor oculto</value>
+  </data>
+  <data name="L_Suite_ValorFinal" xml:space="preserve">
+    <value>Valor final</value>
+  </data>
+  <data name="L_Suite_OrigenDelValorFinal" xml:space="preserve">
+    <value>Origen del valor final</value>
+  </data>
+  <data name="L_Suite_TooltipValorPisado" xml:space="preserve">
+    <value>Este valor fue pisado más de una vez: revisa el historial completo.</value>
+  </data>
+  <data name="L_Suite_HistorialCompletoOrden" xml:space="preserve">
+    <value>Historial completo (orden de aplicación)</value>
+  </data>
+  <data name="L_Suite_VolverAlRecorridoPaso4" xml:space="preserve">
+    <value>← Volver al recorrido (Paso 4)</value>
+  </data>
+  <data name="L_Suite_Oculto" xml:space="preserve">
+    <value>oculto</value>
+  </data>
+  <data name="L_Suite_Nivel3" xml:space="preserve">
+    <value>Nivel 3</value>
+  </data>
+  <data name="L_Suite_Nivel4" xml:space="preserve">
+    <value>Nivel 4</value>
+  </data>
+  <data name="L_Suite_Nivel5" xml:space="preserve">
+    <value>Nivel 5</value>
+  </data>
+  <data name="L_Suite_SoloVistaPreviaXamlSilverlight" xml:space="preserve">
+    <value>Este dibujo solo tiene una vista previa en formato XAML de Silverlight, que todavía no se puede mostrar aquí.</value>
+  </data>
 </root>

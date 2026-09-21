@@ -808,4 +808,7 @@ Conector actualizado correctamente.</value>
   <data name="L_Suite_SoloVistaPreviaXamlSilverlight" xml:space="preserve">
     <value>Este dibujo solo tiene una vista previa en formato XAML de Silverlight, que todavía no se puede mostrar aquí.</value>
   </data>
+  <data name="L_Suite_DejarMargenPosicionInicio" xml:space="preserve">
+    <value>Dejar margen en posición de inicio</value>
+  </data>
 </root>

@@ -801,4 +801,7 @@ Do you want to continue?</value>
   <data name="L_Suite_SoloVistaPreviaXamlSilverlight" xml:space="preserve">
     <value>This drawing only has a Silverlight XAML preview, which cannot be displayed here yet.</value>
   </data>
+  <data name="L_Suite_DejarMargenPosicionInicio" xml:space="preserve">
+    <value>Leave margin at start position</value>
+  </data>
 </root>

@@ -160,6 +160,20 @@
                 <DockPanel Grid.Row="0" Margin="0,0,0,10">
                     <TextBlock x:Name="LblResultado" DockPanel.Dock="Left" Style="{StaticResource RotoSectionTitle}" VerticalAlignment="Center" />
 
+                    <CheckBox x:Name="ChkDejarMargenPosicionInicio" DockPanel.Dock="Left" VerticalAlignment="Center"
+                              Margin="16,0,0,0" Checked="ChkDejarMargenPosicionInicio_CheckedChanged"
+                              Unchecked="ChkDejarMargenPosicionInicio_CheckedChanged" />
+
+                    <!-- Margen (mm) a restar/sumar en YDistance/ZDistance según el plano de la operación,
+                         solo editable si el checkbox de arriba está marcado (ver
+                         ChkDejarMargenPosicionInicio_CheckedChanged / TxtMargenPosicionInicio_TextChanged en
+                         el code-behind). Limitado a un máximo de 10 mm mientras se escribe. -->
+                    <TextBox x:Name="TxtMargenPosicionInicio" Style="{StaticResource RotoTextBox}" DockPanel.Dock="Left"
+                             Width="46" VerticalAlignment="Center" Margin="8,0,0,0" TextAlignment="Center"
+                             MaxLength="6" Text="1" IsEnabled="False" TextChanged="TxtMargenPosicionInicio_TextChanged" />
+                    <TextBlock x:Name="LblMargenPosicionInicioUnidad" DockPanel.Dock="Left" VerticalAlignment="Center"
+                               Margin="6,0,0,0" Text="mm" Foreground="{StaticResource RotoGrayBrush}" />
+
                     <ComboBox x:Name="CmbFiltroRolResultado" Style="{StaticResource RotoComboFilter}" DockPanel.Dock="Right"
                               Width="160" VerticalAlignment="Center" Margin="0,0,20,0" SelectionChanged="CmbFiltroRolResultado_SelectionChanged" />
                     <TextBlock x:Name="LblFiltroRolResultado" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,0,8,0" />

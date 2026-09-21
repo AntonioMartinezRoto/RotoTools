@@ -33,6 +33,12 @@ namespace RotoTools.Suite.Views.Cam
         private readonly ObservableCollection<PerfilAInstalarRow> _perfilesAInstalar = new();
         private ICollectionView? _vistaResultado;
 
+        // Estado de TxtMargenPosicionInicio (ver TxtMargenPosicionInicio_TextChanged): último texto
+        // válido al que revertir si el usuario teclea algo no numérico, y bandera de reentrada para
+        // no disparar el propio TextChanged al corregir el Text por código.
+        private string _txtMargenValorValido = "1";
+        private bool _actualizandoTxtMargen;
+
         public Cam3DWindow(List<OperationInstalarGridItem> operacionesSeleccionadas)
         {
             InitializeComponent();
@@ -79,6 +85,7 @@ namespace RotoTools.Suite.Views.Cam
             TxtBtnLimpiarResultado.Text = RotoTools.LocalizationManager.GetString("L_Limpiar");
             LblTodosPerfiles.Text = "Todos los perfiles (doble clic para añadir a la lista)";
             LblResultado.Text = RotoTools.LocalizationManager.GetString("L_PerfilesAInstalar");
+            ChkDejarMargenPosicionInicio.Content = SuiteLocalization.GetString("L_Suite_DejarMargenPosicionInicio");
             LblFiltroRolResultado.Text = RotoTools.LocalizationManager.GetString("L_Rol") + ":";
 
             TxtMateriales.Text = SuiteLocalization.GetString("L_Suite_Materiales");
@@ -104,6 +111,52 @@ namespace RotoTools.Suite.Views.Cam
             ColRolMecanizado.Header = RotoTools.LocalizationManager.GetString("L_RolMecanizado");
             ColResDescuentoCanalHerraje.Header = RotoTools.LocalizationManager.GetString("L_DescuentoCanalHerraje");
             ColResPosicionCanalHerraje.Header = RotoTools.LocalizationManager.GetString("L_PosicionCanalHerraje");
+        }
+
+        /// <summary>TxtMargenPosicionInicio solo es editable mientras el checkbox está marcado
+        /// (se deja tal cual esté al desmarcar, no se limpia, por si el usuario vuelve a
+        /// marcarlo).</summary>
+        private void ChkDejarMargenPosicionInicio_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            TxtMargenPosicionInicio.IsEnabled = ChkDejarMargenPosicionInicio.IsChecked == true;
+        }
+
+        /// <summary>Autolimita TxtMargenPosicionInicio mientras se escribe: descarta caracteres no
+        /// numéricos o negativos (revierte al último texto válido) y recorta a 10 si se supera ese
+        /// máximo. Se revalida igualmente al pulsar Instalar (por si queda vacío o en un estado
+        /// intermedio no válido), ver BtnInstalarOperaciones_Click.</summary>
+        private void TxtMargenPosicionInicio_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_actualizandoTxtMargen) return;
+
+            string texto = TxtMargenPosicionInicio.Text;
+            string? nuevoTexto = null;
+
+            if (texto.Length == 0)
+            {
+                _txtMargenValorValido = texto;
+            }
+            else if (!double.TryParse(texto, NumberStyles.Any, CultureInfo.InvariantCulture, out double valor) || valor < 0)
+            {
+                nuevoTexto = _txtMargenValorValido;
+            }
+            else if (valor > 10)
+            {
+                nuevoTexto = "10";
+            }
+            else
+            {
+                _txtMargenValorValido = texto;
+            }
+
+            if (nuevoTexto != null)
+            {
+                _actualizandoTxtMargen = true;
+                TxtMargenPosicionInicio.Text = nuevoTexto;
+                TxtMargenPosicionInicio.CaretIndex = TxtMargenPosicionInicio.Text.Length;
+                _actualizandoTxtMargen = false;
+                _txtMargenValorValido = nuevoTexto;
+            }
         }
 
         private bool FiltrarPerfilAInstalarPorRol(object obj)
@@ -481,7 +534,10 @@ ORDER BY
 
         /// <summary>Idéntico a Cam3D.btn_InstalarOperaciones_Click: valida, resuelve plantillas
         /// del catálogo 3D por Operación+Rol, y las instala en una única transacción (con
-        /// rollback si algo falla), igual que el original.</summary>
+        /// rollback si algo falla), igual que el original. La inserción en sí se hace a través de
+        /// Cam3DInstalacionService.InstalarProfileOperation (Suite), en vez de llamar directamente
+        /// a RotoTools.Cam3DHelpers.InstalarProfileOperation, para poder aplicar el checkbox
+        /// "Dejar margen en posición de inicio" sin tocar el proyecto RotoTools original.</summary>
         private void BtnInstalarOperaciones_Click(object sender, RoutedEventArgs e)
         {
             if (_operacionesSeleccionadas.Count == 0)
@@ -525,6 +581,22 @@ ORDER BY
                 MessageBox.Show("Indique la 'Posición canal de herraje' para los siguientes perfiles (rol de hoja):" + Environment.NewLine +
                     string.Join(", ", sinPosicion.Select(p => p.ReferenciaBase)), "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
+
+            // "Dejar margen en posición de inicio": el TextBox ya se autolimita mientras se escribe
+            // (ver TxtMargenPosicionInicio_TextChanged), pero se revalida aquí por si ha quedado vacío
+            // o en un estado intermedio no válido (p.ej. "," o "-").
+            double? margenPosicionInicio = null;
+            if (ChkDejarMargenPosicionInicio.IsChecked == true)
+            {
+                if (!double.TryParse(TxtMargenPosicionInicio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double margen) ||
+                    margen <= 0 || margen > 10)
+                {
+                    MessageBox.Show("Indique un 'Margen en posición de inicio' válido (mayor que 0 y no superior a 10 mm).",
+                        "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                margenPosicionInicio = margen;
             }
 
             int perfilesProcesados = 0, operacionesInstaladas = 0, operacionesOmitidas = 0;
@@ -610,7 +682,7 @@ ORDER BY
                                         continue;
                                     }
 
-                                    RotoTools.Cam3DHelpers.InstalarProfileOperation(conexion, tx, perfil.ProfileId, perfil.ReferenciaBase, plantilla, variables);
+                                    Cam3DInstalacionService.InstalarProfileOperation(conexion, tx, perfil.ProfileId, perfil.ReferenciaBase, plantilla, variables, margenPosicionInicio);
                                     operacionesInstaladas++;
                                 }
                             }

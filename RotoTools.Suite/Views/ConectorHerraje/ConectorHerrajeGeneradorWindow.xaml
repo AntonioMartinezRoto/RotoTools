@@ -89,10 +89,10 @@
                                     <TextBlock x:Name="TxtBtnGuardarXml" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="BtnGuardarBD" Style="{StaticResource RotoButtonSecondary}" Margin="7,0,0,0"
+                            <Button x:Name="BtnGuardarBD" Style="{StaticResource RotoButtonPrimary}" Margin="7,0,0,0"
                                     Click="BtnGuardarBD_Click" HorizontalContentAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
-                                    <Path Data="{StaticResource IconUpload}" Fill="{StaticResource RotoInkBrush}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
+                                    <Path Data="{StaticResource IconUpload}" Fill="White" Width="14" Height="14" Stretch="Uniform" Margin="0,0,8,0" />
                                     <TextBlock x:Name="TxtBtnGuardarBD" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
